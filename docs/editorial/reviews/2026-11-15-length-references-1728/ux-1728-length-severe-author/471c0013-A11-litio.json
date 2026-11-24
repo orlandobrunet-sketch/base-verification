@@ -1,0 +1,225 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "471c0013",
+  "family": "A11-litio",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Nefrotoxicidade de Drogas",
+    "qid": "471c0013",
+    "q": "Paciente de 55 anos com transtorno bipolar em uso de carbonato de lítio há 12 anos apresenta poliúria de 5 L/dia, polidipsia e creatinina de 1,8 mg/dL. A litemia é 0,7 mEq/L. Biópsia renal mostra fibrose intersticial com microcistos tubulares. Qual alternativa descreve corretamente o mecanismo da lesão renal pelo lítio e a conduta mais apropriada?",
+    "opts": [
+      "Lítio entra pelo ENaC nas células principais do ducto coletor e reduz a resposta à vasopressina/AQP2, causando diabetes insípido nefrogênico; conduta: amilorida e reavaliação do lítio com a psiquiatria.",
+      "Inibição de COX-2 com redução de prostaglandinas vasodilatadoras renais, causando vasoconstrição aferente — suspender AINE.",
+      "Reação imune mediada por anticorpos anti-MBG — indicar plasmaférese e imunossupressão.",
+      "Nefrite intersticial aguda por hipersensibilidade — manter lítio e iniciar corticosteroide."
+    ],
+    "ans": 0,
+    "exp": "O lítio entra nas células principais do ducto coletor pelo ENaC e reduz a resposta tubular à vasopressina, com queda funcional da aquaporina-2 e diabetes insípido nefrogênico. O uso prolongado também pode causar nefropatia túbulo-intersticial crônica com fibrose e microcistos, mesmo com litemia terapêutica. A amilorida é fisiologicamente dirigida porque bloqueia ENaC e reduz a entrada tubular de lítio; a continuidade do lítio deve ser reavaliada com a psiquiatria. As demais alternativas descrevem AINEs, doença anti-MBG ou hipersensibilidade, não o mecanismo clássico do lítio.",
+    "diff": "medium",
+    "cat": "farmacologia",
+    "refs": [
+      "lithium_ndi_amiloride_bedford"
+    ]
+  },
+  "originalSHA256": "sha256:3fa9a79805aea3503510a1aca85f4377408c633743f54f212dc7fa63d7dcdcfd",
+  "originalRefs": [
+    {
+      "id": "lithium_ndi_amiloride_bedford",
+      "original": {
+        "label": "Bedford JJ et al. — Lithium-induced Nephrogenic Diabetes Insipidus: Renal Effects of Amiloride",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+        "journal": "Clin J Am Soc Nephrol 2008;3(5):1324-1331",
+        "ano": 2008,
+        "tipo": "Estudo Clínico",
+        "badge": "CLINICAL",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Mecanismo e tratamento do diabetes insipidus nefrogênico induzido por lítio com amilorida",
+        "icon": "🔬",
+        "resumo": "Estudo clínico em pacientes em uso de lítio mostrando defeito de concentração urinária, redução de aquaporina 2 urinária e relação com duração da exposição. Em subestudo randomizado, duplo-cego, cruzado, amilorida por 6 semanas aumentou a osmolaridade urinária máxima após desmopressina e a excreção de aquaporina 2. O racional é bloquear ENaC nas células principais do ducto coletor, reduzindo a entrada de lítio e melhorando a resposta tubular à vasopressina.",
+        "conclusao": "No diabetes insipidus nefrogênico por lítio, a amilorida é uma estratégia fisiologicamente dirigida porque reduz a entrada de lítio no ducto coletor; deve ser acompanhada de monitorização clínica, renal e dos níveis de lítio.",
+        "curiosidade": "O mesmo canal epitelial de sódio que permite ao néfron ajustar a reabsorção fina de sódio também é a porta de entrada do lítio na célula principal — uma bela tragédia tubular em miniatura."
+      },
+      "originalSHA256": "sha256:30e9c1b9ef28dcfa339e1f62c4510eee4ac08d14e2f8d546aee4f1a01d5a31e4"
+    }
+  ],
+  "classificationBefore": {
+    "op": "O original mistura o mecanismo do defeito de concentração e uma conduta farmacológica, dentro de um caso com nefropatia crônica por biópsia.",
+    "primaryCompetence": "Fisiopatologia e farmacologia renal.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "redirecionar",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "CRÍTICO — Extrapola estudo semdoençarenalparaofereceramiloridacomCr1,8,semK/interações.",
+      "MAIOR — MisturaOPdemecanismoeconduta;asalteraçõesdabiópsiacrônicanãosãootratamentododefeitodeconcentração.",
+      "MAIOR — A fonte citadaparaoitemnãosustentaasafirmaçõeshistológicasnemregimenaDRC."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": true,
+        "rationale": "BedfordexcluiudoençarenalconhecidaenãoprovaquemcomCr1,8deveriareceberamilorida."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": true,
+        "rationale": "PremiaamiloridacomoautomáticacominsuficiênciarenalesemK;rotulagemrealalertacontraindicação/hipercalemia."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": true,
+        "rationale": "Faltampotássio,riscodeinteraçõesecontextoparaconsiderarfármacopoupadorK."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "anulado": true
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "bedford",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+      "doi": "10.2215/CJN.01640408",
+      "pmid": "18596116",
+      "access": "Corpo primário publicado lido em cópia pública enviada por coautora noResearchGate, identificada por título/autores/DOI/paginação; não é resumo deoutroautor",
+      "additionalURLs": [
+        "https://www.researchgate.net/publication/5257487_Lithium-induced_Nephrogenic_Diabetes_Insipidus_Renal_Effects_of_Amiloride"
+      ],
+      "locators": [
+        "Methods/Participants,p1325:45lítio/42controles;semhistóriadedoençarenal;excluiurodose?Não:doençarenalconhecida,diurético/IECAeinstabilidade.",
+        "Subestudo11pacientes,randomizado/duplocego/crossover;6semanascomwashout6semanas;5mg/dia2semanas,10mg/dia4semanas.",
+        "Results/Tables3–4/Figure3: maiorcapacidadeconcentradoraapósdesmopressinaemaiorexcreçãourináriaAQP2.",
+        "Discussion/Conclusion,p1329–1330: bloqueioENaCeentradalítioéracionalinferido,nãoprova diretadomecanismonessessereshumanos; mecanismosprecisamoutrosestudos."
+      ],
+      "limitations": [
+        "PMCwebdeurecaptcha; EFetchPMCbedford-2008-pmc.xml(49ebb391...) contém apenasfront/abstract, sembody. Não o apresentei comocorpointegral. EuropePMCfullTextXMLretornou500.",
+        "DownloadPDFda cópiaResearchGatefalhou404; a transcrição integral pública do artigo primário foi efetivamente aberta, sem confundir trechos deoutrostrabalhos exibidos abaixo das referências.",
+        "CadastroANZCTRretrospectivo2010commesmoCRG060500004temdiferençasdeprotocolo(5mgprimeirasemanaeoutroscritérios); nãofoiusadopara substituir oregimerelatadonopaper2008."
+      ]
+    },
+    {
+      "id": "amiloride",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?audience=professional&setid=e0cc2d44-436a-47e8-a890-589882fff4c4",
+      "access": "Rotulagem profissional norte-americana integral aberta noDailyMed; ParHealthUSA, atualizada28/07/2026",
+      "locators": [
+        "Description:comprimido5mgparaviaoral.",
+        "Indications:adjuvantecomdiuréticocaliuréticoparaICC/hipertensão, nãocitadiabetesinsipidusnefrogênico.",
+        "Contraindications/Warnings:riscodehipercalemia,insuficiênciarenal;funçãorenalalteradaexigecuidadosemonitorizaçãocontínua;potássionormalnãotornaumDRCautomaticamenteapto.",
+        "ClinicalPharmacology:açãoanticaliúrica,bloqueioreabsorçãosódiodistal/coletor; nãomineralocorticoide."
+      ],
+      "limitations": [
+        "Não extrapolar rotulagem dosEUAparaAnvisa. O usoemNDIénãolistadonessabula; racional/pequenoensaionãoequivaleàaprovaçãoregulatória."
+      ]
+    },
+    {
+      "id": "markowitz",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10906157/",
+      "doi": "10.1681/ASN.V1181439",
+      "pmid": "10906157",
+      "access": "Metadados eabstractprimáriosNLM obtidos e lidos emXML; não corpo integral",
+      "artifact": "markowitz-2000-nlm.xml",
+      "rawSHA256": "a6c758c5679dcec5657216ece8b792513b1283ee2781f8c88b56ad7e4f03c987",
+      "locators": [
+        "Abstract:24biópsiasselecionadasporinsuficiênciarenal,exposição média13,6anos;CTIN100%,cistostubularescorticais/medulares62,5%oudilatação33,3%.",
+        "Abstract:origemdistal/coletora;atrofia/fibroseintersticial,comlesõesglomerularesassociadasemparte; disfunçãopodepersistirapesardaretirada."
+      ],
+      "limitations": [
+        "Apenasabstractlido. A nova questão e o novo cardlimitam-seàdescriçãohistológicadaamostraselecionada, todaexplícitanesseabstract. Não inferir incidência emtodososusuários,causalidadeperfeitaouregimetratamento."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "A amostraBedfordnãoincluiucomdoençarenalconhecida; nãojustifica a extrapolação deconduta do original.",
+      "source": "bedford",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Fibroseatrofiamicrocistosnaexposiçãocrônicaforamdescritosnas24biópsiasselecionadas.",
+      "source": "markowitz",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": null,
+  "proposedSHA256": null,
+  "classificationAfter": null,
+  "proposedRefs": [],
+  "candidateReview": null,
+  "identityDecision": {
+    "preserveQid": false,
+    "reason": "A identidade471c0013não pode ser usada para umnovoOPde reconhecimentohistológicocrônico. Aposentar471ao integrar a novaidentidade, semtransferência deFSRS,acertos,domínio,créditoouaquisições.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": "Redirecionar paraOP clínico distinto somente comnovaidentidade criada abaixo e gate independente. Não fundir presumindo quecreatinina1,8sejadadodecorativo.",
+  "lifecycleDecision": {
+    "verdict": "redirecionar",
+    "retiredQid": "471c0013",
+    "newQid": "0a2634fc",
+    "action": "substituir",
+    "retiredStatus": "aposentado",
+    "fsrsTransfer": false,
+    "creditTransfer": false,
+    "ready": false,
+    "condition": "Somente após revisão independente da aposentadoria e do novoitem; 471nãoédeclaradoduplicataliteral."
+  }
+}

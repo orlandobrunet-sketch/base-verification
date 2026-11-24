@@ -1,0 +1,136 @@
+{
+  "schema": "NQ_INDEPENDENT_TECHNICAL_FAILCLOSED_1728_ADDENDUM_A2",
+  "role": "INDEPENDENT_TECHNICAL_REVIEWER_NOT_IMPLEMENTER",
+  "reviewer": "/root/editorial_backlog_1728",
+  "date": "2026-11-16",
+  "previousReceipt": {
+    "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed/independent-failclosed-review.json",
+    "rawSHA256": "5a18fde7249d33edf284622b9d905e59361d4ab8f64ef63eea88674925be8e45",
+    "scope": "Preservado para seus bytes antigos; não herdado para os novosJS."
+  },
+  "changesReviewed": [
+    {
+      "change": "Desbloqueio legítimo durante ausência do módulo",
+      "assessment": "Fallback não confia apenas emkeys. Exigeqid corrente emmanifesto, catálogo de revisões previamente validado, bindingrecordRevision coincidente, API digest e digest do registro correspondente. Concede somente chaves atuais com digestnonnull válido. Fica síncrono no callback já protegido; qid e refs são capturados antes de eventual troca de questão. Não abre corpo/leitor quando módulo obrigatório falta.",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 503,
+          "symbol": "function _unlockRefsFromQuestion(keys, qid)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 5221,
+          "symbol": "// Desbloquear refs do Grimório ao acertar"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/question-revisions.js",
+          "line": 287,
+          "symbol": "function current(qid, profile) { const value = verifier.current"
+        }
+      ]
+    },
+    {
+      "change": "Questões independentes do catálogo/artigos",
+      "assessment": "_loadTopics pede refsOnly: precisa do conteúdo bibliográfico validado para montar a questão, mas não bloqueia por indisponibilidade do módulo da biblioteca nem pelo carregamento tardio dearticles.",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 3044,
+          "symbol": "function _loadTopics(options)"
+        }
+      ]
+    },
+    {
+      "change": "Readiness completa do baú",
+      "assessment": "_chestLibraryReady exige catálogo e nefroArticles Array comtypeof seguro. Guard ocorre antes de débito, sorteio, unlock e consumo de receipt, incluindo callback da animação. Queue aquece o caminho full quando necessário; conclusão assíncrona só chama flush, que revalida contexto/binding, sem claim assíncrono direto. Perda deassets não cria overlay bloqueante ou falsa vitória pendente.",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 6954,
+          "symbol": "function _chestLibraryReady()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 6957,
+          "symbol": "function _retryChestLibrary()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7059,
+          "symbol": "function _queueChestReward(binding, readyAt, receipt = Object.freeze({}))"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7127,
+          "symbol": "function _animateAndClaimChest(trigger)"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "native": {
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed-A2/native-tests.json",
+      "rawSHA256": "17a8dded37a17219e30927ec8707da648c4d6bd71be508f50fa0cca59a404fe1",
+      "summary": [
+        "# tests 50",
+        "# pass 50",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 460.501"
+      ],
+      "exitCode": 0,
+      "scope": "50unidades:45anteriores+4fallback autenticado/negativo+1articlesready."
+    },
+    "browser": {
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed-A4/browser-independent.json",
+      "rawSHA256": "fda1a0d4ce055312142b4760f9467aba71c6552f88d347a705954d5d87e883ad",
+      "stats": {
+        "startTime": "2026-11-16T03:44:53.335Z",
+        "duration": 21923.15,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "exitCode": 0,
+      "retries": 0,
+      "pageErrors": [],
+      "scope": "Dois cenários Chromium próprios: ausência/recuperação do mesmo baú; acerto real durante ausência com preservação do desbloqueio publicado, rejeição dekeysforjadas/CMV eNext disponível."
+    },
+    "sourceHashes": {
+      "js/game.js": "a8350dd0e80eb67e27aaba40a0f99389a90e47f70a96f7fc53bffd98413b5795",
+      "js/utils.js": "e0f7a44451415cf2fca1a591677f6d514bd324d20dc0a7fdfe5edd39c7d9412c",
+      "js/dashboard.js": "83d23509d090ff903c866f78c840be72a994233a96751d432d444719e4a18893",
+      "js/achievements.js": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d",
+      "js/library-catalog.js": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822",
+      "js/question-revisions.js": "4cdf46b51310ea9aad5851f8b7ae8a5c793a9715648b1a73f2325e07883e01a9",
+      "tests/specs/306-library-catalog.spec.ts": "7c5369d742b7f534113b89c272f694f8f7e68d02b502e64da95e66e1601a78e2"
+    },
+    "noSourceDrift": true,
+    "developmentRunsPreserved": [
+      {
+        "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed-A2/browser-independent.json",
+        "rawSHA256": "9644c0745072b124baa4cf54b620cbca2a0b1994fcec80b3b11305f6047f638b",
+        "result": "2falhas. Testes ainda supunham ausência prolongada apesar de rede novamente liberada e exigiam redesenho de#refs sem executar nova apresentação. Diagnóstico comunicado e arranjo corrigido, sem mudarJS."
+      },
+      {
+        "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed-A3/browser-independent.json",
+        "rawSHA256": "c17de7072a11ff1899cee59221c5c26fdb4a0daceec6f63a733a2b2c7313f7ab",
+        "result": "1pass/1fail; cenário de acerto usava primeira opção apesar de embaralhamento.306 mudou durante execução e recibo detectou drift. Não foi promovido a contraprova limpa. Cenário final escolhe state.current.a apresentado."
+      }
+    ]
+  },
+  "remainingActionableFindings": [],
+  "limits": [
+    "Contraprovas de navegador próprias emChromium desktop; mobile pertence à execução do implementador.",
+    "Não é gate clínico nem validação da medicina autorada por mim.",
+    "Fila de oportunidades permanece no contrato preexistente de memória/contexto; não foi criada prova de persistência após fechar o processo.",
+    "Novo contrato preserva descoberta publicada autenticada durante falha; portanto substitui apenas a antiga afirmação genérica de nenhuma mutação deunlocks na ausência. Favoritos/leitores indevidos continuam bloqueados."
+  ],
+  "productionWritesByReviewer": 0,
+  "ledgerWritesByReviewer": 0,
+  "conclusion": "Novos caminhos conferidos de forma independente nos hashes pinados. Nenhum achado acionável remanescente no escopo após50unidades e2cenáriosR0 próprios."
+}

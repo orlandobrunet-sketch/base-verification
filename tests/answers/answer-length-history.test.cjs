@@ -108,11 +108,15 @@ test('the bounded continuation retains exactly 43 published 17.11 records and 17
   assert.equal(bindings, 172);
 });
 
-test('the retired KDIGO card survives bound history while the card-only continuation stays ambiguous without binding', () => {
+test('retired cards and both reference-only past versions survive a later material revision', () => {
   const retired = history.find(entry => entry.qid === 'ddb4938a' && entry.release === '17.11');
   const shared = history.find(entry => entry.qid === '5530b59c' && entry.release === '17.11');
+  const intermediate = history.find(entry => entry.qid === '5530b59c' && entry.release === '17.27');
   assert(retired?.references.kdigo_igan_2021, 'The published full KDIGO card must survive current retirement');
   assert(shared?.references.moeller_plosone_2014, 'The unchanged question must retain its previous full Moeller card');
+  assert(intermediate?.references.moeller_plosone_2014);
+  assert.deepEqual(intermediate.author, shared.author);
+  assert.notEqual(intermediate.recordRevision, shared.recordRevision);
   assert.equal(Object.hasOwn(references, 'kdigo_igan_2021'), false);
   for (const profile of profiles) {
     const retiredView = catalog.resolve(retired.sources[profile], {profile, binding: retired.bindings[profile]});
@@ -120,16 +124,41 @@ test('the retired KDIGO card survives bound history while the card-only continua
     assert.deepEqual(retiredView.references.kdigo_igan_2021, retired.references.kdigo_igan_2021);
     assert.equal(Object.hasOwn(catalog.current(retired.qid, profile).references, 'kdigo_igan_2021'), false);
     const current = catalog.current(shared.qid, profile);
-    assert.deepEqual(current.author, shared.author);
-    assert.deepEqual(current.source, shared.sources[profile]);
+    assert.deepEqual(intermediate.sources[profile], shared.sources[profile]);
+    assert.notDeepEqual(current.author, shared.author);
+    assert.notDeepEqual(current.source, shared.sources[profile]);
     assert.notDeepEqual(current.references.moeller_plosone_2014, shared.references.moeller_plosone_2014);
     assert.equal(catalog.inspect(shared.sources[profile], {profile}).status, 'ambiguous');
     const oldBound = catalog.resolve(shared.sources[profile], {profile, binding: shared.bindings[profile]});
     assert.equal(oldBound.historical, true);
     assert.deepEqual(oldBound.references, shared.references);
+    const intermediateBound = catalog.resolve(intermediate.sources[profile], {profile, binding: intermediate.bindings[profile]});
+    assert.equal(intermediateBound.historical, true);
+    assert.deepEqual(intermediateBound.references, intermediate.references);
+    assert.notDeepEqual(intermediateBound.references, oldBound.references);
     const currentBound = catalog.resolve(current.source, {profile, binding: current.binding});
     assert.equal(currentBound.historical, false);
     assert.deepEqual(currentBound.references, current.references);
+  }
+});
+
+test('a material update does not collapse the two reference-only Gitelman archives', () => {
+  const qid='81740f2d', prior=history.filter(row=>row.qid===qid);
+  assert.deepEqual(prior.map(row=>row.release),['16.19','17.27']);
+  assert.deepEqual(prior[0].author,prior[1].author);
+  assert.notEqual(prior[0].recordRevision,prior[1].recordRevision);
+  for(const profile of profiles){
+    assert.deepEqual(prior[0].sources[profile],prior[1].sources[profile]);
+    assert.equal(catalog.inspect(prior[0].sources[profile],{profile}).status,'ambiguous');
+    for(const old of prior){
+      const retained=catalog.resolve(old.sources[profile],{profile,binding:old.bindings[profile]});
+      assert.equal(retained.historical,true);
+      assert.deepEqual(retained.author,old.author);
+      assert.deepEqual(retained.references,old.references);
+    }
+    const current=catalog.current(qid,profile);
+    assert.notDeepEqual(current.source,prior[0].sources[profile]);
+    assert.equal(catalog.inspect(current.source,{profile}).status,'known');
   }
 });
 

@@ -1,0 +1,2379 @@
+{
+  "schema": "NQ_1728_DIALYSIS_AUTHOR_A1_v1",
+  "date": "2026-11-15",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "scope": "7 AFTERs da família diálise não severa; proposta somente emART.",
+  "skill": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "sourceTopicsSHA256": "413985fa7b2790ac5d383b28a862347a06dddef1a4a8edfc683c0dcea6b2e2fe",
+  "sourceRefsSHA256": "8abe417bad0b57ab50b18678f75de3758d57d847ce20e7b3caf240f6cf842a28",
+  "referencePatches": [],
+  "items": [
+    {
+      "qid": "e4ef7329",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:dd9ebc4a3f3d5f0b67bf8f333a673c66ef8aa9a7a650f8b100ad6950c4de9e98",
+        "rawObjectSHA256": "a009374aa2388d2d137decab95ca4e173f11e08714a8e5ac1eee8ab64f3c7375",
+        "question": {
+          "qid": "e4ef7329",
+          "q": "Adulto crítico com infecção grave por MRSA inicia vancomicina enquanto recebe CRRT. A intensidade do efluente e a função renal residual podem variar nas próximas horas. Qual princípio de prescrição é mais seguro?",
+          "opts": [
+            "Adiar a dose de ataque até obter o primeiro nível, porque a CRRT impede estimar o volume de distribuição",
+            "Usar 1 g a cada 24 horas em todos os pacientes, independentemente do peso, do efluente e da diurese residual",
+            "Administrar dose de ataque adequada ao peso e individualizar a manutenção pela intensidade do efluente, função residual e monitorização terapêutica precoce e repetida, visando AUC/MIC de 400–600 quando aplicável",
+            "Aplicar o esquema de paciente anúrico sem diálise, pois a vancomicina não é removida pela CRRT"
+          ],
+          "ans": 2,
+          "exp": "A CRRT remove vancomicina em grau dependente sobretudo da intensidade do efluente, enquanto volume de distribuição, albumina, diurese residual e mudanças do suporte ampliam a variabilidade. A dose de ataque não deve ser subestimada apenas por LRA ou CRRT; ela busca atingir exposição precoce. A manutenção, porém, não cabe em um esquema fixo universal: deve incorporar o efluente e a função residual e ser corrigida por monitorização terapêutica precoce e seriada. Para infecções graves por MRSA, o consenso recomenda alvo AUC24/MIC de 400–600 quando a MIC é 1 mg/L.",
+          "refs": [
+            "vancomycin_monitoring_ashp",
+            "vancomycin_crrt_pk_review_2026"
+          ],
+          "cat": "dialise",
+          "diff": "hard",
+          "t": "Vancomicina na CRRT — Dose Individualizada"
+        }
+      },
+      "patch": {
+        "after": {
+          "qid": "e4ef7329",
+          "q": "Adulto crítico com infecção grave por Staphylococcus aureus resistente à meticilina (MRSA) inicia vancomicina enquanto recebe terapia renal substitutiva contínua (CRRT). A intensidade do efluente e a função renal residual podem variar nas próximas horas. Qual princípio de prescrição é mais seguro?",
+          "opts": [
+            "Adiar a dose de ataque até obter o primeiro nível, porque a CRRT impede estimar o volume de distribuição",
+            "Usar 1 g a cada 24 horas em todos os pacientes, independentemente do peso, do efluente e da diurese residual",
+            "Dar ataque pelo peso e individualizar a manutenção com efluente, função residual e níveis séricos.",
+            "Aplicar o esquema de paciente anúrico sem diálise, pois a vancomicina não é removida pela CRRT"
+          ],
+          "ans": 2,
+          "exp": "A CRRT remove vancomicina; a manutenção deve acompanhar as condições da terapia e do paciente, com monitorização precoce e repetida. O ataque baseado no peso evita atraso de exposição. Em infecções invasivas por MRSA, a referência usual para área sob a curva em 24 h/concentração inibitória mínima (AUC24/MIC) é 400–600, assumindo MIC de 1 mg/L. Esse alvo não torna adequado um esquema fixo.",
+          "refs": [
+            "vancomycin_crrt_pk_review_2026"
+          ],
+          "cat": "dialise",
+          "diff": "medium",
+          "t": "Vancomicina na CRRT — Dose Individualizada"
+        },
+        "afterAuthorRevision": "sha256:28461cd6ebdb60a6f5d882d5f1c3e4070859d701ca7a4110306f63a3bb8af987",
+        "refCardsAfter": {
+          "vancomycin_crrt_pk_review_2026": {
+            "label": "Sürmelioğlu et al. — Vancomicina na CRRT",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41900808/",
+            "journal": "Pharmaceutics. 2026;18(3):322",
+            "ano": 2026,
+            "tipo": "Revisão sistemática farmacocinética",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Síntese de modelos farmacocinéticos populacionais para individualizar vancomicina em adultos críticos sob CRRT",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática de 12 estudos farmacocinéticos populacionais em adultos críticos sob CRRT. Encontrou grande heterogeneidade entre modalidades e estimativas de depuração; a taxa de efluente foi o determinante mais consistente, com contribuição de diurese residual, albumina e vasopressores. Esquemas fixos tiveram desempenho inadequado, enquanto dose de ataque apropriada, manutenção ajustada ao efluente e monitorização terapêutica precoce e repetida melhoraram a probabilidade de atingir a exposição desejada.",
+            "conclusao": "Vancomicina na CRRT não admite esquema universal: carga adequada deve ser seguida de manutenção individualizada pela intensidade do efluente, função renal residual e TDM seriado.",
+            "curiosidade": "Nos estudos reunidos, a depuração estimada de vancomicina variou aproximadamente de 0,7 a 3,0 L/h, amplitude que explica por que a mesma dose fixa pode causar subexposição ou acúmulo."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "vancomycin_crrt_pk_review_2026",
+            "referenceRevision": "sha256:cd6ccf0446a1353a501dffc9e6de7e3b1d90cf0093721b63950b8c2091656a06",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:9761ba7b18221b24a0470596db73a5399a10ed6129ab1d61b95a5cbd9fe17994",
+      "classificationBeforeAndAfter": {
+        "op": "Individualizar ataque e manutenção de vancomicina durante CRRT variável.",
+        "competency": "Prescrição de fármacos na terapia renal substitutiva",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Integra infecção grave, depuração extracorpórea variável, função residual e monitorização; intermediária, sem cálculo farmacocinético ou regime numérico complexo.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "V",
+          "url": "https://www.mdpi.com/1999-4923/18/3/322",
+          "doi": "10.3390/pharmaceutics18030322",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "Abstract, Methods/Results/Conclusions",
+            "Discussion and Box1",
+            "Table4"
+          ],
+          "verified": "12 estudos farmacocinéticos; heterogeneidade, efluente e função residual, ataque e manutenção guiada por monitorização; sem dose universal."
+        },
+        {
+          "id": "VA",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx?hash=71C20A6FEF3CFB7135A30A2D3BA67E1E975CD69A&la=en",
+          "doi": "10.1093/ajhp/zxaa036",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "PDF p14: Continuous renal replacement therapies; recommendation16",
+            "Table2"
+          ],
+          "verified": "CRRT remove vancomicina; ataque pelo peso, monitorização em24h e AUC/MIC400–600 assumindoMIC1. Fonte complementar, não novo card."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "A remoção e a variabilidade pela CRRT exigem manutenção individualizada.",
+          "supportedBy": [
+            "V",
+            "VA"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Ataque pelo peso e níveis precoces evitam atraso e esquema universal.",
+          "supportedBy": [
+            "V",
+            "VA"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "O alvo de exposição é restrito à infecção grave porMRSA/MIC1, não a toda vancomicina.",
+          "supportedBy": [
+            "V",
+            "VA"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Não há dose universal escondida; o alvo numérico fica na explicação comMIC1, enquantoCresponde ao princípio solicitado.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Adiar a dose de ataque até obter o primeiro nível, porque a CRRT impede estimar o volume de distribuição",
+              "correct": false,
+              "error": "Atrasar ataque esperando nível"
+            },
+            {
+              "letter": "B",
+              "text": "Usar 1 g a cada 24 horas em todos os pacientes, independentemente do peso, do efluente e da diurese residual",
+              "correct": false,
+              "error": "Esquema fixo universal"
+            },
+            {
+              "letter": "C",
+              "text": "Dar ataque pelo peso e individualizar a manutenção com efluente, função residual e níveis séricos.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "D",
+              "text": "Aplicar o esquema de paciente anúrico sem diálise, pois a vancomicina não é removida pela CRRT",
+              "correct": false,
+              "error": "ConfundirCRRTcom anúria sem terapia"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "9200dc0a aborda vancomicina naHDintermitente de altofluxo; a modalidade/dados e a decisão de prescrição são distintos."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            104,
+            108,
+            211,
+            94
+          ],
+          "ratio": 1.9537037037037037,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            104,
+            108,
+            98,
+            94
+          ],
+          "ratio": 0.9074074074074074,
+          "uniqueLongest": false
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "q",
+          "opts",
+          "exp",
+          "refs",
+          "diff"
+        ],
+        "referenceAction": "Retirar apenas a atribuição vancomycin_monitoring_ashp deste qid: seu URL não pôde ser confirmado. Não apagar ou editar o card compartilhado. O card2026 e a fonte primáriaASHP foram reabertos.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    },
+    {
+      "qid": "a5165833",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:ab39198a54ed0a5ae0791f46ed48a11196e53e7891cbf8034906d189a87b781a",
+        "rawObjectSHA256": "4dc7394a4d2c88343d3c7bdb51974954149825c6db56334446d4e334d4f72071",
+        "question": {
+          "t": "Albumina Baixa na Diálise — Marcador, não Alvo Isolado",
+          "qid": "a5165833",
+          "q": "Paciente em hemodiálise tem Kt/V 1,45, albumina de 2,9 g/dL e proteína C-reativa elevada. Qual interpretação da albumina é mais apropriada?",
+          "refs": [
+            "de_mutsert_albumin_2009"
+          ],
+          "opts": [
+            "É forte marcador de risco que integra inflamação, doença, perdas e ingestão; exige investigação multidimensional, não diagnóstico automático de desnutrição nem infusão para normalizar o número",
+            "Comprova subdiálise apesar do Kt/V e obriga aumentar horas sem outra avaliação",
+            "Mede exclusivamente ingestão proteica das últimas 24 horas",
+            "É causal por si só, portanto elevar a concentração com albumina intravenosa comprovadamente reduz mortalidade"
+          ],
+          "ans": 0,
+          "exp": "Hipoalbuminemia associa-se fortemente a mortalidade em diálise, mas a albumina é reagente negativo de fase aguda e depende de síntese hepática, inflamação, distribuição, perdas e ingestão. Em coorte prospectiva, ajustar por inflamação atenuou substancialmente sua associação com morte, enquanto medidas de desnutrição explicaram menos o sinal. Portanto, o valor baixo deve desencadear avaliação clínica de inflamação, infecção, perdas, doença hepática e estado nutricional; não prova subdiálise nem torna a albumina sérica um alvo causal isolado.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Albumina Baixa na Diálise — Marcador, não Alvo Isolado",
+          "qid": "a5165833",
+          "q": "Paciente em hemodiálise tem Kt/V 1,45, albumina de 2,9 g/dL e proteína C-reativa elevada. Qual interpretação da albumina é mais apropriada?",
+          "refs": [
+            "de_mutsert_albumin_2009"
+          ],
+          "opts": [
+            "É marcador de risco influenciado por inflamação e nutrição, não diagnóstico nutricional isolado.",
+            "Comprova subdiálise apesar do Kt/V e obriga aumentar horas sem outra avaliação",
+            "Mede exclusivamente ingestão proteica das últimas 24 horas",
+            "É causal por si só, portanto elevar a concentração com albumina intravenosa comprovadamente reduz mortalidade"
+          ],
+          "ans": 0,
+          "exp": "Albumina baixa é marcador de risco, mas não mede isoladamente nutrição nem demonstra causalidade. Na coorte de de Mutsert, a inflamação explicou parte importante da associação com mortalidade. O achado do caso pede avaliação clínica e nutricional conjunta; não permite atribuir tudo à ingestão ou à dose de diálise.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:bfce8246b6d6463e5563617f8061a02defe20bce25dfdbc1b4ad97429fd826da",
+        "refCardsAfter": {
+          "de_mutsert_albumin_2009": {
+            "label": "de Mutsert et al. — Albumina, Inflamação e Mortalidade (2009)",
+            "url": "https://doi.org/10.1053/j.jrn.2008.08.003",
+            "journal": "J Ren Nutr. 2009;19(2):127-135",
+            "ano": 2009,
+            "tipo": "Coorte prospectiva multicêntrica",
+            "badge": "COHORT",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Interpretação da hipoalbuminemia como marcador prognóstico composto em pacientes em diálise",
+            "icon": "📊",
+            "resumo": "Coorte de 700 pacientes incidentes em hemodiálise ou diálise peritoneal avaliou albumina, inflamação, avaliação subjetiva global e ingestão proteica. Albumina mais baixa associou-se a maior mortalidade, mas o ajuste por inflamação atenuou substancialmente a associação; medidas de desnutrição explicaram menos o efeito.",
+            "conclusao": "Albumina baixa é marcador de risco e deve motivar investigação de inflamação, doença, perdas e ingestão, mas não é medida nutricional pura nem prova de que elevar o número isoladamente melhore sobrevida.",
+            "curiosidade": "Na hemodiálise, o risco por queda de 1 g/dL perdeu significância após ajuste conjunto por inflamação, idade, sexo e comorbidades."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "de_mutsert_albumin_2009",
+            "referenceRevision": "sha256:88db5982fedd90e52c1f5c0f9e89c1913dff59d9600bc5c9776650ac52a4862d",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:c491c6f848b7391078c0dfd5d5aaab4861bcd169708d1c04258cc326db1f9b55",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar hipoalbuminemia em diálise como marcador multifatorial, sem diagnóstico nutricional ou alvo causal isolados.",
+        "competency": "Interpretação de marcadores clínicos",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Cruza albumina e inflamação num cenário simples e distingue associação de causalidade; intermediária, sem solução de conflito diagnóstico avançado.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "A",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/19218039/",
+          "doi": "10.1053/j.jrn.2008.08.003",
+          "access": "OPENED_PRIMARY_ABSTRACT",
+          "locators": [
+            "Abstract: Design and patients; Results; Conclusion"
+          ],
+          "verified": "Coorte700; associação albumina/mortalidade atenuada pela inflamação; albumina não mede estado nutricional com precisão. Não há recomendação de infusão ou prova causal."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "A coorte associa albumina a risco e a inflamação atenua a associação.",
+          "supportedBy": [
+            "A"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Albumina isolada não mede com precisão o estado nutricional.",
+          "supportedBy": [
+            "A"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Observação de associação não prova benefício de infundir albumina.",
+          "supportedBy": [
+            "A"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Aéinterdependência clínico-nutricional;Kt/Vfornecido não faz albumina medir apenas dose ou ingestão. Nenhuma indicação de infusão é criada.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "É marcador de risco influenciado por inflamação e nutrição, não diagnóstico nutricional isolado.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "B",
+              "text": "Comprova subdiálise apesar do Kt/V e obriga aumentar horas sem outra avaliação",
+              "correct": false,
+              "error": "Confundir hipoalbuminemia com dose dialítica baixa"
+            },
+            {
+              "letter": "C",
+              "text": "Mede exclusivamente ingestão proteica das últimas 24 horas",
+              "correct": false,
+              "error": "Reduzir albumina à ingestão24h"
+            },
+            {
+              "letter": "D",
+              "text": "É causal por si só, portanto elevar a concentração com albumina intravenosa comprovadamente reduz mortalidade",
+              "correct": false,
+              "error": "Inferir causalidade e benefício de corrigir marcador"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "Nenhum parceiro idêntico encontrado na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            192,
+            78,
+            58,
+            109
+          ],
+          "ratio": 1.761467889908257,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            96,
+            78,
+            58,
+            109
+          ],
+          "ratio": 0.8807339449541285,
+          "uniqueLongest": false
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "opts",
+          "exp",
+          "diff"
+        ],
+        "referenceAction": "Nenhum card modificado: vincular todos os12campos aos hashes presentes. Qualquer mudança de card/material exige nova avaliação.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    },
+    {
+      "qid": "994ee93c",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:875f319fa4759540a15a5f28375fc7679a7b43c3f68fc1e35eadc1c58a97801c",
+        "rawObjectSHA256": "380826da62015eb52bdda06de91b1dbb11a911b8e60b3e3ef240b017886dd41f",
+        "question": {
+          "t": "FHN Daily — Benefício e Custo da Hemodiálise Frequente",
+          "qid": "994ee93c",
+          "q": "No FHN Daily Trial, qual balanço descreve melhor a hemodiálise em centro seis vezes por semana comparada a três vezes por semana durante 12 meses?",
+          "refs": [
+            "fhn_daily_2010"
+          ],
+          "opts": [
+            "Melhorou os compostos coprimários ligados à massa ventricular esquerda e saúde física, mas aumentou intervenções relacionadas ao acesso e não provou redução isolada de mortalidade",
+            "Reduziu mortalidade isolada de forma conclusiva e diminuiu intervenções no acesso vascular",
+            "Não alterou massa ventricular, pressão, fósforo nem qualidade de vida",
+            "Piorou os dois desfechos coprimários porque sessões mais frequentes aumentaram a instabilidade hemodinâmica"
+          ],
+          "ans": 0,
+          "exp": "O FHN Daily randomizou 245 pacientes para hemodiálise seis ou três vezes por semana. A estratégia frequente melhorou os dois desfechos coprimários compostos — morte ou mudança da massa ventricular esquerda e morte ou mudança do componente físico de qualidade de vida — além de pressão e fósforo. O seguimento de 12 meses e o número de eventos não estabeleceram benefício de mortalidade isolada. Houve mais intervenções relacionadas ao acesso, um custo clínico importante da maior frequência de canulação.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "FHN Daily — Benefício e Custo da Hemodiálise Frequente",
+          "qid": "994ee93c",
+          "q": "No FHN Daily Trial, qual balanço descreve melhor a hemodiálise em centro seis vezes por semana comparada a três vezes por semana durante 12 meses?",
+          "refs": [
+            "fhn_daily_2010"
+          ],
+          "opts": [
+            "Melhorou ambos os compostos coprimários, com mais intervenções no acesso e mortalidade isolada inconclusiva.",
+            "Reduziu mortalidade isolada de forma conclusiva e diminuiu intervenções no acesso vascular",
+            "Não alterou massa ventricular, pressão, fósforo nem qualidade de vida",
+            "Piorou os dois desfechos coprimários porque sessões mais frequentes aumentaram a instabilidade hemodinâmica"
+          ],
+          "ans": 0,
+          "exp": "O FHN Daily randomizou 245 pacientes para hemodiálise seis ou três vezes por semana. A estratégia frequente melhorou os dois desfechos coprimários compostos — morte ou mudança da massa ventricular esquerda e morte ou mudança do componente físico de qualidade de vida — além de pressão e fósforo. O seguimento de 12 meses e o número de eventos não estabeleceram benefício de mortalidade isolada. Houve mais intervenções relacionadas ao acesso, um custo clínico importante da maior frequência de canulação.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:7a435bd69b57b40df48f2ded7b42a391c78ea2b2b9a5ef9c9605ac27536824c3",
+        "refCardsAfter": {
+          "fhn_daily_2010": {
+            "label": "FHN Daily Trial — Hemodialysis Six versus Three Times Weekly (2010)",
+            "url": "https://doi.org/10.1056/NEJMoa1001593",
+            "journal": "New England Journal of Medicine 2010;363(24):2287-2300",
+            "ano": 2010,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#16a34a",
+            "impacto": "Efeitos da hemodiálise frequente sobre massa ventricular esquerda, saúde física e acesso vascular",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado multicêntrico com 245 pacientes comparando hemodiálise em centro seis vezes por semana com o esquema convencional três vezes por semana durante 12 meses. A estratégia frequente melhorou os dois desfechos coprimários compostos, que combinavam morte com mudança da massa ventricular esquerda ou com mudança do componente físico de qualidade de vida, e melhorou pressão e controle de fósforo.",
+            "conclusao": "A hemodiálise frequente produziu benefícios intermediários e nos compostos coprimários em 12 meses, mas aumentou intervenções relacionadas ao acesso e não estabeleceu redução isolada de mortalidade.",
+            "curiosidade": "O benefício cardíaco foi mais evidente na massa ventricular esquerda; a frequência maior também expôs o acesso vascular a mais canulações e intervenções."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "fhn_daily_2010",
+            "referenceRevision": "sha256:cc91a653f61498dc43223159ef9078a8aeddfb32e4a0d25e0e7904e0a9f0edcf",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:b8172ea7767a9c18a72300fb04841ba0c39d6d5802f892d5f468d8e108f3357a",
+      "classificationBeforeAndAfter": {
+        "op": "Ponderar benefício e custo de frequência dialítica a partir dos desfechos e limites do FHN Daily.",
+        "competency": "Interpretação de ensaios clínicos em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Exige reconhecer interpretação de compostos, acesso e limite de mortalidade, sem cálculo ou extrapolação para prescrição individual.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "F",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3042140/",
+          "doi": "10.1056/NEJMoa1001593",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "Abstract: Methods/Results",
+            "Outcomes",
+            "Discussion: limitations"
+          ],
+          "verified": "245 participantes,12meses, dois compostos coprimários favoráveis e mais intervenções no acesso; não houve poder para estabelecer mortalidade isolada."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "Intervenção6vs3 sessões/semana por12meses em245participantes.",
+          "supportedBy": [
+            "F"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Os dois compostos coprimários foram favoráveis, com mais intervenções no acesso.",
+          "supportedBy": [
+            "F"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Tamanho amostral/poder não estabeleceram redução isolada de morte.",
+          "supportedBy": [
+            "F"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Mortalidade isolada inconclusiva não equivale a ausência de benefício nos compostos; a resposta discrimina os dois planos.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Melhorou ambos os compostos coprimários, com mais intervenções no acesso e mortalidade isolada inconclusiva.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "B",
+              "text": "Reduziu mortalidade isolada de forma conclusiva e diminuiu intervenções no acesso vascular",
+              "correct": false,
+              "error": "Trocar compostos por mortalidade isolada conclusiva"
+            },
+            {
+              "letter": "C",
+              "text": "Não alterou massa ventricular, pressão, fósforo nem qualidade de vida",
+              "correct": false,
+              "error": "Negar efeitos intermediários demonstrados"
+            },
+            {
+              "letter": "D",
+              "text": "Piorou os dois desfechos coprimários porque sessões mais frequentes aumentaram a instabilidade hemodinâmica",
+              "correct": false,
+              "error": "Inverter direção dos resultados"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "Nenhum parceiro idêntico encontrado na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            179,
+            90,
+            69,
+            107
+          ],
+          "ratio": 1.6728971962616823,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            108,
+            90,
+            69,
+            107
+          ],
+          "ratio": 1.0093457943925233,
+          "uniqueLongest": true
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "opts",
+          "diff"
+        ],
+        "referenceAction": "Nenhum card modificado: vincular todos os12campos aos hashes presentes. Qualquer mudança de card/material exige nova avaliação.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    },
+    {
+      "qid": "31926895",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:009a2d93dc5175f03531f7d4daae06d4acee7fd8591676cbaf23d660d3137dd0",
+        "rawObjectSHA256": "d984cadcd670369fce8ff1af23426deac49e8960d408055a069d73daaa4741c7",
+        "question": {
+          "t": "Proteômica CRIC/PACE — Associação não é Alvo Terapêutico",
+          "qid": "31926895",
+          "q": "Estudo nas coortes CRIC e PACE quantificou 6.287 proteínas por plataforma de afinidade com aptâmeros e identificou um painel associado à mortalidade em hemodiálise. Qual é a interpretação mais segura?",
+          "refs": [
+            "cric_pace_proteomics_2025"
+          ],
+          "opts": [
+            "O painel gera hipóteses prognósticas e biológicas, mas precisa de validação externa e não prova causalidade nem utilidade para guiar tratamento",
+            "Cada proteína associada passa a ser automaticamente um alvo terapêutico validado",
+            "A melhor discriminação interna torna desnecessária validação em outras populações",
+            "O estudo demonstra que fatores clínicos tradicionais deixaram de ter valor prognóstico"
+          ],
+          "ans": 0,
+          "exp": "A proteômica de alta escala identificou associações e melhorou a discriminação de um modelo dentro das coortes analisadas. Isso é evidência de descoberta observacional: diferenças de população, armazenamento de amostras, plataforma, seleção de variáveis e sobreajuste podem limitar transporte. Mesmo quando parte dos sinais se repete entre CRIC e PACE, associação não define mecanismo causal nem mostra que medir ou modificar essas proteínas melhore desfechos. O próximo passo é validação externa prospectiva e avaliação de utilidade clínica.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Proteômica CRIC/PACE — Associação não é Alvo Terapêutico",
+          "qid": "31926895",
+          "q": "Estudo nas coortes CRIC e PACE quantificou 6.287 proteínas por plataforma de afinidade com aptâmeros e identificou um painel associado à mortalidade em hemodiálise. Qual é a interpretação mais segura?",
+          "refs": [
+            "cric_pace_proteomics_2025"
+          ],
+          "opts": [
+            "É achado prognóstico exploratório, sem demonstrar causalidade ou utilidade para guiar tratamento.",
+            "Cada proteína associada passa a ser automaticamente um alvo terapêutico validado",
+            "A melhor discriminação interna torna desnecessária validação em outras populações",
+            "O estudo demonstra que fatores clínicos tradicionais deixaram de ter valor prognóstico"
+          ],
+          "ans": 0,
+          "exp": "O estudo descreve associações entre proteínas e mortalidade e desempenho prognóstico nas amostras analisadas. Isso não testa se modificar proteínas melhora desfechos nem se usar o painel orienta tratamentos. Os próprios autores pedem validação futura e esclarecimento de possíveis mediadores; melhor discriminação interna não substitui essa etapa.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:980e840a25e4da3b8bd4f07fd99961ba4cd19f9614617e20570d0deea06de272",
+        "refCardsAfter": {
+          "cric_pace_proteomics_2025": {
+            "label": "CRIC/PACE — Proteomics and Mortality in Hemodialysis (2025)",
+            "url": "https://doi.org/10.1038/s41467-025-66763-z",
+            "journal": "Nature Communications 2025",
+            "ano": 2025,
+            "tipo": "Coorte proteômica",
+            "badge": "COHORT",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Proteínas circulantes associadas à mortalidade em coortes de hemodiálise",
+            "icon": "🔬",
+            "resumo": "Estudo de 893 participantes das coortes CRIC e PACE que quantificou 6.287 proteínas circulantes por plataforma de afinidade baseada em aptâmeros. Identificou proteínas e vias associadas à mortalidade, incluindo sinalização do eixo IGF, e um modelo de três proteínas apresentou melhor discriminação interna do que um modelo clínico nas amostras analisadas.",
+            "conclusao": "Os achados são de descoberta e prognóstico observacional; associação e desempenho dentro das coortes não estabelecem causalidade, utilidade clínica externa nem indicação de tratamento guiado pelo painel.",
+            "curiosidade": "A análise separou períodos incidentes e prevalentes de hemodiálise e validou parte dos sinais entre CRIC e PACE, mas ainda requer validação externa prospectiva para uso clínico."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "cric_pace_proteomics_2025",
+            "referenceRevision": "sha256:705de532686c00f8b8e66b2fc7d56024a3ca5834986235eb1cbb8f0c46a14026",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:98554c6d83b880a9b7b14f1984ba117e28290cae9ce3687e1f372f506b58ef99",
+      "classificationBeforeAndAfter": {
+        "op": "Distinguir associação proteômica e discriminação prognóstica de causalidade e utilidade para guiar tratamento.",
+        "competency": "Leitura crítica de evidência observacional",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedBefore": "hard",
+        "rationale": "Aplicação direta do limite entre associação e causalidade, sem interpretar magnitude, validação estatística ou modelo complexo; vocabulário sofisticado não eleva dificuldade.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "P",
+          "url": "https://www.nature.com/articles/s41467-025-66763-z",
+          "doi": "10.1038/s41467-025-66763-z",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "Abstract",
+            "Methods: SomaScan V4.1",
+            "Discussion"
+          ],
+          "verified": "893 participantes;6287 proteínas emCRIC; plataforma por aptâmeros; modelo3proteínas e necessidade de validação futura sem demonstração de causalidade/utilidade terapêutica."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "A fonte quantifica6287proteínas e893participantes, com3proteínas no modelo.",
+          "supportedBy": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "O desenho é observacional e os autores requerem validação futura.",
+          "supportedBy": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Discriminação interna não demonstra benefício clínico de usar/modificar o painel.",
+          "supportedBy": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Atransferência parcialCRIC→PACE não prova utilidade externa prospectiva nem causalidade; o candidato não nega a replicação existente.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "É achado prognóstico exploratório, sem demonstrar causalidade ou utilidade para guiar tratamento.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "B",
+              "text": "Cada proteína associada passa a ser automaticamente um alvo terapêutico validado",
+              "correct": false,
+              "error": "Tratar biomarcador associado como alvo terapêutico validado"
+            },
+            {
+              "letter": "C",
+              "text": "A melhor discriminação interna torna desnecessária validação em outras populações",
+              "correct": false,
+              "error": "Dispensar validação porAUCinterna"
+            },
+            {
+              "letter": "D",
+              "text": "O estudo demonstra que fatores clínicos tradicionais deixaram de ter valor prognóstico",
+              "correct": false,
+              "error": "Abandonar fatores clínicos"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "Nenhum parceiro idêntico encontrado na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            143,
+            80,
+            81,
+            86
+          ],
+          "ratio": 1.6627906976744187,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            97,
+            80,
+            81,
+            86
+          ],
+          "ratio": 1.127906976744186,
+          "uniqueLongest": true
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "opts",
+          "exp",
+          "diff"
+        ],
+        "referenceAction": "Nenhum card modificado: vincular todos os12campos aos hashes presentes. Qualquer mudança de card/material exige nova avaliação.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    },
+    {
+      "qid": "4a72b9b7",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:6c7e9123330508a870a8052438865de01b5ea29f121bad0f42b6772fc80d1433",
+        "rawObjectSHA256": "3547b48b5f55cb78135baf673a3635788d5cf5b0c4286bf5d9d4e5e856b9bc0d",
+        "question": {
+          "t": "WAK — Prova de Conceito e Limitações Técnicas",
+          "qid": "4a72b9b7",
+          "q": "No estudo humano exploratório de 24 horas do wearable artificial kidney (WAK), qual conclusão é mais apropriada?",
+          "refs": [
+            "wak_gura_2016"
+          ],
+          "opts": [
+            "Houve prova de conceito de depuração e mobilidade, mas apenas cinco participantes completaram 24 horas e problemas técnicos interromperam o estudo",
+            "O dispositivo demonstrou equivalência de longo prazo e já substitui hemodiálise convencional",
+            "O protótipo eliminou a necessidade de acesso vascular e de monitorização",
+            "O estudo comprovou menor mortalidade, menor custo e ausência de eventos técnicos"
+          ],
+          "ans": 0,
+          "exp": "O estudo incluiu sete participantes; cinco completaram as 24 horas planejadas. Durante o uso, eletrólitos e volume permaneceram controlados e não houve evento adverso grave, apoiando viabilidade inicial. Porém, o ensaio foi interrompido após problemas como bolhas de dióxido de carbono e fluxos variáveis. Assim, o WAK oferece uma prova de conceito experimental de terapia prolongada e portátil, não evidência de segurança duradoura, equivalência clínica, redução de mortalidade, custo inferior ou disponibilidade assistencial.",
+          "diff": "medium",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "WAK — Prova de Conceito e Limitações Técnicas",
+          "qid": "4a72b9b7",
+          "q": "No estudo humano exploratório de 24 horas do wearable artificial kidney (WAK), qual conclusão é mais apropriada?",
+          "refs": [
+            "wak_gura_2016"
+          ],
+          "opts": [
+            "Demonstrou viabilidade inicial, mas limitações técnicas impediram completar o protocolo em todos.",
+            "O dispositivo demonstrou equivalência de longo prazo e já substitui hemodiálise convencional",
+            "O protótipo eliminou a necessidade de acesso vascular e de monitorização",
+            "O estudo comprovou menor mortalidade, menor custo e ausência de eventos técnicos"
+          ],
+          "ans": 0,
+          "exp": "O estudo incluiu sete participantes; cinco completaram as 24 horas planejadas. Durante o uso, eletrólitos e volume permaneceram controlados e não houve evento adverso grave, apoiando viabilidade inicial. Porém, o ensaio foi interrompido após problemas como bolhas de dióxido de carbono e fluxos variáveis. Assim, o WAK oferece uma prova de conceito experimental de terapia prolongada e portátil, não evidência de segurança duradoura, equivalência clínica, redução de mortalidade, custo inferior ou disponibilidade assistencial.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:275dc39925872cb6f330a7214afd3e6dc51eebde497c7f247c4cbe1a2621ff3a",
+        "refCardsAfter": {
+          "wak_gura_2016": {
+            "label": "Gura et al. — Wearable Artificial Kidney Proof of Concept (2016)",
+            "url": "https://doi.org/10.1172/jci.insight.86397",
+            "journal": "JCI Insight 2016;1(8):e86397",
+            "ano": 2016,
+            "tipo": "Estudo exploratório de viabilidade",
+            "badge": "PILOT",
+            "badgeColor": "#f59e0b",
+            "impacto": "Primeira avaliação humana de 24 horas de um protótipo vestível de hemodiálise",
+            "icon": "🔬",
+            "resumo": "Estudo exploratório aprovado pelo FDA que planejou até dez participantes e incluiu sete; cinco completaram 24 horas. Houve manutenção de eletrólitos e remoção de volume durante o uso, mas o ensaio foi interrompido após problemas técnicos, incluindo bolhas de dióxido de carbono e variabilidade dos fluxos sanguíneo e de dialisato.",
+            "conclusao": "O WAK demonstrou prova de conceito de depuração contínua e mobilidade, não equivalência clínica, segurança de longo prazo ou disponibilidade terapêutica; redesenho e estudos maiores são necessários.",
+            "curiosidade": "O fluxo sanguíneo médio foi cerca de 42 mL/min, muito menor que o da hemodiálise convencional, compensado pela proposta de funcionamento prolongado e contínuo."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "wak_gura_2016",
+            "referenceRevision": "sha256:4c48625648f18a418d7f63679407287f2fa94ba9860d8405d0cd6bed859051f5",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:7639907eac33fd2cd869c51a9a1a0ad509f05ee8b48e0b6352cd1c5b4dd79464",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar WAK como prova de conceito de curto prazo, reconhecendo limitações técnicas e de generalização.",
+        "competency": "Interpretação de estudos de viabilidade",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedBefore": "medium",
+        "rationale": "Distingue viabilidade exploratória de equivalência e disponibilidade, sem cálculo, decisão terapêutica ou síntese clínica avançada.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "W",
+          "url": "https://insight.jci.org/articles/view/86397",
+          "doi": "10.1172/jci.insight.86397",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "Abstract",
+            "Results: Device performance and technical complications",
+            "Discussion"
+          ],
+          "verified": "7 participantes,5 completaram24h, todos puderam deambular; estudo interrompido após problemas técnicos. Aprovação do ensaio peloFDA não é autorização de uso rotineiro."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "Ensaio exploratório7participantes;5completaram24h.",
+          "supportedBy": [
+            "W"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Houve controle durante uso, mobilidade e ausência de evento adverso grave na amostra.",
+          "supportedBy": [
+            "W"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Problemas técnicos encerraram estudo; não é teste de segurança duradoura ou equivalência.",
+          "supportedBy": [
+            "W"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Aprévia autorizaçãoFDAera do ensaio exploratório; o texto não a transforma em aprovação comercial. Não há inferência de segurança ampla a partir de7pessoas.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Demonstrou viabilidade inicial, mas limitações técnicas impediram completar o protocolo em todos.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "B",
+              "text": "O dispositivo demonstrou equivalência de longo prazo e já substitui hemodiálise convencional",
+              "correct": false,
+              "error": "Extrapolar prova de conceito a substituição rotineira"
+            },
+            {
+              "letter": "C",
+              "text": "O protótipo eliminou a necessidade de acesso vascular e de monitorização",
+              "correct": false,
+              "error": "Imaginar dispensa de acesso e monitorização"
+            },
+            {
+              "letter": "D",
+              "text": "O estudo comprovou menor mortalidade, menor custo e ausência de eventos técnicos",
+              "correct": false,
+              "error": "Atribuir mortalidade/custo não medidos"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "Nenhum parceiro idêntico encontrado na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            146,
+            92,
+            72,
+            80
+          ],
+          "ratio": 1.5869565217391304,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            97,
+            92,
+            72,
+            80
+          ],
+          "ratio": 1.0543478260869565,
+          "uniqueLongest": true
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "opts",
+          "diff"
+        ],
+        "referenceAction": "Nenhum card modificado: vincular todos os12campos aos hashes presentes. Qualquer mudança de card/material exige nova avaliação.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    },
+    {
+      "qid": "ed78156f",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:36de91ca256d60c6f145dc69b0dba138ff3717d1075fa61b14cd18792737ea79",
+        "rawObjectSHA256": "c3a8a5cf547f1f02dceff7c217fb968687a5e0dc3dc31a5fedb1601b10465aff",
+        "question": {
+          "t": "Hemodiálise — Alcalemia Pós-Diálise e Bicarbonato",
+          "qid": "ed78156f",
+          "q": "Paciente em hemodiálise tem bicarbonato pré-diálise de 24 mEq/L e usa dialisato com bicarbonato de 37 mEq/L. Ao final da sessão, apresenta pH 7,51 e bicarbonato de 30 mEq/L, sem vômitos ou ingestão de álcali. Qual interpretação é mais apropriada?",
+          "refs": [
+            "park_dialysate_bicarbonate_2020"
+          ],
+          "opts": [
+            "O gradiente amplo de bicarbonato pode produzir alcalemia pós-diálise; devem-se confirmar as medidas, rever outras causas e individualizar a prescrição sem provocar acidose interdialítica",
+            "A hemodiálise não altera o equilíbrio ácido-base, portanto o resultado confirma erro laboratorial",
+            "A concentração do dialisato deve ser aumentada para corrigir a elevação do pH",
+            "Toda pessoa com alcalemia pós-diálise deve receber o menor bicarbonato disponível, independentemente do valor pré-diálise"
+          ],
+          "ans": 0,
+          "exp": "O bicarbonato é transferido do dialisato para o sangue conforme o gradiente e a sessão. Estudos fisiológicos mostraram alcalemia ao final da hemodiálise com 37 mEq/L, enquanto concentrações muito baixas podem produzir perda líquida de bicarbonato e piorar a acidose antes da sessão seguinte. Por isso, o achado deve ser confirmado com amostra adequada e interpretado junto de bicarbonato pré e pós-diálise, ventilação, ingestão de álcali, vômitos e estado nutricional. A resposta é ajustar de forma individualizada, não aplicar um banho universalmente alto ou baixo.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Hemodiálise — Alcalemia Pós-Diálise e Bicarbonato",
+          "qid": "ed78156f",
+          "q": "Paciente em hemodiálise tem bicarbonato pré-diálise de 24 mEq/L e usa dialisato com bicarbonato de 37 mEq/L. Ao final da sessão, apresenta pH 7,51 e bicarbonato de 30 mEq/L, sem vômitos ou ingestão de álcali. Qual interpretação é mais apropriada?",
+          "refs": [
+            "park_dialysate_bicarbonate_2020"
+          ],
+          "opts": [
+            "O banho pode explicar a alcalemia; confirmar os dados e individualizar o bicarbonato prescrito.",
+            "A hemodiálise não altera o equilíbrio ácido-base, portanto o resultado confirma erro laboratorial",
+            "A concentração do dialisato deve ser aumentada para corrigir a elevação do pH",
+            "Toda pessoa com alcalemia pós-diálise deve receber o menor bicarbonato disponível, independentemente do valor pré-diálise"
+          ],
+          "ans": 0,
+          "exp": "O gradiente entre dialisato e sangue transfere bicarbonato durante a sessão. Park et al. observaram alcalemia com 37 mEq/L; com banhos baixos, houve perda de bicarbonato ou maior acidemia pré-diálise. Assim, o achado é compatível com a prescrição, mas exige confirmar a amostra e individualizar o ajuste, acompanhando também os valores antes da sessão.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:33d4e10572c7e8f4db85d483059ed241238d35a18ed5fb016ca18eb3ce09a86b",
+        "refCardsAfter": {
+          "park_dialysate_bicarbonate_2020": {
+            "label": "Park et al. — Bicarbonato do Dialisato e Alcalemia (2020)",
+            "url": "https://doi.org/10.1152/ajprenal.00036.2020",
+            "journal": "Am J Physiol Renal Physiol. 2020;318(6):F1418-F1429",
+            "ano": 2020,
+            "tipo": "Estudo fisiológico comparativo",
+            "badge": "STUDY",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Efeito de prescrições altas e baixas de bicarbonato do dialisato sobre o equilíbrio ácido-base intradialítico",
+            "icon": "🔬",
+            "resumo": "Dois estudos fisiológicos pequenos compararam prescrições de bicarbonato. Com 37 mEq/L, dez participantes passaram de pH médio 7,39 e bicarbonato 23,1 mEq/L para pH 7,51 e bicarbonato 29,5 ao final da sessão; com 27 mEq/L houve perda líquida de bicarbonato. Em sete participantes estudados em estado estável, 35 mEq/L também produziu maior alcalinização do que 30 mEq/L.",
+            "conclusao": "Uma concentração alta e um gradiente amplo de bicarbonato podem produzir alcalemia pós-diálise, mas reduzir demais o banho pode agravar acidose pré-diálise; a prescrição deve ser individualizada com medidas confiáveis e causas não dialíticas.",
+            "curiosidade": "O estudo testou se a alcalinização aumentava a produção de ácidos orgânicos; as perdas e a geração desses ânions não explicaram o efeito do bicarbonato alto."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "park_dialysate_bicarbonate_2020",
+            "referenceRevision": "sha256:e6326f0cc7d0f9b64e8de13602569c5db535d168cac410aa005ff670caba1563",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:e714cd35ff9d4718722e593280f89120c78c1e9e581e88a9347c339078244ba8",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer alcalemia pós-hemodiálise relacionada ao gradiente de bicarbonato e individualizar a prescrição sem induzir acidose pré-diálise.",
+        "competency": "Interpretação ácido-base na prescrição dialítica",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Integra valores pré/pós e concentração do banho, com decisão de reavaliação individual; intermediária, sem distúrbio misto ou cálculo avançado.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "B",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7311706/",
+          "doi": "10.1152/ajprenal.00036.2020",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "Abstract",
+            "Results study1: acid-base status",
+            "Results study2: acid-base status"
+          ],
+          "verified": "Dois estudos fisiológicos pequenos:37mEq/L produziu alcalemia;27mEq/L perda de bicarbonato;30mEq/L maior acidemia antes da sessão que35mEq/L. Individualização é inferência clínica prudente explicitada."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "37mEq/L produziu alcalemia fisiológica e os valores do caso são compatíveis.",
+          "supportedBy": [
+            "B"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Prescrições mais baixas podem produzir perda de bicarbonato ou maior acidemia pré-diálise.",
+          "supportedBy": [
+            "B"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Não há suporte para aumentar banho diante de alcalemia nem reduzir ao mínimo em todos.",
+          "supportedBy": [
+            "B"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Aresposta não atribui causalidade exclusiva ao banho nem prescreve dose fixa; mantém confirmação e acompanhamento antes/depois.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "O banho pode explicar a alcalemia; confirmar os dados e individualizar o bicarbonato prescrito.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "B",
+              "text": "A hemodiálise não altera o equilíbrio ácido-base, portanto o resultado confirma erro laboratorial",
+              "correct": false,
+              "error": "Negar transferência ácido-base da diálise"
+            },
+            {
+              "letter": "C",
+              "text": "A concentração do dialisato deve ser aumentada para corrigir a elevação do pH",
+              "correct": false,
+              "error": "Aumentar bicarbonato diante de alcalemia"
+            },
+            {
+              "letter": "D",
+              "text": "Toda pessoa com alcalemia pós-diálise deve receber o menor bicarbonato disponível, independentemente do valor pré-diálise",
+              "correct": false,
+              "error": "Prescrição mínima automática sem contexto"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "Nenhum parceiro idêntico encontrado na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            186,
+            97,
+            77,
+            121
+          ],
+          "ratio": 1.537190082644628,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            95,
+            97,
+            77,
+            121
+          ],
+          "ratio": 0.7851239669421488,
+          "uniqueLongest": false
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "opts",
+          "exp",
+          "diff"
+        ],
+        "referenceAction": "Nenhum card modificado: vincular todos os12campos aos hashes presentes. Qualquer mudança de card/material exige nova avaliação.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    },
+    {
+      "qid": "9344c1f1",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:041b79f75120f22d37f1955134912ed2f729a41627f669f7f4b06669caf5c93d",
+        "rawObjectSHA256": "912858ca9d32c667466f4dfa8418da27c54ee8eae2827e52ed16135e81820c31",
+        "question": {
+          "t": "Calcifilaxia — Papel do Tiossulfato de Sódio",
+          "qid": "9344c1f1",
+          "q": "Paciente em hemodiálise tem calcifilaxia confirmada. Como deve ser apresentado o papel do tiossulfato de sódio?",
+          "refs": [
+            "calciphylaxis_sts_meta_2023"
+          ],
+          "opts": [
+            "Terapia off-label frequentemente usada dentro de manejo multimodal, com mecanismo proposto e eficácia ainda incerta em estudos comparativos",
+            "Tratamento curativo comprovado por ensaios randomizados, dispensando cuidado de feridas",
+            "Inibidor direto do PTH que substitui o controle do metabolismo mineral",
+            "Antibiótico específico que elimina a necessidade de avaliar infecção da lesão"
+          ],
+          "ans": 0,
+          "exp": "O tiossulfato de sódio é usado off-label na calcifilaxia, geralmente junto a analgesia, cuidado de feridas, controle de infecção, revisão de fatores desencadeantes e manejo do metabolismo mineral. Formação de complexos de cálcio, vasodilatação e efeitos antioxidantes são mecanismos propostos, não uma explicação clínica definitivamente comprovada. Metanálises de coortes não demonstraram benefício claro sobre cicatrização ou mortalidade, e faltam ensaios randomizados robustos. Assim, o fármaco é opção individualizada, não cura comprovada nem substituto do manejo multimodal.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Calcifilaxia — Papel do Tiossulfato de Sódio",
+          "qid": "9344c1f1",
+          "q": "Paciente em hemodiálise tem calcifilaxia confirmada. Como deve ser apresentado o papel do tiossulfato de sódio?",
+          "refs": [
+            "calciphylaxis_sts_meta_2023"
+          ],
+          "opts": [
+            "É opção off-label do manejo multimodal, com benefício clínico ainda não estabelecido.",
+            "É tratamento de primeira linha com benefício comprovado em cicatrização e sobrevida.",
+            "Seu uso dispensa controlar cálcio e fósforo, pois resolve diretamente a calcificação vascular.",
+            "A ausência de benefício nas coortes demonstra ineficácia em qualquer paciente."
+          ],
+          "ans": 0,
+          "exp": "O tiossulfato é usado off-label, mas a metanálise de coortes não demonstrou melhora comparativa de cicatrização ou sobrevida. A evidência observacional tem limitações e não equivale a ensaio randomizado conclusivo. Seu uso, quando escolhido, é individualizado e acompanha o cuidado dos demais fatores da calcifilaxia; não substitui o manejo multimodal.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:8b90066d3c8bf31a523c97ec637f1cb3457881eb7d01cc2dbd5c175e2fbc6612",
+        "refCardsAfter": {
+          "calciphylaxis_sts_meta_2023": {
+            "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+            "journal": "JAMA Network Open",
+            "ano": 2023,
+            "tipo": "Metanálise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Tiossulfato IV não mostrou melhora clara de lesões ou sobrevida em coortes",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com DRC e calcifilaxia. Em comparações entre tiossulfato de sódio intravenoso e controle, não houve diferença em melhora das lesões (12 estudos, 110 pacientes; RR 1,23; IC95% 0,85–1,78), risco de morte (15 estudos, 158 pacientes; RR 0,88; IC95% 0,70–1,10) ou sobrevida em análises de tempo até evento (3 estudos, 269 participantes; HR 0,82; IC95% 0,57–1,18). A evidência é observacional, pequena e sujeita a confundimento.",
+            "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+            "curiosidade": "Relatos iniciais favoráveis não se repetiram com a mesma intensidade em estudos mais recentes, um sinal clássico de viés de publicação e regressão do efeito."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "calciphylaxis_sts_meta_2023",
+            "referenceRevision": "sha256:1cdf0dbadd1a5a6fd592d996f37562d2ad22f4236e98e32dc150287bcdf38373",
+            "unchangedCard": true,
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:cd500bbf801761cfe2f35b031a2b5883400330a8ddd1f062d0cc0d3571942303",
+      "classificationBeforeAndAfter": {
+        "op": "Apresentar o papel do tiossulfato na calcifilaxia com incerteza de eficácia e sem substituir o cuidado multimodal.",
+        "competency": "Aplicação proporcional da evidência terapêutica",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedBefore": "hard",
+        "rationale": "Diagnóstico dado e pergunta sobre papel/força da evidência de um fármaco, sem dose ou decisão em paciente complexo; básica.",
+        "decisionIdentity": "Preservarqid:mesmo objetivo,competência e conceito correto. A dificuldade foi julgada pela operação cognitiva, não pelo comprimento."
+      },
+      "evidenceSources": [
+        {
+          "id": "S",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10134003/",
+          "doi": "10.1001/jamanetworkopen.2023.10068",
+          "access": "OPENED_FULL_TEXT",
+          "locators": [
+            "KeyPoints",
+            "Abstract: Results",
+            "Introduction",
+            "Discussion"
+          ],
+          "verified": "Metanálise19coortes retrospectivas/422 adultos; benefício em lesões ou sobrevida não demonstrado, com incerteza observacional; usooff-label sem cura comprovada."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "Usooff-label, evidência de coortes retrospectivas sem benefício comparativo demonstrado.",
+          "supportedBy": [
+            "S"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Ausência de associação favorável não prova ineficácia universal.",
+          "supportedBy": [
+            "S"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Não constitui cura ou substituto comprovado do cuidado integral.",
+          "supportedBy": [
+            "S"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, aprovação+evidência verificada+nenhuma pendência; nova avaliação autoral dos literais, sem herança.",
+        "substantiveProblemsAfter": [],
+        "findingsBefore": [
+          "MAIOR:correta com extensão ou detalhamento seletivos, exigindo revisão de alternativas e exposição."
+        ],
+        "ambiguity": {
+          "secondDefensibleAnswer": false,
+          "missingDecisiveData": false,
+          "localProtocol": false,
+          "halfAnswer": false
+        },
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação após o reparo.",
+          "attempt": "Aincerteza é propriedade da evidência, não hedging para esconder resposta;Dvai além do desenho das coortes. O antigo distratorantibiótico foi substituído por erro de inferência plausível.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "É opção off-label do manejo multimodal, com benefício clínico ainda não estabelecido.",
+              "correct": true,
+              "error": "Responde ao OP."
+            },
+            {
+              "letter": "B",
+              "text": "É tratamento de primeira linha com benefício comprovado em cicatrização e sobrevida.",
+              "correct": false,
+              "error": "Transformar uso habitual em eficácia comprovada"
+            },
+            {
+              "letter": "C",
+              "text": "Seu uso dispensa controlar cálcio e fósforo, pois resolve diretamente a calcificação vascular.",
+              "correct": false,
+              "error": "Substituir cuidado de fatores com um fármaco"
+            },
+            {
+              "letter": "D",
+              "text": "A ausência de benefício nas coortes demonstra ineficácia em qualquer paciente.",
+              "correct": false,
+              "error": "Confundir ausência de prova com ineficácia universal"
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Auditoria adversarial não identificou segunda resposta."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Fontes e card exatos conferidos conforme claims."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Mesma identidade pedagógica explicitada."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Não se converte evidência em prescrição universal."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Distratores auditados como erros clínicos/de inferência; não há alternativa aleatória."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "A resposta ensina interpretação ou prescrição clinicamente relevante."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER e explicação auditados para o mesmo conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Comando e dados suficientes para a operação exigida."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não exige protocolo não informado."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes reabertas nesta avaliação e limites preservados."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 1,
+              "reason": "Plausíveis e nomeados, mas algumas opções ainda usam extrapolação excessiva."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Correta exige qualificação proporcional à evidência; permanece tell residual de cautela, sem exclusividade por comprimento."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao OP e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:nenhum recurso plausível restante;3:18/20→aprovada. Ciclo proposto:publicado após revisão independente e implementação autorizada."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida no banco por fármaco/estudo/tema e leitura de vizinhos; não se declara auditoria semântica global de741 itens.",
+        "fourDimensions": "Não identificado outro item com a mesma decisão,dados,perfil e língua nesta busca.",
+        "notes": "db4ddc30 é reconhecimento clínico de calcifilaxia e manejo de risco; esteitemdiagnósticodado examina apenas o papel da terapia."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            139,
+            87,
+            70,
+            77
+          ],
+          "ratio": 1.5977011494252873,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            85,
+            84,
+            94,
+            78
+          ],
+          "ratio": 0.9042553191489362,
+          "uniqueLongest": false
+        },
+        "mechanicalOnly": true
+      },
+      "implementation": {
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "change": [
+          "opts",
+          "exp",
+          "diff"
+        ],
+        "referenceAction": "Nenhum card modificado: vincular todos os12campos aos hashes presentes. Qualquer mudança de card/material exige nova avaliação.",
+        "independentReviewRequired": true,
+        "productionWrites": false
+      }
+    }
+  ],
+  "productionWrites": false
+}

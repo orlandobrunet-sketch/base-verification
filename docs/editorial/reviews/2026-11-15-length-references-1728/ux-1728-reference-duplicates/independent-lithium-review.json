@@ -1,0 +1,1126 @@
+{
+  "schema": "NQ_INDEPENDENT_LITHIUM_REVIEW_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/length_inventory_1728",
+  "productionWrites": false,
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "authorPackage": {
+    "file": "author-batch-A11.2-litio.json",
+    "rawSHA256": "51489eb6b83f04fc08420a76db54ecd016196396e9f174829a4bc5c6e30dfbf6"
+  },
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "sources": {
+    "bedford": {
+      "url": "https://www.researchgate.net/publication/5257487_Lithium-induced_Nephrogenic_Diabetes_Insipidus_Renal_Effects_of_Amiloride",
+      "doi": "10.2215/CJN.01640408",
+      "pmid": "18596116",
+      "access": "Corpo primário publicado transcrito noResearchGate, público enviado pela coautoraFionaMcDonald; autoria/DOI/CJASN3:1324–1331conferidos. Methods/Results/Discussion lidos integralmente nos trechosdecisivos.",
+      "locators": [
+        "MaterialsandMethods/Participants1325:exclusões/45+42/11randomizados.",
+        "Methods1325:5mg/d2sem+10mg/d4sem,washout6sem.",
+        "Results1327/Fig3:concentração/AQP2.",
+        "Discussion1329–1330:inferênciaENaC;semprova mecanística direta."
+      ],
+      "limits": [
+        "PMCrecaptcha;XMLPMCencontrado sófront/abstract, não foichamadofullbody.",
+        "Não usei protocolo retrospectivo de registro como substituto do paper.",
+        "Não extrapolaensaio11semdoençarenal paraautomaticamente ofereceramiloridaemCr1,8."
+      ]
+    },
+    "amiloride": {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?audience=professional&setid=e0cc2d44-436a-47e8-a890-589882fff4c4",
+      "access": "Rotulagem profissional norte-americana inteira efetivamente aberta,Updated28July2026.",
+      "locators": [
+        "Description/ClinicalPharmacology:oral5mg,poupadorK/Na distal.",
+        "Indications:adjuvanteICC/HAS,semNDI.",
+        "Contraindications/Warnings/Interactions:renalfailure,K,creatinina>1,5vigilânciafrequente,lítio/interações."
+      ],
+      "limits": [
+        "Não afirma proibição deusooff-label especializado; não transforma mecanismo emuso automático.",
+        "Não extrapola rotulagemEUA paraBrasil."
+      ]
+    },
+    "markowitz": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10906157/",
+      "additionalURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10906157&retmode=xml",
+      "access": "RegistroNLM/abstract primário efetivamente recuperadoHTTP200 e lido; NÃO corpo integral.",
+      "file": "../ux-1728-length-severe-author/markowitz-2000-nlm.xml",
+      "rawSHA256": "a6c758c5679dcec5657216ece8b792513b1283ee2781f8c88b56ad7e4f03c987",
+      "identity": {
+        "title": "Lithium nephrotoxicity: a progressive combined glomerular and tubulointerstitial nephropathy",
+        "doi": "10.1681/ASN.V1181439",
+        "pmid": "10906157",
+        "journal": "J Am Soc Nephrol",
+        "year": 2000,
+        "volume": 11,
+        "issue": 8,
+        "pages": "1439–1448"
+      },
+      "limits": [
+        "Somente fatos explícitos noabstract entram nacriação/card; por isso suficiente para este recorte.",
+        "Não importa regressão, tratamento ou achados não lidos; não confunde série selecionada com incidênciapopulacional."
+      ]
+    }
+  },
+  "items": [
+    {
+      "qid": "5705f74c",
+      "original": {
+        "question": {
+          "t": "Lítio — Diabetes Insipidus Nefrogênico",
+          "qid": "5705f74c",
+          "q": "Paciente em uso crônico de lítio apresenta poliúria, polidipsia e baixa osmolaridade urinária apesar de desmopressina. Qual alteração renal é mais característica?",
+          "refs": [
+            "lithium_ndi_amiloride_bedford",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Hipercalciúria isolada com nefrolitíase como manifestação principal.",
+            "Diabetes insipidus nefrogênico por entrada de lítio via ENaC no ducto coletor e redução da resposta/AQP2 mediada por vasopressina.",
+            "Acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico.",
+            "Glomerulonefrite membranosa por imunocomplexos induzidos por lítio."
+          ],
+          "ans": 1,
+          "exp": "O efeito renal clássico do lítio é diabetes insipidus nefrogênico. O lítio entra nas células principais do ducto coletor via ENaC e reduz a resposta à vasopressina, incluindo expressão/tráfego de aquaporina-2, levando a defeito de concentração urinária. O cuidado prático é monitorar função renal, lítio sérico, sintomas de poliúria/desidratação e interações que aumentam litemia; amilorida pode ser considerada em cenários selecionados por reduzir entrada tubular de lítio.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "authorRevision": "sha256:ff6e9fbdfa3d29734e01f868e2db5236093b15d953866f265e0d5588abf2a0e2",
+        "referenceRevisions": {
+          "lithium_ndi_amiloride_bedford": "sha256:30e9c1b9ef28dcfa339e1f62c4510eee4ac08d14e2f8d546aee4f1a01d5a31e4",
+          "brenner_rector": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        },
+        "recordRevision": "sha256:1e364c9955589ded2d018098ac7f5602bdebc85a94579ce743ebc684ede22ca9"
+      },
+      "proposed": {
+        "t": "Lítio — Diabetes Insipidus Nefrogênico",
+        "qid": "5705f74c",
+        "q": "Adulto em uso crônico de lítio apresenta poliúria hipotônica, glicemia normal e sódio de 149 mEq/L. Em avaliação supervisionada, a osmolaridade urinária permanece baixa, com aumento mínimo após desmopressina. Qual mecanismo é mais compatível com esse quadro?",
+        "refs": [
+          "lithium_ndi_amiloride_bedford"
+        ],
+        "opts": [
+          "Deficiência central da secreção de vasopressina.",
+          "Resistência do ducto coletor à ação da vasopressina.",
+          "Diurese osmótica pelo aumento da carga filtrada de glicose.",
+          "Ingestão primária excessiva de água com supressão de vasopressina."
+        ],
+        "ans": 1,
+        "exp": "O quadro é compatível com resistência renal à vasopressina, tradicionalmente chamada de diabetes insipidus nefrogênico. O lítio interfere na resposta do ducto coletor e na regulação da aquaporina-2 (AQP2), dificultando a concentração da urina. A resposta mínima à desmopressina favorece resistência renal; na deficiência central, a resposta costuma ser maior. Glicemia normal desfavorece diurese por glicose, e sódio elevado não favorece polidipsia primária isolada. A avaliação deve integrar o contexto e a segurança hídrica, sem transformar um teste isolado em diagnóstico absoluto.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:444c96206342327093bf45be8df9569a09e9b1f459ebdf8e15cfc1016a29da84",
+      "referenceRevisions": {
+        "lithium_ndi_amiloride_bedford": "sha256:9a2271a6ff35bef88ea278122d1c057c80a4771a32c16f5c0598cd0ec0a1a2ca"
+      },
+      "bundleRevision": "sha256:7ccfcd519e224f72ebafe2dec7323af56b33bc438043f4bc15156230dbff96bf",
+      "classification": {
+        "op": "Reconhecer resistência renal àvasopressina como mecanismo da poliúria hipotônica associada ao lítio.",
+        "primaryCompetence": "Fisiopatologia e farmacologia renal.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "creationAtBirth": null,
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Aprovação + VERIFICADA/NENHUMA, sem eliminatório/recurso decisivo residual; criação reavaliada formalmente, não liberada pela autoria (§18.4).",
+        "justification": "Poliúria hipotônica com sódio elevado, glicemia normal e resposta mínima àdesmopressina é compatível com resistência renal àvasopressina no contexto dolítio. O item não ordena privação hídrica nem torna teste isolado absoluto.",
+        "problems": "Nenhum problema substantivo residual no literal final exato.",
+        "advogadoDoRecurso": "Deficiência central costuma responder mais àdesmopressina; polidipsiaprimária isolada não explica bem o sódio elevado, e glicose normal desfavorece diurese osmótica porglicose. O comando pede mecanismo mais compatível. Resposta parcial e contexto devem ser integrados; não se propõe tratar apenas por umteste.",
+        "sourceIDs": [
+          "bedford"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Deficiência central da secreção de vasopressina.",
+            "correct": false,
+            "judgment": "Deficiência central não é a melhor explicação da resposta mínima."
+          },
+          {
+            "letter": "B",
+            "text": "Resistência do ducto coletor à ação da vasopressina.",
+            "correct": true,
+            "judgment": "Correta: resistência renal àvasopressina."
+          },
+          {
+            "letter": "C",
+            "text": "Diurese osmótica pelo aumento da carga filtrada de glicose.",
+            "correct": false,
+            "judgment": "Glicemia normal não sustenta carga de glicose como causa."
+          },
+          {
+            "letter": "D",
+            "text": "Ingestão primária excessiva de água com supressão de vasopressina.",
+            "correct": false,
+            "judgment": "Polidipsia primária isolada é menos compatível comhipernatremia."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Deficiência central costuma responder mais àdesmopressina; polidipsiaprimária isolada não explica bem o sódio elevado, e glicose normal desfavorece diurese osmótica porglicose. O comando pede mecanismo mais compatível. Resposta parcial e contexto devem ser integrados; não se propõe tratar apenas por umteste."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Poliúria hipotônica com sódio elevado, glicemia normal e resposta mínima àdesmopressina é compatível com resistência renal àvasopressina no contexto dolítio. O item não ordena privação hídrica nem torna teste isolado absoluto."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Preserva decisão e conceito original; não troca OP apenas para manter quantidade."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta não prescreveamilorida automaticamente eminsuficiênciarenal nem retira segurança hídrica."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são mecanismos/lesões reais, incompatíveis com oconjunto informado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Distingue defeito funcional, fármaco e lesão estrutural com consequência clínica."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito/explicação/limites concordam."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Deficiência central costuma responder mais àdesmopressina; polidipsiaprimária isolada não explica bem o sódio elevado, e glicose normal desfavorece diurese osmótica porglicose. O comando pede mecanismo mais compatível. Resposta parcial e contexto devem ser integrados; não se propõe tratar apenas por umteste."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte e jurisdição identificadas, sem esquemaantibiótico/diurético institucional oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "A fonte histórica é usada para achados explícitos; rotulagem2026confere segurança atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20 após eliminatórios/recurso",
+          "rationale": "Objetivo clinicamente útil e gabarito único; distratores diretos. Sem alegar validação psicométrica."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA válida: todas as afirmações apresentadas foram verificadas no alcance efetivamente aberto.",
+          "step1": "Nenhum eliminatório; variações têm decisões/estruturas diferentes.",
+          "step2": "Sem recurso plausível residual após correções autorais de segurança/proveniência.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração exata."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "newQuestion": false,
+        "resetFSRS": false,
+        "transferFSRS": false,
+        "transferCredit": false,
+        "atomicDisposition": null
+      }
+    },
+    {
+      "qid": "63040771",
+      "original": {
+        "question": {
+          "t": "Diabetes Insipidus Nefrogênico por Lítio",
+          "qid": "63040771",
+          "q": "Paciente em uso crônico de lítio apresenta poliúria, polidipsia e urina persistentemente diluída. Após desmopressina, a osmolaridade urinária quase não aumenta, sugerindo diabetes insipidus nefrogênico parcial por lítio. Qual estratégia farmacológica é mais dirigida ao mecanismo tubular dessa condição?",
+          "refs": [
+            "lithium_ndi_amiloride_bedford",
+            "central_di_tomkins_2022",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Amilorida, para reduzir a entrada de lítio nas células principais do ducto coletor",
+            "Restrição hídrica rigorosa, para reduzir diretamente o volume urinário",
+            "Tolvaptana, para bloquear o receptor V2 da vasopressina",
+            "Reposição de sódio, para restaurar a tonicidade medular"
+          ],
+          "ans": 0,
+          "exp": "A amilorida é a alternativa mais dirigida ao mecanismo do diabetes insipidus nefrogênico por lítio: ao bloquear ENaC nas células principais do ducto coletor, reduz a entrada de lítio nessas células e pode melhorar a resposta tubular à vasopressina. Restrição hídrica rigorosa é perigosa, pois aumenta risco de hipernatremia. Tolvaptana antagoniza V2 e tenderia a piorar a perda de água livre. Reposição de sódio não corrige o defeito de concentração e pode agravar hipernatremia.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "authorRevision": "sha256:d2870c131c50421ecfe628f5d2b433de80c79066a9bfb9b36920b7b389e18c2f",
+        "referenceRevisions": {
+          "lithium_ndi_amiloride_bedford": "sha256:30e9c1b9ef28dcfa339e1f62c4510eee4ac08d14e2f8d546aee4f1a01d5a31e4",
+          "central_di_tomkins_2022": "sha256:62ec34d62eada2bbb9a8aad2a4c996edd3f96a29d7d93a61ddc1bc846c8378b1",
+          "brenner_rector": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        },
+        "recordRevision": "sha256:01fbc7b4cf285f5f8ad9c43e679826b968fccfba8dabfb1df09a21dac08dcf89"
+      },
+      "proposed": {
+        "t": "Diabetes Insipidus Nefrogênico por Lítio",
+        "qid": "63040771",
+        "q": "Adulto em uso de lítio tem resistência renal à vasopressina confirmada, com poliúria persistente. A creatinina é 0,9 mg/dL e o potássio, 4,1 mEq/L. Após avaliação conjunta da necessidade do lítio e da segurança do tratamento, qual fármaco pode ajudar por bloquear o canal epitelial de sódio (ENaC), reduzindo a entrada de lítio nas células principais?",
+        "refs": [
+          "lithium_ndi_amiloride_bedford",
+          "amiloride_label_dailymed_2026"
+        ],
+        "opts": [
+          "Hidroclorotiazida",
+          "Desmopressina",
+          "Amilorida",
+          "Furosemida"
+        ],
+        "ans": 2,
+        "exp": "A amilorida bloqueia o ENaC no ducto coletor, fornecendo um racional para reduzir a entrada de lítio nas células principais. Um pequeno ensaio cruzado mostrou melhora de medidas de concentração urinária; não demonstrou prevenção ou reversão de nefropatia crônica. Outros tratamentos podem atuar por mecanismos diferentes, mas não pelo bloqueio desse canal. O uso é individualizado, com monitorização de potássio, função renal, lítio sérico e interações; esses cuidados continuam necessários mesmo com os exames informados. A decisão sobre manter ou modificar o lítio deve envolver a psiquiatria. Diabetes insipidus nefrogênico não consta entre as indicações da rotulagem norte-americana consultada.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:0d5fb5b91ffbd0efb850073b7759d6016085a13e163fe059c22cbd5bdcc22959",
+      "referenceRevisions": {
+        "lithium_ndi_amiloride_bedford": "sha256:9a2271a6ff35bef88ea278122d1c057c80a4771a32c16f5c0598cd0ec0a1a2ca",
+        "amiloride_label_dailymed_2026": "sha256:adcf8f81f0a930e8a1206c10368372053bbfca69c72a2238cc929267ee74cdde"
+      },
+      "bundleRevision": "sha256:45c183f0ed2d432f627858b8d604419ae25ad379725c39d8efcd2e3faa272a93",
+      "classification": {
+        "op": "Selecionar o fármaco que bloqueia a entrada de lítio viaENaC no ducto coletor, respeitando seleção e segurança.",
+        "primaryCompetence": "Fisiopatologia e farmacologia renal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "creationAtBirth": null,
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Aprovação + VERIFICADA/NENHUMA, sem eliminatório/recurso decisivo residual; criação reavaliada formalmente, não liberada pela autoria (§18.4).",
+        "justification": "Amilorida bloqueiaENaC; o pequeno ensaio mostra melhora de medidas de concentração, sem demonstrar prevenção/reversão de fibrose. O cenário exige seleção e avaliação conjunta, sem manterlítio ou iniciar fármaco automaticamente.",
+        "problems": "Nenhum problema substantivo residual no literal final exato.",
+        "advogadoDoRecurso": "Tiazídico e outros tratamentos podem ajudar por mecanismos diferentes, mas o comando especifica bloqueioENaC. A correta não equivale a autorização irrestrita: função renal/potássio, litemia e interações precisam vigilância; usoNDInão consta na rotulagem consultada. Nova versão do cenário evita inferirTFGe apenas da creatinina.",
+        "sourceIDs": [
+          "bedford",
+          "amiloride"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Hidroclorotiazida",
+            "correct": false,
+            "judgment": "Hidroclorotiazida não bloqueia diretamenteENaC."
+          },
+          {
+            "letter": "B",
+            "text": "Desmopressina",
+            "correct": false,
+            "judgment": "Desmopressina atua no eixoV2, não bloqueiaENaC."
+          },
+          {
+            "letter": "C",
+            "text": "Amilorida",
+            "correct": true,
+            "judgment": "Correta: amilorida, com seleção e monitorização."
+          },
+          {
+            "letter": "D",
+            "text": "Furosemida",
+            "correct": false,
+            "judgment": "Furosemida não bloqueia diretamenteENaC."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Tiazídico e outros tratamentos podem ajudar por mecanismos diferentes, mas o comando especifica bloqueioENaC. A correta não equivale a autorização irrestrita: função renal/potássio, litemia e interações precisam vigilância; usoNDInão consta na rotulagem consultada. Nova versão do cenário evita inferirTFGe apenas da creatinina."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Amilorida bloqueiaENaC; o pequeno ensaio mostra melhora de medidas de concentração, sem demonstrar prevenção/reversão de fibrose. O cenário exige seleção e avaliação conjunta, sem manterlítio ou iniciar fármaco automaticamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Preserva decisão e conceito original; não troca OP apenas para manter quantidade."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta não prescreveamilorida automaticamente eminsuficiênciarenal nem retira segurança hídrica."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são mecanismos/lesões reais, incompatíveis com oconjunto informado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Distingue defeito funcional, fármaco e lesão estrutural com consequência clínica."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito/explicação/limites concordam."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Tiazídico e outros tratamentos podem ajudar por mecanismos diferentes, mas o comando especifica bloqueioENaC. A correta não equivale a autorização irrestrita: função renal/potássio, litemia e interações precisam vigilância; usoNDInão consta na rotulagem consultada. Nova versão do cenário evita inferirTFGe apenas da creatinina."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte e jurisdição identificadas, sem esquemaantibiótico/diurético institucional oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "A fonte histórica é usada para achados explícitos; rotulagem2026confere segurança atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20 após eliminatórios/recurso",
+          "rationale": "Objetivo clinicamente útil e gabarito único; distratores diretos. Sem alegar validação psicométrica."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA válida: todas as afirmações apresentadas foram verificadas no alcance efetivamente aberto.",
+          "step1": "Nenhum eliminatório; variações têm decisões/estruturas diferentes.",
+          "step2": "Sem recurso plausível residual após correções autorais de segurança/proveniência.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração exata."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "newQuestion": false,
+        "resetFSRS": false,
+        "transferFSRS": false,
+        "transferCredit": false,
+        "atomicDisposition": null
+      }
+    },
+    {
+      "qid": "0a2634fc",
+      "original": null,
+      "proposed": {
+        "qid": "0a2634fc",
+        "t": "Lítio — Reconhecimento de Nefropatia Tubulointersticial Crônica",
+        "q": "Adulto com transtorno bipolar usa lítio há 12 anos e apresenta aumento progressivo da creatinina. A biópsia mostra atrofia tubular, fibrose intersticial e pequenas dilatações císticas em túbulos distais e ductos coletores. Qual processo é mais compatível com a história e o padrão histológico?",
+        "opts": [
+          "Nefrite intersticial aguda por hipersensibilidade.",
+          "Nefropatia tubulointersticial crônica associada ao lítio.",
+          "Glomerulonefrite por depósitos de imunocomplexos.",
+          "Necrose tubular aguda por um episódio isquêmico recente."
+        ],
+        "ans": 1,
+        "exp": "O conjunto favorece nefropatia tubulointersticial crônica associada ao lítio. Em uma série de 24 pacientes selecionados por biópsia na presença de insuficiência renal, foram descritas lesões tubulointersticiais crônicas e, em parte dos casos, cistos ou dilatações de túbulos distais e coletores. Isso é diferente de apenas reconhecer o defeito funcional de concentração urinária e não significa que todos os usuários desenvolvam a mesma lesão. O padrão crônico com fibrose e atrofia não favorece um episódio agudo isolado; não foram descritos depósitos glomerulares como lesão dominante. O reconhecimento deve motivar avaliação nefrológica e discussão individualizada da exposição, sem inferir um tratamento automático a partir da biópsia.",
+        "cat": "farmacologia",
+        "diff": "medium",
+        "refs": [
+          "lithium_nephropathy_markowitz_2000"
+        ]
+      },
+      "proposedSHA256": "sha256:8f8020799533991f8701963077abffced021df976e0dec3476339db97219301e",
+      "referenceRevisions": {
+        "lithium_nephropathy_markowitz_2000": "sha256:e7169651b401bac184661cd4d405bab5e1cf03b79f0bc6209b17a7db07c19651"
+      },
+      "bundleRevision": "sha256:cfe05a1d7de9c91a084222e9a55a7fe3901a342c10c65a4527b69333b3cd681e",
+      "classification": {
+        "op": "Reconhecer o padrão tubulointersticial crônico associado à exposição prolongada ao lítio e distingui-lo de lesões agudas ou glomerulares.",
+        "primaryCompetence": "Diagnóstico e interpretação histológica.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsic": "Intermediária",
+        "diff": "medium",
+        "audience": "Estudantes avançados e residentes de Nefrologia."
+      },
+      "creationAtBirth": {
+        "publicationAuthorization": "BLOQUEADA",
+        "reason": "Criação não emite veredito editorial; autorização derivada somente nesta revisão independente."
+      },
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Aprovação + VERIFICADA/NENHUMA, sem eliminatório/recurso decisivo residual; criação reavaliada formalmente, não liberada pela autoria (§18.4).",
+        "justification": "Exposição prolongada e padrão de atrofia/fibrose com dilatações distais/coletoras favorecem nefropatia tubulointersticial crônica associada aolítio. A fonte é série selecionada, não incidência populacional nem prova causal exclusiva.",
+        "problems": "Nenhum problema substantivo residual no literal final exato.",
+        "advogadoDoRecurso": "Microcistos isolados não são patognomônicos; história e conjunto histológico tornam a associação mais compatível entre asopções. O comando não exige mecanismo molecular não estudado. Processo agudo isolado ou depósitoimune como lesãodominante não corresponde àdescrição. Não infere tratamento automático, reversibilidade ou uso deamilorida parafibrose.",
+        "sourceIDs": [
+          "markowitz"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Nefrite intersticial aguda por hipersensibilidade.",
+            "correct": false,
+            "judgment": "Lesãoaguda isolada não corresponde aatrofia/fibrose crônicas descritas."
+          },
+          {
+            "letter": "B",
+            "text": "Nefropatia tubulointersticial crônica associada ao lítio.",
+            "correct": true,
+            "judgment": "Correta: padrão crônico associado àexposição."
+          },
+          {
+            "letter": "C",
+            "text": "Glomerulonefrite por depósitos de imunocomplexos.",
+            "correct": false,
+            "judgment": "Não foram descritos depósitosimunes como lesãodominante."
+          },
+          {
+            "letter": "D",
+            "text": "Necrose tubular aguda por um episódio isquêmico recente.",
+            "correct": false,
+            "judgment": "Evento isquêmicoagudo não é a melhor síntese do conjunto crônico."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Microcistos isolados não são patognomônicos; história e conjunto histológico tornam a associação mais compatível entre asopções. O comando não exige mecanismo molecular não estudado. Processo agudo isolado ou depósitoimune como lesãodominante não corresponde àdescrição. Não infere tratamento automático, reversibilidade ou uso deamilorida parafibrose."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Exposição prolongada e padrão de atrofia/fibrose com dilatações distais/coletoras favorecem nefropatia tubulointersticial crônica associada aolítio. A fonte é série selecionada, não incidência populacional nem prova causal exclusiva."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "NovoOP com novaidentidade e lacuna útil documentada; não reaproveita471."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta não prescreveamilorida automaticamente eminsuficiênciarenal nem retira segurança hídrica."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são mecanismos/lesões reais, incompatíveis com oconjunto informado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Distingue defeito funcional, fármaco e lesão estrutural com consequência clínica."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito/explicação/limites concordam."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Microcistos isolados não são patognomônicos; história e conjunto histológico tornam a associação mais compatível entre asopções. O comando não exige mecanismo molecular não estudado. Processo agudo isolado ou depósitoimune como lesãodominante não corresponde àdescrição. Não infere tratamento automático, reversibilidade ou uso deamilorida parafibrose."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte e jurisdição identificadas, sem esquemaantibiótico/diurético institucional oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "A fonte histórica é usada para achados explícitos; rotulagem2026confere segurança atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20 após eliminatórios/recurso",
+          "rationale": "Objetivo clinicamente útil e gabarito único; distratores diretos. Sem alegar validação psicométrica."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA válida: todas as afirmações apresentadas foram verificadas no alcance efetivamente aberto.",
+          "step1": "Nenhum eliminatório; variações têm decisões/estruturas diferentes.",
+          "step2": "Sem recurso plausível residual após correções autorais de segurança/proveniência.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração exata."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": false,
+        "newQuestion": true,
+        "resetFSRS": false,
+        "transferFSRS": false,
+        "transferCredit": false,
+        "atomicDisposition": "471c0013 redirecionado/aposentado, sem reaplicação"
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "lithium_ndi_amiloride_bedford",
+      "proposed": {
+        "label": "Bedford et al. — Diabetes insipidus nefrogênico por lítio e amilorida (2008)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+        "journal": "Clin J Am Soc Nephrol 2008;3(5):1324-1331",
+        "ano": 2008,
+        "tipo": "Estudo transversal com subestudo randomizado cruzado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Pequeno ensaio de amilorida melhorou medidas de concentração urinária.",
+        "icon": "🔬",
+        "resumo": "Estudo transversal com 45 pessoas em uso de lítio e 42 sob outros psicotrópicos, seguido de subestudo randomizado, duplo-cego e cruzado com 11 participantes. Amilorida por via oral foi usada por seis semanas, na dose total de 5 mg/dia nas primeiras duas e 10 mg/dia nas quatro seguintes, comparada a placebo. Houve melhora da osmolaridade urinária máxima após desmopressina e aumento da excreção urinária de aquaporina-2 (AQP2). Pessoas com doença renal conhecida foram excluídas.",
+        "conclusao": "O bloqueio do canal epitelial de sódio (ENaC), reduzindo a entrada de lítio nas células principais, é o racional para a amilorida. O pequeno estudo avalia medidas de concentração, sem comprovar prevenção ou reversão de fibrose renal nem justificar seu uso automático na insuficiência renal.",
+        "curiosidade": "Os autores tratam o mecanismo como inferência: a melhora de AQP2 urinária não demonstra diretamente toda a sequência celular no ser humano."
+      },
+      "revision": "sha256:9a2271a6ff35bef88ea278122d1c057c80a4771a32c16f5c0598cd0ec0a1a2ca",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "bedford"
+      ],
+      "claimsVerified": [
+        "Estudotransversal45lítio/42outros;subestudorandomizadoduplo-cegocrossover11,6semanas/washout6semanas.",
+        "Methods5mg/d2semanas→10mg/d4semanas;maxosmolalidade/AQP2melhoraram.",
+        "Doença renal conhecida excluída; mecanismo inferido, não provadotodavia celulares em humanos; sem prevenir/reverterfibrose."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score dequestão."
+    },
+    {
+      "id": "amiloride_label_dailymed_2026",
+      "proposed": {
+        "label": "Amilorida — Rotulagem profissional dos EUA (2026)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?audience=professional&setid=e0cc2d44-436a-47e8-a890-589882fff4c4",
+        "journal": "DailyMed/SPL — Par Health USA, LLC; atualização em 28 de julho de 2026",
+        "ano": 2026,
+        "tipo": "Bula regulatória norte-americana",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "icon": "📋",
+        "impacto": "Risco de hipercalemia e acúmulo em disfunção renal exigem seleção e monitorização.",
+        "resumo": "Rotulagem profissional de cloridrato de amilorida em comprimidos orais. Descreve ação poupadora de potássio e uso adjuvante com diuréticos caliuréticos em hipertensão ou insuficiência cardíaca. Alerta para hipercalemia potencialmente grave, risco aumentado com disfunção renal e interações com outros poupadores de potássio ou bloqueadores do sistema renina-angiotensina. Insuficiência renal é listada entre contraindicações; alterações da função renal exigem avaliação e monitorização cuidadosa de eletrólitos e creatinina.",
+        "conclusao": "A rotulagem não lista diabetes insipidus nefrogênico como indicação. O uso nesse contexto depende de avaliação especializada e evidência própria; mecanismo fisiológico não dispensa verificar segurança, interações e função renal.",
+        "curiosidade": "A bula é uma fonte regulatória dos Estados Unidos e não demonstra aprovação, disponibilidade ou regras de prescrição no Brasil."
+      },
+      "revision": "sha256:adcf8f81f0a930e8a1206c10368372053bbfca69c72a2238cc929267ee74cdde",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "amiloride"
+      ],
+      "claimsVerified": [
+        "RotulagemoficialParHealthUSA28/07/2026,comprimidooral5mg; adjuvante emhipertensão/ICC,NDInãolistada.",
+        "Riscohipercalemia/insuficiênciarenal/acúmulo/interações com poupadoresK/bloqueadoresSRAA;monitorar.",
+        "Não equivale aaprovaçãoAnvisa nem dispensa avaliaçãoindividual."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score dequestão."
+    },
+    {
+      "id": "lithium_nephropathy_markowitz_2000",
+      "proposed": {
+        "label": "Markowitz et al. — Nefropatia crônica associada ao lítio (2000)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10906157/",
+        "journal": "J Am Soc Nephrol. 2000;11(8):1439–1448",
+        "ano": 2000,
+        "tipo": "Estudo observacional de pacientes selecionados por biópsia",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "icon": "🔬",
+        "impacto": "Biópsias mostraram nefropatia tubulointersticial crônica, com microcistos em parte dos casos.",
+        "resumo": "Estudo de 24 pacientes com biópsia por insuficiência renal e exposição prolongada ao lítio. O resumo primário descreve nefropatia tubulointersticial crônica em todos, com cistos tubulares corticais e medulares em 62,5% e dilatação tubular em 33,3%. A marcação apontou origem distal e coletora. A série também encontrou lesões glomerulares associadas; não descreve um padrão exclusivamente tubular em todos os pacientes.",
+        "conclusao": "Fibrose intersticial, atrofia tubular e microcistos podem apoiar nefropatia crônica associada ao lítio no contexto adequado. Esta é uma amostra selecionada por biópsia e não estima incidência entre todos os usuários nem estabelece um esquema de tratamento.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:e7169651b401bac184661cd4d405bab5e1cf03b79f0bc6209b17a7db07c19651",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "markowitz"
+      ],
+      "claimsVerified": [
+        "PrimárioNLMabstract24pacientes biopsiados porinsuficiênciarenal/uso crônico;CTIN100%,cistos62,5%/dilatação33,3%,origemdistal/coletora.",
+        "Lesõesglomerularesconcomitantes reconhecidas; não exclusivamente tubular emtodos.",
+        "Sem estimar incidência emtodosusuários,semplano terapêutico ou mecanismo causal inequívoco.",
+        "Proveniência doabstract conservada no relatório; corpo limitado aos fatos explícitos."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score dequestão."
+    }
+  ],
+  "oldItemDisposition": {
+    "verdict": "redirecionar",
+    "qid": "471c0013",
+    "original": {
+      "question": {
+        "t": "Nefrotoxicidade de Drogas",
+        "qid": "471c0013",
+        "q": "Paciente de 55 anos com transtorno bipolar em uso de carbonato de lítio há 12 anos apresenta poliúria de 5 L/dia, polidipsia e creatinina de 1,8 mg/dL. A litemia é 0,7 mEq/L. Biópsia renal mostra fibrose intersticial com microcistos tubulares. Qual alternativa descreve corretamente o mecanismo da lesão renal pelo lítio e a conduta mais apropriada?",
+        "opts": [
+          "Lítio entra pelo ENaC nas células principais do ducto coletor e reduz a resposta à vasopressina/AQP2, causando diabetes insípido nefrogênico; conduta: amilorida e reavaliação do lítio com a psiquiatria.",
+          "Inibição de COX-2 com redução de prostaglandinas vasodilatadoras renais, causando vasoconstrição aferente — suspender AINE.",
+          "Reação imune mediada por anticorpos anti-MBG — indicar plasmaférese e imunossupressão.",
+          "Nefrite intersticial aguda por hipersensibilidade — manter lítio e iniciar corticosteroide."
+        ],
+        "ans": 0,
+        "exp": "O lítio entra nas células principais do ducto coletor pelo ENaC e reduz a resposta tubular à vasopressina, com queda funcional da aquaporina-2 e diabetes insípido nefrogênico. O uso prolongado também pode causar nefropatia túbulo-intersticial crônica com fibrose e microcistos, mesmo com litemia terapêutica. A amilorida é fisiologicamente dirigida porque bloqueia ENaC e reduz a entrada tubular de lítio; a continuidade do lítio deve ser reavaliada com a psiquiatria. As demais alternativas descrevem AINEs, doença anti-MBG ou hipersensibilidade, não o mecanismo clássico do lítio.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "lithium_ndi_amiloride_bedford"
+        ]
+      },
+      "authorRevision": "sha256:3fa9a79805aea3503510a1aca85f4377408c633743f54f212dc7fa63d7dcdcfd",
+      "referenceRevisions": {
+        "lithium_ndi_amiloride_bedford": "sha256:30e9c1b9ef28dcfa339e1f62c4510eee4ac08d14e2f8d546aee4f1a01d5a31e4"
+      },
+      "recordRevision": "sha256:07d633e2e4def77e7e2e470acc73f4a81bd3433721ad46d5ef52c3985ab5f39a"
+    },
+    "confidence": "alta",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "BLOQUEADA",
+    "derivation": "Redirecionar não é veredito deaprovação; original unsafe não é liberado pelo novoitem.",
+    "problems": [
+      {
+        "severity": "CRÍTICO",
+        "text": "Ofereceamilorida como conduta automática emcreatinina1,8/doençarenal, sem seleção/monitorização decisivas; Bedfordexcluiu doençarenal conhecida e rotulagem alerta contraindicação/acúmulo/hipercalemia."
+      },
+      {
+        "severity": "MAIOR",
+        "text": "Mistura mecanismo funcionalNDI comlesãoestrutural crônica e presume suporte terapêutico dafibrose pelo ensaio de concentração."
+      }
+    ],
+    "advogadoDoRecurso": "MecanismoENaC é plausível e reavaliarlítio com psiquiatria é correto, mas isso não corrige a oferta automática emdisfunçãorenal. Creatinina1,8 não é dado decorativo que autorize fusão literal com630. A reformulação estrutural mede outroOP e precisa de novoID.",
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": true,
+        "reason": "Conduta sem condições de segurança emdisfunção renal."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": true,
+        "reason": "Potássio/avaliaçãorenal/seleção decisivos ausentes para a conduta proposta."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "reason": "Não fundamenta sozinho a disposição."
+      }
+    ],
+    "score": {
+      "anulado": true,
+      "reason": "Eliminatórios4/8; não somar score para compensar insegurança."
+    },
+    "rootAdjudication": "Root leu471/570/630 e novo0a, e Markowitzabstract integral. AdjudicouSUBSTITUIR pornovoOPestrutural, nãofundirliteralmente, sem transporte deFSRS/crédito.",
+    "implementation": {
+      "atomic": true,
+      "retire": "471c0013",
+      "replacementNewQid": "0a2634fc",
+      "originalLifecycle": "aposentado",
+      "newLifecycle": "publicado apósgateexato",
+      "newRecordRevision": "sha256:cfe05a1d7de9c91a084222e9a55a7fe3901a342c10c65a4527b69333b3cd681e",
+      "constraints": [
+        "Preservar original/histórico/favoritos/FSRS sob471.",
+        "Nenhum crédito/acerto/descoberta/revisão aprendida transportado para0a.",
+        "Sortear0a apenas como novaquestão; aposentada não entra em sorteiosfuturos.",
+        "Preservar posições/respostasantigas; troca de pendente exige escolha explícita e não reavalia respondidas.",
+        "Acrescentar novoID ao registro de posições, sem renumerar IDs originais nem40c5f770."
+      ]
+    }
+  },
+  "neighborChecks": [
+    {
+      "qids": [
+        "5705f74c",
+        "63040771"
+      ],
+      "verdict": "manter variação útil",
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": false,
+          "reason": "Reconhecer resistência renal àvasopressina versus escolher fármacoENaC."
+        },
+        {
+          "dimension": "Estrutura essencial dos dados",
+          "same": false,
+          "reason": "Poliúria/Na149/glicose/desmopressina versusNDIconfirmada/segurançafarmacológica."
+        },
+        {
+          "dimension": "Perfil-alvo",
+          "same": true,
+          "reason": "Mesmo público estudantes avançados/residentes, não inventarperfil."
+        },
+        {
+          "dimension": "Língua",
+          "same": true,
+          "reason": "pt-BR."
+        }
+      ],
+      "allFourCoincide": false
+    },
+    {
+      "qids": [
+        "0a2634fc",
+        "5705f74c"
+      ],
+      "verdict": "manter variação útil",
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": false,
+          "reason": "Reconhecer lesãoestruturalcrônica versus mecanismo de concentração."
+        },
+        {
+          "dimension": "Estrutura essencial dos dados",
+          "same": false,
+          "reason": "Exposiçãoprolongada/biópsiafibrose/microcistos versusrespostaàdesmopressina."
+        },
+        {
+          "dimension": "Perfil-alvo",
+          "same": true,
+          "reason": "Mesmo público estudantes avançados/residentes, não inventarperfil."
+        },
+        {
+          "dimension": "Língua",
+          "same": true,
+          "reason": "pt-BR."
+        }
+      ],
+      "allFourCoincide": false
+    },
+    {
+      "qids": [
+        "0a2634fc",
+        "63040771"
+      ],
+      "verdict": "manter variação útil",
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": false,
+          "reason": "Classificar padrãohistológico versus selecionarfármaco commecanismodelimitado."
+        },
+        {
+          "dimension": "Estrutura essencial dos dados",
+          "same": false,
+          "reason": "Insuficiênciarenalprogressiva/biópsia versusseleçãosegura noNDI."
+        },
+        {
+          "dimension": "Perfil-alvo",
+          "same": true,
+          "reason": "Mesmo público estudantes avançados/residentes, não inventarperfil."
+        },
+        {
+          "dimension": "Língua",
+          "same": true,
+          "reason": "pt-BR."
+        }
+      ],
+      "allFourCoincide": false
+    },
+    {
+      "qids": [
+        "0a2634fc",
+        "53814952"
+      ],
+      "verdict": "manter variação útil",
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": false,
+          "reason": "Lesão crônica versusindicar remoçãoextracorpórea portoxicidade neurológicaaguda."
+        },
+        {
+          "dimension": "Estrutura essencial dos dados",
+          "same": false,
+          "reason": "Biópsia/exposição12anos versusconvulsão/rebaixamentoconsciência/litemia2,8."
+        },
+        {
+          "dimension": "Perfil-alvo",
+          "same": true,
+          "reason": "Mesmo público estudantes avançados/residentes, não inventarperfil."
+        },
+        {
+          "dimension": "Língua",
+          "same": true,
+          "reason": "pt-BR."
+        }
+      ],
+      "allFourCoincide": false
+    }
+  ],
+  "newItemExistenceTest": {
+    "snapshotBankSHA256": "sha256:5cdf2e2e7214cd34c27fa3865e8c23029bcd89676227858e2c1bfc47a58adfc6",
+    "search": "Todos os campos das questões por lítio/litio/lithium, banco atual inteiro.",
+    "matchingQids": [
+      "53814952",
+      "63040771",
+      "471c0013",
+      "5705f74c"
+    ],
+    "result": "Lacuna útil de reconhecimento da lesãoestruturalcrônica; nenhum outro item mede esseOP. Novaidentidade sejustifica pela mudança dehabilidade, não porreporcontagem.",
+    "reviewerVerified": true
+  },
+  "summary": {
+    "oldQuestionsReleased": 2,
+    "newQuestionsReleased": 1,
+    "oldItemRedirectedAndRetired": 1,
+    "wholeCardsReleased": 3,
+    "newCards": 2,
+    "productionWrites": false
+  },
+  "boundary": "Sem liberação herdada deautoria. 471 continuaBLOQUEADO para reaplicação; criação sóLIBERADA neste gate e com ciclosemtransportes. Nenhumaescritaprodutiva pelo revisor."
+}

@@ -108,13 +108,16 @@ for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimó
       .filter(key => Object.prototype.hasOwnProperty.call(refs, key as string));
     (window as any).isAdminUser = () => fixture === 'admin';
     // Referências legadas que estão no acervo permanecem no save, mas o
-    // objetivo canônico conta somente as alcançáveis pelo banco vigente.
+    // objetivo canônico conta somente as alcançáveis pelo banco vigente e
+    // considera uma descoberta por conteúdo de pergaminho, incluindo aliases.
     localStorage.setItem('nq-unlocked-refs', JSON.stringify(fixture === 'admin' ? [] : Object.keys(refs)));
     localStorage.setItem('unlockedArticles', JSON.stringify(fixture === 'admin' ? [] : articles.map((_: any, index: number) => index)));
     localStorage.setItem('nefroquest-achievements', JSON.stringify(fixture === 'registered' ? ['grimoire_master'] : []));
     const condition = (0, eval)('ACHIEVEMENTS_LIST').find((achievement: any) => achievement.id === 'grimoire_master').condition();
     await (window as any).openDashboard({ tab: 'achievements' });
-    return { condition, target: reachable.length + articles.length };
+    const distinctScrolls = new Set(articles.map((_: unknown, index: number) =>
+      (window as any).NQLibraryCatalog.articleCanonicalIndex(index, articles)));
+    return { condition, target: reachable.length + distinctScrolls.size };
   }, fixture);
   const pane = page.getByRole('tabpanel', { name: 'Conquistas', exact: true });
   const card = pane.locator('[data-achievement-id="grimoire_master"]');

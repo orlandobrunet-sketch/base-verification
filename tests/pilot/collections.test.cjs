@@ -46,6 +46,7 @@ function fixture(files, { realPilot = false } = {}) {
     refsDB: {}, nefroArticles: [], refreshWelcomeSave() {},
   };
   ctx.window = ctx;
+  ctx.NQLibraryCatalog = require('../../js/library-catalog.js');
   ctx.NQPilot = {
     get active() { return binding.domain === 'pilot'; },
     captureBinding: () => binding,

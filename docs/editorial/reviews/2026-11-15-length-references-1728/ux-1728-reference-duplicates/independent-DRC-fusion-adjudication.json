@@ -1,0 +1,275 @@
+{
+  "schema": "NQ_INDEPENDENT_DRC_FUSION_ADJUDICATION_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "rootAdjudication": "Root leu67/75integrais e confirmou as quatro dimensões; escolheu67-A1canônica com aposentadoria75e política de histórico explícita.",
+  "pairVerdict": {
+    "verdict": "fundir",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "reason": "Concentração urinária em75reforça limitação semiquantitativa, mas não muda a decisão de confirmação quantitativa antes de classificar magnitude."
+  },
+  "comparison": {
+    "retired": {
+      "qid": "75d13f79",
+      "question": {
+        "t": "Proteinúria — Confirmação da Fita Reagente",
+        "qid": "75d13f79",
+        "q": "Paciente sem edema apresenta proteína 3+ na fita reagente de uma urina muito concentrada (densidade 1,035). Qual é o próximo passo mais adequado para caracterizar o achado?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Diagnosticar síndrome nefrótica, pois 3+ na fita equivale necessariamente a mais de 3,5 g/dia",
+          "Confirmar em laboratório com relação albumina:creatinina ou proteína:creatinina, preferencialmente em primeira urina da manhã, antes de classificar a magnitude",
+          "Repetir apenas a fita após hidratação e descartar doença renal se ela se tornar negativa",
+          "Presumir proteinúria por cadeias leves, porque a fita é especialmente sensível a imunoglobulinas monoclonais"
+        ],
+        "ans": 1,
+        "exp": "A fita reagente fornece estimativa semiquantitativa e sofre influência da concentração urinária; 3+ isoladamente não quantifica a excreção nem estabelece síndrome nefrótica. A KDIGO recomenda confirmar resultados positivos com medida quantitativa laboratorial, usando relação albumina:creatinina ou proteína:creatinina; a primeira urina da manhã é preferível, embora amostra aleatória possa ser usada. O resultado deve então ser interpretado com o contexto clínico e, quando necessário, confirmado novamente. A fita convencional detecta sobretudo albumina e pode não reconhecer adequadamente cadeias leves.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "authorRevision": "sha256:13ba98a4ee9075c47e04b437f74852572b0aaf812298e936bfedcf88001e1dcd",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "recordRevision": "sha256:e0c37b675e2539defe21b7613ef3443421ac4c02bc69326f3cc30521cdd7f82a"
+    },
+    "canonicalOriginal": {
+      "qid": "67bdd826",
+      "question": {
+        "t": "Proteinúria na Fita — Próximo Passo",
+        "qid": "67bdd826",
+        "q": "Adulto assintomático apresenta proteína 3+ em uma única fita urinária, sem edema ou sedimento ativo. Qual é o próximo passo mais adequado?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Quantificar com relação albumina/creatinina ou proteína/creatinina, preferir amostra matinal para confirmação e avaliar TFGe e sedimento",
+          "Diagnosticar síndrome nefrótica apenas pela fita e iniciar imunossupressão",
+          "Desconsiderar o achado porque a fita nunca detecta albumina",
+          "Indicar biópsia renal antes de repetir ou quantificar a proteinúria"
+        ],
+        "ans": 0,
+        "exp": "A fita é semiquantitativa e sofre influência da concentração urinária; um resultado positivo deve ser confirmado e quantificado, preferencialmente com relação albumina/creatinina em amostra isolada e, conforme o contexto, relação proteína/creatinina. A avaliação inclui repetição em amostra matinal, TFGe e sedimento. Uma fita isolada não define síndrome nefrótica, cronicidade nem etiologia e, sem sinais de alarme, não justifica imunossupressão ou biópsia imediata.",
+        "diff": "easy",
+        "cat": "nefrologia_geral"
+      },
+      "authorRevision": "sha256:f7f007434eadc589b0ad3d9e1ad8cbb29cb43751898d672f0620ec182c8b4142",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "recordRevision": "sha256:da84892bc642d7a96738f82a846002bfc635dbab44769f6590e70cbf4f9381dd"
+    },
+    "canonicalProposed": {
+      "qid": "67bdd826",
+      "question": {
+        "t": "Proteinúria na Fita — Próximo Passo",
+        "qid": "67bdd826",
+        "q": "Adulto assintomático apresenta proteína 3+ em uma única fita urinária, sem edema ou sedimento ativo. Qual é o próximo passo mais adequado?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Quantificar com relação albumina/creatinina e confirmar, preferindo amostra matinal.",
+          "Repetir apenas a fita e usar o grau de positividade para estimar a excreção diária.",
+          "Solicitar urina de 24 horas como única medida válida, desconsiderando relações em amostra isolada.",
+          "Concluir proteinúria nefrótica pelo resultado 3+ e programar biópsia sem quantificação."
+        ],
+        "ans": 0,
+        "exp": "A fita é semiquantitativa. Um resultado positivo deve ser confirmado por medida quantitativa, preferencialmente relação albumina/creatinina em amostra de urina; conforme o contexto, usa-se também relação proteína/creatinina. A confirmação em amostra matinal reduz variações, e a avaliação inclui filtração e sedimento. Uma única fita 3+ não estabelece a excreção diária, a cronicidade ou a etiologia. Sem sinais de alarme, a investigação quantitativa precede conclusões como síndrome nefrótica e decisões invasivas.",
+        "diff": "easy",
+        "cat": "nefrologia_geral"
+      },
+      "authorRevision": "sha256:eaa68a35d8f109483076f57173f1140dfa4ce39c21db16a607dd858a888b3ade",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "recordRevision": "sha256:64b33cbb7dda289f2bcb401c1cb4f9d733695b052cc6abd9a0a076bc23f73702"
+    },
+    "fourDimensions": [
+      {
+        "dimension": "OP",
+        "same": true,
+        "retired": "Caracterizar fita3+antes de classificar magnitude.",
+        "canonical": "Confirmar/quantificar fita positiva antes de classificar magnitude."
+      },
+      {
+        "dimension": "Competência",
+        "same": true,
+        "retired": "Interpretação/avaliação inicial de proteinúria.",
+        "canonical": "Interpretação/avaliação inicial de proteinúria."
+      },
+      {
+        "dimension": "Decisão/raciocínio",
+        "same": true,
+        "retired": "Confirmar em laboratórioRACouPCR, preferencialmente matinal.",
+        "canonical": "QuantificarRACe confirmar matinal;PCRé aceito conforme contexto na explicação."
+      },
+      {
+        "dimension": "Conceito correto",
+        "same": true,
+        "retired": "Fita é semiquantitativa e concentração não determina excreção diária.",
+        "canonical": "Fita é semiquantitativa,3+isolado não define magnitude/etiologia/cronicidade."
+      }
+    ],
+    "finalStepShownInBoth": {
+      "retiredCorrect": "Confirmar em laboratório com relação albumina:creatinina ou proteína:creatinina, preferencialmente em primeira urina da manhã, antes de classificar a magnitude",
+      "canonicalOriginalCorrect": "Quantificar com relação albumina/creatinina ou proteína/creatinina, preferir amostra matinal para confirmação e avaliar TFGe e sedimento",
+      "canonicalNewCorrect": "Quantificar com relação albumina/creatinina e confirmar, preferindo amostra matinal.",
+      "canonicalNewExplanation": "A fita é semiquantitativa. Um resultado positivo deve ser confirmado por medida quantitativa, preferencialmente relação albumina/creatinina em amostra de urina; conforme o contexto, usa-se também relação proteína/creatinina. A confirmação em amostra matinal reduz variações, e a avaliação inclui filtração e sedimento. Uma única fita 3+ não estabelece a excreção diária, a cronicidade ou a etiologia. Sem sinais de alarme, a investigação quantitativa precede conclusões como síndrome nefrótica e decisões invasivas.",
+      "interpretation": "Ambas terminam em confirmação quantitativaRAC/PCRmatinal. A versão nova de67não invalidaPCR; ele aparece expressamente na explicação. Não obriga24hcomo único exame."
+    },
+    "distinctNeighbor": {
+      "qid": "cee26d6b",
+      "reason": "Proteína total já foi quantificada380mg/dia; o erro é atribuirA2/DRCsem medida de albumina e persistência. Não retirar por semelhança lexical."
+    }
+  },
+  "retiredDecision": {
+    "qid": "75d13f79",
+    "verdict": "aposentar",
+    "lifecycle": "aposentado",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "BLOQUEADA",
+    "derived": "Aposentadoria não é veredito de aprovação (§18.4); não reaplicar o original75.",
+    "score": {
+      "anulado": true,
+      "reason": "A duplicidade nas quatro dimensões prevalece sobre score."
+    }
+  },
+  "canonicalDecision": {
+    "qid": "67bdd826",
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "LIBERADA",
+    "derived": "Gabarito/fonte/explicação conferidos, sem eliminatório/recurso decisivo; score19/20. Duplicidade resolvida por aposentadoria75no mesmo conjunto.",
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19,
+      "rationale": "A canônica tem quatro planos diagnósticos e mantémRAC/PCRno contexto da explicação. A duplicata é resolvida pelo adendo atômico, não pelo score."
+    },
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "PCRpode ser adequado conforme contexto; a correta escolheACRpreferencial, não o único método válido. Ausência de sinais de alarme torna quantificação o próximo passo, não biópsia ou diagnóstico nefrótico direto.75d13f79é duplicata real e será aposentada atomicamente."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "PP1.3.1.2: fita positiva confirma-se quantitativamente porACR/PCR; amostra matinal reduz variação.3+isolado não define excreção diária, cronicidade ou etiologia."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "PCRpode ser adequado conforme contexto; a correta escolheACRpreferencial, não o único método válido. Ausência de sinais de alarme torna quantificação o próximo passo, não biópsia ou diagnóstico nefrótico direto.75d13f79é duplicata real e será aposentada atomicamente."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+      }
+    ],
+    "advogadoDoRecurso": "PCRpode ser adequado conforme contexto; a correta escolheACRpreferencial, não o único método válido. Ausência de sinais de alarme torna quantificação o próximo passo, não biópsia ou diagnóstico nefrótico direto.75d13f79é duplicata real e será aposentada atomicamente.",
+    "sourceReview": "independent-DRC-review.json/KDIGO2024PP1.3.1.2",
+    "preserveQid": true,
+    "fsrsReset": false
+  },
+  "implementation": {
+    "productionWrites": false,
+    "action": "Aplicar67e retirar75dos futuros sorteios/banco no mesmo conjunto, manifesto/história/política com os hashes exatos17.27.",
+    "constraints": [
+      "Preservar posições e respostas de sessões antigas.",
+      "Substituição de75por67apenas após escolha explícita, sem reavaliar respostas antigas.",
+      "Se67já existe em outra posição da sessão antiga, manter avaliação por posição; não apagar respostas ou aumentar o total planejado.",
+      "Não transferirFSRS, estatísticas, acertos, eventos ou desbloqueios de75para67.",
+      "Não reaplicar o texto longo75sob aprovação da canônica.",
+      "Root executará prova nativa do novo par; a prova anterior emfusion-probe-results.jsonnão é declarada como teste deste par."
+    ]
+  }
+}

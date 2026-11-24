@@ -1,0 +1,3801 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A3",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 9,
+  "readyForImplementation": false,
+  "scope": "Nove questões de segurança, condutas e interpretação. Autoria independente da revisão que será feita pelo parent; não inclui quatro itens regulatórios redistribuídos.",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "3ecb266a",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Transplante Renal: Nefropatia por BK",
+        "qid": "3ecb266a",
+        "q": "Paciente transplantado renal há 8 meses em uso de tacrolimo apresenta creatinina 1,6 mg/dL (basal 1,2 mg/dL), células decoy na urina, PCR plasmática para BK vírus de 42.000 cópias/mL e biópsia com inclusões virais intranucleares em células tubulares, sem tubulite pronunciada. Qual é o diagnóstico e a conduta inicial mais adequada?",
+        "refs": [
+          "bk_virus_review",
+          "kdigo_tx"
+        ],
+        "opts": [
+          "Nefropatia por vírus BK; reduzir imunossupressão de forma controlada, com ajuste do antimetabólito e/ou do inibidor de calcineurina conforme risco imunológico",
+          "Rejeição celular aguda; pulsoterapia com corticosteroide",
+          "Infecção por CMV renal; ganciclovir IV",
+          "Rejeição mediada por anticorpos; plasmaférese"
+        ],
+        "ans": 0,
+        "exp": "O conjunto de viremia plasmática significativa por BK, células decoy e biópsia com inclusões virais tubulares é compatível com nefropatia por vírus BK. A conduta inicial é reduzir a imunossupressão de modo escalonado e monitorado, equilibrando controle viral e risco de rejeição. Não há antiviral aprovado específico com benefício robusto para uso rotineiro; cidofovir é limitado por nefrotoxicidade. Corticosteroide em pulso, ganciclovir ou plasmaférese tratariam rejeição ou CMV, mas não respondem ao padrão virológico-histológico descrito.",
+        "diff": "medium",
+        "cat": "transplante"
+      },
+      "originalSHA256": "sha256:bd83ea8f837d6e58677c3fec73015351ccd029308f373595d19c286b46b65792",
+      "originalRefs": [
+        {
+          "id": "bk_virus_review",
+          "original": {
+            "label": "Kotton CN et al. — 2º Consenso Internacional BKPyV (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+            "journal": "Transplantation 2024;108(9):1834-1866",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rastreamento e redução escalonada da imunossupressão na DNAemia por BK",
+            "icon": "📋",
+            "resumo": "Segundo consenso internacional sobre BK poliomavírus em transplante renal, publicado em 2024. Recomenda rastreamento mensal da DNAemia plasmática até o 9º mês e, depois, a cada 3 meses até 2 anos. DNAemia persistente acima de 1.000 cópias/mL ou uma medida acima de 10.000 cópias/mL deve levar à redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, com monitorização da DNAemia a cada 2 a 4 semanas. A interpretação deve considerar variabilidade entre ensaios e risco imunológico.",
+            "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+            "curiosidade": "A sequência típica é virúria de alto nível, seguida semanas depois por DNAemia; virúria isolada não equivale a nefropatia do enxerto."
+          },
+          "originalSHA256": "sha256:3b5c54babd5ff3cf90c71d7a870122407173557c399e4e1ca9a36297ee695cb2"
+        },
+        {
+          "id": "kdigo_tx",
+          "original": {
+            "label": "KDIGO Transplant Recipient Care 2009",
+            "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+            "journal": "Am J Transplant 2009;9(Suppl 3):S1-S155",
+            "ano": 2009,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
+            "icon": "📋",
+            "resumo": "Diretriz abrangente para manejo do receptor de transplante renal, cobrindo imunossupressão (esquemas baseados em inibidor de calcineurina e antiproliferativo, com ou sem corticoide, individualizados por risco imunológico), monitorização do enxerto, rejeição aguda e crônica, infecções oportunistas (CMV, BK, PCP), doença cardiovascular, neoplasia e complicações metabólicas a longo prazo.",
+            "conclusao": "Referência-base para o acompanhamento do transplantado renal — da imunossupressão de indução ao manejo das complicações tardias.",
+            "curiosidade": "A introdução do tacrolimo marcou a consolidação dos inibidores de calcineurina como eixo da imunossupressão moderna, reduzindo a rejeição aguda e melhorando a sobrevida inicial do enxerto renal de forma expressiva."
+          },
+          "originalSHA256": "sha256:d45289e9fb4e493b136589950688622820db5f6e081dc9f16214b9062c026747"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer provável nefropatia por BK e reduzir imunossupressão de modo escalonado e monitorado.",
+        "primaryCompetence": "Diagnóstico e conduta inicial segura em complicação infecciosa do transplante.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta contém diagnóstico, individualização e escolha de classes, enquanto as demais só trazem diagnóstico e ação.",
+          "MENOR — A formulação distingue hipótese mais provável de confirmação histológica estrita; não transforma inclusões isoladas em prova específica.",
+          "MENOR — Referência genérica de transplante2009 é dispensada em favor do consenso específico2024."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "bk",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+          "access": "Corpo integral do consenso internacional2024, também arquivado no XML oficial EFetch a3-pmc-primary-corpus.xml",
+          "locators": [
+            "Abstract e recomendações de rastreamento",
+            "Tabelas6–7 e linhas496–545: limiares, redução escalonada, risco imunológico e monitorização2–4semanas"
+          ],
+          "limitations": [
+            "Interpretar cópias por ensaio e contexto. Não apresentar interrupção indiscriminada da imunossupressão como alternativa segura."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "DNAemia42.000 com achados tubulares favorece BK",
+          "source": "bk",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Redução escalonada, risco e monitorização",
+          "source": "bk",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Drogas não recomendadas como rotina pelo consenso2024",
+          "source": "bk",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Transplante Renal: Nefropatia por BK",
+        "qid": "3ecb266a",
+        "q": "Paciente transplantado renal há 8 meses, em uso de tacrolimo, apresenta creatinina de 1,6 mg/dL (basal 1,2 mg/dL), células decoy na urina, reação em cadeia da polimerase (PCR) plasmática para vírus BK de 42.000 cópias/mL e biópsia com inclusões virais intranucleares em células tubulares, sem tubulite pronunciada. Qual é a hipótese mais provável e a conduta inicial coerente?",
+        "refs": [
+          "bk_virus_review"
+        ],
+        "opts": [
+          "Nefropatia por BK; reduzir a imunossupressão de forma escalonada e monitorada.",
+          "Rejeição celular aguda; administrar pulsoterapia com corticosteroide.",
+          "Nefropatia por citomegalovírus; iniciar ganciclovir intravenoso.",
+          "Rejeição mediada por anticorpos; iniciar plasmaférese."
+        ],
+        "ans": 0,
+        "exp": "O conjunto é mais compatível com nefropatia por BK. A carga viral plasmática elevada, as células decoy e as inclusões tubulares devem ser interpretadas em conjunto; a confirmação histológica emprega imunohistoquímica. A intervenção principal é reduzir imunossupressão por passos predefinidos, conforme esquema e risco imunológico, acompanhando carga viral e função do enxerto. O consenso de 2024 não recomenda cidofovir, leflunomida ou fluoroquinolonas como rotina. Pulsoterapia, ganciclovir ou plasmaférese não respondem ao padrão apresentado e podem tratar equivocadamente outra complicação.",
+        "diff": "medium",
+        "cat": "transplante"
+      },
+      "proposedSHA256": "sha256:1520eea0e9856ce254b89357f0e0521f40bd0f1ad2692e85f3c885db630e1472",
+      "classificationAfter": {
+        "op": "Reconhecer provável nefropatia por BK e reduzir imunossupressão de modo escalonado e monitorado.",
+        "primaryCompetence": "Diagnóstico e conduta inicial segura em complicação infecciosa do transplante.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "bk_virus_review",
+          "original": {
+            "label": "Kotton CN et al. — 2º Consenso Internacional BKPyV (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+            "journal": "Transplantation 2024;108(9):1834-1866",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rastreamento e redução escalonada da imunossupressão na DNAemia por BK",
+            "icon": "📋",
+            "resumo": "Segundo consenso internacional sobre BK poliomavírus em transplante renal, publicado em 2024. Recomenda rastreamento mensal da DNAemia plasmática até o 9º mês e, depois, a cada 3 meses até 2 anos. DNAemia persistente acima de 1.000 cópias/mL ou uma medida acima de 10.000 cópias/mL deve levar à redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, com monitorização da DNAemia a cada 2 a 4 semanas. A interpretação deve considerar variabilidade entre ensaios e risco imunológico.",
+            "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+            "curiosidade": "A sequência típica é virúria de alto nível, seguida semanas depois por DNAemia; virúria isolada não equivale a nefropatia do enxerto."
+          },
+          "originalSHA256": "sha256:3b5c54babd5ff3cf90c71d7a870122407173557c399e4e1ca9a36297ee695cb2",
+          "proposed": {
+            "label": "Consenso internacional — Poliomavírus BK no transplante renal (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+            "journal": "Transplantation 2024;108(9):1834-1866",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rastrear carga viral plasmática e reduzir imunossupressão de forma escalonada",
+            "icon": "📋",
+            "resumo": "Segundo consenso internacional de 2024 para receptores de transplante renal. Recomenda rastreamento plasmático mensal até o nono mês e, depois, a cada 3 meses até 2 anos em adultos. Carga viral persistente acima de 1.000 cópias/mL, medida acima de 10.000 cópias/mL ou nefropatia comprovada devem motivar redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, conforme risco. Monitorar carga viral a cada 2–4 semanas. Valores dependem do ensaio e precisam de correlação clínica.",
+            "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+            "curiosidade": "Células decoy e vírus na urina podem preceder a carga viral plasmática; virúria isolada não equivale a nefropatia do enxerto."
+          },
+          "proposedSHA256": "sha256:bfb95a98f6338f30e84b524d3a43e633336e9a0a0744813c2b2c4446382fb3fb",
+          "sourceIDs": [
+            "bk"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Quatro pares diagnóstico-conduta paralelos. As particularidades do ajuste ficam na explicação; mantido o caráter probabilístico do caso e a necessidade de confirmação adequada.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "a12cb84d",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Anticoagulação do Circuito na Hemodiálise",
+        "qid": "a12cb84d",
+        "q": "Qual princípio orienta a anticoagulação com heparina não fracionada durante a sessão de hemodiálise?",
+        "opts": [
+          "A heparina de baixo peso molecular é obrigatória e superior à não fracionada em todos os pacientes.",
+          "A anticoagulação é dispensável sempre que a punção é feita por fístula arteriovenosa.",
+          "A anticoagulação visa manter a patência do circuito extracorpóreo; a dose é ajustada ao risco de coagulação do sistema e de sangramento, podendo ser reduzida ou omitida (diálise sem heparina, com lavagens de salina) no alto risco hemorrágico.",
+          "A dose de heparina é fixa e independe do risco hemorrágico do paciente."
+        ],
+        "ans": 2,
+        "exp": "O objetivo da anticoagulação na hemodiálise é impedir a coagulação do sangue no circuito extracorpóreo (linhas e dialisador), e não anticoagular sistemicamente o paciente. A intensidade é individualizada conforme a tendência de coagulação do sistema e o risco de sangramento: em pacientes de alto risco hemorrágico (pós-operatório, sangramento ativo), pode-se reduzir a dose, realizar diálise sem heparina com lavagens periódicas do circuito com solução salina, ou usar anticoagulação regional com citrato. Esquemas com heparina não fracionada empregam um bolus inicial seguido de infusão ajustada pelo tempo de coagulação, mas as doses variam conforme o protocolo local e não devem ser memorizadas como valores universais.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "daugirdas_handbook_of_dialysis"
+        ]
+      },
+      "originalSHA256": "sha256:848f091050f1b9853bc201e8d25d7270e8fa4a2817fa06fd780df2057060377e",
+      "originalRefs": [
+        {
+          "id": "daugirdas_handbook_of_dialysis",
+          "original": {
+            "label": "Daugirdas — Handbook of Dialysis (5ª ed.)",
+            "url": "https://www.wolterskluwer.com/en/solutions/ovid/handbook-of-dialysis-5th-ed-71",
+            "journal": "Wolters Kluwer",
+            "ano": 2015,
+            "tipo": "Livro Didático",
+            "badge": "LIVRO",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Referência técnica completa para prescrição e adequação de diálise",
+            "icon": "📚",
+            "resumo": "Manual de referência para prescrição e adequação de diálise, cobrindo hemodiálise (cálculo de Kt/V, adequação, acesso vascular), diálise peritoneal (PET, dose, complicações), nutrição em diálise, anemia, metabolismo mineral e manejo de complicações agudas. A 5ª edição (2015) incorpora atualizações sobre modalidades de HD de alta frequência e membranas de alto fluxo.",
+            "conclusao": "Referência técnica insubstituível para prescrição de diálise — combina fisiologia, fórmulas e protocolo clínico numa linguagem prática para a rotina de nefrologia.",
+            "curiosidade": "John Daugirdas desenvolveu a fórmula simplificada do Kt/V (Daugirdas 2ª geração) que corrige o efeito da geração de ureia durante a sessão — mais precisa que a fórmula linear de Gotch e padrão atual para monitorização da dose dialítica."
+          },
+          "originalSHA256": "sha256:9899d34c194d295017cc130ec8b0d56da3e49b9a232fb3a2a94d4edef17f263f"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Individualizar anticoagulação da hemodiálise equilibrando coagulação do circuito e sangramento.",
+        "primaryCompetence": "Segurança na prescrição de anticoagulação extracorpórea.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta reúne objetivo, dose, risco e técnica alternativa; distratores são mais curtos.",
+          "MAIOR — A explicação pode sugerir que heparina não anticoagula sistemicamente, confundindo objetivo do procedimento com efeito farmacológico.",
+          "MENOR — Fonte específica e aberta substitui livro cujo conteúdo integral não foi conferido neste acesso."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "hd",
+          "url": "https://guidelines.ukkidney.org/haemodialysis/rationale-for-clinical-practice-guidelines/anticoagulation/",
+          "access": "Texto integral oficial Renal Association/UK Kidney Association2019; corpo paralelo da publicação BMC Nephrology2019;20:379 também aberto",
+          "locators": [
+            "Seção4.6, recomendações1A/1C e racional",
+            "Linhas71–82: heparina, efeito sistêmico, individualização e risco hemorrágico"
+          ],
+          "limitations": [
+            "Diretriz do Reino Unido, usada para princípio de segurança, não para impor doses ou protocolo local universal."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Heparina pode produzir anticoagulação sistêmica embora objetivo seja circuito",
+          "source": "hd",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Omitir/minimizar com maior sangramento, individualizar dose",
+          "source": "hd",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Anticoagulação do Circuito na Hemodiálise",
+        "qid": "a12cb84d",
+        "q": "Qual princípio orienta a anticoagulação com heparina não fracionada durante a sessão de hemodiálise?",
+        "opts": [
+          "Ajustar apenas pelo peso corporal, mantendo a estratégia se o risco hemorrágico mudar.",
+          "Ajustar pela presença de fístula ou cateter, omitindo heparina quando houver fístula.",
+          "Individualizar pela patência do circuito e pelo sangramento, reduzindo ou omitindo no alto risco.",
+          "Ajustar apenas pela duração programada da sessão, sem usar os achados do circuito."
+        ],
+        "ans": 2,
+        "exp": "A anticoagulação procura prevenir coagulação do circuito extracorpóreo, mas a heparina não fracionada também tem efeito sistêmico. Dose, infusão e momento de suspensão devem considerar coagulação do sistema e sangramento. Em maior risco hemorrágico, recomenda-se minimizar ou omitir anticoagulação sistêmica, escolhendo técnicas sem heparina ou alternativas regionais conforme recursos. A presença de fístula não elimina coagulação do circuito. Peso ou duração da sessão, isoladamente, não substituem avaliação de patência e sangramento. O princípio é individualização; não há dose universal a memorizar.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "ukkidney_hd_anticoag_2019"
+        ]
+      },
+      "proposedSHA256": "sha256:a47aa5fbd2da722112cc5f7df3076f40aa4a2ddbe9e2a0ec3d5254d9655905ee",
+      "classificationAfter": {
+        "op": "Individualizar anticoagulação da hemodiálise equilibrando coagulação do circuito e sangramento.",
+        "primaryCompetence": "Segurança na prescrição de anticoagulação extracorpórea.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "ukkidney_hd_anticoag_2019",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "UK Kidney Association — Anticoagulação na hemodiálise (2019)",
+            "url": "https://guidelines.ukkidney.org/haemodialysis/rationale-for-clinical-practice-guidelines/anticoagulation/",
+            "journal": "Renal Association/UK Kidney Association; publicação em BMC Nephrology 2019;20:379",
+            "ano": 2019,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "icon": "📋",
+            "impacto": "Prevenir coagulação do circuito equilibrando patência e risco hemorrágico",
+            "resumo": "Diretriz britânica de hemodiálise. Sem maior risco de sangramento, recomenda heparina não fracionada ou de baixo peso molecular para reduzir coagulação do sistema extracorpóreo (1A). Com risco hemorrágico aumentado, recomenda omitir ou minimizar a anticoagulação sistêmica (1C). Dose e término são individualizados pela tendência de coagulação do circuito e sangramento; técnicas sem heparina ou anticoagulação regional podem ser consideradas conforme recursos.",
+            "conclusao": "O objetivo é a patência do circuito, mas a heparina tem efeito sistêmico. Não usar dose fixa universal nem ignorar sangramento ativo ou recente.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:6939136eb39b99a954ca025ccb4075a32c57b6d70164dcd002df4b30e207051e",
+          "sourceIDs": [
+            "hd"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "O princípio correto é preservado e a ressalva farmacológica corrigida. Distratores ainda representam falhas de individualização; não são recomendações alternativas.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "760901ee",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Acidose Metabólica com AG Elevado — Delta-Delta",
+        "qid": "760901ee",
+        "q": "Paciente com pH 7,28, pCO2 22 mmHg, HCO3 10 mEq/L e ânion gap 28 mEq/L. A razão delta-delta é (28-12)/(24-10)=1,14. O que esse valor sugere?",
+        "refs": [
+          "acid_base_adroguenejm",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Acidose metabólica com ânion gap elevado sem evidência, por esse cálculo, de distúrbio metabólico adicional importante.",
+          "Acidose hiperclorêmica adicional obrigatória.",
+          "Alcalose metabólica isolada como distúrbio primário.",
+          "Acidose respiratória crônica compensada."
+        ],
+        "ans": 0,
+        "exp": "Na acidose metabólica com ânion gap elevado, a razão delta-delta compara o aumento do AG com a queda do bicarbonato. Valor aproximado entre 1 e 2 é compatível com acidose de AG elevado relativamente pura. Valores baixos sugerem acidose metabólica hiperclorêmica concomitante; valores altos sugerem alcalose metabólica concomitante ou bicarbonato basal elevado. O cálculo não substitui a leitura clínica, mas ajuda a detectar distúrbios mistos.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "originalSHA256": "sha256:361c04b675614f67880c1c6364f0a504a4959f252f05a8cb103f342e9c693288",
+      "originalRefs": [
+        {
+          "id": "acid_base_adroguenejm",
+          "original": {
+            "label": "Adrogue HJ, Madias NE — Acid-Base Disorders (NEJM 1998)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJM199803053381007",
+            "journal": "N Engl J Med 1998;338(10):656-664",
+            "ano": 1998,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Abordagem diagnóstica e terapêutica dos distúrbios ácido-base — referência didática clássica",
+            "icon": "📖",
+            "resumo": "Revisão fisiológica e clínica clássica e seminal (Adrogué & Madias, NEJM 1998) que estabelece os fundamentos modernos para o diagnóstico e manejo prático dos distúrbios ácido-base. Organiza sistematicamente a avaliação através da gasometria arterial e eletrólitos séricos, detalhando a compensação respiratória e metabólica esperada para cada distúrbio primário. Aborda de forma detalhada o cálculo do hiato aniônico (Anion Gap) plasmático e urinário, e discute os riscos e controvérsias associados ao uso intempestivo de bicarbonato de sódio intravenoso em acidoses láticas e cetoacidoses graves.",
+            "conclusao": "Permanece como o tratado didático definitivo de referência mundial, unificando a fisiologia de Henderson-Hasselbalch com a abordagem clínica prática na beira do leito do paciente no Reino.",
+            "curiosidade": "Nicolaos Madias e Horacio Adrogué são gigantes da nefrologia e equilíbrio ácido-base. Eles desenvolveram as famosas fórmulas de Adrogué-Madias para estimar o efeito de 1 litro de qualquer infusão sobre o sódio sérico do paciente, ferramenta indispensável nas hipo e hipernatremias."
+          },
+          "originalSHA256": "sha256:8c67ba4af307c6fbe8604a219e3c7f3c1723f7e16eef385095c9ca864566b756"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Interpretar a comparação entre aumento do hiato aniônico e queda do bicarbonato sem concluir ausência global de distúrbios mistos.",
+        "primaryCompetence": "Interpretação quantitativa de componente metabólico ácido-base.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta é uma conclusão longa e cautelosa; as demais mudam para classes respiratórias ou afirmam obrigatoriedade.",
+          "MENOR — Valores de referência e albumina são explicitados para não tratar12mEq/L como hiato universal nem omitir uma condição da interpretação.",
+          "MENOR — Livro/revisão antigos não foram apresentados como integralmente lidos; referência clínica acessível sustenta a proposta."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "acidbase",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "doi": "10.2215/CJN.04500422",
+          "access": "Corpo integral Achanti/Szerlip, CJASN2023;18(1):102–112, publicação eletrônica2022",
+          "locators": [
+            "Abordagem diagnóstica, passos4–5, linhas100–103: corrigir por albumina e comparar aumento do hiato com queda do bicarbonato",
+            "Estrutura da avaliação separa componentes metabólicos de compensação respiratória"
+          ],
+          "limitations": [
+            "Modelo aproximado; referências laboratoriais variam. Não interpretar a razão isolada como prova de ausência de todo distúrbio misto. As duas referências legadas não foram apresentadas como integralmente lidas."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Comparar variações é um modelo aproximado; albumina e referência importam",
+          "source": "acidbase",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Cálculo16/14=1,142857; coerência de aproximação",
+          "source": "CÁLCULO AUTORAL",
+          "status": "VERIFICADA matematicamente"
+        },
+        {
+          "claim": "Componente respiratório não é diagnosticado pela razão delta",
+          "source": "acidbase",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Acidose com hiato aniônico elevado — Razão delta",
+        "qid": "760901ee",
+        "q": "Paciente com albumina sérica de 4,0 g/dL tem pH 7,28, pCO₂ 22 mmHg, bicarbonato 10 mEq/L e hiato aniônico 28 mEq/L. Com referências de hiato 12 mEq/L e bicarbonato 24 mEq/L, a razão delta é (28−12)/(24−10)=1,14. O que esse cálculo sugere?",
+        "refs": [
+          "achanti_szerlip_acidbase_2023"
+        ],
+        "opts": [
+          "Acidose com hiato elevado, sem componente metabólico adicional importante sugerido pela razão.",
+          "Acidose com hiato elevado associada a acidose metabólica hiperclorêmica.",
+          "Acidose com hiato elevado associada a alcalose metabólica importante.",
+          "Acidose predominantemente hiperclorêmica, sem aumento do hiato aniônico."
+        ],
+        "ans": 0,
+        "exp": "O aumento do hiato é 16 mEq/L e a queda do bicarbonato é 14 mEq/L: variações próximas, com razão de 1,14. Esse modelo não aponta grande desproporção que sugira outro componente metabólico importante. Queda relativamente maior do bicarbonato levantaria acidose hiperclorêmica associada; aumento relativamente maior do hiato levantaria alcalose metabólica ou bicarbonato basal elevado. Albumina e referência laboratorial importam. A razão não diagnostica componente respiratório nem demonstra, sozinha, ausência de todo distúrbio misto; pH, compensação e contexto devem ser avaliados separadamente.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "proposedSHA256": "sha256:e92e5318fae6933b226663338b7f75440b515ba6e4a979e36b0870aeab27c31a",
+      "classificationAfter": {
+        "op": "Interpretar a comparação entre aumento do hiato aniônico e queda do bicarbonato sem concluir ausência global de distúrbios mistos.",
+        "primaryCompetence": "Interpretação quantitativa de componente metabólico ácido-base.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "achanti_szerlip_acidbase_2023",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Achanti & Szerlip — Distúrbios ácido-base no paciente crítico (2023)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+            "journal": "Clinical Journal of the American Society of Nephrology 2023;18(1):102–112",
+            "ano": 2023,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Comparar elevação do hiato aniônico e queda do bicarbonato para buscar mistura metabólica",
+            "resumo": "Revisão clínica que organiza a avaliação ácido-base por pH, componente respiratório, hiato aniônico e comparação das variações metabólicas. A relação aproximada entre aumento do hiato e queda do bicarbonato ajuda a reconhecer distúrbios adicionais. É necessário considerar albumina e valores laboratoriais de referência; a comparação é um modelo, não confirmação isolada de etiologia ou ausência de mistura. Foi escolhida como fonte clínica acessível para o método, sem transferir recomendações terapêuticas não pertinentes.",
+            "conclusao": "Variações próximas favorecem um distúrbio metabólico predominante; desproporção exige procurar componentes adicionais. Integrar compensação respiratória e contexto.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:ca8296db515d3ab024794f5b83f12ed356e9eb0409b3aef4ccabdb6d026a80c6",
+          "sourceIDs": [
+            "acidbase"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 1
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Quatro interpretações metabólicas comparáveis; explicação não transforma intervalo didático em teste diagnóstico absoluto. O objetivo numérico e o conceito correto permanecem reconhecíveis.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "731a7b4b",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Síndrome Antifosfolipídeo — Nefropatia e Anticoagulação",
+        "qid": "731a7b4b",
+        "q": "Paciente com trombose venosa profunda não provocada tem tripla positividade para anticorpos antifosfolipídeos confirmada novamente após 12 semanas. Biópsia renal mostra microangiopatia trombótica e lesões vasculares crônicas. Qual é a interpretação mais adequada?",
+        "refs": [
+          "eular_aps_2019"
+        ],
+        "opts": [
+          "Trata-se de SAF trombótica com nefropatia associada; recomenda-se anticoagulação de longo prazo com antagonista da vitamina K e INR 2–3, além de controle renal e pressórico",
+          "Anticorpos antifosfolipídeos não causam lesão renal e devem ser ignorados",
+          "Tripla positividade favorece rivaroxabana em vez de antagonista da vitamina K",
+          "O diagnóstico exige nefrite lúpica proliferativa, mesmo sem LES"
+        ],
+        "ans": 0,
+        "exp": "A nefropatia da síndrome antifosfolipídeo pode produzir microangiopatia trombótica aguda e vasculopatia crônica com hipertensão, proteinúria e perda de função. Trombose não provocada e perfil aPL persistente, sobretudo triplo positivo, sustentam SAF trombótica de alto risco. A EULAR recomenda antagonista da vitamina K de longo prazo com INR alvo 2–3 após primeira trombose venosa não provocada; rivaroxabana deve ser evitada na tripla positividade. SAF pode ser primária e não exige nefrite lúpica.",
+        "diff": "hard",
+        "cat": "genetica"
+      },
+      "originalSHA256": "sha256:0ee60d695645a23e79a2c610fec90246e172cbb4d7cc6995dae2cdb8915d38c6",
+      "originalRefs": [
+        {
+          "id": "eular_aps_2019",
+          "original": {
+            "label": "EULAR — Management of Antiphospholipid Syndrome in Adults",
+            "url": "https://ard.bmj.com/content/78/10/1296",
+            "journal": "Ann Rheum Dis 2019;78:1296-1304",
+            "ano": 2019,
+            "tipo": "Recomendação internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Estratificação do perfil aPL e anticoagulação na síndrome antifosfolipídeo.",
+            "icon": "📋",
+            "resumo": "Recomendações EULAR para síndrome antifosfolipídeo. Perfil de alto risco inclui anticoagulante lúpico, dupla ou tripla positividade ou títulos persistentemente altos, confirmados em pelo menos duas ocasiões separadas por 12 semanas. Após primeira trombose venosa não provocada em APS, recomenda-se anticoagulação de longo prazo com antagonista da vitamina K e INR alvo 2–3. Rivaroxabana não deve ser usada em tripla positividade.",
+            "conclusao": "Nefropatia da SAF pode manifestar microangiopatia trombótica aguda ou vasculopatia crônica; o tratamento deve integrar anticoagulação da SAF trombótica, controle pressórico e avaliação de outras causas de lesão renal.",
+            "curiosidade": "A tripla positividade combina anticoagulante lúpico, anticardiolipina e anti-β2-glicoproteína I e identifica um perfil particularmente associado a recorrência trombótica."
+          },
+          "originalSHA256": "sha256:a09ebba2c5a61d03b7073db06a31bfb5b21e84f74c4c155f6a6f3aa44aab2be9"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Selecionar anticoagulação de prevenção secundária na SAF venosa de alto risco com contexto renal compatível.",
+        "primaryCompetence": "Conduta de longo prazo orientada pelo fenótipo trombótico e imunológico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta responde diagnóstico, conduta, alvo e cuidado renal; os distratores negam conceitos amplos e não comparam estratégias.",
+          "MENOR — A referência renal agora é explícita e não atribuída à diretriz de anticoagulação.",
+          "MENOR — O comando passa a uma decisão integrada de anticoagulação, preservando o conceito correto e o contexto renal, sem pedir duas respostas independentes."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "eular",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11034817/",
+          "doi": "10.1136/annrheumdis-2019-215213",
+          "access": "Corpo integral oficial EFetch PMC, a3-pmc-primary-corpus.xml, identificado por PMCID/DOI/título",
+          "locators": [
+            "Recomendação4A–C: antagonista da vitaminaK, INR2–3, longo prazo após TVP não provocada",
+            "Recomendação4B e TRAPS: evitar rivaroxabana em tripla positividade"
+          ],
+          "limitations": [
+            "Anticoagulação da SAF trombótica venosa, não demonstra benefício de anticoagular toda nefropatia isolada sem trombose."
+          ]
+        },
+        {
+          "id": "apsKidney",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10073601/",
+          "doi": "10.1681/ASN.V103507",
+          "access": "Abstract primário oficial no XML EFetch PubMed, pubmed-10073601.xml",
+          "locators": [
+            "Abstract:16pacientes multicêntricos com SAF primária, todos biopsiados, acompanhados≥5anos",
+            "Lesões vaso-oclusivas, hiperplasia intimal, trombos recanalizados e microangiopatia aguda em5"
+          ],
+          "limitations": [
+            "Coorte clinicopatológica selecionada, sem grupo-controle; não quantifica prevalência geral nem efeito causal de anticoagulação."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Microangiopatia/vasculopatia pode acompanhar SAF primária",
+          "source": "apsKidney",
+          "status": "VERIFICADA no abstract primário"
+        },
+        {
+          "claim": "VKA longo prazo/INR2–3 e evitar rivaroxabana em tripla positividade",
+          "source": "eular",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Não extrapolar anticoagulação para nefropatia isolada sem trombose",
+          "source": "eular",
+          "status": "VERIFICADA como limite do escopo"
+        }
+      ],
+      "proposed": {
+        "t": "Síndrome Antifosfolipídeo — Nefropatia e Anticoagulação",
+        "qid": "731a7b4b",
+        "q": "Paciente com trombose venosa profunda não provocada tem tripla positividade para anticorpos antifosfolipídeos, confirmada novamente após 12 semanas. Biópsia renal mostra microangiopatia trombótica e lesões vasculares crônicas. Considerando o conjunto, qual estratégia anticoagulante de longo prazo é mais adequada?",
+        "refs": [
+          "eular_aps_2019",
+          "nochy_aps_nephropathy_1999"
+        ],
+        "opts": [
+          "Antagonista da vitamina K, com razão normalizada internacional (INR) alvo de 2–3.",
+          "Rivaroxabana, preferida pela tripla positividade persistente de anticorpos.",
+          "Ácido acetilsalicílico isolado, por se tratar de um primeiro evento venoso.",
+          "Antagonista da vitamina K por 3 meses, sem prevenção secundária posterior."
+        ],
+        "ans": 0,
+        "exp": "O quadro sustenta síndrome antifosfolipídeo (SAF) trombótica com nefropatia vascular associada. A EULAR recomenda antagonista da vitamina K de longo prazo, com INR 2–3, após primeira trombose venosa não provocada. Rivaroxabana deve ser evitada na tripla positividade; antiplaquetário isolado ou apenas 3 meses não correspondem à estratégia recomendada nesse fenótipo. A nefropatia pode ocorrer na SAF primária, sem exigir nefrite lúpica. Essa indicação anticoagulante decorre da trombose e do risco, não de qualquer microangiopatia renal isolada.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "proposedSHA256": "sha256:894a46e35f386b571d4f3d850ce28593fd5426c4635bfd8e4b017d72f301f9b4",
+      "classificationAfter": {
+        "op": "Selecionar anticoagulação de prevenção secundária na SAF venosa de alto risco com contexto renal compatível.",
+        "primaryCompetence": "Conduta de longo prazo orientada pelo fenótipo trombótico e imunológico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "eular_aps_2019",
+          "original": {
+            "label": "EULAR — Management of Antiphospholipid Syndrome in Adults",
+            "url": "https://ard.bmj.com/content/78/10/1296",
+            "journal": "Ann Rheum Dis 2019;78:1296-1304",
+            "ano": 2019,
+            "tipo": "Recomendação internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Estratificação do perfil aPL e anticoagulação na síndrome antifosfolipídeo.",
+            "icon": "📋",
+            "resumo": "Recomendações EULAR para síndrome antifosfolipídeo. Perfil de alto risco inclui anticoagulante lúpico, dupla ou tripla positividade ou títulos persistentemente altos, confirmados em pelo menos duas ocasiões separadas por 12 semanas. Após primeira trombose venosa não provocada em APS, recomenda-se anticoagulação de longo prazo com antagonista da vitamina K e INR alvo 2–3. Rivaroxabana não deve ser usada em tripla positividade.",
+            "conclusao": "Nefropatia da SAF pode manifestar microangiopatia trombótica aguda ou vasculopatia crônica; o tratamento deve integrar anticoagulação da SAF trombótica, controle pressórico e avaliação de outras causas de lesão renal.",
+            "curiosidade": "A tripla positividade combina anticoagulante lúpico, anticardiolipina e anti-β2-glicoproteína I e identifica um perfil particularmente associado a recorrência trombótica."
+          },
+          "originalSHA256": "sha256:a09ebba2c5a61d03b7073db06a31bfb5b21e84f74c4c155f6a6f3aa44aab2be9",
+          "proposed": {
+            "label": "EULAR — Management of Antiphospholipid Syndrome in Adults",
+            "url": "https://ard.bmj.com/content/78/10/1296",
+            "journal": "Ann Rheum Dis 2019;78:1296-1304",
+            "ano": 2019,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Anticoagulação da síndrome antifosfolipídeo e estratificação de anticorpos",
+            "icon": "📋",
+            "resumo": "Recomendações EULAR de 2019 para síndrome antifosfolipídeo (SAF). Perfil de alto risco inclui anticoagulante lúpico, dupla/tripla positividade ou títulos persistentemente altos, confirmados com intervalo mínimo de 12 semanas. Após primeira trombose venosa não provocada na SAF, recomenda antagonista da vitamina K de longo prazo, com razão normalizada internacional (INR) alvo de 2–3. Rivaroxabana não deve ser usada em tripla positividade. Recomendações combinam evidência e consenso; isso não é indicação de anticoagular toda lesão renal isolada.",
+            "conclusao": "Na SAF trombótica venosa de alto risco, selecionar anticoagulação de longo prazo com alvo apropriado e acompanhar segurança e adesão; não substituir por rivaroxabana em tripla positividade.",
+            "curiosidade": "A tripla positividade combina anticoagulante lúpico, anticardiolipina e anti-β2-glicoproteína I e identifica um perfil particularmente associado a recorrência trombótica."
+          },
+          "proposedSHA256": "sha256:175297a986abd130fe94803e853bbba8489fc5da25e0ab655daf2e9d5570d259",
+          "sourceIDs": [
+            "eular"
+          ],
+          "notes": []
+        },
+        {
+          "id": "nochy_aps_nephropathy_1999",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Nochy et al. — Nefropatia na síndrome antifosfolipídeo primária (1999)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/10073601/",
+            "journal": "Journal of the American Society of Nephrology 1999;10(3):507–518",
+            "ano": 1999,
+            "tipo": "Coorte",
+            "badge": "COHORT",
+            "badgeColor": "#f59e0b",
+            "icon": "🔬",
+            "impacto": "Nefropatia vascular pode acompanhar a síndrome antifosfolipídeo primária",
+            "resumo": "Estudo clinicopatológico multicêntrico de 16 pacientes com síndrome antifosfolipídeo (SAF) primária, todos com biópsia renal e acompanhamento de pelo menos 5 anos. Descreveu lesões vaso-oclusivas de pequenos vasos, hiperplasia intimal, trombos recanalizados e atrofia cortical focal; cinco tiveram microangiopatia glomerular/arteriolar aguda. É uma coorte selecionada e sem controle, que não estima prevalência geral nem demonstra eficácia de anticoagulação.",
+            "conclusao": "A SAF primária pode causar padrão vascular renal, sem exigir nefrite lúpica. Integrar achados renais com o contexto trombótico e imunológico.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:a3e0678d451ac5be83c0b2e98380a3c624127d308fbfe9f273dfbe4802124952",
+          "sourceIDs": [
+            "apsKidney"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Única decisão terapêutica com quatro estratégias comparáveis. Reconhecimento da SAF serve ao contexto e à escolha, sem obrigar rotulagem molecular nem exigir nefrite lúpica.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [
+        "O campo cat legado genetica permanece sem mudança estrutural neste pacote; não determina herança genética da SAF. A competência primária real é conduta na doença trombótica com envolvimento renal."
+      ],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "db4ddc30",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Calcifilaxia — Reconhecimento e Manejo Multimodal",
+        "qid": "db4ddc30",
+        "q": "Pessoa em hemodiálise de longa duração, em uso de warfarina, desenvolve dor intensa seguida de placas retiformes violáceas e necrose em coxas. Qual abordagem é mais adequada?",
+        "refs": [
+          "era_calciphylaxis_2025",
+          "calciphylaxis_sts_meta_2023"
+        ],
+        "opts": [
+          "Suspeitar de calcifilaxia e coordenar cuidado de feridas, analgesia, avaliação de infecção e metabolismo mineral, revendo warfarina; tiossulfato pode ser considerado off-label, com eficácia ainda incerta",
+          "Diagnosticar celulite simples e manter warfarina sem revisar fatores de risco",
+          "Iniciar tiossulfato como cura comprovada e dispensar cuidado de feridas",
+          "Aguardar elevação extrema do PTH, pois calcifilaxia não ocorre com PTH moderadamente elevado"
+        ],
+        "ans": 0,
+        "exp": "Dor desproporcional, livedo ou placas retiformes que evoluem para necrose em pessoa dialítica sugerem calcifilaxia, mesmo sem PTH extremo. O manejo é multidisciplinar: analgesia, cuidado de feridas, busca e tratamento de infecção, controle de cálcio e fósforo e revisão de fatores modificáveis. Warfarina interfere na ativação da proteína Gla da matriz e deve ser reavaliada, considerando indicação e alternativa anticoagulante. Tiossulfato é frequentemente usado off-label, mas estudos comparativos não comprovam cura ou redução consistente de mortalidade.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "originalSHA256": "sha256:6a10133c516dac20d255ff5cad09d60c358e054e58189c5ec078e19efbcdf8bd",
+      "originalRefs": [
+        {
+          "id": "era_calciphylaxis_2025",
+          "original": {
+            "label": "ERA CKD-MBD — Calcifilaxia (2025)",
+            "url": "https://doi.org/10.1093/ckj/sfaf338",
+            "journal": "Clin Kidney J. 2025;18(12):sfaf338",
+            "ano": 2025,
+            "tipo": "Atualização de grupo de trabalho",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Diagnóstico clínico, fatores de risco e manejo multimodal da calcifilaxia",
+            "icon": "📋",
+            "resumo": "Atualização do grupo CKD-MBD da ERA sobre calcifilaxia, condição rara e letal marcada por dor intensa, lesões retiformes e necrose. Recomenda abordagem multidisciplinar com cuidado de feridas, analgesia, controle de infecção e metabolismo mineral, além de revisão de fatores como warfarina. Tratamentos específicos apoiam-se sobretudo em registros e estudos não controlados.",
+            "conclusao": "Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
+            "curiosidade": "A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+          },
+          "originalSHA256": "sha256:e79182ead933619631e5e2fee5b7b02c05d84c8f77042d0a3165141c7683e48d"
+        },
+        {
+          "id": "calciphylaxis_sts_meta_2023",
+          "original": {
+            "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+            "journal": "JAMA Network Open",
+            "ano": 2023,
+            "tipo": "Metanálise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Tiossulfato IV não mostrou melhora clara de lesões ou sobrevida em coortes",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com DRC e calcifilaxia. Em comparações entre tiossulfato de sódio intravenoso e controle, não houve diferença em melhora das lesões (12 estudos, 110 pacientes; RR 1,23; IC95% 0,85–1,78), risco de morte (15 estudos, 158 pacientes; RR 0,88; IC95% 0,70–1,10) ou sobrevida em análises de tempo até evento (3 estudos, 269 participantes; HR 0,82; IC95% 0,57–1,18). A evidência é observacional, pequena e sujeita a confundimento.",
+            "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+            "curiosidade": "Relatos iniciais favoráveis não se repetiram com a mesma intensidade em estudos mais recentes, um sinal clássico de viés de publicação e regressão do efeito."
+          },
+          "originalSHA256": "sha256:1cdf0dbadd1a5a6fd592d996f37562d2ad22f4236e98e32dc150287bcdf38373"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer suspeita de calcifilaxia e escolher abordagem multimodal sem prometer cura com tiossulfato.",
+        "primaryCompetence": "Reconhecimento e manejo inicial seguro de complicação vascular da diálise.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta enumera todo o cuidado e suas ressalvas, enquanto as demais oferecem uma ação isolada; há pista por completude.",
+          "MENOR — A afirmação sobre variação do efeito nos estudos não deve ser interpretada como prova causal de viés de publicação."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "calciphylaxis",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12683247/",
+          "doi": "10.1093/ckj/sfaf338",
+          "access": "Corpo integral da atualização narrativa do grupo ERA2025, Huish et al.",
+          "locators": [
+            "Risk factors e apresentação clínica",
+            "Management: revisão de warfarina, feridas/infecção e analgesia; Sodium thiosulphate, linhas320–335"
+          ],
+          "limitations": [
+            "Atualização de grupo de trabalho, com base amplamente observacional. Não atribuir cura a uma intervenção isolada nem retirar warfarina sem ponderar indicação e alternativa segura."
+          ]
+        },
+        {
+          "id": "sts",
+          "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2804210",
+          "doi": "10.1001/jamanetworkopen.2023.10068",
+          "access": "Corpo integral da revisão sistemática e metanálise primária, JAMA Network Open2023",
+          "locators": [
+            "Abstract/Results, linhas181–182:19coortes/422pacientes e estimativas",
+            "Métodos e resultados de heterogeneidade/risco de viés, linhas208–211 e269"
+          ],
+          "limitations": [
+            "Estudos retrospectivos com risco de viés moderado a crítico. Ausência de associação significativa não prova ineficácia absoluta nem causalidade por viés de publicação."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Padrão clínico e manejo multimodal com avaliação da warfarina",
+          "source": "calciphylaxis",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Tiossulfato sem benefício comparativo demonstrado e evidência limitada",
+          "source": "sts",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "PTH extremo não é condição necessária",
+          "source": "calciphylaxis",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Calcifilaxia — Reconhecimento e Manejo Multimodal",
+        "qid": "db4ddc30",
+        "q": "Pessoa em hemodiálise de longa duração, em uso de warfarina, desenvolve dor intensa seguida de placas retiformes violáceas e necrose em coxas. Qual abordagem é mais adequada?",
+        "refs": [
+          "era_calciphylaxis_2025",
+          "calciphylaxis_sts_meta_2023"
+        ],
+        "opts": [
+          "Investigar calcifilaxia e organizar manejo multidisciplinar, revendo os fatores modificáveis.",
+          "Priorizar tiossulfato como terapia isolada e aguardar resposta antes de cuidar das feridas.",
+          "Aguardar hiperparatireoidismo extremo antes de considerar calcifilaxia como hipótese.",
+          "Tratar como celulite isolada e manter a avaliação centrada apenas na antibioticoterapia."
+        ],
+        "ans": 0,
+        "exp": "Dor intensa seguida de lesões retiformes e necrose em pessoa dialítica sugere calcifilaxia. O manejo inclui feridas, analgesia, pesquisa de infecção e avaliação do metabolismo mineral. A warfarina deve ser reavaliada conforme indicação e alternativa segura; não se deve trocá-la por reflexo em qualquer paciente. Tiossulfato pode ser considerado fora de bula, mas dados comparativos não demonstraram benefício consistente em lesões ou sobrevida e não substituem cuidado multimodal. Paratormônio extremamente elevado não é requisito: valores excessivamente baixos também podem coexistir com risco.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "proposedSHA256": "sha256:d00d5fa256f2fa32d35de592c572dd80d61ade9a720f0c5732092b97bdef85f5",
+      "classificationAfter": {
+        "op": "Reconhecer suspeita de calcifilaxia e escolher abordagem multimodal sem prometer cura com tiossulfato.",
+        "primaryCompetence": "Reconhecimento e manejo inicial seguro de complicação vascular da diálise.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "era_calciphylaxis_2025",
+          "original": {
+            "label": "ERA CKD-MBD — Calcifilaxia (2025)",
+            "url": "https://doi.org/10.1093/ckj/sfaf338",
+            "journal": "Clin Kidney J. 2025;18(12):sfaf338",
+            "ano": 2025,
+            "tipo": "Atualização de grupo de trabalho",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Diagnóstico clínico, fatores de risco e manejo multimodal da calcifilaxia",
+            "icon": "📋",
+            "resumo": "Atualização do grupo CKD-MBD da ERA sobre calcifilaxia, condição rara e letal marcada por dor intensa, lesões retiformes e necrose. Recomenda abordagem multidisciplinar com cuidado de feridas, analgesia, controle de infecção e metabolismo mineral, além de revisão de fatores como warfarina. Tratamentos específicos apoiam-se sobretudo em registros e estudos não controlados.",
+            "conclusao": "Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
+            "curiosidade": "A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+          },
+          "originalSHA256": "sha256:e79182ead933619631e5e2fee5b7b02c05d84c8f77042d0a3165141c7683e48d",
+          "proposed": {
+            "label": "Huish et al. / ERA — Atualização de calcifilaxia (2025)",
+            "url": "https://doi.org/10.1093/ckj/sfaf338",
+            "journal": "Clin Kidney J. 2025;18(12):sfaf338",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Diagnóstico clínico, fatores de risco e manejo multimodal da calcifilaxia",
+            "icon": "🔬",
+            "resumo": "Atualização narrativa do grupo de trabalho de distúrbio mineral e ósseo da European Renal Association (ERA), em 2025. Calcifilaxia pode apresentar dor intensa, lesões retiformes e necrose. A abordagem integra cuidado de feridas, analgesia, pesquisa/tratamento de infecção e avaliação do metabolismo mineral. Warfarina é fator modificável que deve ser revista conforme indicação e alternativa segura. O tiossulfato de sódio é usado fora de bula, com evidência clínica limitada; o artigo não demonstra cura por uma modalidade isolada.",
+            "conclusao": "Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
+            "curiosidade": "A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+          },
+          "proposedSHA256": "sha256:ca84ff35d726031ce3e1f8b554a09c869490e6f03a07e6437115129740f58415",
+          "sourceIDs": [
+            "calciphylaxis"
+          ],
+          "notes": []
+        },
+        {
+          "id": "calciphylaxis_sts_meta_2023",
+          "original": {
+            "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+            "journal": "JAMA Network Open",
+            "ano": 2023,
+            "tipo": "Metanálise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Tiossulfato IV não mostrou melhora clara de lesões ou sobrevida em coortes",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com DRC e calcifilaxia. Em comparações entre tiossulfato de sódio intravenoso e controle, não houve diferença em melhora das lesões (12 estudos, 110 pacientes; RR 1,23; IC95% 0,85–1,78), risco de morte (15 estudos, 158 pacientes; RR 0,88; IC95% 0,70–1,10) ou sobrevida em análises de tempo até evento (3 estudos, 269 participantes; HR 0,82; IC95% 0,57–1,18). A evidência é observacional, pequena e sujeita a confundimento.",
+            "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+            "curiosidade": "Relatos iniciais favoráveis não se repetiram com a mesma intensidade em estudos mais recentes, um sinal clássico de viés de publicação e regressão do efeito."
+          },
+          "originalSHA256": "sha256:1cdf0dbadd1a5a6fd592d996f37562d2ad22f4236e98e32dc150287bcdf38373",
+          "proposed": {
+            "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+            "journal": "JAMA Network Open",
+            "ano": 2023,
+            "tipo": "Metanálise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Tiossulfato não teve benefício comparativo demonstrado em lesões ou sobrevida",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com doença renal crônica e calcifilaxia. Tiossulfato intravenoso versus controle não se associou a diferença significativa em melhora das lesões (12 estudos/110 pacientes; risco relativo 1,23; intervalo de confiança de 95% (IC95%): 0,85–1,78), morte (15 estudos/158 pacientes; risco relativo 0,88; IC95%: 0,70–1,10) ou sobrevida por tempo até evento (3 estudos/269 pacientes; razão de riscos (HR) 0,82; IC95%: 0,57–1,18). Não houve heterogeneidade estatística elevada, mas o risco de viés foi moderado a crítico.",
+            "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+            "curiosidade": "A metanálise não encontrou heterogeneidade estatística elevada nas estimativas, mas os estudos tinham risco de viés moderado a crítico. A meta-regressão por ano não demonstra a causa da variação dos resultados."
+          },
+          "proposedSHA256": "sha256:d4142078d25354c6e135a999d1a0ea627b97d15c50a7934ca7cc1c53dd82ff5f",
+          "sourceIDs": [
+            "sts"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 18
+        },
+        "scoreRationale": "18/20: segurança e ressalvas preservadas. Reconhece-se limite de construto e discriminação dos distratores nesta pergunta de conduta global; não há dados empíricos que autorizem afirmar superioridade psicométrica.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "3a0f4a34",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Denervação Renal — Seleção de Pacientes",
+        "qid": "3a0f4a34",
+        "q": "Paciente mantém hipertensão sistólica e diastólica estágio 2 apesar de terapia otimizada, adesão confirmada e exclusão de causas secundárias. Qual é o papel atual da denervação renal?",
+        "refs": [
+          "aha_acc_hypertension_2025"
+        ],
+        "opts": [
+          "Pode ser considerada como terapia adjunta em paciente cuidadosamente selecionado, por decisão compartilhada; a redução pressórica é modesta e não substitui medicamentos e estilo de vida",
+          "É tratamento curativo que permite suspender todos os anti-hipertensivos",
+          "É indicada antes de confirmar pseudorresistência ou anatomia das artérias renais",
+          "Já demonstrou reduzir eventos cardiovasculares em ensaios de desfecho de longo prazo"
+        ],
+        "ans": 0,
+        "exp": "A denervação renal por radiofrequência ou ultrassom pode ser considerada como adjunta em hipertensão não controlada ou resistente, após confirmar medida adequada, adesão, esquema farmacológico, causas secundárias e anatomia favorável. A decisão deve ser compartilhada porque a resposta é variável e, em média, modesta. O procedimento não cura hipertensão nem substitui estilo de vida e medicamentos. Embora dispositivos tenham aprovação regulatória, ainda faltam ensaios que demonstrem redução de eventos cardiovasculares; função renal e anatomia vascular limitam a extrapolação.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:000b78ad25c6534ea51a32155a7eb5d3156153a854550a60dd39b930b9be1082",
+      "originalRefs": [
+        {
+          "id": "aha_acc_hypertension_2025",
+          "original": {
+            "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+            "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+            "journal": "Circulation. 2025",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Hipertensão resistente, denervação renal, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
+            "icon": "📋",
+            "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Na denervação renal, recomenda avaliação multidisciplinar, exclusão de causas secundárias e contraindicações anatômicas e decisão compartilhada; os efeitos pressóricos são modestos e variáveis, a maioria dos trials exigiu TFGe de pelo menos 40 mL/min/1,73m² e não há ensaios de desfecho cardiovascular. Reconhece a apneia obstrutiva do sono como causa secundária; o CPAP pode reduzir modestamente a pressão e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável, com redução inicial conservadora em torno de 25% na primeira hora quando não há meta específica. Na resistência persistente sob IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista mineralocorticoide quando TFGe e potássio permitem. Na estenose renal aterosclerótica, prioriza tratamento clínico e reserva revascularização para cenários selecionados de alto risco.",
+            "conclusao": "Confirme resistência verdadeira e causas secundárias antes de quarta droga ou procedimento. Denervação renal é opção seletiva, de benefício pressórico modesto e decisão compartilhada; não substitui terapia otimizada. CPAP é adjuvante, emergências exigem infusão titulável sem normalização abrupta e revascularização renal permanece seletiva.",
+            "curiosidade": "Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
+          },
+          "originalSHA256": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer o papel seletivo e adjunto da denervação renal após confirmar resistência verdadeira.",
+        "primaryCompetence": "Seleção e decisão compartilhada em procedimento para hipertensão resistente.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta é a única com seleção, modéstia e ressalvas reunidas; distratores não comparam contextos de elegibilidade.",
+          "MENOR — A função renal e a confirmação fora do consultório tornam o contexto de seleção mais explícito.",
+          "MENOR — O card é limitado ao conteúdo da fonte oficial efetivamente lida; outros tópicos não foram declarados conferidos por inferência."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "aha",
+          "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/",
+          "access": "Página oficial da diretriz aberta; arquivo oficial AHA Clinical Slide Series baixado e lido por XML, aha-2025-official-clinical-slides.pptx",
+          "sourceAssetURL": "https://professional.heart.org/-/media/PHD-Files-2/Science-News/Clinical-Slide-Series/2025-High-Blood-Pressure-Guideline-Clinical-Slides.pptx?sc_lang=en",
+          "rawFileSHA256": "8c04b1ba69a010a5fa235eeaf9a6b83baffb4284d320b203a74c0c3235bb89f0",
+          "locators": [
+            "Slides9–10: pseudorresistência e causas secundárias",
+            "Slide26: tratamento da hipertensão resistente",
+            "Slide27: denervação como adjunta, classe2b; pressão140–180/≥90 e TFGe≥40; equipe multidisciplinar e decisão compartilhada, classe1"
+          ],
+          "limitations": [
+            "O artigo completo no AHA Journals retornou403. O slide set oficial alternativo foi efetivamente aberto, não inferido de snippet. O card proposto limita as afirmações ao que foi conferido nessa fonte primária institucional. Não afirma que houve ensaio com benefício cardiovascular."
+          ]
+        },
+        {
+          "id": "rdnAnatomy",
+          "url": "https://ex.sfmv.fr/sites/default/files/docs/cluett-et-al-2024-renal-denervation-for-the-treatment-of-hypertension-a-scientific-statement-from-the-american-heart.pdf",
+          "doi": "10.1161/HYP.0000000000000240",
+          "access": "PDF integral do artigo primário AHA2024,14páginas, cópia do PDF da editora disponibilizada pela Société Française de Médecine Vasculaire; título/autores/DOI conferidos",
+          "locators": [
+            "Patient Selection: critérios anatômicos que impedem procedimento",
+            "Abstract e decisão compartilhada"
+          ],
+          "limitations": [
+            "É a publicação primária, não uma resenha do site hospedeiro. Cópia early-view ainda sem paginaçãofinal; identidade confirmada por DOI e PMID39101202. Não é apresentada como versão2025 da diretriz."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Papel adjunto seletivo, classe2b; equipe/decisão compartilhada",
+          "source": "aha",
+          "status": "VERIFICADA no slide27"
+        },
+        {
+          "claim": "Elegibilidade pressórica e TFGe≥40",
+          "source": "aha",
+          "status": "VERIFICADA no slide27"
+        },
+        {
+          "claim": "Confirmar pseudorresistência e tratar clinicamente",
+          "source": "aha",
+          "status": "VERIFICADA nos slides9–10/26"
+        },
+        {
+          "claim": "Critérios anatômicos e avaliação de elegibilidade",
+          "source": "rdnAnatomy",
+          "status": "VERIFICADA no corpo da declaração2024"
+        }
+      ],
+      "proposed": {
+        "t": "Denervação Renal — Seleção de Pacientes",
+        "qid": "3a0f4a34",
+        "q": "Adulto com hipertensão resistente confirmada mantém pressão de 158/96 mmHg apesar de terapia otimizada, com adesão e hipertensão fora do consultório confirmadas e causas secundárias excluídas. A taxa de filtração glomerular estimada (TFGe) é 50 mL/min/1,73 m². Segundo a AHA/ACC de 2025, qual é o papel da denervação renal?",
+        "refs": [
+          "aha_acc_hypertension_2025",
+          "aha_renal_denervation_statement_2024"
+        ],
+        "opts": [
+          "Pode ser considerada como adjunta, com avaliação especializada e decisão compartilhada.",
+          "Permite substituir as medicações e o estilo de vida após a realização do procedimento.",
+          "Pode ser indicada sem avaliação anatômica, desde que a pressão no consultório seja elevada.",
+          "É opção de primeira linha para qualquer hipertensão estágio 2, antes de otimizar medicações."
+        ],
+        "ans": 0,
+        "exp": "A denervação renal é uma opção adjunta para pacientes cuidadosamente selecionados, não uma substituição do tratamento clínico. O material oficial da AHA/ACC de 2025 a coloca como classe 2b para redução pressórica em hipertensão resistente, com critérios que incluem pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e TFGe ≥40 mL/min/1,73 m². A avaliação deve envolver equipe com experiência em resistência e no procedimento, anatomia apropriada e discussão de benefícios/riscos com o paciente. A recomendação não autoriza usar o procedimento antes da avaliação nem suspender automaticamente as medicações.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:41a3205294085ba04b82c675bdf3ee416833bf07db92d01e3403b0d19475f636",
+      "classificationAfter": {
+        "op": "Reconhecer o papel seletivo e adjunto da denervação renal após confirmar resistência verdadeira.",
+        "primaryCompetence": "Seleção e decisão compartilhada em procedimento para hipertensão resistente.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "aha_acc_hypertension_2025",
+          "original": {
+            "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+            "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+            "journal": "Circulation. 2025",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Hipertensão resistente, denervação renal, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
+            "icon": "📋",
+            "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Na denervação renal, recomenda avaliação multidisciplinar, exclusão de causas secundárias e contraindicações anatômicas e decisão compartilhada; os efeitos pressóricos são modestos e variáveis, a maioria dos trials exigiu TFGe de pelo menos 40 mL/min/1,73m² e não há ensaios de desfecho cardiovascular. Reconhece a apneia obstrutiva do sono como causa secundária; o CPAP pode reduzir modestamente a pressão e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável, com redução inicial conservadora em torno de 25% na primeira hora quando não há meta específica. Na resistência persistente sob IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista mineralocorticoide quando TFGe e potássio permitem. Na estenose renal aterosclerótica, prioriza tratamento clínico e reserva revascularização para cenários selecionados de alto risco.",
+            "conclusao": "Confirme resistência verdadeira e causas secundárias antes de quarta droga ou procedimento. Denervação renal é opção seletiva, de benefício pressórico modesto e decisão compartilhada; não substitui terapia otimizada. CPAP é adjuvante, emergências exigem infusão titulável sem normalização abrupta e revascularização renal permanece seletiva.",
+            "curiosidade": "Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
+          },
+          "originalSHA256": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55",
+          "proposed": {
+            "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+            "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+            "journal": "Circulation. 2025",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Confirmar resistência; denervação é opção adjunta seletiva e de decisão compartilhada",
+            "icon": "📋",
+            "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, confirmar medidas fora do consultório, adesão, fármacos interferentes e causas secundárias. Segundo o material clínico oficial, denervação renal pode ser considerada como adjunta a medicamentos e estilo de vida (classe 2b) em adultos selecionados com pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e taxa de filtração glomerular estimada ≥40 mL/min/1,73 m², apesar de terapia otimizada ou intolerância a fármacos. Exige avaliação por equipe multidisciplinar e decisão compartilhada (classe 1).",
+            "conclusao": "A recomendação é para redução da pressão em pacientes selecionados, mantendo tratamento clínico e avaliação especializada; não autoriza uso automático nem retirada de medicações.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+          "sourceIDs": [
+            "aha"
+          ],
+          "notes": []
+        },
+        {
+          "id": "aha_renal_denervation_statement_2024",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Cluett / AHA — Declaração científica sobre denervação renal (2024)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/39101202/",
+            "journal": "Hypertension 2024;81(10):e135–e148",
+            "ano": 2024,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Seleção anatômica e decisão compartilhada para denervação renal",
+            "resumo": "Declaração científica da American Heart Association (AHA), fundamentada em síntese de ensaios e experiência clínica, sobre denervação renal como tratamento adjunto da hipertensão. Discute benefício pressórico e seleção de pacientes, com critérios anatômicos que podem impedir o procedimento, como estenose relevante, aneurismas e artérias pequenas para os cateteres. Requer conversa informada sobre riscos, benefícios e preferências. É síntese científica e orientação clínica, não um ensaio randomizado em si.",
+            "conclusao": "Avaliar elegibilidade clínica e anatômica antes do procedimento, junto à decisão compartilhada; não substituir avaliação especializada por pressão elevada isoladamente.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:20296435c32601df846b36e7b61d79392d1a08694cb81f7649e08d21e7b5e53a",
+          "sourceIDs": [
+            "rdnAnatomy"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Declara a diretriz e seus limites de população; o caso se enquadra no critério de função renal e pressão. Não usa aprovação regulatória como evidência de prevenção cardiovascular.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "bb44dfd3",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Dieta Muito Hipoproteica com Cetoanálogos",
+        "qid": "bb44dfd3",
+        "q": "Paciente com DRC avançada, metabolicamente estável e sem desnutrição deseja dieta de 0,3–0,4 g de proteína/kg/dia com cetoanálogos para adiar terapia renal substitutiva. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Pode ser considerada apenas em paciente selecionado, disposto e capaz de aderir, sob supervisão nutricional estreita e monitorização do estado nutricional",
+          "É recomendada rotineiramente para toda DRC G3–G5, mesmo com sarcopenia",
+          "Permite dispensar ingestão calórica adequada e acompanhamento de peso",
+          "Trata hipercalemia aguda e substitui medidas de emergência"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO admite considerar dieta muito hipoproteica suplementada com aminoácidos essenciais ou cetoanálogos em adultos selecionados sob supervisão estreita. A evidência de retardar progressão ou terapia renal substitutiva é heterogênea e a adesão é difícil; benefício potencial não autoriza promessa universal. A estratégia exige energia adequada e monitorização de peso, massa muscular, ingestão e parâmetros metabólicos, devendo ser evitada em instabilidade metabólica, desnutrição, sarcopenia ou incapacidade de acompanhamento. Não é tratamento de hipercalemia aguda.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:9c40a9631b82a93e47858680e1d4734908d813c79fd1eeebe6482627aeb4999a",
+      "originalRefs": [
+        {
+          "id": "kdigo_ckd",
+          "original": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          },
+          "originalSHA256": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Selecionar o contexto seguro de dieta muito hipoproteica suplementada na doença renal crônica.",
+        "primaryCompetence": "Individualização de intervenção nutricional e proteção do estado nutricional.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta reúne todos os critérios de seleção e os distratores são políticas extremas, incluindo hipercalemia aguda sem relação com o comando.",
+          "MENOR — O objetivo continua elegibilidade/segurança nutricional, sem transformar possível benefício em promessa de evitar diálise."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ckd",
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDF oficial integral, 199páginas, kdigo-ckd-2024-source.pdf",
+          "rawFileSHA256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+          "locators": [
+            "PDF42/S157 ePDF93/S208: PP3.3.1.2–3.3.1.5",
+            "PDF94–95/S209–210: evidência heterogênea, suplementação, calorias e contraindicações nutricionais"
+          ],
+          "limitations": [
+            "Practice point sem grau para dieta muito hipoproteica. Ensaios heterogêneos; não prometer adiamento de diálise nem usar em instabilidade metabólica."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "PP3.3.1.2: considerar0,3–0,4 com suplementação e supervisão",
+          "source": "ckd",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Evitar instabilidade e proteger contra desnutrição/sarcopenia; energia adequada",
+          "source": "ckd",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Benefícios/adesão heterogêneos, sem promessa universal",
+          "source": "ckd",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Dieta Muito Hipoproteica com Cetoanálogos",
+        "qid": "bb44dfd3",
+        "q": "Paciente com doença renal crônica avançada, metabolicamente estável e sem desnutrição, deseja dieta de0,3–0,4g de proteína/kg/dia com cetoanálogos para adiar terapia renal substitutiva. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Pode ser considerada, com suplementação, supervisão estreita e vigilância nutricional.",
+          "É preferível às demais estratégias, pois o benefício de adiar diálise é definitivo.",
+          "Pode dispensar suplementação se o fósforo e o potássio séricos permanecerem normais.",
+          "Deve ser mantida mesmo se surgir sarcopenia, para evitar aumento da carga nitrogenada."
+        ],
+        "ans": 0,
+        "exp": "A KDIGO admite considerar a dieta em adultos selecionados, dispostos e capazes de aderir, sob supervisão estreita. Restrição de 0,3–0,4 g/kg/dia exige suplementação com aminoácidos essenciais ou cetoanálogos e energia adequada, acompanhando peso, massa muscular, ingestão e parâmetros metabólicos. Não se deve prometer adiamento da diálise: estudos têm resultados heterogêneos e desafios de adesão. Instabilidade metabólica, desnutrição ou sarcopenia exigem reavaliar a estratégia. Fósforo e potássio normais não demonstram suficiência proteico-energética nem dispensam suplementação.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:728c7a4a698221e062668f472d36668adce5bdcfe5a56f79467c008ab4f6e138",
+      "classificationAfter": {
+        "op": "Selecionar o contexto seguro de dieta muito hipoproteica suplementada na doença renal crônica.",
+        "primaryCompetence": "Individualização de intervenção nutricional e proteção do estado nutricional.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "kdigo_ckd",
+          "original": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          },
+          "originalSHA256": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+          "proposed": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO de 2024 de avaliação e manejo da doença renal crônica (DRC). Integra causa, filtração, albuminúria, risco de progressão e intervenções individualizadas. No practice point 3.3.1.2, admite considerar dieta muito hipoproteica de 0,3–0,4 g/kg/dia, suplementada com aminoácidos essenciais ou cetoanálogos, em adultos dispostos, capazes e sob supervisão estreita. Não prescrever restrição proteica em instabilidade metabólica; fragilidade, sarcopenia e desnutrição exigem atenção. O efeito sobre desfechos renais é heterogêneo e não permite promessa universal de adiar diálise.",
+            "conclusao": "Dieta e demais intervenções da DRC exigem avaliação individual, acompanhamento e proteção do estado nutricional. Dieta muito hipoproteica não é uma prescrição de rotina para todos.",
+            "curiosidade": "Energia adequada e acompanhamento por nutricionista renal ajudam a evitar que a restrição proteica se acompanhe de redução calórica e desnutrição."
+          },
+          "proposedSHA256": "sha256:a89fc32b3480dc450110126828184b7e26fc3d1dc5e4533a6b517f1539ac1ae5",
+          "sourceIDs": [
+            "ckd"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Opções agora comparam condições nutricionais e interpretação da evidência, sem distrator sobre emergência não pertinente. A referência é um practice point, não promessa de eficácia em qualquer paciente.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "586405f9",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+        "qid": "586405f9",
+        "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+        "opts": [
+          "Os aminoglicosídeos não são nefrotóxicos na doença renal crônica, dispensando monitorização da função renal",
+          "A gentamicina é nefro e ototóxica, com risco maior na disfunção renal, em doses altas e no tratamento prolongado; exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade",
+          "Os aminoglicosídeos são absolutamente contraindicados em qualquer grau de doença renal crônica e nunca devem ser usados",
+          "A monitorização deve basear-se apenas na função hepática, pois a gentamicina é eliminada pelo fígado"
+        ],
+        "ans": 1,
+        "exp": "A gentamicina é um aminoglicosídeo bactericida com potencial nefrotóxico e ototóxico. O risco de nefrotoxicidade é maior em pacientes com função renal comprometida, doses altas ou tratamento prolongado, e pode haver ototoxicidade vestibular e auditiva. Por isso, a bula recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia, creatinina ou depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos, com modificação da dose ou suspensão diante de sinais de toxicidade. Afirmar que não há nefrotoxicidade (A), contraindicar de forma absoluta em qualquer doença renal crônica (C) ou basear a monitorização na função hepática (D) são condutas incorretas — a gentamicina é eliminada por via renal e pode ser usada com monitorização e ajuste apropriados.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gentamicina_anvisa"
+        ]
+      },
+      "originalSHA256": "sha256:7db3d7db9548808ae5474101a81e9dd0ec7f436a3e07ac6ccc5082462002eedb",
+      "originalRefs": [
+        {
+          "id": "gentamicina_anvisa",
+          "original": {
+            "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+            "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+            "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+            "ano": 2015,
+            "tipo": "Bula profissional aprovada pela ANVISA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+            "icon": "📋",
+            "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+            "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+            "curiosidade": ""
+          },
+          "originalSHA256": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Combinar vigilância renal, auditiva/vestibular e níveis séricos no uso de gentamicina em disfunção renal.",
+        "primaryCompetence": "Monitorização farmacológica segura de medicamento nefro/ototóxico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta contém mecanismo, riscos e toda a monitorização, enquanto as demais negam a nefrotoxicidade ou a eliminação renal de modo pouco plausível.",
+          "MENOR — Retiram-se referências por letra na explicação, mantendo análise conceitual que permanece válida se a interface embaralhar alternativas."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "gentamicin",
+          "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+          "access": "PDF integral oficial do titular Fresenius Kabi Brasil, 11páginas",
+          "locators": [
+            "PDF5, linhas193–206: riscos renal/oitavo par e níveis séricos",
+            "PDF10: eventos auditivos/vestibulares",
+            "PDF11, linha453: atualização conforme bula padrão Anvisa10/11/2015"
+          ],
+          "limitations": [
+            "Bula brasileira, registroMS1.0041.0210, naturezaBULA. Não extrapolar limites de pico/vale de um regime para todo esquema; a questão não pede dose ou alvo numérico."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Riscos renal e oitavo par na disfunção renal/alta exposição",
+          "source": "gentamicin",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Monitorar função, audição/equilíbrio e níveis; ajustar/suspender em toxicidade",
+          "source": "gentamicin",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+        "qid": "586405f9",
+        "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+        "opts": [
+          "Dosar pico sérico isoladamente e manter o esquema se a atividade bactericida for adequada.",
+          "Combinar níveis séricos, função renal e avaliação auditiva/vestibular para ajustar o esquema.",
+          "Dosar vale sérico isoladamente e dispensar reavaliação renal se ele estiver no alvo.",
+          "Acompanhar creatinina isoladamente e dispensar níveis séricos se a infecção estiver melhorando."
+        ],
+        "ans": 1,
+        "exp": "A gentamicina pode causar nefrotoxicidade e ototoxicidade, especialmente com disfunção renal, maior exposição e tratamento prolongado. A bula recomenda acompanhar função renal, audição/equilíbrio e concentrações séricas, com ajuste do esquema ou suspensão diante de toxicidade. Um pico, um vale ou a melhora da infecção não substituem o conjunto dessa avaliação. A escolha dos alvos e do esquema deve considerar indicação e regime utilizados; a questão não propõe um valor universal de concentração nem uma dose fixa para toda doença renal crônica.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gentamicina_anvisa"
+        ]
+      },
+      "proposedSHA256": "sha256:4e50ef40dce1c201a5e263abb433891f8316f47961eb86642a8b6440c0779d41",
+      "classificationAfter": {
+        "op": "Combinar vigilância renal, auditiva/vestibular e níveis séricos no uso de gentamicina em disfunção renal.",
+        "primaryCompetence": "Monitorização farmacológica segura de medicamento nefro/ototóxico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "gentamicina_anvisa",
+          "original": {
+            "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+            "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+            "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+            "ano": 2015,
+            "tipo": "Bula profissional aprovada pela ANVISA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+            "icon": "📋",
+            "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+            "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+            "curiosidade": ""
+          },
+          "originalSHA256": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+          "proposed": {
+            "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+            "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+            "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+            "ano": 2015,
+            "tipo": "Bula profissional aprovada pela ANVISA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+            "icon": "📋",
+            "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+            "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+          "sourceIDs": [
+            "gentamicin"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 1
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Quatro planos de monitorização comparáveis, com erros parciais plausíveis e extensões naturais. Não inferir níveis-alvo de um regime para todos os demais.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "45afa9c4",
+      "family": "A3-seguranca-e-condutas",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Suspeita de PTT Imune",
+        "qid": "45afa9c4",
+        "q": "Paciente de 35 anos apresenta anemia hemolítica microangiopática, plaquetas de 22.000/mm³, alteração neurológica e alta probabilidade clínica de PTT imune. Qual estratégia inicial é mais adequada?",
+        "refs": [
+          "isth_ttp_guidelines_2020"
+        ],
+        "opts": [
+          "Aguardar o resultado de ADAMTS13 antes de iniciar qualquer tratamento",
+          "Colher ADAMTS13 antes de plasma, iniciar imediatamente troca plasmática e corticosteroide e considerar caplacizumabe precoce conforme probabilidade e disponibilidade do teste",
+          "Transfundir plaquetas profilaticamente até acima de 50.000/mm³ e observar",
+          "Iniciar eculizumabe como primeira medida sem investigar deficiência grave de ADAMTS13"
+        ],
+        "ans": 1,
+        "exp": "Na alta probabilidade pré-teste de PTT imune, deve-se colher amostra para atividade/inibidor de ADAMTS13 antes da primeira troca plasmática ou produto sanguíneo, mas o tratamento não deve aguardar o resultado. Troca plasmática terapêutica e corticosteroide são iniciados imediatamente. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e o acesso oportuno ao ADAMTS13 permite confirmar ou redirecionar a estratégia; ele não substitui a troca plasmática nem a imunossupressão.",
+        "diff": "hard",
+        "cat": "lra"
+      },
+      "originalSHA256": "sha256:8a1098d627c31b61c82198b7096c2cc3a4ea0bc522deb4da87d0c94bdf15e107",
+      "originalRefs": [
+        {
+          "id": "isth_ttp_guidelines_2020",
+          "original": {
+            "label": "ISTH — Diretriz de Diagnóstico da PTT",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+            "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+            "ano": 2020,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+            "icon": "📋",
+            "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica. Na alta probabilidade de PTT imune, orienta colher atividade e inibidor ou anticorpo anti-ADAMTS13 antes de troca plasmática ou produto sanguíneo e iniciar troca plasmática terapêutica e corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e há acesso oportuno ao teste; o resultado de ADAMTS13 direciona sua continuidade e a busca de diagnósticos alternativos.",
+            "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+            "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+          },
+          "originalSHA256": "sha256:889ed6222164fe28fe1dbf2d4613a9624d9d2a7ccaa0714c3eb1102e86d502df"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Colher ADAMTS13 antes de plasma sem atrasar troca plasmática e corticosteroide na suspeita alta de PTT imune.",
+        "primaryCompetence": "Prioridade diagnóstica-terapêutica em emergência trombótica.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta reúne coleta, duas terapias e caplacizumabe; distratores são planos mais curtos e de categorias pouco paralelas.",
+          "MENOR — Prioridade inicial é separada de todo o plano posterior, sem remover as ressalvas de caplacizumabe da explicação."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ttp",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+          "doi": "10.1111/jth.15006",
+          "access": "Corpo integral da diretriz diagnóstica ISTH2020; também no XML EFetch a3-pmc-primary-corpus.xml",
+          "locators": [
+            "Recomendação1, linhas318–328: probabilidade alta, amostra pré-plasma, troca plasmática/corticoide sem aguardar",
+            "Consideração precoce de caplacizumabe conforme probabilidade e acesso oportuno ao teste"
+          ],
+          "limitations": [
+            "A estratégia diagnóstica é recomendação condicional de baixa certeza; não confundir com indicação de aguardar o teste na emergência."
+          ]
+        },
+        {
+          "id": "ttp2025",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13470878/",
+          "doi": "10.1016/j.jtha.2025.06.002",
+          "access": "Corpo integral da atualização ISTH2025",
+          "locators": [
+            "Tabela de comparação2020/2025, recomendação5, linhas357–358",
+            "Discussão do caplacizumabe precoce, linhas536–540"
+          ],
+          "limitations": [
+            "Confirma coerência contemporânea do núcleo da proposta; não é usada para extrapolar ADAMTS13 recombinante da forma congênita para esta suspeita imune."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Coletar pré-plasma sem aguardar resultado para TPE/corticosteroide",
+          "source": "ttp",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Caplacizumabe precoce conforme probabilidade e teste",
+          "source": "ttp",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Atualização2025 preserva terapia adjunta na forma imune",
+          "source": "ttp2025",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Suspeita de púrpura trombocitopênica trombótica imune",
+        "qid": "45afa9c4",
+        "q": "Paciente de 35 anos apresenta anemia hemolítica microangiopática, plaquetas de 22.000/mm³, alteração neurológica e alta probabilidade clínica de púrpura trombocitopênica trombótica (PTT) imune. Qual é a prioridade inicial?",
+        "refs": [
+          "isth_ttp_guidelines_2020"
+        ],
+        "opts": [
+          "Colher ADAMTS13 e aguardar o resultado antes de iniciar troca plasmática.",
+          "Colher ADAMTS13 e iniciar troca plasmática com corticosteroide sem aguardar o resultado.",
+          "Iniciar caplacizumabe isolado e reservar troca plasmática para falta de resposta.",
+          "Iniciar eculizumabe e reservar troca plasmática para resultado de ADAMTS13 não reduzida."
+        ],
+        "ans": 1,
+        "exp": "É necessário colher amostra para atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma, mas sem atrasar troca plasmática terapêutica e corticosteroide. A equipe experiente deve avaliar caplacizumabe precocemente conforme probabilidade e acesso oportuno ao teste; ele não substitui automaticamente troca plasmática e imunossupressão. O resultado de ADAMTS13 ajuda a confirmar ou redirecionar o diagnóstico e orientar tratamento adicional. A atualização ISTH de 2025 mantém o papel de caplacizumabe associado ao tratamento da forma imune. Esperar pelo resultado ou tratar como outra microangiopatia pode atrasar uma intervenção urgente.",
+        "diff": "medium",
+        "cat": "lra"
+      },
+      "proposedSHA256": "sha256:508eb4c6425fb319e1e0fb143fc532e69acafe649d892bd72d5867db233372c1",
+      "classificationAfter": {
+        "op": "Colher ADAMTS13 antes de plasma sem atrasar troca plasmática e corticosteroide na suspeita alta de PTT imune.",
+        "primaryCompetence": "Prioridade diagnóstica-terapêutica em emergência trombótica.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "isth_ttp_guidelines_2020",
+          "original": {
+            "label": "ISTH — Diretriz de Diagnóstico da PTT",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+            "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+            "ano": 2020,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+            "icon": "📋",
+            "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica. Na alta probabilidade de PTT imune, orienta colher atividade e inibidor ou anticorpo anti-ADAMTS13 antes de troca plasmática ou produto sanguíneo e iniciar troca plasmática terapêutica e corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e há acesso oportuno ao teste; o resultado de ADAMTS13 direciona sua continuidade e a busca de diagnósticos alternativos.",
+            "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+            "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+          },
+          "originalSHA256": "sha256:889ed6222164fe28fe1dbf2d4613a9624d9d2a7ccaa0714c3eb1102e86d502df",
+          "proposed": {
+            "label": "ISTH — Diagnóstico da púrpura trombocitopênica trombótica (2020)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+            "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+            "ano": 2020,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+            "icon": "📋",
+            "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica (PTT). Na probabilidade clínica alta de forma imune, orienta colher atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma e iniciar troca plasmática terapêutica com corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando há probabilidade alta e acesso oportuno ao teste, cuja resposta direciona continuidade e diagnósticos alternativos. É estratégia diagnóstica condicional, com baixa certeza; não significa adiar tratamento da emergência.",
+            "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+            "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+          },
+          "proposedSHA256": "sha256:e6568b79f749216017937871d7e62489c12dd9692a095d55657137dbbd2f2518",
+          "sourceIDs": [
+            "ttp",
+            "ttp2025"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Os planos comparam a mesma decisão de sequência e urgência. O objetivo não muda para memorização de dose ou manejo da forma congênita.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ]
+}

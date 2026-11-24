@@ -140,18 +140,22 @@ function _nqAchievementProgressStorage() {
         description: 'Desbloqueie todas as referências e artigos do Grimório de Conhecimento',
         icon: '📚',
         condition: () => {
+          if (!window.NQLibraryCatalog) return false;
           try {
             const unlockedRefs = new Set(JSON.parse(_nqAchievementProgressStorage().getItem('nq-unlocked-refs') || '[]'));
             const reachableRefs = new Set(Array.isArray(window.questionBank)
               ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean)
               : []);
             const validRefs = typeof refsDB === 'object' && refsDB !== null
-              ? [...reachableRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key))
+              ? [...reachableRefs].filter(key => !window.NQLibraryCatalog?.isRetiredReference?.(key) && Object.prototype.hasOwnProperty.call(refsDB, key))
               : [];
             if (validRefs.length === 0 || !validRefs.every(key => unlockedRefs.has(key))) return false;
             const unlockedArts = JSON.parse(_nqAchievementProgressStorage().getItem('unlockedArticles') || '[]');
-            const totalArts = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
-            if (totalArts === 0 || unlockedArts.length < totalArts) return false;
+            const articles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles : [];
+            const totalArts = window.NQLibraryCatalog ? window.NQLibraryCatalog.articleCount(articles) : articles.length;
+            const articleCount = window.NQLibraryCatalog ? window.NQLibraryCatalog.unlockedArticleCount(articles, unlockedArts)
+              : new Set(unlockedArts.filter(index => Number.isInteger(index) && index >= 0 && index < articles.length)).size;
+            if (totalArts === 0 || articleCount < totalArts) return false;
             return true;
           } catch { return false; }
         }
@@ -235,6 +239,8 @@ function _nqAchievementProgressStorage() {
     // O acesso administrativo ao acervo não equivale a desbloqueios salvos.
     // Consulta a condição vigente, sem conceder conquistas ou gravar storage.
     function getGrimoireAchievementProgress() {
+      if (!window.NQLibraryCatalog) return { value: 0, target: 0, complete: false, status: 'Dados indisponíveis',
+        note: 'A biblioteca está indisponível para conferir este objetivo.' };
       const readArray = key => {
         try { const value = JSON.parse(_nqAchievementProgressStorage().getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
         catch { return []; }
@@ -242,12 +248,14 @@ function _nqAchievementProgressStorage() {
       const reachableRefs = new Set(Array.isArray(window.questionBank)
         ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean) : []);
       const validRefs = typeof refsDB === 'object' && refsDB !== null
-        ? [...reachableRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key)) : [];
+        ? [...reachableRefs].filter(key => !window.NQLibraryCatalog?.isRetiredReference?.(key) && Object.prototype.hasOwnProperty.call(refsDB, key)) : [];
       const unlockedRefs = new Set(readArray('nq-unlocked-refs'));
-      const totalArticles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
-      // A regra vigente usa a quantidade de registros de artigos, inclusive
-      // os índices legados; a apresentação segue esse mesmo contrato.
-      const articleCount = Math.min(readArray('unlockedArticles').length, totalArticles);
+      const articles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles : [];
+      const totalArticles = window.NQLibraryCatalog ? window.NQLibraryCatalog.articleCount(articles) : articles.length;
+      // Índices legados continuam válidos, mas duas cópias do mesmo conteúdo
+      // não representam duas descobertas nem exigem dois baús.
+      const articleCount = window.NQLibraryCatalog ? window.NQLibraryCatalog.unlockedArticleCount(articles, readArray('unlockedArticles'))
+        : new Set(readArray('unlockedArticles').filter(index => Number.isInteger(index) && index >= 0 && index < articles.length)).size;
       const referenceCount = validRefs.filter(key => unlockedRefs.has(key)).length;
       const value = referenceCount + articleCount;
       const target = validRefs.length + totalArticles;

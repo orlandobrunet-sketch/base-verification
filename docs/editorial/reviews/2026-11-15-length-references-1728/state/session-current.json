@@ -1,0 +1,420 @@
+{
+  "schema": "NQ_SESSION_1728_CURRENT_STATE_v6",
+  "updatedAt": "2026-11-16T03:56:36.467Z",
+  "status": "LOCALLY_VALIDATED_READY_FOR_COMMIT_NOT_PUBLISHED",
+  "branch": "codex/editorial-length-references-1728",
+  "base": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "publishedVersion": "17.27",
+  "workingVersion": "17.28",
+  "previousPublication": {
+    "pr": 976,
+    "immutableReceipt": "NQ_PUBLICATION_1727_RECEIPT.json",
+    "sha256": "1e07d739c2665dc1869914de5ec428adf0485675625e8fdd08b49519a1e6eec7"
+  },
+  "applied": {
+    "counts": {
+      "questions": 725,
+      "references": 406,
+      "history": 500,
+      "oldBindings": 724,
+      "newBindings": 1276,
+      "presentations": 2900
+    },
+    "existingQuestionGates": 175,
+    "created": [
+      "40c5f770",
+      "0a2634fc"
+    ],
+    "retirements": [
+      {
+        "qid": "4c7d3db3",
+        "destination": "cfeef8e1",
+        "originalAuthorRevision": "sha256:3361cb21168c754cadd3fc5e0af3597cfe78d14ddf0e430350dedc0cfde908f1",
+        "originalRecordRevision": "sha256:b1293a3bf2d74b4c3171cb3da8742fdf494771bcce59c830005fad9395bdc5af",
+        "independentReport": "ux-1728-root/vaptan-independent-A1.json",
+        "action": "fundir",
+        "originalPublication": "BLOQUEADA"
+      },
+      {
+        "qid": "87f96e78",
+        "action": "fundir",
+        "destination": "d2a32c19",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:9394aa69ca94fd66400258ef6c7507e2927f486d64737da47ada2bc467abafe9",
+        "originalRecordRevision": "sha256:527481a36def56878461385ed03a2416b24af4a3724ed7f43e2db1117548b07f",
+        "independentReport": "ux-1728-reference-duplicates/independent-A2-fusion-adjudication.json"
+      },
+      {
+        "qid": "75d13f79",
+        "action": "fundir",
+        "destination": "67bdd826",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:13ba98a4ee9075c47e04b437f74852572b0aaf812298e936bfedcf88001e1dcd",
+        "originalRecordRevision": "sha256:e0c37b675e2539defe21b7613ef3443421ac4c02bc69326f3cc30521cdd7f82a",
+        "independentReport": "ux-1728-reference-duplicates/independent-DRC-fusion-adjudication.json"
+      },
+      {
+        "qid": "82d7373c",
+        "action": "fundir",
+        "destination": "82728652",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:f7d763644fc86dedae2a2c72acfbcad2f215c5216c2d2579bcb0a73505aa0ad0",
+        "originalRecordRevision": "sha256:f25ac91384048f1dc0067869329a38db8e703a3ea8e6ecaad9b42afbe1e2151c",
+        "independentReport": "ux-1728-reference-duplicates/independent-A56-review.json"
+      },
+      {
+        "qid": "c4e8b495",
+        "action": "fundir",
+        "destination": "47ac614f",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:30e6f4b01cbeb0da933dc0d98f0c50899ba41579f5ee9da58d4de790f7d71028",
+        "originalRecordRevision": "sha256:473f6766f1ce809f41839ee9008e619709c703b64bef4abcfbb5de437050c6c3",
+        "independentReport": "ux-1728-reference-duplicates/independent-A56-review.json"
+      },
+      {
+        "qid": "13e53210",
+        "action": "substituir",
+        "destination": "40c5f770",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:d9875997a6a59b45052ab254e00649686a8038b4a6065ae979607a962d4ff5ae",
+        "originalRecordRevision": "sha256:071bfd054a10d208b178b9037461775376291b0af096a8c0cd541c11ebb3dfc1",
+        "independentReport": "ux-1728-reference-duplicates/independent-A7-review.json"
+      },
+      {
+        "qid": "50166346",
+        "action": "fundir",
+        "destination": "0334d0d1",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:1d4b5ad8f2bdacad8bbbfc4b25d820d112b820cf13ca583056f1d35d9d88020d",
+        "originalRecordRevision": "sha256:4c57e6b1af96411a14651b6ee9412ec09946edd3f214bb92e2e8b7c204d500d1",
+        "independentReport": "ux-1728-length-severe-author/independent-root-acidbase/independent-review-A13.json"
+      },
+      {
+        "qid": "d10de245",
+        "action": "fundir",
+        "destination": "51814977",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:fb3d2189d2dacbce038784c47c1a9b6fdb7dcdd8317dc840448c9cd37930048e",
+        "originalRecordRevision": "sha256:0f5466967d51a8859d7bb1b95bc78da89140ded38c6604d41bbfc0cb30b23478",
+        "independentReport": "ux-1728-length-severe-author/independent-root-acidbase/independent-review-A13.json"
+      },
+      {
+        "qid": "5906012f",
+        "action": "fundir",
+        "destination": "3d8fc3fe",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:4c508ac001ca2e1fef0d76c2c330ea24084bcd7f491438005573d6b5797b9dcc",
+        "originalRecordRevision": "sha256:8f2221e2be7962af268c37d4817c34e9ec54dc9046766c41f30488c469d10f1d",
+        "independentReport": "ux-1728-reference-duplicates/independent-A8-review.json"
+      },
+      {
+        "qid": "a4ffbe05",
+        "action": "fundir",
+        "destination": "9fd2cfdb",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:b2d317f00dc9a01a41da98c642ff5b7c14e3fcc350598bc8eb16aeeed923418e",
+        "originalRecordRevision": "sha256:4ba284e4ddadb10df2c56bf39632c8e0ac1ef48251f64287cbd9ea8f00dd7c3f",
+        "independentReport": "ux-1728-reference-duplicates/independent-A8-review.json"
+      },
+      {
+        "qid": "f847386a",
+        "action": "fundir",
+        "destination": "3a0f4a34",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:696e7e8bf885f7f3b5440820c70eb893f445a9c19147542c80712249515845bc",
+        "originalRecordRevision": "sha256:579033b60d021171c2a49b8225b77e2728ed1cbaede52db03928910815ba1a01",
+        "independentReport": "ux-1728-reference-duplicates/independent-A9-review.json"
+      },
+      {
+        "qid": "471c0013",
+        "action": "substituir",
+        "destination": "0a2634fc",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:3fa9a79805aea3503510a1aca85f4377408c633743f54f212dc7fa63d7dcdcfd",
+        "originalRecordRevision": "sha256:07d633e2e4def77e7e2e470acc73f4a81bd3433721ad46d5ef52c3985ab5f39a",
+        "independentReport": "ux-1728-reference-duplicates/independent-lithium-review.json"
+      },
+      {
+        "qid": "ea7fe551",
+        "action": "fundir",
+        "destination": "9eafbe49",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:96fafb74c857bda87fb4fa29cf1c70bf3ce559a5739be6bf44c55574846aea03",
+        "originalRecordRevision": "sha256:bb7841d6fd72dc1e9746ce0d6fe9631a8f17b366743fe51399ff0b3384accf7c",
+        "independentReport": "ux-1728-editorial-backlog/independent-lithiasis/independent-lithiasis-review.json"
+      },
+      {
+        "qid": "5f9a6fe1",
+        "action": "fundir",
+        "editorialVerdict": "fundir",
+        "destination": "e56795a6",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:055c2c796e5447616bdb99ad5775170561c1b98bccd678254cdda7589fe0899f",
+        "originalRecordRevision": "sha256:dea67484e8298b56ad081af3b39e7b5bb41d47957df4d492e8e1a1f4a75726e5",
+        "independentReport": "ux-1728-editorial-backlog/independent-rct/independent-root-rct-review.json"
+      },
+      {
+        "qid": "b2c513e8",
+        "action": "fundir",
+        "editorialVerdict": "fundir",
+        "destination": "709ad94a",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:90fdb473d909418157c2df5ddfbdc9ba2c6cb05b62ec448faf85994d110b7d3d",
+        "originalRecordRevision": "sha256:1578ea5624feae8cef0d8c41cf404363aa5d99069e969cafd6a7c001ca98e306",
+        "independentReport": "ux-1728-editorial-backlog/independent-rct/independent-root-rct-review.json"
+      },
+      {
+        "qid": "ee219394",
+        "action": "substituir",
+        "editorialVerdict": "aposentar",
+        "destination": "40c5f770",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:308ef4cedd93233f938cc089e6846977eaac798316cc6ec8104ca745312ac2d5",
+        "originalRecordRevision": "sha256:0b5c85ecda93629f471e072c0d06e92bb02dbcc5a9118de52f141d9f6d2fade8",
+        "independentReport": "ux-1728-editorial-backlog/independent-rct/independent-root-rct-review.json"
+      },
+      {
+        "qid": "96c0c85d",
+        "action": "fundir",
+        "destination": "0e1a838d",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:69f48722cf25315a1716631fdab6ff6ab99cdb97e5aea0ebcf0b63460d8742ac",
+        "originalRecordRevision": "sha256:75e6e23291ab456cb91e7bacd70a97b6d930d7cd36bbcf2318341c28b8c88103",
+        "independentReport": "ux-1728-length-severe-author/independent-sglt2-biopsy/independent-sglt2-biopsy-review.json"
+      },
+      {
+        "qid": "a5c73397",
+        "action": "fundir",
+        "destination": "0e1a838d",
+        "originalPublication": "BLOQUEADA",
+        "originalAuthorRevision": "sha256:1b49243816a799eb384607286a491cf1b9b64bde4bdd7add7df16f5719c8b178",
+        "originalRecordRevision": "sha256:a9a15b8faabab436fff76f2ba66e2abed2687831ef651a88ae0f1830ff5566e1",
+        "independentReport": "ux-1728-length-severe-author/independent-sglt2-biopsy/independent-sglt2-biopsy-review.json"
+      }
+    ],
+    "referenceGates": 137,
+    "referenceRetirements": [
+      {
+        "id": "cmv_kdigo_tx",
+        "original": {
+          "label": "KDIGO CMV in Transplant 2022",
+          "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+          "journal": "American Journal of Transplantation 2022",
+          "ano": 2022,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Profilaxia, diagnóstico e tratamento de CMV em receptores de transplante renal",
+          "icon": "📋",
+          "resumo": "Diretriz especializada integrada ao manejo de infecções pós-transplante, detalhando a prevenção e controle do Citomegalovírus (CMV), o patógeno oportunista mais comum. Define a estratificação de risco pelo status sorológico do Doador (D) e Receptor (R), sendo o cenário D+/R- o de maior risco. Apresenta duas estratégias preventivas validadas: profilaxia universal (uso de valganciclovir por 3 a 6 meses pós-transplante, especialmente se uso de ATG) versus terapia preemptiva (monitoramento semanal da carga viral por PCR quantitativo e início imediato de tratamento se viremia detectada). O tratamento de escolha é valganciclovir oral para quadros leves a moderados e ganciclovir intravenoso para doença grave ou invasiva pulmonar/gastrointestinal.",
+          "conclusao": "Padroniza o uso sistemático de valganciclovir/ganciclovir e a monitorização por PCR como defesas cruciais para conter o CMV, mitigando o risco de rejeição e perda do enxerto sob a tempestade viral.",
+          "curiosidade": "O CMV não apenas causa sintomas sistêmicos e invasivos diretos, mas possui um potente efeito imunomodulador indireto ('sombra da infecção'), que aumenta o risco de outras infecções oportunistas, rejeição aguda do enxerto e desenvolvimento de vasculopatia crônica do transplante."
+        },
+        "originalRevision": "sha256:ca06aa6a0a767a7a3b2285c51fd355e0e7bfca771019f310d18cd0f4107ae2cd",
+        "verdict": "aposentar",
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "reason": "Aidentidade bibliográficaalegada não corresponde ao recursoKDIGO2009 efetivamenteidentificado; não publicar novamenteliteral sob rótuloKDIGOCMV2022. NovoTTS2025 éobra distinta.",
+        "currentConsumers": [
+          "26c87114",
+          "86b6b9c9",
+          "6d6d8d57",
+          "2c86b3a0"
+        ],
+        "sourceIDs": [
+          "KDIGO_IDENTITY",
+          "CMV2025"
+        ],
+        "replacementSourceId": "cmv_consensus_tts_2025",
+        "sameWork": false,
+        "transferFavorite": false,
+        "transferUnlock": false,
+        "newDiscoveryCredit": false,
+        "preserveHistoricalPayload": true,
+        "decision": "Aposentadoria doID no catálogo ativo, com remoção dasquatrocitações atuais apenas nosAFTERsexatos liberados. Não fundir comTTS2025.",
+        "technicalConditions": [
+          "Snapshots originais com12campos permanecem autenticados nohistórico.",
+          "Storage/favoritos/desbloqueios antigos não são apagados ou transportados; referênciaretirada deve poder serrepresentada como histórico, com leitura bloqueada.",
+          "Não contar obrafictícia noacervo clínico ativo,recompensasouconquistas."
+        ],
+        "readyForRetirement": true,
+        "destination": "cmv_consensus_tts_2025",
+        "independentReport": "ux-1728-reference-duplicates/independent-A15-review.json"
+      }
+    ],
+    "articles": [
+      5,
+      6,
+      7,
+      43,
+      117,
+      122,
+      125,
+      132
+    ],
+    "physicalArticles": 191,
+    "originalHistoryPrefix": 181,
+    "ledger": "ux-1728-root/clinical-approval-ledger.json",
+    "proof": "ux-1728-root/last-integration.json",
+    "articleProof": "ux-1728-root/last-article-integration.json"
+  },
+  "inventory160": {
+    "total": 160,
+    "handled": 160,
+    "pending": 0,
+    "pendingQids": [],
+    "scope": "Mechanical flags only; not all bank questions clinically reviewed."
+  },
+  "agents": {
+    "root": "Medical work complete:175existingquestiongates,137cards,18retirements.725q406refs500history;160/160flagsdone. Finaltests/docs/singlePR/publication remain.",
+    "editorial_backlog_1728": "Clinicalauthorshipdone; independent technical reviewfailclosed/baú/loader50units+native corroboration.",
+    "reference_duplicates_1728": "Finalsourcepositions743/workmap558/retention13complete. Frontendfinalstable:CMVwithdrawal,missingmodule recovery,earnedbaúreceipts,authenticated synchronous refdiscovery. Final306native22cases running.",
+    "length_inventory_1728": "FinaldataR3integrity6575checks done; fixUI138/257/258stale fixtures preserving originalcohorts, then nativeaffectedR0."
+  },
+  "technical": {
+    "sourcePositions": "Original741 frozen +40c5f770idx741 +0a2634fcidx742. SameAPI buildDeck/builder. No compaction or unrelatedsource identitydrift.",
+    "historicalGuard": "Retain preexisting reference without currentconsumer only with base-authenticated archived consumer4profiles; changedcurrentcard requires ownauthor+indep full12hash receipts. No IDwhitelist. Agentfragment ready in historical-retention-manifest-fragment.json.",
+    "referenceRetirement": "Integrator supports ledger.referenceRetirements only: explicit approved withdrawal of original12fields/hash, no currentconsumer, independently released newcanonicalcard. Used once: cmv_kdigo_tx invalid bibliographic identity, blocked republication. Exact original12 fields/hash archived; no alias/unlock/favourite/credit transfer. CurrentID-set contract reconstructs original353 hash by explicitly restoring retired ID only in proof.",
+    "favorite": "Blocked historical favourite removal now disables re-save and restores focus;3realhandlerunit regressions pass.",
+    "portable": "docs/editorial/reviews/2026-11-15-length-references-1728; packager refresh still needed. Only README/state mutable, frozen reports exact; no primaryPDF/XML inGit."
+  },
+  "checks": [
+    {
+      "file": "ux-1728-root/node-answers-127.log",
+      "pass": 206,
+      "fail": 0,
+      "skip": 0,
+      "source": "127questiongates before later medical additions"
+    },
+    {
+      "file": "ux-1728-root/node-150-gates-core.log",
+      "pass": 30,
+      "fail": 0,
+      "skip": 0,
+      "source": "150gates:catalog/sourcepositions/library/favourite",
+      "scope": "Does not yet include explicit ea7 regression row."
+    },
+    {
+      "file": "ux-1728-root/node-source-and-library-all.log",
+      "pass": 191,
+      "fail": 14,
+      "skip": 0,
+      "reason": "All14 expected732 vs current731 after retirement; preserved original log. Intentional current-count update followed by90/90affectedpass and206/206full."
+    },
+    {
+      "file": "ux-1728-identities-native.json",
+      "pass": 96,
+      "fail": 0,
+      "skip": 0,
+      "R": 0,
+      "source": "736q snapshot before sourcepositions/latermedical; not finalsource"
+    },
+    {
+      "file": "ux-1728-reference-duplicates/implementation-receipt-v3.json",
+      "native": 20,
+      "unit": 11,
+      "R": 0,
+      "source": "386refs earlier snapshot; preserve development failures"
+    },
+    {
+      "file": "ux-1728-reference-duplicates/historical-retention-real-proof.json",
+      "scope": "8real retentions authenticated, snapshot731/400/444; rerun finaldata"
+    },
+    {
+      "file": "ux-1728-root/node-166-integrity.log",
+      "pass": 35,
+      "fail": 0,
+      "skip": 0,
+      "source": "166gates snapshot: archiveCMV12field hash,16questionretirements,original181prefix,library/favorite/sourceposition contracts"
+    },
+    {
+      "file": "ux-1728-root/native-166-idset.json",
+      "pass": 4,
+      "fail": 0,
+      "skip": 0,
+      "R": 0,
+      "source": "166gates snapshot: fouractualruntime profiles and fullpublishedarchive/original353IDset in desktop/mobile"
+    },
+    {
+      "file": "ux-1728-root/node-quality-170-before-final-medical.log",
+      "pass": 632,
+      "fail": 4,
+      "skip": 0,
+      "reason": "2staleGitelmanmetadata/817fixtures and2pilotfixturemandatorycatalog; unchanged oldgoldens and stronger twohistoryversion checks repaired,18/18directaffectedpass."
+    },
+    {
+      "file": "ux-1728-root/node-cache-peer-check.log",
+      "pass": 35,
+      "fail": 0,
+      "skip": 0,
+      "source": "RootpeerreviewedSW/bumpfix,including exact17.27worker counterexample/offline/futuredata-onlybumps."
+    },
+    {
+      "file": "ux-1728-root/node-final-medical-identity.log",
+      "pass": 21,
+      "fail": 0,
+      "skip": 0,
+      "source": "Finalmedical725/406/500:18retirements,original181prefix,CMV12fieldhistorysourcepins."
+    },
+    {
+      "file": "ux-1728-root/node-quality-final.log",
+      "pass": 643,
+      "fail": 0,
+      "skip": 0,
+      "source": "Finalstable product,all8CIqualityNodegroups;duplicate targeted checks not added."
+    },
+    {
+      "file": "ux-1728-reference-duplicates/e2e-final-catalog-run-4.json",
+      "pass": 22,
+      "fail": 0,
+      "skip": 0,
+      "R": 0,
+      "pageErrors": 0,
+      "source": "Final725/406/500library/Cmv/locks/scrolls/modulefailure/rewards/discoveries,bothprofiles"
+    },
+    {
+      "file": "ux-1728-length-severe-author/ui-fixture-final-receipt.json",
+      "uniqueCasesApproved": 54,
+      "attempts": 58,
+      "firstRun": {
+        "passed": 52,
+        "failed": 2,
+        "reason": "Old Moeller17.27 fixture assertion; unchanged product."
+      },
+      "correctedSubset": {
+        "passed": 4,
+        "failed": 0,
+        "R": 0
+      },
+      "scope": "Bothprofiles,oldGitelman/5530historicalcohorts+currentmaterialversions. Notone54/54run."
+    }
+  ],
+  "medicalLimits": {
+    "MPGN": "Metadata only PARTIAL/NONDECISIVE/LIBERADA, body2012summary remains blocked.",
+    "nephroticPart2": "Card and3questions PARTIAL/NONDECISIVE by externalDOI discrepancy; bodyclinicalverified, no inventedresolution.",
+    "Brenner": "Generic book not globally approved/read. bc72 limited morphologyvalidation only, not integralreview.",
+    "CMV": "Proposed fakeKDIGO2022cardretirement, different realCMV2025newID; no unlock/favourite/historytransfer.",
+    "sourceAccess": "Abstract-only called abstract-only; no inaccessiblebodyclaims."
+  },
+  "pending": [
+    "Gitcommit/onePR/externalreview/CI/authorizedmerge/Pages/publicbytes+nativeproof;version17.28notpublishedyet."
+  ],
+  "ownedServers": [
+    {
+      "session": 78475,
+      "url": "http://127.0.0.1:5501",
+      "status": "RUNNING"
+    },
+    {
+      "session": 77675,
+      "url": "http://127.0.0.1:5500",
+      "status": "STOPPED"
+    }
+  ],
+  "warnings": [
+    "Use checkpoint-v6.cjs only; older checkpoint generators contain stale assignments.",
+    "Do not rewrite immutable17.27receipt or older frozenreports.",
+    "Do not treat library receipts as fullmedicalquestion gates."
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "schema": "NQ_SGLT2_FOCAL_AUTHOR_1728_A2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "date": "2026-11-16",
+  "normativeSources": [
+    "AGENTS.md",
+    "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "references/output-contract.md",
+    "references/verification-protocol.md",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+    "docs/editorial/annex-c-nefrologia.md"
+  ],
+  "items": [
+    {
+      "qid": "dfcc2096",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "original": {
+        "question": {
+          "t": "Inibidores de SGLT2 — Mecanismo de Nefroproteção na DRC",
+          "qid": "dfcc2096",
+          "q": "Paciente masculino, 62 anos, histórico de insuficiência cardíaca com fração de ejeção reduzida (FE 35%), creatinina de 1,6 mg/dL e proteinúria moderada (1,2 g/24h). Está em uso de IECA e betabloqueador. Considerando o uso de inibidores de SGLT2 para proteção renal, qual é o principal mecanismo de nefroproteção independente do controle glicêmico?",
+          "opts": [
+            "Redução da pressão intraglomerular pela restauração da sinalização túbulo-glomerular, diminuindo a hiperfiltração e o estresse hemodinâmico glomerular.",
+            "Aumento da excreção urinária de glicose, que melhora diretamente a função tubular proximal e reduz a inflamação local.",
+            "Bloqueio direto dos canais de cálcio nas arteríolas aferentes, reduzindo a pressão intraglomerular e prevenindo a fibrose renal progressiva.",
+            "Melhora da resistência insulínica sistêmica, diminuindo a produção hepática de glicose e protegendo os néfrons contra lesão metabólica."
+          ],
+          "ans": 0,
+          "exp": "Os inibidores de SGLT2 promovem nefroproteção primariamente pela restauração do feedback tubuloglomerular. Ao inibir a reabsorção de sódio e glicose no túbulo proximal, aumentam a entrega de sódio à mácula densa, levando à vasoconstrição da arteríola aferente. Isso reduz a pressão intraglomerular e a hiperfiltração, diminuindo o estresse hemodinâmico e a albuminúria, independentemente do controle glicêmico, conforme demonstrado em estudos como DAPA-CKD e EMPA-KIDNEY.",
+          "diff": "hard",
+          "cat": "farmacologia",
+          "refs": [
+            "dapa",
+            "empa_kidney"
+          ]
+        },
+        "authorRevision": "sha256:c54e48fdedc568094c1c7f45f3c9eb8156203763defe33b3c11946c8a51f8b20"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "problems": [
+          "MAIOR — A explicação atribui mecanismo primário/vasoconstrição aferente como demonstrado pelosRCTs de desfechosDAPA-CKD/EMPA-KIDNEY, que não medem diretamente toda essa cadeia.",
+          "MAIOR — Sem delimitar a pergunta ao mecanismo hemodinâmico, efeitos tubulares/metabólicos potencialmente participantes do benefício tornam a discriminação entre alternativas frágil.",
+          "MENOR — Siglas na primeira menção e dificuldadehard não correspondem à tarefa."
+        ],
+        "score": {
+          "anulado": true
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "iSGLT2 — Via Hemodinâmica da Nefroproteção",
+          "qid": "dfcc2096",
+          "q": "Homem de 62 anos, com insuficiência cardíaca e fração de ejeção de 35%, apresenta creatinina de 1,6 mg/dL e proteinúria de 1,2 g/24 h. Usa um inibidor da enzima conversora de angiotensina (IECA) e betabloqueador. Ao considerar um inibidor do cotransportador sódio-glicose tipo 2 (SGLT2) para proteção renal, qual mecanismo hemodinâmico ajuda a explicar esse benefício, além do efeito glicêmico?",
+          "opts": [
+            "Redução da pressão intraglomerular pela restauração da sinalização túbulo-glomerular, diminuindo a hiperfiltração e o estresse hemodinâmico glomerular.",
+            "Aumento da excreção urinária de glicose, que melhora diretamente a função tubular proximal e reduz a inflamação local.",
+            "Bloqueio direto dos canais de cálcio nas arteríolas aferentes, reduzindo a pressão intraglomerular e prevenindo a fibrose renal progressiva.",
+            "Melhora da resistência insulínica sistêmica, diminuindo a produção hepática de glicose e protegendo os néfrons contra lesão metabólica."
+          ],
+          "ans": 0,
+          "exp": "A redução da pressão intraglomerular é uma explicação hemodinâmica para parte da nefroproteção. A menor reabsorção proximal de sódio e glicose aumenta a oferta de cloreto de sódio à mácula densa; o feedback tubuloglomerular participa da redução da pressão glomerular, com respostas pré e pós-glomerulares conforme o contexto. A revisão de Vallon integra experimentos e respostas humanas: ensaios de desfechos não demonstram, por si só, cada etapa desse mecanismo nem que ele explique sozinho todo benefício clínico. Glicosúria e adaptações metabólicas não equivalem à sequência hemodinâmica perguntada, e o fármaco não atua por bloqueio direto de canais de cálcio.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "vallon_sglt2_renoprotection_2022"
+          ]
+        },
+        "afterAuthorRevision": "sha256:2c08d030150fbe7f82200e7f4127263efb0ad88745c57d26f514a1288e355125",
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true,
+        "operation": "focal_question_repair_same_OP",
+        "exactChangedFields": [
+          "t",
+          "q",
+          "exp",
+          "diff",
+          "refs"
+        ],
+        "unchangedFields": [
+          "qid",
+          "opts",
+          "ans",
+          "cat"
+        ],
+        "noNewDipCase": true
+      },
+      "classificationBeforeAndAfter": {
+        "op": "Identificar a redução da pressão intraglomerular via sinalização tubuloglomerular como componente hemodinâmico da nefroproteção porSGLT2 além do efeito glicêmico.",
+        "primaryCompetence": "Relacionar farmacologia tubular e hemodinâmica glomerular.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo caso, conceito correto e objetivo hemodinâmico central. Não se converte em outra questão de dip nem se muda a correta para sustentar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "VALLON2022",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+          "actualAccessURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9558099",
+          "doi": "10.1016/j.hfc.2022.03.005",
+          "pmid": "36216484",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/sglt2-biopsy-author/vallon2022-full.xml",
+          "rawSHA256": "19cfd8170ea3298b2ae83f3a85b0f72842fc7fc940fd7d38a6a1d6c13c038b5f",
+          "access": "Manuscrito autoral aceito de obra publicada no Heart Fail Clin, corpo integral XML pessoalmente aberto e lido, com BODY real; não apenas abstract. Metadados da obra2022;18(4):539–549 no próprio front. PMC HTML deu captcha; isso não foi apresentado como corpo lido.",
+          "locators": [
+            "SGLT2mediatesglucosereabsorption: S1/S2, SGLT1 no proximal tardio e saída basolateral porGLUT2",
+            "Hyperreabsorption and tubuloglomerular feedback: menor NaCl na mácula densa e hiperfiltração",
+            "Resposta bifásica/reversibilidade da filtração; diferença entre efeito funcional e lesão",
+            "AdenosineA1/A2, respostas aferente e eferente; Fig2 e micropunção",
+            "Discussion: mecanismos múltiplos e ainda em investigação"
+          ],
+          "limits": "Revisão narrativa fisiológica específica, adequada ao mecanismo que os ensaios de desfechos não medem diretamente. Não é um RCT, nem prova de mecanismo único em cada paciente; dados experimentais e humanos são distinguidos. Nenhuma indicação terapêutica2026 é inferida do review2022."
+        }
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Redução da pressão intraglomerular pela restauração da sinalização túbulo-glomerular, diminuindo a hiperfiltração e o estresse hemodinâmico glomerular.",
+            "judgment": "CORRETA: via hemodinâmica pedida, sem a transformar em mecanismo exclusivo de todo benefício."
+          },
+          {
+            "letter": "B",
+            "text": "Aumento da excreção urinária de glicose, que melhora diretamente a função tubular proximal e reduz a inflamação local.",
+            "judgment": "A glicosúria e alterações tubulares/metabólicas podem participar da resposta, mas a formulação não descreve o feedback/pressão intraglomerular perguntados nem garante melhora direta universal do túbulo."
+          },
+          {
+            "letter": "C",
+            "text": "Bloqueio direto dos canais de cálcio nas arteríolas aferentes, reduzindo a pressão intraglomerular e prevenindo a fibrose renal progressiva.",
+            "judgment": "Confunde o alvo do fármaco com bloqueio direto de canal de cálcio; não é o mecanismo deSGLT2."
+          },
+          {
+            "letter": "D",
+            "text": "Melhora da resistência insulínica sistêmica, diminuindo a produção hepática de glicose e protegendo os néfrons contra lesão metabólica.",
+            "judgment": "Apela ao controle metabólico sistêmico, não ao mecanismo hemodinâmico renal pedido."
+          }
+        ],
+        "attempts": [
+          {
+            "argument": "Outros mecanismos além do feedback podem participar da proteção renal.",
+            "resolution": "Concordo, e o novo comando pede um mecanismo hemodinâmico, não o mecanismo único ou primário demonstrado em cada paciente."
+          },
+          {
+            "argument": "A redução da pressão pode incluir dilatação eferente, não apenas constrição aferente.",
+            "resolution": "O AFTER reconhece respostas pré/pós-glomerulares conforme contexto; não fixa uma única resposta vascular universal."
+          },
+          {
+            "argument": "O cenário com insuficiência cardíaca não prova indicação individual do fármaco apenas pela creatinina.",
+            "resolution": "A tarefa não prescreve dose nem decisão individual de elegibilidade; identifica a via fisiológica que motivou considerar proteção. Nenhum tratamento é imposto a partir do dado isolado."
+          }
+        ],
+        "result": "Nenhum recurso plausível não resolvido noAFTER, sujeito a revisão independente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "triggered": false,
+          "basis": "Comando hemodinâmico delimitado, quatro opções confrontadas, fonte fisiológica específica efetivamente lida e mecanismo não exclusivo; não é questão de prescrição individual."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Qualidade do enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 18,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook§18.4: revisão formal AUTORAL exata com fontes abertas, sem eliminatório/recurso pendente. Gate independente continua obrigatório operacionalmente."
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "bindingRepairs": [
+    {
+      "qid": "0e1a838d",
+      "role": "AUTHOR_REFERENCE_BINDING_REPAIR_NOT_INDEPENDENT",
+      "original": {
+        "question": {
+          "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+          "qid": "0e1a838d",
+          "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+          "refs": [
+            "vallon_sglt2_renoprotection_2022",
+            "kdigo_igan_2025"
+          ],
+          "opts": [
+            "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+            "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+            "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+            "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+          ],
+          "ans": 0,
+          "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "authorRevision": "sha256:1a15b6f6d3541f54ff8dd275d76a016a56c7fea9bf52fa048e46969b43dd6379"
+      },
+      "patch": {
+        "after": {
+          "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+          "qid": "0e1a838d",
+          "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+          "refs": [
+            "vallon_sglt2_renoprotection_2022"
+          ],
+          "opts": [
+            "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+            "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+            "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+            "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+          ],
+          "ans": 0,
+          "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:d534d9b7e929b364d788dd8fd53cc3472dcfd2322726d64df68184c8bc1ec71e",
+        "operation": "refs_only",
+        "exactChangedFields": [
+          "refs"
+        ],
+        "clinicalBodyByteExact": true,
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true
+      },
+      "rationale": "O enunciado pede cadeia hemodinâmica compatível com dip e albuminúria; Vallon específico a sustenta com a ressalva já presente na explicação. KDIGOIgAN2025 orienta manejo, mas é supérfluo para este gabarito fisiológico. Retirada do vínculo não afirma que a diretriz é inválida nem concede gate a seu card.",
+      "evidenceSources": [
+        {
+          "id": "VALLON2022",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+          "actualAccessURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9558099",
+          "doi": "10.1016/j.hfc.2022.03.005",
+          "pmid": "36216484",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/sglt2-biopsy-author/vallon2022-full.xml",
+          "rawSHA256": "19cfd8170ea3298b2ae83f3a85b0f72842fc7fc940fd7d38a6a1d6c13c038b5f",
+          "access": "Manuscrito autoral aceito de obra publicada no Heart Fail Clin, corpo integral XML pessoalmente aberto e lido, com BODY real; não apenas abstract. Metadados da obra2022;18(4):539–549 no próprio front. PMC HTML deu captcha; isso não foi apresentado como corpo lido.",
+          "locators": [
+            "SGLT2mediatesglucosereabsorption: S1/S2, SGLT1 no proximal tardio e saída basolateral porGLUT2",
+            "Hyperreabsorption and tubuloglomerular feedback: menor NaCl na mácula densa e hiperfiltração",
+            "Resposta bifásica/reversibilidade da filtração; diferença entre efeito funcional e lesão",
+            "AdenosineA1/A2, respostas aferente e eferente; Fig2 e micropunção",
+            "Discussion: mecanismos múltiplos e ainda em investigação"
+          ],
+          "limits": "Revisão narrativa fisiológica específica, adequada ao mecanismo que os ensaios de desfechos não medem diretamente. Não é um RCT, nem prova de mecanismo único em cada paciente; dados experimentais e humanos são distinguidos. Nenhuma indicação terapêutica2026 é inferida do review2022."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "scope": "Revisão AUTORAL do vínculo exato; corpo clínico não recebe nova revisão independente pelo próprio autor."
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "referenceCandidates": [
+    {
+      "id": "vallon_sglt2_renoprotection_2022",
+      "beforeRevision": "sha256:f6b36402dc363477a6dba6ededbcba652ff66daaaa07c6e7422e99e08bf5a16c",
+      "after": {
+        "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+        "journal": "Heart Fail Clin. 2022;18(4):539–549",
+        "ano": 2022,
+        "tipo": "Revisão fisiológica narrativa",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+        "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+        "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+      },
+      "afterRevision": "sha256:f6b36402dc363477a6dba6ededbcba652ff66daaaa07c6e7422e99e08bf5a16c",
+      "fieldCount": 12,
+      "change": "UNCHANGED_EXISTING_FULL_CARD_REVIEW",
+      "evidenceSources": [
+        {
+          "id": "VALLON2022",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+          "actualAccessURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9558099",
+          "doi": "10.1016/j.hfc.2022.03.005",
+          "pmid": "36216484",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/sglt2-biopsy-author/vallon2022-full.xml",
+          "rawSHA256": "19cfd8170ea3298b2ae83f3a85b0f72842fc7fc940fd7d38a6a1d6c13c038b5f",
+          "access": "Manuscrito autoral aceito de obra publicada no Heart Fail Clin, corpo integral XML pessoalmente aberto e lido, com BODY real; não apenas abstract. Metadados da obra2022;18(4):539–549 no próprio front. PMC HTML deu captcha; isso não foi apresentado como corpo lido.",
+          "locators": [
+            "SGLT2mediatesglucosereabsorption: S1/S2, SGLT1 no proximal tardio e saída basolateral porGLUT2",
+            "Hyperreabsorption and tubuloglomerular feedback: menor NaCl na mácula densa e hiperfiltração",
+            "Resposta bifásica/reversibilidade da filtração; diferença entre efeito funcional e lesão",
+            "AdenosineA1/A2, respostas aferente e eferente; Fig2 e micropunção",
+            "Discussion: mecanismos múltiplos e ainda em investigação"
+          ],
+          "limits": "Revisão narrativa fisiológica específica, adequada ao mecanismo que os ensaios de desfechos não medem diretamente. Não é um RCT, nem prova de mecanismo único em cada paciente; dados experimentais e humanos são distinguidos. Nenhuma indicação terapêutica2026 é inferida do review2022."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "role": "AUTHOR_FULL_CARD_REVIEW_NOT_INDEPENDENT"
+      },
+      "currentConsumerQids": [
+        "0e1a838d"
+      ],
+      "noQuestionApprovalInherited": true,
+      "review": "Todos12 campos conferidos: identidade, manuscrito autoral aceito da publicação real, transporte proximal, sinal da mácula densa, resposta bifásica/reversível e limites de extrapolação àIgA. Corpo literal não alterado; somente novos vínculos serão adicionados após gate."
+    }
+  ],
+  "sources": [
+    {
+      "id": "VALLON2022",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+      "actualAccessURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9558099",
+      "doi": "10.1016/j.hfc.2022.03.005",
+      "pmid": "36216484",
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/sglt2-biopsy-author/vallon2022-full.xml",
+      "rawSHA256": "19cfd8170ea3298b2ae83f3a85b0f72842fc7fc940fd7d38a6a1d6c13c038b5f",
+      "access": "Manuscrito autoral aceito de obra publicada no Heart Fail Clin, corpo integral XML pessoalmente aberto e lido, com BODY real; não apenas abstract. Metadados da obra2022;18(4):539–549 no próprio front. PMC HTML deu captcha; isso não foi apresentado como corpo lido.",
+      "locators": [
+        "SGLT2mediatesglucosereabsorption: S1/S2, SGLT1 no proximal tardio e saída basolateral porGLUT2",
+        "Hyperreabsorption and tubuloglomerular feedback: menor NaCl na mácula densa e hiperfiltração",
+        "Resposta bifásica/reversibilidade da filtração; diferença entre efeito funcional e lesão",
+        "AdenosineA1/A2, respostas aferente e eferente; Fig2 e micropunção",
+        "Discussion: mecanismos múltiplos e ainda em investigação"
+      ],
+      "limits": "Revisão narrativa fisiológica específica, adequada ao mecanismo que os ensaios de desfechos não medem diretamente. Não é um RCT, nem prova de mecanismo único em cada paciente; dados experimentais e humanos são distinguidos. Nenhuma indicação terapêutica2026 é inferida do review2022."
+    }
+  ],
+  "implementationBoundary": {
+    "productionWrites": 0,
+    "ledgerWrites": 0,
+    "readyForImplementation": false,
+    "independentReviewer": "/root/length_inventory_1728",
+    "requiredGate": "Exatos AFTERdfcc e refsOnly0e1; revisor diferente deve confrontar corpo canônico e fonte para as fusões.",
+    "noNewOP": true,
+    "noOutOfScopeNeighborSearch": true
+  },
+  "retirementCoordination": {
+    "sourceQids": [
+      "96c0c85d",
+      "a5c73397"
+    ],
+    "destinationQid": "0e1a838d",
+    "destinationProposedRevision": "sha256:d534d9b7e929b364d788dd8fd53cc3472dcfd2322726d64df68184c8bc1ec71e",
+    "status": "ROOT adjudicou preservar melhor canônica0e1; decisão independente das quatro dimensões e gate do destinatário serão emitidos peloLENGTH. MeuAFTER96 é alternativa não utilizada.",
+    "preserveHistoricalAnswers": true,
+    "noFSRSTransfer": true
+  },
+  "counts": {
+    "fullQuestionFocalRepairs": 1,
+    "refsOnlyRepairs": 1,
+    "newCards": 0,
+    "productionWrites": 0
+  }
+}

@@ -1,0 +1,524 @@
+{
+  "schema": "NQ_1728_INDEPENDENT_FORMAL_BATCH_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root",
+  "independentOf": "/root/editorial_backlog_1728",
+  "sourceCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "sourceFile": "ux-1728-editorial-backlog/dialysis-author-A31.json",
+  "sourceSHA256": "53eaa9e50193fa0e5f565ade280222b9efd4ae8a3a16eeffc8775fd1cfb9539f",
+  "questions": [
+    {
+      "qid": "3d81f74d",
+      "original": {
+        "qid": "3d81f74d",
+        "q": "Ao discutir modalidade de terapia renal substitutiva na LRA crítica, qual síntese interpreta corretamente o HEMODIAFE e a evidência sobre SLED/diálise estendida versus CRRT?",
+        "opts": [
+          "O HEMODIAFE comparou SLED com CRRT e demonstrou superioridade de sobrevida da SLED",
+          "O HEMODIAFE comparou hemodiálise intermitente com CVVHDF e encontrou sobrevida em 60 dias semelhante; ensaios de diálise estendida versus CRRT também não demonstram superioridade consistente de mortalidade",
+          "O HEMODIAFE provou que CRRT elimina hipotensão e reduz pela metade a mortalidade diante de qualquer modalidade intermitente",
+          "Como os desfechos são semelhantes, modalidade, estabilidade hemodinâmica e capacidade local não devem influenciar a escolha"
+        ],
+        "ans": 1,
+        "exp": "O HEMODIAFE randomizou hemodiálise intermitente e CVVHDF — não SLED — em pacientes com LRA e disfunção de múltiplos órgãos. A sobrevida em 60 dias foi semelhante, cerca de 32% versus 33%, sem superioridade da terapia contínua. Separadamente, metanálise de ensaios randomizados de diálise estendida/SLED versus CRRT não mostrou diferença significativa de mortalidade, recuperação renal, remoção de fluidos ou permanência na UTI. Portanto, a escolha deve integrar estabilidade hemodinâmica, necessidade de controle gradual, recursos e experiência local, sem prometer vantagem de sobrevida de uma modalidade.",
+        "refs": [
+          "hemodiafe_2006",
+          "sled_crrt_meta_2015",
+          "kdigo_aki"
+        ],
+        "cat": "dialise",
+        "diff": "hard",
+        "t": "LRA Crítica — HEMODIAFE, SLED e CRRT"
+      },
+      "originalAuthorRevision": "sha256:a375130eaf99f352662a8c67fa63465da87e1f5d90f9e0ec0db8725f9223a9b9",
+      "after": {
+        "qid": "3d81f74d",
+        "q": "Na lesão renal aguda crítica, qual síntese interpreta o HEMODIAFE e a evidência sobre diálise estendida versus terapia contínua?",
+        "opts": [
+          "O HEMODIAFE estudou diálise estendida; a maior sobrevida confirma sua vantagem sobre a terapia contínua.",
+          "O HEMODIAFE estudou hemodiálise intermitente; os dados citados não estabelecem superioridade de sobrevida.",
+          "O HEMODIAFE favoreceu a terapia contínua; a estabilidade hemodinâmica explica uma redução de mortalidade.",
+          "A semelhança de sobrevida permite tratar diálise intermitente, estendida e contínua como equivalentes."
+        ],
+        "ans": 1,
+        "exp": "O HEMODIAFE comparou hemodiálise intermitente com hemodiafiltração venovenosa contínua, sem testar diálise estendida. A sobrevida em 60 dias foi 32% e 33%, respectivamente, sob protocolos de tolerância e controle metabólico. Em separado, os ensaios randomizados reunidos na metanálise de diálise estendida versus terapia contínua não demonstraram diferença significativa de mortalidade. Isso não prova equivalência universal nem superioridade de uma modalidade para todo paciente; as condições fisiológicas e a entrega segura do tratamento continuam relevantes.",
+        "refs": [
+          "hemodiafe_2006",
+          "sled_crrt_meta_2015"
+        ],
+        "cat": "dialise",
+        "diff": "medium",
+        "t": "LRA Crítica — HEMODIAFE, SLED e CRRT"
+      },
+      "afterAuthorRevision": "sha256:866155c3b4f4c307295c3c7082796da1be4c703406477afbe6010f85b5442018",
+      "referenceCards": [
+        {
+          "id": "hemodiafe_2006",
+          "original": {
+            "label": "HEMODIAFE — CVVHDF versus Hemodiálise Intermitente",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/16876666/",
+            "journal": "Lancet. 2006;368(9533):379-385",
+            "ano": 2006,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Ensaio multicêntrico francês sobre modalidade dialítica na LRA com disfunção de múltiplos órgãos",
+            "icon": "🔬",
+            "resumo": "Ensaio multicêntrico randomizado em 360 pacientes críticos com LRA e síndrome de disfunção de múltiplos órgãos. Comparou hemodiálise intermitente protocolada com hemodiafiltração venovenosa contínua; não estudou SLED. A sobrevida em 60 dias foi 32% com hemodiálise intermitente e 33% com terapia contínua, sem diferença em sobrevida nos demais momentos ou recuperação renal.",
+            "conclusao": "Quando ambas são aplicadas com protocolos de tolerância e controle metabólico, CVVHDF e hemodiálise intermitente não demonstraram diferença de sobrevida no HEMODIAFE.",
+            "curiosidade": "O estudo padronizou medidas de tolerância na hemodiálise intermitente, como dialisato mais frio e conexão isovolêmica, detalhe importante para interpretar a comparação."
+          },
+          "originalRevision": "sha256:3235de88fa579c801a24d08b8aaac2b52493d0c146fb610af514c9f2961c6508",
+          "after": {
+            "label": "HEMODIAFE — CVVHDF versus Hemodiálise Intermitente",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/16876666/",
+            "journal": "Lancet. 2006;368(9533):379-385",
+            "ano": 2006,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Ensaio multicêntrico francês sobre modalidade dialítica na LRA com disfunção de múltiplos órgãos",
+            "icon": "🔬",
+            "resumo": "Ensaio multicêntrico randomizado em 360 pacientes críticos com lesão renal aguda e disfunção de múltiplos órgãos. Comparou hemodiálise intermitente protocolada com hemodiafiltração venovenosa contínua; não estudou diálise estendida. A sobrevida em 60 dias foi 32% com modalidade intermitente e 33% com contínua, sem diferença estatisticamente demonstrada.",
+            "conclusao": "Quando ambas são aplicadas com protocolos de tolerância e controle metabólico, CVVHDF e hemodiálise intermitente não demonstraram diferença de sobrevida no HEMODIAFE.",
+            "curiosidade": "Os dois grupos usaram a mesma membrana polimérica e tampão com bicarbonato; o ensaio forneceu orientações para tolerância hemodinâmica e remoção de solutos."
+          },
+          "afterRevision": "sha256:79ce2dc21720834623aea23c44630a2276379a8c0accc54fed3ffaa375d98e6f",
+          "fieldCount": 12,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        },
+        {
+          "id": "sled_crrt_meta_2015",
+          "original": {
+            "label": "Zhang et al. — Diálise Estendida versus CRRT na LRA",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/25843704/",
+            "journal": "Am J Kidney Dis. 2015;66(2):322-330",
+            "ano": 2015,
+            "tipo": "Revisão sistemática e meta-análise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Comparação de diálise estendida/SLED com CRRT em pacientes com lesão renal aguda",
+            "icon": "📊",
+            "resumo": "Meta-análise de 17 estudos, incluindo sete ensaios randomizados e dez estudos observacionais, que comparou diálise diária estendida — categoria que inclui SLED — com CRRT na LRA. Nos ensaios randomizados, não houve diferença de mortalidade (RR 0,90; IC95% 0,74–1,11). Recuperação renal, remoção de fluidos, permanência na UTI e eficácia bioquímica também foram semelhantes; o sinal favorável observado em estudos não randomizados permaneceu sujeito a viés de seleção.",
+            "conclusao": "Ensaios randomizados não sustentam superioridade de mortalidade da diálise estendida/SLED ou da CRRT; a escolha deve considerar fisiologia, recursos e experiência local.",
+            "curiosidade": "A definição da revisão exigiu sessões com mais de seis e menos de 24 horas em máquina convencional, separando a terapia estendida tanto da hemodiálise clássica curta quanto da modalidade contínua."
+          },
+          "originalRevision": "sha256:d3bd51e4780b14242fbd432c9bf080e95efa52aa6a5f54eef26aac701f2f9949",
+          "after": {
+            "label": "Zhang et al. — Diálise Estendida versus CRRT na LRA",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/25843704/",
+            "journal": "Am J Kidney Dis. 2015;66(2):322-330",
+            "ano": 2015,
+            "tipo": "Revisão sistemática e meta-análise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Comparação de diálise estendida/SLED com CRRT em pacientes com lesão renal aguda",
+            "icon": "📊",
+            "resumo": "Meta-análise de 17 estudos, incluindo sete ensaios randomizados e dez estudos observacionais, que comparou diálise diária estendida — categoria que inclui SLED — com CRRT na LRA. Nos ensaios randomizados, não houve diferença de mortalidade (RR 0,90; IC95% 0,74–1,11). Recuperação renal, remoção de fluidos, permanência na UTI e eficácia bioquímica também foram semelhantes; o sinal favorável observado em estudos não randomizados permaneceu sujeito a viés de seleção.",
+            "conclusao": "Ensaios randomizados não sustentam superioridade de mortalidade da diálise estendida/SLED ou da CRRT; a escolha deve considerar fisiologia, recursos e experiência local.",
+            "curiosidade": "A definição da revisão exigiu sessões com mais de seis e menos de 24 horas em máquina convencional, separando a terapia estendida tanto da hemodiálise clássica curta quanto da modalidade contínua."
+          },
+          "afterRevision": "sha256:d3bd51e4780b14242fbd432c9bf080e95efa52aa6a5f54eef26aac701f2f9949",
+          "fieldCount": 12,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      ],
+      "classification": {
+        "op": "Interpretar comparações de modalidade sem confundir HEMODIAFE com SLED nem ausência de superioridade com equivalência universal.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "identity": "Mesmo OP, competência e conceito correto; material revisado após acesso primário. Preservar qid/FSRS. A troca do distrator de sessões curtas não cria nova questão."
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "H",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/16876666/",
+          "doi": "10.1016/S0140-6736(06)69111-3",
+          "access": "OPENED_PRIMARY_ABSTRACT_NLM_EFETCH",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/../ux-1728-root/pending-pubmed.xml",
+          "bytesSHA256": "f122160fbc86e200acc969f888db5adf6a74787af9db9e1a933a91efae629fa2",
+          "locators": [
+            "METHODS: 360, comparação IHD/CVVHDF, protocolos, membrana e tampão",
+            "FINDINGS: sobrevida 60 dias 32%/33%, IC −8,8 a 11,1",
+            "INTERPRETATION: tolerância/controle metabólico"
+          ],
+          "scope": "Abstract integral efetivamente lido; não corpo completo. Retiradas recuperação renal, dialisato frio e conexão isovolêmica, que este abstract não verifica."
+        },
+        {
+          "id": "S",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25843704/",
+          "doi": "10.1053/j.ajkd.2015.02.328",
+          "access": "OPENED_PRIMARY_FULL_ABSTRACT_PUBMED",
+          "locators": [
+            "Selection criteria: >6 e <24 horas",
+            "Results: 17 estudos, 7 RCTs, 10 observacionais, RR/IC",
+            "Limitations/Conclusions: viés observacional"
+          ],
+          "scope": "Abstract primário integral aberto, suficiente para todas as afirmações mantidas no card e candidato."
+        }
+      ],
+      "independentLocators": "PMID16876666 abstract integral NLM EFetch, DOI10.1016/S0140-6736(06)69111-3; PMID25843704 abstract integral linhas245–262.",
+      "claimAudit": "HEMODIAFE360, IHDversusCVVHDF, sobrevida60dias32/33%, não SLED. Metanálise17estudos,7RCT/10observacionais, RR0.90IC0.74–1.11 nosRCT. Detalhes não verificados do corpo HEMODIAFE foram retirados do card.",
+      "appeal": {
+        "argument": "Ausência de diferença significativa não comprova equivalência universal. A opçãoB resume ambas as fontes; não diz que modalidade independe da condição clínica.",
+        "result": "Sem argumento decisivo residual na versão exata."
+      },
+      "duplicateAudit": {
+        "independentConclusion": "Busca dirigida e comparação dos OP: compartilhar PISCES não duplica desenho, segurança, desfecho e mediação. Água, entrega, emergência, modalidade e fluxo são decisões distintas."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "total": 19,
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "points": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2
+          }
+        ],
+        "reason": "Descontos próprios; factualidade útil recebe17, sem fingir integração avançada. Sem regra de comprimento que determine o gabarito."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta para escopo conferido",
+      "tree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório ou recurso decisivo, score17–19, aprovada; publicaçãoLIBERADA derivada apenas para os bytes e cards exatos.",
+      "implementation": "Preservar identidade/FSRS; arquivar original17.27 e cards anteriores nos quatro modos. Sem alterar respostas já avaliadas.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "fe3a5b91",
+      "original": {
+        "t": "Fluxo de Dialisato — Ganho de Adequação e Custo Hídrico",
+        "qid": "fe3a5b91",
+        "q": "Paciente em hemodiálise convencional já atinge a meta de dose entregue com Qd de 500 mL/min. Como interpretar a elevação rotineira do Qd para 800 mL/min?",
+        "refs": [
+          "dialysate_flow_meta_2024"
+        ],
+        "opts": [
+          "Pode aumentar discretamente spKt/V e URR, mas faltam benefícios demonstrados em desfechos clínicos e o maior consumo de água deve entrar na decisão",
+          "Reduz comprovadamente mortalidade e sintomas, devendo ser aplicada a todos os pacientes",
+          "Não modifica nenhuma métrica de depuração ureica e por isso nunca deve ser usada",
+          "Substitui a necessidade de conferir tempo entregue, fluxo sanguíneo, acesso e recirculação"
+        ],
+        "ans": 0,
+        "exp": "Metanálise de estudos pequenos encontrou, ao elevar Qd de 500 para 800 mL/min, aumento médio modesto do spKt/V em 0,08 e da URR em 3,38 pontos. Não havia evidência adequada sobre sintomas, função, qualidade de vida ou mortalidade, e o risco de viés era relevante. Em quatro horas, o fluxo maior usa cerca de 72 litros adicionais de dialisato. Assim, Qd deve ser individualizado pela dose entregue e pelo conjunto da prescrição; não é uma meta universal nem corrige tempo encurtado, acesso disfuncional ou recirculação.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "originalAuthorRevision": "sha256:debe1af849c203c2c90b75dbef0c44391f7621fe07503c7c86f2eb98f070183d",
+      "after": {
+        "t": "Fluxo de Dialisato — Ganho de Adequação e Custo Hídrico",
+        "qid": "fe3a5b91",
+        "q": "Paciente em hemodiálise convencional já atinge a meta de dose entregue com fluxo do dialisato (Qd) de 500 mL/min. Como interpretar a elevação rotineira do Qd para 800 mL/min?",
+        "refs": [
+          "dialysate_flow_meta_2024"
+        ],
+        "opts": [
+          "Pode elevar índices ureicos, sem benefício clínico demonstrado e com maior consumo de dialisato.",
+          "Melhora os índices ureicos e, por isso, é a opção preferida mesmo quando a dose entregue já é adequada.",
+          "O fluxo 60% maior implica aumento proporcional de 60% na depuração de ureia e na dose entregue.",
+          "Produz ganho pequeno de índices ureicos, o que demonstra que seu uso é clinicamente ineficaz."
+        ],
+        "ans": 0,
+        "exp": "A metanálise encontrou ganho modesto de Kt/V e da redução percentual da ureia ao elevar o fluxo de 500 para 800 mL/min, mas faltavam resultados clínicos importantes e havia risco de viés. O ganho de depuração não é proporcional ao aumento de 60% do fluxo. Em quatro horas, o aumento consome 72 L adicionais de dialisato; isso não representa toda a água do sistema. O fluxo do dialisato é um componente da prescrição individualizada, junto de tempo, fluxo de sangue, acesso e necessidades do paciente. A estratégia pode ser útil, sem benefício clínico universal demonstrado ou prova de ineficácia.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "afterAuthorRevision": "sha256:dd7f3582f5fc3d978db8299574d70228e71cfdf0c88ea1c2f5c8cf03afbe3e69",
+      "referenceCards": [
+        {
+          "id": "dialysate_flow_meta_2024",
+          "original": {
+            "label": "Iman et al. — Dialysate Flow and Hemodialysis Adequacy (2024)",
+            "url": "https://doi.org/10.1093/ckj/sfae163",
+            "journal": "Clinical Kidney Journal 2024;17(7):sfae163",
+            "ano": 2024,
+            "tipo": "Revisão sistemática e metanálise",
+            "badge": "META",
+            "badgeColor": "#7c3aed",
+            "impacto": "Efeito do fluxo de dialisato sobre métricas ureicas de adequação e uso de recursos",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática de nove estudos, com quatro incluídos na metanálise, comparando fluxos de dialisato. Elevar Qd de 500 para 800 mL/min aumentou modestamente o spKt/V em 0,08 e a URR em 3,38 pontos, mas os estudos tinham risco de viés e quase não avaliaram sintomas, função, qualidade de vida, mortalidade ou impacto ambiental.",
+            "conclusao": "Qd mais alto pode melhorar discretamente métricas ureicas, porém não existe base para prescrever 800 mL/min universalmente; dose entregue, tempo, fluxo sanguíneo, acesso, metas clínicas e custo hídrico devem orientar a individualização.",
+            "curiosidade": "Em uma sessão de quatro horas, passar de 500 para 800 mL/min consome cerca de 72 litros adicionais de dialisato, mais de 10 mil litros por paciente ao ano em esquema três vezes semanal."
+          },
+          "originalRevision": "sha256:6ba181fe3edd9feeff646eac09ba0ec3ba310ed696ab52570ad915a1114b45e7",
+          "after": {
+            "label": "Iman et al. — Dialysate Flow and Hemodialysis Adequacy (2024)",
+            "url": "https://doi.org/10.1093/ckj/sfae163",
+            "journal": "Clinical Kidney Journal 2024;17(7):sfae163",
+            "ano": 2024,
+            "tipo": "Revisão sistemática e metanálise",
+            "badge": "META",
+            "badgeColor": "#7c3aed",
+            "impacto": "Efeito do fluxo de dialisato sobre métricas ureicas de adequação e uso de recursos",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática de nove estudos, com quatro incluídos na metanálise, comparando fluxos de dialisato. Elevar Qd de 500 para 800 mL/min aumentou modestamente o spKt/V em 0,08 e a URR em 3,38 pontos, mas os estudos tinham risco de viés e quase não avaliaram sintomas, função, qualidade de vida, mortalidade ou impacto ambiental.",
+            "conclusao": "Qd mais alto pode melhorar discretamente métricas ureicas, porém não existe base para prescrever 800 mL/min universalmente; dose entregue, tempo, fluxo sanguíneo, acesso, metas clínicas e custo hídrico devem orientar a individualização.",
+            "curiosidade": "Em uma sessão de quatro horas, passar de 500 para 800 mL/min consome cerca de 72 litros adicionais de dialisato, mais de 10 mil litros por paciente ao ano em esquema três vezes semanal."
+          },
+          "afterRevision": "sha256:6ba181fe3edd9feeff646eac09ba0ec3ba310ed696ab52570ad915a1114b45e7",
+          "fieldCount": 12,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      ],
+      "classification": {
+        "op": "Ponderar ganho ureico e consumo de dialisato sem extrapolar melhora do marcador a benefício clínico.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "identity": "Mesmo OP, competência e conceito correto; material revisado após acesso primário. Preservar qid/FSRS. A troca do distrator de sessões curtas não cria nova questão."
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "Q",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11229034/",
+          "doi": "10.1093/ckj/sfae163",
+          "access": "OPENED_FULL_TEXT_PRIMARY_PMC_XML",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/../ux-1728-root/dialysate-flow-pmc.xml",
+          "bytesSHA256": "0322779e2bfc10c0e492a5fb34e40254219c5f208d52cec9292ad107cbcd85f6",
+          "locators": [
+            "Abstract: 9 estudos/4 meta, Kt/V +0,08 e URR +3,38",
+            "Discussion: individualização, limitações ao tempo de sessão, 72 L/4 h e >10 mil L/ano",
+            "Limitations e Conclusion: faltam desfechos importantes"
+          ],
+          "scope": "Corpo integral de PMC aberto; discussão efetivamente lida. Qd pode integrar a individualização, inclusive diante de limites ao tempo; o item não proíbe a estratégia nem a trata como compensação universal."
+        }
+      ],
+      "independentLocators": "PMC11229034 integral via NLM EFetch, resumo/resultados/discussão. DOI10.1093/ckj/sfae163;9estudos,4meta,576adultos.",
+      "claimAudit": "800vs500mL/min: pequeno ganho spKtV eURR, poucos desfechos relevantes/risco de viés.72L adicionais em4h são dialisato, não todo consumo da instalação. Fluxo+60% não implica depuração+60%.",
+      "appeal": {
+        "argument": "Contexto já adequado e aumento rotineiro permite ponderar recursos sem proibir individualização. A opçãoD erra ao transformar falta de benefício demonstrado em ineficácia comprovada.",
+        "result": "Sem argumento decisivo residual na versão exata."
+      },
+      "duplicateAudit": {
+        "independentConclusion": "Busca dirigida e comparação dos OP: compartilhar PISCES não duplica desenho, segurança, desfecho e mediação. Água, entrega, emergência, modalidade e fluxo são decisões distintas."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "total": 19,
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "points": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2
+          }
+        ],
+        "reason": "Descontos próprios; factualidade útil recebe17, sem fingir integração avançada. Sem regra de comprimento que determine o gabarito."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta para escopo conferido",
+      "tree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório ou recurso decisivo, score17–19, aprovada; publicaçãoLIBERADA derivada apenas para os bytes e cards exatos.",
+      "implementation": "Preservar identidade/FSRS; arquivar original17.27 e cards anteriores nos quatro modos. Sem alterar respostas já avaliadas.",
+      "pendingVerification": []
+    }
+  ],
+  "cards": [
+    {
+      "id": "hemodiafe_2006",
+      "originalRevision": "sha256:3235de88fa579c801a24d08b8aaac2b52493d0c146fb610af514c9f2961c6508",
+      "after": {
+        "label": "HEMODIAFE — CVVHDF versus Hemodiálise Intermitente",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16876666/",
+        "journal": "Lancet. 2006;368(9533):379-385",
+        "ano": 2006,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Ensaio multicêntrico francês sobre modalidade dialítica na LRA com disfunção de múltiplos órgãos",
+        "icon": "🔬",
+        "resumo": "Ensaio multicêntrico randomizado em 360 pacientes críticos com lesão renal aguda e disfunção de múltiplos órgãos. Comparou hemodiálise intermitente protocolada com hemodiafiltração venovenosa contínua; não estudou diálise estendida. A sobrevida em 60 dias foi 32% com modalidade intermitente e 33% com contínua, sem diferença estatisticamente demonstrada.",
+        "conclusao": "Quando ambas são aplicadas com protocolos de tolerância e controle metabólico, CVVHDF e hemodiálise intermitente não demonstraram diferença de sobrevida no HEMODIAFE.",
+        "curiosidade": "Os dois grupos usaram a mesma membrana polimérica e tampão com bicarbonato; o ensaio forneceu orientações para tolerância hemodinâmica e remoção de solutos."
+      },
+      "afterRevision": "sha256:79ce2dc21720834623aea23c44630a2276379a8c0accc54fed3ffaa375d98e6f",
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "wholeCardReviewed": true,
+      "independentClaimChecks": "Abstract completo efetivamente lido, não o corpo. Os12campos não alegam recuperação renal, frio ou conexão isovolêmica.",
+      "otherConsumerBoundary": "A aprovação do card não aprova automaticamente as questões consumidoras não incluídas."
+    }
+  ]
+}

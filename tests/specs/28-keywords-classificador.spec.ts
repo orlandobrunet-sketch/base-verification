@@ -10,7 +10,7 @@ import { test, expect, Page } from '@playwright/test';
  * de tudo que é hipertensão, incluindo emergência hipertensiva e
  * hiperaldosteronismo.
  *
- * Estes cenários rodam o classificador real sobre as 742 questões e impedem
+ * Estes cenários rodam o classificador real sobre o banco ativo e impedem
  * que a situação regrida. Os limiares são tetos do estado atual, não metas
  * arbitrárias: apertam conforme a curadoria avança.
  *
@@ -74,10 +74,8 @@ test.describe('Classificador de competências', () => {
   test('a maioria das atribuições não cai mais no balde genérico', async ({ page }) => {
     await carregar(page);
     const r = await medir(page);
-    // Teto do estado atual (40%). Foi 43% antes dos dois temas novos, 49% antes
-    // da purga original. O teto acompanha a curadoria: cada tema alcançado tira
-    // questão do balde genérico e o número só desce.
-    expect(r.pct, `fallback em ${(r.pct * 100).toFixed(0)}% de ${r.total} atribuições`).toBeLessThanOrEqual(0.41);
+    // Teto de 41%, ante 43% antes dos dois temas novos e 49% antes da purga original.
+    expect(r.pct, `fallback em ${(r.pct * 100).toFixed(2)}% de ${r.total} atribuições`).toBeLessThanOrEqual(0.41);
   });
 
   test('nenhuma competência tem 100% das keywords mortas', async ({ page }) => {

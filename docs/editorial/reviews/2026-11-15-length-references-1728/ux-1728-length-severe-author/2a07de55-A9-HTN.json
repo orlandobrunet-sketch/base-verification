@@ -1,0 +1,396 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "2a07de55",
+  "family": "A9-HTN-seguranca",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Encefalopatia Hipertensiva — Redução Inicial da Pressão",
+    "qid": "2a07de55",
+    "q": "Paciente com pressão de 230/140 mmHg e encefalopatia hipertensiva, sem dissecção de aorta, gestação ou outra condição com meta específica, é admitido na UTI. Qual estratégia inicial é mais segura?",
+    "refs": [
+      "aha_acc_hypertension_2025"
+    ],
+    "opts": [
+      "Usar agente intravenoso de ação curta e titulável, reduzindo a pressão média em cerca de 20% a 25% na primeira hora e prosseguindo de forma gradual",
+      "Normalizar a pressão para menos de 120/80 mmHg nos primeiros 30 minutos",
+      "Administrar nifedipina sublingual para obter queda máxima e imediata",
+      "Reduzir pelo menos 50% da pressão na primeira hora com dose fixa de nitroprussiato"
+    ],
+    "ans": 0,
+    "exp": "Na encefalopatia hipertensiva sem uma condição que imponha meta própria, a pressão deve ser reduzida de modo controlado em ambiente intensivo, com agente intravenoso de ação curta e titulável, como nicardipina, clevidipina ou labetalol conforme o contexto. A meta inicial é redução aproximada de 20% a 25% da pressão arterial média na primeira hora, seguida de redução gradual nas horas seguintes. Normalização abrupta pode ultrapassar a autorregulação adaptada e precipitar isquemia cerebral, coronariana ou renal. Nifedipina sublingual e quedas fixas muito intensas são imprevisíveis e inseguras.",
+    "diff": "medium",
+    "cat": "hipertensao"
+  },
+  "originalSHA256": "sha256:5ff51d3294fc3bf66eb463c2e4b380b7986f470fb3e65592fd0b9570f3aa8881",
+  "originalRefs": [
+    {
+      "id": "aha_acc_hypertension_2025",
+      "original": {
+        "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+        "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+        "journal": "Circulation. 2025",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Hipertensão resistente, denervação renal, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
+        "icon": "📋",
+        "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Na denervação renal, recomenda avaliação multidisciplinar, exclusão de causas secundárias e contraindicações anatômicas e decisão compartilhada; os efeitos pressóricos são modestos e variáveis, a maioria dos trials exigiu TFGe de pelo menos 40 mL/min/1,73m² e não há ensaios de desfecho cardiovascular. Reconhece a apneia obstrutiva do sono como causa secundária; o CPAP pode reduzir modestamente a pressão e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável, com redução inicial conservadora em torno de 25% na primeira hora quando não há meta específica. Na resistência persistente sob IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista mineralocorticoide quando TFGe e potássio permitem. Na estenose renal aterosclerótica, prioriza tratamento clínico e reserva revascularização para cenários selecionados de alto risco.",
+        "conclusao": "Confirme resistência verdadeira e causas secundárias antes de quarta droga ou procedimento. Denervação renal é opção seletiva, de benefício pressórico modesto e decisão compartilhada; não substitui terapia otimizada. CPAP é adjuvante, emergências exigem infusão titulável sem normalização abrupta e revascularização renal permanece seletiva.",
+        "curiosidade": "Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
+      },
+      "originalSHA256": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Selecionar redução pressórica inicial controlada na encefalopatia hipertensiva, sem aplicar metas de outras emergências.",
+    "primaryCompetence": "Conduta inicial e segurança.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Correta reúne via, titulabilidade, intensidade e tempo, enquanto distratores são muito mais curtos e incluem condutas caricatas.",
+      "MENOR — Referência2025formula algoritmoempressãosistólica; explicitar a métrica evita atribuir slide dePASaPAM."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "aha",
+      "url": "https://professional.heart.org/-/media/PHD-Files-2/Science-News/Clinical-Slide-Series/2025-High-Blood-Pressure-Guideline-Clinical-Slides.pptx?sc_lang=en",
+      "access": "Apresentação clínica oficial primária da diretriz2025, baixada e lida, não resumo de terceiro",
+      "artifact": "aha-2025-official-clinical-slides.pptx",
+      "rawSHA256": "8c04b1ba69a010a5fa235eeaf9a6b83baffb4284d320b203a74c0c3235bb89f0",
+      "locators": [
+        "Slide9: excluir efeito do avental branco por medidas fora do consultório na resistência aparente.",
+        "Slide26: excluir pseudorresistência, revisar interferentes, rastrear causas secundárias e otimizar esquema antes da quarta droga.",
+        "Slide27: denervação adjunta classe2b, PA140–180/≥90 e TFGe≥40; equipe e decisão compartilhada classe1.",
+        "Slide29: emergência com lesão aguda, UTI; reduzir sistólica25% na primeira hora, depois<160/100–110 nas6horas seguintes e redução subsequente em24–48h."
+      ],
+      "limitations": [
+        "As tentativas de abrir o corpo principal AHA e JACC retornaram403. Não atribuo ao corpo não aberto a leitura dos slides oficiais. Para evitar confundir métricas, a proposta2a pergunta explicitamente pressão sistólica, como no slide29.",
+        "A recomendação deve ser individualizada pelo órgão-alvo e contexto; dissecção, gestação, feocromocitoma e evento cerebrovascular específico foram excluídos do cenário."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Redução sistólica inicial limitada a25%, seguida de redução gradual no cenário sem condição com alvo próprio.",
+      "source": "aha",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Encefalopatia Hipertensiva — Redução Inicial da Pressão",
+    "qid": "2a07de55",
+    "q": "Adulto com pressão de 230/140 mmHg e encefalopatia hipertensiva é tratado em unidade de terapia intensiva com anti-hipertensivo intravenoso titulável. Foram excluídos acidente vascular cerebral, dissecção de aorta, crise de feocromocitoma e gestação. Segundo o algoritmo da American Heart Association/American College of Cardiology de 2025, qual estratégia de redução da pressão sistólica é mais segura?",
+    "refs": [
+      "aha_acc_hypertension_2025"
+    ],
+    "opts": [
+      "Reduzir pelo menos 50% da pressão sistólica durante a primeira hora de tratamento.",
+      "Normalizar a pressão para menos de 120/80 mmHg ainda nos primeiros 30 minutos.",
+      "Limitar a queda sistólica a até 25% na primeira hora e depois reduzir gradualmente.",
+      "Adiar a redução pressórica por 24 horas, mesmo com encefalopatia persistente."
+    ],
+    "ans": 2,
+    "exp": "Na emergência hipertensiva com encefalopatia, a redução deve ser controlada e monitorada. O algoritmo oficial de 2025 orienta reduzir a pressão sistólica em até cerca de 25% na primeira hora; se estável, prosseguir para menos de 160/100–110 mmHg nas horas seguintes e continuar gradualmente nas próximas 24–48 horas. Normalização imediata ou queda de 50% pode causar hipoperfusão, enquanto aguardar sem tratar mantém a lesão de órgão-alvo. Esta é uma meta para o contexto descrito: eventos cerebrovasculares específicos, dissecção, gestação e outras emergências exigem protocolos próprios.",
+    "diff": "medium",
+    "cat": "hipertensao"
+  },
+  "proposedSHA256": "sha256:6dc073bf1204a953dd85a08a1314ed9199c4cf2528b8bdffd1e45fa3535e0b60",
+  "classificationAfter": {
+    "op": "Selecionar redução pressórica inicial controlada na encefalopatia hipertensiva, sem aplicar metas de outras emergências.",
+    "primaryCompetence": "Conduta inicial e segurança.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "aha_acc_hypertension_2025",
+      "original": {
+        "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+        "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+        "journal": "Circulation. 2025",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Hipertensão resistente, denervação renal, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
+        "icon": "📋",
+        "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Na denervação renal, recomenda avaliação multidisciplinar, exclusão de causas secundárias e contraindicações anatômicas e decisão compartilhada; os efeitos pressóricos são modestos e variáveis, a maioria dos trials exigiu TFGe de pelo menos 40 mL/min/1,73m² e não há ensaios de desfecho cardiovascular. Reconhece a apneia obstrutiva do sono como causa secundária; o CPAP pode reduzir modestamente a pressão e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável, com redução inicial conservadora em torno de 25% na primeira hora quando não há meta específica. Na resistência persistente sob IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista mineralocorticoide quando TFGe e potássio permitem. Na estenose renal aterosclerótica, prioriza tratamento clínico e reserva revascularização para cenários selecionados de alto risco.",
+        "conclusao": "Confirme resistência verdadeira e causas secundárias antes de quarta droga ou procedimento. Denervação renal é opção seletiva, de benefício pressórico modesto e decisão compartilhada; não substitui terapia otimizada. CPAP é adjuvante, emergências exigem infusão titulável sem normalização abrupta e revascularização renal permanece seletiva.",
+        "curiosidade": "Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
+      },
+      "originalSHA256": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55",
+      "proposed": {
+        "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+        "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+        "journal": "Circulation. 2025",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Confirmar resistência; denervação é opção adjunta seletiva e de decisão compartilhada",
+        "icon": "📋",
+        "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, confirmar medidas fora do consultório, adesão, fármacos interferentes e causas secundárias. Segundo o material clínico oficial, denervação renal pode ser considerada como adjunta a medicamentos e estilo de vida (classe 2b) em adultos selecionados com pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e taxa de filtração glomerular estimada ≥40 mL/min/1,73 m², apesar de terapia otimizada ou intolerância a fármacos. Exige avaliação por equipe multidisciplinar e decisão compartilhada (classe 1).",
+        "conclusao": "A recomendação é para redução da pressão em pacientes selecionados, mantendo tratamento clínico e avaliação especializada; não autoriza uso automático nem retirada de medicações.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+      "sourceIDs": [
+        "aha"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Defender normalização imediata pela gravidade ignora risco de hipoperfusão. Defender observação24h confundiria emergência com hipertensão grave sem lesão aguda. Os cenários com meta específica foram excluídos."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20: aplicação segura de meta fornecida por diretriz. Distratores representam excesso de intensidade ou atraso, embora dois sejam extremos e limitem discriminação. Não há número de estudo para memorizar.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

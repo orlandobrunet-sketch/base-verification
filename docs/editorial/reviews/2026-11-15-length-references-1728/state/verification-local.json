@@ -1,0 +1,187 @@
+{
+  "schema": "NQ_1728_LOCAL_VERIFICATION_CANDIDATE_v1",
+  "date": "2026-11-16T04:22:15.591Z",
+  "status": "LOCAL_VERIFIED_NOT_COMMITTED_OR_PUBLISHED",
+  "sourceBase": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "node": {
+    "command": "node --test --test-concurrency=2 [all eight CI quality directories]",
+    "counts": {
+      "tests": 643,
+      "pass": 643,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "report": "ux-1728-root/node-quality-final.log",
+    "rawSHA256": "cb91b258ec96acc77154c9a3ede66bfbc0d1549411678c82be66dca5391a0cf6"
+  },
+  "native": {
+    "report": "ux-1728-reference-duplicates/e2e-final-catalog-run-4.json",
+    "rawSHA256": "1d2f804a1a24ab18c4ed0f902435241891620934535a8f8578ef61b112a4c506",
+    "stats": {
+      "startTime": "2026-11-16T03:44:18.092Z",
+      "duration": 257778.012,
+      "expected": 22,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "attempts": 22,
+    "retries": 0,
+    "profiles": [
+      "chromium",
+      "mobile"
+    ],
+    "scope": "Final library/history/locks/favorites/earned-chest and missing-catalog recovery; CI must still verify the complete suite."
+  },
+  "technicalReceipt": {
+    "path": "ux-1728-reference-duplicates/implementation-receipt-v4.json",
+    "rawSHA256": "6278fc5eafbdf6d0fd79b1d260c63e0d1fb509a60b49dff8b7c299bd0ec608a5"
+  },
+  "runtimeFiles": [
+    {
+      "file": "index.html",
+      "rawSHA256": "1a814a0849b8bce8760bf7958835e1b9ea8cbefd9363164c6a1cabadfda94176",
+      "lfSHA256": "501585c4d74493b810f62e389be240a2c5fa80ed3687adeccea486c830069d3f"
+    },
+    {
+      "file": "jogar/index.html",
+      "rawSHA256": "f8c91ae696a0bee0cd68de60f43ed42bd270744fac16356a64653c147a34e49e",
+      "lfSHA256": "4f1ed9ebc3125982214f23513a25728cd42e4a9ab7ffbd5f2bf18e1da60629e5"
+    },
+    {
+      "file": "offline.html",
+      "rawSHA256": "1e896289749b268e4a4b4f8d42392c6197858657deacdebf6e938849966b5d31",
+      "lfSHA256": "93b202431729cb15164a270fb069a4396f6119d9f7ae90e4458af9363202d300"
+    },
+    {
+      "file": "style.css",
+      "rawSHA256": "ab849ffb7e418d1d48c2c80b2965b2250f57ccde2e911125df51037b0deb729a",
+      "lfSHA256": "e724d1cc3479aa76d2fdfeb296fcd994fe9770fda86f8bd4509fc3a11b9bdac0"
+    },
+    {
+      "file": "sw.js",
+      "rawSHA256": "fc136f2651eab777bf60233a62aad051692f95a0d2cf84af20369566711b1748",
+      "lfSHA256": "66133073fb1ed1d6ac3c84ed476e71c5b74f81dea375f545b31b7ce0525d17ad"
+    },
+    {
+      "file": "version.json",
+      "rawSHA256": "64cdd2189debc6b5db0d470bc6b9cd5b3d2adf8c6c1f6c7c23c96c3362fc4276",
+      "lfSHA256": "64cdd2189debc6b5db0d470bc6b9cd5b3d2adf8c6c1f6c7c23c96c3362fc4276"
+    },
+    {
+      "file": "data/articles.js",
+      "rawSHA256": "6537e13be03b81feafe661f52fee6d56058bc15a55c702d8b18d7e319b0fcdf3",
+      "lfSHA256": "6537e13be03b81feafe661f52fee6d56058bc15a55c702d8b18d7e319b0fcdf3"
+    },
+    {
+      "file": "data/topics.js",
+      "rawSHA256": "20e2d95131876c3cfc6d91472af003a8049f60d89f0007361c0a7e2f5b4b8132",
+      "lfSHA256": "20e2d95131876c3cfc6d91472af003a8049f60d89f0007361c0a7e2f5b4b8132"
+    },
+    {
+      "file": "data/refs.js",
+      "rawSHA256": "2b0a6844667057ad36ee784aac5e500fe326417ff60bebb58794eccc4db38a62",
+      "lfSHA256": "2b0a6844667057ad36ee784aac5e500fe326417ff60bebb58794eccc4db38a62"
+    },
+    {
+      "file": "data/question-revision-history.js",
+      "rawSHA256": "91e2a614df372a567901576c76188cba03cd750b8bca999ad577758e13fb7546",
+      "lfSHA256": "91e2a614df372a567901576c76188cba03cd750b8bca999ad577758e13fb7546"
+    },
+    {
+      "file": "data/question-revision-manifest.js",
+      "rawSHA256": "daa77e54896dcb6b0f4293e4db06e2b8c2542f36452327f064799030551b63d2",
+      "lfSHA256": "daa77e54896dcb6b0f4293e4db06e2b8c2542f36452327f064799030551b63d2"
+    },
+    {
+      "file": "data/question-source-positions.js",
+      "rawSHA256": "effb5fca98b30c1aa1704e026649f02e419e609b42fb8d815f69007a585b70c3",
+      "lfSHA256": "effb5fca98b30c1aa1704e026649f02e419e609b42fb8d815f69007a585b70c3"
+    },
+    {
+      "file": "data/question-replacements.json",
+      "rawSHA256": "45192ed96fab3042472fedcb9c0acd17327374e343c1a74dff3330c7a5b88b1f",
+      "lfSHA256": "45192ed96fab3042472fedcb9c0acd17327374e343c1a74dff3330c7a5b88b1f"
+    },
+    {
+      "file": "js/achievements.js",
+      "rawSHA256": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d",
+      "lfSHA256": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d"
+    },
+    {
+      "file": "js/dashboard.js",
+      "rawSHA256": "83d23509d090ff903c866f78c840be72a994233a96751d432d444719e4a18893",
+      "lfSHA256": "8393b795b259328139272fa8a27df398ff4b0a85e1d627c2a49b6391c15cf987"
+    },
+    {
+      "file": "js/game.js",
+      "rawSHA256": "a8350dd0e80eb67e27aaba40a0f99389a90e47f70a96f7fc53bffd98413b5795",
+      "lfSHA256": "f13e8fc5f0e843bedf3af5cfbd6b36df712791f29b5669b5ccd933e6ce429326"
+    },
+    {
+      "file": "js/utils.js",
+      "rawSHA256": "e0f7a44451415cf2fca1a591677f6d514bd324d20dc0a7fdfe5edd39c7d9412c",
+      "lfSHA256": "bbbcb25a52ee9e95ec64aaee3cd764569ef908f9f48878a5cc846cb3269de255"
+    },
+    {
+      "file": "js/library-catalog.js",
+      "rawSHA256": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822",
+      "lfSHA256": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822"
+    },
+    {
+      "file": "data/competencies.js",
+      "rawSHA256": "ca49e55a9a556385524b61583647494acafacab513610ec3a6fd5ebaebc8b318",
+      "lfSHA256": "f8feb71af206e07ab5075c0ead12ae07420aaba0b751834214c3b303d47f54c4"
+    }
+  ],
+  "limits": [
+    "These are local source snapshots, not proof of publication.",
+    "The163 targeted unit checks and independent50-unit checks overlap this643-test suite; they are not added as unique tests.",
+    "Previously failed developer tests remain recorded separately, with causal fixture/product fixes.",
+    "The final54-case UI fixture review is tracked independently; no success is inferred here.",
+    "The643Node suite preceded the final index.html counter correction; all JS/data files stayed identical, and the affected landing test then passed2/2R0."
+  ],
+  "landingCounterFix": {
+    "problem": "Independent final review found landing741 vs currentbank725; display corrected, no medicaldatachange.",
+    "report": "ux-1728-root/native-final-landing-count-r2.json",
+    "rawSHA256": "4978498ad81ae0851808dd5fed3daec6e8b529daaa434b98432c706711d745a5",
+    "stats": {
+      "startTime": "2026-11-16T04:21:16.212Z",
+      "duration": 4865.677000000001,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "retries": 0
+  },
+  "resumeVerification": {
+    "node": {
+      "pass": 646,
+      "fail": 0,
+      "skip": 0,
+      "rawSHA256": "4f6d84bbe4a42436afbe861c9aba242a8e25a2a9b1127c91ab3eaa7c406321d1"
+    },
+    "priorCI": {
+      "run1102": 43941232413,
+      "run1103": 43943007273,
+      "failedE2E": [
+        87,
+        88
+      ],
+      "passingJobs": [
+        "Quality Gates",
+        "PostgreSQL",
+        "Smoke E2E",
+        "Entry protocol diagnostics"
+      ]
+    },
+    "corrections": [
+      "Landing count shows 725 active questions.",
+      "Competency classifier recognizes expanded clinical terms, generic assignments 309/745 to 294/746.",
+      "Browser fixtures follow versioned URLs, distinct works vs variants and authentic saved study states."
+    ],
+    "limits": "These are local checks. The completed prior CI failures are preserved; final remote CI on the updated candidate remains required."
+  }
+}

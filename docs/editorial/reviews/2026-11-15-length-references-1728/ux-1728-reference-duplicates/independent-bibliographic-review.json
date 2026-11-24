@@ -1,0 +1,821 @@
+{
+  "schema": "NQ_INDEPENDENT_BIBLIOGRAPHIC_REPAIR_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/editorial_backlog_1728",
+  "productionWrites": false,
+  "authorPackage": {
+    "file": "bibliographic-author-A13.json",
+    "rawSHA256": "d09cd7cc4442983967daa37b425f0e9f5d9773f1b07a6fa266378b79002de658"
+  },
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "sources": {
+    "C": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8413456/",
+      "doi": "10.1056/NEJM199311113292004",
+      "pmid": "8413456",
+      "mode": "Registro NLM EFetch oficial HTTP200 obtido independentemente, metadados e abstract integral lidos.",
+      "proof": "independent-bibliographic/primary-pubmed.xml",
+      "rawSHA256": "87f5621524c64a5b832289c075705ac3dad1b99b8380cec28c439c856f086990",
+      "locators": [
+        "Methods: DM1, proteinúria≥500, creatinina≤2,5, mediana3anos, randomizado placebo",
+        "Results:25/207 vs43/202,48%,P0,007; composto50% independente de pequena diferença de PA"
+      ],
+      "limit": "NEJM completo não foi aberto; só são mantidas afirmações que o abstract integral e a bula específica sustentam."
+    },
+    "L": {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6c16b805-ba1e-4da8-861c-081e843fdd1c",
+      "mode": "Bula profissional oficial integral efetivamente aberta; arquivo autoral congelado relido.",
+      "proof": "captopril-label.html no pacote autoral",
+      "rawSHA256": "d2d720003c41f7cea7d0b73e8a843328fe94dacb98a634984c0860854cd432e2",
+      "locators": [
+        "Descrição: comprimidos para via oral",
+        "ClinicalPharmacology linha226: mesmo estudo409,25mg3vezes/dia e mediana3anos",
+        "Hyperkalemia linhas330–333:retirada2%(4/207) no ensaio de DM1 proteinúrica"
+      ],
+      "limit": "A bula relata51% em sua análise de desfechos; NÃO é usada para substituir os48%/50% do artigo. Dados de segurança são atribuídos explicitamente à bula. Atualizada15/01/2021, publicação no arquivo19/01/2021, revisão clínica impressa04/2018."
+    },
+    "M": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8114857/",
+      "doi": "10.1056/NEJM199403313301301",
+      "pmid": "8114857",
+      "mode": "NLM EFetch independente HTTP200 + reprint integral oficial NIDDK aberto e lido localmente.",
+      "proof": "mdrd-1994-niddk.pdf no pacote autoral; independent-bibliographic/mdrd-1994-pages.json",
+      "rawSHA256": "928821ff6c867ad873d763e012cc5beb5f5350071f91e2b2bc6bfd5b2d0b456a",
+      "primaryPDFURL": "https://repository.niddk.nih.gov/public/study_document/Documentation/Descriptive/FINAL_Analysis_Integrity_Dec14_2005.pdf",
+      "locators": [
+        "PDF18 identifica Anexo3/reprint NEJM1994, não estudo novo2005",
+        "PDF19–22:840/585/255,TFG25–55 e13–24,metas107/92,seguimento2,2anos,modelos/desfechos",
+        "PDF23:queda inicial4meses e fases posteriores; dieta sem interação por proteinúria, BP com interação",
+        "PDF24:estudo2 diferença0,8mL/min/ano IC−0,1a1,8 P0,07; mortes/stoppingpoints",
+        "PDF25:limites globais/subgrupos/seguimento"
+      ],
+      "limit": "A publicação1994 é intervenção, distinta da equação1999. Não é diretriz atual nem análise estendida1997. O PDF é cópia oficial congelada; acesso web direto do revisor retornou403, acesso autoralHTTP200 e hash conferido pelo revisor."
+    },
+    "E": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10075613/",
+      "doi": "10.7326/0003-4819-130-6-199903160-00002",
+      "pmid": "10075613",
+      "mode": "NLM EFetch independente HTTP200, metadados e abstract integral lidos.",
+      "proof": "independent-bibliographic/primary-pubmed.xml",
+      "rawSHA256": "87f5621524c64a5b832289c075705ac3dad1b99b8380cec28c439c856f086990",
+      "locators": [
+        "Design/Patients:transversal1628,treino1070,validação558",
+        "Results:seis variáveis,90,3% variância logTFG;CrCl+19%,CG+16%",
+        "Conclusion:acurácia na população estudada"
+      ],
+      "limit": "Texto integral externo não abriu; todos os números e características mantidos constam do abstract primário integral. Não aprovar superioridade universal ou coeficiente racial atual."
+    },
+    "A85": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2993362/",
+      "doi": "10.1172/JCI112013",
+      "pmid": "2993362",
+      "mode": "NLM EFetch independente HTTP200, metadados e abstract integral lidos.",
+      "proof": "independent-bibliographic/primary-pubmed.xml",
+      "rawSHA256": "87f5621524c64a5b832289c075705ac3dad1b99b8380cec28c439c856f086990",
+      "locators": [
+        "Quatro grupos de ratos com ablação, enalapril ou sem tratamento",
+        "Micropunção4semanas/lesões8semanas em grupos distintos",
+        "Gradiente capilar normal sem perda significativa deSNGFR/fluxo;proteinúria/lesões limitadas"
+      ],
+      "limit": "PMC aberto é digitalização sem corpo JATS; não alego leitura integral do artigo. A nova síntese contém só fatos explícitos no abstract primário, sem história da hipótese ou barreira mecânica não comprovadas."
+    },
+    "A86": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3011863/",
+      "doi": "10.1172/JCI112528",
+      "pmid": "3011863",
+      "mode": "NLM EFetch independente HTTP200, metadados e abstract integral lidos.",
+      "proof": "independent-bibliographic/primary-pubmed.xml",
+      "rawSHA256": "87f5621524c64a5b832289c075705ac3dad1b99b8380cec28c439c856f086990",
+      "locators": [
+        "Seis grupos de ratos, enalapril vs não tratado e reserpina/hidralazina/HCTZ",
+        "Micropunção4semanas e seguimento12semanas em grupos distintos",
+        "Ambos controlam PA sistêmica; somente enalapril controla gradiente glomerular e lesão"
+      ],
+      "limit": "Experimento1986 distinto do1985; sem ensaio em humanos ou BRA. Corpo integral não aberto, síntese limitada ao abstract primário."
+    }
+  },
+  "reviews": [
+    {
+      "record": "ref:lewis_ieca_dn_1993",
+      "kind": "reference",
+      "id": "lewis_ieca_dn_1993",
+      "original": {
+        "beforeRevision": "sha256:d84bbc3904ff9c0d287a7652386245393df01f4b091a029f19009ee6b71505a5",
+        "literal": {
+          "label": "Lewis EJ et al. — Captopril in Diabetic Nephropathy (NEJM 1993)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJM199311253292103",
+          "journal": "N Engl J Med 1993;329(20):1456-1462",
+          "ano": 1993,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Captopril ↓50% risco de duplicar creatinina em nefropatia diabética — primeiro RCT de nefroproteção com IECA",
+          "icon": "🔬",
+          "resumo": "ECR multicêntrico (n=409), em DM1 com nefropatia estabelecida, proteinúria >500 mg/dia e creatinina sérica ≤2,5 mg/dL, comparando captopril 25 mg 3x/dia vs placebo. O desfecho primário foi duplicação da creatinina sérica: 12,1% no grupo captopril vs 21,3% no placebo, com redução de risco de aproximadamente 48% (P=0,007). O composto de morte, diálise ou transplante também foi reduzido, e o benefício excedeu o esperado apenas pela diferença pressórica.",
+          "conclusao": "O trial de Lewis demonstrou que IECA protege rim em nefropatia diabética do DM1 com proteinúria, consolidando o bloqueio do SRAA como eixo histórico da nefroproteção.",
+          "curiosidade": "Este estudo ajudou a deslocar o tratamento da nefropatia diabética de simples controle pressórico para bloqueio específico do SRAA, reforçando a proteinúria como marcador de atividade e risco de progressão renal."
+        }
+      },
+      "proposed": {
+        "label": "Lewis EJ et al. — Captopril in Diabetic Nephropathy (NEJM 1993)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJM199311113292004",
+        "journal": "N Engl J Med 1993;329(20):1456-1462",
+        "ano": 1993,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Captopril reduziu o risco de duplicação da creatinina na nefropatia diabética tipo 1 estudada.",
+        "icon": "🔬",
+        "resumo": "Ensaio clínico randomizado multicêntrico (n=409), em diabetes tipo 1 com nefropatia estabelecida, proteinúria ≥500 mg/dia e creatinina sérica ≤2,5 mg/dL, comparando captopril 25 mg por via oral três vezes ao dia versus placebo, por seguimento mediano de três anos. O desfecho primário foi duplicação da creatinina sérica: 12,1% no grupo captopril versus 21,3% no placebo, com redução de risco de 48% (P=0,007). O composto de morte, diálise ou transplante também foi reduzido, e o benefício excedeu o esperado apenas pela diferença pressórica.",
+        "conclusao": "Captopril reduziu a deterioração renal na população estudada de diabetes tipo 1 com nefropatia proteinúrica. A redução do desfecho primário de duplicação da creatinina foi distinta da redução do composto de morte, diálise ou transplante.",
+        "curiosidade": "A redução de 48% refere-se à duplicação da creatinina; a de 50%, ao composto de morte, diálise ou transplante. Nenhuma delas significa redução de mortalidade isolada."
+      },
+      "proposedRevision": "sha256:0cea65aaca1a04513bfb19990f0f2254f25531aa3a6627b2581be3756bbac776",
+      "sourceIDs": [
+        "C",
+        "L"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "DOI errado e impacto50% para desfecho primário (artigo48%); proteinúria> em vez de≥, primeiroRCT sem verificação. Corrigir identidade não bastava para aprovar o corpo.",
+      "claimsVerified": [
+        "Identidade NEJM329(20):1456–1462,11/11/1993,PMID8413456 e DOI correto.",
+        "409,DM1,proteinúria≥500,Cr≤2,5;25mg oral3x/dia e mediana3anos.",
+        "12,1/21,3% são25/207 e43/202.48%é redução relatada pelo modelo do artigo, não arredondamento do risco bruto;P0,007.",
+        "50%é composto morte/diálise/transplante, não mortalidade isolada. Conclusão limita a captopril/população estudada."
+      ],
+      "advogadoDoRecurso": "Não transformar resultado de DM1 proteinúrica em recomendação universal de IECA/BRA, nem usar51%da bula como se fosse48%do primário. O card reparado identifica corretamente os dois efeitos; sem afirmação de primeiroRCT.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": false,
+        "preserveReferenceId": true,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": null
+      }
+    },
+    {
+      "record": "article:5",
+      "kind": "article",
+      "index": 5,
+      "original": {
+        "beforeRevision": "sha256:b06653046eec38cd9fb9c0192301e92bc7ade9bcea5a7cb5b113717ac44f6174",
+        "literal": {
+          "titulo": "Nefroproteção com IECA",
+          "autores": "Anderson S, Rennke HG, Brenner BM",
+          "jornal": "J Clin Invest 1986;77(6):1993-2000",
+          "resumo": "Demonstração experimental de que a redução da pressão intraglomerular via bloqueio do SRAA limitou esclerose glomerular e proteinúria independentemente da PA sistêmica.",
+          "conclusao": "A hemodinâmica glomerular é alvo terapêutico independente. IECA protegem o rim além do efeito anti-hipertensivo.",
+          "curiosidade": "Base conceitual da nefroproteção moderna! IECA/BRA não são apenas anti-hipertensivos, são nefroprotetores.",
+          "ano": 1986,
+          "impacto": "Fundamento da nefroproteção farmacológica",
+          "raridade": "épico"
+        }
+      },
+      "proposed": {
+        "titulo": "Nefroproteção com enalapril em modelo experimental (1986)",
+        "autores": "Anderson S, Rennke HG, Brenner BM",
+        "jornal": "J Clin Invest. 1986;77(6):1993–2000. DOI: 10.1172/JCI112528",
+        "resumo": "Estudo experimental em seis grupos de ratos com ablação renal, comparando ausência de tratamento, enalapril e terapia tripla com reserpina, hidralazina e hidroclorotiazida. A micropunção ocorreu em quatro semanas; outros grupos foram acompanhados por 12 semanas. Enalapril e terapia tripla controlaram a pressão sistêmica, mas somente enalapril manteve a pressão capilar glomerular próxima do normal e limitou proteinúria e lesões glomerulares. Não foi um ensaio em pessoas nem uma comparação com bloqueadores do receptor de angiotensina.",
+        "conclusao": "Neste modelo de ratos com massa renal reduzida, controle semelhante da pressão sistêmica não produziu proteção glomerular equivalente. O resultado não demonstra benefício clínico universal de uma classe em seres humanos.",
+        "curiosidade": "A comparação com terapia tripla permitiu distinguir controle da pressão sistêmica e controle da pressão capilar glomerular no modelo experimental.",
+        "ano": 1986,
+        "impacto": "Pressão sistêmica e glomerular tiveram respostas distintas no modelo de ratos.",
+        "raridade": "épico"
+      },
+      "proposedRevision": "sha256:cc931be8f5d7b2c0897e73237dabff804099c8d769b2b72ef8c8da31001cb26b",
+      "sourceIDs": [
+        "A86"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Extrapolação humana/classe IECA-BRA não testada e prosa promocional no corpo legado. Novo resumo foi necessário, não mera correção de metadados.",
+      "claimsVerified": [
+        "Obra1986/PMID3011863/DOI112528; autoresAnderson,Rennke,Brenner.",
+        "Seisgrupos/ablação;enalapril/não tratado/terapia triplareserpina-hidralazina-HCTZ;4/12semanas.",
+        "Dissociação PA sistêmica/pressão glomerular e lesões exatamente no modelo de ratos.",
+        "Sem extrapolar a humanos,BRA ou efeito universal de classe."
+      ],
+      "advogadoDoRecurso": "A intervenção animal permite descrever efeito experimental, não prescrever enalapril a toda redução de néfrons. A limitação é explícita e o comparador é o de1986, não o de1985.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "épico"
+      }
+    },
+    {
+      "record": "article:117",
+      "kind": "article",
+      "index": 117,
+      "original": {
+        "beforeRevision": "sha256:62f8679a2f86b1016d733109e32510c7d094917575284ef625afa62b228a37ec",
+        "literal": {
+          "titulo": "Control of Glomerular Hypertension Limits Glomerular Injury",
+          "autores": "Brenner BM et al.",
+          "jornal": "J Clin Invest 1986;77(6):1993-2000",
+          "resumo": "Demonstração experimental do conceito de que a redução da pressão intraglomerular limita a esclerose e protege o néfron contra hiperfiltração adaptativa após perda de massa renal.",
+          "conclusao": "A redução da hipertensão glomerular via bloqueio de angiotensina II preserva a barreira mecânica e retarda a esclerose residual.",
+          "curiosidade": "Barry M. Brenner desenvolveu a famosa hipótese da hiperfiltração glomerular, sugerindo que a perda de néfrons causa sobrecarga mecânica adaptativa nos néfrons restantes.",
+          "ano": 1988,
+          "impacto": "Base conceitual de toda a terapia de nefroproteção hemodinâmica moderna.",
+          "raridade": "lendário"
+        }
+      },
+      "proposed": {
+        "titulo": "Control of glomerular hypertension limits glomerular injury in rats with reduced renal mass",
+        "autores": "Anderson S, Meyer TW, Rennke HG, Brenner BM",
+        "jornal": "J Clin Invest. 1985;76(2):612–619. DOI: 10.1172/JCI112013",
+        "resumo": "Estudo experimental em quatro grupos de ratos após ablação renal. Dois grupos receberam enalapril na água e dois ficaram sem tratamento específico. Na avaliação de quatro semanas, enalapril preveniu hipertensão sistêmica e manteve o gradiente de pressão capilar glomerular próximo do normal, sem redução significativa da filtração por néfron ou do fluxo plasmático glomerular em relação ao grupo não tratado. Em oito semanas, limitou o desenvolvimento de proteinúria e de lesões glomerulares, incluindo esclerose segmentar.",
+        "conclusao": "O controle da hipertensão glomerular com enalapril limitou a lesão renal neste modelo de ablação em ratos. O experimento não estabelece uma conduta clínica para todos os pacientes com perda de néfrons.",
+        "curiosidade": "As medidas por micropunção em quatro semanas e a avaliação das lesões em oito semanas foram feitas em grupos distintos do experimento.",
+        "ano": 1985,
+        "impacto": "Relacionou hipertensão glomerular e lesão progressiva em ratos com massa renal reduzida.",
+        "raridade": "lendário"
+      },
+      "proposedRevision": "sha256:e322bd568ee8baa96be469394585aa0f44920adc93372791cc397d3ea8318435",
+      "sourceIDs": [
+        "A85"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Mistura de ano1988/citação1986/título1985; alegações de barreira mecânica e história da hipótese não sustentadas pelo acesso. Corpo reparado sem herdá-las.",
+      "claimsVerified": [
+        "Obra1985/PMID2993362/DOI112013; título completo e4autores corretos.",
+        "Quatrogrupos,enalaprilnaágua/não tratado,4/8semanas; não comparação tripla.",
+        "Gradiente capilar normal sem comprometer significativamenteSNGFR/fluxo vsnão tratado;limitouproteinúria/lesões.",
+        "Grupos de micropunção e lesão são distintos; sem recomendação universal humana."
+      ],
+      "advogadoDoRecurso": "Não é duplicata do1986; ambos compartilham modelo/tema mas intervenções comparadoras e publicação são distintas. Dados4/8não devem receber12semanasdo outro ensaio.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "lendário"
+      }
+    },
+    {
+      "record": "article:7",
+      "kind": "article",
+      "index": 7,
+      "original": {
+        "beforeRevision": "sha256:9ba8bc97c7166bd28becbd3ee15d15cab58bd493bbac790d190437c35d77a7e2",
+        "literal": {
+          "titulo": "MDRD Study",
+          "autores": "Klahr S, Levey AS, Beck GJ et al.",
+          "jornal": "N Engl J Med 1994;330(13):877-884. DOI: 10.1056/NEJM199403313301301",
+          "resumo": "MDRD (1994): n=840 em dois ensaios randomizados, comparando restrição proteica e metas pressóricas usual vs mais baixa em doença renal crônica, por seguimento médio de 2,2 anos. No estudo 1, n=585, o declínio projetado da TFG em três anos não diferiu significativamente entre grupos. No estudo 2, n=255, dieta muito hipoproteica com suplemento vs hipoproteica apresentou diferença de 0,8 mL/min/ano no declínio da TFG (IC 95% −0,1 a 1,8; P=0,07). Não houve diferença significativa em mortes ou critérios de interrupção entre grupos. Os resultados não demonstram benefício global inequívoco das estratégias; sinais relacionados à proteinúria devem ser distinguidos da análise principal. NEJM.",
+          "conclusao": "Distinguir análise global, fase inicial de queda da TFG e subgrupos. Este ensaio não estabelece sozinho uma meta pressórica atual para todo paciente com DRC.",
+          "curiosidade": "A publicação de 1994 avalia intervenções; não deve ser confundida com o artigo posterior de desenvolvimento da equação MDRD.",
+          "ano": 1994,
+          "impacto": "Interpretação de resultados globais e subgrupos em DRC",
+          "raridade": "épico"
+        }
+      },
+      "proposed": {
+        "titulo": "MDRD Study",
+        "autores": "Klahr S, Levey AS, Beck GJ et al.",
+        "jornal": "N Engl J Med 1994;330(13):877-884. DOI: 10.1056/NEJM199403313301301",
+        "resumo": "MDRD (1994): n=840 em dois ensaios randomizados, comparando restrição proteica e metas pressóricas usual vs mais baixa em doença renal crônica, por seguimento médio de 2,2 anos. No estudo 1, n=585, o declínio projetado da TFG em três anos não diferiu significativamente entre grupos. No estudo 2, n=255, dieta muito hipoproteica com suplemento vs hipoproteica apresentou diferença de 0,8 mL/min/ano no declínio da TFG (IC 95% −0,1 a 1,8; P=0,07). Não houve diferença significativa em mortes ou critérios de interrupção entre grupos. Os resultados não demonstram benefício global inequívoco das estratégias; sinais relacionados à proteinúria devem ser distinguidos da análise principal. NEJM.",
+        "conclusao": "Distinguir análise global, fase inicial de queda da TFG e subgrupos. Este ensaio não estabelece sozinho uma meta pressórica atual para todo paciente com DRC.",
+        "curiosidade": "A publicação de 1994 avalia intervenções; não deve ser confundida com o artigo posterior de desenvolvimento da equação MDRD.",
+        "ano": 1994,
+        "impacto": "Interpretação de resultados globais e subgrupos em DRC",
+        "raridade": "épico"
+      },
+      "proposedRevision": "sha256:9ba8bc97c7166bd28becbd3ee15d15cab58bd493bbac790d190437c35d77a7e2",
+      "sourceIDs": [
+        "M"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Corpo legado preservado e agora reavaliado integralmente contra primário; sem herdar gate de inventário bibliográfico.",
+      "claimsVerified": [
+        "RCTintervenções840em585/255,2,2anos,comparadoresdietéticos e pressóricos.",
+        "Estudo1declínioprojetado3anosnãosignificativo;estudo2diferença0,8/IC−0,1a1,8/P0,07.",
+        "AdverseEventsPDF24sustenta ausência de diferença significativa em mortes/stoppingpoints, não ausência de risco.",
+        "Análise global/fases/subgrupos distintos; sem meta pressórica atual universal."
+      ],
+      "advogadoDoRecurso": "A unidade0,8mL/min/anoé a usada na análise de slopes sem ajusteBSA descrita nosMethods; não introduzir /1,73m² por reflexo. Estudo2não tem braço dieta usual, logo não refuta toda restrição proteica.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "épico"
+      }
+    },
+    {
+      "record": "article:122",
+      "kind": "article",
+      "index": 122,
+      "original": {
+        "beforeRevision": "sha256:3ade42131a8dd5a81463e09d2a083e798e737db9766ea787b7fee2ee56f9c57e",
+        "literal": {
+          "titulo": "The Effect of Dietary Protein Restriction and BP Control on CKD",
+          "autores": "MDRD Study Group; Klahr S.",
+          "jornal": "N Engl J Med 1994;330(13):877-884",
+          "resumo": "Estudo clínico central (Modification of Diet in Renal Disease) avaliando o efeito de dieta hipoproteica e controle de PA na progressão da DRC crônica.",
+          "conclusao": "A restrição proteica e metas de PA mais baixas retardam o declínio de TFG em subgrupos selecionados com proteinúria marcante.",
+          "curiosidade": "Apesar dos resultados primários neutros, o banco de dados do estudo deu origem à fórmula MDRD para cálculo de TFG estimada.",
+          "ano": 1991,
+          "impacto": "Desenvolvimento do MDRD e elucidação da restrição proteica na DRC.",
+          "raridade": "épico"
+        }
+      },
+      "proposed": {
+        "titulo": "MDRD — Restrição proteica e controle da pressão (1994)",
+        "autores": "Klahr S, Levey AS, Beck GJ et al.",
+        "jornal": "N Engl J Med. 1994;330(13):877–884. DOI: 10.1056/NEJM199403313301301",
+        "resumo": "O ensaio Modification of Diet in Renal Disease (MDRD), publicado em 1994, randomizou 840 pessoas com doença renal crônica em dois estudos de dieta e pressão arterial. No estudo 1, 585 participantes com taxa de filtração glomerular (TFG) de 25–55 mL/min/1,73 m² receberam dieta usual ou hipoproteica; no estudo 2, 255 com TFG de 13–24 receberam dieta hipoproteica ou muito hipoproteica suplementada. Ambos compararam metas pressóricas usual e mais baixa, com seguimento médio de 2,2 anos. O declínio projetado da TFG no estudo 1 não diferiu significativamente entre dietas; no estudo 2, a diferença dietética também não foi significativa (P=0,07). O sinal relacionado à maior proteinúria basal foi da intervenção pressórica e não deve ser atribuído à restrição proteica. Mortes e critérios de interrupção não diferiram significativamente entre grupos.",
+        "conclusao": "A análise global não demonstrou benefício renal inequívoco das estratégias dietéticas. A associação entre proteinúria basal e resposta à meta pressórica mais baixa é uma análise distinta, que não comprova benefício dietético no mesmo subgrupo.",
+        "curiosidade": "O relatório de intervenções de 1994 é uma obra diferente do artigo de 1999 que desenvolveu uma equação de estimativa da TFG com dados do MDRD.",
+        "ano": 1994,
+        "impacto": "Distinguir o resultado dietético global do sinal pressórico em subgrupos.",
+        "raridade": "épico"
+      },
+      "proposedRevision": "sha256:7298898dc91d03b8d45a2137d893a265bbef954df8131ab0ee896cd1721d4345",
+      "sourceIDs": [
+        "M"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "O legado atribuía ao conjunto dieta/BP o sinal por proteinúria, mas a interação observada era pressórica. Erro clínico corrigido, não só acesso incompleto.",
+      "claimsVerified": [
+        "840/585/255,TFG25–55 e13–24,2,2anos.",
+        "Dietasusual/hipoproteica ehipoproteica/muitohipocom suplemento corretamente separadas.",
+        "Estudo1globaldietético nãosignificativo;estudo2P0,07;interaçãoproteinúriaéBP,nãodieta.",
+        "Mortes/stoppingpoints e diferença para equação1999conferidos."
+      ],
+      "advogadoDoRecurso": "Não declarar ausência absoluta de efeito da dieta; a versão diz falta de benefício global inequívoco e distingue o sinalpressórico. Sem extrapolar subgrupoBPà dieta.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "épico"
+      }
+    },
+    {
+      "record": "article:132",
+      "kind": "article",
+      "index": 132,
+      "original": {
+        "beforeRevision": "sha256:aaea9c39048132e3ad584aa22e265304bee4538210e40627ddfe39a501cacd12",
+        "literal": {
+          "titulo": "The Effect of a Lower Target Blood Pressure on CKD",
+          "autores": "Klahr S, et al.",
+          "jornal": "N Engl J Med 1994;330:877-884",
+          "resumo": "Análise estendida do estudo MDRD avaliando o efeito de metas tensionais rígidas na prevenção do declínio progressivo da TFG em pacientes portadores de nefropatia de base.",
+          "conclusao": "Metas de PA sistólica baixas garantem benefício renal em longo prazo, com proteção contra progressão restrita a pacientes com proteinúria >1g/dia.",
+          "curiosidade": "Os dados deste estudo moldaram as metas de PA mais baixas para doentes renais com proteinúria nas diretrizes do JNC e KDIGO.",
+          "ano": 1997,
+          "impacto": "Demonstrou a indicação de metas pressóricas individualizadas na DRC proteinúrica.",
+          "raridade": "épico"
+        }
+      },
+      "proposed": {
+        "titulo": "MDRD — Restrição proteica e controle da pressão (1994)",
+        "autores": "Klahr S, Levey AS, Beck GJ et al.",
+        "jornal": "N Engl J Med. 1994;330(13):877–884. DOI: 10.1056/NEJM199403313301301",
+        "resumo": "O relatório original do MDRD de 1994 avaliou metas de pressão arterial em dois ensaios que reuniram 840 pessoas com doença renal crônica: 585 com taxa de filtração glomerular (TFG) de 25–55 mL/min/1,73 m² e 255 com TFG de 13–24. As metas de pressão arterial média eram107 ou92 mmHg, com seguimento médio de 2,2 anos. No estudo 1, o declínio projetado da TFG em três anos não diferiu significativamente entre os grupos pressóricos. Nos dois estudos, participantes com maior proteinúria basal apresentaram queda mais lenta da TFG no grupo de pressão mais baixa. Mortes e critérios de interrupção não diferiram significativamente entre grupos. Trata-se do relatório original, não de uma análise estendida de longo prazo.",
+        "conclusao": "O sinal pressórico associado à proteinúria deve ser distinguido do resultado global e dos limites do seguimento. Esta publicação não garante proteção de longo prazo nem estabelece um limiar exclusivo de proteinúria para benefício.",
+        "curiosidade": "Após a randomização, o grupo de pressão mais baixa teve queda da TFG mais rápida nos primeiros quatro meses e mais lenta depois; essa diferença entre fases ajuda a interpretar a análise global.",
+        "ano": 1994,
+        "impacto": "Separar resultado global, fases da trajetória da TFG e análise pressórica por proteinúria.",
+        "raridade": "épico"
+      },
+      "proposedRevision": "sha256:728c510b9930fcf590775c3c4f43747fccd9e9a84b5b750baf2cfbdad64edf97",
+      "sourceIDs": [
+        "M"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Ano1997 e história de análise estendida sem fonte, garantia de longo prazo e limiar exclusivo>1g/dia. A citação única era da obra original1994; corpo reescrito explicitamente para ela.",
+      "claimsVerified": [
+        "Relatóriooriginal1994,não seguimento1997;840/585/255,TFG e2,2anos.",
+        "Metaspressãoarterialmédia107/92;semmeta sistólicaou recomendaçãoatual.",
+        "Estudo1globalnãosignificativo;ambosestudos maiorproteinúria/sinalBPdistinto.",
+        "Queda inicial4meses maisrápida eposteriorlentificação; sem proteção garantida/exclusivade>1g."
+      ],
+      "advogadoDoRecurso": "O novo resumo é intencionalmente uma variante pressórica do mesmo documento1994. Não converter o resultado por fases em benefício global significativo ou uma meta individual de hoje.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "épico"
+      }
+    },
+    {
+      "record": "article:43",
+      "kind": "article",
+      "index": 43,
+      "original": {
+        "beforeRevision": "sha256:3796af70e5fc7cd31564a0d01667f9be5b923ede9327e2a65c77f0f3ab817d83",
+        "literal": {
+          "titulo": "Estudo MDRD",
+          "autores": "Levey AS, Bosch JP, Lewis JB et al.",
+          "jornal": "Ann Intern Med 1999;130(6):461-470. DOI: 10.7326/0003-4819-130-6-199903160-00002",
+          "resumo": "Equação MDRD (1999): n=1.628 participantes com doença renal crônica, em estudo transversal de desenvolvimento e validação de uma equação para estimar a taxa de filtração glomerular (TFG). A amostra foi dividida em desenvolvimento (n=1.070) e validação (n=558); a equação foi comparada à depuração de creatinina medida e à fórmula de Cockcroft–Gault. Na validação, o modelo explicou 90,3% da variância do logaritmo da TFG; as depurações medida e estimada por Cockcroft–Gault superestimaram a TFG em 19% e 16%, respectivamente. Demonstrou melhor estimativa na população estudada, sem testar metas pressóricas ou intervenções para preservar a função renal. Não foi um ensaio de tratamento: não há efeito terapêutico ou comparação de segurança medicamentosa a resumir. Annals of Internal Medicine.",
+          "conclusao": "O artigo de 1999 desenvolveu e validou uma equação de estimativa da TFG. Não demonstrou benefício de uma meta de pressão arterial ou de uma intervenção nefroprotetora.",
+          "curiosidade": "A seleção aleatória das amostras de desenvolvimento e validação não transforma este estudo transversal em ensaio clínico randomizado.",
+          "ano": 1999,
+          "impacto": "Desenvolvimento e validação de uma equação de estimativa da TFG em DRC",
+          "raridade": "épico"
+        }
+      },
+      "proposed": {
+        "titulo": "Estudo MDRD",
+        "autores": "Levey AS, Bosch JP, Lewis JB et al.",
+        "jornal": "Ann Intern Med 1999;130(6):461-470. DOI: 10.7326/0003-4819-130-6-199903160-00002",
+        "resumo": "Equação MDRD (1999): n=1.628 participantes com doença renal crônica, em estudo transversal de desenvolvimento e validação de uma equação para estimar a taxa de filtração glomerular (TFG). A amostra foi dividida em desenvolvimento (n=1.070) e validação (n=558); a equação foi comparada à depuração de creatinina medida e à fórmula de Cockcroft–Gault. Na validação, o modelo explicou 90,3% da variância do logaritmo da TFG; as depurações medida e estimada por Cockcroft–Gault superestimaram a TFG em 19% e 16%, respectivamente. Demonstrou melhor estimativa na população estudada, sem testar metas pressóricas ou intervenções para preservar a função renal. Não foi um ensaio de tratamento: não há efeito terapêutico ou comparação de segurança medicamentosa a resumir. Annals of Internal Medicine.",
+        "conclusao": "O artigo de 1999 desenvolveu e validou uma equação de estimativa da TFG. Não demonstrou benefício de uma meta de pressão arterial ou de uma intervenção nefroprotetora.",
+        "curiosidade": "A seleção aleatória das amostras de desenvolvimento e validação não transforma este estudo transversal em ensaio clínico randomizado.",
+        "ano": 1999,
+        "impacto": "Desenvolvimento e validação de uma equação de estimativa da TFG em DRC",
+        "raridade": "épico"
+      },
+      "proposedRevision": "sha256:3796af70e5fc7cd31564a0d01667f9be5b923ede9327e2a65c77f0f3ab817d83",
+      "sourceIDs": [
+        "E"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Corpo legado preservado, reavaliado pelo abstract primário completo e metadados exatos; não uma aprovação por DOI isolado.",
+      "claimsVerified": [
+        "1999,AnnInternMed130(6):461–470;estudo transversal1628/1070/558.",
+        "Equação90,3%variância logTFG;CrClmedida+19%eCG+16%na amostra.",
+        "Melhor estimativa na população do estudo,não universal.",
+        "Sem efeito terapêutico/metaBP/segurança medicamentosa; randomizar treino/validação não éRCT."
+      ],
+      "advogadoDoRecurso": "Acurácia de estimação não é desfecho clínico de intervenção. A declaração não faz recomendação racial atual nem confunde estudo de1994.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "épico"
+      }
+    },
+    {
+      "record": "article:125",
+      "kind": "article",
+      "index": 125,
+      "original": {
+        "beforeRevision": "sha256:29d2bf92bc4e425b75c2dda5f9d7822d2888fa29d4e2e96863849efe8d2f9f4e",
+        "literal": {
+          "titulo": "A More Accurate Method to Estimate GFR",
+          "autores": "Levey AS, Bosch JP, Lewis JB et al.",
+          "jornal": "Ann Intern Med 1999;130(6):461-470",
+          "resumo": "Publicação da equação MDRD de 4 variáveis para estimativa da Taxa de Filtração Glomerular a partir da creatinina sérica, idade, sexo e etnia, derivada dos dados do estudo MDRD.",
+          "conclusao": "A estimativa da TFG pela equação MDRD é superior ao clearance de creatinina urinário de 24 horas cego e facilita o estadiamento clínico da DRC.",
+          "curiosidade": "A fórmula original utilizava 6 variáveis, incluindo albumina sérica e nitrogênio ureico, mas a versão simplificada de 4 variáveis tornou-se o padrão comercial de laboratório.",
+          "ano": 1993,
+          "impacto": "Criou a equação MDRD, mudando a linguagem de diagnóstico da DRC por quase duas décadas.",
+          "raridade": "lendário"
+        }
+      },
+      "proposed": {
+        "titulo": "MDRD — Desenvolvimento da equação de estimativa da TFG (1999)",
+        "autores": "Levey AS, Bosch JP, Lewis JB et al.",
+        "jornal": "Ann Intern Med. 1999;130(6):461–470. DOI: 10.7326/0003-4819-130-6-199903160-00002",
+        "resumo": "Estudo transversal de 1999 com 1.628 participantes com doença renal crônica do MDRD: 1.070 formaram a amostra de desenvolvimento e 558 a de validação de uma equação de estimativa da taxa de filtração glomerular (TFG). O modelo original incluiu seis variáveis: creatinina sérica, idade, sexo, classificação racial usada no estudo, nitrogênio ureico e albumina sérica. Na validação, explicou 90,3% da variância do logaritmo da TFG; a depuração de creatinina medida e a estimada por Cockcroft–Gault superestimaram a TFG em 19% e 16%, respectivamente. Esses resultados descrevem a amostra estudada e não uma superioridade universal em todas as populações.",
+        "conclusao": "A publicação de 1999 descreveu o modelo original de seis variáveis em doença renal crônica, não a posterior versão abreviada de quatro variáveis. Descrever sua variável racial histórica não equivale a recomendá-la para uso atual.",
+        "curiosidade": "A seleção aleatória das amostras de desenvolvimento e validação não torna este estudo transversal um ensaio clínico de tratamento.",
+        "ano": 1999,
+        "impacto": "Identificar as seis variáveis e os limites de validação da equação MDRD original.",
+        "raridade": "lendário"
+      },
+      "proposedRevision": "sha256:2df870ede6e364787d9296c7a65bf27805b701eb400ec85d837fe8b5b5fe9531",
+      "sourceIDs": [
+        "E"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Ano1993 e atribuição da equação4variáveis à publicaçãooriginal6variáveis; superioridade absoluta. Erros corrigidos com síntese delimitada.",
+      "claimsVerified": [
+        "Obra1999,1628/1070/558,seisvariáveis:Cr,idade,sexo,classificaçãoracialhistórica,nitrogênioureico,albumina.",
+        "90,3%variância logTFG;CrCl+19%/CG+16%como abstract.",
+        "Modelo6original,não versãoabreviada4posterior.",
+        "Sem superioridadeuniversal,semendossoatualderaça,nãoensaio detratamento."
+      ],
+      "advogadoDoRecurso": "Descrever classificação racial usada historicamente não a recomenda. As seis variáveis pertencem ao modelo original; não a versão posterior. A evidência de acurácia fica na amostra.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "lendário"
+      }
+    },
+    {
+      "record": "article:6",
+      "kind": "article",
+      "index": 6,
+      "original": {
+        "beforeRevision": "sha256:b5dcc3457ee6247914b8d01785000748ac7c08b6c1bb863bc35fed2665faa86c",
+        "literal": {
+          "titulo": "Captopril na Nefropatia Diabética Tipo 1",
+          "autores": "Lewis EJ, Hunsicker LG, Bain RP, Rohde RD",
+          "jornal": "N Engl J Med 1993;329(20):1456-1462. DOI: 10.1056/NEJM199311113292004",
+          "resumo": "Captopril na nefropatia diabética (1993): n=409, redução de 48% no risco de duplicação da creatinina, desfecho primário, com 25 vs 43 eventos (P=0,007). O ensaio randomizado comparou captopril vs placebo em diabetes tipo 1 com proteinúria ≥500 mg/dia e creatinina ≤2,5 mg/dL, por seguimento mediano de três anos, sob metas de controle pressórico. O composto de morte, diálise ou transplante teve redução de 50%, distinta do resultado primário. O protocolo incluía critérios de interrupção por hipercalemia persistente e efeitos adversos; esse benefício não significa ausência de risco. Demonstrou proteção renal na população estudada, além do controle pressórico isolado. NEJM.",
+          "conclusao": "Captopril reduziu duplicação da creatinina em nefropatia diabética tipo 1 estabelecida. O primário não era mortalidade ou doença renal terminal isoladamente.",
+          "curiosidade": "Os 48% referem-se à duplicação da creatinina; os 50% referem-se ao composto de morte, diálise ou transplante. São resultados diferentes.",
+          "ano": 1993,
+          "impacto": "Distinguir desfecho primário e composto renal na evidência histórica do IECA",
+          "raridade": "épico"
+        }
+      },
+      "proposed": {
+        "titulo": "Captopril na Nefropatia Diabética Tipo 1",
+        "autores": "Lewis EJ, Hunsicker LG, Bain RP, Rohde RD",
+        "jornal": "N Engl J Med 1993;329(20):1456-1462. DOI: 10.1056/NEJM199311113292004",
+        "resumo": "Captopril na nefropatia diabética (1993): n=409, redução de 48% no risco de duplicação da creatinina, desfecho primário, com 25 vs 43 eventos (P=0,007). O ensaio randomizado comparou captopril vs placebo em diabetes tipo 1 com proteinúria ≥500 mg/dia e creatinina ≤2,5 mg/dL, por seguimento mediano de três anos, sob metas de controle pressórico. O composto de morte, diálise ou transplante teve redução de 50%, distinta do resultado primário. A bula profissional relata retirada de captopril por hipercalemia em 2% (4/207) dos participantes tratados; esse benefício não significa ausência de risco. Demonstrou proteção renal na população estudada, além do controle pressórico isolado. NEJM.",
+        "conclusao": "Captopril reduziu duplicação da creatinina em nefropatia diabética tipo 1 estabelecida. O primário não era mortalidade ou doença renal terminal isoladamente.",
+        "curiosidade": "Os 48% referem-se à duplicação da creatinina; os 50% referem-se ao composto de morte, diálise ou transplante. São resultados diferentes.",
+        "ano": 1993,
+        "impacto": "Distinguir desfecho primário e composto renal na evidência histórica do IECA",
+        "raridade": "épico"
+      },
+      "proposedRevision": "sha256:1ee7efa769141055e9df51c50c988ab640f7b87e2590a3af0c6f9df88c224a9a",
+      "sourceIDs": [
+        "C",
+        "L"
+      ],
+      "wholeCardReviewed": true,
+      "originalFindings": "Atribuição de critérios protocolares de interrupção não conferidos no NEJM integral foi retirada. A nova frase é evidência de segurança efetivamente aberta e atribuída à bula.",
+      "claimsVerified": [
+        "Citaçãoidentidade409/25vs43/48%P0,007/mediana3anos/composto50% conferidos.",
+        "A frase Hyperkalemia da bula especifica2%(4/207) de retiradas no ensaioDM1proteinúrica.",
+        "Ausência de risco não é inferida; resultados clínicos e segurança regulatória mantêm atribuições distintas.",
+        "Corpo/índice/raridade próprios preservados; sem copiar outro resumo."
+      ],
+      "advogadoDoRecurso": "2%não é incidência total de hipercalemia, mas retirada do tratamento por ela. O texto usa exatamente retirada. Não atribui a frase ao protocoloNEJM não aberto, nem usa51%da bula para substituir o efeito primário.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Veredito de aprovação eVERIFICADA/NENHUMA, sem pendência decisiva ou afirmação não conferida nos campos mantidos (§18.4).",
+      "score": {
+        "status": "NÃO APLICÁVEL",
+        "reason": "Objeto é card científico/pergaminho, sem enunciado/alternativas; não fabricar score de questão."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveIndex": true,
+        "preserveReferenceId": false,
+        "neverCopyVariantUnlocks": true,
+        "neverMergeBodies": true,
+        "rarityPreserved": "épico"
+      }
+    }
+  ],
+  "identityWorkGroups": [
+    {
+      "id": "captopril_diabetic_nephropathy_1993",
+      "work": "Captopril na nefropatia diabética tipo1",
+      "doi": "10.1056/NEJM199311113292004",
+      "pmid": "8413456",
+      "members": [
+        {
+          "record": "ref:lewis_ieca_dn_1993",
+          "before": "sha256:d84bbc3904ff9c0d287a7652386245393df01f4b091a029f19009ee6b71505a5",
+          "after": "sha256:0cea65aaca1a04513bfb19990f0f2254f25531aa3a6627b2581be3756bbac776",
+          "identity": {
+            "title": "Lewis EJ et al. — Captopril in Diabetic Nephropathy (NEJM 1993)",
+            "source": "N Engl J Med 1993;329(20):1456-1462",
+            "year": 1993
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos"
+        },
+        {
+          "record": "article:6",
+          "before": "sha256:b5dcc3457ee6247914b8d01785000748ac7c08b6c1bb863bc35fed2665faa86c",
+          "after": "sha256:1ee7efa769141055e9df51c50c988ab640f7b87e2590a3af0c6f9df88c224a9a",
+          "identity": {
+            "title": "Captopril na Nefropatia Diabética Tipo 1",
+            "source": "N Engl J Med 1993;329(20):1456-1462. DOI: 10.1056/NEJM199311113292004",
+            "year": 1993
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos",
+          "bodyRevision": "sha256:f9ca25e882ddd0d02d8647cab98f9f12a027dbaa89382ba66e10ba91181ebcda"
+        }
+      ],
+      "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/8413456/",
+      "identityOnly": true,
+      "publicationAuthorizationGranted": false,
+      "clinicalPayloadOperation": "PRESERVE_EACH_LITERAL_VARIANT_AND_ITS_OWN_ACCESS",
+      "identityIndependentlyVerified": true,
+      "clinicalGates": "Ver cada membro em reviews; agrupamento não transfere gate ou acesso."
+    },
+    {
+      "id": "mdrd_intervention_1994",
+      "work": "MDRD — intervenção de dieta e pressão1994",
+      "doi": "10.1056/NEJM199403313301301",
+      "pmid": "8114857",
+      "members": [
+        {
+          "record": "article:7",
+          "before": "sha256:9ba8bc97c7166bd28becbd3ee15d15cab58bd493bbac790d190437c35d77a7e2",
+          "after": "sha256:9ba8bc97c7166bd28becbd3ee15d15cab58bd493bbac790d190437c35d77a7e2",
+          "identity": {
+            "title": "MDRD Study",
+            "source": "N Engl J Med 1994;330(13):877-884. DOI: 10.1056/NEJM199403313301301",
+            "year": 1994
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos",
+          "bodyRevision": "sha256:73adecaa887b74e8e990a1d31747c5bfb4721e10e9dd1321f6c9bd31fb00d55f"
+        },
+        {
+          "record": "article:122",
+          "before": "sha256:3ade42131a8dd5a81463e09d2a083e798e737db9766ea787b7fee2ee56f9c57e",
+          "after": "sha256:7298898dc91d03b8d45a2137d893a265bbef954df8131ab0ee896cd1721d4345",
+          "identity": {
+            "title": "MDRD — Restrição proteica e controle da pressão (1994)",
+            "source": "N Engl J Med. 1994;330(13):877–884. DOI: 10.1056/NEJM199403313301301",
+            "year": 1994
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos",
+          "bodyRevision": "sha256:994456d398c9566a445133109e76369cb2c7652b5c61292396560f7082493e71"
+        },
+        {
+          "record": "article:132",
+          "before": "sha256:aaea9c39048132e3ad584aa22e265304bee4538210e40627ddfe39a501cacd12",
+          "after": "sha256:728c510b9930fcf590775c3c4f43747fccd9e9a84b5b750baf2cfbdad64edf97",
+          "identity": {
+            "title": "MDRD — Restrição proteica e controle da pressão (1994)",
+            "source": "N Engl J Med. 1994;330(13):877–884. DOI: 10.1056/NEJM199403313301301",
+            "year": 1994
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos",
+          "bodyRevision": "sha256:f255b712773b80da26d2d3eef7528c05f070b59b7db0ab9a96785bcea46464da"
+        }
+      ],
+      "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/8114857/",
+      "identityOnly": true,
+      "publicationAuthorizationGranted": false,
+      "clinicalPayloadOperation": "PRESERVE_EACH_LITERAL_VARIANT_AND_ITS_OWN_ACCESS",
+      "identityIndependentlyVerified": true,
+      "clinicalGates": "Ver cada membro em reviews; agrupamento não transfere gate ou acesso."
+    },
+    {
+      "id": "mdrd_equation_1999",
+      "work": "MDRD — equação1999",
+      "doi": "10.7326/0003-4819-130-6-199903160-00002",
+      "pmid": "10075613",
+      "members": [
+        {
+          "record": "article:43",
+          "before": "sha256:3796af70e5fc7cd31564a0d01667f9be5b923ede9327e2a65c77f0f3ab817d83",
+          "after": "sha256:3796af70e5fc7cd31564a0d01667f9be5b923ede9327e2a65c77f0f3ab817d83",
+          "identity": {
+            "title": "Estudo MDRD",
+            "source": "Ann Intern Med 1999;130(6):461-470. DOI: 10.7326/0003-4819-130-6-199903160-00002",
+            "year": 1999
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos",
+          "bodyRevision": "sha256:bc0f2a7beecb84ee0161f9bc6661f5ee07170ea8a331fe1c84b1d708fc171c04"
+        },
+        {
+          "record": "article:125",
+          "before": "sha256:29d2bf92bc4e425b75c2dda5f9d7822d2888fa29d4e2e96863849efe8d2f9f4e",
+          "after": "sha256:2df870ede6e364787d9296c7a65bf27805b701eb400ec85d837fe8b5b5fe9531",
+          "identity": {
+            "title": "MDRD — Desenvolvimento da equação de estimativa da TFG (1999)",
+            "source": "Ann Intern Med. 1999;130(6):461–470. DOI: 10.7326/0003-4819-130-6-199903160-00002",
+            "year": 1999
+          },
+          "bodyLock": "LIBERADA autoral; requer revisão independente dos bytes exatos",
+          "bodyRevision": "sha256:d98791fd10cc47103e146f74b8fc9f84041ddee719e6bbe4d06659621463a9fc"
+        }
+      ],
+      "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/10075613/",
+      "identityOnly": true,
+      "publicationAuthorizationGranted": false,
+      "clinicalPayloadOperation": "PRESERVE_EACH_LITERAL_VARIANT_AND_ITS_OWN_ACCESS",
+      "identityIndependentlyVerified": true,
+      "clinicalGates": "Ver cada membro em reviews; agrupamento não transfere gate ou acesso."
+    }
+  ],
+  "separateWorks": [
+    {
+      "records": [
+        "article:5",
+        "article:117"
+      ],
+      "reason": "Título1985/DOI112013/PMID2993362 e citação1986/DOI112528/PMID3011863 são documentos diferentes; a citação antiga compartilhada era uma contaminação bibliográfica, não duplicidade comprovada.",
+      "doNotGroup": true
+    }
+  ],
+  "summary": {
+    "referenceCardsReviewed": 1,
+    "articleCardsReviewed": 8,
+    "cardsReleased": 9,
+    "questionGates": 0,
+    "newWorkGroupsEligible": 3,
+    "preservePhysicalArticleCount": 191
+  },
+  "implementationBoundary": [
+    "Integração de data exclusiva do root, somente os9literais/hashliberados. Nenhum dado de produção foi escrito pelo revisor.",
+    "ARTICLES permanece191, sem reordenar/excluir ou mudar raridade.",
+    "Agrupar3obras com conteúdos distintos acessíveis separadamente e locks/favoritos históricos próprios.",
+    "Experimental5/117 são obras diferentes; não agrupar/aliasar.",
+    "O único consumidor atual de lewis_ieca_dn_1993 é679a2298. Este gate não aprova automaticamente o pacote de4referências dessa questão; o novo card segue evidência históricaDM1, a diretriz sustenta a condutaDM2. Atualização técnica de binding não é reescrita médica da questão.",
+    "Nenhum corpo antigo bloqueado é resgatado apenas pelo DOI corrigido. Neste lote os5corposproblemáticos e o6foram reparados e reavaliados formalmente;7/43foram lidos novamente byte-exatos."
+  ]
+}

@@ -21,6 +21,8 @@ const openLibrary = async (page: Page) => {
   await page.locator('[data-library-filter-toggle][aria-expanded="false"]').click();
 };
 const visibleEntries = (page: Page) => page.locator('[data-library-entry]:visible');
+const CATALOG_CONTENTS = 595;
+const CATALOG_WORKS = 558;
 const ledger = (page: Page) => page.evaluate(() => Object.fromEntries(
   ['nq-unlocked-refs', 'unlockedArticles', 'nq-bib-favorites', 'nefroquest-achievements', 'nefroquest-badge-history']
     .map(key => [key, localStorage.getItem(key)])));
@@ -29,19 +31,20 @@ test('novo jogador vê todo o catálogo, filtra bloqueios e não acessa resumos 
   const data = await page.evaluate(() => {
     const refs = (0, eval)('refsDB'), articles = (0, eval)('nefroArticles');
     const key = Object.keys(refs)[0], index = articles.findIndex((a: any) => a.raridade === 'lendário');
-    return { total: Object.keys(refs).length + articles.length, key, index,
+    return { key, index,
       hiddenTexts: [refs[key].resumo, refs[key].conclusao, articles[index].resumo, articles[index].impacto] };
   });
   const before = await ledger(page);
   await openLibrary(page);
-  await expect(visibleEntries(page)).toHaveCount(data.total);
+  await expect(visibleEntries(page)).toHaveCount(CATALOG_CONTENTS);
+  await expect(page.locator('[data-library-work]:visible')).toHaveCount(CATALOG_WORKS);
   await page.setViewportSize({ width: 320, height: 740 });
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   for (const selector of ['#nqDashLibraryDiscovery', '#nqDashLibrarySort', '#nqDashLibraryFilter']) {
     expect(await page.locator(selector).evaluate(e => e.scrollWidth <= e.clientWidth + 1), selector).toBe(true);
   }
   await page.evaluate(() => { document.documentElement.style.fontSize = '16px'; });
-  await expect(page.locator('.nqd-library-summary')).toHaveText(`Referências descobertas até o momento: 0/${data.total}`);
+  await expect(page.locator('.nqd-library-summary')).toHaveText(`Obras com conteúdo descoberto: 0/${CATALOG_WORKS}`);
   await expect(page.locator('[data-action="_dashToggleArticle"]')).toHaveCount(0);
   const html = await page.locator('#nqdPane-library').innerHTML();
   for (const text of data.hiddenTexts) { expect(text).toBeTruthy(); expect(html).not.toContain(text); }
@@ -56,14 +59,14 @@ test('novo jogador vê todo o catálogo, filtra bloqueios e não acessa resumos 
   await expect(visibleEntries(page)).toHaveCount(0);
   await expect(page.locator('#nqDashLibraryNoResults')).toBeVisible();
   await page.locator('#nqDashLibraryDiscovery').selectOption('locked');
-  await expect(visibleEntries(page)).toHaveCount(data.total);
+  await expect(visibleEntries(page)).toHaveCount(CATALOG_CONTENTS);
   await page.locator('#nqDashLibrarySearch').fill(data.hiddenTexts[0]);
   await expect(visibleEntries(page)).toHaveCount(0);
   expect(await ledger(page)).toEqual(before);
 });
 
 test('descobertas legadas, lendário e conquistas sobrevivem aos filtros, leitor e favoritos', async ({ page }) => {
-  const total = await page.evaluate(() => {
+  await page.evaluate(() => {
     const refs = (0, eval)('refsDB'), articles = (0, eval)('nefroArticles');
     const index = articles.findIndex((a: any) => a.raridade === 'lendário');
     localStorage.setItem('nq-unlocked-refs', JSON.stringify(Object.keys(refs).slice(0, 2)));
@@ -71,11 +74,10 @@ test('descobertas legadas, lendário e conquistas sobrevivem aos filtros, leitor
     localStorage.setItem('nq-bib-favorites', JSON.stringify(['__art_' + index]));
     localStorage.setItem('nefroquest-achievements', JSON.stringify(['grimoire_master']));
     localStorage.setItem('nefroquest-badge-history', JSON.stringify({ 1: { jornada: 2 } }));
-    return Object.keys(refs).length + articles.length;
   });
   const before = await ledger(page);
   await openLibrary(page);
-  await expect(visibleEntries(page)).toHaveCount(total);
+  await expect(visibleEntries(page)).toHaveCount(CATALOG_CONTENTS);
   await page.locator('#nqDashLibraryDiscovery').selectOption('unlocked');
   await expect(visibleEntries(page)).toHaveCount(3);
   await page.locator('[data-library-rarity-filter="lendário"]').click();
@@ -94,7 +96,7 @@ test('descobertas legadas, lendário e conquistas sobrevivem aos filtros, leitor
   await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('unlocked');
   await page.locator('[data-library-rarity-filter="lendário"]').click();
   await page.locator('#nqDashLibraryDiscovery').selectOption('locked');
-  await expect(visibleEntries(page)).toHaveCount(total - 3);
+  await expect(visibleEntries(page)).toHaveCount(CATALOG_CONTENTS - 3);
   await page.keyboard.press('Escape'); await openLibrary(page);
   await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('locked');
   expect(await ledger(page)).toEqual(before);
@@ -161,29 +163,28 @@ test('baú pago pode conceder lendário, preserva artigo anterior e cobra o cust
 });
 
 test('prévia administrativa lê sem transformar acesso em descoberta pessoal', async ({ page }) => {
-  const total = await page.evaluate(() => {
-    const refs = (0, eval)('refsDB'), articles = (0, eval)('nefroArticles');
+  await page.evaluate(() => {
+    const refs = (0, eval)('refsDB');
     localStorage.setItem('nq-unlocked-refs', JSON.stringify(Object.keys(refs).slice(0, 1)));
     localStorage.setItem('unlockedArticles', '[0]');
     (window as any).isAdminUser = () => true;
-    return Object.keys(refs).length + articles.length;
   });
   const before = await ledger(page);
   await openLibrary(page);
-  await expect(page.locator('.nqd-library-summary')).toHaveText(`Referências descobertas até o momento: 2/${total}`);
-  await expect(page.locator('[data-library-item]:visible')).toHaveCount(total);
+  await expect(page.locator('.nqd-library-summary')).toHaveText(`Obras com conteúdo descoberto: 2/${CATALOG_WORKS}`);
+  await expect(page.locator('[data-library-item]:visible')).toHaveCount(CATALOG_CONTENTS);
   await page.locator('#nqDashLibraryDiscovery').selectOption('unlocked');
   await expect(visibleEntries(page)).toHaveCount(2);
   await expect(page.locator('[data-library-discovered="false"]:visible')).toHaveCount(0);
   await page.locator('#nqDashLibraryDiscovery').selectOption('locked');
-  await expect(visibleEntries(page)).toHaveCount(total - 2);
+  await expect(visibleEntries(page)).toHaveCount(CATALOG_CONTENTS - 2);
   await expect(page.locator('[data-library-discovered="true"]:visible')).toHaveCount(0);
   // Bloqueados agora é uma consulta de itens trancados também para o admin;
   // a prévia administrativa continua em Todos sem conceder a descoberta.
   await expect(visibleEntries(page).first().getByRole('button', { name: 'Resumo bloqueado', exact: true })).toBeDisabled();
   await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
   await page.locator('#nqDashLibraryDiscovery').selectOption('all');
-  await expect(visibleEntries(page)).toHaveCount(total);
+  await expect(visibleEntries(page)).toHaveCount(CATALOG_CONTENTS);
   await page.locator('[data-library-entry][data-library-discovered="false"]:visible').first().getByRole('button', { name: 'Ler resumo', exact: true }).click();
   await expect(page.locator('.bib-resumo-modal')).toBeVisible();
   await page.keyboard.press('Escape');

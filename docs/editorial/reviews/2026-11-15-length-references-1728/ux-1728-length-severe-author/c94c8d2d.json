@@ -1,0 +1,371 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "c94c8d2d",
+  "family": "A1-interpretacao-e-seguranca",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "EMPACT-MI — Interpretação do Resultado",
+    "qid": "c94c8d2d",
+    "q": "No EMPACT-MI, pacientes após infarto com risco de insuficiência cardíaca receberam empagliflozina ou placebo. Qual interpretação evita extrapolar o estudo?",
+    "refs": [
+      "empact_mi_trial"
+    ],
+    "opts": [
+      "O composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa não foi significativamente reduzido; houve menos hospitalizações por insuficiência cardíaca, sem prova de benefício renal definitivo no ensaio principal",
+      "O estudo provou redução de mortalidade global e deve levar ao uso após qualquer infarto",
+      "O desfecho primário foi renal e demonstrou prevenção inequívoca de terapia renal substitutiva",
+      "A empagliflozina aumentou significativamente lesão renal aguda e foi considerada insegura após infarto"
+    ],
+    "ans": 0,
+    "exp": "No EMPACT-MI, o composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa teve HR 0,90 e não alcançou significância estatística. A hospitalização por insuficiência cardíaca foi menor, mas a mortalidade isolada não foi reduzida. Análises renais posteriores sugerem segurança e possível benefício, porém o composto renal foi numericamente menor sem significância estatística; isso não transforma o ensaio principal em prova renal definitiva nem justifica prescrição automática após todo infarto.",
+    "diff": "hard",
+    "cat": "drc"
+  },
+  "originalSHA256": "sha256:30498054a1367b674f304dda44ff3050ae190a98db71401dc7763b8248942911",
+  "originalRefs": [
+    {
+      "id": "empact_mi_trial",
+      "original": {
+        "label": "EMPACT-MI Trial (Empagliflozina pós-IAM)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2401316",
+        "journal": "N Engl J Med 2024;390(16):1455-1466",
+        "ano": 2024,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Desfecho primário neutro · menos hospitalizações por IC · segurança renal sem benefício definitivo",
+        "icon": "💊",
+        "resumo": "ECR multicêntrico duplo-cego (EMPACT-MI, n=6.522) em pacientes hospitalizados por IAM com nova fração de ejeção <45% e/ou congestão. Empagliflozina 10 mg ou placebo foi iniciada até 14 dias após a admissão. O composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa não foi significativamente reduzido (HR 0,90; IC95% 0,76–1,06; P=0,21). A primeira hospitalização por IC foi menor (HR 0,77; IC95% 0,60–0,98), sem redução de mortalidade isolada. Análise cardiovascular-renal posterior encontrou composto renal numericamente menor, mas não significativo (HR 0,73; IC95% 0,47–1,14).",
+        "conclusao": "EMPACT-MI não sustenta indicação automática de empagliflozina após qualquer IAM nem prova benefício renal definitivo; o sinal favorável concentrou-se em eventos de insuficiência cardíaca e segurança.",
+        "curiosidade": "A distinção entre resultado primário neutro e componente favorável é central: um componente secundário não transforma o composto pré-especificado em positivo."
+      },
+      "originalSHA256": "sha256:b3ca5d1be68e26cee5ec3c94db408857048e0b2325658deba9dee68544710b16"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Distinguir resultado primário neutro de componente favorável sem extrapolar o EMPACT-MI.",
+    "primaryCompetence": "Interpretação crítica de ensaio clínico.",
+    "bloom": "Analisar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "CRÍTICO — DOI/URL do card não identifica o artigo primário EMPACT-MI efetivamente aberto.",
+      "MAIOR — Resposta reúne primário, componente e ressalva renal, enquanto distratores acumulam extrapolações; há pista de completude.",
+      "MENOR — Dificuldade hard não é sustentada pelo raciocínio de leitura de resultado com dois conceitos."
+    ],
+    "appeal": [
+      "O link entregue ao usuário não é a publicação primária identificada pelo DOI no PDF."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": true,
+        "rationale": "CRÍTICO — DOI/URL do card não identifica o artigo primário EMPACT-MI efetivamente aberto. MAIOR — Resposta reúne primário, componente e ressalva renal, enquanto distratores acumulam extrapolações; há pista de completude. MENOR — Dificuldade hard não é sustentada pelo raciocínio de leitura de resultado com dois conceitos."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "anulado": true
+    },
+    "decision": "OP e conceito correto preservados; reescrita de forma e correção das referências/metadados antes de nova aprovação."
+  },
+  "sources": [
+    {
+      "id": "empact",
+      "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2314051.pdf",
+      "doi": "10.1056/NEJMoa2314051",
+      "access": "PDF integral oficial da editora, 12 páginas",
+      "date": "2026-11-15",
+      "locators": [
+        "página 1 / DOI, métodos, resultados e conclusão",
+        "páginas 2–3 / critérios e plano de análise",
+        "páginas 8–9 / discussão do primário e componentes"
+      ],
+      "verified": [
+        "n=6522, 10 mg, até14 dias, população pós-IAM sob risco de IC",
+        "composto primário HR0,90 IC0,76–1,06 P0,21",
+        "primeira internação IC HR0,77 IC0,60–0,98",
+        "mortalidade HR0,96 IC0,78–1,19",
+        "componente favorável não reclassifica primário neutro"
+      ],
+      "limitations": [
+        "DOI atual do card NEJMoa2401316 não corresponde ao primário aberto. URL/DOI propostos corrigidos pela identificação literal no PDF, sem inferência. Análise renal posterior HR0,73 foi removida do card proposto; não verificada pelo artigo primário."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Identidade/DOI e resultados do primário",
+      "source": "empact",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Componente internação e mortalidade isolada",
+      "source": "empact",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Nenhum resultado renal primário demonstrado",
+      "source": "empact",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "HR renal posterior0,73 no card legado",
+      "source": "empact",
+      "status": "NÃO VERIFICADA; removido da proposta"
+    }
+  ],
+  "proposed": {
+    "t": "EMPACT-MI — Interpretação do Resultado",
+    "qid": "c94c8d2d",
+    "q": "No EMPACT-MI, pacientes após infarto com risco de insuficiência cardíaca receberam empagliflozina ou placebo. Qual interpretação evita extrapolar o estudo?",
+    "refs": [
+      "empact_mi_trial"
+    ],
+    "opts": [
+      "O composto primário não foi reduzido significativamente; o componente de internação por IC foi favorável.",
+      "O composto primário foi reduzido significativamente, explicado pela menor mortalidade após o infarto.",
+      "A nefroproteção foi o resultado primário, suficiente para indicar empagliflozina após qualquer infarto.",
+      "O componente favorável de internação por IC permite reclassificar o composto primário como positivo."
+    ],
+    "ans": 0,
+    "exp": "O EMPACT-MI teve resultado primário neutro: primeira internação por IC ou morte apresentou HR 0,90 (IC 95%0,76–1,06; P = 0,21). A primeira internação por IC foi menos frequente, mas um componente favorável não transforma o composto primário em positivo. A mortalidade isolada não foi significativamente reduzida. O estudo não tinha benefício renal como desfecho primário; suas conclusões também não anulam indicações de empagliflozina fundamentadas em outros ensaios.",
+    "diff": "medium",
+    "cat": "drc"
+  },
+  "proposedSHA256": "sha256:02f5f7cda0357bb5c87450e08226ba6cd7a17013027cad4fe9e31d941d6cf1f2",
+  "classificationAfter": {
+    "op": "Distinguir resultado primário neutro de componente favorável sem extrapolar o EMPACT-MI.",
+    "primaryCompetence": "Interpretação crítica de ensaio clínico.",
+    "bloom": "Analisar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "empact_mi_trial",
+      "original": {
+        "label": "EMPACT-MI Trial (Empagliflozina pós-IAM)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2401316",
+        "journal": "N Engl J Med 2024;390(16):1455-1466",
+        "ano": 2024,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Desfecho primário neutro · menos hospitalizações por IC · segurança renal sem benefício definitivo",
+        "icon": "💊",
+        "resumo": "ECR multicêntrico duplo-cego (EMPACT-MI, n=6.522) em pacientes hospitalizados por IAM com nova fração de ejeção <45% e/ou congestão. Empagliflozina 10 mg ou placebo foi iniciada até 14 dias após a admissão. O composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa não foi significativamente reduzido (HR 0,90; IC95% 0,76–1,06; P=0,21). A primeira hospitalização por IC foi menor (HR 0,77; IC95% 0,60–0,98), sem redução de mortalidade isolada. Análise cardiovascular-renal posterior encontrou composto renal numericamente menor, mas não significativo (HR 0,73; IC95% 0,47–1,14).",
+        "conclusao": "EMPACT-MI não sustenta indicação automática de empagliflozina após qualquer IAM nem prova benefício renal definitivo; o sinal favorável concentrou-se em eventos de insuficiência cardíaca e segurança.",
+        "curiosidade": "A distinção entre resultado primário neutro e componente favorável é central: um componente secundário não transforma o composto pré-especificado em positivo."
+      },
+      "originalSHA256": "sha256:b3ca5d1be68e26cee5ec3c94db408857048e0b2325658deba9dee68544710b16",
+      "proposed": {
+        "label": "EMPACT-MI Trial (Empagliflozina pós-IAM)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2314051",
+        "journal": "N Engl J Med 2024;390(16):1455-1466",
+        "ano": 2024,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Primário neutro; componente de internação por IC favorável exige interpretação cautelosa",
+        "icon": "🔬",
+        "resumo": "EMPACT-MI2024: 6.522 pacientes após IAM com risco de IC receberam empagliflozina 10 mg/dia ou placebo até 14 dias da admissão. Em17,9meses, o composto primário de primeira internação por IC ou morte não foi significativamente reduzido: HR 0,90 (IC 95%0,76–1,06; P = 0,21). O componente de primeira internação por IC teve HR 0,77 (IC 95%0,60–0,98), e mortalidade HR 0,96 (IC 95%0,78–1,19). Limitação: componentes favoráveis não revertem o resultado primário neutro.",
+        "conclusao": "O ensaio não demonstra redução do composto primário nem sustenta benefício renal como resultado primário; indicações de empagliflozina em outras populações exigem suas próprias evidências.",
+        "curiosidade": "A estimativa de um componente pode ser favorável mesmo quando o teste do composto primário é neutro."
+      },
+      "proposedSHA256": "sha256:839d3a120022710396135939384703343428ddac7a5270143323b50797ded473"
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na checagem autoral da versão proposta."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 2
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 1
+        }
+      ],
+      "total": 19
+    },
+    "decision": "Versão proposta aprovada na checagem autoral pela árvore§19; ciclo pretendido publicado somente após revisão independente do pacote exato."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; nenhum reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Pacote AUTORAL. LIBERADA, quando presente, é resultado autoral derivado para a proposta exata; não equivale a revisão independente. O parent exigiu revisão independente antes de escrever data/topics.js ou data/refs.js."
+  },
+  "hold": null
+}

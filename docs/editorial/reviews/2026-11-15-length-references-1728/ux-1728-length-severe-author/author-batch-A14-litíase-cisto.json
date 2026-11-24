@@ -1,0 +1,2547 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A14-litíase-cisto",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 6,
+  "readyForImplementation": false,
+  "scope": "Quatro itens do inventário mais dois consumidores/canônicas necessários. Fusão entérica proposta e reparo completo do card ILLUMINATE-A, sem novas identidades e sem aumentar contagem.",
+  "retiredIds": [
+    "ea7fe551"
+  ],
+  "fullCardReview": [
+    "eau_urolithiasis_medical_2025",
+    "genereviews_ph1_2025",
+    "eau_rcc_guideline_2026",
+    "lumasiran_trial"
+  ],
+  "sharedCardPolicy": "EAU2025 passa de URL dinâmica para PDF oficial fixo2025, com payload clínico preservado e conferência2026. Lumasiran é reparado integralmente; seus dois consumidores foram avaliados neste lote. Gate de card não libera demais questões automaticamente.",
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "ea7fe551",
+        "9eafbe49"
+      ],
+      "decisionSame": true,
+      "caseDataStructureSame": true,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Mesma prevenção causal em má absorção, apesar de rótulo etiológico diferente."
+    },
+    {
+      "pair": [
+        "9eafbe49",
+        "4d3fd561"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Medida preventiva em composição dada versus reconhecer composição esperada do cálculo."
+    },
+    {
+      "pair": [
+        "9046d70e",
+        "89bab6a0"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Priorizar água em baixo volume versus plano de investigação/terapia fenotipada da recorrência."
+    },
+    {
+      "pair": [
+        "8071ef90",
+        "ae31e58e"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Confirmação genética em suspeita versus alvo farmacológico após diagnóstico confirmado."
+    }
+  ],
+  "neighbors": [
+    {
+      "qid": "4d3fd561",
+      "literal": {
+        "t": "Hiperoxalúria Entérica e Cálculos",
+        "qid": "4d3fd561",
+        "q": "Paciente com doença de Crohn extensa ou cirurgia bariátrica disabsortiva desenvolve nefrolitíase recorrente. Qual composição de cálculo é mais esperada nesse contexto?",
+        "refs": [
+          "eau_urolithiasis_medical_2025",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Fosfato de magnésio amoníaco (estruvita)",
+          "Ácido úrico",
+          "Cistina",
+          "Oxalato de cálcio"
+        ],
+        "ans": 3,
+        "exp": "Má absorção intestinal de gordura favorece hiperoxalúria entérica: ácidos graxos livres ligam cálcio no lúmen intestinal, deixando mais oxalato livre para absorção colônica. O aumento de oxalato urinário eleva a supersaturação de oxalato de cálcio e favorece litíase por oxalato de cálcio. Estruvita sugere infecção por bactérias urease-positivas; ácido úrico se relaciona sobretudo a pH urinário baixo; cistina aponta para cistinúria.",
+        "diff": "medium",
+        "cat": "litíase"
+      },
+      "revision": "sha256:68eaa79d7e981aab80bcd819f43664fecec814f426c3d1e5049edf5f4cdc11b4",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "89bab6a0",
+      "literal": {
+        "t": "Litíase Recorrente — Prevenção Individualizada",
+        "qid": "89bab6a0",
+        "q": "Paciente com múltiplos episódios de nefrolitíase quer reduzir recorrência a longo prazo. Qual estratégia é mais adequada após resolver o episódio agudo?",
+        "refs": [
+          "eau_urolithiasis_medical_2025",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Avaliação metabólica dirigida, análise do cálculo quando possível e prevenção individualizada com volume urinário, dieta e fármacos conforme o fenótipo",
+          "Tratar apenas as cólicas futuras, pois investigação metabólica não muda prevenção",
+          "Restringir cálcio dietético de forma universal para todos os formadores de cálculo",
+          "Evitar citrato de potássio em qualquer cenário porque alcalinização urinária sempre aumenta recorrência"
+        ],
+        "ans": 0,
+        "exp": "Na litíase recorrente, a prevenção sustentada depende de identificar o fenótipo: composição do cálculo, fatores de risco e, em pacientes de alto risco, avaliação metabólica com urina de 24 horas. A base geral é aumentar ingestão hídrica para elevar o volume urinário e ajustar dieta; a farmacoterapia é dirigida — por exemplo, tiazídico em hipercalciúria recorrente, citrato em hipocitratúria ou ácido úrico, e alopurinol em hiperuricosúria selecionada. Restrição universal de cálcio é erro comum: cálcio dietético normal ajuda a reduzir absorção intestinal de oxalato. Tratar só a crise perde a oportunidade de prevenção.",
+        "diff": "medium",
+        "cat": "litíase"
+      },
+      "revision": "sha256:d982ef683d6c5ab2dc9165acf9d74736677eeee672daa37fac91757e266e3df1",
+      "fullMedicalGate": false
+    }
+  ],
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "9eafbe49",
+      "family": "A14-litíase-cisto",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "qid": "9eafbe49",
+        "q": "Paciente com doença de Crohn e ressecção ileal tem litíase recorrente por oxalato de cálcio e hiperoxalúria. Qual orientação é mais adequada para reduzir absorção intestinal de oxalato?",
+        "opts": [
+          "Reduzir oxalato dietético e manter cálcio com as refeições para ligar oxalato no lúmen intestinal",
+          "Alcalinizar agressivamente a urina para aumentar excreção renal de oxalato",
+          "Prescrever vitamina C em altas doses para converter oxalato em metabólitos solúveis",
+          "Usar tiazídico como medida principal para reduzir absorção intestinal de oxalato"
+        ],
+        "ans": 0,
+        "exp": "Na hiperoxalúria entérica, má absorção de gordura prende cálcio no intestino e deixa mais oxalato livre para absorção, elevando oxalato urinário e risco de cálculo de oxalato de cálcio. A intervenção lógica é reduzir carga dietética de oxalato e manter cálcio junto às refeições, para ligar oxalato no lúmen intestinal. Hidratação e manejo de diarreia/esteatorreia também importam. Vitamina C em excesso pode aumentar oxalato; tiazídico atua na calciúria, não na absorção intestinal de oxalato; alcalinização pode ajudar hipocitratúria, mas não é a resposta central para reduzir absorção de oxalato.",
+        "cat": "litíase",
+        "diff": "hard",
+        "refs": [
+          "eau_urolithiasis_medical_2025",
+          "brenner_rector"
+        ],
+        "t": "Hiperoxalúria Entérica — Prevenção de Cálculos"
+      },
+      "originalSHA256": "sha256:77fe5b04a8b98f5340504e3c427a5929a89de39405de25c4d47d5e590717c54d",
+      "originalRefs": [
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Selecionar medidas que reduzem absorção intestinal de oxalato em hiperoxalúria entérica estabelecida.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta concentra todas as medidas em extensão maior que distratores.",
+          "MENOR — Hard não corresponde à aplicação direta de prevenção em mecanismo dado."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "eau25",
+          "url": "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2025.pdf",
+          "access": "PDF oficial arquivado2025 integral121p aberto; capa/copyright2025 conferidos. Card passa a link fixo dessa edição, sem fingir ser a mais recente.",
+          "locators": [
+            "PDF12–13,§3.3: TC sem contraste mais acurada para confirmação, após ultrassonografia inicial.",
+            "PDF45–46,§4.2: água, tabela diurese2–2,5L/dia; recomendação formal>2,5L/dia, cálcio alimentar normal, não restrição universal.",
+            "PDF54–55,§4.6.3–4: hiperoxalúria primária/entérica; cálcio nas refeições, reduzir gordura/oxalato, hidratação, terapias fenotipadas.",
+            "PDF58–60 ácido úrico/alcalinização monitorizada; PDF63–64 cistinúria: urina>3L,alcalinização e tiopronina se insuficiente."
+          ],
+          "limitations": [
+            "As recomendações variam em força e evidência; o card não prescreve doses. Não confundir edema/sobrecarga com liberação de hiper-hidratação universal."
+          ]
+        },
+        {
+          "id": "eau26",
+          "url": "https://uroweb.org/guidelines/urolithiasis/chapter/metabolic-evaluation-and-recurrence-prevention",
+          "additionalURLs": [
+            "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+            "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2026.pdf"
+          ],
+          "access": "Capítulos oficiais atuais2026 integrais abertos, PDF130p identificado. Comparação de atualização, não troca silenciosa de edição do card2025.",
+          "locators": [
+            "§4.2/Table4.5: hidratação, dieta com cálcio normal;§4.6.4 cálcio às refeições e má absorção após ressecção/Crohn/bypass.",
+            "§3.3: confirmação por TC sem contraste após US;§4.9 alcalinização/diluição e tiopronina em cistinúria."
+          ],
+          "limitations": [
+            "Recorte clínico do card2025 continua sustentado. Não declarar todas as demais questões consumidoras revisadas."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Má absorção de gordura reduz cálcio luminal disponível para oxalato; manter cálcio às refeições e limitar oxalato favorece prevenção.",
+          "source": "eau25/eau26",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "qid": "9eafbe49",
+        "q": "Paciente com doença de Crohn e ressecção ileal tem cálculos recorrentes de oxalato de cálcio e hiperoxalúria. Qual orientação ajuda a reduzir a absorção intestinal de oxalato?",
+        "opts": [
+          "Manter cálcio às refeições e reduzir a carga alimentar de oxalato.",
+          "Restringir intensamente cálcio e aumentar a carga alimentar de oxalato.",
+          "Usar vitamina C em altas doses para reduzir a produção de oxalato.",
+          "Usar tiazídico como principal bloqueador da absorção intestinal de oxalato."
+        ],
+        "ans": 0,
+        "exp": "Na má absorção de gordura, ácidos graxos ligam cálcio no intestino, deixando mais oxalato disponível para absorção. Cálcio junto às refeições favorece sua ligação no lúmen; a redução de gordura e oxalato e a hidratação conforme perdas também ajudam. A necessidade de suplemento de cálcio e de correção de hipocitratúria deve ser individualizada. Tiazídico atua na calciúria, e não bloqueia a absorção intestinal de oxalato. VitaminaC em excesso pode aumentar a carga de oxalato.",
+        "cat": "litíase",
+        "diff": "medium",
+        "refs": [
+          "eau_urolithiasis_medical_2025"
+        ],
+        "t": "Hiperoxalúria Entérica — Prevenção de Cálculos"
+      },
+      "proposedSHA256": "sha256:dc9a87f2b1d21f18d41f8bf7f0985087e42bba30c66aeeb5ee8d63d57bba1197",
+      "classificationAfter": {
+        "op": "Selecionar medidas que reduzem absorção intestinal de oxalato em hiperoxalúria entérica estabelecida.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62",
+          "proposed": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2025.pdf",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "proposedSHA256": "sha256:36a1a65c692096a7d8be1fce8266e0948e9947b149c222e918fadbb2fa52f665",
+          "sourceIDs": [
+            "eau25",
+            "eau26"
+          ],
+          "notes": [
+            "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. A ação preventiva central permanece. Cálcio não é prescrito em dose universal; extensão fica distribuída por decisões reais, sem padding.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "ea7fe551",
+      "family": "A14-litíase-cisto",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Hiperoxalúria Entérica Pós-Bypass — Prevenção",
+        "qid": "ea7fe551",
+        "q": "Paciente após bypass gástrico em Y-de-Roux tem cálculos recorrentes de oxalato de cálcio e oxalúria elevada. Qual mecanismo e orientação preventiva são mais adequados?",
+        "refs": [
+          "eau_urolithiasis_medical_2025",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Hipercalciúria absorptiva pós-cirúrgica; tiazídico como medida central",
+          "Hiperoxalúria entérica por má absorção de gordura; reduzir oxalato e manter cálcio com refeições para ligar oxalato no lúmen intestinal",
+          "Superprodução hepática de oxalato por AGXT; alopurinol como primeira linha",
+          "Hipocitratúria isolada; citrato de potássio dispensa manejo dietético e hídrico"
+        ],
+        "ans": 1,
+        "exp": "No bypass gástrico disabsortivo, a má absorção de gordura deixa ácidos graxos livres ligarem cálcio no intestino; com menos cálcio disponível para ligar oxalato, mais oxalato livre é absorvido no cólon e excretado na urina. A prevenção é fenotipada: alta ingestão hídrica conforme tolerância, redução de oxalato dietético, cálcio com refeições, manejo de diarreia/esteatorreia e correção de hipocitratúria se presente. Tiazídico não reduz absorção intestinal de oxalato; alopurinol não trata hiperoxalúria entérica.",
+        "diff": "medium",
+        "cat": "litíase"
+      },
+      "originalSHA256": "sha256:96fafb74c857bda87fb4fa29cf1c70bf3ce559a5739be6bf44c55574846aea03",
+      "originalRefs": [
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Selecionar redução de oxalato e cálcio às refeições em hiperoxalúria entérica após má absorção.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Duplica a decisão de prevenção da canônica9eafbe49.",
+          "MAIOR — Mudar Crohn/ressecção para bypass não modifica a estrutura causal nem a medida central; soma mecanismo e tratamento na correta longa."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "eau25",
+          "url": "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2025.pdf",
+          "access": "PDF oficial arquivado2025 integral121p aberto; capa/copyright2025 conferidos. Card passa a link fixo dessa edição, sem fingir ser a mais recente.",
+          "locators": [
+            "PDF12–13,§3.3: TC sem contraste mais acurada para confirmação, após ultrassonografia inicial.",
+            "PDF45–46,§4.2: água, tabela diurese2–2,5L/dia; recomendação formal>2,5L/dia, cálcio alimentar normal, não restrição universal.",
+            "PDF54–55,§4.6.3–4: hiperoxalúria primária/entérica; cálcio nas refeições, reduzir gordura/oxalato, hidratação, terapias fenotipadas.",
+            "PDF58–60 ácido úrico/alcalinização monitorizada; PDF63–64 cistinúria: urina>3L,alcalinização e tiopronina se insuficiente."
+          ],
+          "limitations": [
+            "As recomendações variam em força e evidência; o card não prescreve doses. Não confundir edema/sobrecarga com liberação de hiper-hidratação universal."
+          ]
+        },
+        {
+          "id": "eau26",
+          "url": "https://uroweb.org/guidelines/urolithiasis/chapter/metabolic-evaluation-and-recurrence-prevention",
+          "additionalURLs": [
+            "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+            "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2026.pdf"
+          ],
+          "access": "Capítulos oficiais atuais2026 integrais abertos, PDF130p identificado. Comparação de atualização, não troca silenciosa de edição do card2025.",
+          "locators": [
+            "§4.2/Table4.5: hidratação, dieta com cálcio normal;§4.6.4 cálcio às refeições e má absorção após ressecção/Crohn/bypass.",
+            "§3.3: confirmação por TC sem contraste após US;§4.9 alcalinização/diluição e tiopronina em cistinúria."
+          ],
+          "limitations": [
+            "Recorte clínico do card2025 continua sustentado. Não declarar todas as demais questões consumidoras revisadas."
+          ]
+        }
+      ],
+      "claimVerification": [],
+      "proposed": null,
+      "proposedSHA256": null,
+      "classificationAfter": null,
+      "proposedRefs": [],
+      "candidateReview": null,
+      "identityDecision": {
+        "preserveQid": false,
+        "reason": "Aposentar ea7fe551 por redundância, mantendo histórico próprio e sem transferir FSRS, crédito ou desbloqueios.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": "Fusão proposta com9eafbe49, após revisão independente do par e da canônica exata.",
+      "duplicateTest": {
+        "canonicalQid": "9eafbe49",
+        "canonicalProposedSHA256": "sha256:dc9a87f2b1d21f18d41f8bf7f0985087e42bba30c66aeeb5ee8d63d57bba1197",
+        "decision": {
+          "same": true,
+          "value": "Reduzir absorção intestinal de oxalato por cálcio nas refeições e menor carga de oxalato."
+        },
+        "caseDataStructure": {
+          "same": true,
+          "value": "Má absorção intestinal após cirurgia/doença, cálculos de oxalato de cálcio, oxalúria elevada. Etiqueta Crohn versus bypass não altera a ação."
+        },
+        "targetLearnerProfile": {
+          "same": true,
+          "value": "Estudante avançado/residente."
+        },
+        "language": {
+          "same": true,
+          "value": "pt-BR"
+        },
+        "allFourCoincide": true
+      },
+      "lifecycleDecision": {
+        "verdict": "fundir",
+        "retiredQid": "ea7fe551",
+        "canonicalQid": "9eafbe49",
+        "retiredStatus": "aposentado",
+        "fsrsTransfer": false,
+        "creditTransfer": false,
+        "history": "Preservar histórico no qid aposentado; não transportar progresso.",
+        "ready": false
+      }
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "8071ef90",
+      "family": "A14-litíase-cisto",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Hiperoxalúria Primária Tipo 1 — Diagnóstico e Tratamento",
+        "qid": "8071ef90",
+        "q": "Paciente jovem tem nefrolitíase recorrente por oxalato de cálcio, nefrocalcinose e hiperoxalúria acentuada sem causa entérica clara. Qual abordagem melhor confirma e trata hiperoxalúria primária tipo 1?",
+        "refs": [
+          "eau_urolithiasis_medical_2025",
+          "lumasiran_trial",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Confirmar por dosagem sérica isolada de oxalato e tratar com plasmaférese crônica",
+          "Confirmar por análise genética de AGXT; iniciar medidas anti-oxalato, testar piridoxina e considerar lumasiran ou transplante hepático/hepatorrenal conforme gravidade",
+          "Tratar empiricamente com alopurinol, pois a via das purinas é a fonte primária de oxalato",
+          "Evitar investigação genética, porque biópsia hepática é obrigatória para qualquer decisão terapêutica"
+        ],
+        "ans": 1,
+        "exp": "A hiperoxalúria primária tipo 1 é doença hepática genética, geralmente por variantes em AGXT, com superprodução de oxalato, nefrolitíase, nefrocalcinose e risco de oxalose sistêmica quando a função renal cai. A confirmação moderna é genética quando disponível. O tratamento combina hidratação/medidas de redução de supersaturação, piridoxina em variantes responsivas, lumasiran em cenário apropriado e, em doença avançada, avaliação de transplante hepático ou hepatorrenal. Oxalato plasmático monitora carga em DRC avançada, mas não confirma etiologia; alopurinol não bloqueia produção de oxalato.",
+        "diff": "hard",
+        "cat": "litíase"
+      },
+      "originalSHA256": "sha256:7d4a4b7dc2f3b6f689444174e84b4bd767c460a3644354d240af13a908d6291e",
+      "originalRefs": [
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+        },
+        {
+          "id": "lumasiran_trial",
+          "original": {
+            "label": "ILLUMINATE-A Trial (Lumasiran)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
+            "journal": "N Engl J Med 2021;385(19):1737-1746",
+            "ano": 2021,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",
+            "icon": "💊",
+            "resumo": "ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+            "conclusao": "O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+            "curiosidade": "A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
+          },
+          "originalSHA256": "sha256:4488c0b68d5409a0a2283a6d9c65d7c64a7f7e2efe2b1e6c3806134d7ee91d1c"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Confirmar molecularmente hiperoxalúria primária tipo1 em paciente com fenótipo sugestivo.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A pergunta agrega confirmação e todas as linhas terapêuticas, com uma única alternativa extensa.",
+          "CRÍTICO NO CARD — ILLUMINATE-A tem DOI/volume/desfecho e extrapolação clínica incorretos; reparo global separado no mesmo lote."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "gene",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1283/",
+          "access": "GeneReviews autoral integral aberto, última revisão11/12/2025 confirmada no cabeçalho.",
+          "locators": [
+            "Establishing diagnosis: achados sugestivos mais variantes patogênicas/provavelmente patogênicas bialélicas em AGXT; VUS isoladas ou em combinação não confirmam.",
+            "Summary/Diagnosis: herança autossômica recessiva, AGT hepática e oxalato; PH2=GRHPR,PH3=HOGA1.",
+            "Table8/Targeted therapies: lumasiran reduz glicolato oxidase/HAO1; nedosiran atua em lactato desidrogenase A, piridoxina em responsivos."
+          ],
+          "limitations": [
+            "Fonte expert, não ensaio comparativo entre RNAi. Escolha e acesso às terapias dependem de avaliação, genótipo, função renal e contexto regulatório."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Fenótipo sugestivo com variantes patogênicas/provavelmente patogênicas bialélicas em AGXT confirmaPH1; VUS não confirmam.",
+          "source": "gene",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Hiperoxalúria Primária Tipo1 — Confirmação Molecular",
+        "qid": "8071ef90",
+        "q": "Jovem com nefrolitíase recorrente por oxalato de cálcio, nefrocalcinose e hiperoxalúria acentuada é investigado após exclusão de causa entérica. Qual resultado molecular confirma hiperoxalúria primária tipo 1 nesse contexto?",
+        "refs": [
+          "genereviews_ph1_2025"
+        ],
+        "opts": [
+          "Uma única variante patogênica em AGXT, sem alteração no outro alelo.",
+          "Variantes patogênicas ou provavelmente patogênicas bialélicas em AGXT.",
+          "Variantes bialélicas de significado incerto em AGXT, sem outra evidência classificatória.",
+          "Variantes patogênicas bialélicas em GRHPR, sem alteração em AGXT."
+        ],
+        "ans": 1,
+        "exp": "A confirmação integra o fenótipo sugestivo e variantes patogênicas ou provavelmente patogênicas bialélicas em AGXT, doença de herança autossômica recessiva. Uma única variante ou variantes de significado incerto não bastam para confirmar o diagnóstico; investigação especializada pode ser necessária se o estudo inicial não for conclusivo. GRHPR corresponde à hiperoxalúria primária tipo 2. Oxalato plasmático isolado pode aumentar em insuficiência renal de outras causas e não substitui a determinação da etiologia.",
+        "diff": "medium",
+        "cat": "litíase"
+      },
+      "proposedSHA256": "sha256:07bf8eee80681e33e03d89d21c1bca89188dde427005f932b0c5e966befa2ba0",
+      "classificationAfter": {
+        "op": "Confirmar molecularmente hiperoxalúria primária tipo1 em paciente com fenótipo sugestivo.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "genereviews_ph1_2025",
+          "original": {
+            "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+            "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+            "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+          },
+          "originalSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+          "proposed": {
+            "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+            "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+            "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+          },
+          "proposedSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+          "sourceIDs": [
+            "gene"
+          ],
+          "notes": [
+            "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Preserva OP primário de confirmação em AGXT e remove tarefa terapêutica secundária já coberta por ae31e58e. Não cria qid porque conceito correto e decisão diagnóstica permanecem.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário de confirmação molecular permanece; tratamento era segunda tarefa agregada. Preservar8071ef90, sem transferir histórico para ae31e58e.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "9046d70e",
+      "family": "A14-litíase-cisto",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Nefrolitíase — Prevenção Dietética",
+        "qid": "9046d70e",
+        "q": "Paciente com litíase renal recorrente por oxalato de cálcio pergunta qual medida dietética isolada tem melhor base inicial para reduzir recorrência. Qual orientação é mais adequada?",
+        "refs": [
+          "eau_urolithiasis_medical_2025",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Restringir cálcio dietético para menos de 500 mg/dia",
+          "Aumentar proteína animal para reduzir citrato urinário",
+          "Aumentar ingestão hídrica para manter maior volume urinário, em geral mirando cerca de 2 a 2,5 L de urina/dia",
+          "Usar suplementação de vitamina D em altas doses como prevenção universal"
+        ],
+        "ans": 2,
+        "exp": "A medida inicial mais universal para reduzir recorrência é aumentar a ingestão hídrica para elevar o volume urinário e reduzir a supersaturação de sais litogênicos. A meta prática costuma ser produzir cerca de 2 a 2,5 L de urina por dia, ajustando à sudorese, clima e risco de sobrecarga. Restringir cálcio dietético de forma intensa não é recomendado de rotina, pois pode aumentar absorção intestinal de oxalato; excesso de proteína animal reduz citrato e aumenta carga ácida; vitamina D em altas doses não é prevenção universal e pode aumentar calciúria em suscetíveis.",
+        "diff": "easy",
+        "cat": "litíase"
+      },
+      "originalSHA256": "sha256:2c4c3a54b0517f4cc323fb84758032bd303fcc65d50109b26366782eb71995bc",
+      "originalRefs": [
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Escolher aumento de água para elevar volume urinário como medida geral de prevenção de cálculos de oxalato de cálcio.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "easy",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta inclui a única orientação completa e número-alvo, destacando-se formalmente.",
+          "MENOR — Meta2–2,5L aparece na tabela geral, mas recomendação formal EAU2025 visa>2,5L; explicitar tolerância e restrições."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "eau25",
+          "url": "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2025.pdf",
+          "access": "PDF oficial arquivado2025 integral121p aberto; capa/copyright2025 conferidos. Card passa a link fixo dessa edição, sem fingir ser a mais recente.",
+          "locators": [
+            "PDF12–13,§3.3: TC sem contraste mais acurada para confirmação, após ultrassonografia inicial.",
+            "PDF45–46,§4.2: água, tabela diurese2–2,5L/dia; recomendação formal>2,5L/dia, cálcio alimentar normal, não restrição universal.",
+            "PDF54–55,§4.6.3–4: hiperoxalúria primária/entérica; cálcio nas refeições, reduzir gordura/oxalato, hidratação, terapias fenotipadas.",
+            "PDF58–60 ácido úrico/alcalinização monitorizada; PDF63–64 cistinúria: urina>3L,alcalinização e tiopronina se insuficiente."
+          ],
+          "limitations": [
+            "As recomendações variam em força e evidência; o card não prescreve doses. Não confundir edema/sobrecarga com liberação de hiper-hidratação universal."
+          ]
+        },
+        {
+          "id": "eau26",
+          "url": "https://uroweb.org/guidelines/urolithiasis/chapter/metabolic-evaluation-and-recurrence-prevention",
+          "additionalURLs": [
+            "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+            "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2026.pdf"
+          ],
+          "access": "Capítulos oficiais atuais2026 integrais abertos, PDF130p identificado. Comparação de atualização, não troca silenciosa de edição do card2025.",
+          "locators": [
+            "§4.2/Table4.5: hidratação, dieta com cálcio normal;§4.6.4 cálcio às refeições e má absorção após ressecção/Crohn/bypass.",
+            "§3.3: confirmação por TC sem contraste após US;§4.9 alcalinização/diluição e tiopronina em cistinúria."
+          ],
+          "limitations": [
+            "Recorte clínico do card2025 continua sustentado. Não declarar todas as demais questões consumidoras revisadas."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Água eleva volume urinário, reduz supersaturação; meta geral>2,5L de urina/dia, individualizada.",
+          "source": "eau25/eau26",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Nefrolitíase — Prevenção Dietética",
+        "qid": "9046d70e",
+        "q": "Adulto com cálculos recorrentes de oxalato de cálcio tem volume urinário baixo e não apresenta indicação de restrição hídrica. Qual medida geral deve ser priorizada para reduzir a supersaturação urinária?",
+        "refs": [
+          "eau_urolithiasis_medical_2025"
+        ],
+        "opts": [
+          "Reduzir cálcio alimentar para menos de 500 mg/dia.",
+          "Aumentar proteína animal para acidificar a urina.",
+          "Aumentar a ingestão de água ao longo do dia.",
+          "Iniciar vitamina D em altas doses sem deficiência documentada."
+        ],
+        "ans": 2,
+        "exp": "Aumentar água eleva o volume urinário e reduz a concentração dos sais formadores de cálculo. A recomendação geral EAU é ajustar líquidos para obter mais de 2,5 L de urina em 24 horas, considerando perdas, tolerância e risco de sobrecarga. Cálcio alimentar normal deve ser mantido na maioria dos casos; restrição intensa pode aumentar absorção intestinal de oxalato. O excesso de proteína animal e o uso indiscriminado de vitaminas não substituem a prevenção dirigida. Recorrência também exige avaliação metabólica e análise do cálculo quando possível.",
+        "diff": "easy",
+        "cat": "litíase"
+      },
+      "proposedSHA256": "sha256:22f550086bd1e399046eb3e50d0361aae0e592f84092ed8b66aa7c8832859cb6",
+      "classificationAfter": {
+        "op": "Escolher aumento de água para elevar volume urinário como medida geral de prevenção de cálculos de oxalato de cálcio.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62",
+          "proposed": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2025.pdf",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "proposedSHA256": "sha256:36a1a65c692096a7d8be1fce8266e0948e9947b149c222e918fadbb2fa52f665",
+          "sourceIDs": [
+            "eau25",
+            "eau26"
+          ],
+          "notes": [
+            "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Preserva orientação inicial e move número para explicação, sem tornar meta universal para paciente com sobrecarga. Não duplica89bab6a0, que pede investigação e plano individualizado.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "54be3494",
+      "family": "A14-litíase-cisto",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Bosniak IV — Nódulo com Realce",
+        "qid": "54be3494",
+        "q": "Tomografia renal mostra massa predominantemente cística com nódulo mural que realça após contraste. Qual é a interpretação mais adequada?",
+        "refs": [
+          "eau_rcc_guideline_2026"
+        ],
+        "opts": [
+          "A presença de nódulo com realce caracteriza Bosniak IV, com alta probabilidade de malignidade e necessidade de avaliação urológica individualizada",
+          "Trata-se de Bosniak I, pois toda lesão cística é benigna",
+          "Calcificação isolada define automaticamente Bosniak IV, mesmo sem tecido com realce",
+          "O achado deve ser seguido apenas por fita urinária, sem revisão das imagens"
+        ],
+        "ans": 0,
+        "exp": "Na classificação de Bosniak, componente nodular com realce dentro de uma massa cística é a característica central da categoria IV. A chance de malignidade é alta, mas a conduta deve considerar tamanho, comorbidades, expectativa de vida, função renal e opções como cirurgia poupadora de néfrons ou vigilância em casos selecionados. Calcificação ou septo sem nódulo realçante não basta para classificar automaticamente como IV.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "originalSHA256": "sha256:40beebc8698b080f78fdf12744088fb53fda7c51238f625a51d0b3112811085c",
+      "originalRefs": [
+        {
+          "id": "eau_rcc_guideline_2026",
+          "original": {
+            "label": "EAU — Renal Cell Carcinoma Guideline 2026",
+            "url": "https://uroweb.org/guidelines/renal-cell-carcinoma",
+            "journal": "European Association of Urology Guidelines",
+            "ano": 2026,
+            "tipo": "Guideline",
+            "badge": "GUIDELINE",
+            "badgeColor": "#2563eb",
+            "impacto": "Diagnóstico, estadiamento e cirurgia preservadora de néfrons no carcinoma de células renais",
+            "icon": "🧭",
+            "resumo": "Diretriz europeia sobre carcinoma de células renais. Reforça que muitos tumores renais são achados incidentais, que a avaliação por imagem caracteriza tumor local e extensão da doença e que o estadiamento segue o sistema TNM. Para tumores T1 confinados ao rim, recomenda oferecer nefrectomia parcial quando tecnicamente viável; em pessoas com DRC, preservar parênquima renal tem relevância adicional, sem dispensar avaliação de complexidade anatômica e controle oncológico.",
+            "conclusao": "A decisão no CCR localizado integra imagem, TNM, anatomia tumoral e função renal; em tumores T1, a nefrectomia parcial é a estratégia preferida quando pode alcançar controle oncológico adequado.",
+            "curiosidade": "A tríade clássica de hematúria, dor lombar e massa palpável tornou-se incomum como apresentação inicial; a imagem moderna detecta muitos tumores antes desses sinais e permite planejar cirurgia preservadora de néfrons."
+          },
+          "originalSHA256": "sha256:a6b7947e7525de380d18281b9614406dbae1401b50d2a48c45e4ac0cf3c081be"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Classificar como BosniakIV a massa cística renal com nódulo que realça e atende critérios morfológicos.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta agrega categoria, risco e conduta em texto único, com distratores evidentemente fracos.",
+          "MENOR — Descrever medida e margem do nódulo permite aplicar precisamente Bosniak2019, separando de parede irregular."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "rcc",
+          "url": "https://uroweb.org/guidelines/renal-cell-carcinoma/chapter/diagnostic-evaluation",
+          "additionalURLs": [
+            "https://uroweb.org/guidelines/renal-cell-carcinoma/chapter/disease-management"
+          ],
+          "access": "Capítulos oficiais EAU2026 integrais abertos; tabela Bosniak2019 e recomendações T1/nefrectomia parcial lidas.",
+          "locators": [
+            "Table5.1: nódulo com realce,≥4mm com margens obtusas ou qualquer tamanho com margens agudas, categoriaIV; espessamento irregular/septos sem nódulo é outro critério.",
+            "§7.2: oferecer nefrectomia parcial para tumoresT1; preservar rim na DRC conforme viabilidade técnica e controle oncológico.",
+            "§5.1: tríade clássica rara, tumores incidentais frequentes."
+          ],
+          "limitations": [
+            "Bosniak é classificação radiológica, não tipagem histológica ou prova absoluta de malignidade. A avaliação urológica é individualizada."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Nódulo realçante≥4mm com margens obtusas corresponde à categoriaIV, sem prova histológica absoluta de malignidade.",
+          "source": "rcc",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Bosniak IV — Nódulo com Realce",
+        "qid": "54be3494",
+        "q": "Tomografia mostra massa renal predominantemente cística com nódulo mural de 5 mm que apresenta realce após contraste e margens obtusas com a parede. Qual categoria de Bosniak, versão 2019, corresponde a esse achado?",
+        "refs": [
+          "eau_rcc_guideline_2026"
+        ],
+        "opts": [
+          "Bosniak II.",
+          "Bosniak IIF.",
+          "Bosniak III.",
+          "Bosniak IV."
+        ],
+        "ans": 3,
+        "exp": "Bosniak IV inclui nódulo com realce de pelo menos 4 mm quando a protrusão tem margens obtusas com a parede ou septo; protrusões com margens agudas podem ser classificadas como nódulos independentemente do tamanho. O achado indica alta probabilidade de malignidade, sem substituir o diagnóstico histológico. A conduta exige avaliação urológica de tamanho, anatomia, função renal, comorbidades e objetivos do paciente. Calcificação isolada ou espessamento sem nódulo realçante não define automaticamente a categoria IV.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "proposedSHA256": "sha256:e18fdad9e755d370da67fa031bcf19524ea357b336e7b79760e8b28e1b285410",
+      "classificationAfter": {
+        "op": "Classificar como BosniakIV a massa cística renal com nódulo que realça e atende critérios morfológicos.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "eau_rcc_guideline_2026",
+          "original": {
+            "label": "EAU — Renal Cell Carcinoma Guideline 2026",
+            "url": "https://uroweb.org/guidelines/renal-cell-carcinoma",
+            "journal": "European Association of Urology Guidelines",
+            "ano": 2026,
+            "tipo": "Guideline",
+            "badge": "GUIDELINE",
+            "badgeColor": "#2563eb",
+            "impacto": "Diagnóstico, estadiamento e cirurgia preservadora de néfrons no carcinoma de células renais",
+            "icon": "🧭",
+            "resumo": "Diretriz europeia sobre carcinoma de células renais. Reforça que muitos tumores renais são achados incidentais, que a avaliação por imagem caracteriza tumor local e extensão da doença e que o estadiamento segue o sistema TNM. Para tumores T1 confinados ao rim, recomenda oferecer nefrectomia parcial quando tecnicamente viável; em pessoas com DRC, preservar parênquima renal tem relevância adicional, sem dispensar avaliação de complexidade anatômica e controle oncológico.",
+            "conclusao": "A decisão no CCR localizado integra imagem, TNM, anatomia tumoral e função renal; em tumores T1, a nefrectomia parcial é a estratégia preferida quando pode alcançar controle oncológico adequado.",
+            "curiosidade": "A tríade clássica de hematúria, dor lombar e massa palpável tornou-se incomum como apresentação inicial; a imagem moderna detecta muitos tumores antes desses sinais e permite planejar cirurgia preservadora de néfrons."
+          },
+          "originalSHA256": "sha256:a6b7947e7525de380d18281b9614406dbae1401b50d2a48c45e4ac0cf3c081be",
+          "proposed": {
+            "label": "EAU — Renal Cell Carcinoma Guideline 2026",
+            "url": "https://uroweb.org/guidelines/renal-cell-carcinoma",
+            "journal": "European Association of Urology Guidelines",
+            "ano": 2026,
+            "tipo": "Guideline",
+            "badge": "GUIDELINE",
+            "badgeColor": "#2563eb",
+            "impacto": "Diagnóstico, estadiamento e cirurgia preservadora de néfrons no carcinoma de células renais",
+            "icon": "🧭",
+            "resumo": "Diretriz europeia sobre carcinoma de células renais. Reforça que muitos tumores renais são achados incidentais, que a avaliação por imagem caracteriza tumor local e extensão da doença e que o estadiamento segue o sistema TNM. Para tumores T1 confinados ao rim, recomenda oferecer nefrectomia parcial quando tecnicamente viável; em pessoas com DRC, preservar parênquima renal tem relevância adicional, sem dispensar avaliação de complexidade anatômica e controle oncológico.",
+            "conclusao": "A decisão no CCR localizado integra imagem, TNM, anatomia tumoral e função renal; em tumores T1, a nefrectomia parcial é a estratégia preferida quando pode alcançar controle oncológico adequado.",
+            "curiosidade": "A tríade clássica de hematúria, dor lombar e massa palpável tornou-se incomum como apresentação inicial; a imagem moderna detecta muitos tumores antes desses sinais e permite planejar cirurgia preservadora de néfrons."
+          },
+          "proposedSHA256": "sha256:a6b7947e7525de380d18281b9614406dbae1401b50d2a48c45e4ac0cf3c081be",
+          "sourceIDs": [
+            "rcc"
+          ],
+          "notes": [
+            "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Uma decisão radiológica aplicada, sem juntar esquema cirúrgico ao gabarito. Quatro categorias reais são distratores plausíveis.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "ae31e58e",
+      "family": "A14-litíase-cisto",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Lumasiran na Hiperoxalúria Primária Tipo 1",
+        "qid": "ae31e58e",
+        "q": "Paciente com hiperoxalúria primária tipo 1 confirmada por AGXT tem oxalúria elevada apesar de medidas gerais e avaliação de piridoxina. Qual terapia reduz a produção hepática de oxalato por interferência de RNA?",
+        "refs": [
+          "lumasiran_trial",
+          "eau_urolithiasis_medical_2025"
+        ],
+        "opts": [
+          "Piridoxina como único tratamento possível para todos os genótipos",
+          "Oxalobacter formigenes oral como terapia padrão aprovada",
+          "Lumasiran, que silencia HAO1/glicolato oxidase e reduz a produção hepática de oxalato",
+          "Plasmaférese ambulatorial como prevenção crônica de primeira linha"
+        ],
+        "ans": 2,
+        "exp": "Lumasiran é uma terapia de interferência de RNA para hiperoxalúria primária tipo 1: reduz a expressão hepática de HAO1, diminuindo a atividade da glicolato oxidase e a produção de oxalato. No ILLUMINATE-A, reduziu substancialmente a oxalúria em comparação ao placebo. Piridoxina continua importante em variantes responsivas, mas não é resposta universal; plasmaférese não é prevenção crônica padrão; Oxalobacter oral não é terapia aprovada central para HP1.",
+        "diff": "medium",
+        "cat": "litíase"
+      },
+      "originalSHA256": "sha256:4f91c3e6586f9d485d66eb7922c15e5db87195c899bfd6e6de48ed5757f6d9e6",
+      "originalRefs": [
+        {
+          "id": "lumasiran_trial",
+          "original": {
+            "label": "ILLUMINATE-A Trial (Lumasiran)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
+            "journal": "N Engl J Med 2021;385(19):1737-1746",
+            "ano": 2021,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",
+            "icon": "💊",
+            "resumo": "ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+            "conclusao": "O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+            "curiosidade": "A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
+          },
+          "originalSHA256": "sha256:4488c0b68d5409a0a2283a6d9c65d7c64a7f7e2efe2b1e6c3806134d7ee91d1c"
+        },
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "original": {
+            "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+            "url": "https://uroweb.org/guidelines/urolithiasis",
+            "journal": "European Association of Urology",
+            "ano": 2025,
+            "tipo": "Diretriz internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+            "icon": "📋",
+            "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+            "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+            "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+          },
+          "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer lumasiran como RNA de interferência dirigido à expressão hepática de glicolato oxidase em PH1.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Card compartilhado tem vínculo bibliográfico incorreto, desfecho na semana6 e extrapolação clínica indevida.",
+          "MENOR — A correta é a única opção com mecanismo completo; testar medicamentos reais em paralelo."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "luma",
+          "url": "https://discovery.ucl.ac.uk/id/eprint/10155853/1/nejmoa2021712.pdf",
+          "doi": "10.1056/NEJMoa2021712",
+          "pmid": "33789010",
+          "access": "Artigo primário publicado integral11p aberto pelo web no repositórioUCL; corpo Methods/Results/Table2/limitações lido. Download local403 não é usado como prova de arquivo local.",
+          "locators": [
+            "NEJM2021;384(13):1216–1226. PDF2–3:3mg/kg SC mensal por3doses, manutenção trimestral começando1mês após a última;39randomizados26/13,idade≥6,TFGe≥30.",
+            "PDF3/7: primário mudança percentual de oxalato urinário24h corrigido por superfície, média meses3–6;−65,4% versus−11,8%, diferença−53,5p.p.,IC95%−62,3 a−44,8,P<0,001.",
+            "PDF8–10: eventos de cálculo/nefrocalcinose exploratórios; não prova de reversão de DRC ou prevenção de falência renal; reações no local de injeção38%,limitado6meses."
+          ],
+          "limitations": [
+            "DOI/link/volume atuais eram incompatíveis com a obra citada; correção do vínculo sem mudar identidade do ILLUMINATE-A. Não inferir eficácia em menores6ouTFGe<30 a partir desse ensaio."
+          ]
+        },
+        {
+          "id": "gene",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1283/",
+          "access": "GeneReviews autoral integral aberto, última revisão11/12/2025 confirmada no cabeçalho.",
+          "locators": [
+            "Establishing diagnosis: achados sugestivos mais variantes patogênicas/provavelmente patogênicas bialélicas em AGXT; VUS isoladas ou em combinação não confirmam.",
+            "Summary/Diagnosis: herança autossômica recessiva, AGT hepática e oxalato; PH2=GRHPR,PH3=HOGA1.",
+            "Table8/Targeted therapies: lumasiran reduz glicolato oxidase/HAO1; nedosiran atua em lactato desidrogenase A, piridoxina em responsivos."
+          ],
+          "limitations": [
+            "Fonte expert, não ensaio comparativo entre RNAi. Escolha e acesso às terapias dependem de avaliação, genótipo, função renal e contexto regulatório."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Lumasiran reduzHAO1/GO; nedosiran atua emLDHA, piridoxina não éRNAi. O ensaio mediu oxalato meses3–6, não reversão daDRC.",
+          "source": "luma/gene",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Lumasiran na Hiperoxalúria Primária Tipo 1",
+        "qid": "ae31e58e",
+        "q": "Na hiperoxalúria primária tipo 1 confirmada, qual medicamento reduz a expressão hepática da glicolato oxidase por interferência de RNA?",
+        "refs": [
+          "lumasiran_trial",
+          "genereviews_ph1_2025"
+        ],
+        "opts": [
+          "Piridoxina.",
+          "Nedosiran.",
+          "Lumasiran.",
+          "Alopurinol."
+        ],
+        "ans": 2,
+        "exp": "Lumasiran reduz a expressão de HAO1, que codifica a glicolato oxidase, diminuindo a produção hepática de oxalato. Nedosiran também usa interferência de RNA, mas atua na lactato desidrogenase A, outro alvo. Piridoxina pode beneficiar variantes responsivas e não age por interferência de RNA; alopurinol atua no metabolismo das purinas. No ILLUMINATE-A, o benefício demonstrado foi redução do oxalato urinário em seis meses na população estudada, sem provar reversão de doença renal crônica. Tratamento e acompanhamento são individualizados.",
+        "diff": "medium",
+        "cat": "litíase"
+      },
+      "proposedSHA256": "sha256:a9ace31996a3d8605a18f5ffba59733e462a16470efa011f8f42b3c9adb2b4ba",
+      "classificationAfter": {
+        "op": "Reconhecer lumasiran como RNA de interferência dirigido à expressão hepática de glicolato oxidase em PH1.",
+        "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "lumasiran_trial",
+          "original": {
+            "label": "ILLUMINATE-A Trial (Lumasiran)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
+            "journal": "N Engl J Med 2021;385(19):1737-1746",
+            "ano": 2021,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",
+            "icon": "💊",
+            "resumo": "ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+            "conclusao": "O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+            "curiosidade": "A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
+          },
+          "originalSHA256": "sha256:4488c0b68d5409a0a2283a6d9c65d7c64a7f7e2efe2b1e6c3806134d7ee91d1c",
+          "proposed": {
+            "label": "Garrelfs et al. — ILLUMINATE-A (Lumasiran, 2021)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2021712",
+            "journal": "N Engl J Med. 2021;384(13):1216–1226. DOI:10.1056/NEJMoa2021712",
+            "ano": 2021,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Lumasiran reduziu oxalato urinário na hiperoxalúria primária tipo 1; desfecho bioquímico em seis meses.",
+            "icon": "🔬",
+            "resumo": "Ensaio de fase III, duplo-cego, com 39 participantes de pelo menos 6 anos, hiperoxalúria primária tipo 1 confirmada geneticamente e taxa de filtração glomerular estimada (TFGe) ≥30 mL/min/1,73 m². Comparou lumasiran 3 mg/kg por via subcutânea, mensal por três doses e depois a cada três meses a partir de um mês após a última dose inicial, com placebo (26 versus 13). A mudança no oxalato urinário de 24 horas foi calculada como média dos meses 3–6: −65,4% com lumasiran e −11,8% com placebo; diferença de −53,5 pontos percentuais (intervalo de confiança de 95%: −62,3 a−44,8; P <0,001).",
+            "conclusao": "O ensaio demonstra redução de oxalato urinário na população estudada. Não foi desenhado para provar prevenção de falência renal ou reversão de doença renal crônica em seis meses; dados de cálculos e nefrocalcinose eram exploratórios. Reações leves e transitórias no local da injeção foram frequentes.",
+            "curiosidade": "Lumasiran reduz a expressão de HAO1, que codifica a glicolato oxidase. Atua a montante do defeito em alanina-glioxilato aminotransferase, sem repor essa enzima."
+          },
+          "proposedSHA256": "sha256:e4bc863c580c30e8d740a53a1ace311b1eeb3435dabb162a4cfcb6476c64319d",
+          "sourceIDs": [
+            "luma"
+          ],
+          "notes": [
+            "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+          ]
+        },
+        {
+          "id": "genereviews_ph1_2025",
+          "original": {
+            "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+            "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+            "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+          },
+          "originalSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+          "proposed": {
+            "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+            "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+            "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+          },
+          "proposedSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+          "sourceIDs": [
+            "gene"
+          ],
+          "notes": [
+            "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Distinção de mecanismo atual com alternativas farmacológicas reais; não afirma que lumasiran seja o único RNAi existente nem amplia indicação do RCT.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ]
+}

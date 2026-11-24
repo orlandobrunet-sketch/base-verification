@@ -1,0 +1,98 @@
+{
+  "schema": "NQ_INDEPENDENT_FULL_CARD_REVIEW_1728_A1",
+  "role": "INDEPENDENT_REVIEWER_NOT_AUTHOR",
+  "reviewer": "/root/editorial_backlog_1728",
+  "date": "2026-11-16",
+  "sourcePackage": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/author-batch-A18.2-metformina-ARNI.json",
+  "sourcePackageRawSHA256": "b618ccc85d4f95b398f817ccbb8cc6b6ab22b51fbfd04749c6a8367f5ba58b40",
+  "id": "sacubitril_valsartan_hf",
+  "proposed": {
+    "label": "Voors et al. — Análise Renal do PARAMOUNT (2015)",
+    "url": "https://doi.org/10.1002/ejhf.232",
+    "journal": "Eur J Heart Fail. 2015;17(5):510–517. DOI:10.1002/ejhf.232",
+    "ano": 2015,
+    "tipo": "Análise de ensaio clínico randomizado",
+    "badge": "RCT",
+    "badgeColor": "#10b981",
+    "impacto": "No PARAMOUNT, menor declínio da filtração estimada coexistiu com aumento da albuminúria.",
+    "icon": "🔬",
+    "resumo": "Análise post hoc de 301 participantes do PARAMOUNT com insuficiência cardíaca e fração de ejeção preservada, comparando LCZ696 (sacubitril/valsartana; dose-alvo histórica de 200 mg) com valsartana 160 mg, ambos por via oral duas vezes ao dia, durante 36 semanas. A taxa de filtração glomerular estimada (TFGe) pela creatinina caiu menos com LCZ696, enquanto a relação albumina/creatinina urinária aumentou. A diferença na ocorrência de piora renal não foi estatisticamente significativa. O ensaio excluiu TFGe abaixo de 30 mL/min/1,73 m² e não foi desenhado originalmente para comprovar desfechos renais.",
+    "conclusao": "Os resultados exploratórios mostram dissociação entre filtração estimada e albuminúria. Não comprovam redução de eventos renais clínicos nem sustentam extrapolação para fração de ejeção reduzida ou insuficiência renal grave.",
+    "curiosidade": ""
+  },
+  "proposedSHA256": "sha256:a688e958d29a655fb6a86ffe830dd1e100d744e97ae75436f4cbe4f5bebd9ad9",
+  "beforeRevision": "sha256:f849521b397bffc60605e191930460ec501d5e81558be1359c47fcef41bdb173",
+  "verdict": "aprovada",
+  "evidence": "VERIFICADA",
+  "pending": "NENHUMA",
+  "publicationAuthorization": "LIBERADA",
+  "publication": "LIBERADA",
+  "fullTwelveFieldsReviewed": true,
+  "review": "Identidade real Voors2015/PARAMOUNT/HFpEF restaurada. Todos os12campos foram confrontados com o publicado integral e metadados primários. Análise post hoc explicitada, doses históricas/rota/duração identificadas, menor queda da TFGe e maior albuminúria são qualitativamente sustentadas; não houve redução significativa de WRF nem prova de desfecho renal duro. A18.2 é suficiente nesse escopo, sem números opcionais ou novo P.",
+  "claimsVerified": [
+    "301 participantes, análise post hoc, PARAMOUNT/HFpEF,36semanas",
+    "Dose-alvo histórica LCZ696200mg vs valsartana160mg, oral, duas vezes/dia",
+    "Menor queda da TFGe pela creatinina e aumento da relação albumina/creatinina",
+    "Piora renal sem diferença estatisticamente significativa",
+    "TFGe<30 excluída; ensaio não desenhado originalmente para desfechos renais"
+  ],
+  "limitations": [
+    "Elegibilidade histórica da fração de ejeção foi≥45%, sem extrapolar para toda HFrEF.",
+    "Resultados exploratórios/post hoc; ausência de diferença significativa não prova equivalência.",
+    "Testes/P do abstract e corpo/tabela não coincidem; o card não reproduz P nem faz inferência que dependa dessa escolha.",
+    "Arquivo localvoors2015.pdf é resposta403 e não foi usado como corpo; leitura real ocorreu pela rota web.",
+    "A18.3 permanece alternativa autoral não utilizada, sem gate."
+  ],
+  "sourceIDs": [
+    "VOORS2015",
+    "LABEL2026"
+  ],
+  "sources": [
+    {
+      "id": "LABEL2026",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+      "access": "Texto oficial integral pessoalmente aberto e lido; HTML próprio HTTP200.",
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-mala-arni/entresto-dailymed2026.html",
+      "locators": [
+        "Data da página06/07/2026; Revised04/2024",
+        "§2.1/4: washout36horas nos dois sentidos e contraindicação com ACEi",
+        "§2.2/2.7/3: oral; metade da dose inicial usual adulta na insuficiência renal grave,24/26mg duas vezes/dia",
+        "§5.3/5.4/5.5: hipotensão, creatinina e hipercalemia; tratar/ajustar conforme necessário",
+        "§7.1/12.1: valsartanaAT1; sacubitril→LBQ657/neprilisina"
+      ],
+      "limits": "Bula não define K5,8 como indicação universal de suspensão definitiva nem TFGe<30 como contraindicação absoluta."
+    },
+    {
+      "id": "VOORS2015",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ejhf.232",
+      "identityURL": "https://pubmed.ncbi.nlm.nih.gov/25657064/",
+      "doi": "10.1002/ejhf.232",
+      "pmid": "25657064",
+      "access": "Publicado integral8p pessoalmente aberto pela rota web; Methods, Results, Tables2/4/5 e Discussion efetivamente lidos. Requisição direta local403 é arquivo de erro, NÃO cópia válida do artigo.",
+      "locators": [
+        "Methods: análise post hoc PARAMOUNT301, fração de ejeção≥45%, TFGe≥30;36semanas",
+        "Study procedures: LCZ69650→200mg e valsartana40→160mg duas vezes/dia; doses históricas",
+        "Table2: menor queda da TFGe, testes e P no corpo/tabela diferentes do abstract",
+        "Table4: albuminúria aumentou com LCZ696",
+        "Table5: piora renal12%vs18%, sem diferença significativa",
+        "Discussion: análise post hoc, amostra pequena, desfechos renais exploratórios"
+      ],
+      "limits": "Não é HFrEF/PARADIGM-HF/Damman2018 nem estudo com TFGe<30. Card qualitativo não seleciona um dos P discordantes nem afirma prova de proteção renal clínica."
+    }
+  ],
+  "currentConsumers": [
+    "d4393bc2",
+    "7759b493",
+    "3e9e6915"
+  ],
+  "consumersAfterPlannedFourQuestionChanges": [],
+  "noConsumerGateByInheritance": true,
+  "retention": {
+    "sameReferenceId": true,
+    "noNewScientificCredit": true,
+    "noQuestionApprovalInThisReceipt": true,
+    "authorReceipt": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/author-Voors-card-review.json",
+    "authorReceiptRawSHA256": "d86a1b891e44e2ec1ee96c51723bf6dffda8d16c97749f7e94eb498e66364bca"
+  },
+  "productionWrites": 0
+}

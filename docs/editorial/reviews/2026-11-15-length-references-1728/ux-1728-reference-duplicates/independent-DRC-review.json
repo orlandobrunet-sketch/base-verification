@@ -1,0 +1,2894 @@
+{
+  "schema": "NQ_INDEPENDENT_DRC_REVIEW_1728_v1",
+  "date": "2026-11-15",
+  "role": "INDEPENDENT_MEDICAL_EDITORIAL_REVIEW",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/editorial_backlog_1728",
+  "authorPackage": {
+    "file": "drc-author-A12.json",
+    "rawSHA256": "95ab7922c6cbd0498ed697570ca8ed206914445326676502538447a7e982d0dc"
+  },
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "productionWrites": false,
+  "sources": {
+    "K": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+      "file": "kdigo-ckd-2024.pdf",
+      "mode": "PDF oficial integral aberto; extração e leitura independentes dos trechos",
+      "locators": [
+        "PDF11/22:CGA,A3>300eprognóstico",
+        "PDF34:cronicidade",
+        "PDF56/73:Cr-Cys/raça",
+        "PDF76:confirmaçãofita",
+        "PDF99:SGLT2",
+        "PDF107:acidose",
+        "PDF111–113:dietaK",
+        "PDF119:estatinas",
+        "PDF151:diálise/planejamento"
+      ],
+      "limit": "Versão final2024. Página oficial traz atualização medicamentosa2027ainda em revisão pública, não tratada como recomendação final.",
+      "primarySHA256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+      "independentReadFolder": "independent-DRC"
+    },
+    "P": {
+      "url": "https://kdigo.org/wp-content/uploads/2018/04/KDIGO-Potassium-Management-Final-publication.pdf",
+      "file": "kdigo-potassium-2020.pdf",
+      "mode": "PDF primário integral aberto, fisiologiaPDF2–3lida independentemente",
+      "locators": [
+        "p43:Na/fluxo/aldosterona",
+        "p44:diuréticos/adaptação/reserva"
+      ],
+      "limit": "Relatório de conferência com síntese narrativa; nãoGRADEouRCT.",
+      "primarySHA256": "935c37b01acc5ed667fb231da5bb9bf883fcb6cdca3b2f7369616c4203221dc4",
+      "independentReadFolder": "independent-DRC"
+    },
+    "C": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9119310/",
+      "doi": "10.1056/NEJMoa2110730",
+      "mode": "NLM EFetch oficial independente HTTP200, corpo completo",
+      "locators": [
+        "Abstract/Methods/Results",
+        "DoseAdjustment",
+        "AdverseEvents/Discussion"
+      ],
+      "limit": "160/G4,12semanas,clortalidona; não extrapolar a todos fármacos ou desfechos de longo prazo.",
+      "primarySHA256": "f7c5e935f69c8b018469ba9496ba28e5dbde38c9e3522d772a3035f0b0f2270c",
+      "independentReadFolder": "independent-DRC"
+    },
+    "I": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8822996/",
+      "doi": "10.1056/NEJMoa2102953",
+      "mode": "NLM EFetch oficial independente HTTP200, corpo completo",
+      "locators": [
+        "Methods:8254/5352desenvolvimento;4050validação",
+        "Results:refit versus remoção/Cr-Cys",
+        "Discussion:validação e limites"
+      ],
+      "limit": "Acurácia populacional de estimativa não equivale àTFGmedida de cada indivíduo.",
+      "primarySHA256": "f7c5e935f69c8b018469ba9496ba28e5dbde38c9e3522d772a3035f0b0f2270c",
+      "independentReadFolder": "independent-DRC"
+    },
+    "S": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3145073/",
+      "doi": "10.1016/S0140-6736(11)60739-3",
+      "mode": "NLM EFetch oficial independente HTTP200, corpo completo",
+      "locators": [
+        "Methods/Findings:9270/combinação/primário",
+        "Results:526/619,RR0,83",
+        "Safety:9/5miopatia",
+        "RenalProgression:1057/1084,RR0,97"
+      ],
+      "limit": "Combinação e população semIAM/revascularização conhecidos; ausência de significância renal não é prova de efeito nulo, nem de eficácia separada dos componentes.",
+      "primarySHA256": "f7c5e935f69c8b018469ba9496ba28e5dbde38c9e3522d772a3035f0b0f2270c",
+      "independentReadFolder": "independent-DRC"
+    }
+  },
+  "proofs": {
+    "primaryAccessReport": "drc-primary-access.json no pacote autoral, todos hashes relidos e conferidos",
+    "independentPrimaryXML": "independent-DRC/primary-pmc-full.xml",
+    "independentExtracts": "independent-DRC/*.json",
+    "sharedCardVersion": "kdigo_ckd372fce7...único; versão a89fc3...autoralA3foiretirada antes do gate"
+  },
+  "items": [
+    {
+      "qid": "9661a8dd",
+      "original": {
+        "authorRevision": "sha256:6109dff2c0ed85b10744cecbddf42f3df8a9b94aa272887c676e2155269fef6b",
+        "question": {
+          "t": "Acidose Metabólica na DRC — Limiar e Monitorização",
+          "qid": "9661a8dd",
+          "q": "Paciente com DRC G4 apresenta bicarbonato sérico persistentemente em 17 mEq/L. Segundo a KDIGO 2024, qual abordagem é mais adequada?",
+          "refs": [
+            "kdigo_ckd",
+            "ckd_metabolic_acidosis_core_2019"
+          ],
+          "opts": [
+            "Considerar intervenção dietética e/ou farmacológica e monitorar bicarbonato, pressão, potássio e estado volêmico, sem assumir que um alvo universal de 22 mEq/L comprovadamente retarde a falência renal",
+            "Não tratar até o bicarbonato cair abaixo de 10 mEq/L, independentemente de sintomas",
+            "Administrar bicarbonato até ultrapassar o limite superior da normalidade para maximizar nefroproteção",
+            "Prescrever dose fixa de bicarbonato para todo paciente G4, mesmo sem acidose"
+          ],
+          "ans": 0,
+          "exp": "A KDIGO 2024 sugere considerar tratamento para evitar acidose com implicações clínicas, dando bicarbonato abaixo de 18 mEq/L em adultos como exemplo. A terapia deve ser individualizada e monitorada para não causar alcalose, piora da pressão, sobrecarga de sódio ou alterações do potássio. A diretriz deixou de afirmar um alvo universal ≥22 mEq/L com benefício renal comprovado, porque ensaios não demonstraram redução consistente de falência renal. Acidose persistente ainda importa por efeitos musculares, ósseos e metabólicos.",
+          "diff": "hard",
+          "cat": "drc"
+        }
+      },
+      "proposed": {
+        "t": "Acidose Metabólica na DRC — Limiar e Monitorização",
+        "qid": "9661a8dd",
+        "q": "Paciente com doença renal crônica (DRC) G4 apresenta bicarbonato sérico persistentemente em 17 mEq/L. Segundo a KDIGO 2024, qual abordagem é mais adequada?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Considerar correção e monitorar bicarbonato, pressão, potássio e volume durante o tratamento.",
+          "Adotar 22 mEq/L como alvo obrigatório, por nefroproteção comprovada em qualquer estágio da DRC.",
+          "Aguardar manifestações clínicas antes de avaliar tratamento, pois 17 mEq/L não justifica intervenção.",
+          "Preferir restrição proteica intensa como medida isolada, evitando avaliar terapia com álcali."
+        ],
+        "ans": 0,
+        "exp": "A KDIGO 2024 orienta considerar intervenção farmacológica, com ou sem medidas dietéticas, para evitar acidose com repercussão clínica; bicarbonato abaixo de 18 mEq/L em adultos é um exemplo. O tratamento deve evitar ultrapassar o limite superior normal e piorar pressão, potássio ou volume. A diretriz não oferece uma promessa de redução de falência renal ao atingir um alvo universal de 22 mEq/L. Medidas nutricionais e álcali são individualizados; restrição proteica intensa isolada não substitui essa avaliação.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:9a8d514f9d48bc40bb4df7a3dfc19b2ea856704a7c7c7466775179df3649a1f7",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "bundleRevision": "sha256:f13a68716cdef4b61ad69d00f1dbe6f24dd5b1819fe2e5de2e24d846470eb8a3",
+      "classification": {
+        "op": "Escolher avaliação e correção individualizada da acidose na DRC, com monitorização e interpretação correta do limiar KDIGO 2024.",
+        "competency": "Avaliação e manejo seguro da DRC",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Integra contexto, fonte e limite de extrapolação para orientar uma decisão ou interpretação.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Correta carregava intervenção, monitorização e crítica de ensaios em contraste com distractores absolutos; forma sinalizava a resposta.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta carregava intervenção, monitorização e crítica de ensaios em contraste com distractores absolutos; forma sinalizava a resposta."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "PP3.10.1–2: considerar farmacoterapia com/sem dieta;18mmol/l é exemplo em adultos, não alvo compulsório. Monitorar bicarbonato,PA,K/volume; evidência não confirma nefroproteção universal em alvo22.",
+          "sourceIDs": [
+            "K"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Caso persistenteG4/17sustenta considerar correção. Não é obrigação de dose fixa ou intervenção para todaDRC. A restrição proteica intensa isolada não substitui a avaliação. Sem segunda alternativa correta.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Caso persistenteG4/17sustenta considerar correção. Não é obrigação de dose fixa ou intervenção para todaDRC. A restrição proteica intensa isolada não substitui a avaliação. Sem segunda alternativa correta."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "PP3.10.1–2: considerar farmacoterapia com/sem dieta;18mmol/l é exemplo em adultos, não alvo compulsório. Monitorar bicarbonato,PA,K/volume; evidência não confirma nefroproteção universal em alvo22."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Caso persistenteG4/17sustenta considerar correção. Não é obrigação de dose fixa ou intervenção para todaDRC. A restrição proteica intensa isolada não substitui a avaliação. Sem segunda alternativa correta."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Correta concisa mantém o princípio e desloca nuances à explicação, sem transformar practice point em recomendação graduada."
+        },
+        "fourDimensionDuplication": "Não encontrado outro item com a mesma decisão sobre17e limiar exemplificativoKDIGO2024; mecanismos de acidose ou tratamento emergencial não são o mesmoOP.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:9a8d514f9d48bc40bb4df7a3dfc19b2ea856704a7c7c7466775179df3649a1f7",
+        "exactReferences": {
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "00c75e38",
+      "original": {
+        "authorRevision": "sha256:d6d6f2961de4c992afcc086630c0dc411f3dfb5dea69679538c2777aaa99210c",
+        "question": {
+          "t": "Albuminúria A3 — Valor Prognóstico",
+          "qid": "00c75e38",
+          "q": "Paciente com DRC diabética apresenta relação albumina/creatinina urinária de 450 mg/g, confirmada em três coletas. Qual é a interpretação prognóstica correta?",
+          "refs": [
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "A albuminúria é A3 e aumenta independentemente o risco renal e cardiovascular, devendo ser integrada à TFGe e à causa da DRC",
+            "A albuminúria só tem valor prognóstico quando ultrapassa 3,5 g/dia",
+            "A categoria A3 substitui a necessidade de acompanhar TFGe",
+            "Albuminúria persistente não modifica risco em pessoas com diabetes"
+          ],
+          "ans": 0,
+          "exp": "RAC acima de 300 mg/g corresponde a A3, albuminúria gravemente aumentada. Albuminúria é um marcador contínuo e independente de progressão renal, falência renal, eventos cardiovasculares e mortalidade, inclusive abaixo da faixa nefrótica. Ela não substitui a TFGe: a classificação CGA combina causa, G1–G5 e A1–A3, e o acompanhamento deve observar ambos os eixos e suas tendências.",
+          "diff": "medium",
+          "cat": "drc"
+        }
+      },
+      "proposed": {
+        "t": "Albuminúria A3 — Valor Prognóstico",
+        "qid": "00c75e38",
+        "q": "Paciente com doença renal crônica (DRC) diabética apresenta relação albumina/creatinina urinária de 450 mg/g, confirmada em três coletas. Qual é a interpretação prognóstica correta?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "É A3 e eleva o risco renal e cardiovascular; interpretar junto da causa e da TFGe.",
+          "É A2, pois a classificação A3 exige proteinúria em faixa nefrótica.",
+          "É A3 e define a categoria G4, mesmo quando a filtração estimada permanece preservada.",
+          "É A3, com valor prognóstico apenas depois que surge redução da filtração estimada."
+        ],
+        "ans": 0,
+        "exp": "A relação albumina/creatinina urinária de 450 mg/g está na categoria A3, gravemente aumentada, que começa acima de 300 mg/g. Ela se associa a maior risco de progressão renal e eventos cardiovasculares mesmo abaixo da faixa nefrótica. A classificação combina causa, filtração e albuminúria: A3 não determina a categoria de filtração nem dispensa seu acompanhamento. A repetição das coletas confirma que o achado não depende apenas de uma amostra isolada.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:853c48a9f639a3b24f584f3cbd0347f8792ddbb00c23ea363273b99562b98365",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "bundleRevision": "sha256:edfc142991f558ba05eaf015a3569055c851f840a805c88edade43b131809afb",
+      "classification": {
+        "op": "Classificar albuminúria A3 e integrar seu valor prognóstico à causa e à filtração na DRC.",
+        "competency": "Avaliação e manejo seguro da DRC",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "easy",
+        "rationale": "Reconhecer ou aplicar diretamente uma regra/mecanismo; não se eleva dificuldade pela extensão ou novidade.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Correta extensa era a única que integrava todos os eixos; alternativas negavam qualquer prognóstico no diabetes ou exigiam faixa nefrótica.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta extensa era a única que integrava todos os eixos; alternativas negavam qualquer prognóstico no diabetes ou exigiam faixa nefrótica."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "ACR450mg/g éA3(>300). Causa/GFR/albuminúria compõemCGA;A3não defineG4e associa-se a risco mesmo com filtração preservada.",
+          "sourceIDs": [
+            "K"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Três coletas não informam duração≥3meses, mas o enunciado já declaraDRC; a resposta não usa contagem de amostras para fabricar cronicidade.450não está na fronteira do corte. Sem segundo gabarito.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Três coletas não informam duração≥3meses, mas o enunciado já declaraDRC; a resposta não usa contagem de amostras para fabricar cronicidade.450não está na fronteira do corte. Sem segundo gabarito."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "ACR450mg/g éA3(>300). Causa/GFR/albuminúria compõemCGA;A3não defineG4e associa-se a risco mesmo com filtração preservada."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Três coletas não informam duração≥3meses, mas o enunciado já declaraDRC; a resposta não usa contagem de amostras para fabricar cronicidade.450não está na fronteira do corte. Sem segundo gabarito."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "As opções distinguem classificaçãoA/G e prognóstico. Aplicação direta de uma regra, dificuldade fácil; não inflar por extensão."
+        },
+        "fourDimensionDuplication": "3fed706c pede comparar perfis na grade e escolherG5A3;1e0e571c decideSRAA. Aqui a decisão é classificar450e integrar prognóstico. Sem identidade nas quatro dimensões.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:853c48a9f639a3b24f584f3cbd0347f8792ddbb00c23ea363273b99562b98365",
+        "exactReferences": {
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "e24c60f6",
+      "original": {
+        "authorRevision": "sha256:40feeecf455b304ef50c886f79c14cf49902399a00b8d051fffbb8c0dde4ceb8",
+        "question": {
+          "t": "Adaptação Renal ao Potássio na DRC",
+          "qid": "e24c60f6",
+          "q": "Paciente com DRC G4 mantém potássio sérico normal sem uso de quelante. Qual adaptação dos néfrons remanescentes ajuda a preservar o balanço de potássio apesar da redução do número de néfrons?",
+          "refs": [
+            "brenner_rector",
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Aumento da secreção distal de potássio por néfron, favorecido por aldosterona, entrega de sódio e fluxo distal",
+            "Redução da secreção distal de potássio para conservar a carga filtrada",
+            "Supressão completa da aldosterona",
+            "Redução do fluxo distal e da atividade de canais de potássio"
+          ],
+          "ans": 0,
+          "exp": "Com a perda de néfrons, cada néfron remanescente aumenta sua secreção distal de potássio, apoiada por aldosterona, oferta de sódio e fluxo ao túbulo coletor. Essa adaptação permite manter o balanço por algum tempo, mas a reserva é limitada e hipercalemia surge com DRC avançada, baixa entrega distal, acidose, hipoaldosteronismo ou fármacos. A adaptação fisiológica não elimina a necessidade de tratar hipercalemia clinicamente relevante.",
+          "diff": "hard",
+          "cat": "drc"
+        }
+      },
+      "proposed": {
+        "t": "Adaptação Renal ao Potássio na DRC",
+        "qid": "e24c60f6",
+        "q": "Paciente com doença renal crônica (DRC) G4 mantém potássio sérico normal sem uso de quelante. Qual adaptação dos néfrons remanescentes ajuda a preservar o balanço de potássio apesar da redução do número de néfrons?",
+        "refs": [
+          "kdigo_potassium_homeostasis_2020"
+        ],
+        "opts": [
+          "Aumento da secreção distal de potássio por néfron remanescente.",
+          "Aumento da carga filtrada por recuperação da filtração glomerular global.",
+          "Redução da secreção tubular para equilibrar a menor carga de potássio filtrado.",
+          "Deslocamento para dentro das células como principal mecanismo de eliminação do potássio."
+        ],
+        "ans": 0,
+        "exp": "O menor número de néfrons é parcialmente compensado por maior secreção distal de potássio em cada néfron remanescente. Aldosterona, oferta de sódio e fluxo distal participam desse processo. A filtração global não precisa recuperar-se para essa adaptação ocorrer. Redistribuição intracelular modifica a concentração, mas não elimina potássio do organismo. A reserva permanece limitada: acidose, menor entrega distal e fármacos podem precipitar hipercalemia.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:2f3073292dcb9d0a9fd3a30412248bdbf5d527b4f890669348408e2ddffaab6d",
+      "referenceRevisions": {
+        "kdigo_potassium_homeostasis_2020": "sha256:3d6c67e0fe721f2c714a2ee525d71254b547e854990e5ad5f53d266f44aaf93b"
+      },
+      "bundleRevision": "sha256:53398eb99b57e088a985c804a8f3dae6217c208a625f30a580be9a8cd1b54689",
+      "classification": {
+        "op": "Explicar a adaptação da secreção de potássio por néfron remanescente na DRC.",
+        "competency": "Fisiologia/limites de inferência na DRC",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "easy",
+        "rationale": "Reconhecer ou aplicar diretamente uma regra/mecanismo; não se eleva dificuldade pela extensão ou novidade.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Correta listava mecanismo e três determinantes; o tema não justifica hard quando exige reconhecimento fisiológico direto.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta listava mecanismo e três determinantes; o tema não justifica hard quando exige reconhecimento fisiológico direto."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "Perda de massa nefrônica induz maior secreção deKpor néfron remanescente; sódio/fluxo/aldosterona participam. Redistribuição celular não eliminaK; reserva é limitada.",
+          "sourceIDs": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "A excreção intestinal também pode aumentar, mas a pergunta restringe aos néfrons remanescentes. Não exigeTFGglobal recuperada nem garante balanço sob qualquer sobrecarga. Sem alternativa concorrente.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "A excreção intestinal também pode aumentar, mas a pergunta restringe aos néfrons remanescentes. Não exigeTFGglobal recuperada nem garante balanço sob qualquer sobrecarga. Sem alternativa concorrente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Perda de massa nefrônica induz maior secreção deKpor néfron remanescente; sódio/fluxo/aldosterona participam. Redistribuição celular não eliminaK; reserva é limitada."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "A excreção intestinal também pode aumentar, mas a pergunta restringe aos néfrons remanescentes. Não exigeTFGglobal recuperada nem garante balanço sob qualquer sobrecarga. Sem alternativa concorrente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Todas as opções contrastam adaptação, filtração, secreção e redistribuição. Preserva o mecanismo sem inventar recuperação renal."
+        },
+        "fourDimensionDuplication": "60286409 pergunta adaptação extrarrenal colônica;53090d19 decisão dietética. CompartilhamK, mas decisão/competência distintas.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:2f3073292dcb9d0a9fd3a30412248bdbf5d527b4f890669348408e2ddffaab6d",
+        "exactReferences": {
+          "kdigo_potassium_homeostasis_2020": "sha256:3d6c67e0fe721f2c714a2ee525d71254b547e854990e5ad5f53d266f44aaf93b"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "53090d19",
+      "original": {
+        "authorRevision": "sha256:e01199aa96cce367e75756d95dcbccdd2314b2e1187292ebd300787894d65f5e",
+        "question": {
+          "t": "Potássio e Rim",
+          "qid": "53090d19",
+          "q": "Paciente com doença renal crônica (DRC) estágio G3b apresenta potássio sérico persistente de 5,8 mEq/L, sem alteração eletrocardiográfica. Qual orientação dietética inicial é mais apropriada para reduzir a carga de potássio?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Aumentar livremente frutas e vegetais ricos em potássio por serem cardioprotetores",
+            "Reduzir alimentos de alta carga de potássio, como banana, laranja, tomate e batata, com orientação nutricional individualizada",
+            "Suplementar potássio oral para compensar perdas urinárias residuais",
+            "Iniciar dieta hiperproteica como estratégia primária para reduzir potássio sérico"
+          ],
+          "ans": 1,
+          "exp": "A medida dietética inicial é reduzir a carga de potássio de alimentos ricos nesse eletrólito, com orientação nutricional individualizada para preservar qualidade da dieta e evitar restrição excessiva. Aumentar livremente alimentos ricos em potássio pode piorar a hiperpotassemia. Suplementar potássio é inadequado em paciente já hiperpotassêmico, e dieta hiperproteica não é estratégia para reduzir potássio; em DRC, a prescrição proteica deve ser individualizada conforme estágio, estado nutricional e diálise.",
+          "diff": "easy",
+          "cat": "drc"
+        }
+      },
+      "proposed": {
+        "t": "Potássio e Rim",
+        "qid": "53090d19",
+        "q": "Paciente com doença renal crônica (DRC) estágio G3b apresenta potássio sérico persistente de 5,8 mEq/L, sem alteração eletrocardiográfica. Qual orientação dietética inicial é mais apropriada para reduzir a carga de potássio?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Restringir principalmente frutas e vegetais, sem revisar a contribuição de fontes processadas.",
+          "Rever a dieta e reduzir fontes de potássio muito biodisponível, com plano nutricional individualizado.",
+          "Trocar sal de cozinha por sal dietético com cloreto de potássio para favorecer o controle pressórico.",
+          "Aplicar um limite alimentar fixo a toda pessoa em G3b, sem avaliar fontes e qualidade da dieta."
+        ],
+        "ans": 1,
+        "exp": "A KDIGO prioriza aconselhamento individualizado e redução de fontes com potássio muito biodisponível, como processados com aditivos e substitutos de sal à base de cloreto de potássio. Frutas e vegetais não devem ser proibidos em bloco: tipo, porção, preparo e contexto nutricional precisam ser avaliados. A dieta integra o manejo da hipercalemia persistente com revisão de medicamentos, causas e controle laboratorial; eletrocardiograma sem alterações não elimina o risco. Um plano genérico baseado apenas no estágio pode restringir a qualidade da alimentação sem abordar as maiores fontes absorvíveis.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:405b64b66c997cb5744a34f7ae380d2dd5eeb07a6902ad08965c121bbbc8ec64",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "bundleRevision": "sha256:449f6efa5747f4c96e45444c0dd71b59186bf5c93347ea6afba765814dc9bd07",
+      "classification": {
+        "op": "Escolher orientação dietética inicial individualizada para reduzir carga de potássio na hipercalemia da DRC.",
+        "competency": "Avaliação e manejo seguro da DRC",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "easy",
+        "difficultyAfter": "medium",
+        "rationale": "Integra contexto, fonte e limite de extrapolação para orientar uma decisão ou interpretação.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "A resposta centrava lista banana/laranja/tomate/batata, embora mencionasse individualização; não era proibição universal, mas podia priorizar fontes menos biodisponíveis e distratores eram muito fracos.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "A resposta centrava lista banana/laranja/tomate/batata, embora mencionasse individualização; não era proibição universal, mas podia priorizar fontes menos biodisponíveis e distratores eram muito fracos."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "PP3.11.5.1–2priorizam plano individualizado, nutricionista e fontes ricas emKbioabsorvível/processados. SubstitutoKClé relevante. ECGnormal não exclui risco; dieta é parte de manejo/monitorização.",
+          "sourceIDs": [
+            "K"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Bnão proíbe frutas/vegetais em bloco nem torna dieta tratamento único. Asem rever processados pode ignorar fonte importante; CacrescentaKCl;Dprescreve restrição universal por estágio. Nenhum benefício geral de vegetal justifica consumo livre na hipercalemia persistente.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Bnão proíbe frutas/vegetais em bloco nem torna dieta tratamento único. Asem rever processados pode ignorar fonte importante; CacrescentaKCl;Dprescreve restrição universal por estágio. Nenhum benefício geral de vegetal justifica consumo livre na hipercalemia persistente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "PP3.11.5.1–2priorizam plano individualizado, nutricionista e fontes ricas emKbioabsorvível/processados. SubstitutoKClé relevante. ECGnormal não exclui risco; dieta é parte de manejo/monitorização."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Bnão proíbe frutas/vegetais em bloco nem torna dieta tratamento único. Asem rever processados pode ignorar fonte importante; CacrescentaKCl;Dprescreve restrição universal por estágio. Nenhum benefício geral de vegetal justifica consumo livre na hipercalemia persistente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "Atualiza prioridade de fontes sem mudar oOPde aconselhamento dietético e sem perder controle laboratorial/medicações."
+        },
+        "fourDimensionDuplication": "Diferente da adaptação tubulare24ou da escolha de medicação para hipercalemia; o dado decisivo é fonte alimentar e individualização.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "20/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:405b64b66c997cb5744a34f7ae380d2dd5eeb07a6902ad08965c121bbbc8ec64",
+        "exactReferences": {
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "7d8f1d58",
+      "original": {
+        "authorRevision": "sha256:49c7670470e0fb0d108488d3dace4631a8d8379147a2bebbab69f4caacc21f05",
+        "question": {
+          "t": "CKD-EPI 2021 — Equação sem Raça",
+          "qid": "7d8f1d58",
+          "q": "Qual afirmação descreve corretamente a atualização CKD-EPI 2021 e sua aplicação segundo a KDIGO 2024?",
+          "refs": [
+            "inker_ckdepi_2021",
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "A equação de creatinina 2021 elimina o coeficiente de raça; quando disponível, a combinação creatinina–cistatina C melhora a estimativa para estadiamento",
+            "A equação dispensa dosar creatinina e calcula a TFGe apenas com idade e sexo",
+            "A equação elimina toda influência de massa muscular sobre a creatinina sérica",
+            "A equação MDRD deve substituir a CKD-EPI sempre que a TFGe estimada for maior que 60 mL/min/1,73 m²"
+          ],
+          "ans": 0,
+          "exp": "As equações CKD-EPI 2021 foram desenvolvidas sem variável de raça, que é uma construção social e não um marcador biológico de filtração. A equação baseada somente em creatinina ainda sofre influência de massa muscular, dieta e outros determinantes não relacionados à TFG. Por isso, a KDIGO recomenda eGFR por creatinina como avaliação inicial em adultos e, quando cistatina C está disponível e a precisão importa, prefere a equação combinada creatinina–cistatina C, que foi mais acurada no estudo de validação.",
+          "diff": "medium",
+          "cat": "drc"
+        }
+      },
+      "proposed": {
+        "t": "CKD-EPI 2021 — Equação sem Raça",
+        "qid": "7d8f1d58",
+        "q": "Qual afirmação descreve as equações CKD-EPI 2021 de estimativa da filtração e sua aplicação segundo a KDIGO 2024?",
+        "refs": [
+          "inker_ckdepi_2021",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Foram ajustadas sem raça; a combinação de creatinina e cistatina C melhora a estimativa quando disponível.",
+          "Retirar o coeficiente racial da equação antiga produz a mesma estimativa da nova equação recalibrada.",
+          "Na equação combinada, a cistatina C estima a filtração e a creatinina serve apenas para confirmar o diagnóstico.",
+          "A atualização transforma a filtração estimada em medida direta, dispensando avaliar limitações dos marcadores."
+        ],
+        "ans": 0,
+        "exp": "As equações de 2021 foram recalibradas sem variável de raça; apenas retirar o coeficiente de uma equação antiga não reproduz a nova estimativa. A equação combinada usa os dois marcadores no cálculo e foi mais acurada na validação do estudo. A KDIGO recomenda avaliação inicial com creatinina e, quando cistatina C está disponível, combinação para definir a categoria de filtração. Trata-se de uma estimativa, com limites, e não de medida direta da taxa de filtração glomerular. A diretriz orienta evitar raça no cálculo e considerar validação/desempenho na população de uso.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:84be1f4a1534e5dd285a53c018b3abca96f6ab6ea972ce1c2e881d45b9c23d83",
+      "referenceRevisions": {
+        "inker_ckdepi_2021": "sha256:b33835b25105194dd08cff286ff4ece2adacafda1219e376c9afa58947026068",
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "bundleRevision": "sha256:e8e71877386d95aed42819bbf167118b39a22fad12180bea83ec6368388992bf",
+      "classification": {
+        "op": "Reconhecer a atualização sem raça e o papel da combinação creatinina–cistatina C na estimativa e classificação da filtração.",
+        "competency": "Fisiologia/limites de inferência na DRC",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Integra contexto, fonte e limite de extrapolação para orientar uma decisão ou interpretação.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Correta reunia duas informações úteis enquanto as outras dispensavamcreatinina/eliminavam massa muscular. Eram pouco competitivas e favoreciam eliminação formal.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta reunia duas informações úteis enquanto as outras dispensavamcreatinina/eliminavam massa muscular. Eram pouco competitivas e favoreciam eliminação formal."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "CKD-EPI2021recalibrou sem raça. CombinaçãoCr-Cysé mais acurada na validação eKDIGO1.1.2.1a prefere para categoriaGquando disponível. Retirar coeficiente antigo não reproduz o refit; permanece estimativa.",
+          "sourceIDs": [
+            "I",
+            "K"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Não se diz que todo indivíduo terá estimativa perfeita ou que outras equações validadas sejam proibidas. Aexplica o desempenho populacional e uso condicionado à disponibilidade; explicação exige considerar validação. Sem dado faltante ou duas respostas.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Não se diz que todo indivíduo terá estimativa perfeita ou que outras equações validadas sejam proibidas. Aexplica o desempenho populacional e uso condicionado à disponibilidade; explicação exige considerar validação. Sem dado faltante ou duas respostas."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "CKD-EPI2021recalibrou sem raça. CombinaçãoCr-Cysé mais acurada na validação eKDIGO1.1.2.1a prefere para categoriaGquando disponível. Retirar coeficiente antigo não reproduz o refit; permanece estimativa."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Não se diz que todo indivíduo terá estimativa perfeita ou que outras equações validadas sejam proibidas. Aexplica o desempenho populacional e uso condicionado à disponibilidade; explicação exige considerar validação. Sem dado faltante ou duas respostas."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "Alternativas agora distinguem refit, combinação e medida direta; cuidado com desempenho populacional preservado."
+        },
+        "fourDimensionDuplication": "Itens sobre creatinina/cistatina isoladas ouMDRDnão necessariamente testam atualização sem raça e refit. Nenhuma outra decisão idêntica encontrada na vizinhança.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "20/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:84be1f4a1534e5dd285a53c018b3abca96f6ab6ea972ce1c2e881d45b9c23d83",
+        "exactReferences": {
+          "inker_ckdepi_2021": "sha256:b33835b25105194dd08cff286ff4ece2adacafda1219e376c9afa58947026068",
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "67bdd826",
+      "original": {
+        "authorRevision": "sha256:f7f007434eadc589b0ad3d9e1ad8cbb29cb43751898d672f0620ec182c8b4142",
+        "question": {
+          "t": "Proteinúria na Fita — Próximo Passo",
+          "qid": "67bdd826",
+          "q": "Adulto assintomático apresenta proteína 3+ em uma única fita urinária, sem edema ou sedimento ativo. Qual é o próximo passo mais adequado?",
+          "refs": [
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Quantificar com relação albumina/creatinina ou proteína/creatinina, preferir amostra matinal para confirmação e avaliar TFGe e sedimento",
+            "Diagnosticar síndrome nefrótica apenas pela fita e iniciar imunossupressão",
+            "Desconsiderar o achado porque a fita nunca detecta albumina",
+            "Indicar biópsia renal antes de repetir ou quantificar a proteinúria"
+          ],
+          "ans": 0,
+          "exp": "A fita é semiquantitativa e sofre influência da concentração urinária; um resultado positivo deve ser confirmado e quantificado, preferencialmente com relação albumina/creatinina em amostra isolada e, conforme o contexto, relação proteína/creatinina. A avaliação inclui repetição em amostra matinal, TFGe e sedimento. Uma fita isolada não define síndrome nefrótica, cronicidade nem etiologia e, sem sinais de alarme, não justifica imunossupressão ou biópsia imediata.",
+          "diff": "easy",
+          "cat": "nefrologia_geral"
+        }
+      },
+      "proposed": {
+        "t": "Proteinúria na Fita — Próximo Passo",
+        "qid": "67bdd826",
+        "q": "Adulto assintomático apresenta proteína 3+ em uma única fita urinária, sem edema ou sedimento ativo. Qual é o próximo passo mais adequado?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Quantificar com relação albumina/creatinina e confirmar, preferindo amostra matinal.",
+          "Repetir apenas a fita e usar o grau de positividade para estimar a excreção diária.",
+          "Solicitar urina de 24 horas como única medida válida, desconsiderando relações em amostra isolada.",
+          "Concluir proteinúria nefrótica pelo resultado 3+ e programar biópsia sem quantificação."
+        ],
+        "ans": 0,
+        "exp": "A fita é semiquantitativa. Um resultado positivo deve ser confirmado por medida quantitativa, preferencialmente relação albumina/creatinina em amostra de urina; conforme o contexto, usa-se também relação proteína/creatinina. A confirmação em amostra matinal reduz variações, e a avaliação inclui filtração e sedimento. Uma única fita 3+ não estabelece a excreção diária, a cronicidade ou a etiologia. Sem sinais de alarme, a investigação quantitativa precede conclusões como síndrome nefrótica e decisões invasivas.",
+        "diff": "easy",
+        "cat": "nefrologia_geral"
+      },
+      "proposedSHA256": "sha256:eaa68a35d8f109483076f57173f1140dfa4ce39c21db16a607dd858a888b3ade",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "bundleRevision": "sha256:64b33cbb7dda289f2bcb401c1cb4f9d733695b052cc6abd9a0a076bc23f73702",
+      "classification": {
+        "op": "Escolher confirmação e quantificação apropriadas depois de proteína positiva em fita urinária.",
+        "competency": "Avaliação e manejo seguro da DRC",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "easy",
+        "difficultyAfter": "easy",
+        "rationale": "Reconhecer ou aplicar diretamente uma regra/mecanismo; não se eleva dificuldade pela extensão ou novidade.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Correta carregava vários exames e era muito mais completa; há questão75d13f79com mesma decisão. O dado de urina concentrada não muda o passo classificatório final.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta carregava vários exames e era muito mais completa; há questão75d13f79com mesma decisão. O dado de urina concentrada não muda o passo classificatório final."
+        },
+        "legacy": null
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "PP1.3.1.2: fita positiva confirma-se quantitativamente porACR/PCR; amostra matinal reduz variação.3+isolado não define excreção diária, cronicidade ou etiologia.",
+          "sourceIDs": [
+            "K"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "PCRpode ser adequado conforme contexto; a correta escolheACRpreferencial, não o único método válido. Ausência de sinais de alarme torna quantificação o próximo passo, não biópsia ou diagnóstico nefrótico direto.75d13f79é duplicata real e será aposentada atomicamente.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "PCRpode ser adequado conforme contexto; a correta escolheACRpreferencial, não o único método válido. Ausência de sinais de alarme torna quantificação o próximo passo, não biópsia ou diagnóstico nefrótico direto.75d13f79é duplicata real e será aposentada atomicamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "PP1.3.1.2: fita positiva confirma-se quantitativamente porACR/PCR; amostra matinal reduz variação.3+isolado não define excreção diária, cronicidade ou etiologia."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "PCRpode ser adequado conforme contexto; a correta escolheACRpreferencial, não o único método válido. Ausência de sinais de alarme torna quantificação o próximo passo, não biópsia ou diagnóstico nefrótico direto.75d13f79é duplicata real e será aposentada atomicamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "A canônica tem quatro planos diagnósticos e mantémRAC/PCRno contexto da explicação. A duplicata é resolvida pelo adendo atômico, não pelo score."
+        },
+        "fourDimensionDuplication": "67×75:mesmoOP, competência e conceito de semiquantificação; mesma decisãoRAC/PCRmatinal antes de magnitude. Cee26d6bé distinto: proteína total já quantificada e erro de rotularG2A2/DRCsemalbumina/persistência.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Duplicata com75confirmada e resolvida pelo adendo de aposentadoria no mesmo conjunto. Nenhum outro eliminatório.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:eaa68a35d8f109483076f57173f1140dfa4ce39c21db16a607dd858a888b3ade",
+        "exactReferences": {
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "atomicFusion": {
+          "retire": "75d13f79",
+          "canonical": "67bdd826",
+          "adjudication": "Root leu ambos integrais e concordou expressamente com fusão; manter posições/respostas antigas, sem crédito ouFSRS transferido."
+        },
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "6a54b25c",
+      "original": {
+        "authorRevision": "sha256:a22af88b85fa241339469a29d3571445a148e3f8327bc82d9efe5293ee9b7c7e",
+        "question": {
+          "t": "Tiazídicos na DRC — PA e Potássio",
+          "qid": "6a54b25c",
+          "q": "Em paciente com DRC, hipertensão e tendência à hipercalemia, qual papel os tiazídicos ou tiazídico-like podem ter quando ainda há resposta diurética?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "São sempre contraindicados por hipercalcemia inevitável",
+            "Não interferem no potássio, apenas no sódio",
+            "Podem ajudar no controle pressórico e aumentar caliurese como adjuvantes, com monitorização de eletrólitos",
+            "Causam invariavelmente acidose metabólica grave"
+          ],
+          "ans": 2,
+          "exp": "Tiazídicos e tiazídico-like reduzem pressão arterial e podem aumentar a entrega distal de sódio, favorecendo secreção de potássio; por isso podem ser úteis como adjuvantes em DRC selecionada, desde que haja resposta e monitorização de Na, K, creatinina e volume. Não são quelantes nem solução isolada para hipercalemia grave. O item foi reescrito para evitar o corte rígido por TFGe como se fosse absoluto.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        }
+      },
+      "proposed": {
+        "t": "Tiazídicos na DRC — PA e Potássio",
+        "qid": "6a54b25c",
+        "q": "Em paciente com doença renal crônica (DRC), hipertensão e tendência à hipercalemia, qual papel os tiazídicos ou tiazídico-like podem ter quando ainda há resposta diurética?",
+        "refs": [
+          "kdigo_potassium_homeostasis_2020",
+          "click_chlorthalidone_2021"
+        ],
+        "opts": [
+          "Substituem quelantes por remover potássio diretamente do lúmen intestinal.",
+          "Atuam sobre a pressão, sem alterar a excreção urinária de potássio.",
+          "Podem auxiliar pressão e caliurese, com monitorização de eletrólitos e função renal.",
+          "A filtração abaixo de 30 mL/min/1,73 m² torna ineficaz qualquer tiazídico ou tiazídico-like."
+        ],
+        "ans": 2,
+        "exp": "Diuréticos do túbulo distal podem aumentar a entrega distal de sódio e o fluxo, favorecendo perda urinária de potássio. Por isso, em pacientes selecionados com resposta diurética, podem auxiliar pressão e balanço de potássio, com vigilância de sódio, potássio, creatinina e volume. No CLICK, a clortalidona reduziu pressão em DRC G4, mas houve mais hipocalemia e aumentos reversíveis da creatinina. Esse ensaio não testou resgate de hipercalemia grave nem permite generalizar dose, eficácia ou segurança a qualquer fármaco da classe.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:f720332929f54b0ac0d08ca874daec006fbca4dbd7f8eb37a1725109af569863",
+      "referenceRevisions": {
+        "kdigo_potassium_homeostasis_2020": "sha256:3d6c67e0fe721f2c714a2ee525d71254b547e854990e5ad5f53d266f44aaf93b",
+        "click_chlorthalidone_2021": "sha256:dd460ada5e34d72ad628a7d47e9b60639311b2c328164f3f6d8094b8330e5492"
+      },
+      "bundleRevision": "sha256:189dca9fe115e01f7821da84d4db8034a920ae945ba9a807f03e9546fa9452d2",
+      "classification": {
+        "op": "Reconhecer uso adjuvante selecionado de tiazídicos/tiazídico-like no controle pressórico e na excreção de potássio, com monitorização.",
+        "competency": "Avaliação e manejo seguro da DRC",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Integra contexto, fonte e limite de extrapolação para orientar uma decisão ou interpretação.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Alternativas semprecontraindicado/semK/acidoseinvariável não representavam boas decisões concorrentes. Aexplicação tinha comentário sobre o processo de reescrita que não pertence à microaula.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Alternativas semprecontraindicado/semK/acidoseinvariável não representavam boas decisões concorrentes. Aexplicação tinha comentário sobre o processo de reescrita que não pertence à microaula."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "Diuréticos alça/distal causam caliurese por entregaNa/fluxo. CLICKG4n160mostra efeito de clortalidona sobrePA24h; maishipocalemia/creatinina reversível. Não é ensaio de resgate da hipercalemia grave nem toda classe equivale àclortalidona.",
+          "sourceIDs": [
+            "P",
+            "C"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "O caso exige resposta diurética existente e uso adjuvante, não hipercalemia grave ou anúria. Aação não é remoção intestinal; ausência de ação abaixo30é falsa para todos os tiazídico-like. Nada obriga usar uma dose universal ou dispensar vigilância.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "O caso exige resposta diurética existente e uso adjuvante, não hipercalemia grave ou anúria. Aação não é remoção intestinal; ausência de ação abaixo30é falsa para todos os tiazídico-like. Nada obriga usar uma dose universal ou dispensar vigilância."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Diuréticos alça/distal causam caliurese por entregaNa/fluxo. CLICKG4n160mostra efeito de clortalidona sobrePA24h; maishipocalemia/creatinina reversível. Não é ensaio de resgate da hipercalemia grave nem toda classe equivale àclortalidona."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "O caso exige resposta diurética existente e uso adjuvante, não hipercalemia grave ou anúria. Aação não é remoção intestinal; ausência de ação abaixo30é falsa para todos os tiazídico-like. Nada obriga usar uma dose universal ou dispensar vigilância."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Distingue efeito renal, limite porTFGe e farmacologia de quelantes; explica evidência específica de clortalidona sem generalização de resgate."
+        },
+        "fourDimensionDuplication": "NOSTONEtesta recorrência de cálculo/HCTZ;7c0daecamecanismoCNI/NCC;bc95quarta droga. Aqui é papel adjuvante emPA/KnaDRC. Sem quatro dimensões iguais.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:f720332929f54b0ac0d08ca874daec006fbca4dbd7f8eb37a1725109af569863",
+        "exactReferences": {
+          "kdigo_potassium_homeostasis_2020": "sha256:3d6c67e0fe721f2c714a2ee525d71254b547e854990e5ad5f53d266f44aaf93b",
+          "click_chlorthalidone_2021": "sha256:dd460ada5e34d72ad628a7d47e9b60639311b2c328164f3f6d8094b8330e5492"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    },
+    {
+      "qid": "7215c49d",
+      "original": {
+        "authorRevision": "sha256:e511f780db3f9912d96ba78923d2d7f4483505de26bd95eeb296ef76b2239b88",
+        "question": {
+          "t": "Estatinas na DRC — Benefício Cardiovascular, não Nefroproteção",
+          "qid": "7215c49d",
+          "q": "Em paciente com DRC G4 não dialítica, qual é a forma correta de interpretar a indicação de estatina segundo KDIGO e os dados do SHARP?",
+          "opts": [
+            "A estatina é indicada principalmente para retardar a queda da TFG",
+            "O benefício esperado é reduzir eventos cardiovasculares ateroscleróticos, não frear de modo consistente a progressão renal",
+            "A estatina só deve ser usada se houver albuminúria nefrótica",
+            "A estatina substitui bloqueio do SRAA e iSGLT2 quando há risco de hipercalemia"
+          ],
+          "ans": 1,
+          "exp": "Na DRC não dialítica, estatinas são usadas para reduzir risco cardiovascular aterosclerótico, especialmente em adultos com maior risco basal. O SHARP mostrou redução de eventos ateroscleróticos maiores com sinvastatina/ezetimiba, mas o desfecho renal de progressão para diálise/transplante não melhorou de forma consistente. Portanto, a estatina não deve ser ensinada como nefroprotetor primário: ela complementa, mas não substitui, intervenções que modificam progressão renal, como controle pressórico, SRAA quando indicado, iSGLT2 e manejo de albuminúria. As demais alternativas confundem prevenção cardiovascular com tratamento da progressão da DRC.",
+          "diff": "medium",
+          "cat": "drc",
+          "refs": [
+            "kdigo_lipids_ckd_2013",
+            "sharp_study"
+          ]
+        }
+      },
+      "proposed": {
+        "t": "Estatinas na DRC — Benefício Cardiovascular, não Nefroproteção",
+        "qid": "7215c49d",
+        "q": "Adulto de 62 anos com doença renal crônica G4 não dialítica discute tratamento com estatina. Segundo a KDIGO e os dados do SHARP, qual é o principal benefício esperado?",
+        "opts": [
+          "Reduzir a perda da filtração, usando albuminúria como principal alvo da estatina.",
+          "Reduzir eventos ateroscleróticos, sem benefício consistente demonstrado na progressão renal.",
+          "Reduzir a necessidade de diálise, inferindo nefroproteção da queda do colesterol LDL.",
+          "Reduzir triglicerídeos, pois esse foi o alvo responsável pelo resultado do SHARP."
+        ],
+        "ans": 1,
+        "exp": "A KDIGO recomenda estatina ou estatina/ezetimiba para adultos a partir de 50 anos com filtração abaixo de 60 mL/min/1,73 m² que não estejam em diálise crônica ou transplantados. O SHARP testou sinvastatina/ezetimiba e reduziu eventos ateroscleróticos maiores. Não demonstrou redução estatisticamente consistente da progressão para diálise ou transplante nos participantes inicialmente não dialíticos. Assim, prevenção cardiovascular é o benefício esperado; não se deve prometer nefroproteção por queda do colesterol nem atribuir o resultado a um alvo de triglicerídeos.",
+        "diff": "medium",
+        "cat": "drc",
+        "refs": [
+          "kdigo_ckd",
+          "sharp_study"
+        ]
+      },
+      "proposedSHA256": "sha256:b0a583159cc3fde7bd9c42aaf8ceb0ba7f2cc4fa5362188faf8bb525aae65bd3",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+        "sharp_study": "sha256:c8ed9a8df2de0fe47e0c29df6f03754d0e7f122de3414a4fdf81440014352f83"
+      },
+      "bundleRevision": "sha256:743481bec52eb1602b424b7276f4c4e19af1e16f5128bcdce5a8065235bde762",
+      "classification": {
+        "op": "Distinguir prevenção cardiovascular aterosclerótica de nefroproteção na indicação de estatinas na DRC não dialítica.",
+        "competency": "Fisiologia/limites de inferência na DRC",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Integra contexto, fonte e limite de extrapolação para orientar uma decisão ou interpretação.",
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade reavaliados do literal. Dificuldade não é determinada por comprimento."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Faltava idade explícita para falar de indicação e o cardSHARPmisturavaHR/razãodetaxas, seguimento e inferências de diálise. Corretalonga se opunha a distratores distantes de desfechos comparáveis.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem eliminatório clínico adicional no conceito correto; defeitos de forma, atribuição/idade e duplicidade documentados. Não transformar mudança editorial em diagnóstico de erro clínico sem base."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Faltava idade explícita para falar de indicação e o cardSHARPmisturavaHR/razãodetaxas, seguimento e inferências de diálise. Corretalonga se opunha a distratores distantes de desfechos comparáveis."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação+VERIFICADA/NENHUMA; sem eliminatório ou recurso decisivo (§18.4). No67a duplicidade está adjudicada para fusão atômica.",
+        "confidence": "alta para afirmações verificadas no escopo; nãoGRADEda intervenção",
+        "claims": {
+          "claim": "KDIGO3.15.1.1:≥50anos/G3a–G5sem diálise/transplante, estatina ou combinação1A. SHARPtestou combinação, reduziu eventos ateroscleróticos e não mostrou redução significativa em diálise/transplante(RR0,97IC0,89–1,05).",
+          "sourceIDs": [
+            "K",
+            "S"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Não se promete ausência absoluta de efeito renal, mas falta de demonstração consistente. Aidade62explicita indicação por idade; SHARPnão isola estatina eezetimiba nem foi dirigido aTG. Ausência de colesterol numérico não impede reconhecer o benefício principal.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Não se promete ausência absoluta de efeito renal, mas falta de demonstração consistente. Aidade62explicita indicação por idade; SHARPnão isola estatina eezetimiba nem foi dirigido aTG. Ausência de colesterol numérico não impede reconhecer o benefício principal."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "KDIGO3.15.1.1:≥50anos/G3a–G5sem diálise/transplante, estatina ou combinação1A. SHARPtestou combinação, reduziu eventos ateroscleróticos e não mostrou redução significativa em diálise/transplante(RR0,97IC0,89–1,05)."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "MesmoOP/competência/conceito reconhecível; mudanças de redação/dificuldade/refnão mudam a decisão central."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Correta mantém limites e monitorização; não recomenda intervenção insegura ou promete nefroproteção inexistente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns ligados ao mesmo processo; fraquezas residuais reduzem pontuação, não há alternativa absurda que determine o item."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Regra/mecanismo muda interpretação ou manejo útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "A explicação fundamenta o gabarito indicado e explica os erros úteis sem contrariar sua opção."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Não se promete ausência absoluta de efeito renal, mas falta de demonstração consistente. Aidade62explicita indicação por idade; SHARPnão isola estatina eezetimiba nem foi dirigido aTG. Ausência de colesterol numérico não impede reconhecer o benefício principal."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz e cenário são explícitos; não há protocolo local implícito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Princípios conferidos em fontes específicas; versão2024final distingue-se de rascunho2027."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "As quatro opções são benefícios/objetivos esperados; fonte e população distinguem prevençãoCVde nefroproteção."
+        },
+        "fourDimensionDuplication": "d0ee3f9d/7d2284a4tratam outros comandos de combinação/tratamento ou mecanismos. Esta questão compara benefícioCVe progressão renal; conferir comandos na vizinhança antes de presumir fusão.",
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMAválida, sem teto restritivo.",
+          "step1": "Nenhum eliminatório ou duplicata nas quatro dimensões.",
+          "step2": "Sem argumento plausível de anulação residual.",
+          "step3": "20/20→aprovada.",
+          "lifecycle": "publicado apenas após aplicação autorizada do conjunto exato."
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "exactQuestion": "sha256:b0a583159cc3fde7bd9c42aaf8ceb0ba7f2cc4fa5362188faf8bb525aae65bd3",
+        "exactReferences": {
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+          "sharp_study": "sha256:c8ed9a8df2de0fe47e0c29df6f03754d0e7f122de3414a4fdf81440014352f83"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identity": "Mesmo OP, competência e conceito correto; preserva qid, gabarito e histórico. Dados de idade/condição explicitam a interpretação, sem mudar decisão central.",
+        "constraints": [
+          "Integração exclusiva do root; regenerar manifesto e preservar reconhecimento de versões antigas.",
+          "Não reavaliar respostas antigas pelo novo texto; não criar acertos, eventos, desbloqueios ouFSRS por simples troca.",
+          "Cardglobalmantém seusIDs; este gate não aprova outras questões consumidoras fora do lote."
+        ]
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "kdigo_ckd",
+      "proposed": {
+        "label": "KDIGO CKD 2024",
+        "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "journal": "Kidney International",
+        "ano": 2024,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+        "icon": "📋",
+        "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+        "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+        "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+      },
+      "hash": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "K"
+      ],
+      "claims": [
+        "CGA/ACRmatinal/cronicidade e fonte do card conferidas integralmente no escopo dos campos.",
+        "SGLT2:DM2/DRC/TFGe≥20; adultos comTFGe≥20+ACR≥200ouIC; finerenona e multidisciplinaridade são tópicos reais do documento.",
+        "Iniciar diálise por quadro composto; planejar transplante/acesso quandoGFR<15–20ou riscoKRT>40%/2anos."
+      ],
+      "scope": "Literal legado compartilhado372fce7...preservado. Autor severo retiroua89fc3...emA3.2; não estreitar resumo a nutrição. Uso de IDnão aprova automaticamente todos os consumidores.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card independente não recebe score de questão."
+    },
+    {
+      "id": "kdigo_potassium_homeostasis_2020",
+      "proposed": {
+        "label": "KDIGO — Conferência de potássio e doença renal (2020)",
+        "url": "https://kdigo.org/wp-content/uploads/2018/04/KDIGO-Potassium-Management-Final-publication.pdf",
+        "journal": "Kidney Int. 2020;97:42–61",
+        "ano": 2020,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Néfrons remanescentes aumentam a secreção de potássio, mas a reserva é limitada.",
+        "icon": "🔬",
+        "resumo": "Relatório de conferência de especialistas com síntese narrativa sobre homeostase e distúrbios do potássio. Descreve o aumento adaptativo da secreção nos néfrons remanescentes da doença renal crônica e a influência de aldosterona, entrega distal de sódio e fluxo tubular. Diuréticos de alça e do túbulo distal podem aumentar a excreção de potássio, exigindo avaliação da resposta e dos riscos.",
+        "conclusao": "A adaptação explica a manutenção temporária do balanço, sem garantir reserva normal diante de sobrecarga ou fármacos. Ação caliurética não equivale a eficácia universal nem substitui o tratamento da hipercalemia grave.",
+        "curiosidade": "Este é um relatório de consenso da conferência, com revisão fisiológica; não é uma diretriz clínica graduada nem um ensaio de intervenção."
+      },
+      "hash": "sha256:3d6c67e0fe721f2c714a2ee525d71254b547e854990e5ad5f53d266f44aaf93b",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "P"
+      ],
+      "claims": [
+        "Clase etalKI2020;97:42–61/DOI10.1016/j.kint.2019.09.018.",
+        "Na/fluxo/aldosterona,secreção por néfron remanescente e reserva limitada.",
+        "Alça/distal promovem caliurese; não resgate universal, nem diretriz graduada."
+      ],
+      "scope": "Nova referência necessária à fisiologia após retirar citação genérica/livro não aberto. Busca no registro atual não achou outroIDpara esta obra; não criar duplicata por completude.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card independente não recebe score de questão."
+    },
+    {
+      "id": "inker_ckdepi_2021",
+      "proposed": {
+        "label": "Inker LA et al. — CKD-EPI 2021 sem Raça",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2102953",
+        "journal": "N Engl J Med 2021;385(19):1737-1749",
+        "ano": 2021,
+        "tipo": "Estudo de Desenvolvimento e Validação",
+        "badge": "COORTE",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Novas equações de TFGe por creatinina e cistatina C sem variável de raça",
+        "icon": "📊",
+        "resumo": "Estudo CKD-EPI que desenvolveu e validou novas equações de TFGe sem raça em mais de 12 mil participantes dos conjuntos de desenvolvimento e validação. A equação de creatinina 2021 usa idade e sexo, mas não raça. A combinação creatinina–cistatina C sem raça apresentou maior acurácia e diferenças menores entre grupos do que as novas equações baseadas em um único marcador.",
+        "conclusao": "A TFGe não deve usar raça como substituto biológico; quando maior precisão é necessária e cistatina C está disponível, a equação combinada creatinina–cistatina C é preferível à creatinina isolada.",
+        "curiosidade": "Retirar simplesmente o coeficiente racial da equação antiga não produziu o mesmo resultado que refazer a equação: o estudo precisou recalibrar os coeficientes com dados medidos de TFG."
+      },
+      "hash": "sha256:b33835b25105194dd08cff286ff4ece2adacafda1219e376c9afa58947026068",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "I",
+        "K"
+      ],
+      "claims": [
+        "NEJM2021;385(19):1737–1749/DOIcorretos; desenvolvimento/validação semraça.",
+        "8254desenvolvimentoCr+4050validação são>12mil;5352conjuntoCr-Cys. Não inventar soma de conjuntos sobrepostos.",
+        "Cr-Cysmais acurada; remover coeficiente antigo difere de refit; estimativa/validação/limites preservados."
+      ],
+      "scope": "Card legado de desenvolvimento/validação, byte-exato; sem nova classificação visual. Não herdar desempenho perfeito ou validar automaticamente qualquer população.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card independente não recebe score de questão."
+    },
+    {
+      "id": "click_chlorthalidone_2021",
+      "proposed": {
+        "label": "CLICK — Clortalidona na DRC G4 (2021)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9119310/",
+        "journal": "N Engl J Med. 2021;385:2507–2519",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Clortalidona reduziu a pressão na DRC G4, com necessidade de monitorização.",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado e duplo-cego em 160 pacientes com doença renal crônica G4 e hipertensão mal controlada. Clortalidona por via oral, iniciada em 12,5 mg/dia e titulada conforme resposta, foi comparada a placebo por 12 semanas. O desfecho primário foi a mudança da pressão sistólica ambulatorial de 24 horas: diferença entre grupos de −10,5 mmHg (IC95% −14,6 a −6,4; p<0,001). Hipocalemia, elevação reversível da creatinina, tontura, hiperglicemia e hiperuricemia foram mais frequentes com o fármaco.",
+        "conclusao": "A filtração reduzida não implica ausência de ação da clortalidona. A indicação requer seleção e vigilância, sobretudo se houver uso de diurético de alça; o ensaio não prova benefício de longo prazo nem foi estudo de resgate da hipercalemia.",
+        "curiosidade": "A taxa de filtração glomerular estimada (TFGe) média era 23,2 mL/min/1,73 m², e 60% dos participantes já usavam diuréticos de alça."
+      },
+      "hash": "sha256:dd460ada5e34d72ad628a7d47e9b60639311b2c328164f3f6d8094b8330e5492",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "C"
+      ],
+      "claims": [
+        "160/G4,clortalidona oral12,5mgdiatitulada,placebo,12semanas.",
+        "PrimárioPAS24h−10,5mmHg/IC−14,6a−6,4;p<0,001;TFGemédia23,2/60%alça.",
+        "Maishipocalemia/creatinina reversível/tontura/hiperglicemia/hiperuricemia; limiteslongoprazo/classeresgate explícitos."
+      ],
+      "scope": "Nova referência específica e não duplicada no registro atual. Gateclínico não autoriza usar protocoloCLICKcomo receita de hipercalemia grave.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card independente não recebe score de questão."
+    },
+    {
+      "id": "sharp_study",
+      "proposed": {
+        "label": "SHARP — Sinvastatina/ezetimiba na DRC (2011)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3145073/",
+        "journal": "Lancet. 2011;377:2181–2192",
+        "ano": 2011,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sinvastatina/ezetimiba reduziu eventos ateroscleróticos maiores em 17%.",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado e duplo-cego com 9.270 participantes com doença renal crônica, incluindo dialíticos e não dialíticos, sem infarto do miocárdio ou revascularização coronária prévios conhecidos. Comparou sinvastatina 20 mg mais ezetimiba 10 mg/dia com placebo. O desfecho primário foi o primeiro evento aterosclerótico maior. Em mediana de 4,9 anos, ocorreu em 11,3% versus 13,4%: razão de taxas 0,83 (IC95% 0,74–0,94; p=0,0021). Nos não dialíticos, não houve redução estatisticamente demonstrada de progressão para diálise ou transplante: RR 0,97 (IC95% 0,89–1,05).",
+        "conclusao": "A combinação sustenta prevenção aterosclerótica na população estudada, sem demonstração consistente de nefroproteção. O resultado não isola o efeito de cada componente nem determina sozinho quando iniciar tratamento em pacientes já dialíticos.",
+        "curiosidade": "A miopatia foi rara: nove casos com a combinação e cinco com placebo. O pequeno excesso absoluto não deve ser descrito como ausência de risco muscular."
+      },
+      "hash": "sha256:c8ed9a8df2de0fe47e0c29df6f03754d0e7f122de3414a4fdf81440014352f83",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "S"
+      ],
+      "claims": [
+        "9270,combinação20/10,comparador/placebo,semIAM/revascularização prévios conhecidos.",
+        "Primário primeiro evento aterosclerótico;11,3/13,4%,razão taxas0,83/IC0,74–0,94;p0,0021;mediana4,9anos.",
+        "RenalRR0,97/IC0,89–1,05;miopatia9/5;não ausência de risco e sem inferência separada de componentes/diálise."
+      ],
+      "scope": "A1.1ouA1.2literal comP/primário/população: novo gate do corpo completo. A identidade com pergaminho26é bibliográfica, corpos/locks continuam independentes.",
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card independente não recebe score de questão."
+    }
+  ],
+  "summary": {
+    "questionsReviewed": 8,
+    "questionGatesReleased": 8,
+    "atomicDuplicateRetirement": "75d13f79→67bdd826",
+    "cardsReviewed": 5,
+    "cardsReleased": 5,
+    "productionWrites": false
+  },
+  "publicationBoundary": "Nenhuma liberação de uma questão ou card alterado é herdada de versão anterior. Novos literaisA1.2e respectivas referências foram conferidos. O67só pode ser aplicado com aposentadoria75conforme adendo."
+}

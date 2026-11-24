@@ -29,7 +29,7 @@ async function lastAnswer(page:Page,setup:()=>Promise<void>){
 }
 test('failed source load can recover inside summary without replay or duplicate completion',async({page})=>{
  let fail=true;
- await lastAnswer(page,()=>page.route('**/data/refs.js',r=>fail?r.abort():r.continue()));
+ await lastAnswer(page,()=>page.route('**/data/refs.js*',r=>fail?r.abort():r.continue()));
  await page.locator('.ab-next').click();
  await expect(page.locator('.ab-summary-title')).toBeVisible();
  const refsTab=page.getByRole('tab',{name:'Referências',exact:true});if(await refsTab.isVisible())await refsTab.click();
@@ -40,7 +40,7 @@ test('failed source load can recover inside summary without replay or duplicate 
 });
 test('returning to a prior act while sources load keeps that act when the response arrives',async({page})=>{
  let release!:()=>void;const gate=new Promise<void>(r=>release=r);let requested=false;
- await lastAnswer(page,()=>page.route('**/data/refs.js',async r=>{requested=true;await gate;await r.continue();}));
+ await lastAnswer(page,()=>page.route('**/data/refs.js*',async r=>{requested=true;await gate;await r.continue();}));
  await page.locator('.ab-next').click();await expect.poll(()=>requested).toBe(true);
  await page.locator('[data-ab-goto="0"]').click();
  release();await page.waitForFunction("typeof refsDB==='object'");
@@ -50,7 +50,7 @@ test('returning to a prior act while sources load keeps that act when the respon
 });
 test('closing during source load cannot save or reopen the abandoned case',async({page})=>{
  let release!:()=>void;const gate=new Promise<void>(r=>release=r);let requested=false;
- await lastAnswer(page,()=>page.route('**/data/refs.js',async r=>{requested=true;await gate;await r.continue();}));
+ await lastAnswer(page,()=>page.route('**/data/refs.js*',async r=>{requested=true;await gate;await r.continue();}));
  await page.locator('.ab-next').click();await expect.poll(()=>requested).toBe(true);
  await page.locator('[data-ab-close]').click();release();
  await page.waitForFunction("typeof refsDB==='object'");
@@ -59,7 +59,7 @@ test('closing during source load cannot save or reopen the abandoned case',async
 });
 test('a never-settling reference request cannot block completed clinical work indefinitely',async({page})=>{
  let release!:()=>void;const gate=new Promise<void>(r=>release=r);let requested=false;
- await lastAnswer(page,()=>page.route('**/data/refs.js',async r=>{requested=true;await gate;await r.continue();}));
+ await lastAnswer(page,()=>page.route('**/data/refs.js*',async r=>{requested=true;await gate;await r.continue();}));
  await page.clock.install();
  try{
   await page.locator('.ab-next').click();await expect.poll(()=>requested).toBe(true);
@@ -74,8 +74,8 @@ test('an unrelated stalled article request does not block available clinical ref
  let release!:()=>void,releaseRefs!:()=>void;const gate=new Promise<void>(r=>release=r),refsGate=new Promise<void>(r=>releaseRefs=r);
  let refsRequests=0,articleRequested=false;
  await lastAnswer(page,async()=>{
-  await page.route('**/data/refs.js',async r=>{refsRequests++;await refsGate;await r.continue();});
-  await page.route('**/data/articles.js',async r=>{articleRequested=true;await gate;await r.continue();});
+  await page.route('**/data/refs.js*',async r=>{refsRequests++;await refsGate;await r.continue();});
+  await page.route('**/data/articles.js*',async r=>{articleRequested=true;await gate;await r.continue();});
  });
  await page.evaluate(()=>{(window as any).__sharedGrimoire=(window as any).carregarDadosGrimorio().catch(()=>{});});
  await expect.poll(()=>articleRequested&&refsRequests===1).toBe(true);

@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 async function openLibrary(page: Page) {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
-  await page.goto('/jogar/');
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
   await page.locator('[data-atrium-route="library"]').click();
@@ -41,7 +41,7 @@ test('leitura segue o favorito pelo teclado e mantém texto e foco ao fechar', a
   await expect(card).toBeHidden();
   await expect(page.getByRole('tab', { name: 'Favoritos' })).toBeFocused();
 });
-test('raridades e fonte longa mantêm comandos acessíveis em 320px e texto a 200%', async ({ page }) => {
+test('raridades mantêm comandos acessíveis em 320px e texto a 200%', async ({ page }) => {
   await openLibrary(page);
   await page.setViewportSize({ width: 320, height: 700 });
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
@@ -64,7 +64,12 @@ test('raridades e fonte longa mantêm comandos acessíveis em 320px e texto a 20
     await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
     await expect(read).toBeFocused();
   }
-  await page.locator('#nqDashLibraryFilter').selectOption('all');
+});
+
+test('fonte longa mantém comandos acessíveis em 320px e texto a 200%', async ({ page }) => {
+  await openLibrary(page);
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   await page.locator('#nqDashLibrarySearch').fill('ACR Manual');
   const source = page.locator('[data-library-item]:visible').first();
   await source.getByRole('button', { name: 'Ler resumo', exact: true }).click();

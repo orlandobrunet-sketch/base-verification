@@ -48,10 +48,10 @@ async function opaqueOfflineState(page: Page) {
 
 test('offline connectivity changes preserve the real session, answer and history without automatic navigation', async ({ page, context }) => {
   await isolate(page);
-  await page.setViewportSize({ width: 320, height: 740 });
+  await page.setViewportSize({ width: 320, height: 725 });
   await page.goto('/offline.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.nq-off-btn')).toHaveCount(4);
-  expect(await page.evaluate(() => (0, eval)('topics.length'))).toBe(741);
+  expect(await page.evaluate(() => (0, eval)('topics.length'))).toBe(725);
   await page.evaluate(() => document.documentElement.style.fontSize = '32px');
   const status = page.locator('#nqOffConnection');
   await expect(status).toHaveAttribute('role', 'status');
@@ -113,7 +113,7 @@ test('contact retains filled text after a mocked failure and confirms beside the
     if (attempts === 1) await route.fulfill({ status: 502, json: { success: false } });
     else pending = route;
   });
-  await page.setViewportSize({ width: 320, height: 740 });
+  await page.setViewportSize({ width: 320, height: 725 });
   await page.goto('/contato/', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => document.documentElement.style.fontSize = '32px');
   await page.locator('#nome').fill('Pessoa local');
@@ -154,7 +154,7 @@ test('contact retains filled text after a mocked failure and confirms beside the
 
 test('privacy index reaches all eight existing sections and returns focus within the same page', async ({ page }) => {
   await isolate(page);
-  await page.setViewportSize({ width: 320, height: 740 });
+  await page.setViewportSize({ width: 320, height: 725 });
   await page.goto('/privacy-policy.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => document.documentElement.style.fontSize = '32px');
   const index = page.getByRole('navigation', { name: 'Índice da política', exact: true });
@@ -183,7 +183,7 @@ test('privacy index reaches all eight existing sections and returns focus within
 
 test('news index navigates the existing reader and returns focus without replacing history or the page', async ({ page }) => {
   await isolate(page);
-  await page.setViewportSize({ width: 320, height: 740 });
+  await page.setViewportSize({ width: 320, height: 725 });
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.locator('[data-portal-route="guest"]').click();
   await expect(page.locator('#welcomeScreen')).toBeVisible();

@@ -1,0 +1,1622 @@
+{
+  "schema": "NQ_1728_PHARMACOLOGY_AUTHOR_A11",
+  "date": "2026-11-15",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "productionWrites": false,
+  "scope": "Cinco reparos completos elegíveis com fontes abertas, dois holds individualizados e denúncia de referência falsa. A famíliaLRA13 continua em autoria, sem corte artificial de lote.",
+  "sources": {
+    "J": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6385328/",
+      "access": "OPENED_PRIMARY_ARTIFACT",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/jeong-macrolide.xml",
+      "bytesSHA256": "dac2cdb4f2fc26cac6f67c246d23237c7456f4d5a08c8b805ae24d5f22fb91fe",
+      "scope": "Corpo primário integral, discussão e tabelas efetivamente lidos. Não se transforma associação observacional em causalidade nem omite primário não significativo.",
+      "locator": "Abstract; Tables2–3; Discussion; Limitations"
+    },
+    "S": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3145073/",
+      "access": "OPENED_PRIMARY_ARTIFACT",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/sharp-primary.xml",
+      "bytesSHA256": "ee29c40c7256f593f11e68768008e30cfb03567735cc53e1641660a81ca74a3a",
+      "scope": "Corpo primário integral do SHARP, aberto no lote DRC e novamente conferido para segurança e intervenção.",
+      "locator": "Summary; muscle safety:9vs5; renal progression"
+    },
+    "V": {
+      "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+      "access": "OPENED_PRIMARY_WEB_FULL_TEXT",
+      "scope": "PDF oficial completo aberto e lido pelo navegador. Download shell retornou403; não inventado hash de PDF não obtido. DOI10.1093/ajhp/zxaa036 é o guideline integral, distinto do executive summary PMID32658968.",
+      "locator": "PDFpp4–5: AUC; pp12–13: alto fluxo e recomendação14; p14: TRSC; tabela2"
+    },
+    "Z": {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019766Orig1s103lbl.pdf",
+      "access": "OPENED_PRIMARY_ARTIFACT",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/simvastatin-zocor-2023.pdf",
+      "bytesSHA256": "c756bd718ad8ac9b00b00bfc7582d89d85056eaac75ac1db0a8fa89c181075ae",
+      "scope": "Bula oficial FDA ZOCOR revisada03/2023. Fonte regulatória, não ensaio científico. Lida para segurança da interação específica com sinvastatina; não extrapola para toda estatina.",
+      "locator": "§4,§5.1,§7.1,§12.3"
+    },
+    "T": {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+      "access": "OPENED_PRIMARY_ARTIFACT",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/tramadol-2019.pdf",
+      "bytesSHA256": "242595a9123891ff4e6fa552641daa4db1e0a1719d9e1ff7b3e49c0077513a39",
+      "scope": "Bula oficial ULTRAM revisada04/2019, usada para dose em depuração de creatinina<30, excreçãoM1 e convulsões. Não apresentada como bula mais recente.",
+      "locator": "§2.2,§5.9,§8.6,§12.3"
+    },
+    "R": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+      "access": "OPENED_PRIMARY_ARTIFACT",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/roy-pain.xml",
+      "bytesSHA256": "cb574561567f503e867958cf6c555b19d38481dd2a11c068466bd15253b0aaf0",
+      "scope": "Revisão clínica original dos autores, texto integral efetivamente aberto; limites de opioides e alternativas na doença renal.",
+      "locator": "Opioid medications; Tramadol; Non-opioid therapy"
+    }
+  },
+  "items": [
+    {
+      "qid": "a4c4eff0",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:adc98ea761dcb3273b2135b3b6cebefb72ab864d14c5145fd92cdf76ec053d4c",
+        "question": {
+          "t": "Farmacologia Renal",
+          "qid": "a4c4eff0",
+          "q": "Paciente com transplante renal há 2 anos em uso de tacrolimo (nível de vale 6 ng/mL) apresenta amigdalite bacteriana e precisa de antibiótico. Sobre prescrever claritromicina neste contexto, qual é a conduta mais adequada?",
+          "refs": [
+            "cni_macrolide_ddi_jeong_2019"
+          ],
+          "opts": [
+            "Evitar a claritromicina: é inibidor potente do CYP3A4 e da glicoproteína-P e eleva os níveis de tacrolimo, com risco de nefrotoxicidade — preferir azitromicina, que praticamente não inibe o CYP3A4.",
+            "Manter a claritromicina sem ajuste, pois não há interação clinicamente relevante com o tacrolimo.",
+            "Suspender o tacrolimo durante todo o curso de claritromicina para evitar a interação.",
+            "Trocar o tacrolimo por ciclosporina durante o antibiótico, pois a ciclosporina não sofre a mesma interação."
+          ],
+          "ans": 0,
+          "exp": "A azitromicina é a opção preferencial: claritromicina e eritromicina inibem o CYP3A4 e reduzem o metabolismo dos inibidores de calcineurina, elevando os níveis séricos e o risco de lesão renal aguda; a azitromicina não tem esse efeito (coorte de Jeong et al., 2019: queda de TFGe de -5,4 vs -1,9 mL/min/1,73m² e mais hospitalizações com claritromicina/eritromicina). Suspender o tacrolimo expõe o enxerto a rejeição e é desnecessário quando há alternativa segura. A ciclosporina também é substrato do CYP3A4 e sofreria interação semelhante. Se o uso de um inibidor potente for inevitável, reduz-se empiricamente a dose do inibidor de calcineurina com monitorização do nível sérico (TDM).",
+          "diff": "medium",
+          "cat": "farmacologia"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Farmacologia Renal",
+          "qid": "a4c4eff0",
+          "q": "Receptor de transplante renal em uso estável de tacrolimo precisa de um macrolídeo para uma infecção. Há alternativas ativas adequadas ao quadro e à microbiologia. Ao revisar uma prescrição de claritromicina, qual é a melhor conduta para reduzir o risco de interação?",
+          "refs": [
+            "cni_macrolide_ddi_jeong_2019"
+          ],
+          "opts": [
+            "Preferir alternativa com menor interação, mantendo acompanhamento do tacrolimo.",
+            "Separar os horários dos dois medicamentos para evitar a interação metabólica.",
+            "Trocar tacrolimo por ciclosporina durante o antibiótico, sem ajustar monitorização.",
+            "Manter a associação e dosar tacrolimo apenas se aparecer elevação da creatinina."
+          ],
+          "ans": 0,
+          "exp": "Claritromicina inibe o metabolismo dos inibidores de calcineurina pela isoenzima 3A4 do citocromoP450 e pode elevar a exposição ao tacrolimo; separar os horários não elimina essa interação. A ciclosporina também sofre interação. Havendo alternativa antimicrobiana adequada, deve-se preferir uma opção com menor potencial de interação, sem presumir que qualquer antibiótico seja universalmente de primeira escolha ou isento de risco. Se a associação for inevitável, a equipe de transplante deve planejar ajuste individual e monitorização precoce dos níveis, da função renal e de efeitos adversos; esperar a creatinina subir pode atrasar a detecção. Na coorte de Jeong, o composto primário não diferiu significativamente: mais hospitalizações foram uma associação observacional, não prova de causalidade.",
+          "diff": "medium",
+          "cat": "farmacologia"
+        },
+        "afterAuthorRevision": "sha256:284678cad96827edb18c98a8e259dca49f3c1a9b7680641f20a1a6da3bda9f7c",
+        "refCardsAfter": {
+          "cni_macrolide_ddi_jeong_2019": {
+            "label": "Macrolídeos e inibidores de calcineurina no transplante renal (Jeong et al.)",
+            "url": "https://journals.sagepub.com/doi/10.1177/2054358119830706",
+            "journal": "Can J Kidney Health Dis 2019;6:2054358119830706",
+            "ano": 2019,
+            "tipo": "Coorte",
+            "badge": "COHORT",
+            "badgeColor": "#f59e0b",
+            "impacto": "Claritromicina/eritromicina associaram-se a mais hospitalizações; o composto primário não diferiu significativamente.",
+            "icon": "🔬",
+            "resumo": "Coorte retrospectiva de 293 receptores de transplante renal em uso de inibidor de calcineurina, em Alberta,2008–2015:112 receberam claritromicina/eritromicina e181 azitromicina. O composto primário de hospitalização, lesão renal aguda ou morte em 30 dias ocorreu em 17% versus 11% (P=0,11). Hospitalização isolada ocorreu em 10% versus 3% (P=0,02); a queda média da taxa de filtração glomerular estimada foi−5,4 versus −1,9 mL/min/1,73 m² (P<0,05). Os autores não dispunham de níveis dos imunossupressores nem das indicações dos antibióticos.",
+            "conclusao": "A interação metabólica conhecida exige cautela na escolha do macrolídeo para receptores em tacrolimo ou ciclosporina. A associação com mais hospitalizações não prova causalidade, não demonstra diferença significativa no composto primário e não significa risco zero com azitromicina.",
+            "curiosidade": "A coorte não mediu as concentrações dos inibidores de calcineurina. Portanto, não pode ser apresentada como demonstração direta de elevação desses níveis nos participantes."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "cni_macrolide_ddi_jeong_2019",
+            "revision": "sha256:d6ff52ec9a0c581a05967a28dabb48dc9d195b9cd513af18dd1e1cc1e28b28bf",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:496ddad571a3a0a399ea19c5dc2105942e8173146ee6ea8a8d2b29dcadc9ccd5",
+      "classificationBeforeAndAfter": {
+        "op": "Selecionar conduta segura perante interação entre claritromicina e tacrolimo, sem suspensão não planejada da imunossupressão.",
+        "competency": "Farmacologia renal: eficácia, interação e segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Decisão clínica ou interpretação aplicada a contexto explícito; não se usa extensão de alternativa ou novidade para classificar dificuldade.",
+        "identity": "Preserva qid, gabarito, competência e conceito correto. Os dados explicitados corrigem ambiguidade de indicação/medida, sem nova decisão clínica."
+      },
+      "evidenceSources": [
+        {
+          "id": "J",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6385328/",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/jeong-macrolide.xml",
+          "bytesSHA256": "dac2cdb4f2fc26cac6f67c246d23237c7456f4d5a08c8b805ae24d5f22fb91fe",
+          "scope": "Corpo primário integral, discussão e tabelas efetivamente lidos. Não se transforma associação observacional em causalidade nem omite primário não significativo.",
+          "locator": "Abstract; Tables2–3; Discussion; Limitations"
+        }
+      ],
+      "claimsVerified": [
+        "Claritromicina inibeCYP3A4 e afeta tacrolimo/ciclosporina.",
+        "Horários separados não evitam inibição metabólica.",
+        "CoorteN293, composto17%vs11%P.11; sem níveis deICN."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Preferir alternativa com menor interação, mantendo acompanhamento do tacrolimo.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "B",
+            "text": "Separar os horários dos dois medicamentos para evitar a interação metabólica.",
+            "judgment": "Tratar interação metabólica como absorção evitável por horários."
+          },
+          {
+            "letter": "C",
+            "text": "Trocar tacrolimo por ciclosporina durante o antibiótico, sem ajustar monitorização.",
+            "judgment": "Supor ciclosporina livre da interação."
+          },
+          {
+            "letter": "D",
+            "text": "Manter a associação e dosar tacrolimo apenas se aparecer elevação da creatinina.",
+            "judgment": "Esperar nefrotoxicidade em vez de rever prescrição e monitorar precocemente."
+          }
+        ],
+        "attemptToDefendDistractor": "O caso agora explicita que existe alternativa ativa adequada e que um macrolídeo é indicado; não faz de azitromicina a primeira escolha universal para amigdalite. A correta mantém acompanhamento e não promete risco zero. A alternativa de ajustar tacrolimo pode ser necessária se a claritromicina for inevitável, condição excluída pelo caso e explicada no comentário.",
+        "result": "RECURSO REJEITADO no contexto explicitado; erros plausíveis distintos, sem recurso a distractores absurdos."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes primárias/regulatórias efetivamente abertas, vínculo exato dos cards."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Auditoria individual das quatro opções acima; alternativas erradas expressam erros clínicos/farmacocinéticos reais."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "O caso agora explicita que existe alternativa ativa adequada e que um macrolídeo é indicado; não faz de azitromicina a primeira escolha universal para amigdalite. A correta mantém acompanhamento e não promete risco zero. A alternativa de ajustar tacrolimo pode ser necessária se a claritromicina for inevitável, condição excluída pelo caso e explicada no comentário."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20,
+        "remaining": "Plausibilidade dos distratores deve continuar sob revisão independente; não aplicada pontuação mecânica de comprimento."
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": [],
+        "edition": "A1.1; vias explícitas e interpretação do resultado SHARP corrigida após novo recurso. Mesmo OP/gabarito; novos bytes sujeitos a controle independente."
+      },
+      "answerLength": {
+        "before": {
+          "chars": [
+            197,
+            97,
+            85,
+            107
+          ],
+          "ratio": 1.841121495327103,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            79,
+            77,
+            83,
+            80
+          ],
+          "ratio": 0.9518072289156626,
+          "uniqueLongest": false
+        }
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "7d2284a4",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:19e10bcacc1e824df09670e0203eeaa0937cd31be159850f12b64b33b8d65a2d",
+        "question": {
+          "t": "Farmacologia Renal",
+          "qid": "7d2284a4",
+          "q": "Paciente de 58 anos com DRC G4 não dialítica, diabetes e dislipidemia pergunta se estatina é segura e útil com TFGe de 28 mL/min/1,73m². Qual evidência melhor sustenta a conduta?",
+          "refs": [
+            "sharp_study"
+          ],
+          "opts": [
+            "O SHARP mostrou que sinvastatina 20 mg associada a ezetimiba 10 mg reduziu eventos ateroscleróticos maiores em pacientes com DRC, sem sinal relevante de excesso de miopatia.",
+            "Estatinas são contraindicadas em TFGe <30 mL/min/1,73m² pelo risco inevitável de rabdomiólise.",
+            "Rosuvastatina é a única opção segura em DRC avançada por não exigir qualquer cautela renal.",
+            "Apenas pravastatina é segura em todas as fases da DRC, e ezetimiba deve ser evitada."
+          ],
+          "ans": 0,
+          "exp": "A melhor evidência é o SHARP: em pacientes com DRC moderada a avançada, incluindo não dialíticos e dialíticos, sinvastatina 20 mg + ezetimiba 10 mg reduziu eventos ateroscleróticos maiores em cerca de 17%, com baixo excesso de miopatia. O ponto prático para o paciente com DRC G4 não dialítica é que terapia hipolipemiante não é contraindicada por TFGe <30; deve-se escolher dose e fármaco com atenção a interações e função renal. As demais alternativas transformam cautela em contraindicação absoluta ou fazem afirmações exclusivas não sustentadas.",
+          "diff": "medium",
+          "cat": "farmacologia"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Farmacologia Renal",
+          "qid": "7d2284a4",
+          "q": "Paciente de 58 anos com doença renal crônica G4 não dialítica discute sinvastatina 20 mg associada a ezetimiba 10 mg, ambas por via oral uma vez ao dia. Qual interpretação da segurança muscular no SHARP é adequada?",
+          "refs": [
+            "sharp_study"
+          ],
+          "opts": [
+            "Miopatia foi rara nos dois grupos, mas isso não torna a combinação isenta de risco.",
+            "A combinação foi estudada apenas com filtração preservada, sem doença renal avançada.",
+            "A segurança observada permite dispensar a revisão de interações em quem usa a combinação.",
+            "Os poucos eventos musculares demonstram que qualquer dose alta de estatina terá o mesmo perfil."
+          ],
+          "ans": 0,
+          "exp": "No SHARP,9.270 participantes com doença renal crônica receberam sinvastatina 20 mg mais ezetimiba 10 mg/dia por via oral ou placebo. A miopatia foi rara: nove versus cinco casos. O pequeno excesso absoluto não equivale a ausência de risco e não elimina a revisão de interações, sintomas e doses. O ensaio incluiu doença renal avançada, mas não permite extrapolar a segurança da combinação estudada a qualquer estatina em dose alta. A redução de eventos ateroscleróticos foi de 17%; o estudo não demonstra que a combinação preserve a filtração nem isola a contribuição de cada componente para o benefício cardiovascular.",
+          "diff": "medium",
+          "cat": "farmacologia"
+        },
+        "afterAuthorRevision": "sha256:0d86e53f3a3c90f992b832add73ad0074252147ed338be5b30de69c0b287f3cc",
+        "refCardsAfter": {
+          "sharp_study": {
+            "label": "SHARP — Sinvastatina/ezetimiba na DRC (2011)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3145073/",
+            "journal": "Lancet. 2011;377:2181–2192",
+            "ano": 2011,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Sinvastatina/ezetimiba reduziu eventos ateroscleróticos maiores em 17%.",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado e duplo-cego com 9.270 participantes com doença renal crônica, incluindo dialíticos e não dialíticos, sem infarto do miocárdio ou revascularização coronária prévios conhecidos. Comparou sinvastatina 20 mg mais ezetimiba 10 mg/dia com placebo. O desfecho primário foi o primeiro evento aterosclerótico maior. Em mediana de 4,9 anos, ocorreu em 11,3% versus 13,4%: razão de taxas 0,83 (IC95% 0,74–0,94; p=0,0021). Nos não dialíticos, não houve redução estatisticamente demonstrada de progressão para diálise ou transplante: RR 0,97 (IC95% 0,89–1,05).",
+            "conclusao": "A combinação sustenta prevenção aterosclerótica na população estudada, sem demonstração consistente de nefroproteção. O resultado não isola o efeito de cada componente nem determina sozinho quando iniciar tratamento em pacientes já dialíticos.",
+            "curiosidade": "A miopatia foi rara: nove casos com a combinação e cinco com placebo. O pequeno excesso absoluto não deve ser descrito como ausência de risco muscular."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "sharp_study",
+            "revision": "sha256:c8ed9a8df2de0fe47e0c29df6f03754d0e7f122de3414a4fdf81440014352f83",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:0a213181b2f9ab6432d2d191d7f54d3fef487ea614d0a4ea800fd5316293f42a",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar a evidência de segurança muscular da combinação sinvastatina/ezetimiba estudada em doença renal avançada.",
+        "competency": "Farmacologia renal: eficácia, interação e segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Decisão clínica ou interpretação aplicada a contexto explícito; não se usa extensão de alternativa ou novidade para classificar dificuldade.",
+        "identity": "Preserva qid, gabarito, competência e conceito correto. Os dados explicitados corrigem ambiguidade de indicação/medida, sem nova decisão clínica."
+      },
+      "evidenceSources": [
+        {
+          "id": "S",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3145073/",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/sharp-primary.xml",
+          "bytesSHA256": "ee29c40c7256f593f11e68768008e30cfb03567735cc53e1641660a81ca74a3a",
+          "scope": "Corpo primário integral do SHARP, aberto no lote DRC e novamente conferido para segurança e intervenção.",
+          "locator": "Summary; muscle safety:9vs5; renal progression"
+        }
+      ],
+      "claimsVerified": [
+        "N9270 e doses20/10 versusplacebo.",
+        "Miopatia9vs5, excessoabsoluto pequeno e não riscozero.",
+        "IncluiuDRC avançada, sem generalizar doses/componentes."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Miopatia foi rara nos dois grupos, mas isso não torna a combinação isenta de risco.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "B",
+            "text": "A combinação foi estudada apenas com filtração preservada, sem doença renal avançada.",
+            "judgment": "Afirmar exclusão de doença renal avançada."
+          },
+          {
+            "letter": "C",
+            "text": "A segurança observada permite dispensar a revisão de interações em quem usa a combinação.",
+            "judgment": "Converter frequência baixa em dispensa de revisão de interações."
+          },
+          {
+            "letter": "D",
+            "text": "Os poucos eventos musculares demonstram que qualquer dose alta de estatina terá o mesmo perfil.",
+            "judgment": "Extrapolar esquema estudado para qualquer estatina em dosealta."
+          }
+        ],
+        "attemptToDefendDistractor": "A pergunta original já tratava de segurança e utilidade de estatina em G4. A nova redação delimita o componente de segurança, sem criar outro mecanismo ou conduta. A interpretação de finalidade cardiovascular versus nefroproteção permanece em7215c49d; se o revisor considerar o recorte insuficiente para OP independente, consolidar os itens é preferível a inventar justificativa para mantê-los.",
+        "result": "RECURSO REJEITADO no contexto explicitado; erros plausíveis distintos, sem recurso a distractores absurdos."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes primárias/regulatórias efetivamente abertas, vínculo exato dos cards."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Auditoria individual das quatro opções acima; alternativas erradas expressam erros clínicos/farmacocinéticos reais."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "A pergunta original já tratava de segurança e utilidade de estatina em G4. A nova redação delimita o componente de segurança, sem criar outro mecanismo ou conduta. A interpretação de finalidade cardiovascular versus nefroproteção permanece em7215c49d; se o revisor considerar o recorte insuficiente para OP independente, consolidar os itens é preferível a inventar justificativa para mantê-los."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20,
+        "remaining": "Plausibilidade dos distratores deve continuar sob revisão independente; não aplicada pontuação mecânica de comprimento."
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": [],
+        "edition": "A1.1; vias explícitas e interpretação do resultado SHARP corrigida após novo recurso. Mesmo OP/gabarito; novos bytes sujeitos a controle independente."
+      },
+      "answerLength": {
+        "before": {
+          "chars": [
+            173,
+            94,
+            91,
+            84
+          ],
+          "ratio": 1.8404255319148937,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            83,
+            85,
+            89,
+            95
+          ],
+          "ratio": 0.8736842105263158,
+          "uniqueLongest": false
+        }
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "9200dc0a",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:56b27de6e2db35310e39e06e5c148b1a0057177ad02d2d759a06a9e64c2164b9",
+        "question": {
+          "t": "Vancomicina em Hemodiálise de Alto Fluxo — Dose e Monitorização (ASHP 2020)",
+          "qid": "9200dc0a",
+          "q": "Paciente em hemodiálise intermitente de manutenção com dialisador de alto fluxo, três sessões por semana, recebe vancomicina para bacteremia por MRSA, com dose de ataque de 25 mg/kg. Segundo o consenso ASHP/IDSA/PIDS/SIDP 2020, qual é a estratégia de manutenção e monitorização mais adequada?",
+          "opts": [
+            "Não administrar nova dose durante a semana, pois a hemodiálise de alto fluxo remove quantidade irrelevante de vancomicina",
+            "Administrar a dose de manutenção após cada sessão de hemodiálise e monitorizar a concentração pré-diálise, com alvo de 15–20 mg/L (que aproxima a AUC24/MIC de 400–600), ajustando a redose pela concentração medida",
+            "Administrar dose fixa semanal, sem monitorização de níveis séricos",
+            "Manter alvo pré-diálise de 5–10 mg/L, o mesmo utilizado fora da diálise"
+          ],
+          "ans": 1,
+          "exp": "Segundo o consenso ASHP/IDSA/PIDS/SIDP 2020, a hemodiálise de alto fluxo remove uma fração clinicamente relevante da vancomicina, de modo que a dose de manutenção é administrada após cada sessão (na modelagem do consenso, cerca de 10 mg/kg após HD de alto fluxo trissemanal, após ataque de 25 mg/kg). A monitorização baseia-se na concentração pré-diálise, com alvo de 15–20 mg/L, que aproxima a AUC24/MIC de 400–600 (assumindo MIC ≤1 mg/L), e a redose é guiada pela concentração medida. Se a vancomicina for administrada durante a sessão (intradialítica), recomenda-se dose cerca de 30% maior para compensar a remoção. Afirmar que o alto fluxo remove quantidade irrelevante, usar dose fixa semanal sem monitorização, ou manter alvo pré-diálise de 5–10 mg/L como fora da diálise são condutas incorretas.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "vancomycin_monitoring_ashp"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Vancomicina em Hemodiálise de Alto Fluxo — Dose e Monitorização (ASHP 2020)",
+          "qid": "9200dc0a",
+          "q": "Paciente em hemodiálise de manutenção de alto fluxo, três vezes por semana, recebe vancomicina intravenosa para bacteremia por Staphylococcus aureus resistente à meticilina. Já recebeu ataque de 25 mg/kg. Segundo a diretriz de 2020, qual estratégia de manutenção e monitorização é mais adequada?",
+          "opts": [
+            "Repor após cada sessão e ajustar a dose por concentração coletada logo ao terminar a diálise.",
+            "Repor após as sessões e ajustar pelos níveis pré-diálise, em geral visando 15–20 mg/L.",
+            "Repor uma vez por semana e usar os níveis pré-diálise apenas para confirmar a dose semanal.",
+            "Repor após as sessões e manter alvo pré-diálise de 5–10 mg/L para reduzir exposição."
+          ],
+          "ans": 1,
+          "exp": "A hemodiálise de alto fluxo remove vancomicina em quantidade clinicamente relevante. O guideline propõe, como ponto de partida, ataque intravenoso de 25 mg/kg e manutenção intravenosa de cerca de 10 mg/kg após as sessões trissemanalmente, com ajuste pelos níveis. A concentração pré-diálise de 15–20 mg/L é uma aproximação prática de área sob a curva em 24 horas de 400–600 mg·h/L, assumindo concentração inibitória mínima de 1 mg/L; essa meta de exposição não foi validada por ensaios de desfechos em hemodiálise. Coletas imediatamente ao fim da sessão podem parecer baixas antes da redistribuição e induzir redose excessiva. Monitorar ao menos semanalmente, com maior frequência conforme instabilidade, e individualizar a manutenção; dose semanal fixa ou alvo5–10 mg/L podem deixar exposição insuficiente.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "vancomycin_monitoring_ashp"
+          ]
+        },
+        "afterAuthorRevision": "sha256:dbda57aa1da49b6cc6c5ca6e3e88c3cdc2df4d798d7e4504863a65b2e7e65598",
+        "refCardsAfter": {
+          "vancomycin_monitoring_ashp": {
+            "label": "Rybak et al. — Monitorização da vancomicina: guideline integral (2020)",
+            "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+            "journal": "Am J Health-Syst Pharm. 2020;77(11):835–864. DOI:10.1093/ajhp/zxaa036",
+            "ano": 2020,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Exposição de vancomicina guiada pela área sob a curva, com estratégia específica para hemodiálise.",
+            "icon": "📋",
+            "resumo": "Diretriz de consenso para infecções invasivas graves por Staphylococcus aureus resistente à meticilina (MRSA). Recomenda área sob a curva em 24 horas (AUC24) de 400–600 mg·h/L, assumindo concentração inibitória mínima (MIC) de 1 mg/L por microdiluição, com estimativa farmacocinética ou bayesiana. O vale de 15–20 mg/L não é substituto universal da AUC. Na hemodiálise intermitente, a concentração pré-diálise de 15–20 mg/L é a estratégia prática para estimar a exposição; monitorar pelo menos semanalmente e ajustar as doses pelos níveis.",
+            "conclusao": "Ajustar dose e monitorização à população e à modalidade dialítica. Em hemodiálise, a faixa pré-diálise é uma aproximação prática; a meta de exposição não foi validada por ensaios de desfechos nessa população.",
+            "curiosidade": "O documento integral contém recomendações para hemodiálise e terapias contínuas. Seu resumo executivo em Clinical Infectious Diseases é uma publicação relacionada, com DOI e paginação próprios."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "vancomycin_monitoring_ashp",
+            "revision": "sha256:d908154ec24e2875d125469dcccad5f95b8d93cd779813341b20d01391b485a2",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:547fc1d0ceec41e1af2b0db1bbc798e474a869806462122671748b5fa13bbc21",
+      "classificationBeforeAndAfter": {
+        "op": "Planejar reposição e monitorização da vancomicina na hemodiálise intermitente de alto fluxo.",
+        "competency": "Farmacologia renal: eficácia, interação e segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Decisão clínica ou interpretação aplicada a contexto explícito; não se usa extensão de alternativa ou novidade para classificar dificuldade.",
+        "identity": "Preserva qid, gabarito, competência e conceito correto. Os dados explicitados corrigem ambiguidade de indicação/medida, sem nova decisão clínica."
+      },
+      "evidenceSources": [
+        {
+          "id": "V",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "access": "OPENED_PRIMARY_WEB_FULL_TEXT",
+          "scope": "PDF oficial completo aberto e lido pelo navegador. Download shell retornou403; não inventado hash de PDF não obtido. DOI10.1093/ajhp/zxaa036 é o guideline integral, distinto do executive summary PMID32658968.",
+          "locator": "PDFpp4–5: AUC; pp12–13: alto fluxo e recomendação14; p14: TRSC; tabela2"
+        }
+      ],
+      "claimsVerified": [
+        "Ataque25/manutenção10 altofluxo trissemanal tabela.",
+        "PréHD15–20 aproximaAUC400–600; MIC1.",
+        "PósHDimediato sujeito a redistribuição; níveis orientam dose; mínimo semanal."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Repor após cada sessão e ajustar a dose por concentração coletada logo ao terminar a diálise.",
+            "judgment": "Usar nível imediatamente pós-diálise para calcular redose."
+          },
+          {
+            "letter": "B",
+            "text": "Repor após as sessões e ajustar pelos níveis pré-diálise, em geral visando 15–20 mg/L.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "C",
+            "text": "Repor uma vez por semana e usar os níveis pré-diálise apenas para confirmar a dose semanal.",
+            "judgment": "Conservar esquema semanal fixo apesar da remoção altofluxo."
+          },
+          {
+            "letter": "D",
+            "text": "Repor após as sessões e manter alvo pré-diálise de 5–10 mg/L para reduzir exposição.",
+            "judgment": "Visar faixa baixa com risco de exposição insuficiente."
+          }
+        ],
+        "attemptToDefendDistractor": "A dose de ataque já foi administrada. A correta não obriga repor dose fixa se o nível estiver alto: exige ajuste pelos níveis. O enunciado especifica manutenção trissemanal de alto fluxo, separando esta estratégia das terapias contínuas ou híbridas.",
+        "result": "RECURSO REJEITADO no contexto explicitado; erros plausíveis distintos, sem recurso a distractores absurdos."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes primárias/regulatórias efetivamente abertas, vínculo exato dos cards."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Auditoria individual das quatro opções acima; alternativas erradas expressam erros clínicos/farmacocinéticos reais."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "A dose de ataque já foi administrada. A correta não obriga repor dose fixa se o nível estiver alto: exige ajuste pelos níveis. O enunciado especifica manutenção trissemanal de alto fluxo, separando esta estratégia das terapias contínuas ou híbridas."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20,
+        "remaining": "Plausibilidade dos distratores deve continuar sob revisão independente; não aplicada pontuação mecânica de comprimento."
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": [],
+        "edition": "A1.1; vias explícitas e interpretação do resultado SHARP corrigida após novo recurso. Mesmo OP/gabarito; novos bytes sujeitos a controle independente."
+      },
+      "answerLength": {
+        "before": {
+          "chars": [
+            121,
+            212,
+            66,
+            71
+          ],
+          "ratio": 1.7520661157024793,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            93,
+            86,
+            91,
+            84
+          ],
+          "ratio": 0.9247311827956989,
+          "uniqueLongest": false
+        }
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "a493996a",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:432bfc71d477735def1d641639db04c0110ec5c017294e20d1ff04c33a58d93d",
+        "question": {
+          "t": "Estatina + Inibidor de CYP3A4 — Rabdomiólise e Hipercalemia",
+          "qid": "a493996a",
+          "q": "Paciente com DRC usa sinvastatina e recebe claritromicina. Dias depois apresenta mialgia intensa, CPK muito elevada, LRA e hipercalemia. Qual interação explica melhor o quadro?",
+          "refs": [
+            "statin_cyp3a4_rhabdo_review",
+            "rhabdo_review_2023"
+          ],
+          "opts": [
+            "Quelante de fósforo aumentando absorção intestinal da estatina.",
+            "Ferro venoso deslocando potássio para o extracelular.",
+            "Vitamina C em dose habitual inibindo a creatina quinase.",
+            "Inibição de CYP3A4 aumentando exposição a estatinas suscetíveis, com risco de miotoxicidade/rabdomiólise."
+          ],
+          "ans": 3,
+          "exp": "Claritromicina é inibidor de CYP3A4 e pode elevar substancialmente a exposição a estatinas metabolizadas por essa via, sobretudo sinvastatina/lovastatina e também atorvastatina. A miotoxicidade pode evoluir para rabdomiólise, com liberação de potássio intracelular, LRA mioglobinúrica e arritmia por hipercalemia. Em DRC e polifarmácia, a conduta segura é evitar a combinação, suspender temporariamente a estatina ou escolher alternativa menos dependente de CYP3A4 quando clinicamente apropriado.",
+          "diff": "hard",
+          "cat": "farmacologia"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Sinvastatina e Macrolídeo — Mecanismo da Interação",
+          "qid": "a493996a",
+          "q": "Paciente com doença renal crônica usa sinvastatina e inicia claritromicina. Dias depois, apresenta mialgia intensa, creatina quinase muito elevada, lesão renal aguda e hipercalemia. Qual mecanismo farmacocinético melhor explica a interação?",
+          "refs": [
+            "simvastatin_fda_interactions_2023"
+          ],
+          "opts": [
+            "Indução do metabolismo hepático, formando maior quantidade de metabólitos musculares tóxicos.",
+            "Competição pela eliminação renal, que seria a principal via de depuração da sinvastatina.",
+            "Deslocamento da ligação à albumina, como mecanismo predominante da interação entre as duas drogas.",
+            "Bloqueio do citocromo P450 3A4, elevando a exposição à sinvastatina e o risco de rabdomiólise."
+          ],
+          "ans": 3,
+          "exp": "A sinvastatina depende do citocromo P450 3A4 para seu metabolismo. A inibição forte dessa via pela claritromicina aumenta a exposição e o risco de miopatia e rabdomiólise, podendo ocorrer lesão renal aguda. A interação não se explica principalmente por indução de metabólitos tóxicos, competição pela depuração renal da sinvastatina ou deslocamento da albumina. A bula FDA contraindica a associação com inibidores fortes dessa via e orienta suspender a sinvastatina quando um curso curto do inibidor for indispensável. No quadro já instalado, a sinvastatina deve ser retirada e a rabdomiólise, a função renal e a hipercalemia avaliadas prontamente. A regra não deve ser estendida de maneira automática a todas as estatinas.",
+          "diff": "medium",
+          "cat": "farmacologia"
+        },
+        "afterAuthorRevision": "sha256:ad6456253d7884a2b45b161795b587e539eaa6e648406ced693468b17b8f1f57",
+        "refCardsAfter": {
+          "simvastatin_fda_interactions_2023": {
+            "label": "ZOCOR — Interações e rabdomiólise (FDA,2023)",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019766Orig1s103lbl.pdf",
+            "journal": "FDA — Prescribing Information, ZOCOR (Organon)",
+            "ano": 2023,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Sinvastatina com inibidor forte do citocromo P4503A4 é uma combinação contraindicada.",
+            "icon": "📋",
+            "resumo": "Bula profissional de ZOCOR (sinvastatina), revisada em março de 2023. A sinvastatina é metabolizada pelo citocromo P4503A4; inibidores fortes dessa via aumentam sua exposição e o risco de miopatia e rabdomiólise. A associação é contraindicada, incluindo os macrolídeos fortes especificados no documento. Se o inibidor forte for necessário por curto período, a bula orienta suspensão temporária da sinvastatina durante o tratamento. Miopatia suspeita ou creatina quinase muito elevada exige retirada da sinvastatina.",
+            "conclusao": "A interação deve ser prevenida pela revisão dos medicamentos e pela interrupção da associação contraindicada. A informação é específica da sinvastatina; não se estende automaticamente a todas as estatinas.",
+            "curiosidade": "A bula distingue associação contraindicada com inibidores fortes e limites de dose com outros medicamentos. Uma única regra de ajuste não serve para todas as interações."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "simvastatin_fda_interactions_2023",
+            "revision": "sha256:5c62d579be06c0c0565a914cf73130fa22f4540a9929297d226d78bf7cb7ce08",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:422547530da2e7b35e55d61c63c9ea1992d69b39c3d52a2b068fef21831bad3d",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer inibição do metabolismo da sinvastatina por claritromicina como causa de exposição aumentada e rabdomiólise.",
+        "competency": "Farmacologia renal: eficácia, interação e segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Decisão clínica ou interpretação aplicada a contexto explícito; não se usa extensão de alternativa ou novidade para classificar dificuldade.",
+        "identity": "Preserva qid, gabarito, competência e conceito correto. Os dados explicitados corrigem ambiguidade de indicação/medida, sem nova decisão clínica."
+      },
+      "evidenceSources": [
+        {
+          "id": "Z",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019766Orig1s103lbl.pdf",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/simvastatin-zocor-2023.pdf",
+          "bytesSHA256": "c756bd718ad8ac9b00b00bfc7582d89d85056eaac75ac1db0a8fa89c181075ae",
+          "scope": "Bula oficial FDA ZOCOR revisada03/2023. Fonte regulatória, não ensaio científico. Lida para segurança da interação específica com sinvastatina; não extrapola para toda estatina.",
+          "locator": "§4,§5.1,§7.1,§12.3"
+        }
+      ],
+      "claimsVerified": [
+        "Sinvastatina substratoCYP3A4; inibidoresfortes aumentam exposição e miopatia/rhabdo.",
+        "Associação contraindicada e suspensãodurantecursoforte.",
+        "Miopatia/CKmuitoalta requer suspensão, riscoLRA documentado."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Indução do metabolismo hepático, formando maior quantidade de metabólitos musculares tóxicos.",
+            "judgment": "Confundir inibição com indução metabólica."
+          },
+          {
+            "letter": "B",
+            "text": "Competição pela eliminação renal, que seria a principal via de depuração da sinvastatina.",
+            "judgment": "Supor eliminação renal como principal mecanismo da interação."
+          },
+          {
+            "letter": "C",
+            "text": "Deslocamento da ligação à albumina, como mecanismo predominante da interação entre as duas drogas.",
+            "judgment": "Atribuir interação predominantemente a deslocamento proteico."
+          },
+          {
+            "letter": "D",
+            "text": "Bloqueio do citocromo P450 3A4, elevando a exposição à sinvastatina e o risco de rabdomiólise.",
+            "judgment": "CORRETA"
+          }
+        ],
+        "attemptToDefendDistractor": "Os antigos distratores sobre ferro, quelante e vitaminaC foram substituídos por três erros farmacocinéticos reconhecíveis. O título deixa de entregar a via metabólica antes da resposta. A fonte regulatória necessária é explicitamente BULA; o antigo URL era relato de caso de autores/periódico diferentes e não foi falsamente classificado como revisão.",
+        "result": "RECURSO REJEITADO no contexto explicitado; erros plausíveis distintos, sem recurso a distractores absurdos."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes primárias/regulatórias efetivamente abertas, vínculo exato dos cards."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Auditoria individual das quatro opções acima; alternativas erradas expressam erros clínicos/farmacocinéticos reais."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Os antigos distratores sobre ferro, quelante e vitaminaC foram substituídos por três erros farmacocinéticos reconhecíveis. O título deixa de entregar a via metabólica antes da resposta. A fonte regulatória necessária é explicitamente BULA; o antigo URL era relato de caso de autores/periódico diferentes e não foi falsamente classificado como revisão."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20,
+        "remaining": "Plausibilidade dos distratores deve continuar sob revisão independente; não aplicada pontuação mecânica de comprimento."
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": [],
+        "edition": "A1.1; vias explícitas e interpretação do resultado SHARP corrigida após novo recurso. Mesmo OP/gabarito; novos bytes sujeitos a controle independente."
+      },
+      "answerLength": {
+        "before": {
+          "chars": [
+            63,
+            53,
+            56,
+            105
+          ],
+          "ratio": 1.6666666666666667,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            93,
+            89,
+            98,
+            94
+          ],
+          "ratio": 0.9591836734693877,
+          "uniqueLongest": false
+        }
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "5bfb77d2",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:6085cd74c40ca16b4f17cb7b1f7dcacde57e1751f87170345d5606202604b13e",
+        "question": {
+          "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+          "qid": "5bfb77d2",
+          "q": "Paciente com doença renal crônica estágio 4, taxa de filtração glomerular estimada de 22 mL/min/1,73 m², usa tramadol de liberação imediata 100 mg a cada 8 horas para dor crônica. Após alguns dias, apresenta crise convulsiva generalizada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a interpretação e a conduta farmacológica mais apropriadas?",
+          "opts": [
+            "Manter o tramadol em dose menor e iniciar anticonvulsivante, pois a crise não exige suspensão do analgésico.",
+            "Reconhecer possível neurotoxicidade favorecida pela redução da excreção renal do tramadol e de seu metabólito ativo, suspender o fármaco e reavaliar a estratégia analgésica.",
+            "Substituir o tramadol por morfina, cujos metabólitos não se acumulam na doença renal crônica.",
+            "Substituir o tramadol por codeína, que não depende de conversão metabólica nem de eliminação renal."
+          ],
+          "ans": 1,
+          "exp": "A crise convulsiva exige suspensão do tramadol e reavaliação do tratamento (alternativa B). Na disfunção renal grave, diminuem a excreção do tramadol e de seu metabólito ativo M1; além disso, o esquema apresentado não respeita o intervalo recomendado quando a depuração de creatinina é inferior a 30 mL/min. O tramadol pode causar convulsões mesmo em doses recomendadas, com risco maior quando a exposição aumenta. A resposta não deve determinar automaticamente outro opioide: primeiro é necessário caracterizar a dor, priorizar estratégias não farmacológicas e não opioides e, se um opioide continuar indicado, selecionar e titular uma opção compatível com a função renal. Manter o tramadol após a crise (A) perpetua a exposição suspeita; morfina (C) e codeína (D) têm metabólitos ativos com risco de acúmulo na doença renal avançada.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "roy_pain_ckd_2020",
+            "tramadol_fda_label_2019"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+          "qid": "5bfb77d2",
+          "q": "Paciente com doença renal crônica e depuração estimada de creatinina de 22 mL/min usa tramadol oral de liberação imediata 100 mg a cada 8 horas para dor crônica. Após alguns dias, apresenta uma crise convulsiva generalizada, já controlada. Não há epilepsia prévia nem uso de fármacos serotoninérgicos. Qual é a melhor conduta farmacológica após estabilizar a crise?",
+          "opts": [
+            "Apenas espaçar o tramadol para cada 12 horas e manter a exposição após a primeira crise.",
+            "Suspender o tramadol, suspeitar de neurotoxicidade e reavaliar a estratégia analgésica.",
+            "Trocar diretamente por morfina em dose habitual, sem considerar o acúmulo de metabólitos.",
+            "Trocar pela apresentação de liberação prolongada, mantendo a mesma dose diária total."
+          ],
+          "ans": 1,
+          "exp": "A excreção de tramadol e de seu metabólito ativo M1 diminui na disfunção renal. Para depuração de creatinina abaixo de 30 mL/min, a bula de liberação imediata orienta intervalo de 12 horas e máximo de 200 mg/dia; o caso recebe 300 mg/dia. Convulsões podem ocorrer mesmo em doses recomendadas, com maior risco em exposição elevada. Após a crise, apenas corrigir intervalo ou formulação mantém o fármaco suspeito: deve-se retirá-lo e investigar também outras causas de convulsão. A analgesia exige reavaliação individual, priorizando medidas não farmacológicas e não opioides quando adequadas. A troca automática por morfina em dose habitual também é insegura pelo acúmulo de metabólitos na doença renal avançada.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "roy_pain_ckd_2020",
+            "tramadol_fda_label_2019"
+          ]
+        },
+        "afterAuthorRevision": "sha256:6bb4e7d1da8ca7e7e18afc599af5be572a59f95edf1f0ff0a08414669ffd5bea",
+        "refCardsAfter": {
+          "roy_pain_ckd_2020": {
+            "label": "Roy et al. — Manejo da Dor na DRC e DRT (2020)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+            "journal": "Current Opinion in Nephrology and Hypertension",
+            "ano": 2020,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Orienta analgesia e uso criterioso de opioides na doença renal",
+            "icon": "🔬",
+            "resumo": "Revisão clínica de Roy e colaboradores sobre manejo da dor na doença renal crônica (DRC) e doença renal terminal. Recomenda priorizar intervenções não farmacológicas e analgésicos não opioides; quando opioides forem necessários, devem ser usados com indicação criteriosa, ajuste à função renal e monitorização. Discute o risco de interações, síndrome serotoninérgica e convulsões com tramadol e identifica opções com perfil farmacocinético mais favorável na doença renal.",
+            "conclusao": "Na DRC avançada, a exposição a opioides exige seleção e monitorização individualizadas; tramadol requer cautela pelo risco de acúmulo, interações e neurotoxicidade, e a troca por outro opioide não deve ser automática.",
+            "curiosidade": "Artigo de acesso aberto: Curr Opin Nephrol Hypertens. 2020;29(6):671–680. DOI: 10.1097/MNH.0000000000000646."
+          },
+          "tramadol_fda_label_2019": {
+            "label": "ULTRAM (tramadol) — Prescribing Information FDA (2019)",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+            "journal": "FDA — Prescribing Information (Janssen Pharmaceuticals)",
+            "ano": 2019,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Tramadol em CrCl <30: intervalo de 12 h; risco de convulsão mesmo em doses recomendadas",
+            "icon": "📋",
+            "resumo": "Informação de prescrição do ULTRAM (tramadol) revisada em abril de 2019. Em depuração de creatinina inferior a 30 mL/min, recomenda aumentar o intervalo de dose para 12 horas e limitar a dose diária máxima a 200 mg. A farmacocinética descreve redução da excreção de tramadol e do metabólito ativo M1 na disfunção renal. A bula também registra convulsões com tramadol dentro da faixa posológica recomendada, com maior risco quando a exposição aumenta ou quando há fatores que reduzem o limiar convulsivo.",
+            "conclusao": "No paciente com DRC avançada e crise convulsiva em uso de tramadol, a exposição deve ser considerada insegura: suspender o fármaco e reavaliar a analgesia, em vez de manter apenas com ajuste de dose.",
+            "curiosidade": "A bula ressalta que opioides devem ser reservados para dor suficientemente intensa quando alternativas não opioides forem inadequadas ou não toleradas."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "roy_pain_ckd_2020",
+            "revision": "sha256:85cad65de2630cc7883efd91fba4ff2b2da2291606d05cc5cba3d9777f172d35",
+            "fieldCount": 12
+          },
+          {
+            "id": "tramadol_fda_label_2019",
+            "revision": "sha256:1c27d95fd3522528f114db06f5dfcf8036031e71258d1831a8c557b69498af1b",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:03a25478f5d394226b08f81f842b540655500e36dc75566fbe177b50215ba22f",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer possível neurotoxicidade por tramadol na disfunção renal e retirar o agente suspeito, sem substituição automática inadequada.",
+        "competency": "Farmacologia renal: eficácia, interação e segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Decisão clínica ou interpretação aplicada a contexto explícito; não se usa extensão de alternativa ou novidade para classificar dificuldade.",
+        "identity": "Preserva qid, gabarito, competência e conceito correto. Os dados explicitados corrigem ambiguidade de indicação/medida, sem nova decisão clínica."
+      },
+      "evidenceSources": [
+        {
+          "id": "T",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/tramadol-2019.pdf",
+          "bytesSHA256": "242595a9123891ff4e6fa552641daa4db1e0a1719d9e1ff7b3e49c0077513a39",
+          "scope": "Bula oficial ULTRAM revisada04/2019, usada para dose em depuração de creatinina<30, excreçãoM1 e convulsões. Não apresentada como bula mais recente.",
+          "locator": "§2.2,§5.9,§8.6,§12.3"
+        },
+        {
+          "id": "R",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/roy-pain.xml",
+          "bytesSHA256": "cb574561567f503e867958cf6c555b19d38481dd2a11c068466bd15253b0aaf0",
+          "scope": "Revisão clínica original dos autores, texto integral efetivamente aberto; limites de opioides e alternativas na doença renal.",
+          "locator": "Opioid medications; Tramadol; Non-opioid therapy"
+        }
+      ],
+      "claimsVerified": [
+        "CrCl<30→12h e máximo200; esquema300/dia.",
+        "M1 e tramadol excreçãorenal reduzida; convulsõesmesmodoserecomendada.",
+        "Morfina e seusmetabólitos acumulam, analgesiaindividualizada."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Apenas espaçar o tramadol para cada 12 horas e manter a exposição após a primeira crise.",
+            "judgment": "Aplicar ajuste de manutenção como resposta suficiente à toxicidade já instalada."
+          },
+          {
+            "letter": "B",
+            "text": "Suspender o tramadol, suspeitar de neurotoxicidade e reavaliar a estratégia analgésica.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "C",
+            "text": "Trocar diretamente por morfina em dose habitual, sem considerar o acúmulo de metabólitos.",
+            "judgment": "Trocar automaticamente para morfina em dose usual."
+          },
+          {
+            "letter": "D",
+            "text": "Trocar pela apresentação de liberação prolongada, mantendo a mesma dose diária total.",
+            "judgment": "Trocar formulação mantendo exposição diária excessiva."
+          }
+        ],
+        "attemptToDefendDistractor": "Depuração de creatinina passa a ser o dado fornecido, evitando tratar taxa de filtração estimada indexada como número intercambiável com depuração na regra da bula. A crise já está controlada e a pergunta se limita ao agente analgésico; não omite tratamento emergencial nem presume que tramadol seja causa comprovada exclusiva.",
+        "result": "RECURSO REJEITADO no contexto explicitado; erros plausíveis distintos, sem recurso a distractores absurdos."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes primárias/regulatórias efetivamente abertas, vínculo exato dos cards."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Auditoria individual das quatro opções acima; alternativas erradas expressam erros clínicos/farmacocinéticos reais."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Depuração de creatinina passa a ser o dado fornecido, evitando tratar taxa de filtração estimada indexada como número intercambiável com depuração na regra da bula. A crise já está controlada e a pergunta se limita ao agente analgésico; não omite tratamento emergencial nem presume que tramadol seja causa comprovada exclusiva."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Ver OP, contexto e auditoria das quatro opções."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20,
+        "remaining": "Plausibilidade dos distratores deve continuar sob revisão independente; não aplicada pontuação mecânica de comprimento."
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": [],
+        "edition": "A1.1; vias explícitas e interpretação do resultado SHARP corrigida após novo recurso. Mesmo OP/gabarito; novos bytes sujeitos a controle independente."
+      },
+      "answerLength": {
+        "before": {
+          "chars": [
+            108,
+            173,
+            93,
+            99
+          ],
+          "ratio": 1.6018518518518519,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            88,
+            87,
+            89,
+            85
+          ],
+          "ratio": 0.9775280898876404,
+          "uniqueLongest": false
+        }
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "referencePatches": [
+    {
+      "id": "cni_macrolide_ddi_jeong_2019",
+      "kind": "REPAIR_EXISTING_REFERENCE",
+      "beforeRevision": "sha256:00811f4c95c6ea2aec288489a544805adc35f70ee11672c573f0a7f12277bc20",
+      "after": {
+        "label": "Macrolídeos e inibidores de calcineurina no transplante renal (Jeong et al.)",
+        "url": "https://journals.sagepub.com/doi/10.1177/2054358119830706",
+        "journal": "Can J Kidney Health Dis 2019;6:2054358119830706",
+        "ano": 2019,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "impacto": "Claritromicina/eritromicina associaram-se a mais hospitalizações; o composto primário não diferiu significativamente.",
+        "icon": "🔬",
+        "resumo": "Coorte retrospectiva de 293 receptores de transplante renal em uso de inibidor de calcineurina, em Alberta,2008–2015:112 receberam claritromicina/eritromicina e181 azitromicina. O composto primário de hospitalização, lesão renal aguda ou morte em 30 dias ocorreu em 17% versus 11% (P=0,11). Hospitalização isolada ocorreu em 10% versus 3% (P=0,02); a queda média da taxa de filtração glomerular estimada foi−5,4 versus −1,9 mL/min/1,73 m² (P<0,05). Os autores não dispunham de níveis dos imunossupressores nem das indicações dos antibióticos.",
+        "conclusao": "A interação metabólica conhecida exige cautela na escolha do macrolídeo para receptores em tacrolimo ou ciclosporina. A associação com mais hospitalizações não prova causalidade, não demonstra diferença significativa no composto primário e não significa risco zero com azitromicina.",
+        "curiosidade": "A coorte não mediu as concentrações dos inibidores de calcineurina. Portanto, não pode ser apresentada como demonstração direta de elevação desses níveis nos participantes."
+      },
+      "afterRevision": "sha256:d6ff52ec9a0c581a05967a28dabb48dc9d195b9cd513af18dd1e1cc1e28b28bf",
+      "fields": 12,
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6385328/",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/jeong-macrolide.xml",
+          "bytesSHA256": "dac2cdb4f2fc26cac6f67c246d23237c7456f4d5a08c8b805ae24d5f22fb91fe",
+          "scope": "Corpo primário integral, discussão e tabelas efetivamente lidos. Não se transforma associação observacional em causalidade nem omite primário não significativo.",
+          "locator": "Abstract; Tables2–3; Discussion; Limitations"
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": []
+      },
+      "allCurrentConsumerQids": [
+        "a4c4eff0"
+      ],
+      "noConsumerQuestionApprovalInherited": true
+    },
+    {
+      "id": "vancomycin_monitoring_ashp",
+      "kind": "REPAIR_EXISTING_REFERENCE",
+      "beforeRevision": "sha256:5f62f788d7f996459e7300d735e0fc7d490398cc2ac3f54e1728489cd945b2cc",
+      "after": {
+        "label": "Rybak et al. — Monitorização da vancomicina: guideline integral (2020)",
+        "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+        "journal": "Am J Health-Syst Pharm. 2020;77(11):835–864. DOI:10.1093/ajhp/zxaa036",
+        "ano": 2020,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Exposição de vancomicina guiada pela área sob a curva, com estratégia específica para hemodiálise.",
+        "icon": "📋",
+        "resumo": "Diretriz de consenso para infecções invasivas graves por Staphylococcus aureus resistente à meticilina (MRSA). Recomenda área sob a curva em 24 horas (AUC24) de 400–600 mg·h/L, assumindo concentração inibitória mínima (MIC) de 1 mg/L por microdiluição, com estimativa farmacocinética ou bayesiana. O vale de 15–20 mg/L não é substituto universal da AUC. Na hemodiálise intermitente, a concentração pré-diálise de 15–20 mg/L é a estratégia prática para estimar a exposição; monitorar pelo menos semanalmente e ajustar as doses pelos níveis.",
+        "conclusao": "Ajustar dose e monitorização à população e à modalidade dialítica. Em hemodiálise, a faixa pré-diálise é uma aproximação prática; a meta de exposição não foi validada por ensaios de desfechos nessa população.",
+        "curiosidade": "O documento integral contém recomendações para hemodiálise e terapias contínuas. Seu resumo executivo em Clinical Infectious Diseases é uma publicação relacionada, com DOI e paginação próprios."
+      },
+      "afterRevision": "sha256:d908154ec24e2875d125469dcccad5f95b8d93cd779813341b20d01391b485a2",
+      "fields": 12,
+      "sources": [
+        {
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "access": "OPENED_PRIMARY_WEB_FULL_TEXT",
+          "scope": "PDF oficial completo aberto e lido pelo navegador. Download shell retornou403; não inventado hash de PDF não obtido. DOI10.1093/ajhp/zxaa036 é o guideline integral, distinto do executive summary PMID32658968.",
+          "locator": "PDFpp4–5: AUC; pp12–13: alto fluxo e recomendação14; p14: TRSC; tabela2"
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem.",
+        "remainingSubstantiveProblems": []
+      },
+      "allCurrentConsumerQids": [
+        "b8195f7b",
+        "f893d58a",
+        "c4d95244",
+        "9200dc0a"
+      ],
+      "noConsumerQuestionApprovalInherited": true
+    }
+  ],
+  "newCards": [
+    {
+      "id": "simvastatin_fda_interactions_2023",
+      "after": {
+        "label": "ZOCOR — Interações e rabdomiólise (FDA,2023)",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019766Orig1s103lbl.pdf",
+        "journal": "FDA — Prescribing Information, ZOCOR (Organon)",
+        "ano": 2023,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Sinvastatina com inibidor forte do citocromo P4503A4 é uma combinação contraindicada.",
+        "icon": "📋",
+        "resumo": "Bula profissional de ZOCOR (sinvastatina), revisada em março de 2023. A sinvastatina é metabolizada pelo citocromo P4503A4; inibidores fortes dessa via aumentam sua exposição e o risco de miopatia e rabdomiólise. A associação é contraindicada, incluindo os macrolídeos fortes especificados no documento. Se o inibidor forte for necessário por curto período, a bula orienta suspensão temporária da sinvastatina durante o tratamento. Miopatia suspeita ou creatina quinase muito elevada exige retirada da sinvastatina.",
+        "conclusao": "A interação deve ser prevenida pela revisão dos medicamentos e pela interrupção da associação contraindicada. A informação é específica da sinvastatina; não se estende automaticamente a todas as estatinas.",
+        "curiosidade": "A bula distingue associação contraindicada com inibidores fortes e limites de dose com outros medicamentos. Uma única regra de ajuste não serve para todas as interações."
+      },
+      "afterRevision": "sha256:5c62d579be06c0c0565a914cf73130fa22f4540a9929297d226d78bf7cb7ce08",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019766Orig1s103lbl.pdf",
+          "access": "OPENED_PRIMARY_ARTIFACT",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/simvastatin-zocor-2023.pdf",
+          "bytesSHA256": "c756bd718ad8ac9b00b00bfc7582d89d85056eaac75ac1db0a8fa89c181075ae",
+          "scope": "Bula oficial FDA ZOCOR revisada03/2023. Fonte regulatória, não ensaio científico. Lida para segurança da interação específica com sinvastatina; não extrapola para toda estatina.",
+          "locator": "§4,§5.1,§7.1,§12.3"
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7: gate formal autoral dos literais exatos propostos. Não é revisão independente nem autorização herdada de triagem."
+      },
+      "formatException": "Precedente root: documento regulatório explicitamenteBULA, uma única bula necessária, não classificado como estudo científico."
+    }
+  ],
+  "existingBindings": [
+    {
+      "id": "sharp_study",
+      "expectedRevision": "sha256:c8ed9a8df2de0fe47e0c29df6f03754d0e7f122de3414a4fdf81440014352f83",
+      "providedBy": "drc-author-A12.json — usar somente após gate independente da versão exata; não reutilizar card antigo."
+    },
+    {
+      "id": "roy_pain_ckd_2020",
+      "revision": "sha256:85cad65de2630cc7883efd91fba4ff2b2da2291606d05cc5cba3d9777f172d35",
+      "newSourceReview": "Corpo integral efetivamente relido nesta frente; literal12campos preservado."
+    },
+    {
+      "id": "tramadol_fda_label_2019",
+      "revision": "sha256:1c27d95fd3522528f114db06f5dfcf8036031e71258d1831a8c557b69498af1b",
+      "newSourceReview": "Bula integral aberta; dose/risco/escopo conferidos e literal12campos preservado."
+    }
+  ],
+  "blocked": [
+    {
+      "qid": "2acaa158",
+      "disposition": "HOLD_REAL_SOURCE_ACCESS",
+      "verdict": "revisão maior",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "DECISIVA",
+      "publicationAuthorization": "BLOQUEADA",
+      "reason": "Cortazar original confirma padrão histológico e associação observacional de recuperação com esteroides; não substitui o ponto clínico decisivo de manejo do consenso ASON. ASON PMID39455026 apenas abstract aberto; PDF publisher403 e reprint com certificado incompatível. Nenhum AFTER clínico liberado por conhecimento geral.",
+      "sourceAttempts": [
+        "https://www.kidney-international.org/article/S0085-2538(24)00724-5/fulltext",
+        "https://www.onconephindia.in/pdf/article/PIIS0085253824007245.pdf",
+        "https://pubmed.ncbi.nlm.nih.gov/39455026/"
+      ],
+      "nextAction": "Obter corpo ASON primário por rota válida e confirmar suspensão temporária/esteroide/medicamentos concorrentes no caso com biópsia já feita."
+    },
+    {
+      "qid": "471c0013",
+      "disposition": "DUPLICATION_AND_SAFETY_REPAIR_IN_PROGRESS",
+      "comparisonQids": [
+        "5705f74c",
+        "63040771"
+      ],
+      "verdict": "revisão maior",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "DECISIVA",
+      "publicationAuthorization": "BLOQUEADA",
+      "reason": "Bedford integral aberto confirma11 participantes com exclusão de nefropatia conhecida. O caso já tem creatinina1,8/fibrose/microcistos: não liberar amilorida automática por extrapolação de estudo pequeno. Além disso, outros dois itens já testam mecanismo e amilorida. Precisa adjudicar a consolidação e definir texto mínimo seguro, sem fabricarOP para manter quantidade.",
+      "nextAction": "Propor consolidação após confirmar segurança na doença renal e a identidade dos três objetivos."
+    }
+  ],
+  "problematicReferences": [
+    {
+      "id": "statin_cyp3a4_rhabdo_review",
+      "beforeRevision": "sha256:4c18cc639f5606dfb08603da278616152b4a14fdea8bbeb20ba1cdccfe452f82",
+      "currentConsumerQids": [
+        "a493996a"
+      ],
+      "disposition": "RETIRE_OR_RECLASSIFY_AFTER_INDEPENDENT_REVIEW",
+      "evidence": "VERIFICADA",
+      "finding": "URLPMC5853001 é relato de caso de Ezad/Cheema/Collins, Oxford Medical Case Reports2018(3):omx104, DOI10.1093/omcr/omx104. O card atribui Mendes/BMJ e badgeREVIEW. Não é revisão.",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5853001/",
+        "access": "OPENED_PRIMARY_ARTIFACT",
+        "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/statin-case.xml",
+        "bytesSHA256": "24c1d1845e55d5d8b93dd68f16927293c68f69b0de3e3f5f1e6e3003aefae10f",
+        "scope": "Corpo primário integral e identidade efetivamente lidos.",
+        "locator": "Título/autores/periódico; case report"
+      },
+      "recommended": "Reparar o mesmoIDpara o relato real, conforme candidato separado e adjudicaçãoCASO do root, somente depois de gate clínico independente. Não aposentar nem remapear histórico automaticamente.",
+      "clinicalAuthorization": "BLOQUEADA: card atual falso não pode ser reaproveitado por herança."
+    }
+  ],
+  "collateralReviewBoundary": "Os três consumidores legados do card de vancomicina são listados, mas não recebem nova aprovação de suas questões inteiras por herança do card. Na revisão independente, distinguir mudança de referência e defeitos próprios dos demais itens. Finerenona,27severos e seis ácido-base do root não foram tocados.",
+  "implementationBoundary": {
+    "noRootWrites": true,
+    "noNewQuestion": true,
+    "noHistoryReset": true,
+    "noFSRSCopy": true,
+    "noPublicationBeforeIndependentGate": true
+  },
+  "supersedes": "pharmacology-author-A1.json preservada; A1.1 explicita vias e corrige limite inferencial do SHARP sem negar seu braço isolado inicial.",
+  "caseRepairCandidate": {
+    "path": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/statin-case-author-candidate-A1.json",
+    "bytesSHA256": "eb2a7f065383bfb0f00097ea89968e4daad67284b2615f53fb84da921978326e",
+    "publicationAuthorization": "BLOQUEADA",
+    "note": "Corpo não incluído como aprovado neste pacote. Fonte científica distinta da bula, mesmoIDlegado preservado."
+  }
+}

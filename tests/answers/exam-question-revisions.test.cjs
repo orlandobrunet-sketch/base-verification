@@ -421,7 +421,9 @@ test('legacy exam without duration still expires at90min beyond two hours withou
 // A reference-only revision can keep the exact question source while changing
 // its record revision. A fresh exam must select current bindings explicitly;
 // an older unbound save must retain the resolver's ambiguity.
-const REFERENCE_ONLY_QIDS = ['81740f2d', '1e2668d6', '940b2835'];
+// Gitelman81740f2d now has a material update; its two old card-only versions
+// remain covered in answer-length-history. APOL1 is still a real unchanged source.
+const REFERENCE_ONLY_QIDS = ['9f887485', '1e2668d6', '940b2835'];
 let publishedExamBundle;
 function publishedBundle() {
   if (publishedExamBundle) return publishedExamBundle;
@@ -433,7 +435,7 @@ function publishedBundle() {
   topics.forEach((author, index) => Object.entries(builder.sources(author, index))
     .forEach(([profile, value]) => sources[profile].push(value)));
   const catalog = revisions.createCatalog({ manifest, history, authors: topics, sources, references: refs });
-  assert.equal(topics.length, 741);
+  assert.equal(topics.length, 725);
   publishedExamBundle = { topics, refs, manifest, history, sources, catalog };
   return publishedExamBundle;
 }
@@ -458,7 +460,7 @@ function publishedFreshHarness(qid, fault) {
   // still use their real implementations and the complete published bank.
   h.context.shuffle = values => {
     const target = values.find(question => question.id === qid);
-    assert(target); assert.equal(values.length, 741);
+    assert(target); assert.equal(values.length, 725);
     const first = fault === 'incompatible-source' ? { ...target, e: target.e + ' Technical fixture drift.' } : target;
     return [first, ...values.filter(question => !REFERENCE_ONLY_QIDS.includes(question.id)),
       ...values.filter(question => REFERENCE_ONLY_QIDS.includes(question.id) && question.id !== qid)];
@@ -519,7 +521,10 @@ for (const qid of REFERENCE_ONLY_QIDS) {
     assert.equal(state.revisionViews[0].historical, true);
     assert.equal(state.revisionViews[0].release, f.archived.release);
     assert.deepEqual(state.revisionViews[0].references, f.archived.references);
-    assert.notDeepEqual(state.revisionViews[0].references.gitelman_kdigo_2017, f.current.references.gitelman_kdigo_2017);
+    const changedReference = qid === '9f887485' ? 'niddk_apol1_2017' : 'gitelman_kdigo_2017';
+    assert(state.revisionViews[0].references[changedReference]);
+    assert(f.current.references[changedReference]);
+    assert.notDeepEqual(state.revisionViews[0].references[changedReference], f.current.references[changedReference]);
     assert.match(h.page.innerHTML, /data-question-revision="historical"/);
     assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
   });

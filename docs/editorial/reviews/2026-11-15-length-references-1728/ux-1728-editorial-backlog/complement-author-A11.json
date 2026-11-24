@@ -1,0 +1,2338 @@
+{
+  "schema": "NQ_1728_COMPLEMENT_AUTHOR_A11",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "productionWrites": false,
+  "date": "2026-11-15",
+  "scope": "Oito reparos elegíveis e cinco cards completos. Confronto de290/0185 recomenda variação útil; nenhuma aposentadoria. A1 preservada e superada antes da entrega para revisão.",
+  "items": [
+    {
+      "qid": "1891680a",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:9fb4a345fffb57a972c1113fe1da78e09d7b8ec76f128fd841b73208cff6c8b1",
+        "question": {
+          "qid": "1891680a",
+          "q": "Paciente com microangiopatia trombótica mediada por complemento iniciará eculizumabe. Qual combinação descreve corretamente o alvo e a principal medida preventiva específica?",
+          "opts": [
+            "Bloqueio de C5, com vacinação meningocócica e antibioticoprofilaxia quando o tratamento urgente não permite completar previamente a janela vacinal",
+            "Depleção de linfócitos B, com profilaxia exclusiva contra Pneumocystis",
+            "Inibição de ADAMTS13, com transfusão profilática de plaquetas",
+            "Bloqueio de C3, sem necessidade de prevenção contra bactérias encapsuladas"
+          ],
+          "ans": 0,
+          "exp": "Eculizumabe liga-se a C5 e impede sua clivagem, reduzindo C5a e a formação do complexo de ataque à membrana C5b-9. Esse bloqueio aumenta especialmente o risco de infecção meningocócica. A vacinação deve ser organizada antes do tratamento quando possível; se a gravidade exigir início imediato, não se deve perder a janela renal, e a prevenção inclui vacina e antibiótico pelo período recomendado após a vacinação, além de educação para sinais de sepse. A proteção não é absoluta, portanto suspeita de infecção meningocócica continua sendo emergência.",
+          "refs": [
+            "ema_soliris_2026",
+            "genereviews_ahus_2021"
+          ],
+          "cat": "glomerular",
+          "diff": "hard",
+          "t": "Eculizumabe — Alvo e Prevenção Meningocócica"
+        }
+      },
+      "patch": {
+        "after": {
+          "qid": "1891680a",
+          "q": "Paciente com microangiopatia trombótica mediada por complemento precisa iniciar eculizumabe antes de completar a janela de duas semanas após vacinação meningocócica. O risco de adiar foi considerado maior. Qual combinação de alvo e prevenção é adequada?",
+          "opts": [
+            "C5; vacinação meningocócica e antibiótico profilático até duas semanas após a vacina.",
+            "C5; vacinação meningocócica, reservando antibiótico para sintomas de infecção.",
+            "Fator B; vacinação meningocócica e antibiótico profilático na janela vacinal.",
+            "C3; vacinação meningocócica e antibiótico profilático na janela vacinal."
+          ],
+          "ans": 0,
+          "exp": "Eculizumabe bloqueia C5, impedindo sua clivagem e a formação de C5b-9. A informação profissional da EMA prevê vacinação meningocócica pelo menos duas semanas antes quando possível. Se o início urgente ocorrer antes dessa janela, orienta antibióticos profiláticos apropriados até duas semanas após a vacinação. Esperar sintomas para iniciar essa prevenção deixa descoberta a janela inicial. Fator B e C3 são alvos de outros inibidores do complemento. Mesmo vacinado, o paciente permanece suscetível e precisa reconhecer sinais de infecção e buscar avaliação imediata.",
+          "refs": [
+            "ema_soliris_2026"
+          ],
+          "cat": "glomerular",
+          "diff": "medium",
+          "t": "Eculizumabe — Alvo e Prevenção Meningocócica"
+        },
+        "afterAuthorRevision": "sha256:5bcdf2dc32102da5c91c4ae983929c43104688e3abc742bc4f2326b558d1c232",
+        "refCardsAfter": {
+          "ema_soliris_2026": {
+            "label": "SOLIRIS (eculizumabe) — Informação profissional EMA, consultada em 2026",
+            "url": "https://www.ema.europa.eu/en/documents/product-information/soliris-epar-product-information_en.pdf",
+            "journal": "European Medicines Agency — Summary of Product Characteristics",
+            "ano": 2026,
+            "tipo": "Bula profissional aprovada pela EMA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Bloqueio de C5 exige prevenção meningocócica e vigilância mesmo após vacinação.",
+            "icon": "📋",
+            "resumo": "Informação profissional oficial da EMA, consultada em novembro de 2026; o campo de data de revisão do PDF está em branco. Eculizumabe liga-se a C5 e impede sua clivagem em C5a/C5b e a formação do complexo terminal C5b-9. É indicado na síndrome hemolítico-urêmica atípica em adultos e crianças. A vacinação meningocócica deve anteceder o início em pelo menos duas semanas quando possível; se o risco de adiar superar o infeccioso e o início ocorrer antes dessa janela, administrar antibióticos profiláticos apropriados até duas semanas após a vacinação.",
+            "conclusao": "A prevenção meningocócica acompanha o início do bloqueio terminal do complemento. Vacinação e profilaxia não excluem infecção; orientar sinais de alerta e avaliar imediatamente sintomas suspeitos.",
+            "curiosidade": "O bloqueio de C5 preserva componentes proximais envolvidos na opsonização, mas isso não elimina a suscetibilidade meningocócica. O ano do card identifica a consulta ao documento oficial, sem inventar uma data de revisão ausente."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "ema_soliris_2026",
+            "revision": "sha256:924d24e0a3f6475ff5a2f0ee1cabfdc882898733025fc4fc7595e93d3f91efe1",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:da9c84626eab254d4b56e7df80c261dee5e0fb2642e61b771ce6a2996c80cf22",
+      "classificationBeforeAndAfter": {
+        "op": "Relacionar alvo C5 do eculizumabe à prevenção meningocócica no início urgente.",
+        "competency": "Segurança de inibidores do complemento",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "EMA_SOLIRIS",
+          "url": "https://www.ema.europa.eu/en/documents/product-information/soliris-epar-product-information_en.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/soliris-ema-2026.pdf",
+          "bytesSHA256": "7df8dfdb76daa95badc632e908687d6fe0e0195685d84051e842f3e25465bffd",
+          "scope": "Documento oficial integral de 60 páginas aberto e extraído. SmPC §§4.1, 4.3–4.4 e 5.1 efetivamente lidos; mecanismo, indicação na SHUa, vacinação e antibióticos até duas semanas após vacinação, risco residual. Campo da data de revisão em branco: não atribuir revisão 2026."
+        }
+      ],
+      "claimsVerified": [
+        "Documento oficial integral de 60 páginas aberto e extraído. SmPC §§4.1, 4.3–4.4 e 5.1 efetivamente lidos; mecanismo, indicação na SHUa, vacinação e antibióticos até duas semanas após vacinação, risco residual. Campo da data de revisão em branco: não atribuir revisão 2026."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "C5; vacinação meningocócica e antibiótico profilático até duas semanas após a vacina.",
+            "judgment": "CORRETA: alvo e prevenção confirmados pelo SmPC."
+          },
+          {
+            "letter": "B",
+            "text": "C5; vacinação meningocócica, reservando antibiótico para sintomas de infecção.",
+            "judgment": "Confundir profilaxia durante a janela vacinal com tratamento de infecção já sintomática."
+          },
+          {
+            "letter": "C",
+            "text": "Fator B; vacinação meningocócica e antibiótico profilático na janela vacinal.",
+            "judgment": "Trocar o alvo terminal C5 pelo fator B da via alternativa."
+          },
+          {
+            "letter": "D",
+            "text": "C3; vacinação meningocócica e antibiótico profilático na janela vacinal.",
+            "judgment": "Trocar o alvo C5 pelo componente proximal C3."
+          }
+        ],
+        "attemptToDefendDistractor": "A vacinação mantém seu papel, mas não substitui profilaxia na janela urgente explicitada. Os outros dois alvos são biologicamente reais, porém não são o do eculizumabe.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "A vacinação mantém seu papel, mas não substitui profilaxia na janela urgente explicitada. Os outros dois alvos são biologicamente reais, porém não são o do eculizumabe."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "EMA_SOLIRIS — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Relacionar alvo C5 do eculizumabe à prevenção meningocócica no início urgente."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Confundir profilaxia durante a janela vacinal com tratamento de infecção já sintomática. Trocar o alvo terminal C5 pelo fator B da via alternativa. Trocar o alvo C5 pelo componente proximal C3."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "9fea5862",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:74949f26b8f74203983d23cec0df4b11f4d9fe3b6c6b5aca37b11476e881ff2e",
+        "question": {
+          "t": "Sibeprenlimabe — Bloqueio de APRIL sem Imunidade Intacta",
+          "qid": "9fea5862",
+          "q": "Qual interpretação do mecanismo do sibeprenlimabe evita confundir seletividade para APRIL com ausência de imunossupressão?",
+          "opts": [
+            "Ele bloqueia a sinalização de APRIL em TACI e BCMA, reduz Gd-IgA1 e formação de imunocomplexos, mas também reduz IgA, IgG e IgM; portanto, é terapia dirigida a montante que ainda exige vigilância infecciosa",
+            "Ele depleta diretamente todos os linfócitos B por anti-CD20 e, por isso, não altera imunoglobulinas séricas",
+            "Ele reduz proteinúria apenas por vasodilatação da arteríola eferente, sem efeito sobre Gd-IgA1",
+            "Ele inibe o fator B do complemento e preserva integralmente a produção de anticorpos"
+          ],
+          "ans": 0,
+          "exp": "Sibeprenlimabe é um anticorpo monoclonal que se liga a APRIL e bloqueia sua sinalização nos receptores TACI e BCMA. A consequência farmacodinâmica inclui queda de Gd-IgA1 e de imunocomplexos patogênicos, mas a bula também documenta reduções de IgA, IgG e IgM. Isso o distingue de depleção direta anti-CD20 e de bloqueios hemodinâmico ou do complemento, sem autorizar chamá-lo de não imunossupressor. A seletividade para APRIL pode ser biologicamente mais dirigida, porém não elimina risco de infecção nem a necessidade de monitorização.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "voyxact_fda_2025",
+            "visionary_trial"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Sibeprenlimabe — Bloqueio de APRIL sem Imunidade Intacta",
+          "qid": "9fea5862",
+          "q": "O sibeprenlimabe se liga ao ligante indutor de proliferação (APRIL). Qual interpretação evita confundir essa seletividade com ausência de imunossupressão?",
+          "opts": [
+            "Reduz a imunoglobulina A1 deficiente em galactose e outras imunoglobulinas, mantendo a necessidade de vigilância infecciosa.",
+            "Reduz a imunoglobulina A1 deficiente em galactose, preservando as demais imunoglobulinas e dispensando vigilância específica.",
+            "Reduz a deposição renal de imunoglobulinas por bloquear C3, sem interferir na produção de anticorpos.",
+            "Reduz a produção de anticorpos por depleção direta de linfócitos B, como um agente anti-CD20."
+          ],
+          "ans": 0,
+          "exp": "Bloquear APRIL reduz a sinalização que sustenta a produção de anticorpos. A bula documenta queda da imunoglobulina A1 deficiente em galactose e também de imunoglobulinas A, G e M. Portanto, seletividade molecular não significa imunidade humoral intacta: avaliar infecção ativa antes do início e vigiar sintomas durante o uso. O mecanismo não é bloqueio de C3 nem depleção direta de células B por anti-CD20.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "voyxact_fda_2025"
+          ]
+        },
+        "afterAuthorRevision": "sha256:061f1e2d3bf4d2818e7fd15bb1138c4378361c9a0b1cd304163a7e19a8f7fb20",
+        "refCardsAfter": {
+          "voyxact_fda_2025": {
+            "label": "FDA — Bula do Voyxact (Sibeprenlimabe-szsi)",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+            "journal": "U.S. Prescribing Information",
+            "ano": 2025,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Aprovação acelerada para reduzir proteinúria em adultos com IgAN primária em risco de progressão",
+            "icon": "📋",
+            "resumo": "A bula indica Voyxact para reduzir proteinúria em adultos com nefropatia por imunoglobulina A (IgAN) primária em risco de progressão, na dose de 400 mg por via subcutânea a cada quatro semanas. A aprovação acelerada baseou-se na redução de proteinúria; a própria bula declara que ainda não estava estabelecido se o fármaco reduz o declínio da função renal em longo prazo. No VISIONARY, infecções ocorreram em 49% versus 45% com placebo e reações no local de injeção em 24% versus 23%.",
+            "conclusao": "Antes de iniciar, deve-se avaliar infecção ativa; durante o tratamento, monitorar infecções e considerar interrupção diante de infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o tratamento. A aprovação acelerada não equivale a benefício renal funcional já confirmado na bula.",
+            "curiosidade": "A bula relata queda média em 48 semanas de 67% na imunoglobulina A1 deficiente em galactose (Gd-IgA1), 69% na IgA, 35% na IgG e 75% na IgM, coerente com bloqueio de APRIL e também com a necessidade de vigilância infecciosa."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "voyxact_fda_2025",
+            "revision": "sha256:cb903bc2ef8307e678bfffaeffd5674204bd4d52954a122b598fb382c05aeeb0",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:7b09c8320aca0bf57bdc1a4612ec7f71ba38bc041f63363378fecb451dc0415a",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar bloqueio seletivo de APRIL sem presumir preservação da produção de anticorpos.",
+        "competency": "Mecanismo e segurança de terapia dirigida na nefropatia por IgA",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "VOYXACT",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/voyxact-dailymed.html",
+          "bytesSHA256": "a8bf2f3b5f335884691f20d7fa0ebb8acf16921d3b87f58839dddd06203dafb6",
+          "scope": "Bula primária revisada em novembro de 2025, §§1, 2, 5.1–5.2, 6.1 e 12.1–12.2. Não confundir publicação final VISIONARY em outubro de 2026 com alteração regulatória da bula. Precauções, doses e números completos do card conferidos."
+        }
+      ],
+      "claimsVerified": [
+        "Bula primária revisada em novembro de 2025, §§1, 2, 5.1–5.2, 6.1 e 12.1–12.2. Não confundir publicação final VISIONARY em outubro de 2026 com alteração regulatória da bula. Precauções, doses e números completos do card conferidos."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Reduz a imunoglobulina A1 deficiente em galactose e outras imunoglobulinas, mantendo a necessidade de vigilância infecciosa.",
+            "judgment": "CORRETA: seletividade do alvo não preserva todas as imunoglobulinas."
+          },
+          {
+            "letter": "B",
+            "text": "Reduz a imunoglobulina A1 deficiente em galactose, preservando as demais imunoglobulinas e dispensando vigilância específica.",
+            "judgment": "Erro real de confundir seletividade molecular com seletividade absoluta para a imunoglobulina patogênica."
+          },
+          {
+            "letter": "C",
+            "text": "Reduz a deposição renal de imunoglobulinas por bloquear C3, sem interferir na produção de anticorpos.",
+            "judgment": "Confusão com inibição proximal do complemento."
+          },
+          {
+            "letter": "D",
+            "text": "Reduz a produção de anticorpos por depleção direta de linfócitos B, como um agente anti-CD20.",
+            "judgment": "Confusão com depleção direta de linfócitos B."
+          }
+        ],
+        "attemptToDefendDistractor": "O alvo é seletivo, mas os dados farmacodinâmicos primários incluem quedas de IgG e IgM. Logo a preservação humoral proposta pelo distrator não é sustentada.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "O alvo é seletivo, mas os dados farmacodinâmicos primários incluem quedas de IgG e IgM. Logo a preservação humoral proposta pelo distrator não é sustentada."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "VOYXACT — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Interpretar bloqueio seletivo de APRIL sem presumir preservação da produção de anticorpos."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Erro real de confundir seletividade molecular com seletividade absoluta para a imunoglobulina patogênica. Confusão com inibição proximal do complemento. Confusão com depleção direta de linfócitos B."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "f7ef303f",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:065141598139c4a0595e1034651417e5453d5dd83dbced57c676b1f5642cfc8d",
+        "question": {
+          "t": "C3G — Inibição da Via Alternativa do Complemento",
+          "qid": "f7ef303f",
+          "q": "Adulto com glomerulopatia C3 e proteinúria persistente pergunta sobre iptacopano. Qual afirmação descreve corretamente a evidência e o alvo do fármaco?",
+          "refs": [
+            "fabhalta_iptacopan_label_2025",
+            "c3g_consensus"
+          ],
+          "opts": [
+            "Inibe o fator B da via alternativa e foi aprovado para reduzir proteinúria em adultos com C3G, sem equivaler ainda a prova de benefício renal duro definitivo",
+            "Bloqueia diretamente C5 e é primeira linha universal para qualquer depósito de C3",
+            "Depleta linfócitos B e substitui a investigação de gamopatia monoclonal",
+            "Inibe C3 e elimina a necessidade de prevenção contra infecções por bactérias encapsuladas"
+          ],
+          "ans": 0,
+          "exp": "O iptacopano é um inibidor oral do fator B, componente da via alternativa do complemento, e sua indicação em adultos com glomerulopatia C3 baseia-se na redução de proteinúria. Esse resultado não deve ser apresentado como comprovação definitiva de prevenção de falência renal ou mortalidade. O fármaco não é anti-C5, não depleta linfócitos B e não substitui a investigação etiológica. A inibição do complemento aumenta a suscetibilidade a bactérias encapsuladas, exigindo vacinação e demais precauções da rotulagem.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "C3G — Inibição da Via Alternativa do Complemento",
+          "qid": "f7ef303f",
+          "q": "Adulto com glomerulopatia C3 pergunta sobre iptacopano. Considerando a indicação e o estudo de seis meses descritos na bula de julho de 2026, qual afirmação combina corretamente alvo e alcance da evidência?",
+          "refs": [
+            "fabhalta_iptacopan_label_2025"
+          ],
+          "opts": [
+            "Inibe fator B; reduz proteinúria, sem comprovar menor necessidade de diálise nesse estudo.",
+            "Inibe fator B; a redução da proteinúria comprova prevenção de falência renal em longo prazo.",
+            "Inibe C3; a estabilidade funcional semelhante entre grupos exclui seu efeito sobre proteinúria.",
+            "Inibe C5; o benefício funcional mostrado em nefropatia por IgA demonstra o mesmo efeito em C3G."
+          ],
+          "ans": 0,
+          "exp": "Iptacopano liga-se ao fator B e inibe a via alternativa. Para glomerulopatia C3, a bula indica redução de proteinúria. O APPEAR-C3G comparou o fármaco com placebo em 74 adultos por seis meses e demonstrou redução da relação proteína/creatinina urinária; as proporções com função renal estável ou melhor foram semelhantes. Redução de proteinúria não basta para afirmar prevenção comprovada de diálise ou morte. A indicação funcional separada na nefropatia por IgA não pode ser transferida para C3G.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:13ec865f3ae7ced6c0549ea9dedd5db9a694ef9a767874c7bbb3c7a8ba8681f4",
+        "refCardsAfter": {
+          "fabhalta_iptacopan_label_2025": {
+            "label": "FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+            "journal": "DailyMed / U.S. FDA Prescribing Information",
+            "ano": 2026,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Iptacopano: fator B, 200 mg duas vezes ao dia e prevenção de infecção encapsulada.",
+            "icon": "📋",
+            "resumo": "Bula profissional do FABHALTA revisada em julho de 2026. O iptacopano é um inibidor do fator B do complemento indicado para desacelerar o declínio da função renal em adultos com nefropatia por IgA primária sob risco de progressão; a dose é 200 mg por via oral duas vezes ao dia. A bula traz alerta máximo para infecções graves por bactérias encapsuladas, exige vacinação contra pneumococo e meningococo pelo menos duas semanas antes quando possível, prevê profilaxia antibacteriana no início urgente sem vacinação atualizada e restringe a dispensação pelo programa REMS. Em adultos com glomerulopatia C3, a indicação específica é reduzir proteinúria. No estudo APPEAR-C3G, de seis meses, a proporção com função renal estável ou melhor não diferiu entre os grupos; esse resultado não deve receber a conclusão funcional de longo prazo demonstrada separadamente na nefropatia por IgA.",
+            "conclusao": "O benefício funcional renal não elimina o risco infeccioso: vacinação e REMS são obrigatórios no contexto regulatório dos EUA, e a vacinação não zera o risco de infecção por bactérias encapsuladas. O alcance da indicação é específico de cada doença: em glomerulopatia C3, não extrapolar a redução de proteinúria para prevenção comprovada de diálise ou morte.",
+            "curiosidade": "A atualização de 2026 substituiu a indicação acelerada baseada em proteinúria por indicação para desacelerar a perda de função renal após a análise final do APPLAUSE-IgAN."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "fabhalta_iptacopan_label_2025",
+            "revision": "sha256:0afe9d0c7a42866737c2c1a4494825f17ca22928e1988f8cae3249ba824bc4e5",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:3d96529532c25963d71d51191387940eb1528233d04e35295a48136177598177",
+      "classificationBeforeAndAfter": {
+        "op": "Relacionar o fator B ao alcance da evidência antiproteinúrica do iptacopano em C3G.",
+        "competency": "Interpretação de indicação e desfechos de terapias do complemento",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "FABHALTA",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/fabhalta-dailymed-2026.html",
+          "bytesSHA256": "9ef58d65890d81fa5a9bbc7e40b8585b80efd816a03eadfdc0d68b57b29ca897",
+          "scope": "Bula primária revisada em julho de 2026. §§1.2–1.3, 2.1–2.2, 5.1–5.2, 12.1 e 14.2–14.3 abertos integralmente. Em C3G, APPEAR N74, seis meses, redução UPCR 35% versus placebo, p=0,0028; função estável/melhor 90% versus 89%. A indicação funcional da IgAN permanece preservada e separada."
+        }
+      ],
+      "claimsVerified": [
+        "Bula primária revisada em julho de 2026. §§1.2–1.3, 2.1–2.2, 5.1–5.2, 12.1 e 14.2–14.3 abertos integralmente. Em C3G, APPEAR N74, seis meses, redução UPCR 35% versus placebo, p=0,0028; função estável/melhor 90% versus 89%. A indicação funcional da IgAN permanece preservada e separada."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Inibe fator B; reduz proteinúria, sem comprovar menor necessidade de diálise nesse estudo.",
+            "judgment": "CORRETA: alvo e alcance clínico específicos da C3G."
+          },
+          {
+            "letter": "B",
+            "text": "Inibe fator B; a redução da proteinúria comprova prevenção de falência renal em longo prazo.",
+            "judgment": "Converter um desfecho intermediário em demonstração de falência renal evitada."
+          },
+          {
+            "letter": "C",
+            "text": "Inibe C3; a estabilidade funcional semelhante entre grupos exclui seu efeito sobre proteinúria.",
+            "judgment": "Trocar o alvo e usar ausência de diferença funcional para negar resultado antiproteinúrico."
+          },
+          {
+            "letter": "D",
+            "text": "Inibe C5; o benefício funcional mostrado em nefropatia por IgA demonstra o mesmo efeito em C3G.",
+            "judgment": "Trocar o alvo e extrapolar resultado entre doenças."
+          }
+        ],
+        "attemptToDefendDistractor": "Proteinúria é relevante e o estudo foi positivo nesse desfecho. Isso não demonstra automaticamente benefício em falência renal; tampouco a ausência de diferença funcional aos seis meses elimina a redução de proteinúria.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Proteinúria é relevante e o estudo foi positivo nesse desfecho. Isso não demonstra automaticamente benefício em falência renal; tampouco a ausência de diferença funcional aos seis meses elimina a redução de proteinúria."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "FABHALTA — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Relacionar o fator B ao alcance da evidência antiproteinúrica do iptacopano em C3G."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Converter um desfecho intermediário em demonstração de falência renal evitada. Trocar o alvo e usar ausência de diferença funcional para negar resultado antiproteinúrico. Trocar o alvo e extrapolar resultado entre doenças."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "4afc0858",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:55c22c56e66057e6c4b040a4272926dd59def8133240bf8d78cf6ec0b55f887e",
+        "question": {
+          "t": "Iptacopano — Mecanismo e Indicação 2025",
+          "qid": "4afc0858",
+          "q": "O iptacopano (Fabhalta), aprovado pelo FDA para glomerulopatia C3 em 2025 para reduzir proteinúria, atua inibindo qual componente do sistema complemento?",
+          "opts": [
+            "C5 (como eculizumabe)",
+            "Fator B da via alternativa do complemento",
+            "C3 (como pegcetacoplano)",
+            "C1q da via clássica"
+          ],
+          "ans": 1,
+          "exp": "O iptacopano (Fabhalta) é um inibidor oral do fator B da via alternativa do complemento. Ao se ligar ao fator B, ele reduz a clivagem de C3, a geração de efetores a jusante e a amplificação da via terminal, mecanismo relevante em doenças mediadas pela via alternativa, como a glomerulopatia C3. C5 é alvo de eculizumabe/ravulizumabe; C3 é alvo de pegcetacoplano; e C1q pertence à via clássica, não sendo o alvo do iptacopano.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "fabhalta_iptacopan_label_2025"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Iptacopano — Alvo Direto",
+          "qid": "4afc0858",
+          "q": "Qual componente do complemento é o alvo direto do iptacopano?",
+          "opts": [
+            "C5 da via terminal",
+            "Fator B da via alternativa",
+            "C3 das vias de ativação",
+            "C1q da via clássica"
+          ],
+          "ans": 1,
+          "exp": "Iptacopano liga-se ao fator B da via alternativa. Esse bloqueio regula a clivagem de C3 e a geração de efetores a jusante; C3 e C5 participarem da cascata não os torna alvos diretos do medicamento. C1q é componente iniciador da via clássica.",
+          "diff": "easy",
+          "cat": "glomerular",
+          "refs": [
+            "fabhalta_iptacopan_label_2025"
+          ]
+        },
+        "afterAuthorRevision": "sha256:d966cf1dd09d0268e3a2743ea825feeefcbecf273a8e9c3f909a9a24e35beae2",
+        "refCardsAfter": {
+          "fabhalta_iptacopan_label_2025": {
+            "label": "FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+            "journal": "DailyMed / U.S. FDA Prescribing Information",
+            "ano": 2026,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Iptacopano: fator B, 200 mg duas vezes ao dia e prevenção de infecção encapsulada.",
+            "icon": "📋",
+            "resumo": "Bula profissional do FABHALTA revisada em julho de 2026. O iptacopano é um inibidor do fator B do complemento indicado para desacelerar o declínio da função renal em adultos com nefropatia por IgA primária sob risco de progressão; a dose é 200 mg por via oral duas vezes ao dia. A bula traz alerta máximo para infecções graves por bactérias encapsuladas, exige vacinação contra pneumococo e meningococo pelo menos duas semanas antes quando possível, prevê profilaxia antibacteriana no início urgente sem vacinação atualizada e restringe a dispensação pelo programa REMS. Em adultos com glomerulopatia C3, a indicação específica é reduzir proteinúria. No estudo APPEAR-C3G, de seis meses, a proporção com função renal estável ou melhor não diferiu entre os grupos; esse resultado não deve receber a conclusão funcional de longo prazo demonstrada separadamente na nefropatia por IgA.",
+            "conclusao": "O benefício funcional renal não elimina o risco infeccioso: vacinação e REMS são obrigatórios no contexto regulatório dos EUA, e a vacinação não zera o risco de infecção por bactérias encapsuladas. O alcance da indicação é específico de cada doença: em glomerulopatia C3, não extrapolar a redução de proteinúria para prevenção comprovada de diálise ou morte.",
+            "curiosidade": "A atualização de 2026 substituiu a indicação acelerada baseada em proteinúria por indicação para desacelerar a perda de função renal após a análise final do APPLAUSE-IgAN."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "fabhalta_iptacopan_label_2025",
+            "revision": "sha256:0afe9d0c7a42866737c2c1a4494825f17ca22928e1988f8cae3249ba824bc4e5",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:de4db1166f94439dd53e60cadef7e7665b0171ac9722c8944e348ffc7e746e38",
+      "classificationBeforeAndAfter": {
+        "op": "Identificar o fator B como alvo do iptacopano.",
+        "competency": "Farmacologia do complemento",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "easy",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "FABHALTA",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/fabhalta-dailymed-2026.html",
+          "bytesSHA256": "9ef58d65890d81fa5a9bbc7e40b8585b80efd816a03eadfdc0d68b57b29ca897",
+          "scope": "Bula primária revisada em julho de 2026. §§1.2–1.3, 2.1–2.2, 5.1–5.2, 12.1 e 14.2–14.3 abertos integralmente. Em C3G, APPEAR N74, seis meses, redução UPCR 35% versus placebo, p=0,0028; função estável/melhor 90% versus 89%. A indicação funcional da IgAN permanece preservada e separada."
+        }
+      ],
+      "claimsVerified": [
+        "Bula primária revisada em julho de 2026. §§1.2–1.3, 2.1–2.2, 5.1–5.2, 12.1 e 14.2–14.3 abertos integralmente. Em C3G, APPEAR N74, seis meses, redução UPCR 35% versus placebo, p=0,0028; função estável/melhor 90% versus 89%. A indicação funcional da IgAN permanece preservada e separada."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "C5 da via terminal",
+            "judgment": "Confusão com o alvo de inibidores terminais como eculizumabe."
+          },
+          {
+            "letter": "B",
+            "text": "Fator B da via alternativa",
+            "judgment": "CORRETA: fator B."
+          },
+          {
+            "letter": "C",
+            "text": "C3 das vias de ativação",
+            "judgment": "Confusão entre alvo direto e um componente cuja ativação é regulada a jusante."
+          },
+          {
+            "letter": "D",
+            "text": "C1q da via clássica",
+            "judgment": "Confusão entre vias alternativa e clássica."
+          }
+        ],
+        "attemptToDefendDistractor": "A ação indireta sobre a clivagem de C3 não equivale a ligação direta a C3. A bula identifica ligação ao fator B.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "A ação indireta sobre a clivagem de C3 não equivale a ligação direta a C3. A bula identifica ligação ao fator B."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "FABHALTA — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Identificar o fator B como alvo do iptacopano."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Confusão com o alvo de inibidores terminais como eculizumabe. Confusão entre alvo direto e um componente cuja ativação é regulada a jusante. Confusão entre vias alternativa e clássica."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "e4d4db47",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:d93eb7e68364e74b997b013c087b9ef9711d4c8a9c707bd82180a9d2182186eb",
+        "question": {
+          "t": "Pegcetacoplano (VALIANT) — racional do alvo C3",
+          "qid": "e4d4db47",
+          "q": "Por que a inibição de C3 pelo pegcetacoplano é um alvo plausível em C3G e IC-MPGN primária?",
+          "opts": [
+            "Porque essas glomerulopatias envolvem desregulação/hiperativação do complemento com depósito glomerular de fragmentos de C3; bloquear C3/C3b reduz ativação e proteinúria",
+            "Porque são mediadas por IgA1 deficiente em galactose, e o C3 controla diretamente a produção dessa IgA",
+            "Porque o efeito do pegcetacoplano é puramente hemodinâmico, como o bloqueio do SRAA",
+            "Porque inibir C3 aumenta a opsonização e acelera a remoção dos imunocomplexos"
+          ],
+          "ans": 0,
+          "exp": "A melhor resposta é a alternativa A. Em C3G há predominância de deposição glomerular de C3 por desregulação da via alternativa; na IC-MPGN primária, imunocomplexos e complemento participam da lesão. O pegcetacoplano liga-se a C3/C3b, reduzindo ativação de C3, deposição de fragmentos de C3 e atividade a jusante, o que no estudo APL2-C3G-310/VALIANT se traduziu principalmente em redução de proteinúria. IgA1 deficiente em galactose pertence à nefropatia por IgA; o efeito não é hemodinâmico; e inibir C3 reduz, não aumenta, opsonização.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025",
+            "c3g_consensus"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Pegcetacoplano (VALIANT) — racional do alvo C3",
+          "qid": "e4d4db47",
+          "q": "Na glomerulopatia C3 e na glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, qual mecanismo fundamenta o uso de pegcetacoplano?",
+          "opts": [
+            "Ligar-se a C3/C3b e reduzir ativação de C3, depósito de fragmentos e efetores a jusante.",
+            "Ligar-se apenas a C5 e bloquear a via terminal, preservando a ativação e os depósitos de C3.",
+            "Bloquear o ligante indutor de proliferação e reduzir a produção de imunoglobulinas patogênicas.",
+            "Antagonizar receptores da angiotensina e reduzir a pressão intraglomerular e a proteinúria."
+          ],
+          "ans": 0,
+          "exp": "Pegcetacoplano liga-se a C3 e ao fragmento C3b, inibindo ativação de C3 e reduzindo depósitos glomerulares de seus fragmentos e a ativação terminal subsequente. Esse é o racional descrito na bula para essas duas doenças. Bloqueio isolado de C5, bloqueio de sinalização para produção de anticorpos e antagonismo da angiotensina são mecanismos de outras estratégias; não descrevem esse fármaco. O racional não torna qualquer biópsia com C3 uma indicação automática: o diagnóstico requer integração clínica e patológica.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025",
+            "c3g_consensus"
+          ]
+        },
+        "afterAuthorRevision": "sha256:eb9dd7bb19687a604a53f3e9fb085e2c7412470ed31137ca08b4954c0feb08dc",
+        "refCardsAfter": {
+          "empaveli_pegcetacoplan_label_2025": {
+            "label": "EMPAVELI (pegcetacoplano) — Bula FDA/DailyMed, 2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "journal": "DailyMed / U.S. FDA Prescribing Information",
+            "ano": 2026,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "O bloqueio de C3 exige prevenção e vigilância de infecções por bactérias encapsuladas.",
+            "icon": "📋",
+            "resumo": "Bula de agosto de 2026. Pegcetacoplano liga-se a C3/C3b. Em glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, é indicado a partir de 12 anos para reduzir proteinúria e perda de função renal. A vacinação contra bactérias encapsuladas deve ser atualizada pelo menos duas semanas antes da primeira dose, salvo urgência que justifique antecipar o tratamento.",
+            "conclusao": "Na urgência com vacinas incompletas, oferecer profilaxia antibacteriana e vacinar assim que possível. A vacinação não elimina o risco; sintomas de infecção exigem avaliação imediata. A bula não estabelece o esquema e a duração ótimos da profilaxia.",
+            "curiosidade": "No estudo renal, os participantes receberam vacinas contra pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b, salvo documentação de vacinação recomendada ou não resposta."
+          },
+          "c3g_consensus": {
+            "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "journal": "Kidney Int 2013;84(6):1079-1089",
+            "ano": 2013,
+            "tipo": "Consenso de especialistas",
+            "badge": "CONSENSO",
+            "badgeColor": "#6366f1",
+            "impacto": "C3 dominante é um padrão de intensidade, não exigência de imunoglobulinas ausentes",
+            "icon": "📋",
+            "resumo": "Consenso internacional de especialistas (Pickering et al., 2013) sobre definição e investigação da glomerulopatia C3. Propõe o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c está pelo menos duas categorias acima de qualquer outro reagente imune na escala de 0 a 3. Pequenos depósitos de imunoglobulinas podem coexistir. Diagnóstico etiológico exige integração com microscopia óptica, eletrônica e história clínica, incluindo possível infecção. Doença de depósitos densos e glomerulonefrite C3 distinguem-se pela ultraestrutura.",
+            "conclusao": "A dominância de C3 levanta C3 glomerulopatia, mas não substitui investigação clínica nem exclui mimetizadores. É orientação de consenso, sem força terapêutica de ensaio randomizado.",
+            "curiosidade": ""
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "empaveli_pegcetacoplan_label_2025",
+            "revision": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0",
+            "fieldCount": 12
+          },
+          {
+            "id": "c3g_consensus",
+            "revision": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:042a94ec30211b5cadf030893c263f09cafff93f5e8d203ea398ae3fa11bf241",
+      "classificationBeforeAndAfter": {
+        "op": "Explicar o racional da inibição de C3/C3b na lesão glomerular mediada por complemento.",
+        "competency": "Fisiopatologia e terapias do complemento",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "EMPAVELI",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/empaveli-dailymed-2026.html",
+          "bytesSHA256": "8285224ee07bfbe5923382647f10453eab199d7f41f463da95f51a2342dea288",
+          "scope": "Bula primária revisada em agosto de 2026, integral aberta. §§1, 2.1, 5.1, 12.1 e 14.2 lidos. VALIANT N124 com idade≥12 anos, C3G/IC-MPGN primária, randomizado duplo-cego placebo por26 semanas; UPCR primário, redução68%, p<0,0001; diferença média ajustada TFGe6,31 (IC95%0,50–12,12). Não concluir mortalidade ou falência renal definitiva a partir de26 semanas."
+        },
+        {
+          "id": "PICKERING_2013",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+          "access": "PRIMARY_FULL_BODY_OPENED_ON_WEB",
+          "scope": "Corpo primário aberto. PATHOLOGY e PATHOLOGY—RECOMMENDATIONS: consenso de especialistas; C3c dominante≥duas categorias na escala0–3, imunoglobulinas pequenas podem coexistir; EM diferencia depósitos densos; integração clínica e possível infecção; diagnóstico não decorre só de um depósito."
+        }
+      ],
+      "claimsVerified": [
+        "Bula primária revisada em agosto de 2026, integral aberta. §§1, 2.1, 5.1, 12.1 e 14.2 lidos. VALIANT N124 com idade≥12 anos, C3G/IC-MPGN primária, randomizado duplo-cego placebo por26 semanas; UPCR primário, redução68%, p<0,0001; diferença média ajustada TFGe6,31 (IC95%0,50–12,12). Não concluir mortalidade ou falência renal definitiva a partir de26 semanas.",
+        "Corpo primário aberto. PATHOLOGY e PATHOLOGY—RECOMMENDATIONS: consenso de especialistas; C3c dominante≥duas categorias na escala0–3, imunoglobulinas pequenas podem coexistir; EM diferencia depósitos densos; integração clínica e possível infecção; diagnóstico não decorre só de um depósito."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Ligar-se a C3/C3b e reduzir ativação de C3, depósito de fragmentos e efetores a jusante.",
+            "judgment": "CORRETA: ligação proximal C3/C3b."
+          },
+          {
+            "letter": "B",
+            "text": "Ligar-se apenas a C5 e bloquear a via terminal, preservando a ativação e os depósitos de C3.",
+            "judgment": "Confusão com inibição terminal de C5."
+          },
+          {
+            "letter": "C",
+            "text": "Bloquear o ligante indutor de proliferação e reduzir a produção de imunoglobulinas patogênicas.",
+            "judgment": "Confusão com terapia dirigida à produção de anticorpos."
+          },
+          {
+            "letter": "D",
+            "text": "Antagonizar receptores da angiotensina e reduzir a pressão intraglomerular e a proteinúria.",
+            "judgment": "Confusão com efeito hemodinâmico de tratamento de suporte."
+          }
+        ],
+        "attemptToDefendDistractor": "Todas são estratégias reais em nefrologia, mas o nome do fármaco define qual mecanismo está sendo solicitado. Depósito de C3 isolado não resolve a etiologia.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Todas são estratégias reais em nefrologia, mas o nome do fármaco define qual mecanismo está sendo solicitado. Depósito de C3 isolado não resolve a etiologia."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "EMPAVELI, PICKERING_2013 — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicar o racional da inibição de C3/C3b na lesão glomerular mediada por complemento."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Confusão com inibição terminal de C5. Confusão com terapia dirigida à produção de anticorpos. Confusão com efeito hemodinâmico de tratamento de suporte."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "98ef1092",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:2c5c37ca6be7debac7aff4fd45f61ed1c260500599fcf9f9113e7c7f5668d2ae",
+        "question": {
+          "t": "VALIANT — TFGe e Proteinúria em 26 Semanas",
+          "qid": "98ef1092",
+          "q": "No estudo APL2-C3G-310/VALIANT, qual foi a interpretação correta do efeito do pegcetacoplano sobre proteinúria e TFGe na fase placebo-controlada de 26 semanas?",
+          "opts": [
+            "Reduziu a UPCR em relação ao placebo e atenuou a perda de TFGe, com diferença LS média de TFGe de 6,31 mL/min/1,73m² vs placebo",
+            "Não reduziu proteinúria, mas aumentou mortalidade por infecção meningocócica",
+            "Demonstrou normalização completa e sustentada da TFGe em 80% dos pacientes",
+            "Mostrou benefício apenas histológico, sem efeito mensurável sobre UPCR ou TFGe"
+          ],
+          "ans": 0,
+          "exp": "No APL2-C3G-310/VALIANT, o pegcetacoplano reduziu a relação proteína/creatinina urinária (UPCR) em 68% versus placebo na semana 26 (P<0,0001) e reduziu a perda de função renal em relação ao placebo, com diferença LS média de TFGe de 6,31 mL/min/1,73m² (IC95% 0,50–12,12). Isso é sinal favorável de proteinúria e função em 26 semanas, não prova de normalização universal da TFGe nem de desfecho renal duro definitivo. As demais alternativas contradizem os resultados ou extrapolam além da fonte.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "VALIANT — TFGe e Proteinúria em 26 Semanas",
+          "qid": "98ef1092",
+          "q": "O VALIANT randomizou 124 pacientes com glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos para pegcetacoplano ou placebo por 26 semanas. O desfecho primário foi a relação proteína/creatinina urinária, reduzida em 68% versus placebo. A diferença média ajustada da taxa de filtração glomerular estimada foi 6,31 mL/min/1,73 m² (IC 95% 0,50–12,12), a favor do fármaco. Qual interpretação é adequada?",
+          "opts": [
+            "Houve melhora antiproteinúrica e funcional nesse período, sem estabelecer prevenção definitiva de falência renal.",
+            "A diferença funcional mostra que cada paciente tratado recuperou pelo menos 6,31 mL/min/1,73 m².",
+            "O benefício sobre proteinúria permite atribuir a mesma redução de 68% ao risco de diálise.",
+            "O intervalo de confiança da diferença funcional permite excluir qualquer perda renal durante o tratamento."
+          ],
+          "ans": 0,
+          "exp": "Os resultados sustentam redução de proteinúria e menor perda média de função renal durante a fase controlada de 26 semanas. A diferença média de 6,31 mL/min/1,73 m² é entre grupos, não uma recuperação mínima individual; seu intervalo de confiança também não garante estabilidade de todos os participantes. A redução relativa de proteinúria não é uma estimativa do efeito sobre diálise. Não foi demonstrada prevenção definitiva de falência renal ou mortalidade por esse contraste de curto prazo.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025"
+          ]
+        },
+        "afterAuthorRevision": "sha256:d93859b8585ebc0beda19448081547a28d6df792e7fbb245c1b8d7a0b1fd3b6c",
+        "refCardsAfter": {
+          "empaveli_pegcetacoplan_label_2025": {
+            "label": "EMPAVELI (pegcetacoplano) — Bula FDA/DailyMed, 2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "journal": "DailyMed / U.S. FDA Prescribing Information",
+            "ano": 2026,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "O bloqueio de C3 exige prevenção e vigilância de infecções por bactérias encapsuladas.",
+            "icon": "📋",
+            "resumo": "Bula de agosto de 2026. Pegcetacoplano liga-se a C3/C3b. Em glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, é indicado a partir de 12 anos para reduzir proteinúria e perda de função renal. A vacinação contra bactérias encapsuladas deve ser atualizada pelo menos duas semanas antes da primeira dose, salvo urgência que justifique antecipar o tratamento.",
+            "conclusao": "Na urgência com vacinas incompletas, oferecer profilaxia antibacteriana e vacinar assim que possível. A vacinação não elimina o risco; sintomas de infecção exigem avaliação imediata. A bula não estabelece o esquema e a duração ótimos da profilaxia.",
+            "curiosidade": "No estudo renal, os participantes receberam vacinas contra pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b, salvo documentação de vacinação recomendada ou não resposta."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "empaveli_pegcetacoplan_label_2025",
+            "revision": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:237be39eb0972b1c5685b5e6c4a9455c32e6e7610ae237c0df8d2f098c5dce9a",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar resultados de proteinúria e função renal em26 semanas no VALIANT sem extrapolar duração/desfecho.",
+        "competency": "Leitura crítica de ensaios de glomerulopatias",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "EMPAVELI",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/empaveli-dailymed-2026.html",
+          "bytesSHA256": "8285224ee07bfbe5923382647f10453eab199d7f41f463da95f51a2342dea288",
+          "scope": "Bula primária revisada em agosto de 2026, integral aberta. §§1, 2.1, 5.1, 12.1 e 14.2 lidos. VALIANT N124 com idade≥12 anos, C3G/IC-MPGN primária, randomizado duplo-cego placebo por26 semanas; UPCR primário, redução68%, p<0,0001; diferença média ajustada TFGe6,31 (IC95%0,50–12,12). Não concluir mortalidade ou falência renal definitiva a partir de26 semanas."
+        }
+      ],
+      "claimsVerified": [
+        "Bula primária revisada em agosto de 2026, integral aberta. §§1, 2.1, 5.1, 12.1 e 14.2 lidos. VALIANT N124 com idade≥12 anos, C3G/IC-MPGN primária, randomizado duplo-cego placebo por26 semanas; UPCR primário, redução68%, p<0,0001; diferença média ajustada TFGe6,31 (IC95%0,50–12,12). Não concluir mortalidade ou falência renal definitiva a partir de26 semanas."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Houve melhora antiproteinúrica e funcional nesse período, sem estabelecer prevenção definitiva de falência renal.",
+            "judgment": "CORRETA: interpretação temporal e populacional delimitada."
+          },
+          {
+            "letter": "B",
+            "text": "A diferença funcional mostra que cada paciente tratado recuperou pelo menos 6,31 mL/min/1,73 m².",
+            "judgment": "Confundir diferença média entre grupos com ganho mínimo individual."
+          },
+          {
+            "letter": "C",
+            "text": "O benefício sobre proteinúria permite atribuir a mesma redução de 68% ao risco de diálise.",
+            "judgment": "Transportar a magnitude de um desfecho para outro não medido dessa forma."
+          },
+          {
+            "letter": "D",
+            "text": "O intervalo de confiança da diferença funcional permite excluir qualquer perda renal durante o tratamento.",
+            "judgment": "Confundir incerteza de uma média com garantia individual de ausência de perda."
+          }
+        ],
+        "attemptToDefendDistractor": "A bula de agosto de2026 também usa indicação de redução da perda de função renal; reconhecer isso não transforma o resultado de26 semanas em garantia individual ou prevenção definitiva de falência renal.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "A bula de agosto de2026 também usa indicação de redução da perda de função renal; reconhecer isso não transforma o resultado de26 semanas em garantia individual ou prevenção definitiva de falência renal."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "EMPAVELI — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Interpretar resultados de proteinúria e função renal em26 semanas no VALIANT sem extrapolar duração/desfecho."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Confundir diferença média entre grupos com ganho mínimo individual. Transportar a magnitude de um desfecho para outro não medido dessa forma. Confundir incerteza de uma média com garantia individual de ausência de perda."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "c31f5d6e",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:e82c4b141e816f82eb36724398d858abddd0e5d5230eed8f376a3fce8027181e",
+        "question": {
+          "t": "Voyxact — Infecção e Vacinas Vivas",
+          "qid": "c31f5d6e",
+          "q": "Paciente elegível ao sibeprenlimabe apresenta infecção respiratória febril ativa e tem vacina viva programada para a próxima semana. Qual conduta melhor reflete a bula?",
+          "opts": [
+            "Avaliar e controlar a infecção antes de iniciar; não administrar vacina viva nos 30 dias anteriores nem durante o tratamento e monitorar infecções, considerando interrupção se ocorrer infecção grave",
+            "Iniciar imediatamente, pois infecções foram 49% versus 45% e essa proximidade exclui imunossupressão clinicamente relevante",
+            "Aplicar a vacina viva e o sibeprenlimabe no mesmo dia para potencializar a resposta humoral",
+            "Substituir toda vacinação por antibiótico profilático contínuo, independentemente do risco individual"
+          ],
+          "ans": 0,
+          "exp": "O bloqueio de APRIL reduz a produção de anticorpos e pode aumentar o risco de infecções. A bula orienta avaliar infecção ativa antes do início, acompanhar sinais e sintomas durante o tratamento e considerar interrupção até controle se houver infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o uso. No VISIONARY, infecções ocorreram em 49% com sibeprenlimabe e 45% com placebo, e reações locais em 24% versus 23%; esses números contextualizam tolerabilidade, mas não anulam o mecanismo imunossupressor nem as precauções formais.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "voyxact_fda_2025"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Voyxact — Infecção e Vacinas Vivas",
+          "qid": "c31f5d6e",
+          "q": "Paciente elegível ao sibeprenlimabe apresenta infecção respiratória febril ativa e vacina viva programada para a próxima semana. Qual plano respeita as precauções da bula?",
+          "opts": [
+            "Avaliar a infecção e reorganizar a vacina viva, que não é recomendada nos 30 dias anteriores nem durante o uso.",
+            "Iniciar o fármaco e avaliar a infecção depois, pois a vigilância é necessária apenas nos casos que exigem internação.",
+            "Avaliar a infecção e aplicar a vacina viva sete dias antes, considerando suficiente esse intervalo para o início.",
+            "Avaliar a infecção e adiar a vacina até o primeiro mês de tratamento, quando a exposição ao fármaco já estiver estável."
+          ],
+          "ans": 0,
+          "exp": "A bula orienta avaliar infecção ativa antes do início e monitorar sintomas durante o tratamento. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o uso; por isso é necessário reorganizar o calendário e o início planejado. Sete dias não respeitam essa janela, e transferir a vacina para dentro do tratamento tampouco a resolve. Se houver infecção grave durante o uso, considerar interromper o fármaco até controlá-la. A avaliação não pode ser substituída pela suposição de que apenas infecções com internação importam.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "voyxact_fda_2025"
+          ]
+        },
+        "afterAuthorRevision": "sha256:20826a4b2b2297cd7c36ce17e92a2b739f9597d68ca8eedff9ca8ab0ba47c4a3",
+        "refCardsAfter": {
+          "voyxact_fda_2025": {
+            "label": "FDA — Bula do Voyxact (Sibeprenlimabe-szsi)",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+            "journal": "U.S. Prescribing Information",
+            "ano": 2025,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Aprovação acelerada para reduzir proteinúria em adultos com IgAN primária em risco de progressão",
+            "icon": "📋",
+            "resumo": "A bula indica Voyxact para reduzir proteinúria em adultos com nefropatia por imunoglobulina A (IgAN) primária em risco de progressão, na dose de 400 mg por via subcutânea a cada quatro semanas. A aprovação acelerada baseou-se na redução de proteinúria; a própria bula declara que ainda não estava estabelecido se o fármaco reduz o declínio da função renal em longo prazo. No VISIONARY, infecções ocorreram em 49% versus 45% com placebo e reações no local de injeção em 24% versus 23%.",
+            "conclusao": "Antes de iniciar, deve-se avaliar infecção ativa; durante o tratamento, monitorar infecções e considerar interrupção diante de infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o tratamento. A aprovação acelerada não equivale a benefício renal funcional já confirmado na bula.",
+            "curiosidade": "A bula relata queda média em 48 semanas de 67% na imunoglobulina A1 deficiente em galactose (Gd-IgA1), 69% na IgA, 35% na IgG e 75% na IgM, coerente com bloqueio de APRIL e também com a necessidade de vigilância infecciosa."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "voyxact_fda_2025",
+            "revision": "sha256:cb903bc2ef8307e678bfffaeffd5674204bd4d52954a122b598fb382c05aeeb0",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:6d773c74294b097f0e8616f4baf802add8b4dbfed1a23387322bbb370ca87303",
+      "classificationBeforeAndAfter": {
+        "op": "Aplicar precauções de infecção ativa e vacina viva antes do sibeprenlimabe.",
+        "competency": "Segurança de imunoterapia na nefropatia por IgA",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo objetivo, conceito correto e qid. Redesenho dos distratores por erros reais; não há troca de OP para preservar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "VOYXACT",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/voyxact-dailymed.html",
+          "bytesSHA256": "a8bf2f3b5f335884691f20d7fa0ebb8acf16921d3b87f58839dddd06203dafb6",
+          "scope": "Bula primária revisada em novembro de 2025, §§1, 2, 5.1–5.2, 6.1 e 12.1–12.2. Não confundir publicação final VISIONARY em outubro de 2026 com alteração regulatória da bula. Precauções, doses e números completos do card conferidos."
+        }
+      ],
+      "claimsVerified": [
+        "Bula primária revisada em novembro de 2025, §§1, 2, 5.1–5.2, 6.1 e 12.1–12.2. Não confundir publicação final VISIONARY em outubro de 2026 com alteração regulatória da bula. Precauções, doses e números completos do card conferidos."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Avaliar a infecção e reorganizar a vacina viva, que não é recomendada nos 30 dias anteriores nem durante o uso.",
+            "judgment": "CORRETA: avaliação prévia e calendário vacinal compatíveis."
+          },
+          {
+            "letter": "B",
+            "text": "Iniciar o fármaco e avaliar a infecção depois, pois a vigilância é necessária apenas nos casos que exigem internação.",
+            "judgment": "Postergar avaliação de infecção ativa e restringir vigilância indevidamente à internação."
+          },
+          {
+            "letter": "C",
+            "text": "Avaliar a infecção e aplicar a vacina viva sete dias antes, considerando suficiente esse intervalo para o início.",
+            "judgment": "Usar uma janela anterior insuficiente para vacina viva."
+          },
+          {
+            "letter": "D",
+            "text": "Avaliar a infecção e adiar a vacina até o primeiro mês de tratamento, quando a exposição ao fármaco já estiver estável.",
+            "judgment": "Transferir vacina viva para uma fase em que continua não recomendada."
+          }
+        ],
+        "attemptToDefendDistractor": "Não se afirma contraindicação absoluta para toda infecção respiratória leve nem se inventa um período após suspensão. A resposta exige avaliação prévia e respeito às janelas expressamente descritas.",
+        "result": "RECURSO REJEITADO no contexto explícito; verificar independentemente antes de aplicar."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Não se afirma contraindicação absoluta para toda infecção respiratória leve nem se inventa um período após suspensão. A resposta exige avaliação prévia e respeito às janelas expressamente descritas."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "VOYXACT — seções decisivas abertas e delimitadas."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Aplicar precauções de infecção ativa e vacina viva antes do sibeprenlimabe."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Risco infeccioso e limite do resultado explicitados; nenhum esquema ou duração não verificados foi inventado."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Postergar avaliação de infecção ativa e restringir vigilância indevidamente à internação. Usar uma janela anterior insuficiente para vacina viva. Transferir vacina viva para uma fase em que continua não recomendada."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Mecanismo, segurança ou leitura crítica contextualizam o alvo; não se cobra lembrança de números de ensaio."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Explicação confere a opção correta e rejeita os erros distintos."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Enunciado fornece janela, fármaco, doença ou desenho necessários ao OP."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Questão se delimita à bula/documento explicitado; não impõe protocolo local presumido."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Versão oficial consultada identifica indicação por doença e evita extrapolação regulatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "29062f06",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:ae0de29b639ea5275843e526ff46de7140e541e4bfe2fa80f5a3f85b47c4949e",
+        "question": {
+          "t": "Pegcetacoplano — Infecções por Bactérias Encapsuladas",
+          "qid": "29062f06",
+          "q": "Qual é o principal alerta infeccioso ao iniciar pegcetacoplano, um inibidor proximal do complemento C3?",
+          "opts": [
+            "Risco de infecções graves por bactérias encapsuladas; atualizar vacinação, monitorar sintomas e considerar profilaxia antibacteriana se início urgente sem vacinação adequada",
+            "Risco restrito a tuberculose latente, dispensando vacinas contra bactérias encapsuladas",
+            "Risco exclusivo de Neisseria meningitidis apenas com inibidores de C5, não com bloqueio de C3",
+            "Ausência de risco infeccioso relevante porque a via clássica permanece intacta"
+          ],
+          "ans": 0,
+          "exp": "O pegcetacoplano aumenta o risco de infecções graves e potencialmente fatais por bactérias encapsuladas, incluindo Streptococcus pneumoniae, Neisseria meningitidis e Haemophilus influenzae tipo b. A vacinação deve ser completada ou atualizada antes do início, e o paciente precisa de monitorização para sintomas precoces; se o tratamento for urgente sem vacinação adequada, a bula orienta profilaxia antibacteriana e vacinação assim que possível. As demais alternativas reduzem indevidamente o risco ou o atribuem só a outras classes.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Pegcetacoplano — Infecções por Bactérias Encapsuladas",
+          "qid": "29062f06",
+          "q": "Qual alerta infeccioso permanece relevante para quem inicia pegcetacoplano, mesmo com vacinação atualizada?",
+          "opts": [
+            "Infecções por bactérias encapsuladas, com risco residual apesar da vacinação.",
+            "Infecções por bactérias encapsuladas, limitadas às duas semanas após a vacina.",
+            "Infecção meningocócica, sem alerta correspondente para pneumococo.",
+            "Infecções por bactérias encapsuladas, neutralizadas pela profilaxia antibacteriana."
+          ],
+          "ans": 0,
+          "exp": "O bloqueio de C3 aumenta o risco de infecções graves por bactérias encapsuladas, incluindo pneumococo, meningococo e Haemophilus influenzae tipo b. A bula ressalta que o paciente continua suscetível mesmo após vacinação; a vigilância não termina ao completar duas semanas. Profilaxia e vacinas reduzem o risco, mas não garantem proteção total. Sintomas suspeitos exigem avaliação imediata.",
+          "diff": "easy",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025"
+          ]
+        },
+        "afterAuthorRevision": "sha256:4bfe6354098f5530ba55ce7e94f8c961003f0b5bdc24fb35438f7f27e0cb535c",
+        "refCardsAfter": {
+          "empaveli_pegcetacoplan_label_2025": {
+            "label": "EMPAVELI (pegcetacoplano) — Bula FDA/DailyMed, 2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "journal": "DailyMed / U.S. FDA Prescribing Information",
+            "ano": 2026,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "O bloqueio de C3 exige prevenção e vigilância de infecções por bactérias encapsuladas.",
+            "icon": "📋",
+            "resumo": "Bula de agosto de 2026. Pegcetacoplano liga-se a C3/C3b. Em glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, é indicado a partir de 12 anos para reduzir proteinúria e perda de função renal. A vacinação contra bactérias encapsuladas deve ser atualizada pelo menos duas semanas antes da primeira dose, salvo urgência que justifique antecipar o tratamento.",
+            "conclusao": "Na urgência com vacinas incompletas, oferecer profilaxia antibacteriana e vacinar assim que possível. A vacinação não elimina o risco; sintomas de infecção exigem avaliação imediata. A bula não estabelece o esquema e a duração ótimos da profilaxia.",
+            "curiosidade": "No estudo renal, os participantes receberam vacinas contra pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b, salvo documentação de vacinação recomendada ou não resposta."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "empaveli_pegcetacoplan_label_2025",
+            "revision": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:6cd484f5e6c19e763de11026937c0fae537deb3a70abc9d94eae09a34ff7b184",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer o alerta infeccioso por bactérias encapsuladas ao iniciar pegcetacoplano, incluindo risco residual após vacinação.",
+        "competency": "Segurança de inibidores proximais do complemento",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "easy",
+        "identity": "O original pergunta pelo principal alerta infeccioso. O AFTER preserva esse objetivo e destaca um limite clinicamente importante já presente nas precauções, sem criar outra conduta para sustentar contagem."
+      },
+      "evidenceSources": [
+        {
+          "id": "EMPAVELI",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/empaveli-dailymed-2026.html",
+          "bytesSHA256": "8285224ee07bfbe5923382647f10453eab199d7f41f463da95f51a2342dea288",
+          "scope": "Bula primária revisada em agosto de 2026, integral aberta. §§1, 2.1, 5.1, 12.1 e 14.2 lidos. VALIANT N124 com idade≥12 anos, C3G/IC-MPGN primária, randomizado duplo-cego placebo por26 semanas; UPCR primário, redução68%, p<0,0001; diferença média ajustada TFGe6,31 (IC95%0,50–12,12). Não concluir mortalidade ou falência renal definitiva a partir de26 semanas."
+        }
+      ],
+      "claimsVerified": [
+        "A bula alerta para infecções por pneumococo, meningococo e H. influenzae tipo b.",
+        "Pacientes continuam suscetíveis apesar de vacinação e podem adoecer mesmo com profilaxia; avaliação precoce dos sintomas permanece necessária."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Infecções por bactérias encapsuladas, com risco residual apesar da vacinação.",
+            "judgment": "CORRETA: cobertura ampla de encapsuladas e risco residual."
+          },
+          {
+            "letter": "B",
+            "text": "Infecções por bactérias encapsuladas, limitadas às duas semanas após a vacina.",
+            "judgment": "Confusão entre janela de preparação da vacina e duração da suscetibilidade durante bloqueio."
+          },
+          {
+            "letter": "C",
+            "text": "Infecção meningocócica, sem alerta correspondente para pneumococo.",
+            "judgment": "Restrição indevida do alerta a meningococo, excluindo pneumococo."
+          },
+          {
+            "letter": "D",
+            "text": "Infecções por bactérias encapsuladas, neutralizadas pela profilaxia antibacteriana.",
+            "judgment": "Confusão entre redução de risco e proteção garantida por profilaxia."
+          }
+        ],
+        "attemptToDefendDistractor": "A janela de duas semanas se refere à organização vacinal antes da exposição, não ao término do risco durante bloqueio de C3. A bula não oferece proteção absoluta pela vacina ou antibiótico.",
+        "result": "RECURSO REJEITADO; o correto é o alerta de risco residual amplo."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Alerta de risco residual conferido no boxed warning e §5.1; quatro opções contrastam abrangência do agente, janela e garantia indevida de proteção."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "retirements": [],
+  "neighborAnalysis": [
+    {
+      "qids": [
+        "f7ef303f",
+        "4afc0858"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL",
+      "basis": "4afc identifica alvo direto (recordação); f7 interpreta alcance de um resultado intermediário específico da doença (erro de inferência entre desfechos/doenças), já contido no OP original. O AFTER de f7 não transforma a questão em mero alvo."
+    },
+    {
+      "qids": [
+        "e4d4db47",
+        "98ef1092"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL",
+      "basis": "Racional C3/C3b versus interpretação crítica de efeito médio/duração/desfecho do VALIANT; competências e erros distintos."
+    },
+    {
+      "qids": [
+        "9fea5862",
+        "c31f5d6e"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL",
+      "basis": "Seletividade do mecanismo e efeito humoral versus aplicação de janela de vacina viva/avaliação de infecção."
+    },
+    {
+      "qids": [
+        "29062f06",
+        "0185e967"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL — AUTORAL, SUJEITA A REVISÃO",
+      "sourceQuestion": {
+        "t": "Pegcetacoplano — Infecções por Bactérias Encapsuladas",
+        "qid": "29062f06",
+        "q": "Qual é o principal alerta infeccioso ao iniciar pegcetacoplano, um inibidor proximal do complemento C3?",
+        "opts": [
+          "Risco de infecções graves por bactérias encapsuladas; atualizar vacinação, monitorar sintomas e considerar profilaxia antibacteriana se início urgente sem vacinação adequada",
+          "Risco restrito a tuberculose latente, dispensando vacinas contra bactérias encapsuladas",
+          "Risco exclusivo de Neisseria meningitidis apenas com inibidores de C5, não com bloqueio de C3",
+          "Ausência de risco infeccioso relevante porque a via clássica permanece intacta"
+        ],
+        "ans": 0,
+        "exp": "O pegcetacoplano aumenta o risco de infecções graves e potencialmente fatais por bactérias encapsuladas, incluindo Streptococcus pneumoniae, Neisseria meningitidis e Haemophilus influenzae tipo b. A vacinação deve ser completada ou atualizada antes do início, e o paciente precisa de monitorização para sintomas precoces; se o tratamento for urgente sem vacinação adequada, a bula orienta profilaxia antibacteriana e vacinação assim que possível. As demais alternativas reduzem indevidamente o risco ou o atribuem só a outras classes.",
+        "diff": "medium",
+        "cat": "glomerular",
+        "refs": [
+          "empaveli_pegcetacoplan_label_2025"
+        ]
+      },
+      "sourceRevision": "sha256:ae0de29b639ea5275843e526ff46de7140e541e4bfe2fa80f5a3f85b47c4949e",
+      "targetQuestion": {
+        "t": "Pegcetacoplano — Pré-requisito Vacinal",
+        "qid": "0185e967",
+        "q": "Um adulto com glomerulopatia C3 precisa iniciar pegcetacoplano com urgência, e o risco de adiar supera o risco infeccioso. As vacinas contra pneumococo e meningococo estão incompletas. Qual plano preventivo acompanha o início?",
+        "opts": [
+          "Oferecer profilaxia antibacteriana e administrar as vacinas assim que possível.",
+          "Vacinar na primeira dose e reservar antibiótico para o aparecimento de sintomas infecciosos.",
+          "Adiar obrigatoriamente por duas semanas, mesmo após a avaliação favorável ao início urgente.",
+          "Manter profilaxia antibacteriana e postergar as vacinas até o término do tratamento."
+        ],
+        "ans": 0,
+        "exp": "A regra habitual é completar ou atualizar as vacinas contra bactérias encapsuladas pelo menos duas semanas antes da primeira dose, conforme as recomendações aplicáveis a inibidores do complemento. Se o tratamento for urgente em paciente não atualizado, a bula orienta profilaxia antibacteriana e vacinação assim que possível. A urgência não dispensa vacinas, e a vacinação no mesmo dia não substitui a profilaxia nessa situação. O risco de infecção grave persiste mesmo após vacinação, exigindo vigilância e avaliação imediata de sintomas. A bula não estabelece o esquema e a duração ótimos da profilaxia; não cabe inventá-los. No estudo renal, a prevenção incluiu pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b.",
+        "diff": "medium",
+        "cat": "glomerular",
+        "refs": [
+          "empaveli_pegcetacoplan_label_2025"
+        ]
+      },
+      "targetRevision": "sha256:ef9380f1e0dfc4eb728923efd9b283fe31d0c46e34d89a04b2580ccb1123ce3b",
+      "targetBindings": [
+        {
+          "id": "empaveli_pegcetacoplan_label_2025",
+          "revision": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0"
+        }
+      ],
+      "targetExistingGate": {
+        "qid": "0185e967",
+        "originalAuthorRevision": "sha256:fc02dc1cdcc2348ffd03788493ef656b4aa6eb1810f1ad1ea07363c8278d3fb6",
+        "after": {
+          "t": "Pegcetacoplano — Pré-requisito Vacinal",
+          "qid": "0185e967",
+          "q": "Um adulto com glomerulopatia C3 precisa iniciar pegcetacoplano com urgência, e o risco de adiar supera o risco infeccioso. As vacinas contra pneumococo e meningococo estão incompletas. Qual plano preventivo acompanha o início?",
+          "opts": [
+            "Oferecer profilaxia antibacteriana e administrar as vacinas assim que possível.",
+            "Vacinar na primeira dose e reservar antibiótico para o aparecimento de sintomas infecciosos.",
+            "Adiar obrigatoriamente por duas semanas, mesmo após a avaliação favorável ao início urgente.",
+            "Manter profilaxia antibacteriana e postergar as vacinas até o término do tratamento."
+          ],
+          "ans": 0,
+          "exp": "A regra habitual é completar ou atualizar as vacinas contra bactérias encapsuladas pelo menos duas semanas antes da primeira dose, conforme as recomendações aplicáveis a inibidores do complemento. Se o tratamento for urgente em paciente não atualizado, a bula orienta profilaxia antibacteriana e vacinação assim que possível. A urgência não dispensa vacinas, e a vacinação no mesmo dia não substitui a profilaxia nessa situação. O risco de infecção grave persiste mesmo após vacinação, exigindo vigilância e avaliação imediata de sintomas. A bula não estabelece o esquema e a duração ótimos da profilaxia; não cabe inventá-los. No estudo renal, a prevenção incluiu pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025"
+          ]
+        },
+        "afterAuthorRevision": "sha256:ef9380f1e0dfc4eb728923efd9b283fe31d0c46e34d89a04b2580ccb1123ce3b",
+        "gate": {
+          "verdict": "aprovada",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA"
+        },
+        "independentReport": "ux-1728-reference-duplicates/independent-regulatory-review.json"
+      },
+      "fourDimensions": {
+        "decision": "290 reconhece o alerta infeccioso e o risco residual;0185 seleciona o plano inicial na janela vacinal urgente.",
+        "caseDataStructure": "290 parte do efeito de classe e do alerta;0185 fornece urgência, balanço de riscos e vacinas incompletas que determinam profilaxia imediata.",
+        "targetProfile": "Mesmo público de estudantes/residentes; não se inventa outro perfil para justificar contagem.",
+        "language": "Português em ambas."
+      },
+      "utility": "A diferença é reconhecimento do risco residual/abrangência de agentes versus aplicação do plano na janela urgente. A presença do risco residual na explicação de0185 não torna automaticamente iguais as decisões. A proposta de fusão deA1 foi retirada após confronto explícito do §15.",
+      "noTransferOfHistory": true
+    }
+  ],
+  "referenceCandidates": [
+    {
+      "id": "ema_soliris_2026",
+      "beforeRevision": "sha256:73babde11fe999f71f5ae1756216e007bcada15dea68caa530e4eaa14bbab3e5",
+      "before": {
+        "label": "EMA — Soliris (eculizumab)",
+        "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/soliris",
+        "journal": "European Medicines Agency",
+        "ano": 2026,
+        "tipo": "Informação regulatória",
+        "badge": "REGULATORY",
+        "badgeColor": "#f59e0b",
+        "impacto": "Indicação regulatória e segurança da inibição de C5 na SHUa.",
+        "icon": "📋",
+        "resumo": "Informação regulatória da EMA para eculizumab, anticorpo monoclonal que se liga ao C5 e bloqueia a ativação terminal do complemento. O medicamento é indicado para adultos e crianças com SHUa. A inibição de C5 aumenta a suscetibilidade a infecção meningocócica, por isso vacinação e medidas preventivas conforme o contexto devem ser organizadas sem perder a janela terapêutica de uma microangiopatia trombótica grave.",
+        "conclusao": "Eculizumab trata a ativação terminal do complemento na SHUa; o uso requer confirmação clínica razoável, exclusão urgente de diagnósticos concorrentes e prevenção específica contra meningococo, mas não depende de aguardar confirmação genética.",
+        "curiosidade": "Ao bloquear C5, o eculizumab impede a formação de C5a e do complexo de ataque à membrana C5b-9, preservando componentes mais proximais do complemento."
+      },
+      "after": {
+        "label": "SOLIRIS (eculizumabe) — Informação profissional EMA, consultada em 2026",
+        "url": "https://www.ema.europa.eu/en/documents/product-information/soliris-epar-product-information_en.pdf",
+        "journal": "European Medicines Agency — Summary of Product Characteristics",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela EMA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Bloqueio de C5 exige prevenção meningocócica e vigilância mesmo após vacinação.",
+        "icon": "📋",
+        "resumo": "Informação profissional oficial da EMA, consultada em novembro de 2026; o campo de data de revisão do PDF está em branco. Eculizumabe liga-se a C5 e impede sua clivagem em C5a/C5b e a formação do complexo terminal C5b-9. É indicado na síndrome hemolítico-urêmica atípica em adultos e crianças. A vacinação meningocócica deve anteceder o início em pelo menos duas semanas quando possível; se o risco de adiar superar o infeccioso e o início ocorrer antes dessa janela, administrar antibióticos profiláticos apropriados até duas semanas após a vacinação.",
+        "conclusao": "A prevenção meningocócica acompanha o início do bloqueio terminal do complemento. Vacinação e profilaxia não excluem infecção; orientar sinais de alerta e avaliar imediatamente sintomas suspeitos.",
+        "curiosidade": "O bloqueio de C5 preserva componentes proximais envolvidos na opsonização, mas isso não elimina a suscetibilidade meningocócica. O ano do card identifica a consulta ao documento oficial, sem inventar uma data de revisão ausente."
+      },
+      "afterRevision": "sha256:924d24e0a3f6475ff5a2f0ee1cabfdc882898733025fc4fc7595e93d3f91efe1",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "EMA_SOLIRIS",
+          "url": "https://www.ema.europa.eu/en/documents/product-information/soliris-epar-product-information_en.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/soliris-ema-2026.pdf",
+          "bytesSHA256": "7df8dfdb76daa95badc632e908687d6fe0e0195685d84051e842f3e25465bffd",
+          "scope": "Documento oficial integral de 60 páginas aberto e extraído. SmPC §§4.1, 4.3–4.4 e 5.1 efetivamente lidos; mecanismo, indicação na SHUa, vacinação e antibióticos até duas semanas após vacinação, risco residual. Campo da data de revisão em branco: não atribuir revisão 2026."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "currentConsumerQids": [
+        "1891680a",
+        "4f399a3c"
+      ],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "voyxact_fda_2025",
+      "beforeRevision": "sha256:6bff417d711166008869d3ec69884fd00278ad1fdd32e0aef9214e33d44fa9aa",
+      "before": {
+        "label": "FDA — Bula do Voyxact (Sibeprenlimabe-szsi)",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+        "journal": "U.S. Prescribing Information",
+        "ano": 2025,
+        "tipo": "Bula regulatória",
+        "badge": "FDA",
+        "badgeColor": "#2563eb",
+        "impacto": "Aprovação acelerada para reduzir proteinúria em adultos com IgAN primária em risco de progressão",
+        "icon": "📋",
+        "resumo": "A bula indica Voyxact para reduzir proteinúria em adultos com IgAN primária em risco de progressão, na dose de 400 mg por via subcutânea a cada quatro semanas. A aprovação acelerada baseou-se na redução de proteinúria; a própria bula declara que ainda não estava estabelecido se o fármaco reduz o declínio da função renal em longo prazo. No VISIONARY, infecções ocorreram em 49% versus 45% com placebo e reações no local de injeção em 24% versus 23%.",
+        "conclusao": "Antes de iniciar, deve-se avaliar infecção ativa; durante o tratamento, monitorar infecções e considerar interrupção diante de infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o tratamento. A aprovação acelerada não equivale a benefício renal funcional já confirmado na bula.",
+        "curiosidade": "A bula relata queda média em 48 semanas de 67% na Gd-IgA1, 69% na IgA, 35% na IgG e 75% na IgM, coerente com bloqueio de APRIL e também com a necessidade de vigilância infecciosa."
+      },
+      "after": {
+        "label": "FDA — Bula do Voyxact (Sibeprenlimabe-szsi)",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+        "journal": "U.S. Prescribing Information",
+        "ano": 2025,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Aprovação acelerada para reduzir proteinúria em adultos com IgAN primária em risco de progressão",
+        "icon": "📋",
+        "resumo": "A bula indica Voyxact para reduzir proteinúria em adultos com nefropatia por imunoglobulina A (IgAN) primária em risco de progressão, na dose de 400 mg por via subcutânea a cada quatro semanas. A aprovação acelerada baseou-se na redução de proteinúria; a própria bula declara que ainda não estava estabelecido se o fármaco reduz o declínio da função renal em longo prazo. No VISIONARY, infecções ocorreram em 49% versus 45% com placebo e reações no local de injeção em 24% versus 23%.",
+        "conclusao": "Antes de iniciar, deve-se avaliar infecção ativa; durante o tratamento, monitorar infecções e considerar interrupção diante de infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o tratamento. A aprovação acelerada não equivale a benefício renal funcional já confirmado na bula.",
+        "curiosidade": "A bula relata queda média em 48 semanas de 67% na imunoglobulina A1 deficiente em galactose (Gd-IgA1), 69% na IgA, 35% na IgG e 75% na IgM, coerente com bloqueio de APRIL e também com a necessidade de vigilância infecciosa."
+      },
+      "afterRevision": "sha256:cb903bc2ef8307e678bfffaeffd5674204bd4d52954a122b598fb382c05aeeb0",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "VOYXACT",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/voyxact-dailymed.html",
+          "bytesSHA256": "a8bf2f3b5f335884691f20d7fa0ebb8acf16921d3b87f58839dddd06203dafb6",
+          "scope": "Bula primária revisada em novembro de 2025, §§1, 2, 5.1–5.2, 6.1 e 12.1–12.2. Não confundir publicação final VISIONARY em outubro de 2026 com alteração regulatória da bula. Precauções, doses e números completos do card conferidos."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "currentConsumerQids": [
+        "aa732568",
+        "9fea5862",
+        "03397c91",
+        "c31f5d6e"
+      ],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "fabhalta_iptacopan_label_2025",
+      "beforeRevision": "sha256:9e83f843558be96778dabb7880fce4717d2af9a771a37a079f3c6afca6a2c64d",
+      "before": {
+        "label": "FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+        "journal": "DailyMed / U.S. FDA Prescribing Information",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Iptacopano: fator B, 200 mg duas vezes ao dia e prevenção de infecção encapsulada.",
+        "icon": "📋",
+        "resumo": "Bula profissional do FABHALTA revisada em julho de 2026. O iptacopano é um inibidor do fator B do complemento indicado para desacelerar o declínio da função renal em adultos com nefropatia por IgA primária sob risco de progressão; a dose é 200 mg por via oral duas vezes ao dia. A bula traz alerta máximo para infecções graves por bactérias encapsuladas, exige vacinação contra pneumococo e meningococo pelo menos duas semanas antes quando possível, prevê profilaxia antibacteriana no início urgente sem vacinação atualizada e restringe a dispensação pelo programa REMS.",
+        "conclusao": "O benefício funcional renal não elimina o risco infeccioso: vacinação e REMS são obrigatórios no contexto regulatório dos EUA, e a vacinação não zera o risco de infecção por bactérias encapsuladas.",
+        "curiosidade": "A atualização de 2026 substituiu a indicação acelerada baseada em proteinúria por indicação para desacelerar a perda de função renal após a análise final do APPLAUSE-IgAN."
+      },
+      "after": {
+        "label": "FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+        "journal": "DailyMed / U.S. FDA Prescribing Information",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Iptacopano: fator B, 200 mg duas vezes ao dia e prevenção de infecção encapsulada.",
+        "icon": "📋",
+        "resumo": "Bula profissional do FABHALTA revisada em julho de 2026. O iptacopano é um inibidor do fator B do complemento indicado para desacelerar o declínio da função renal em adultos com nefropatia por IgA primária sob risco de progressão; a dose é 200 mg por via oral duas vezes ao dia. A bula traz alerta máximo para infecções graves por bactérias encapsuladas, exige vacinação contra pneumococo e meningococo pelo menos duas semanas antes quando possível, prevê profilaxia antibacteriana no início urgente sem vacinação atualizada e restringe a dispensação pelo programa REMS. Em adultos com glomerulopatia C3, a indicação específica é reduzir proteinúria. No estudo APPEAR-C3G, de seis meses, a proporção com função renal estável ou melhor não diferiu entre os grupos; esse resultado não deve receber a conclusão funcional de longo prazo demonstrada separadamente na nefropatia por IgA.",
+        "conclusao": "O benefício funcional renal não elimina o risco infeccioso: vacinação e REMS são obrigatórios no contexto regulatório dos EUA, e a vacinação não zera o risco de infecção por bactérias encapsuladas. O alcance da indicação é específico de cada doença: em glomerulopatia C3, não extrapolar a redução de proteinúria para prevenção comprovada de diálise ou morte.",
+        "curiosidade": "A atualização de 2026 substituiu a indicação acelerada baseada em proteinúria por indicação para desacelerar a perda de função renal após a análise final do APPLAUSE-IgAN."
+      },
+      "afterRevision": "sha256:0afe9d0c7a42866737c2c1a4494825f17ca22928e1988f8cae3249ba824bc4e5",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "FABHALTA",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/fabhalta-dailymed-2026.html",
+          "bytesSHA256": "9ef58d65890d81fa5a9bbc7e40b8585b80efd816a03eadfdc0d68b57b29ca897",
+          "scope": "Bula primária revisada em julho de 2026. §§1.2–1.3, 2.1–2.2, 5.1–5.2, 12.1 e 14.2–14.3 abertos integralmente. Em C3G, APPEAR N74, seis meses, redução UPCR 35% versus placebo, p=0,0028; função estável/melhor 90% versus 89%. A indicação funcional da IgAN permanece preservada e separada."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "currentConsumerQids": [
+        "f7ef303f",
+        "17c980fc",
+        "4afc0858"
+      ],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "empaveli_pegcetacoplan_label_2025",
+      "beforeRevision": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0",
+      "before": {
+        "label": "EMPAVELI (pegcetacoplano) — Bula FDA/DailyMed, 2026",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+        "journal": "DailyMed / U.S. FDA Prescribing Information",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "O bloqueio de C3 exige prevenção e vigilância de infecções por bactérias encapsuladas.",
+        "icon": "📋",
+        "resumo": "Bula de agosto de 2026. Pegcetacoplano liga-se a C3/C3b. Em glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, é indicado a partir de 12 anos para reduzir proteinúria e perda de função renal. A vacinação contra bactérias encapsuladas deve ser atualizada pelo menos duas semanas antes da primeira dose, salvo urgência que justifique antecipar o tratamento.",
+        "conclusao": "Na urgência com vacinas incompletas, oferecer profilaxia antibacteriana e vacinar assim que possível. A vacinação não elimina o risco; sintomas de infecção exigem avaliação imediata. A bula não estabelece o esquema e a duração ótimos da profilaxia.",
+        "curiosidade": "No estudo renal, os participantes receberam vacinas contra pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b, salvo documentação de vacinação recomendada ou não resposta."
+      },
+      "after": {
+        "label": "EMPAVELI (pegcetacoplano) — Bula FDA/DailyMed, 2026",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+        "journal": "DailyMed / U.S. FDA Prescribing Information",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "O bloqueio de C3 exige prevenção e vigilância de infecções por bactérias encapsuladas.",
+        "icon": "📋",
+        "resumo": "Bula de agosto de 2026. Pegcetacoplano liga-se a C3/C3b. Em glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, é indicado a partir de 12 anos para reduzir proteinúria e perda de função renal. A vacinação contra bactérias encapsuladas deve ser atualizada pelo menos duas semanas antes da primeira dose, salvo urgência que justifique antecipar o tratamento.",
+        "conclusao": "Na urgência com vacinas incompletas, oferecer profilaxia antibacteriana e vacinar assim que possível. A vacinação não elimina o risco; sintomas de infecção exigem avaliação imediata. A bula não estabelece o esquema e a duração ótimos da profilaxia.",
+        "curiosidade": "No estudo renal, os participantes receberam vacinas contra pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b, salvo documentação de vacinação recomendada ou não resposta."
+      },
+      "afterRevision": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "EMPAVELI",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/regulatory-sources/empaveli-dailymed-2026.html",
+          "bytesSHA256": "8285224ee07bfbe5923382647f10453eab199d7f41f463da95f51a2342dea288",
+          "scope": "Bula primária revisada em agosto de 2026, integral aberta. §§1, 2.1, 5.1, 12.1 e 14.2 lidos. VALIANT N124 com idade≥12 anos, C3G/IC-MPGN primária, randomizado duplo-cego placebo por26 semanas; UPCR primário, redução68%, p<0,0001; diferença média ajustada TFGe6,31 (IC95%0,50–12,12). Não concluir mortalidade ou falência renal definitiva a partir de26 semanas."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "currentConsumerQids": [
+        "54c78982",
+        "e4d4db47",
+        "98ef1092",
+        "29062f06",
+        "68ea2159",
+        "0185e967"
+      ],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "c3g_consensus",
+      "beforeRevision": "sha256:225b9a8a23115f5ae4dc8715493dd1a072bebbf8dad31b560260ec7a01db662e",
+      "before": {
+        "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+        "journal": "Kidney Int 2013;84(6):1079-1089",
+        "ano": 2013,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "C3 dominante é um padrão de intensidade, não exigência de imunoglobulinas ausentes",
+        "icon": "📋",
+        "resumo": "Consenso internacional de especialistas (Pickering et al., 2013) sobre definição e investigação da glomerulopatia C3. Propõe o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c está pelo menos duas categorias acima de qualquer outro reagente imune na escala de 0 a 3. Pequenos depósitos de imunoglobulinas podem coexistir. Diagnóstico etiológico exige integração com microscopia óptica, eletrônica e história clínica, incluindo possível infecção. Doença de depósitos densos e glomerulonefrite C3 distinguem-se pela ultraestrutura.",
+        "conclusao": "A dominância de C3 levanta C3 glomerulopatia, mas não substitui investigação clínica nem exclui mimetizadores. É orientação de consenso, sem força terapêutica de ensaio randomizado.",
+        "curiosidade": ""
+      },
+      "after": {
+        "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+        "journal": "Kidney Int 2013;84(6):1079-1089",
+        "ano": 2013,
+        "tipo": "Consenso de especialistas",
+        "badge": "CONSENSO",
+        "badgeColor": "#6366f1",
+        "impacto": "C3 dominante é um padrão de intensidade, não exigência de imunoglobulinas ausentes",
+        "icon": "📋",
+        "resumo": "Consenso internacional de especialistas (Pickering et al., 2013) sobre definição e investigação da glomerulopatia C3. Propõe o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c está pelo menos duas categorias acima de qualquer outro reagente imune na escala de 0 a 3. Pequenos depósitos de imunoglobulinas podem coexistir. Diagnóstico etiológico exige integração com microscopia óptica, eletrônica e história clínica, incluindo possível infecção. Doença de depósitos densos e glomerulonefrite C3 distinguem-se pela ultraestrutura.",
+        "conclusao": "A dominância de C3 levanta C3 glomerulopatia, mas não substitui investigação clínica nem exclui mimetizadores. É orientação de consenso, sem força terapêutica de ensaio randomizado.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "PICKERING_2013",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+          "access": "PRIMARY_FULL_BODY_OPENED_ON_WEB",
+          "scope": "Corpo primário aberto. PATHOLOGY e PATHOLOGY—RECOMMENDATIONS: consenso de especialistas; C3c dominante≥duas categorias na escala0–3, imunoglobulinas pequenas podem coexistir; EM diferencia depósitos densos; integração clínica e possível infecção; diagnóstico não decorre só de um depósito."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4, Regra 10. Revisão formal AUTORAL dos objetos exatos e fontes abertas; não é revisão independente. Aplicação exclusiva pelo root após gate independente."
+      },
+      "currentConsumerQids": [
+        "f7ef303f",
+        "ff741767",
+        "cf42455e",
+        "fbb4edd0",
+        "d14954d1",
+        "8fd9452a",
+        "0e102752",
+        "54c78982",
+        "e4d4db47",
+        "66905ee2"
+      ],
+      "noQuestionApprovalInherited": true
+    }
+  ],
+  "formatAdjudications": [
+    "Root: EMA/BULA mesmo ID, sem inventar data de revisão.",
+    "Root: C3 consenso/CONSENSO com corpo preservado.",
+    "Root: uma bula FDA necessária por fármaco, sem card redundante."
+  ],
+  "implementationBoundary": {
+    "noRootWrites": true,
+    "noHistoryReset": true,
+    "noFSRSCopy": true,
+    "noNewOPToPreserveCount": true,
+    "independentGateRequired": true
+  },
+  "supersedes": "A1 preservada; A1.1 corrige confronto de duplicidade às quatro dimensões canônicas e adiciona o AFTER de29062f06. Não aplica aposentadoria. Literais dos outros sete AFTERs e dos cinco cards estão preservados."
+}

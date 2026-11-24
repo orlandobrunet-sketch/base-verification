@@ -1,0 +1,448 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "f1d27a8f",
+  "family": "A13-UTI-hepatorrenal",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "TRSC — Anticoagulação Regional com Citrato",
+    "qid": "f1d27a8f",
+    "q": "Em paciente crítico com LRA em terapia renal substitutiva contínua, qual afirmação sobre anticoagulação regional com citrato é mais segura e correta?",
+    "refs": [
+      "kdigo_aki"
+    ],
+    "opts": [
+      "Deve ser feita com dose fixa de citrato, sem reposição de cálcio, pois o efeito fica restrito ao filtro",
+      "É uma estratégia preferencial quando não há contraindicação, com alvo de cálcio iônico baixo no circuito e reposição sistêmica de cálcio conforme protocolo",
+      "É contraindicada em toda LRA porque inevitavelmente agrava acidose metabólica",
+      "Pode ser usada sem ajuste ou monitorização em choque grave e insuficiência hepática avançada"
+    ],
+    "ans": 1,
+    "exp": "A anticoagulação regional com citrato é amplamente usada na TRSC por reduzir sangramento em comparação à heparina sistêmica, mas exige protocolo: citrato pré-filtro para quelar cálcio no circuito, monitorização de cálcio iônico no circuito e no paciente, reposição sistêmica de cálcio e vigilância ácido-base. Não é uma dose fixa universal. O risco central é acúmulo de citrato, especialmente em insuficiência hepática grave, hipoperfusão/choque intenso ou metabolismo comprometido, levando a hipocalcemia, aumento da razão cálcio total/cálcio iônico e distúrbios ácido-base. Portanto, a mensagem segura é: preferencial quando apropriada, nunca 'sem monitorização'.",
+    "diff": "medium",
+    "cat": "uti"
+  },
+  "originalSHA256": "sha256:599f7f966edcb70d84de56afc739174d762212e5131ff7b8162355b8518733a3",
+  "originalRefs": [
+    {
+      "id": "kdigo_aki",
+      "original": {
+        "label": "KDIGO AKI 2012",
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+        "journal": "Kidney International Supplements",
+        "ano": 2012,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+        "icon": "📋",
+        "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+        "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+        "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+      },
+      "originalSHA256": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Escolher monitorização e reposição de cálcio que tornam segura a anticoagulação regional por citrato em terapia renal contínua.",
+    "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — A correta é a única que inclui toda a monitorização e tem extensão muito maior; foco pode ser explicitado no enunciado.",
+      "MENOR — Preferência de anticoagulante e segurança são decisões distintas; o item atual reúne ambas."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "citrate",
+      "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+      "doi": "10.1186/s44158-023-00091-w",
+      "pmid": "37386664",
+      "access": "Posicionamento primário integral SIAARTI–SIN aberto no journal, publicado31/03/2023,3:7.",
+      "locators": [
+        "§2–4: citrato pré-filtro quela cálcio; medir cálcio ionizado do circuito e do paciente, ajustar reposição sistêmica e equilíbrio ácido-base.",
+        "§4: choque/hipoperfusão ou falência hepática aumentam preocupação com metabolismo; não são proibição universal nem permissão para dispensar monitorização.",
+        "Tríade de acúmulo: hipocalcemia ionizada sistêmica, necessidade crescente de cálcio e acidose; relação total/ionizado>2,5 ou tendência ascendente é um sinal a integrar."
+      ],
+      "limitations": [
+        "Opinião de especialistas. Metas e soluções dependem do protocolo; não forneci dose ou alvo numérico universal."
+      ]
+    },
+    {
+      "id": "kdigo",
+      "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+      "access": "PDF oficial integral141p aberto, resumo de recomendações e capítulos2.1/5.3 lidos.",
+      "locators": [
+        "2.1.1 eTable2: definição e estágios por creatinina/diurese, referência atual do card.",
+        "5.3.2.2: em CRRT, sugestão de citrato sobre heparina quando não houver contraindicação,2B."
+      ],
+      "limitations": [
+        "Diretriz final2012. Não chamar draft2026 de recomendação final; questão focada em segurança da técnica, não comparação universal de modalidades."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Cálcio ionizado do circuito avalia anticoagulação, sistêmico orienta segurança/reposição; risco de acúmulo requer vigilância.",
+      "source": "citrate",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "TRSC — Anticoagulação Regional com Citrato",
+    "qid": "f1d27a8f",
+    "q": "A equipe escolheu anticoagulação regional por citrato para terapia renal substitutiva contínua em paciente com lesão renal aguda. Qual plano é mais adequado para manter a técnica segura?",
+    "refs": [
+      "siaarti_sin_citrate_2023",
+      "kdigo_aki"
+    ],
+    "opts": [
+      "Fixar a dose de citrato e ajustar apenas pela pressão do filtro.",
+      "Monitorar cálcio ionizado no circuito e no paciente e ajustar a reposição sistêmica.",
+      "Ajustar a reposição sistêmica apenas pelo cálcio ionizado baixo após o filtro.",
+      "Suspender a monitorização quando o circuito permanecer pérvio por algumas horas."
+    ],
+    "ans": 1,
+    "exp": "O citrato quela cálcio no circuito. O cálcio ionizado após o filtro ajuda a avaliar anticoagulação, enquanto a medida sistêmica orienta segurança e reposição; uma não substitui a outra. O protocolo também deve acompanhar cálcio total, equilíbrio ácido-base e sinais de acúmulo. Hipoperfusão ou disfunção hepática importante exigem avaliação e vigilância ampliadas. Hipocalcemia sistêmica, necessidade crescente de cálcio e aumento da relação cálcio total/ionizado devem ser interpretados em conjunto. Não há dose fixa universal nem autorização para dispensar monitorização pelo bom funcionamento inicial do filtro.",
+    "diff": "medium",
+    "cat": "uti"
+  },
+  "proposedSHA256": "sha256:8549298f68c67f957fff00c2a56defe062accdc2dd0af800c172c73b1ebc86b9",
+  "classificationAfter": {
+    "op": "Escolher monitorização e reposição de cálcio que tornam segura a anticoagulação regional por citrato em terapia renal contínua.",
+    "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "siaarti_sin_citrate_2023",
+      "original": {
+        "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+        "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+        "ano": 2023,
+        "tipo": "Opinião de especialistas",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+        "icon": "📋",
+        "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+        "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+        "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+      },
+      "originalSHA256": "sha256:9bbeedeb43096407f33d86e1fe862861ae58d6af7ff9c66600773d75f8e68f7a",
+      "proposed": {
+        "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+        "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+        "ano": 2023,
+        "tipo": "Opinião de especialistas",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+        "icon": "📋",
+        "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+        "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+        "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+      },
+      "proposedSHA256": "sha256:9bbeedeb43096407f33d86e1fe862861ae58d6af7ff9c66600773d75f8e68f7a",
+      "sourceIDs": [
+        "citrate"
+      ],
+      "notes": [
+        "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+      ]
+    },
+    {
+      "id": "kdigo_aki",
+      "original": {
+        "label": "KDIGO AKI 2012",
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+        "journal": "Kidney International Supplements",
+        "ano": 2012,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+        "icon": "📋",
+        "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+        "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+        "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+      },
+      "originalSHA256": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd",
+      "proposed": {
+        "label": "KDIGO AKI 2012",
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+        "journal": "Kidney International Supplements",
+        "ano": 2012,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+        "icon": "📋",
+        "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+        "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+        "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+      },
+      "proposedSHA256": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd",
+      "sourceIDs": [
+        "kdigo"
+      ],
+      "notes": [
+        "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. OP de uso seguro preservado e isolado da comparação de anticoagulantes. Sem dose, alvo ou contraindicação universal não sustentados. Distratores confundem circuito versus paciente e monitorização.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

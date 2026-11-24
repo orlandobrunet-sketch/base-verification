@@ -1,0 +1,1056 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A5-neighbors",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 2,
+  "readyForImplementation": false,
+  "scope": "Adjudicação autoral Alport e reparo do consumidor em HD. Não é revisão independente.",
+  "canonicalAlportLiteralFrom": "author-batch-A1.1.json",
+  "canonicalAlportReview": {
+    "schema": "NQ_AUTHOR_REVIEW_1728_v1",
+    "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+    "qid": "82728652",
+    "family": "A1-interpretacao-e-seguranca",
+    "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+    "original": {
+      "t": "Síndrome de Alport — Diagnóstico Básico",
+      "qid": "82728652",
+      "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+      "refs": [
+        "alport_genereviews_2025"
+      ],
+      "opts": [
+        "Nefropatia por IgA",
+        "Doença de Fabry",
+        "Síndrome de Alport ligada ao X por variante em COL4A5",
+        "Doença de lesões mínimas"
+      ],
+      "ans": 2,
+      "exp": "A combinação de hematúria persistente, perda auditiva neurossensorial, padrão familiar pelo lado materno e lamelação da membrana basal glomerular à microscopia eletrônica é altamente sugestiva de síndrome de Alport ligada ao X por variante em COL4A5. Nefropatia por IgA não explica tipicamente surdez familiar nem lamelação da membrana basal; Fabry pode causar nefropatia, mas a microscopia eletrônica mostra inclusões lamelares lisossomais/corpos de zebra; doença de lesões mínimas cursa com síndrome nefrótica e apagamento podocitário, não com esse fenótipo hereditário.",
+      "diff": "easy",
+      "cat": "genetica"
+    },
+    "originalSHA256": "sha256:c167c842aaaa93c3412f5f933eb6479e00dde4c0dfdc3dbdff4578de948d6ee4",
+    "originalRefs": [
+      {
+        "id": "alport_genereviews_2025",
+        "original": {
+          "label": "GeneReviews — Alport Syndrome",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+          "journal": "NCBI Bookshelf / GeneReviews",
+          "ano": 2025,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+          "icon": "🔬",
+          "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+          "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+          "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+        },
+        "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+      }
+    ],
+    "classificationBefore": {
+      "op": "Reconhecer síndrome de Alport a partir de fenótipo renal-auditivo e ultraestrutura da MBG.",
+      "primaryCompetence": "Reconhecimento diagnóstico de nefropatia hereditária.",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "difficultyAuthored": "easy",
+      "difficultyIntrinsic": "easy"
+    },
+    "originalReview": {
+      "verdict": "aprovada com pequenos ajustes",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "confidence": "moderada",
+      "problems": [
+        "MENOR — A opção acrescenta herança/gene a um comando de diagnóstico sindrômico, tornando-a maior sem medir competência adicional. O pedigree favorece, mas não confirma molecularmente, COL4A5."
+      ],
+      "appeal": [],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "múltiplas respostas defensáveis",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 2,
+          "criterion": "referência não sustenta o gabarito",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 3,
+          "criterion": "desvio do OP",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 4,
+          "criterion": "conduta insegura correta ou aceitável",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 5,
+          "criterion": "distrator absurdo",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 6,
+          "criterion": "trivia sem consequência",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 7,
+          "criterion": "explicação contradiz o gabarito",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 8,
+          "criterion": "informação decisiva ausente",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 9,
+          "criterion": "protocolo local não declarado",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 10,
+          "criterion": "ciência relevantemente desatualizada",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "validade de construto",
+            "value": 1
+          },
+          {
+            "name": "enunciado",
+            "value": 2
+          },
+          {
+            "name": "alternativas",
+            "value": 1
+          },
+          {
+            "name": "distratores",
+            "value": 2
+          },
+          {
+            "name": "explicação",
+            "value": 2
+          },
+          {
+            "name": "referências",
+            "value": 2
+          },
+          {
+            "name": "ausência de pistas formais/AI-tells",
+            "value": 1
+          },
+          {
+            "name": "valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 17
+      },
+      "decision": "OP e conceito correto preservados; reescrita de forma e correção das referências/metadados antes de nova aprovação."
+    },
+    "sources": [
+      {
+        "id": "alport",
+        "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1207/",
+        "access": "corpo integral acessível",
+        "date": "2026-11-15",
+        "locators": [
+          "Summary / Diagnosis-testing e Genetic counseling, linhas 69–84",
+          "Diagnosis / Kidney biopsy, linhas 202–217",
+          "Tabela 1, linhas 162–166"
+        ],
+        "verified": [
+          "fenótipo rim-audição-olho",
+          "COL4A3/4/5 e padrões de herança",
+          "lamelação/basket weave",
+          "imunomarcação normal não exclui todas as formas",
+          "80–85% COL4A5 na tabela e fenótipo feminino/AD mais tardio"
+        ],
+        "limitations": [
+          "URL /books direta exibiu CAPTCHA; /sites/books abriu corpo real. GeneReviews é revisão clínica, adequada para diagnóstico sindrômico; não foi tratada como estudo primário de acurácia."
+        ]
+      }
+    ],
+    "claimVerification": [
+      {
+        "claim": "Fenótipo e lamelação favorecem Alport",
+        "source": "alport",
+        "status": "VERIFICADA"
+      },
+      {
+        "claim": "Subtipo genético não confirmado só pelo pedigree",
+        "source": "alport",
+        "status": "VERIFICADA"
+      },
+      {
+        "claim": "Card completo legado",
+        "source": "alport",
+        "status": "VERIFICADA"
+      }
+    ],
+    "proposed": {
+      "t": "Síndrome de Alport — Diagnóstico Básico",
+      "qid": "82728652",
+      "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+      "refs": [
+        "alport_genereviews_2025"
+      ],
+      "opts": [
+        "Nefropatia por IgA",
+        "Doença de Fabry",
+        "Síndrome de Alport",
+        "Doença de lesões mínimas"
+      ],
+      "ans": 2,
+      "exp": "O diagnóstico mais provável é síndrome de Alport. Hematúria persistente, perda auditiva neurossensorial e lamelação da membrana basal glomerular formam um conjunto típico. O pedigree sugere herança ligada ao X, mas não identifica sozinho a variante; a investigação molecular inclui COL4A3, COL4A4 e COL4A5. IgA não explica esse conjunto hereditário-auditivo; Fabry produz inclusões lisossomais, distintas da lamelação da membrana basal; lesões mínimas costuma apresentar síndrome nefrótica com apagamento podocitário.",
+      "diff": "easy",
+      "cat": "genetica"
+    },
+    "proposedSHA256": "sha256:85614de3f4705862aecc64ba61ed5290cb8ec1b36077ec7b458ee5301a69b9ea",
+    "classificationAfter": {
+      "op": "Reconhecer síndrome de Alport a partir de fenótipo renal-auditivo e ultraestrutura da MBG.",
+      "primaryCompetence": "Reconhecimento diagnóstico de nefropatia hereditária.",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "difficultyIntrinsic": "easy",
+      "difficultyAuthored": "easy"
+    },
+    "proposedRefs": [
+      {
+        "id": "alport_genereviews_2025",
+        "original": {
+          "label": "GeneReviews — Alport Syndrome",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+          "journal": "NCBI Bookshelf / GeneReviews",
+          "ano": 2025,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+          "icon": "🔬",
+          "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+          "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+          "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+        },
+        "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b",
+        "proposed": {
+          "label": "GeneReviews — Alport Syndrome",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+          "journal": "NCBI Bookshelf / GeneReviews",
+          "ano": 2025,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+          "icon": "🔬",
+          "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+          "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+          "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+        },
+        "proposedSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+      }
+    ],
+    "candidateReview": {
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "confidence": "moderada",
+      "appeal": [
+        "Nenhum argumento plausível de anulação identificado na checagem autoral da versão proposta."
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "múltiplas respostas defensáveis",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 2,
+          "criterion": "referência não sustenta o gabarito",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 3,
+          "criterion": "desvio do OP",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 4,
+          "criterion": "conduta insegura correta ou aceitável",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 5,
+          "criterion": "distrator absurdo",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 6,
+          "criterion": "trivia sem consequência",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 7,
+          "criterion": "explicação contradiz o gabarito",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 8,
+          "criterion": "informação decisiva ausente",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 9,
+          "criterion": "protocolo local não declarado",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        },
+        {
+          "number": 10,
+          "criterion": "ciência relevantemente desatualizada",
+          "triggered": false,
+          "rationale": "Checado no contexto deste item; não disparado."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "validade de construto",
+            "value": 2
+          },
+          {
+            "name": "enunciado",
+            "value": 2
+          },
+          {
+            "name": "alternativas",
+            "value": 2
+          },
+          {
+            "name": "distratores",
+            "value": 2
+          },
+          {
+            "name": "explicação",
+            "value": 2
+          },
+          {
+            "name": "referências",
+            "value": 2
+          },
+          {
+            "name": "ausência de pistas formais/AI-tells",
+            "value": 2
+          },
+          {
+            "name": "valor pedagógico",
+            "value": 1
+          }
+        ],
+        "total": 19
+      },
+      "decision": "Versão proposta aprovada na checagem autoral pela árvore§19; ciclo pretendido publicado somente após revisão independente do pacote exato.",
+      "reassessed": true,
+      "reassessment": "Versão literal A1.1 integralmente relida: qualificador preservado; siglas e dados numéricos formatados. Gadobutrol conferido no documento ACR; unicidade/segurança e10 eliminatórios reavaliados autoralmente, sem novo disparo."
+    },
+    "identityDecision": {
+      "preserveQid": true,
+      "reason": "OP primário, competência e conceito correto continuam reconhecíveis; nenhum reset de FSRS.",
+      "fsrsChange": false
+    },
+    "implementationAuthorization": {
+      "ready": false,
+      "reason": "Pacote AUTORAL. LIBERADA, quando presente, é resultado autoral derivado para a proposta exata; não equivale a revisão independente. O parent exigiu revisão independente antes de escrever data/topics.js ou data/refs.js."
+    },
+    "hold": null
+  },
+  "sharedACRLiteralFrom": "author-batch-A1.1.json",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "82d7373c",
+      "family": "A5-Alport-consolidacao",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Síndrome de Alport — Diagnóstico e Herança",
+        "qid": "82d7373c",
+        "q": "Mulher de 30 anos tem hematúria microscópica, proteinúria, hipoacusia neurossensorial bilateral e história familiar de doença renal desde a adolescência. A microscopia eletrônica mostra membrana basal glomerular com afinamento, espessamento e lamelação em aspecto de cesto trançado. Qual diagnóstico e padrão de herança mais comum são mais prováveis?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "Doença de lesões mínimas; resposta esperada a corticosteroide",
+          "Amiloidose familiar; depósito Congo-vermelho positivo",
+          "Glomerulonefrite pós-infecciosa; sequela auditiva por aminoglicosídeo",
+          "Síndrome de Alport por variantes em COL4A3/COL4A4/COL4A5; forma mais comum ligada ao X"
+        ],
+        "ans": 3,
+        "exp": "O conjunto de hematúria/proteinúria, perda auditiva neurossensorial, história familiar e membrana basal glomerular com lamelação em cesto trançado é típico de síndrome de Alport. A doença decorre de variantes em COL4A3, COL4A4 ou COL4A5, e a forma mais comum é ligada ao X por COL4A5. Formas autossômicas recessivas e dominantes também existem, portanto a herança deve ser interpretada no contexto familiar e molecular. Doença de lesões mínimas não explica hipoacusia nem lamelação da membrana basal; amiloidose exigiria depósitos Congo-vermelho positivos; glomerulonefrite pós-infecciosa não produz esse padrão hereditário.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "originalSHA256": "sha256:f7d763644fc86dedae2a2c72acfbcad2f215c5216c2d2579bcb0a73505aa0ad0",
+      "originalRefs": [
+        {
+          "id": "alport_genereviews_2025",
+          "original": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer síndrome de Alport pelo fenótipo renal-auditivo familiar e lamelação da membrana basal.",
+        "primaryCompetence": "Diagnóstico sindrômico de nefropatia hereditária.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Repetição do OP de 82728652, com mesma estrutura decisória; sexo e idade não fornecem variação útil.",
+          "MAIOR — A pergunta agrega diagnóstico e padrão de herança, mas o caso não identifica uma variante individual.",
+          "MAIOR — Distratores misturam diagnóstico, resposta terapêutica e mecanismo; a correta concentra diagnóstico, três genes e herança."
+        ],
+        "appeal": [
+          "O candidato pode acertar o diagnóstico de Alport sem poder concluir a herança individual. O item pergunta pelo padrão mais comum, mas isso é uma segunda tarefa desnecessária e não cria OP novo."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Fundir com 82728652 na versão A1.1, que pergunta somente o diagnóstico e qualifica os limites do pedigree na explicação. Não criar outra questão para manter a contagem."
+      },
+      "sources": [
+        {
+          "id": "alport",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1207/",
+          "access": "corpo integral acessível",
+          "date": "2026-11-15",
+          "locators": [
+            "Summary / Diagnosis-testing e Genetic counseling, linhas 69–84",
+            "Diagnosis / Kidney biopsy, linhas 202–217",
+            "Tabela 1, linhas 162–166"
+          ],
+          "verified": [
+            "fenótipo rim-audição-olho",
+            "COL4A3/4/5 e padrões de herança",
+            "lamelação/basket weave",
+            "imunomarcação normal não exclui todas as formas",
+            "80–85% COL4A5 na tabela e fenótipo feminino/AD mais tardio"
+          ],
+          "limitations": [
+            "URL /books direta exibiu CAPTCHA; /sites/books abriu corpo real. GeneReviews é revisão clínica, adequada para diagnóstico sindrômico; não foi tratada como estudo primário de acurácia."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Alport integra hematúria, hipoacusia, história familiar e lamelação; os genes e as heranças não são deduzidos de idade/sexo isolados.",
+          "source": "alport",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": null,
+      "proposedSHA256": null,
+      "classificationAfter": null,
+      "proposedRefs": [],
+      "candidateReview": null,
+      "identityDecision": {
+        "preserveQid": false,
+        "reason": "82d7373c é aposentado; 82728652 conserva sua identidade pedagógica e seu próprio histórico. Não transferir estado FSRS, acertos, crédito, domínio ou descobertas entre qids.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": "Item destinado à aposentadoria por fusão, não à publicação. A versão canônica 82728652-A1.1 aguarda gate independente do par.",
+      "duplicateTest": {
+        "canonicalQid": "82728652",
+        "canonicalProposedSHA256": "sha256:85614de3f4705862aecc64ba61ed5290cb8ec1b36077ec7b458ee5301a69b9ea",
+        "decision": {
+          "same": true,
+          "value": "Selecionar Alport pelo conjunto hereditário renal-auditivo e ultraestrutural."
+        },
+        "caseDataStructure": {
+          "same": true,
+          "value": "Hematúria/proteinúria + hipoacusia + história familiar + lamelação/cesto da membrana basal; idade/sexo são variações de superfície."
+        },
+        "targetLearnerProfile": {
+          "same": true,
+          "value": "Estudante avançado/R1–R2; nenhum perfil-alvo diferente é declarado."
+        },
+        "language": {
+          "same": true,
+          "value": "pt-BR"
+        },
+        "allFourCoincide": true,
+        "secondaryPrompt": "Perguntar também pela herança mais comum mistura duas tarefas; não justifica dois itens sindrômicos redundantes."
+      },
+      "lifecycleDecision": {
+        "verdict": "fundir",
+        "canonicalQid": "82728652",
+        "retiredQid": "82d7373c",
+        "retiredStatus": "aposentado",
+        "keepCanonicalLiteral": "A1.1 byte-exato",
+        "migration": "Nenhuma transferência de FSRS, crédito ou progresso; manter histórico antigo identificado pelo qid aposentado.",
+        "authorizationScope": "Aposentadoria depende de adjudicação independente. Publicação do item aposentado permanece BLOQUEADA."
+      }
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "03b3db65",
+      "family": "A5-gadolinio-HD",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Gadolínio e Fibrose Sistêmica Nefrogênica",
+        "qid": "03b3db65",
+        "q": "Paciente com doença renal crônica estágio 5 em hemodiálise necessita de ressonância magnética com contraste de gadolínio. Qual afirmação está correta quanto ao risco renal e à conduta?",
+        "opts": [
+          "O principal risco é a fibrose sistêmica nefrogênica; deve-se preferir um agente do Grupo II, cujo risco é muito baixo, sem necessidade de iniciar ou intensificar a diálise apenas por causa do exame.",
+          "O principal risco renal dos agentes de gadolínio nas doses usuais é uma lesão renal aguda tubular dose-dependente semelhante à causada pelo contraste iodado.",
+          "Os agentes lineares do Grupo I são preferidos por apresentarem menor risco de fibrose sistêmica nefrogênica na doença renal avançada.",
+          "Deve-se agendar uma sessão adicional de hemodiálise imediatamente após o exame para remover o gadolínio e prevenir a fibrose sistêmica nefrogênica."
+        ],
+        "ans": 0,
+        "exp": "O principal risco do gadolínio na doença renal avançada é a fibrose sistêmica nefrogênica (FSN); nas doses usuais, o gadolínio não causa lesão tubular dose-dependente como o contraste iodado (por isso B é incorreta). O ACR Manual on Contrast Media (2026) classifica os agentes por risco de FSN: o Grupo I (lineares — gadodiamida, gadopentetato, gadoversetamida) concentra o maior número de casos e é contraindicado na doença renal avançada, sendo incorreto preferi-lo (C). O Grupo II (macrocíclicos — gadobutrol, gadoterato, gadoteridol —, o gadobenato e, desde 2024, o gadoxetato e o gadopiclenol) é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em pacientes em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio (por isso D é incorreta).",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gadolinio_acr_manual_2026"
+        ]
+      },
+      "originalSHA256": "sha256:cf841def437960a129362ebf54d5ca82ea440ba6d11f73fe83fe1da8e9b2adf2",
+      "originalRefs": [
+        {
+          "id": "gadolinio_acr_manual_2026",
+          "original": {
+            "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+            "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "journal": "American College of Radiology",
+            "ano": 2026,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+            "icon": "📋",
+            "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+            "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+            "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+          },
+          "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Escolher a conduta dialítica após ressonância necessária com agente de gadolínio do grupo II em paciente já em hemodiálise.",
+        "primaryCompetence": "Planejamento seguro do exame contrastado na terapia dialítica de manutenção.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Risco, escolha do agente e modificação da diálise se acumulam na correta.",
+          "CRÍTICO — A explicação generaliza risco de lesão tubular do iodado e omite o caráter provisório do gadopiclenol.",
+          "MENOR — A discussão depende das letras das alternativas."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": true,
+            "rationale": "A explicação trata gadopiclenol como grupo II sem qualificar o status provisório e a decisão local."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": true,
+            "rationale": "A comparação causal genérica com lesão tubular pelo contraste iodado é indevida e não é necessária ao OP."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "anulado": true
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "gadolinium",
+          "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+          "access": "PDF integral oficial ACR, 126 páginas, obtido pelo link4 da página do Manual",
+          "date": "2026-11-15",
+          "locators": [
+            "NSF, pp84–86 / grupoII, dose diagnóstica, DRC4–5 e diálise",
+            "pp86 e89 / Tabela1 e atualização janeiro2025, grupoII* gadopiclenol",
+            "Tabela 1, PDF p.86, linha3615: gadobutrol explicitamente classificado no grupo II.",
+            "Reabertura oficial em 2026-11-15: capa 2026; capítulo FSN atualizado em 2025. PDF84–85, linhas3568–3579: RM eletiva antes da sessão regular quando possível; não iniciar nem alterar diálise."
+          ],
+          "verified": [
+            "grupoII preferido e risco muito baixo em DRC avançada",
+            "não reduzir abaixo da qualidade diagnóstica",
+            "não iniciar/alterar diálise só pelo contraste",
+            "gadopiclenol tem status provisório; grupoIII vazio; gadoxetato reclassificado em2024"
+          ],
+          "limitations": [
+            "Não confundir página consultada em2026 com nova evidência clínica de2026: o capítulo aberto identifica atualização janeiro2025. Referência proposta explicita essa data."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Gadobutrol é agente do grupo II; o risco de FSN é muito baixo na dose apropriada.",
+          "source": "gadolinium",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Coordenar exame eletivo para pouco antes da sessão regular, quando possível, sem iniciar ou intensificar diálise somente pelo contraste.",
+          "source": "gadolinium",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Gadolínio em hemodiálise — Programação do exame",
+        "qid": "03b3db65",
+        "q": "Paciente com doença renal crônica em hemodiálise de manutenção precisa de ressonância contrastada eletiva, clinicamente necessária. A radiologia selecionou gadobutrol, agente do grupo II, em dose diagnóstica. Sem outra indicação para alterar a diálise, qual planejamento é adequado?",
+        "opts": [
+          "Manter o esquema habitual; se viável, fazer o exame pouco antes da sessão regular.",
+          "Acrescentar uma sessão imediata após o exame, além das sessões habituais.",
+          "Passar a sessões diárias na semana do exame, para aumentar a remoção do contraste.",
+          "Dobrar a duração das sessões na semana do exame, para aumentar a remoção do contraste."
+        ],
+        "ans": 0,
+        "exp": "O American College of Radiology (ACR) recomenda, quando possível, realizar a ressonância eletiva com gadolínio pouco antes de uma sessão já programada de hemodiálise. O gadobutrol pertence ao grupo II, cujo risco de fibrose sistêmica nefrogênica (FSN) é muito baixo nas doses apropriadas. A hemodiálise remove contraste, mas não se deve acrescentar sessões, aumentar sua frequência ou modificar o esquema apenas por causa do exame. A decisão de alterar a diálise por outra indicação clínica é independente. A recomendação não deve ser extrapolada sem ressalva ao gadopiclenol, classificado como II* provisório, com manejo conforme a prática local.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gadolinio_acr_manual_2026"
+        ]
+      },
+      "proposedSHA256": "sha256:cbcbae3b69db12b40e7f59ab00746f7e888198df3e3bbe1c1162e3ddbf72c017",
+      "classificationAfter": {
+        "op": "Escolher a conduta dialítica após ressonância necessária com agente de gadolínio do grupo II em paciente já em hemodiálise.",
+        "primaryCompetence": "Planejamento seguro do exame contrastado na terapia dialítica de manutenção.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "gadolinio_acr_manual_2026",
+          "original": {
+            "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+            "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "journal": "American College of Radiology",
+            "ano": 2026,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+            "icon": "📋",
+            "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+            "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+            "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+          },
+          "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c",
+          "proposed": {
+            "label": "Manual de contraste — Fibrose sistêmica nefrogênica (2025)",
+            "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "journal": "American College of Radiology",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Grupo II preferido na doença renal crônica avançada; não acrescentar diálise pelo exame",
+            "icon": "📋",
+            "resumo": "Manual do American College of Radiology (ACR), consultado em 2026, capítulo sobre fibrose sistêmica nefrogênica (FSN) atualizado em 2025. O grupo II é preferido em pacientes sob risco de FSN, na menor dose que preserve qualidade diagnóstica; inclui gadobutrol. O grupo I é contraindicado na doença renal crônica avançada. Não iniciar nem alterar diálise apenas pelo contraste. Gadopiclenol permanece no grupo II* provisório, com decisão local sobre manejo como grupo II ou III.",
+            "conclusao": "Se a ressonância contrastada é necessária em doença renal crônica avançada, selecionar agente apropriado do grupo II e dose diagnóstica, ponderando riscos de não realizar o exame.",
+            "curiosidade": "A classificação depende do agente específico. A atualização distingue gadopiclenol provisório dos agentes do grupo II com maior experiência clínica."
+          },
+          "proposedSHA256": "sha256:88daa011b4ff1ee92a6ca6dfe562457da3f59972aa455d1d86937687cb6495b5"
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "Quatro planejamentos dialíticos comparáveis e sem qualificador clínico exclusivo na correta. Três distratores representam intensificação desnecessária em modalidades diferentes; essa proximidade limita sua diversidade, sem criar segunda resposta correta.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "Preserva o OP original de conduta em paciente já em hemodiálise e o conceito correto de não intensificar diálise pelo contraste; a seleção do agente é fornecida para retirar a pista composta. Manter qid e FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [
+        "O card comum é byte-exato A1.1: não há mudança global de referência neste lote."
+      ],
+      "hold": null,
+      "neighborComparison": {
+        "neighborQid": "190676b8",
+        "neighborProposedSHA256": "sha256:ec08844eed2db7cb30fb389ce03f3cfde42401882bf2cd0f61cabebe826ed623",
+        "decision": {
+          "same": false,
+          "neighbor": "Selecionar agente e dose diagnóstica em DRC avançada pré-diálise.",
+          "candidate": "Programar exame eletivo com agente já selecionado no paciente em HD."
+        },
+        "caseDataStructure": {
+          "same": false,
+          "neighbor": "TFGe24 e necessidade diagnóstica; não está em diálise.",
+          "candidate": "HD de manutenção e gadobutrol já definido; pergunta sobre programação."
+        },
+        "targetLearnerProfile": {
+          "same": true,
+          "value": "Estudante avançado/R1–R2."
+        },
+        "language": {
+          "same": true,
+          "value": "pt-BR"
+        },
+        "allFourCoincide": false,
+        "reason": "A variação muda a decisão assistencial e os dados necessários, não apenas idade/sexo ou redação."
+      }
+    }
+  ]
+}

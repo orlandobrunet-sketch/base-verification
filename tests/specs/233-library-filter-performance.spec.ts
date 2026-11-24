@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
-test('buscar no catálogo preserva os cartões e só a mudança de ordem os reposiciona', async ({ page, context, baseURL }) => {
+test('buscar no catálogo preserva os cartões e ordena por obra', async ({ page, context, baseURL }) => {
   const origin = new URL(baseURL!).origin;
   await context.route('**/*', route => {
     const request = route.request();
@@ -23,6 +23,7 @@ test('buscar no catálogo preserva os cartões e só a mudança de ordem os repo
     const win = window as any;
     const list = document.getElementById('nqDashLibraryList')!;
     win.__libraryNodes = [...list.children];
+    win.__libraryCards = new Set(list.querySelectorAll('[data-library-entry]'));
     win.__libraryMoves = 0;
     new MutationObserver(records => {
       for (const record of records) win.__libraryMoves += record.addedNodes.length + record.removedNodes.length;
@@ -39,14 +40,19 @@ test('buscar no catálogo preserva os cartões e só a mudança de ordem os repo
     .every((node, index) => node === (window as any).__libraryNodes[index]))).toBe(true);
   await page.locator('#nqDashLibrarySort').selectOption('oldest');
   await expect.poll(() => page.evaluate(() => (window as any).__libraryMoves)).toBeGreaterThan(0);
-  const years = await cards.evaluateAll(entries => entries.map(entry => Number.parseInt((entry as HTMLElement).dataset.libraryYear || '', 10))
+  const works = page.locator('#nqDashLibraryList > [data-library-work]');
+  const years = await works.evaluateAll(entries => entries.map(entry => Number.parseInt((entry as HTMLElement).dataset.libraryYear || '', 10))
     .filter(Number.isFinite));
   expect(years.length).toBeGreaterThan(1);
   expect(years).toEqual([...years].sort((a, b) => a - b));
-  await page.evaluate(() => { (window as any).__libraryMoves = 0; });
+  await page.evaluate(() => {
+    (window as any).__libraryNodes = [...document.getElementById('nqDashLibraryList')!.children];
+  });
   await search.fill(query);
   await expect.poll(() => page.locator('[data-library-entry]:visible').count()).toBeLessThan(total);
   await search.fill('');
   await expect(page.locator('[data-library-entry]:visible')).toHaveCount(total);
-  expect(await page.evaluate(() => (window as any).__libraryMoves)).toBe(0);
+  // A busca pode trocar a variante que define a ordem da obra, sem recriar cartões.
+  expect(await cards.evaluateAll(entries => entries.every(entry => (window as any).__libraryCards.has(entry)))).toBe(true);
+  expect(await works.evaluateAll(entries => entries.every((entry, index) => entry === (window as any).__libraryNodes[index]))).toBe(true);
 });

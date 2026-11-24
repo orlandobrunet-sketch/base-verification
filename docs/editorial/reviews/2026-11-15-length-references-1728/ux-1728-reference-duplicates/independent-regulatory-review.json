@@ -1,0 +1,1649 @@
+{
+  "schema": "NQ_INDEPENDENT_REGULATORY_REVIEW_1728_v1",
+  "date": "2026-11-15",
+  "role": "INDEPENDENT_MEDICAL_EDITORIAL_REVIEW",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/editorial_backlog_1728",
+  "authorPackage": {
+    "file": "regulatory-author-A13.json",
+    "rawSHA256": "60e1b06d31d6ee620703546276c5235a64dcaf5e04a0367996645f426fc0a8f8"
+  },
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "productionWrites": false,
+  "sources": {
+    "V": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42911185/",
+      "doi": "10.1056/NEJMoa2609127",
+      "access": "NLM EFetch primário estruturado aberto independentemente HTTP200; não apenas metadados",
+      "primarySHA256": "fae25ad7dcb803b9a729c08ab805fbc34cc4f18167ff4dc1b2e33823b962b0f5",
+      "locator": "Abstract METHODS/RESULTS/CONCLUSIONS eArticleDate22/10/2026",
+      "limit": "Não foi aberto corpo completo/apêndice/protocolo; os literais usam resultados explícitos do abstract e limitam o horizonte24meses."
+    },
+    "A": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42242268/",
+      "doi": "10.1016/S0140-6736(26)00960-8",
+      "access": "PubMed e NLM EFetch primário estruturado abertos independentemente HTTP200",
+      "primarySHA256": "fae25ad7dcb803b9a729c08ab805fbc34cc4f18167ff4dc1b2e33823b962b0f5",
+      "locator": "METHODS/FINDINGS: estratos,132+4semanas, resultados136/slope; Lancet407(10546):2387–2401",
+      "limit": "Corpo completo/apêndice não consultados. Não atribuir significância confirmatória ao slope ou benefício de desfecho duro ausente nas estimativas apresentadas."
+    },
+    "VL": {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+      "access": "PDF oficial integral eDailyMed abertos pelo revisor; texto local congelado relido",
+      "file": "voyxact-2025.pdf",
+      "locator": "Revisão11/2025; §1/2.1,5.1/5.2,6.1,12.2",
+      "limit": "Data da revisão clínica não é a atualização da páginaSPLmarço2026. O cenário identifica a versão de bula, não faz afirmação universal sobre versões futuras.",
+      "primarySHA256": "8d6dbd0bdcd31f2420c36efbbb0806d6ca303946137341f691ac0894aee40385"
+    },
+    "AL": {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/219208Orig1s001Correctedlbl.pdf",
+      "access": "PDF oficial corrigido integral eDailyMed abertos pelo revisor; texto local relido",
+      "file": "vanrafia-corrected-2026.pdf",
+      "locator": "Revisão clínica04/2025,ReferenceID5563931; §1/14.1,Tabela2notaC",
+      "limit": "Arquivo de2026não altera por si revisão impressa04/2025. Mantém indicação acelerada nesta versão.",
+      "primarySHA256": "aedda728607bcbd1be1a45057c524a374bedaede33d9fb46172308d3c885dbea"
+    },
+    "F": {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/216403s006lbl.pdf",
+      "access": "PDF oficial integral aberto pelo revisor e extração local independente",
+      "file": "filspari-2026.pdf",
+      "locator": "Revisão04/2026,ReferenceID5780097; §2.1,4,5.4–5.7,7.1",
+      "limit": "Gate da segurança/retensão. O card não é uma bula condensada de todas as contraindicações ou indicações.",
+      "primarySHA256": "20b315c18d3e29880c656193d31e085a8cd987340fc6ad122a0821054616d444"
+    },
+    "E": {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+      "access": "DailyMed oficial integral aberto pelo revisor e capturaHTMLcongelada",
+      "file": "empaveli-dailymed-2026.html",
+      "locator": "Revisão08/2026/atualização21/08;§1.2,2.1,4,5.1,12.1,14.2",
+      "limit": "Dose/duração ótima da profilaxia não estudadas na bula; não inferir proteção completa por vacinação.",
+      "primarySHA256": "8285224ee07bfbe5923382647f10453eab199d7f41f463da95f51a2342dea288"
+    },
+    "P": {
+      "url": "https://otsuka-us.com/news/otsuka-reports-positive-phase-3-visionary-two-year-egfr-results-demonstrating-voyxactr",
+      "access": "Comunicado primário completo do patrocinador aberto pelo revisor",
+      "locator": "01/07/2026, apresentação/submissão futura; anúncio histórico",
+      "limit": "Não revisado por pares; não usado como fonte decisiva dos números finais."
+    },
+    "AL_DATE": {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2025/219208Orig1s000Approv.pdf",
+      "access": "Pacote oficial FDA efetivamente aberto pelo revisor; não só resultado de busca",
+      "locator": "Approval Date: April2,2025;NDA219208",
+      "limit": "Sustenta data histórica da curiosidade, não uma decisão posterior."
+    }
+  },
+  "primaryProofs": {
+    "nlmIndependentFile": "independent-A2/regulatory-trials-pubmed-independent.xml",
+    "nlmIndependentSHA256": "fae25ad7dcb803b9a729c08ab805fbc34cc4f18167ff4dc1b2e33823b962b0f5",
+    "metadata": "independent-regulatory-primary-metadata.json",
+    "labelPages": "independent-regulatory-label-pages.json",
+    "sharedSourceFiles": [
+      {
+        "name": "voyxact-2025.pdf",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+        "status": 200,
+        "bytes": 4722114,
+        "sha256": "8d6dbd0bdcd31f2420c36efbbb0806d6ca303946137341f691ac0894aee40385",
+        "valid": true
+      },
+      {
+        "name": "vanrafia-corrected-2026.pdf",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/219208Orig1s001Correctedlbl.pdf",
+        "status": 200,
+        "bytes": 585695,
+        "sha256": "aedda728607bcbd1be1a45057c524a374bedaede33d9fb46172308d3c885dbea",
+        "valid": true
+      },
+      {
+        "name": "filspari-2026.pdf",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/216403s006lbl.pdf",
+        "status": 200,
+        "bytes": 958259,
+        "sha256": "20b315c18d3e29880c656193d31e085a8cd987340fc6ad122a0821054616d444",
+        "valid": true
+      },
+      {
+        "name": "empaveli-dailymed-2026.html",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+        "status": 200,
+        "bytes": 318031,
+        "sha256": "8285224ee07bfbe5923382647f10453eab199d7f41f463da95f51a2342dea288",
+        "valid": true
+      },
+      {
+        "name": "voyxact-dailymed.html",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c8a93b32-0676-4704-86dc-cb65f425c6e5",
+        "status": 200,
+        "bytes": 173234,
+        "sha256": "a8bf2f3b5f335884691f20d7fa0ebb8acf16921d3b87f58839dddd06203dafb6",
+        "valid": true
+      }
+    ],
+    "method": "Números e identidades dos ensaios lidos nos abstracts primários integrais recuperados por NLM EFetch. Bulas integrais oficiais abertas e páginas relevantes relidas localmente com hashes. Não se alega acesso a artigos integrais indisponíveis."
+  },
+  "items": [
+    {
+      "qid": "aa732568",
+      "original": {
+        "authorRevision": "sha256:0f21278380d5b6462a303d85f113484365dcdea95bdede2f8be4bf5659fc1c25",
+        "rawObjectSHA256": "f5e0c469ebef6bdb807f7840175e91f8091c79ff45cdbba83cdc021185fc98da",
+        "question": {
+          "t": "VISIONARY — Hierarquia da Evidência em 2026",
+          "qid": "aa732568",
+          "q": "Em agosto de 2026, qual síntese distingue corretamente a publicação do VISIONARY, a bula do Voyxact e o anúncio posterior do patrocinador?",
+          "opts": [
+            "A análise interina revisada por pares mostrou redução de 51% do uPCR versus placebo aos nove meses e sustentou aprovação acelerada; o patrocinador depois anunciou resultado positivo do slope de TFGe em 24 meses, mas a análise completa ainda requer publicação e avaliação regulatória, e a bula vigente não declara benefício funcional de longo prazo estabelecido",
+            "A publicação interina já demonstrou redução de falência renal e levou diretamente à aprovação tradicional, sem necessidade de confirmação",
+            "O anúncio do patrocinador em julho de 2026 equivale a revisão por pares e atualiza automaticamente a bula da FDA",
+            "A aprovação acelerada baseou-se no slope de TFGe em 24 meses, enquanto a proteinúria foi apenas um desfecho exploratório"
+          ],
+          "ans": 0,
+          "exp": "A publicação interina do VISIONARY avaliou o desfecho primário de proteinúria nos primeiros 320 participantes com oportunidade de chegar ao mês 9: sibeprenlimabe 400 mg subcutâneo a cada quatro semanas reduziu o uPCR em 51% versus placebo. Isso sustentou a aprovação acelerada da FDA baseada em desfecho substituto. Em julho de 2026, a Otsuka anunciou resultado topline positivo do slope de TFGe em 24 meses, mas informou que os dados ainda seriam submetidos para apresentação e para pedido de aprovação tradicional. Assim, o anúncio atualiza o estudo, porém não substitui publicação completa nem revisão regulatória; a bula vigente continua declarando que o efeito de longo prazo sobre o declínio funcional não está estabelecido.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "visionary_trial",
+            "voyxact_fda_2025",
+            "visionary_egfr_otsuka_2026"
+          ]
+        }
+      },
+      "proposed": {
+        "t": "VISIONARY — Hierarquia da Evidência em 2026",
+        "qid": "aa732568",
+        "q": "A análise final do VISIONARY foi publicada no NEJM em outubro de 2026 e mostrou resultado favorável de função renal em 24 meses. A versão consultada da bula do Voyxact descreve aprovação acelerada baseada em proteinúria. Como comunicar essa atualização?",
+        "opts": [
+          "A evidência funcional amadureceu; mudar a indicação aprovada exige decisão regulatória própria.",
+          "O resultado publicado permite apresentar a aprovação acelerada como tradicional desde a divulgação.",
+          "A limitação mantida na bula impede usar o achado de função renal como evidência clínica publicada.",
+          "O achado funcional permanece no nível de anúncio do patrocinador até que a bula seja atualizada."
+        ],
+        "ans": 0,
+        "exp": "São documentos com funções e datas distintas. A análise final revisada por pares mostrou diferença favorável no slope anualizado da taxa de filtração glomerular estimada (TFGe) em 24 meses: 4,5 mL/min/1,73 m²/ano (IC95% 3,6–5,4). Esse resultado ultrapassa o anúncio preliminar de julho. A versão de bula citada, porém, descreve aprovação acelerada baseada em proteinúria; publicar o resultado não converte automaticamente a aprovação em tradicional. Tampouco a redação de uma bula anterior apaga a evidência científica posterior.",
+        "diff": "medium",
+        "cat": "glomerular",
+        "refs": [
+          "visionary_final_2026",
+          "voyxact_fda_2025"
+        ]
+      },
+      "proposedSHA256": "sha256:480e62a27ccae45db6eefd05ee469b6b3fe4b4716d6890afe9ce73b1b1c2eabb",
+      "referenceRevisions": {
+        "visionary_final_2026": "sha256:492de63781baa5e3fd308b0635eb95c5e0e21327a148a30e805052a20f5b93a7",
+        "voyxact_fda_2025": "sha256:6bff417d711166008869d3ec69884fd00278ad1fdd32e0aef9214e33d44fa9aa"
+      },
+      "bundleRevision": "sha256:7d43a9039fdce012cfcc04bdfce1e4ef915333b1e8d3b3313bebe0dd04f199eb",
+      "classification": {
+        "op": "Distinguir o nível de divulgação científica do VISIONARY da indicação e do ato regulatório, sem equiparar anúncio, publicação e aprovação.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "competency": "Interpretação proporcional de ensaios e autorização regulatória",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Interpretação de documento/estimativa e limite de extrapolação; novidade do fármaco não torna a tarefa hard.",
+        "identity": "Mesmo OP de hierarquia da evidência e da autorização, mesmo conceito correto: separar documentos e atos. Atualização do estado publicado e distribuição da explicação entre enunciado/opções; não cria indicação nem recomenda nova terapia.",
+        "independentOP": "Distinguir evidência publicada de indicação aprovada, sem equiparar anúncio, publicação e ato regulatório.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade foram reavaliados no literal, não herdados dos gates autorais."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Veredito não aprovador; eixos de evidência não autorizam por si.",
+        "findings": "A correta original agrupava publicação interina, porcentagem, aprovação, anúncio e condição futura numa única alternativa. A data agosto/2026 era um caso histórico válido, não declarar falsidade retroativa pela publicação de outubro.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "A correta original agrupava publicação interina, porcentagem, aprovação, anúncio e condição futura numa única alternativa. A data agosto/2026 era um caso histórico válido, não declarar falsidade retroativa pela publicação de outubro."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação,VERIFICADA+NENHUMA,nenhum eliminatório ou recurso decisivo (§18.4).",
+        "confidence": "alta na fidelidade das afirmações ao material primário efetivamente lido; não éGRADEda intervenção",
+        "claims": {
+          "claim": "Final VISIONARY, NEJM22/10/2026:510randomizados, slope anualizado0,3 versus−4,2; diferença4,5(IC95%3,6–5,4),24meses, secundário-chave. BulaVOYXACT11/2025: indicação antiproteinúrica acelerada. AnúncioOtsuka01/07precede publicação.",
+          "sourceIDs": [
+            "V",
+            "VL",
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "A pergunta fixa a versão de bula consultada e o estado publicado. Não afirma que inexistam futuras decisões regulatórias. A publicação modifica a evidência científica e não converte automaticamente a autorização. Nenhuma alternativa contrária é defensável: nem a bula apaga dados posteriores nem mantém uma publicação no nível de anúncio.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "A pergunta fixa a versão de bula consultada e o estado publicado. Não afirma que inexistam futuras decisões regulatórias. A publicação modifica a evidência científica e não converte automaticamente a autorização. Nenhuma alternativa contrária é defensável: nem a bula apaga dados posteriores nem mantém uma publicação no nível de anúncio."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Final VISIONARY, NEJM22/10/2026:510randomizados, slope anualizado0,3 versus−4,2; diferença4,5(IC95%3,6–5,4),24meses, secundário-chave. BulaVOYXACT11/2025: indicação antiproteinúrica acelerada. AnúncioOtsuka01/07precede publicação."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo raciocínio central do original: separar evidência científica e documento/ato regulatório. A mudança é de momento e maturidade do estudo. Não exige nova indicação ou mecanismo. Preservarqid/FSRS."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta não trata hipótese como indicação automática; exceções e segurança estão explícitas."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns de extrapolação/regulação ou planos concorrentes; não exigem uma etiologia aleatória sem relação."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Decisão útil de leitura de evidência ou segurança de medicamentos."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação sustenta exatamenteAcom fonte e limites; não muda endpoint/população do caso."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Versão regulatória/momento ou estado vacinal/urgência e evento adverso são informados; nenhuma premissa clínica oculta necessária."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Bula norte-americana é cenário explicitado; não é protocolo institucional implícito nem indicação brasileira presumida."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Resultados finais e revisões regulatórias2026foram conferidos; documentos históricos permanecem rotulados por versão."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "A atualização preserva o limite regulatório sem ignorar o ensaio final; a correta ficou proporcional às demais e os números estão na explicação."
+        },
+        "fourDimensionDuplication": "ALIGN2793701a exige interpretar estimativas discordantes eICque inclui zero; aqui há efeito funcional claro e hierarquia de divulgação. Contexto compartilhado de regulação não satisfaz as quatro dimensões. Outros itens de mecanismoAPRIL, elegibilidade e infecção são OPs distintos.",
+        "decisionTree": "0:evidência verificada/sem pendência, válida;1:sem eliminatório/duplicata;2:recurso sem argumento plausível residual;3:score18–20→aprovada;statuspublicado após aplicação autorizada.",
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "gateExactQuestion": "sha256:480e62a27ccae45db6eefd05ee469b6b3fe4b4716d6890afe9ce73b1b1c2eabb",
+        "gateExactReferences": {
+          "visionary_final_2026": "sha256:492de63781baa5e3fd308b0635eb95c5e0e21327a148a30e805052a20f5b93a7",
+          "voyxact_fda_2025": "sha256:6bff417d711166008869d3ec69884fd00278ad1fdd32e0aef9214e33d44fa9aa"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identityReason": "Mesmo raciocínio central do original: separar evidência científica e documento/ato regulatório. A mudança é de momento e maturidade do estudo. Não exige nova indicação ou mecanismo. Preservarqid/FSRS.",
+        "constraints": [
+          "Preservar versões/respostas históricas; não reavaliar acertos salvos pelo texto atualizado.",
+          "Não confundir referência científica final com anúncio, relatório interino ou bula; não agrupar por nome do ensaio apenas.",
+          "Regenerar manifesto de revisão e preservar leitura de versões; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "2793701a",
+      "original": {
+        "authorRevision": "sha256:1a790bd87abd45004b2cd3adf2484a6c10a4cfa4fb1a3d0a9635620bada069a9",
+        "rawObjectSHA256": "0c1cb7c5c827ab1374225726352cb05e4f4ee8864be2ef09f16a43cb4824c0e3",
+        "question": {
+          "t": "ALIGN e Atrasentana — Efeito e Limite da Evidência",
+          "qid": "2793701a",
+          "q": "Qual síntese distingue o achado do ALIGN da indicação acelerada da atrasentana nos Estados Unidos?",
+          "opts": [
+            "Na semana 36, atrasentana reduziu o UPCR em cerca de 36 pontos percentuais a mais que placebo; a aprovação acelerada usa proteinúria como substituto e ainda não estabelece menor declínio da função renal",
+            "O ALIGN comprovou redução de mortalidade e diálise e gerou aprovação plena por esses desfechos",
+            "Atrasentana é antagonista de AT1 e deve substituir todo tratamento dirigido à IgAN",
+            "A aprovação ocorreu apesar de ausência de diferença em proteinúria"
+          ],
+          "ans": 0,
+          "exp": "Na análise interina pré-especificada do ALIGN, a variação geométrica do UPCR foi −38,1% com atrasentana e −3,1% com placebo, diferença entre grupos de −36,1 pontos percentuais. A FDA concedeu aprovação acelerada para reduzir proteinúria em adultos sob risco de progressão rápida, em geral com UPCR de pelo menos 1,5 g/g. Atrasentana antagoniza seletivamente ETA. Nem a análise interina nem a bula estabelecem ainda redução do declínio da função renal; essa distinção evita transformar um desfecho substituto em benefício clínico confirmado.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "atrasentan_igan",
+            "vanrafia_fda_2025"
+          ]
+        }
+      },
+      "proposed": {
+        "t": "ALIGN e Atrasentana — Efeito e Limite da Evidência",
+        "qid": "2793701a",
+        "q": "No relatório final do ALIGN, a diferença de função renal na semana 136 foi 2,4 mL/min/1,73 m² (IC95% −0,1 a 4,8; p=0,057), enquanto o slope total favoreceu atrasentana. A versão de bula consultada mantém aprovação acelerada baseada em proteinúria. Qual síntese é mais adequada?",
+        "opts": [
+          "Há sinal funcional favorável, com incerteza na semana 136; isso não equivale a aprovação tradicional.",
+          "O slope favorável torna o desfecho da semana 136 confirmatório e sustenta conversão regulatória automática.",
+          "O intervalo da semana 136 demonstra ausência de efeito renal e invalida a redução de proteinúria.",
+          "O efeito na semana 136 confirma a prevenção de falência renal, mesmo sem mudança na redação da bula."
+        ],
+        "ans": 0,
+        "exp": "É preciso identificar qual estimativa sustenta a afirmação. Na análise final, o intervalo de confiança da diferença da semana 136 inclui zero; p=0,057 não prova benefício nesse desfecho nem prova ausência de efeito. O slope total foi favorável: diferença de 1,4 mL/min/1,73 m²/ano (IC95% 0,5–2,3). Os dados funcionais publicados devem ser apresentados com essa distinção, sem convertê-los em prova de prevenção de falência renal isolada. A bula citada permanece uma aprovação acelerada para redução de proteinúria; a interpretação do ensaio e a decisão regulatória não se substituem.",
+        "diff": "medium",
+        "cat": "glomerular",
+        "refs": [
+          "align_final_2026",
+          "vanrafia_fda_2025"
+        ]
+      },
+      "proposedSHA256": "sha256:73eaa96277f681aec48931418b9c8a71c9ec32299703171d6d1f442fabd9e1ae",
+      "referenceRevisions": {
+        "align_final_2026": "sha256:5eadf827d11a5cfa08f18c11bd14ac4c099fa27ee935fa7777c15af66793c44a",
+        "vanrafia_fda_2025": "sha256:7bcdab40eab97ef06cc0e7eeb6aa5e53fded45287ffd023a361abdb9815ed66a"
+      },
+      "bundleRevision": "sha256:242904c3c541d9a57b9feeecf215e1f55f93a6dd6fb1cb6ec1177aa7ce05d348",
+      "classification": {
+        "op": "Interpretar proporcionalmente o achado do ALIGN e distingui-lo do alcance da indicação acelerada da atrasentana.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "competency": "Interpretação proporcional de ensaios e autorização regulatória",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Interpretação de documento/estimativa e limite de extrapolação; novidade do fármaco não torna a tarefa hard.",
+        "identity": "Preserva o OP de efeito do ALIGN versus limite regulatório e a resposta correta de não converter evidência em aprovação plena. Atualiza a análise final, explicita a incerteza e elimina a unidade errada de pontos percentuais; não testa um novo mecanismo ou uma nova decisão terapêutica.",
+        "independentOP": "Interpretar proporcionalmente o efeito do ALIGN e distingui-lo do alcance regulatório da indicação acelerada.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade foram reavaliados no literal, não herdados dos gates autorais."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Veredito não aprovador; eixos de evidência não autorizam por si.",
+        "findings": "Gabarito e explicação chamavam36,1de pontos percentuais. A redução relativa de razões geométricas não é diferença de pontos. A tabela primária regulatória contradiz essa unidade; os resultados finais também exigem escopo temporal explícito.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": true,
+            "rationale": "Gabarito e explicação chamavam36,1de pontos percentuais. A redução relativa de razões geométricas não é diferença de pontos. A tabela primária regulatória contradiz essa unidade; os resultados finais também exigem escopo temporal explícito."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          }
+        ],
+        "score": {
+          "anulado": true,
+          "reason": "Eliminatório documentado."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação,VERIFICADA+NENHUMA,nenhum eliminatório ou recurso decisivo (§18.4).",
+        "confidence": "alta na fidelidade das afirmações ao material primário efetivamente lido; não éGRADEda intervenção",
+        "claims": {
+          "claim": "ALIGN final, Lancet2026:404randomizados(340principais,64SGLT2). No principal, mudançaTFGe semana136:2,4(IC95%−0,1a4,8;p0,057); slope total1,4(IC95%0,5–2,3). Bula clínica04/2025 ainda acelerada para proteinúria. Tabela2notaC usa redução relativa, não pontos percentuais.",
+          "sourceIDs": [
+            "A",
+            "AL"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "O ICque inclui zero não prova equivalência/ausência de efeito. Slope favorável não transforma outro desfecho em confirmatório nem equivale a prevenção de falência renal isolada. O comando pede síntese de estimativas e alcance regulatório. A não exige escolher tratamento nem negar dados favoráveis. Sem argumento de anulação residual.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "O ICque inclui zero não prova equivalência/ausência de efeito. Slope favorável não transforma outro desfecho em confirmatório nem equivale a prevenção de falência renal isolada. O comando pede síntese de estimativas e alcance regulatório. A não exige escolher tratamento nem negar dados favoráveis. Sem argumento de anulação residual."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "ALIGN final, Lancet2026:404randomizados(340principais,64SGLT2). No principal, mudançaTFGe semana136:2,4(IC95%−0,1a4,8;p0,057); slope total1,4(IC95%0,5–2,3). Bula clínica04/2025 ainda acelerada para proteinúria. Tabela2notaC usa redução relativa, não pontos percentuais."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Preservarqid: o original já testava achadoALIGN versus limite da aprovação acelerada. Agora a estimativa funcional final substitui a proteinúria interina mal expressa; OP/competência/conceito de leitura proporcional continuam. O ICé fornecido, não se exige memorizar nova estatística ou executar nova decisão terapêutica. BloomCompreender/MillerSabe; dificuldade média. Não resetarFSRS por atualização do mesmo item."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta não trata hipótese como indicação automática; exceções e segurança estão explícitas."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns de extrapolação/regulação ou planos concorrentes; não exigem uma etiologia aleatória sem relação."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Decisão útil de leitura de evidência ou segurança de medicamentos."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação sustenta exatamenteAcom fonte e limites; não muda endpoint/população do caso."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Versão regulatória/momento ou estado vacinal/urgência e evento adverso são informados; nenhuma premissa clínica oculta necessária."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Bula norte-americana é cenário explicitado; não é protocolo institucional implícito nem indicação brasileira presumida."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Resultados finais e revisões regulatórias2026foram conferidos; documentos históricos permanecem rotulados por versão."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "As quatro opções interpretam as mesmas estimativas. Não se escolhe pela extensão, e incerteza não vira prova de ausência."
+        },
+        "fourDimensionDuplication": "Difere deVISIONARY em dado decisivo/conceito avaliado: incerteza da semana136 e discrepância com slope, não mero amadurecimento de anúncio. Não fundir só por ambos tratarem regulação. Nenhum outro itemALIGN com esta decisão foi identificado.",
+        "decisionTree": "0:evidência verificada/sem pendência, válida;1:sem eliminatório/duplicata;2:recurso sem argumento plausível residual;3:score18–20→aprovada;statuspublicado após aplicação autorizada.",
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "gateExactQuestion": "sha256:73eaa96277f681aec48931418b9c8a71c9ec32299703171d6d1f442fabd9e1ae",
+        "gateExactReferences": {
+          "align_final_2026": "sha256:5eadf827d11a5cfa08f18c11bd14ac4c099fa27ee935fa7777c15af66793c44a",
+          "vanrafia_fda_2025": "sha256:7bcdab40eab97ef06cc0e7eeb6aa5e53fded45287ffd023a361abdb9815ed66a"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identityReason": "Preservarqid: o original já testava achadoALIGN versus limite da aprovação acelerada. Agora a estimativa funcional final substitui a proteinúria interina mal expressa; OP/competência/conceito de leitura proporcional continuam. O ICé fornecido, não se exige memorizar nova estatística ou executar nova decisão terapêutica. BloomCompreender/MillerSabe; dificuldade média. Não resetarFSRS por atualização do mesmo item.",
+        "constraints": [
+          "Preservar versões/respostas históricas; não reavaliar acertos salvos pelo texto atualizado.",
+          "Não confundir referência científica final com anúncio, relatório interino ou bula; não agrupar por nome do ensaio apenas.",
+          "Regenerar manifesto de revisão e preservar leitura de versões; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "bcb1293d",
+      "original": {
+        "authorRevision": "sha256:43694aa902ba5326f4938b59c16b696fa778d8249272802bd1ad83921f17a902",
+        "rawObjectSHA256": "58a931f479d3da2bd4ac3dd6bd7914a42d66121f6469f3db24339d312211d44e",
+        "question": {
+          "t": "Sparsentana — Retenção Hídrica e Monitorização",
+          "qid": "bcb1293d",
+          "q": "Paciente com nefropatia por IgA inicia sparsentana e evolui com ganho de peso e edema periférico. Qual interpretação é mais segura?",
+          "refs": [
+            "filspari_fda_2025",
+            "protect_trial"
+          ],
+          "opts": [
+            "Retenção hídrica é efeito conhecido do bloqueio de endotelina; deve-se reavaliar volemia, função renal e necessidade de ajuste ou interrupção, além de monitorar pressão e potássio",
+            "O edema prova necrose tubular direta e exige imunossupressão",
+            "Trata-se de efeito esperado sem relevância clínica, dispensando monitorização",
+            "A sparsentana deve ser associada a IECA ou BRA em dose máxima para neutralizar o edema"
+          ],
+          "ans": 0,
+          "exp": "Antagonismo do receptor de endotelina pode causar retenção de fluido e edema. A bula da sparsentana também alerta para hipotensão, hipercalemia e LRA, exigindo monitorização clínica e laboratorial e manejo do volume; retenção clinicamente importante pode exigir diurético, ajuste ou interrupção conforme gravidade. Como a sparsentana já bloqueia AT1, não deve ser combinada rotineiramente com IECA ou BRA. O benefício antiproteinúrico não transforma edema em evento irrelevante.",
+          "diff": "hard",
+          "cat": "nefrologia_geral"
+        }
+      },
+      "proposed": {
+        "t": "Sparsentana — Retenção Hídrica e Monitorização",
+        "qid": "bcb1293d",
+        "q": "Paciente com nefropatia por IgA desenvolve ganho de peso e edema periférico após iniciar sparsentana. Qual é o próximo passo mais seguro?",
+        "refs": [
+          "filspari_fda_2025"
+        ],
+        "opts": [
+          "Avaliar causa e volemia, ajustar diurético se necessário e reconsiderar a dose de sparsentana.",
+          "Aumentar a dose para controlar a proteinúria, atribuindo o edema à atividade da doença glomerular.",
+          "Associar losartana para reforçar a antiproteinúria e reavaliar o edema na consulta seguinte.",
+          "Trocar por outro antagonista de endotelina, priorizando a troca antes de investigar o edema."
+        ],
+        "ans": 0,
+        "exp": "Retenção hídrica é um efeito conhecido do antagonismo de endotelina, mas o edema também requer investigação de outras causas. A bula orienta avaliar o paciente, tratar o volume com início ou ajuste de diurético quando indicado e considerar modificação da dose. Devem ser reavaliados pressão, função renal e potássio, pois também há risco de hipotensão, lesão renal aguda e hipercalemia; gravidade clínica pode exigir suspensão. A resposta não impõe interrupção a todos nem presume que o edema prove progressão da nefropatia. A sparsentana já bloqueia o receptor de angiotensina II tipo 1; associar losartana aumenta risco e é contraindicado pela bula.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "proposedSHA256": "sha256:3a809ba9c9bf6373c2c05b9b53ab9e66370e0f32ac2563e9316a9f4b6ec8ce74",
+      "referenceRevisions": {
+        "filspari_fda_2025": "sha256:6328d80ce7b0ad8e11ff6d7dd0de3896f7269fc502be1924706390631cf834aa"
+      },
+      "bundleRevision": "sha256:d71ac5bf94a7573297c5b32cf79f0104692b51defb73834af807ac2239a4701e",
+      "classification": {
+        "op": "Reconhecer retenção hídrica relacionada à sparsentana e conduzir avaliação de segurança e manejo do volume.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "competency": "Segurança farmacológica em Nefrologia",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Integra um evento ou uma condição explícita e uma conduta conhecida; sem múltiplas etapas complexas.",
+        "identity": "Mesmo paciente genérico, evento adverso, decisão de reavaliação e manejo, sem criar diagnóstico novo. Mantém monitorização essencial na explicação e a conduta central na correta; preserva qid/FSRS.",
+        "independentOP": "Avaliar e manejar retenção hídrica após sparsentana, preservando segurança renal/hemodinâmica.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade foram reavaliados no literal, não herdados dos gates autorais."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Veredito não aprovador; eixos de evidência não autorizam por si.",
+        "findings": "Correta reunia evento adverso, volume, função renal, dose e monitorização; distrator necrosetubular→imunossupressão é implausível e distante da decisão. PROTECT não é necessário para esteOPde segurança.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": true,
+            "rationale": "Correta reunia evento adverso, volume, função renal, dose e monitorização; distrator necrosetubular→imunossupressão é implausível e distante da decisão. PROTECT não é necessário para esteOPde segurança."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          }
+        ],
+        "score": {
+          "anulado": true,
+          "reason": "Eliminatório documentado."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação,VERIFICADA+NENHUMA,nenhum eliminatório ou recurso decisivo (§18.4).",
+        "confidence": "alta na fidelidade das afirmações ao material primário efetivamente lido; não éGRADEda intervenção",
+        "claims": {
+          "claim": "FILSPARIrevisão04/2026,ReferenceID5780097:§5.7determinar causa da retenção e necessidade de iniciar/ajustar diurético; considerar dose. §5.4–5.6monitorarPA/rim/K; §2.1retiraSRAA; §4/7.1contraindicaBRA/ERA/aliscireno.",
+          "sourceIDs": [
+            "F"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "A não impõe diurético em toda pessoa nem suspensão automática; manda avaliar causa e volemia. Edema sem dados de gravidade não obriga uma ação mais extrema específica. Losartana éBRAcontraindicado, não alternativa antiproteinúrica aceitável. Trocar dentro da classe antes de investigar não elimina risco. Sem segunda melhor opção.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "A não impõe diurético em toda pessoa nem suspensão automática; manda avaliar causa e volemia. Edema sem dados de gravidade não obriga uma ação mais extrema específica. Losartana éBRAcontraindicado, não alternativa antiproteinúrica aceitável. Trocar dentro da classe antes de investigar não elimina risco. Sem segunda melhor opção."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "FILSPARIrevisão04/2026,ReferenceID5780097:§5.7determinar causa da retenção e necessidade de iniciar/ajustar diurético; considerar dose. §5.4–5.6monitorarPA/rim/K; §2.1retiraSRAA; §4/7.1contraindicaBRA/ERA/aliscireno."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo evento, fármaco e decisão de avaliação/manejo do original. A correta foi condensada sem perder monitorização ou condição de interrupção. Preservarqid/FSRS."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta não trata hipótese como indicação automática; exceções e segurança estão explícitas."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns de extrapolação/regulação ou planos concorrentes; não exigem uma etiologia aleatória sem relação."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Decisão útil de leitura de evidência ou segurança de medicamentos."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação sustenta exatamenteAcom fonte e limites; não muda endpoint/população do caso."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Versão regulatória/momento ou estado vacinal/urgência e evento adverso são informados; nenhuma premissa clínica oculta necessária."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Bula norte-americana é cenário explicitado; não é protocolo institucional implícito nem indicação brasileira presumida."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Resultados finais e revisões regulatórias2026foram conferidos; documentos históricos permanecem rotulados por versão."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "Distratores agora são condutas concorrentes plausíveis, com correção baseada em avaliação de volume e bula específica."
+        },
+        "fourDimensionDuplication": "c18e6af7cobra dupla farmacologia e substituição deirbesartana; bafcbcd4cobra elegibilidade regulatória europeia. Aqui a decisão é reação adversa/volume. Não são duplicatas nas quatro dimensões.",
+        "decisionTree": "0:evidência verificada/sem pendência, válida;1:sem eliminatório/duplicata;2:recurso sem argumento plausível residual;3:score18–20→aprovada;statuspublicado após aplicação autorizada.",
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "gateExactQuestion": "sha256:3a809ba9c9bf6373c2c05b9b53ab9e66370e0f32ac2563e9316a9f4b6ec8ce74",
+        "gateExactReferences": {
+          "filspari_fda_2025": "sha256:6328d80ce7b0ad8e11ff6d7dd0de3896f7269fc502be1924706390631cf834aa"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identityReason": "Mesmo evento, fármaco e decisão de avaliação/manejo do original. A correta foi condensada sem perder monitorização ou condição de interrupção. Preservarqid/FSRS.",
+        "constraints": [
+          "Preservar versões/respostas históricas; não reavaliar acertos salvos pelo texto atualizado.",
+          "Não confundir referência científica final com anúncio, relatório interino ou bula; não agrupar por nome do ensaio apenas.",
+          "Regenerar manifesto de revisão e preservar leitura de versões; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "0185e967",
+      "original": {
+        "authorRevision": "sha256:fc02dc1cdcc2348ffd03788493ef656b4aa6eb1810f1ad1ea07363c8278d3fb6",
+        "rawObjectSHA256": "f48c490873a24b029bbd3cd0ccf90af4bec8be188e3f428bf796c07bda5be9b9",
+        "question": {
+          "t": "Pegcetacoplano — Pré-requisito Vacinal",
+          "qid": "0185e967",
+          "q": "Antes de iniciar pegcetacoplano em C3G ou IC-MPGN primária, qual estratégia preventiva é mais alinhada à bula?",
+          "opts": [
+            "Completar/atualizar vacinação contra bactérias encapsuladas, incluindo pneumococo e meningococo; se o início for urgente sem vacinação adequada, usar profilaxia antibacteriana e vacinar assim que possível",
+            "Aplicar apenas vacina contra influenza anual, sem necessidade de vacinas específicas do complemento",
+            "Aplicar somente vacina contra hepatite B, pois o risco principal é reativação viral",
+            "Dispensar vacinação se não houve infecção meningocócica nos ensaios clínicos"
+          ],
+          "ans": 0,
+          "exp": "Antes do pegcetacoplano, a bula recomenda completar ou atualizar vacinação contra bactérias encapsuladas, especialmente Streptococcus pneumoniae e Neisseria meningitidis, conforme recomendações vigentes; no estudo renal, os participantes também tinham vacinação contra Haemophilus influenzae tipo b documentada ou administrada. Se o tratamento for urgente em paciente não atualizado, deve-se oferecer profilaxia antibacteriana e vacinar assim que possível. Influenza e hepatite B podem ser úteis em contextos gerais, mas não substituem a prevenção específica do bloqueio do complemento; ausência de evento em ensaio não elimina risco biológico.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025"
+          ]
+        }
+      },
+      "proposed": {
+        "t": "Pegcetacoplano — Pré-requisito Vacinal",
+        "qid": "0185e967",
+        "q": "Um adulto com glomerulopatia C3 precisa iniciar pegcetacoplano com urgência, e o risco de adiar supera o risco infeccioso. As vacinas contra pneumococo e meningococo estão incompletas. Qual plano preventivo acompanha o início?",
+        "opts": [
+          "Oferecer profilaxia antibacteriana e administrar as vacinas assim que possível.",
+          "Vacinar na primeira dose e reservar antibiótico para o aparecimento de sintomas infecciosos.",
+          "Adiar obrigatoriamente por duas semanas, mesmo após a avaliação favorável ao início urgente.",
+          "Manter profilaxia antibacteriana e postergar as vacinas até o término do tratamento."
+        ],
+        "ans": 0,
+        "exp": "A regra habitual é completar ou atualizar as vacinas contra bactérias encapsuladas pelo menos duas semanas antes da primeira dose, conforme as recomendações aplicáveis a inibidores do complemento. Se o tratamento for urgente em paciente não atualizado, a bula orienta profilaxia antibacteriana e vacinação assim que possível. A urgência não dispensa vacinas, e a vacinação no mesmo dia não substitui a profilaxia nessa situação. O risco de infecção grave persiste mesmo após vacinação, exigindo vigilância e avaliação imediata de sintomas. A bula não estabelece o esquema e a duração ótimos da profilaxia; não cabe inventá-los. No estudo renal, a prevenção incluiu pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b.",
+        "diff": "medium",
+        "cat": "glomerular",
+        "refs": [
+          "empaveli_pegcetacoplan_label_2025"
+        ]
+      },
+      "proposedSHA256": "sha256:ef9380f1e0dfc4eb728923efd9b283fe31d0c46e34d89a04b2580ccb1123ce3b",
+      "referenceRevisions": {
+        "empaveli_pegcetacoplan_label_2025": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0"
+      },
+      "bundleRevision": "sha256:f9f508e888f66ec1f32e4426e7e30564b2c22742bdcceb0f954f8ac28d28d5e0",
+      "classification": {
+        "op": "Aplicar a prevenção de infecção por bactérias encapsuladas antes do pegcetacoplano, incluindo a exceção de início urgente sem vacinas completas.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "competency": "Segurança farmacológica em Nefrologia",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Integra um evento ou uma condição explícita e uma conduta conhecida; sem múltiplas etapas complexas.",
+        "identity": "A exceção urgente já integra o conceito correto original. O caso explicita o dado decisivo, não cria novo OP; preserva o plano de vacinação/profilaxia, o qid e o histórico.",
+        "independentOP": "Aplicar vacinação e profilaxia na exceção de início urgente de pegcetacoplano sem vacinas atualizadas.",
+        "independentAgreement": "OP/Bloom/Miller/dificuldade e identidade foram reavaliados no literal, não herdados dos gates autorais."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Veredito não aprovador; eixos de evidência não autorizam por si.",
+        "findings": "Correta antiga era a única com um plano completo e lista de vacinas; alternativasinfluenza/HBV/ausência de evento eram pouco competitivas. Não houve corte de prevenção na reescrita.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Sem disparo específico adicional; problema de forma/atribuição descrito."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta antiga era a única com um plano completo e lista de vacinas; alternativasinfluenza/HBV/ausência de evento eram pouco competitivas. Não houve corte de prevenção na reescrita."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Aprovação,VERIFICADA+NENHUMA,nenhum eliminatório ou recurso decisivo (§18.4).",
+        "confidence": "alta na fidelidade das afirmações ao material primário efetivamente lido; não éGRADEda intervenção",
+        "claims": {
+          "claim": "EMPAVELIrevisão08/2026:§2.1profilaxia antibacteriana+vacinas logo possível quando urgente e incompletas; regra≥2semanas. §5.1risco persiste após vacinação, vigilância, esquema/duração ótimos não estudados. §14.2pneumococo/meningococoACWYB/Hib no ensaio renal.",
+          "sourceIDs": [
+            "E"
+          ],
+          "status": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "O caso informa que o risco de adiar supera o infeccioso, logo não cabe obrigar espera de duas semanas. Não há infecção encapsulada grave não resolvida informada; não presumir uma contraindicação oculta. Não inventa antibiótico/dose/duração, porque a fonte não os estabelece. Vacina imediata sem antibiótico não basta neste cenário. Sem segunda resposta defensável.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "O caso informa que o risco de adiar supera o infeccioso, logo não cabe obrigar espera de duas semanas. Não há infecção encapsulada grave não resolvida informada; não presumir uma contraindicação oculta. Não inventa antibiótico/dose/duração, porque a fonte não os estabelece. Vacina imediata sem antibiótico não basta neste cenário. Sem segunda resposta defensável."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "EMPAVELIrevisão08/2026:§2.1profilaxia antibacteriana+vacinas logo possível quando urgente e incompletas; regra≥2semanas. §5.1risco persiste após vacinação, vigilância, esquema/duração ótimos não estudados. §14.2pneumococo/meningococoACWYB/Hib no ensaio renal."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "A exceção urgente já integrava a correta original. Explicitar urgência e estado vacinal preserva a decisão preventiva e melhora validade do processo de resposta. Preservarqid/FSRS."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta não trata hipótese como indicação automática; exceções e segurança estão explícitas."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são erros comuns de extrapolação/regulação ou planos concorrentes; não exigem uma etiologia aleatória sem relação."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Decisão útil de leitura de evidência ou segurança de medicamentos."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação sustenta exatamenteAcom fonte e limites; não muda endpoint/população do caso."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Versão regulatória/momento ou estado vacinal/urgência e evento adverso são informados; nenhuma premissa clínica oculta necessária."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Bula norte-americana é cenário explicitado; não é protocolo institucional implícito nem indicação brasileira presumida."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Resultados finais e revisões regulatórias2026foram conferidos; documentos históricos permanecem rotulados por versão."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "As quatro opções são planos de prevenção e tempo de intervenção. O dado decisivo de urgência está explícito."
+        },
+        "fourDimensionDuplication": "29062f06pede reconhecer principal alerta infeccioso geral; este item aplica a exceção operacional de vacinação incompleta/urgência. MecanismoC3, racional, eficáciaVALIANT e posologia são outras decisões. Não há identidade nas quatro dimensões.",
+        "decisionTree": "0:evidência verificada/sem pendência, válida;1:sem eliminatório/duplicata;2:recurso sem argumento plausível residual;3:score18–20→aprovada;statuspublicado após aplicação autorizada.",
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "gateExactQuestion": "sha256:ef9380f1e0dfc4eb728923efd9b283fe31d0c46e34d89a04b2580ccb1123ce3b",
+        "gateExactReferences": {
+          "empaveli_pegcetacoplan_label_2025": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0"
+        },
+        "preserveQid": true,
+        "resetFSRS": false,
+        "identityReason": "A exceção urgente já integrava a correta original. Explicitar urgência e estado vacinal preserva a decisão preventiva e melhora validade do processo de resposta. Preservarqid/FSRS.",
+        "constraints": [
+          "Preservar versões/respostas históricas; não reavaliar acertos salvos pelo texto atualizado.",
+          "Não confundir referência científica final com anúncio, relatório interino ou bula; não agrupar por nome do ensaio apenas.",
+          "Regenerar manifesto de revisão e preservar leitura de versões; integração exclusiva do root."
+        ]
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "visionary_final_2026",
+      "card": {
+        "label": "VISIONARY — Sibeprenlimabe: análise final de 24 meses",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2609127",
+        "journal": "N Engl J Med. Publicado on-line em 22/10/2026",
+        "ano": 2026,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "A análise final publicada mostrou estabilização do slope da TFGe em 24 meses.",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado com 510 adultos com nefropatia por IgA: sibeprenlimabe 400 mg subcutâneo a cada quatro semanas versus placebo. O desfecho primário de relação proteína/creatinina urinária aos nove meses já havia sido reportado. Na análise final de 24 meses, a diferença do slope anualizado da taxa de filtração glomerular estimada (TFGe), desfecho secundário-chave, foi 4,5 mL/min/1,73 m²/ano (IC95% 3,6–5,4; p<0,001).",
+        "conclusao": "Há evidência funcional publicada no acompanhamento de 24 meses, sem inferir efeitos além desse período. Uma publicação científica não modifica, por si, a indicação aprovada pela autoridade regulatória.",
+        "curiosidade": "A análise final foi publicada em outubro de 2026, depois do anúncio do patrocinador de julho; os dois documentos têm níveis de divulgação diferentes."
+      },
+      "hash": "sha256:492de63781baa5e3fd308b0635eb95c5e0e21327a148a30e805052a20f5b93a7",
+      "kind": "novo",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "V",
+        "P"
+      ],
+      "claimChecks": [
+        "510/dose400mgSC4semanas/placebo eprimárioproteinúria9meses conferidos.",
+        "Secundário-chave slope4,5(IC95%3,6–5,4;p<0,001),24meses; não estender horizonte.",
+        "Publicação22/10/2026distinta de anúncio01/07eato regulatório."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "TaxonomiaRCTregular ou exceçãoBULAadjudicada pelo root, explicitando natureza regulatória.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    },
+    {
+      "id": "voyxact_fda_2025",
+      "card": {
+        "label": "FDA — Bula do Voyxact (Sibeprenlimabe-szsi)",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+        "journal": "U.S. Prescribing Information",
+        "ano": 2025,
+        "tipo": "Bula regulatória",
+        "badge": "FDA",
+        "badgeColor": "#2563eb",
+        "impacto": "Aprovação acelerada para reduzir proteinúria em adultos com IgAN primária em risco de progressão",
+        "icon": "📋",
+        "resumo": "A bula indica Voyxact para reduzir proteinúria em adultos com IgAN primária em risco de progressão, na dose de 400 mg por via subcutânea a cada quatro semanas. A aprovação acelerada baseou-se na redução de proteinúria; a própria bula declara que ainda não estava estabelecido se o fármaco reduz o declínio da função renal em longo prazo. No VISIONARY, infecções ocorreram em 49% versus 45% com placebo e reações no local de injeção em 24% versus 23%.",
+        "conclusao": "Antes de iniciar, deve-se avaliar infecção ativa; durante o tratamento, monitorar infecções e considerar interrupção diante de infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o tratamento. A aprovação acelerada não equivale a benefício renal funcional já confirmado na bula.",
+        "curiosidade": "A bula relata queda média em 48 semanas de 67% na Gd-IgA1, 69% na IgA, 35% na IgG e 75% na IgM, coerente com bloqueio de APRIL e também com a necessidade de vigilância infecciosa."
+      },
+      "hash": "sha256:6bff417d711166008869d3ec69884fd00278ad1fdd32e0aef9214e33d44fa9aa",
+      "kind": "existente sem alteração",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "VL"
+      ],
+      "claimChecks": [
+        "Indicação antiproteinúrica acelerada e400mgSC4semanas.",
+        "Infecções49/45%,reações locais24/23%; avaliar/monitorar infecção, considerar interrupção grave; vacinas vivas30diasantes/durante.",
+        "GdIgA1/IgA/IgG/IgM redução67/69/35/75%semana48. Bula anterior não apaga publicação final."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "Card legado exato lido clinicamente; sem proposta de reclassificação visual ou reescrita.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    },
+    {
+      "id": "align_final_2026",
+      "card": {
+        "label": "ALIGN — Atrasentana: análise final de 2,5 anos",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42242268/",
+        "journal": "Lancet. 2026;407(10546):2387–2401",
+        "ano": 2026,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Resultados funcionais favorecem atrasentana, com incerteza no desfecho de semana 136.",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado e duplo-cego com atrasentana 0,75 mg por via oral uma vez ao dia versus placebo; 404 adultos randomizados. O estrato principal incluiu 340 pessoas com nefropatia por IgA comprovada por biópsia, taxa de filtração glomerular estimada (TFGe) ≥30 mL/min/1,73 m² e proteinúria ≥1 g/dia sob inibição do sistema renina-angiotensina. Outras 64 participaram do estrato exploratório com inibidor do cotransportador sódio-glicose 2 (SGLT2). Após o desfecho primário interino de proteinúria na semana 36, o desfecho secundário-chave foi a mudança da TFGe até a semana 136. No estrato principal, a diferença foi 2,4 mL/min/1,73 m² (IC95% −0,1 a 4,8; p=0,057); a diferença no slope total foi 1,4 mL/min/1,73 m²/ano (IC95% 0,5–2,3).",
+        "conclusao": "A interpretação deve identificar o desfecho e sua incerteza. Os achados não são equivalentes a uma decisão de aprovação tradicional nem demonstram redução de mortalidade ou falência renal isoladas.",
+        "curiosidade": "O acompanhamento incluiu 132 semanas de tratamento e quatro semanas sem tratamento; a análise da semana 136 não é intercambiável com a da semana 132."
+      },
+      "hash": "sha256:5eadf827d11a5cfa08f18c11bd14ac4c099fa27ee935fa7777c15af66793c44a",
+      "kind": "novo",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "A",
+        "AL"
+      ],
+      "claimChecks": [
+        "404adultos/340principal/64exploratório, via/dose0,75mgoral diária/placebo, elegibilidade eSRAA conferidos.",
+        "PrimárioUPCR36interino; secundário-chave136e slope referem-se explicitamente ao principal.",
+        "2,4/IC−0,1a4,8/p0,057e slope1,4/IC0,5–2,3;132semanas+4off. Estimativas não provam mortalidade/falência renal isoladas."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "TaxonomiaRCTregular ou exceçãoBULAadjudicada pelo root, explicitando natureza regulatória.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    },
+    {
+      "id": "vanrafia_fda_2025",
+      "card": {
+        "label": "VANRAFIA (atrasentana) — Prescribing Information FDA",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/219208s000lbl.pdf",
+        "journal": "U.S. FDA Prescribing Information",
+        "ano": 2025,
+        "tipo": "Bula regulatória",
+        "badge": "LABEL",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Aprovação acelerada para reduzir proteinúria em adultos com IgAN sob risco de progressão rápida",
+        "icon": "📋",
+        "resumo": "Bula norte-americana da atrasentana, antagonista do receptor de endotelina A, aprovada de forma acelerada para reduzir proteinúria em adultos com IgAN primária sob risco de progressão rápida, em geral com UPCR de pelo menos 1,5 g/g. A aprovação se baseou na redução de proteinúria no ALIGN e inclui alerta em caixa para toxicidade embriofetal, além de precauções relacionadas a retenção hídrica e hepatotoxicidade.",
+        "conclusao": "A indicação regulatória é antiproteinúrica e condicionada a confirmação de benefício clínico; ainda não está estabelecido pela bula que a atrasentana reduza o declínio da função renal na IgAN.",
+        "curiosidade": "A FDA aprovou a atrasentana em 2 de abril de 2025 pelo programa de aprovação acelerada, usando mudança do UPCR na semana 36 como desfecho substituto."
+      },
+      "hash": "sha256:7bcdab40eab97ef06cc0e7eeb6aa5e53fded45287ffd023a361abdb9815ed66a",
+      "kind": "existente sem alteração",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "AL",
+        "AL_DATE"
+      ],
+      "claimChecks": [
+        "Indicação antiproteinúrica acelerada/adultosIgANUPCRgeral≥1,5g/g.",
+        "AntagonistaETA, risco embriofetal, retenção/hepatotoxicidade e condicionalidade confirmatória conferidos.",
+        "Referência à aprovação02/04/2025é data histórica; arquivo corrigido2026continua revisão clínica04/2025."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "Card legado exato lido clinicamente; sem proposta de reclassificação visual ou reescrita.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    },
+    {
+      "id": "filspari_fda_2025",
+      "card": {
+        "label": "FDA — FILSPARI (sparsentana), bula profissional 2026",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/216403s006lbl.pdf",
+        "journal": "U.S. Food and Drug Administration — Prescribing Information",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Retenção hídrica exige investigar a causa, manejar o volume e reavaliar a dose.",
+        "icon": "📋",
+        "resumo": "Bula de abril de 2026 da sparsentana, antagonista dos receptores de endotelina A e angiotensina II tipo 1. Retenção de fluido, hipotensão, hipercalemia e lesão renal aguda exigem vigilância clínica e laboratorial. Se houver retenção clinicamente importante, orienta investigar a causa, iniciar ou ajustar diurético e considerar modificação da dose.",
+        "conclusao": "Edema não deve ser atribuído automaticamente à doença nem banalizado pelo efeito antiproteinúrico. Devem ser reavaliados volume, pressão, função renal e potássio; outros inibidores do sistema renina-angiotensina devem ser retirados antes do início, conforme a bula.",
+        "curiosidade": "O mesmo medicamento já atua sobre dois receptores. Acrescentar bloqueio do sistema renina-angiotensina pode aumentar hipotensão, hipercalemia e comprometimento renal."
+      },
+      "hash": "sha256:6328d80ce7b0ad8e11ff6d7dd0de3896f7269fc502be1924706390631cf834aa",
+      "kind": "modificado",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "F"
+      ],
+      "claimChecks": [
+        "Revisão04/2026e antagonismoETA/AT1.",
+        "Causa/volemia/diurético/dose em§5.7;PA/rim/Kem§5.4–5.6.",
+        "RetirarSRAAantes/contraindicaçõesBRA/ERA/aliscireno e risco da associação."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "TaxonomiaRCTregular ou exceçãoBULAadjudicada pelo root, explicitando natureza regulatória.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    },
+    {
+      "id": "empaveli_pegcetacoplan_label_2025",
+      "card": {
+        "label": "EMPAVELI (pegcetacoplano) — Bula FDA/DailyMed, 2026",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+        "journal": "DailyMed / U.S. FDA Prescribing Information",
+        "ano": 2026,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "O bloqueio de C3 exige prevenção e vigilância de infecções por bactérias encapsuladas.",
+        "icon": "📋",
+        "resumo": "Bula de agosto de 2026. Pegcetacoplano liga-se a C3/C3b. Em glomerulopatia C3 ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos, é indicado a partir de 12 anos para reduzir proteinúria e perda de função renal. A vacinação contra bactérias encapsuladas deve ser atualizada pelo menos duas semanas antes da primeira dose, salvo urgência que justifique antecipar o tratamento.",
+        "conclusao": "Na urgência com vacinas incompletas, oferecer profilaxia antibacteriana e vacinar assim que possível. A vacinação não elimina o risco; sintomas de infecção exigem avaliação imediata. A bula não estabelece o esquema e a duração ótimos da profilaxia.",
+        "curiosidade": "No estudo renal, os participantes receberam vacinas contra pneumococo, meningococo ACWY/B e Haemophilus influenzae tipo b, salvo documentação de vacinação recomendada ou não resposta."
+      },
+      "hash": "sha256:e95a7284bf61f944fd4d83b608a0089fb3096caefa5fcbe162b3dbd3230188d0",
+      "kind": "modificado",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "E"
+      ],
+      "claimChecks": [
+        "Revisão08/2026:≥12anosC3G/ICMPGN, redução proteinúria/perda de função; ligaçãoC3/C3b.",
+        "≥2semanasvacinas habitualmente; urgência justificada exige antibiótico+vacinas logo possível.",
+        "Risco pós-vacina, vigilância imediata, limitações de duração/esquema; vacinas do ensaio renal incluindoHibconferidas."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "TaxonomiaRCTregular ou exceçãoBULAadjudicada pelo root, explicitando natureza regulatória.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    },
+    {
+      "id": "visionary_egfr_otsuka_2026",
+      "card": {
+        "label": "VISIONARY 24 meses — Anúncio histórico de julho de 2026",
+        "url": "https://otsuka-us.com/news/otsuka-reports-positive-phase-3-visionary-two-year-egfr-results-demonstrating-voyxactr",
+        "journal": "Otsuka press release",
+        "ano": 2026,
+        "tipo": "Resultado topline não revisado por pares",
+        "badge": "TOPLINE",
+        "badgeColor": "#f59e0b",
+        "impacto": "O anúncio de julho precedeu a publicação revisada por pares de outubro de 2026.",
+        "icon": "📰",
+        "resumo": "Em 1º de julho de 2026, a Otsuka anunciou que o VISIONARY completo atingiu o desfecho secundário-chave de slope anualizado da TFGe em 24 meses, com estabilização estatisticamente significativa versus placebo. A comunicação não apresentou a análise completa revisada por pares e informou que os dados seriam submetidos a congresso e usados em pedido suplementar de aprovação tradicional à FDA.",
+        "conclusao": "Documento histórico de resultado topline, não uma publicação revisada por pares. A análise final foi publicada no NEJM em 22 de outubro de 2026; a comunicação de julho não deve continuar sendo apresentada como o nível mais recente de divulgação.",
+        "curiosidade": "Anúncio do patrocinador, publicação revisada por pares e decisão regulatória são etapas distintas; a passagem entre elas exige identificar documento e data."
+      },
+      "hash": "sha256:13704371bd2b3213849483193feda7a6ecedf54cebe18153b044640f01a85196",
+      "kind": "modificado",
+      "wholeProposedCardReviewed": true,
+      "sourceIDs": [
+        "P",
+        "V"
+      ],
+      "claimChecks": [
+        "Comunicado de01/07/2026anuncia resultados finais e intenção de divulgação/submissão.",
+        "Não é revisão por pares ou decisão regulatória.",
+        "Correção histórica diferencia anúncio de publicaçãoNEJM22/10/2026; não remove nem funde documentos distintos."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook§18.4:aprovação+VERIFICADA/NENHUMA.",
+      "score": null,
+      "scoreReason": "Card independente não é uma questão; não recebe artificialmente20pontos.",
+      "formatBoundary": "TOPLINEhistórico identificado, sem equiparação aRCT.",
+      "consumerBoundary": "Gate do literal do card, não aprovação automática das outras questões que o citam."
+    }
+  ],
+  "authorRevisionsRequested": [
+    {
+      "revision": "A1.1→A1.2",
+      "reason": "MínimosRCT:desenho/população/N/intervenção/comparador/hierarquia e horizonte."
+    },
+    {
+      "revision": "A1.2→A1.3",
+      "reason": "Restaurar estrato principal junto às duas estimativasALIGN; não extrapolar resultado340para404; via e siglas acessíveis."
+    }
+  ],
+  "versionCompatibility": "Datas deSPL/arquivo não equivalem a revisão clínica. Não há alteração deqiddevido apenas a novos dados do mesmoOP. Esta revisão não cria créditoFSRS/desbloqueios.",
+  "collateralHolds": [
+    {
+      "id": "atrasentan_igan",
+      "status": "CANDIDATE_NOT_GATE",
+      "issue": "O card interino escreve 36,1 pontos percentuais. A Tabela 2 nota c da bula identifica uma redução percentual relativa entre grupos; não são pontos percentuais. O AFTER da questão não reutiliza esse card. Requer reparo mínimo formal do card, sem considerar aprovada a íntegra antiga.",
+      "source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/219208Orig1s001Correctedlbl.pdf",
+      "sourceLocator": "§14.1, Tabela 2, nota c",
+      "noProductionWrite": true
+    },
+    {
+      "id": "protect_trial",
+      "status": "CANDIDATE_NOT_GATE",
+      "issue": "O card mistura resultados interinos e finais e tem citação/PII possivelmente incompatíveis. Não necessário para o OP de retenção hídrica, portanto removido apenas da atribuição de bcb1293d. Não deletar o card global nem outras atribuições sem revisão.",
+      "noProductionWrite": true
+    }
+  ],
+  "summary": {
+    "questionsReviewed": 4,
+    "questionsReleased": 4,
+    "cardsReviewed": 7,
+    "cardsReleased": 7,
+    "productionWrites": false
+  }
+}

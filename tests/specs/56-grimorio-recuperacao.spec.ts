@@ -17,7 +17,7 @@ for (const arquivo of ['refs', 'articles']) {
     await preparar(page);
     const pedidos = { refs: 0, articles: 0 };
     for (const nome of ['refs', 'articles'] as const) {
-      await page.route(`**/data/${nome}.js`, route => {
+      await page.route(url => url.pathname === `/data/${nome}.js`, route => {
         pedidos[nome]++;
         return nome === arquivo && pedidos[nome] === 1 ? route.abort() : route.continue();
       });
@@ -44,8 +44,8 @@ test('chamadas concorrentes esperam os dois arquivos sem duplicar scripts', asyn
   let liberar!: () => void;
   const aguardar = new Promise<void>(resolve => { liberar = resolve; });
   let refs = 0, artigos = 0;
-  await page.route('**/data/refs.js', route => { refs++; return route.continue(); });
-  await page.route('**/data/articles.js', async route => { artigos++; await aguardar; await route.continue(); });
+  await page.route('**/data/refs.js*', route => { refs++; return route.continue(); });
+  await page.route('**/data/articles.js*', async route => { artigos++; await aguardar; await route.continue(); });
   await entrar(page);
   await page.evaluate(() => {
     const g = window as any;
@@ -67,7 +67,7 @@ test('fechar durante o carregamento não reabre a Central quando a resposta cheg
   await preparar(page);
   let liberar!: () => void;
   const aguardar = new Promise<void>(resolve => { liberar = resolve; });
-  await page.route('**/data/articles.js', async route => { await aguardar; await route.continue(); });
+  await page.route('**/data/articles.js*', async route => { await aguardar; await route.continue(); });
   await entrar(page);
   await page.evaluate(() => { void (window as any).openDashboard(); });
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'loading');
@@ -82,14 +82,14 @@ test('fechar durante o carregamento não reabre a Central quando a resposta cheg
 test('falha da carga ociosa não gera rejeição sem tratamento nem impede recuperação', async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   let tentativas = 0;
-  await page.route('**/data/refs.js', route => ++tentativas === 1 ? route.abort() : route.continue());
+  await page.route('**/data/refs.js*', route => ++tentativas === 1 ? route.abort() : route.continue());
   await page.addInitScript(() => {
     (window as any).rejeicoes = [];
     window.addEventListener('unhandledrejection', e => (window as any).rejeicoes.push(String(e.reason)));
   });
   await entrar(page);
   await expect.poll(() => tentativas).toBe(1);
-  await expect.poll(() => page.locator('script[src="data/refs.js"]').count()).toBe(0);
+  await expect(page.locator('script[src^="data/refs.js"]')).toHaveCount(0);
   await page.evaluate(() => (window as any).openDashboard());
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   expect(await page.evaluate(() => (window as any).rejeicoes)).toEqual([]);
@@ -113,7 +113,7 @@ test('falha da carga ociosa não gera rejeição sem tratamento nem impede recup
 test.describe('o estado de erro orienta a saída', () => {
   test('o título usa o tamanho do sistema, não o do navegador', async ({ page }) => {
     await preparar(page);
-    await page.route('**/data/refs.js', route => route.abort());
+    await page.route('**/data/refs.js*', route => route.abort());
     await entrar(page);
     await page.evaluate(() => void (window as any).openDashboard());
     const central = page.locator('#nqDashboard');
@@ -126,7 +126,7 @@ test.describe('o estado de erro orienta a saída', () => {
 
   test('a recuperação é a ação recomendada, e a saída não compete com ela', async ({ page }) => {
     await preparar(page);
-    await page.route('**/data/refs.js', route => route.abort());
+    await page.route('**/data/refs.js*', route => route.abort());
     await entrar(page);
     await page.evaluate(() => void (window as any).openDashboard());
     const central = page.locator('#nqDashboard');

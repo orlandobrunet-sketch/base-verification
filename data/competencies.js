@@ -81,7 +81,7 @@ const NQ_COMPETENCIES = [
 
   { id:'gl_c3g', cat:'glomerular', label:'C3G, MPGN e doenças do complemento',
     icon:'🧬',
-    keywords:['c3g','glomerulopatia por c3','mpgn','via alternativa do complemento','eculizumabe','pegcetacoplano','fator h','fator i','c3 nefritico','properidin','fator b','hipocomplementemia','deposito de c3'] },
+    keywords:['c3g','glomerulopatia por c3','mpgn','membranoproliferativ','via alternativa do complemento','eculizumabe','pegcetacoplano','fator h','fator i','c3 nefritico','properidin','fator b','hipocomplementemia','deposito de c3'] },
 
   { id:'gl_gesf', cat:'glomerular', label:'GESF — glomeruloesclerose segmentar e focal',
     icon:'🎯',
@@ -94,7 +94,7 @@ const NQ_COMPETENCIES = [
     // Nefecon (budesonida de liberação ileal), sibeprenlimabe/Voyxact
     // (anti-APRIL) e telitacicepte são drogas de IgAN e caíam no balde
     // genérico. VISIONARY e TELIGAN são os ensaios de fase 3 das duas últimas.
-    keywords:['nefropatia por iga','(niga)','iga nefropatia','deposito de iga','testing','nefigard','protect trial','oxford score','hematuria macroscopica recorrente','daptomicina igan','budesonida igan','nefecon','sibeprenlimabe','voyxact','telitacicept','visionary'] },
+    keywords:['nefropatia por iga','nefropatia por imunoglobulina a ','(niga)','iga nefropatia','deposito de iga','testing','nefigard','protect trial','oxford score','hematuria macroscopica recorrente','daptomicina igan','budesonida igan','nefecon','sibeprenlimabe','voyxact','telitacicept','visionary'] },
 
   { id:'gl_mn', cat:'glomerular', label:'Nefropatia membranosa',
     icon:'🏛️',

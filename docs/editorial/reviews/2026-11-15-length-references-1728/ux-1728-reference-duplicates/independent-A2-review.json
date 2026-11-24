@@ -1,0 +1,3138 @@
+{
+  "schema": "NQ_INDEPENDENT_REVIEW_1728_A2_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/length_inventory_1728",
+  "role": "INDEPENDENT_MEDICAL_AND_EDITORIAL_REVIEW",
+  "authorization": "Usuário autorizou revisão e implementação médicas/editoriais; dados continuam sujeitos ao gate cumulativo e integração do root.",
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "authorProvenance": [
+    {
+      "file": "author-batch-A2.json",
+      "rawSHA256": "1c2c39d8f963ed30eb7fd1706806dd6cccc66bfe5d83df39a5f4b584f5b6bf41"
+    },
+    {
+      "file": "author-batch-A2.1.json",
+      "rawSHA256": "810f6fcbd189620640ef76b8f61daef77151fafd66c426fc91335c8849993d92"
+    },
+    {
+      "file": "author-batch-A2.2.json",
+      "rawSHA256": "f56b88b4cd3bc3f7d62320d74294716bb02ec5c7c1275c3793eeb7748f73df70"
+    },
+    {
+      "file": "author-batch-A2.3.json",
+      "rawSHA256": "2ab5929d514e823b176c0b09d7a22c2286416f877697c46af80a4b53ce093b9a"
+    }
+  ],
+  "sources": {
+    "zebra": {
+      "id": "zebra",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5427530/",
+      "doi": "10.1186/s12882-017-0571-0",
+      "file": "primary-pmc-full.xml",
+      "read": "pmc-5427530.json",
+      "mode": "NLM EFetch PMC full body HTTP200",
+      "locators": [
+        "Case1 e Case2",
+        "Discussion: drug-induced phospholipidosis e reversibilidade"
+      ],
+      "limit": "Dois relatos comparativos; Fabry não foi excluída enzimática/geneticamente no primeiro caso. Não estima incidência ou causalidade universal.",
+      "fileSHA256": "b6a8ede85297d0ecc5952f0f7c6a2aaec8d19bd2cf6f23810b5d3e94063429ba",
+      "readArtifact": "independent-A2/pmc-5427530.json"
+    },
+    "amyloid": {
+      "id": "amyloid",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9529046/",
+      "doi": "10.1590/1414-431X2022e12284",
+      "file": "primary-pmc-full.xml",
+      "read": "pmc-9529046.json",
+      "mode": "NLM EFetch PMC full body HTTP200",
+      "locators": [
+        "Introduction: confirmar versus tipar",
+        "Immunodetection methods",
+        "Laser microdissection/mass spectrometry",
+        "Differential diagnosis/AL e MGUS"
+      ],
+      "limit": "Revisão clinicopatológica; não ensaio de tratamento. Revisadas as afirmações diagnósticas usadas, não adotadas todas as condutas terapêuticas do artigo.",
+      "fileSHA256": "b6a8ede85297d0ecc5952f0f7c6a2aaec8d19bd2cf6f23810b5d3e94063429ba",
+      "readArtifact": "independent-A2/pmc-9529046.json"
+    },
+    "ikmg": {
+      "id": "ikmg",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+      "doi": "10.1038/s41581-018-0077-4",
+      "file": "primary-pmc-full.xml",
+      "read": "pmc-7136169.json",
+      "mode": "NLM EFetch PMC full body HTTP200",
+      "locators": [
+        "Abstract e nova definição IKMG",
+        "When to perform a renal biopsy",
+        "Table2",
+        "Ancillary techniques: LC-MS"
+      ],
+      "limit": "Consenso diagnóstico; o encontro não atualizou tratamento. Não transformar recomendação de investigação em prova de benefício terapêutico.",
+      "fileSHA256": "b6a8ede85297d0ecc5952f0f7c6a2aaec8d19bd2cf6f23810b5d3e94063429ba",
+      "readArtifact": "independent-A2/pmc-7136169.json"
+    },
+    "c3": {
+      "id": "c3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+      "doi": "10.1038/ki.2013.377",
+      "file": "primary-pmc-full.xml",
+      "read": "pmc-3842953.json",
+      "mode": "NLM EFetch PMC full body HTTP200",
+      "locators": [
+        "Pathological recommendations: C3c ≥2 categorias acima de qualquer reagente",
+        "Ig fraca, PIGN e integração LM/IF/EM/clínica"
+      ],
+      "limit": "Consenso de especialistas; distinção morfológica/etiológica, sem inferir regime terapêutico atual.",
+      "fileSHA256": "b6a8ede85297d0ecc5952f0f7c6a2aaec8d19bd2cf6f23810b5d3e94063429ba",
+      "readArtifact": "independent-A2/pmc-3842953.json"
+    },
+    "gn": {
+      "id": "gn",
+      "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+      "file": "kdigo-gn-2021-source.pdf",
+      "externalFile": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-length-severe-author\\kdigo-gn-2021-source.pdf",
+      "read": "kdigo-2021-selected-pages.json",
+      "mode": "PDF oficial integral congelado; extração independente pypdf e leitura das páginas selecionadas",
+      "locators": [
+        "PDF94/S89 PP1.1.1–1.1.2",
+        "PDF192–195/S187–190 capítulo8",
+        "PDF197/S192 PP8.2.2.1 para problema colateral legado"
+      ],
+      "limit": "Gate dos princípios diagnósticos de capítulos1/8. Capítulos terapêuticos2021 não recebem atualização automática; página oficial registra atualizações específicas2024/2025.",
+      "fileSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+      "readArtifact": "independent-A2/kdigo-2021-selected-pages.json"
+    },
+    "afferent": {
+      "id": "afferent",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11618077/",
+      "doi": "10.1038/s41440-024-01916-z",
+      "file": "primary-pmc-full.xml",
+      "read": "pmc-11618077.json",
+      "mode": "NLM EFetch PMC full body HTTP200",
+      "locators": [
+        "Abstract e Introduction: diagnóstico não específico",
+        "Heterogeneous arteriolopathy e Figuras1–3",
+        "Relação lúmen dilatado/pressão e estreitado/isquemia"
+      ],
+      "limit": "Revisão mecanística clinicopatológica. Não define alvo pressórico individual e não prova efeitos de tratamento pelo modelo isolado.",
+      "fileSHA256": "b6a8ede85297d0ecc5952f0f7c6a2aaec8d19bd2cf6f23810b5d3e94063429ba",
+      "readArtifact": "independent-A2/pmc-11618077.json"
+    },
+    "mbd": {
+      "id": "mbd",
+      "url": "https://kdigo.org/wp-content/uploads/2017/02/2017-KDIGO-CKD-MBD-GL-Update.pdf",
+      "file": "kdigo-2017.pdf",
+      "read": "kdigo-2017-selected-pages.json",
+      "mode": "PDF oficial recuperado independentemente HTTP200; leitura PDF17–18",
+      "locators": [
+        "4.1.1,4.1.5",
+        "4.2.1–4.2.5; graus2C/2B e práticas não graduadas"
+      ],
+      "limit": "Diretriz específica2017, mantida na página oficial atual. Não usa adaptação hormonal para indicar quelante com fósforo normal.",
+      "fileSHA256": "444006972a0441938c3450774ae2461386e0bfe5f0b9874a091f954761767308",
+      "readArtifact": "independent-A2/kdigo-2017-selected-pages.json"
+    },
+    "gohil": {
+      "id": "gohil",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7040960/",
+      "doi": "10.17458/per.vol17.2019.gi.fgf23anddisordersphosphate",
+      "file": "primary-pmc-full.xml",
+      "read": "pmc-7040960.json",
+      "mode": "NLM EFetch PMC full body HTTP200",
+      "locators": [
+        "FGF23: effects on NaPi-IIa/IIc",
+        "CYP27B1 e CYP24A1",
+        "PTH–FGF23 em modelos e humanos"
+      ],
+      "limit": "Revisão narrativa de mecanismo; não diretriz terapêutica da DRC nem demonstra benefício de intervir em FGF23 na DRC.",
+      "fileSHA256": "b6a8ede85297d0ecc5952f0f7c6a2aaec8d19bd2cf6f23810b5d3e94063429ba",
+      "readArtifact": "independent-A2/pmc-7040960.json"
+    },
+    "cric": {
+      "id": "cric",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3134393/",
+      "doi": "10.1038/ki.2011.47",
+      "file": "primary-cric-full.xml",
+      "read": "cric-read-paragraphs.json",
+      "mode": "NLM EFetch PMC full body HTTP200 e abstract PubMed21389978 independente",
+      "locators": [
+        "Abstract",
+        "Results/Table1:3.879, TFGe7–114 e10%G2/70%G3/19%G4",
+        "Discussion: cross-sectional design, incomplete vitaminD e5,8%PTH isolado",
+        "Methods: baseline specimens"
+      ],
+      "limit": "Transversal basal em coorte; não sequência temporal demonstrada em cada pessoa nem ensaio de intervenção. Nova versão A2.3 corrige população para predominantementeG2–G4.",
+      "fileSHA256": "b796dc5ab973158377870f6a13e1c0b9376b0033fd14b8e69a497d71597604b1",
+      "readArtifact": "independent-A2/cric-read-paragraphs.json"
+    }
+  },
+  "technicalScope": {
+    "productionWrites": false,
+    "sourceIdentityChecked": true,
+    "clinicalBodyActuallyRead": true,
+    "webFallback": "PubMed/PMCpages desafiaram navegador; NLM EFetch oficial forneceu XML integral HTTP200. Não se declarou leitura por metadados de busca.",
+    "currentChecks": [
+      {
+        "qid": "ebac9c20",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      },
+      {
+        "qid": "2be4ea1f",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      },
+      {
+        "qid": "cf42455e",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      },
+      {
+        "qid": "cf84c115",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      },
+      {
+        "qid": "d2a32c19",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      },
+      {
+        "qid": "d2016f23",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      },
+      {
+        "qid": "efba1640",
+        "currentQuestionPresent": true,
+        "currentQuestionMatchesOriginal": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "qid": "ebac9c20",
+      "sourceVersion": "A2.2",
+      "original": {
+        "t": "Fosfolipidose Renal por Fármacos Catiônicos Anfifílicos (corpos zebra)",
+        "qid": "ebac9c20",
+        "q": "Biópsia renal mostra inclusões lamelares concêntricas em podócitos, os chamados corpos zebra. Antes de concluir doença de Fabry, qual exposição medicamentosa deve ser procurada no histórico?",
+        "opts": [
+          "Estatinas.",
+          "Inibidores de SGLT2.",
+          "Inibidores da calcineurina.",
+          "Fármacos catiônicos anfifílicos, como amiodarona, cloroquina ou hidroxicloroquina."
+        ],
+        "ans": 3,
+        "exp": "Corpos zebra em podócitos não são patognomônicos de doença de Fabry. Fármacos catiônicos anfifílicos, como amiodarona, cloroquina e hidroxicloroquina, podem causar fosfolipidose lisossomal com inclusões lamelares indistinguíveis à microscopia eletrônica. O aprendizado prático é revisar a lista medicamentosa e correlacionar com clínica, enzima/genética e outros achados antes de rotular Fabry. Estatinas, inibidores de SGLT2 e inibidores da calcineurina não são causas típicas desse padrão histológico.",
+        "diff": "hard",
+        "cat": "farmacologia",
+        "refs": [
+          "renal_phospholipidosis_zebra_2017"
+        ]
+      },
+      "originalSHA256": "sha256:225ddb311f9aa3b2c3df0b579f1f56445c95f8ec8492eef605a268ec2382260c",
+      "proposed": {
+        "t": "Fosfolipidose Renal por Fármacos Catiônicos Anfifílicos (corpos zebra)",
+        "qid": "ebac9c20",
+        "q": "Biópsia renal mostra inclusões lamelares concêntricas em podócitos, os chamados corpos zebra. Antes de concluir doença de Fabry, qual exposição medicamentosa deve ser procurada no histórico?",
+        "opts": [
+          "Sinvastatina ou atorvastatina.",
+          "Dapagliflozina ou empagliflozina.",
+          "Tacrolimo ou ciclosporina.",
+          "Cloroquina ou hidroxicloroquina."
+        ],
+        "ans": 3,
+        "exp": "Cloroquina e hidroxicloroquina podem produzir fosfolipidose renal com inclusões lamelares semelhantes às da doença de Fabry; amiodarona é outra exposição relevante. Corpos zebra não definem sozinhos a etiologia. A conduta diagnóstica é revisar medicamentos e integrar fenótipo, atividade enzimática e genética quando indicadas. Estatinas, inibidores do cotransportador sódio-glicose 2 (SGLT2) e inibidores da calcineurina não são exposições típicas desse padrão lisossomal. A evidência apresentada é clinicopatológica e baseada em relatos; não permite presumir que todo achado seja medicamentoso nem garantir reversão após retirada.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "renal_phospholipidosis_zebra_2017"
+        ]
+      },
+      "proposedSHA256": "sha256:d11ef849940a69d4d828e8f017c4915be47e0dd6dc8059feb5b9069e212b1164",
+      "referenceRevisions": {
+        "renal_phospholipidosis_zebra_2017": "sha256:4801dab939cf1f3a1b9f64f72c734d988735062bb9b7bcc25b33a966c97425fb"
+      },
+      "bundleRevision": "sha256:795fa905ab8aeff5741f349374068eef5ec0686606e40324ad4f5a2983c7d835",
+      "classification": {
+        "before": {
+          "op": "Revisar exposição medicamentosa no diferencial de corpos zebra antes de concluir Fabry.",
+          "primaryCompetence": "Reconhecimento de toxicidade medicamentosa e diferencial clinicopatológico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Revisar exposição medicamentosa no diferencial de corpos zebra antes de concluir Fabry.",
+          "primaryCompetence": "Reconhecimento de toxicidade medicamentosa e diferencial clinicopatológico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": [
+          "Correta reúne classe e três exemplos, enquanto distratores são classes de duas a quatro palavras. A forma permite pista por completude. O card atribui periódico errado; desenho real é dois casos."
+        ],
+        "appeal": "Sem recurso clínico substantivo além dos defeitos documentados e da duplicidade específica quando indicada.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta reúne classe e três exemplos, enquanto distratores são classes de duas a quatro palavras. A forma permite pista por completude. O card atribui periódico errado; desenho real é dois casos."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "Inclusões lamelares lisossomais em podócitos podem ser fosfolipidose por CQ/HCQ; amiodarona é outra exposição discutida. As imagens não fecham etiologia.",
+          "sourceIDs": [
+            "zebra"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Amiodarona não está nas opções, mas o comando pede uma exposição a procurar, não lista exaustiva. CQ e HCQ são ambas sustentadas. Enzima em mulheres pode ser normal; a explicação não afirma exclusão por enzima isolada. Não há segunda resposta entre os pares oferecidos.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente D — cloroquina ou hidroxicloroquina. corresponde à decisão clínica solicitada; Amiodarona não está nas opções, mas o comando pede uma exposição a procurar, não lista exaustiva. CQ e HCQ são ambas sustentadas. Enzima em mulheres pode ser normal; a explicação não afirma exclusão por enzima isolada. Não há segunda resposta entre os pares oferecidos."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em zebra: Inclusões lamelares lisossomais em podócitos podem ser fosfolipidose por CQ/HCQ; amiodarona é outra exposição discutida. As imagens não fecham etiologia."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. Pares de fármacos no mesmo nível; não reduz qualificadores diagnósticos. A ressalva de relatos limita inferência causal/reversibilidade."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer D — cloroquina ou hidroxicloroquina.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Pares de fármacos no mesmo nível; não reduz qualificadores diagnósticos. A ressalva de relatos limita inferência causal/reversibilidade."
+        },
+        "duplicationFourDimensions": "Nenhum outro caso de corpos zebra encontrado na busca da vizinhança; sem duplicata nas quatro dimensões.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Nenhum dos10eliminatórios; não identificada duplicata nas quatro dimensões.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado após aplicação autorizada do pacote exato"
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "approvedQuestionExactBytes": "sha256:d11ef849940a69d4d828e8f017c4915be47e0dd6dc8059feb5b9069e212b1164",
+        "approvedReferences": {
+          "renal_phospholipidosis_zebra_2017": "sha256:4801dab939cf1f3a1b9f64f72c734d988735062bb9b7bcc25b33a966c97425fb"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "2be4ea1f",
+      "sourceVersion": "A2",
+      "original": {
+        "t": "Amiloidose Renal — Confirmação e Tipagem",
+        "qid": "2be4ea1f",
+        "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+        "refs": [
+          "renal_amyloidosis_diagnosis_2022",
+          "ikmg_mgrs_consensus_2019"
+        ],
+        "opts": [
+          "O achado confirma amiloide, mas não define o precursor; é necessário tipar a proteína, recorrendo a espectrometria de massa quando imunofluorescência ou imuno-histoquímica forem inconclusivas",
+          "O achado confirma automaticamente amiloidose AL e dispensa investigação clonal",
+          "O achado diferencia amiloidose AL de AA apenas pela intensidade da cor",
+          "O achado é específico de glomerulonefrite fibrilar e exclui amiloidose"
+        ],
+        "ans": 0,
+        "exp": "Vermelho Congo com birrefringência verde-maçã confirma a natureza amiloide do depósito, mas não identifica a proteína precursora. Essa distinção é decisiva porque AL, AA, transtirretina e formas hereditárias têm tratamentos diferentes. A tipagem começa com métodos validados de imunofluorescência ou imuno-histoquímica; microdissecção a laser com espectrometria de massa é o método de referência em casos indeterminados ou discordantes. Não se deve chamar todo depósito Congo positivo de AL apenas porque existe uma gamopatia concomitante.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "originalSHA256": "sha256:37c8934d0b02961958c7098d6296d5172550b4b7540dae20fec859a5b49f09ff",
+      "proposed": {
+        "t": "Amiloidose Renal — Confirmação e Tipagem",
+        "qid": "2be4ea1f",
+        "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+        "refs": [
+          "renal_amyloidosis_diagnosis_2022",
+          "ikmg_mgrs_consensus_2019"
+        ],
+        "opts": [
+          "Tipar a proteína amiloide, recorrendo à proteômica se necessário.",
+          "Definir o tipo cadeia leve apenas pela positividade do vermelho Congo.",
+          "Definir o tipo amiloide A pela intensidade da birrefringência verde.",
+          "Usar um pico monoclonal concomitante para atribuir diretamente o tipo."
+        ],
+        "ans": 0,
+        "exp": "É necessário identificar a proteína precursora do amiloide. Vermelho Congo e birrefringência verde-maçã confirmam a natureza do depósito, mas não distinguem amiloidose por cadeia leve de outras formas. Imunofluorescência ou imuno-histoquímica validadas podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência quando o resultado é indeterminado ou discordante. Um componente monoclonal concomitante, sozinho, não prova que o amiloide deriva dele. Essa distinção muda o tratamento e evita terapia dirigida ao clone em uma amiloidose de outra origem.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:72d24d858347b64d37c56513cd8aa5f448b4b246426f2a08c09dbe068f1f0a51",
+      "referenceRevisions": {
+        "renal_amyloidosis_diagnosis_2022": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd",
+        "ikmg_mgrs_consensus_2019": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a"
+      },
+      "bundleRevision": "sha256:48d72295a77ba08bede0ac1bc1769ec0357a930b5dc7801ca389f8c2ea075f1d",
+      "classification": {
+        "before": {
+          "op": "Distinguir confirmação de amiloide da identificação da proteína precursora.",
+          "primaryCompetence": "Processo diagnóstico seguro antes do tratamento etiológico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Distinguir confirmação de amiloide da identificação da proteína precursora.",
+          "primaryCompetence": "Processo diagnóstico seguro antes do tratamento etiológico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": [
+          "Correta extensa inclui confirmação, limite e dois métodos; um distrator exclui amiloidose pela própria coloração e é fraco. Card2022 tinha atribuição bibliográfica incorreta."
+        ],
+        "appeal": "Sem recurso clínico substantivo além dos defeitos documentados e da duplicidade específica quando indicada.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta extensa inclui confirmação, limite e dois métodos; um distrator exclui amiloidose pela própria coloração e é fraco. Card2022 tinha atribuição bibliográfica incorreta."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "Congo+com birrefringência sustenta amiloide, não AL/AA. IF/IHC validadas podem tipar; LMD/MS é referência em indeterminados/discordantes. Gamopatia incidental não atribui precursor.",
+          "sourceIDs": [
+            "amyloid",
+            "ikmg"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "A opção A não torna proteômica obrigatória para todo caso: diz se necessário, compatível com IF/IHC validadas. O pico monoclonal isolado não resolve etiologia. Intensidade de Congo/birrefringência não diferencia AL/AA. Não há duas melhores respostas.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente A — tipar a proteína amiloide. corresponde à decisão clínica solicitada; A opção A não torna proteômica obrigatória para todo caso: diz se necessário, compatível com IF/IHC validadas. O pico monoclonal isolado não resolve etiologia. Intensidade de Congo/birrefringência não diferencia AL/AA. Não há duas melhores respostas."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em amyloid, ikmg: Congo+com birrefringência sustenta amiloide, não AL/AA. IF/IHC validadas podem tipar; LMD/MS é referência em indeterminados/discordantes. Gamopatia incidental não atribui precursor."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. Todas as opções propõem um princípio de atribuição do tipo. Retira a miniaula apenas da correta; mantém métodos e cautela terapêutica na explicação."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer A — tipar a proteína amiloide.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Todas as opções propõem um princípio de atribuição do tipo. Retira a miniaula apenas da correta; mantém métodos e cautela terapêutica na explicação."
+        },
+        "duplicationFourDimensions": "f4c3f879 cobra causa da AA já tipada; c4e8b495 cobra terapia AL. OP/decisão diferentes de tipagem; não fundir referências ou questões por tema compartilhado.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Nenhum dos10eliminatórios; não identificada duplicata nas quatro dimensões.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado após aplicação autorizada do pacote exato"
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "approvedQuestionExactBytes": "sha256:72d24d858347b64d37c56513cd8aa5f448b4b246426f2a08c09dbe068f1f0a51",
+        "approvedReferences": {
+          "renal_amyloidosis_diagnosis_2022": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd",
+          "ikmg_mgrs_consensus_2019": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "cf42455e",
+      "sourceVersion": "A2.1",
+      "original": {
+        "qid": "cf42455e",
+        "q": "Na imunofluorescência de uma glomerulonefrite, C3c marca 3+ e IgG marca 1+, sem outro reagente mais intenso. Qual é a interpretação correta?",
+        "opts": [
+          "O padrão atende à definição descritiva de C3 dominante, pois C3 está pelo menos duas ordens de intensidade acima dos demais reagentes; isso levanta C3G, mas exige microscopia eletrônica e exclusão de infecção, imunocomplexos mascarados e outras causas",
+          "C3 dominante exige ausência absoluta de toda imunoglobulina, portanto IgG 1+ exclui C3G",
+          "O padrão confirma sozinho C3 glomerulonefrite e dispensa investigação clínica ou do complemento",
+          "C3 3+ com IgG 1+ define glomerulonefrite pós-infecciosa e exclui desregulação persistente da via alternativa"
+        ],
+        "ans": 0,
+        "exp": "O consenso usa o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c é pelo menos duas ordens de magnitude maior que qualquer outro reagente imune; não é obrigatório que toda imunoglobulina seja zero. Esse padrão aumenta a suspeita de C3 glomerulopatia, mas não fecha etiologia: infecção relacionada, imunoglobulinas mascaradas e outros mimetizadores devem ser avaliados, e a microscopia eletrônica ajuda a classificar os depósitos. A persistência de alterações clínicas ou do complemento após um gatilho infeccioso também pode exigir reavaliação.",
+        "refs": [
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "cat": "glomerular",
+        "diff": "hard",
+        "t": "GN com C3 Dominante — Definição e Limites"
+      },
+      "originalSHA256": "sha256:e5318fc23cbab01f2ae6bcc54fd1bf5642173198290928c35ff0e2815d69f7fe",
+      "proposed": {
+        "qid": "cf42455e",
+        "q": "Na imunofluorescência de uma glomerulonefrite, C3c marca 3+ e imunoglobulina G (IgG) marca 1+. Nenhum dos demais reagentes ultrapassa 1+. Qual é a interpretação correta?",
+        "opts": [
+          "Há dominância de C3, mas a etiologia exige integração com outros achados.",
+          "IgG 1+ exclui dominância de C3, mesmo quando C3c marca 3+.",
+          "Esse padrão confirma glomerulonefrite C3, sem necessidade de outros achados.",
+          "Esse padrão define glomerulonefrite pós-infecciosa pela presença de IgG."
+        ],
+        "ans": 0,
+        "exp": "O padrão atende à definição morfológica de C3 dominante: C3c está duas categorias de intensidade acima dos demais reagentes na escala de 0 a 3. Não é necessária ausência absoluta de imunoglobulinas. Isso levanta glomerulopatia C3, mas não fecha a etiologia; devem-se integrar clínica, microscopia eletrônica e investigação de complemento. Glomerulonefrite relacionada à infecção e depósitos de imunoglobulinas mascarados são diferenciais importantes. Assim, nem o pequeno depósito de IgG exclui C3 dominante nem esse resultado isolado confirma C3 glomerulonefrite ou uma origem pós-infecciosa.",
+        "refs": [
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "GN com C3 Dominante — Definição e Limites"
+      },
+      "proposedSHA256": "sha256:a05a82cd80d697ae429765af6a99a8b38fb6bee1bed5c2d12d206e9957001b38",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+        "c3g_consensus": "sha256:225b9a8a23115f5ae4dc8715493dd1a072bebbf8dad31b560260ec7a01db662e"
+      },
+      "bundleRevision": "sha256:b3a202fb2db83524985d787a3f5ab5a3fdd4fe76bc3264fce578796087aaf14c",
+      "classification": {
+        "before": {
+          "op": "Reconhecer o padrão morfológico C3 dominante e o limite de inferência etiológica.",
+          "primaryCompetence": "Interpretação de imunofluorescência com investigação diferencial.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Reconhecer o padrão morfológico C3 dominante e o limite de inferência etiológica.",
+          "primaryCompetence": "Interpretação de imunofluorescência com investigação diferencial.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": [
+          "Além da correta longa, o comparador original é ambíguo. Informação decisiva não pode ser presumida. Original/A2 anterior não são liberados."
+        ],
+        "appeal": "Recurso substantivo do comparador aceito; original eA2não liberados.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": true,
+            "rationale": "Comparador sem outro reagente mais intenso não fixa se outro reagente2+é admissível; muda dominância."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "anulado": true,
+          "reason": "Eliminatório8: informação decisiva ambígua."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "3+ versus no máximo1+ para todos os demais reagentes satisfaz ≥2 categorias. Pequena Ig não exclui. Morfologia isolada não confirma C3GN nem PIGN; integração clínica/EM/complemento, infecção e Ig mascaradas.",
+          "sourceIDs": [
+            "c3",
+            "gn"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Recurso aceito contra A2: sem outro reagente mais intenso não especificava o comparador, permitindo outro reagente2+. Em A2.1, todos os demais são≤1+, removendo essa alternativa factual. O critério é semiquantitativo, não uma razão numérica10². Nenhum argumento substantivo residual.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente A — dominância morfológica de C3, etiologia depende de integração. corresponde à decisão clínica solicitada; Recurso aceito contra A2: sem outro reagente mais intenso não especificava o comparador, permitindo outro reagente2+. Em A2.1, todos os demais são≤1+, removendo essa alternativa factual. O critério é semiquantitativo, não uma razão numérica10². Nenhum argumento substantivo residual."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em c3, gn: 3+ versus no máximo1+ para todos os demais reagentes satisfaz ≥2 categorias. Pequena Ig não exclui. Morfologia isolada não confirma C3GN nem PIGN; integração clínica/EM/complemento, infecção e Ig mascaradas."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. Novo enunciado explicita o dado decisivo, preserva o OP e deixa as opções como quatro interpretações do mesmo resultado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer A — dominância morfológica de C3, etiologia depende de integração.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "A2.1: nenhum demais reagentes>1+; comparador antes implícito está resolvido."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Novo enunciado explicita o dado decisivo, preserva o OP e deixa as opções como quatro interpretações do mesmo resultado."
+        },
+        "duplicationFourDimensions": "Sem outro item com decisão C3 dominante3+/1+ na busca de vizinhança; C3G em outros contextos não equivale a esta interpretação daIF.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Nenhum dos10eliminatórios; não identificada duplicata nas quatro dimensões.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado após aplicação autorizada do pacote exato"
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "approvedQuestionExactBytes": "sha256:a05a82cd80d697ae429765af6a99a8b38fb6bee1bed5c2d12d206e9957001b38",
+        "approvedReferences": {
+          "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+          "c3g_consensus": "sha256:225b9a8a23115f5ae4dc8715493dd1a072bebbf8dad31b560260ec7a01db662e"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "cf84c115",
+      "sourceVersion": "A2",
+      "original": {
+        "t": "Biópsia Renal — Adequação e Erro Amostral",
+        "qid": "cf84c115",
+        "q": "Uma biópsia renal contém cinco glomérulos e não mostra necrose segmentar nem crescentes. Há forte suspeita clínica de glomerulonefrite necrosante focal. Qual interpretação é mais adequada?",
+        "refs": [
+          "kdigo_gn"
+        ],
+        "opts": [
+          "A amostra pode ser insuficiente para excluir uma lesão focal; em geral, 8–10 glomérulos são necessários e a adequação deve considerar o padrão suspeito e o material destinado a microscopia óptica, imunofluorescência e microscopia eletrônica",
+          "Cinco glomérulos sempre excluem glomerulonefrite necrosante quando nenhum crescente é visto",
+          "A imunofluorescência isolada compensa qualquer escassez de córtex e define a atividade da lesão",
+          "A ausência de crescentes permite descartar vasculite ANCA sem integrar clínica, sorologia ou nova amostragem"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO ressalta que o número necessário depende da lesão que se pretende diagnosticar ou excluir, mas uma biópsia costuma precisar de pelo menos 8–10 glomérulos. Doenças focais, como GESF e glomerulonefrite necrosante associada ao ANCA, podem acometer apenas alguns segmentos de alguns glomérulos; portanto, uma amostra pequena aumenta o erro amostral. A adequação também exige representação cortical e distribuição apropriada do tecido para microscopia óptica, imunofluorescência e, quando indicada, microscopia eletrônica. Resultado negativo em cinco glomérulos não prevalece isoladamente sobre uma suspeita clínica forte.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "originalSHA256": "sha256:56e17a6255f0872815e3ce25e5cbfaf081c36455c983cd2c024d3783c7787db6",
+      "proposed": {
+        "t": "Biópsia Renal — Adequação e Erro Amostral",
+        "qid": "cf84c115",
+        "q": "Uma biópsia renal contém cinco glomérulos e não mostra necrose segmentar nem crescentes. Há forte suspeita clínica de glomerulonefrite necrosante focal. Qual interpretação é mais adequada?",
+        "refs": [
+          "kdigo_gn"
+        ],
+        "opts": [
+          "Não exclui a lesão focal; discutir representatividade e necessidade de nova amostragem.",
+          "Reduz a suspeita a ponto de dispensar integração com sorologia e evolução clínica.",
+          "A ausência de crescentes torna a amostra adequada, apesar dos poucos glomérulos.",
+          "Se a imunofluorescência for negativa, o erro amostral deixa de ser relevante."
+        ],
+        "ans": 0,
+        "exp": "Cinco glomérulos sem lesão não excluem uma doença focal diante de forte suspeita clínica. A KDIGO costuma considerar necessários pelo menos 8–10 glomérulos, mas a adequação depende da lesão procurada: doenças difusas podem exigir menos tecido, e lesões focais podem escapar à amostragem. Microscopia em vários níveis e distribuição adequada do material para os diferentes métodos também importam. Cabe integrar clínica, sorologia e evolução com o patologista e discutir nova amostragem quando ela puder mudar a conduta. Imunofluorescência negativa não corrige a escassez da amostra.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:579a4155bfb09f1486857681c303982a5270f8fa5b760bbd5772fd7de502d6f8",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+      },
+      "bundleRevision": "sha256:d3ca5d9d23c9c1ae3ece59bde9918c57f0b51628936df21c8cd64c4336ef6df7",
+      "classification": {
+        "before": {
+          "op": "Reconhecer que amostra pequena negativa não exclui glomerulonefrite focal suspeita.",
+          "primaryCompetence": "Interpretação da adequação da biópsia e erro amostral.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Reconhecer que amostra pequena negativa não exclui glomerulonefrite focal suspeita.",
+          "primaryCompetence": "Interpretação da adequação da biópsia e erro amostral.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": [
+          "Correta aproximadamente resume um laudo técnico inteiro e é identificável por extensão; distratores contêm sempre/qualquer e exclusões absolutas."
+        ],
+        "appeal": "Sem recurso clínico substantivo além dos defeitos documentados e da duplicidade específica quando indicada.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta aproximadamente resume um laudo técnico inteiro e é identificável por extensão; distratores contêm sempre/qualquer e exclusões absolutas."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "KDIGO geralmente8–10 glomérulos, depende de doença. Focalidade necrosante/ANCA exige vários níveis e pode escapar em amostra pequena. Integração clínica/sorologia/material e balanço benefício-risco, não repetição compulsória.",
+          "sourceIDs": [
+            "gn"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "A não ordena nova biópsia para toda pessoa nem atraso de tratamento: manda discutir quando útil. Ausência de crescentes não prova adequação; IF negativa não aumenta córtex amostrado nem exclui lesão pauci-imune. Não há dado que torne outra opção melhor.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente A — não excluir lesão focal, discutir representatividade/nova amostragem. corresponde à decisão clínica solicitada; A não ordena nova biópsia para toda pessoa nem atraso de tratamento: manda discutir quando útil. Ausência de crescentes não prova adequação; IF negativa não aumenta córtex amostrado nem exclui lesão pauci-imune. Não há dado que torne outra opção melhor."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em gn: KDIGO geralmente8–10 glomérulos, depende de doença. Focalidade necrosante/ANCA exige vários níveis e pode escapar em amostra pequena. Integração clínica/sorologia/material e balanço benefício-risco, não repetição compulsória."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. A decisão de interpretar uma negativa pequena substitui inventário técnico na correta; os8–10 ficam na explicação como regra contextual."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer A — não excluir lesão focal, discutir representatividade/nova amostragem.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "A decisão de interpretar uma negativa pequena substitui inventário técnico na correta; os8–10 ficam na explicação como regra contextual."
+        },
+        "duplicationFourDimensions": "Nenhum outro item de adequação negativa com cinco glomérulos identificado; contexto/padrão focal distintos de diagnóstico etiológico em biópsias positivas.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Nenhum dos10eliminatórios; não identificada duplicata nas quatro dimensões.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado após aplicação autorizada do pacote exato"
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "approvedQuestionExactBytes": "sha256:579a4155bfb09f1486857681c303982a5270f8fa5b760bbd5772fd7de502d6f8",
+        "approvedReferences": {
+          "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "d2a32c19",
+      "sourceVersion": "A2",
+      "original": {
+        "t": "Padrão MPGN — Classificação por Depósitos",
+        "qid": "d2a32c19",
+        "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão membranoproliferativo. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+        "refs": [
+          "kdigo_gn",
+          "mpgn_fervenza"
+        ],
+        "opts": [
+          "Reconhecer MPGN como padrão de lesão e usar a imunofluorescência para separar depósitos por imunocomplexos de deposição dominante de complemento, investigando infecção, autoimunidade, gamopatia monoclonal e desregulação do complemento conforme o grupo",
+          "Aplicar apenas a classificação histórica em tipos I, II e III, pois a etiologia não modifica a avaliação nem o tratamento",
+          "Considerar todo padrão MPGN como C3 glomerulopatia mesmo quando imunoglobulinas policlonais predominam",
+          "Definir MPGN primária pela microscopia óptica e dispensar imunofluorescência, microscopia eletrônica e investigação sistêmica"
+        ],
+        "ans": 0,
+        "exp": "MPGN descreve um padrão de lesão na microscopia óptica, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento favorecem glomerulonefrite mediada por imunocomplexos, enquanto C3 dominante levanta C3 glomerulopatia e outras doenças com ativação predominante do complemento. Depois disso, a investigação procura causas secundárias, incluindo infecções crônicas, autoimunidade e gamopatia monoclonal, ou anormalidades da via do complemento. Microscopia eletrônica e contexto clínico completam a interpretação; o padrão isolado não autoriza chamar toda MPGN de C3G ou primária.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "originalSHA256": "sha256:bd6c2c5ce6d8f041b68d4cf874c14cc67a991799789d6e84e6d88534a5e41035",
+      "proposed": {
+        "t": "Padrão membranoproliferativo — Classificação por depósitos",
+        "qid": "d2a32c19",
+        "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão de glomerulonefrite membranoproliferativa. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+        "refs": [
+          "kdigo_gn"
+        ],
+        "opts": [
+          "Classificar os depósitos pela imunofluorescência e investigar a causa correspondente.",
+          "Classificar apenas em tipos I, II e III e considerar a doença primária.",
+          "Definir glomerulopatia C3 pelo duplo contorno, antes de avaliar a composição dos depósitos.",
+          "Definir uma causa monoclonal pelo duplo contorno, antes de investigar o clone."
+        ],
+        "ans": 0,
+        "exp": "A glomerulonefrite membranoproliferativa é um padrão de lesão, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento levam à investigação de imunocomplexos e eventual monoclonalidade; C3 dominante levanta desregulação do complemento, após excluir mimetizadores como infecção. Microscopia eletrônica e contexto clínico completam a interpretação. Infecção, autoimunidade e gamopatia devem ser pesquisadas conforme os depósitos. Nem o duplo contorno define C3 glomerulopatia ou clone, nem a classificação histórica isolada permite chamar a doença de primária.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:3402defa753ae2329e8f23445de8bb2bf79e0e3971426b6937aec371a4dbf034",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+      },
+      "bundleRevision": "sha256:5b40652631f605c3c19be94751d2bf94f050b1d351830059ec2372cb6a3838d1",
+      "classification": {
+        "before": {
+          "op": "Classificar padrão membranoproliferativo pela composição dos depósitos e orientar a investigação etiológica.",
+          "primaryCompetence": "Classificação clinicopatológica e investigação de causas.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Classificar padrão membranoproliferativo pela composição dos depósitos e orientar a investigação etiológica.",
+          "primaryCompetence": "Classificação clinicopatológica e investigação de causas.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": [
+          "Correta extensa entrega categorias e investigação. Há duplicata de questão com87f96e78 e cardglobalmpgn_fervenza com afirmação terapêutica insegura, não necessário aoOP."
+        ],
+        "appeal": "Sem recurso clínico substantivo além dos defeitos documentados e da duplicidade específica quando indicada.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta extensa entrega categorias e investigação. Há duplicata de questão com87f96e78 e cardglobalmpgn_fervenza com afirmação terapêutica insegura, não necessário aoOP."
+        },
+        "legacy": null
+      },
+      "review": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "MPGN é padrão de lesão. IF classifica por Ig/complemento; doença mediada por imunocomplexos pede infecção/autoimunidade/gamopatia; C3 exige diferenciais/complemento. LM isolada não define etiologia.",
+          "sourceIDs": [
+            "gn"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "A classificação histórica não é eliminada como descrição, mas não basta isoladamente. Depósito monoclonal não exige que clone seja sempre demonstrável; a correta não faz essa exigência. O problema decisivo para o banco é duplicidade com87f96e78, não correção clínica do literal.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente A — composição dos depósitos pela IF e investigação etiológica. corresponde à decisão clínica solicitada; A classificação histórica não é eliminada como descrição, mas não basta isoladamente. Depósito monoclonal não exige que clone seja sempre demonstrável; a correta não faz essa exigência. O problema decisivo para o banco é duplicidade com87f96e78, não correção clínica do literal."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em gn: MPGN é padrão de lesão. IF classifica por Ig/complemento; doença mediada por imunocomplexos pede infecção/autoimunidade/gamopatia; C3 exige diferenciais/complemento. LM isolada não define etiologia."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. Versão clínica concisa, sigla expandida e referência específica KDIGO. Nenhum reparo automático do cardglobalmpgn_fervenza."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer A — composição dos depósitos pela IF e investigação etiológica.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Versão clínica concisa, sigla expandida e referência específica KDIGO. Nenhum reparo automático do cardglobalmpgn_fervenza."
+        },
+        "duplicationFourDimensions": "Duplicata real com87f96e78 nas quatro dimensões: OP=próximo passo classificatório de MPGN; competência=interpretação clinicopatológica; decisão=IF por composição e etiologia; conceito=MPGN é padrão, não doença única. Variação lexical/contextual não acrescenta habilidade.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Sem eliminatório clínico dos10; duplicidade nas quatro dimensões exigeFUNDIR.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "Score clínico não supera decisão de fusão; aguarda ação atômica sobre87f96e78.",
+          "lifecycle": "em_revisão até adjudicação de fusão"
+        },
+        "legacy": null
+      },
+      "implementation": {
+        "ready": false,
+        "approvedQuestionExactBytes": "sha256:3402defa753ae2329e8f23445de8bb2bf79e0e3971426b6937aec371a4dbf034",
+        "approvedReferences": {
+          "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ],
+        "requires": "Adjudicar e aplicar fusão com87f96e78, sem apagar posições respondidas, fundirFSRSou criar crédito."
+      }
+    },
+    {
+      "qid": "d2016f23",
+      "sourceVersion": "A2",
+      "original": {
+        "t": "Hipertensão Crônica — Mecanismos de Progressão Renal",
+        "qid": "d2016f23",
+        "q": "Na DRC associada à hipertensão crônica, como a lesão da arteríola aferente pode contribuir para a perda progressiva de néfrons?",
+        "refs": [
+          "afferent_arteriolopathy_2024"
+        ],
+        "opts": [
+          "A perda heterogênea da autorregulação pode transmitir pressão ao glomérulo em alguns néfrons e causar isquemia em outros, promovendo glomeruloesclerose e fibrose tubulointersticial",
+          "A hipertensão causa vasculite imunomediada uniforme de todas as arteríolas renais",
+          "A lesão decorre principalmente de depósito sistêmico de amiloide no mesângio",
+          "O mecanismo dominante é obstrução tubular difusa por cristais de urato"
+        ],
+        "ans": 0,
+        "exp": "A arteriolopatia aferente na nefroesclerose é heterogênea. Remodelamento com lúmen relativamente dilatado pode prejudicar a autorregulação e transmitir a pressão sistêmica ao glomérulo, causando hipertensão glomerular; remodelamento com estreitamento pode reduzir perfusão e produzir isquemia. A coexistência desses padrões favorece glomeruloesclerose, atrofia tubular e fibrose intersticial. Isso é mais preciso que atribuir toda a progressão a uma única via de hiperfiltração. Vasculite, amiloidose e nefropatia por urato são entidades distintas.",
+        "diff": "medium",
+        "cat": "hipertensao"
+      },
+      "originalSHA256": "sha256:0c4d3095f0d929ba76e47ca3ba46a2bd4ebba22db240fb2acc555b6864853f58",
+      "proposed": {
+        "t": "Hipertensão Crônica — Mecanismos de Progressão Renal",
+        "qid": "d2016f23",
+        "q": "Na nefroesclerose, há arteríolas aferentes com lúmens dilatados e outras com lúmens estreitados. Como esses padrões podem contribuir para a progressão renal?",
+        "refs": [
+          "afferent_arteriolopathy_2024"
+        ],
+        "opts": [
+          "Transmissão de pressão aos glomérulos nos néfrons com dilatação e isquemia nos com estreitamento.",
+          "Isquemia nos néfrons com dilatação e hipertensão glomerular nos com estreitamento.",
+          "Menor pressão nos néfrons com dilatação e perfusão preservada nos com estreitamento.",
+          "Hiperfiltração em ambos os padrões, pelo aumento uniforme da perfusão glomerular."
+        ],
+        "ans": 0,
+        "exp": "Os dois mecanismos podem coexistir. Na arteriolopatia aferente dilatada, a perda de autorregulação favorece transmissão da pressão sistêmica e hipertensão glomerular. O estreitamento pode reduzir perfusão e causar isquemia. A combinação favorece lesão glomerular e tubulointersticial em néfrons diferentes. Inverter essas relações ou atribuir hiperfiltração uniforme ao rim ignora a heterogeneidade descrita. Trata-se de um modelo fisiopatológico sustentado por evidência clinicopatológica; não determina sozinho o alvo pressórico ou a terapia de uma pessoa.",
+        "diff": "medium",
+        "cat": "hipertensao"
+      },
+      "proposedSHA256": "sha256:58b2286db4591f357f6bceb317699824fa37e4541f0a1e70926cb991f9c82f5d",
+      "referenceRevisions": {
+        "afferent_arteriolopathy_2024": "sha256:7e4c8e0ffe880e228696f39abeee4b0c98b105157b73f867c1ca464b2768782f"
+      },
+      "bundleRevision": "sha256:cbe18b8ecacec3d0588a4ab5d91a150fabdce6a9febdc76a7156240c79769d3d",
+      "classification": {
+        "before": {
+          "op": "Relacionar heterogeneidade da arteriolopatia aferente a hipertensão glomerular e isquemia em néfrons distintos.",
+          "primaryCompetence": "Fisiopatologia renal aplicada à interpretação de padrões vasculares.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "medium",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Relacionar heterogeneidade da arteriolopatia aferente a hipertensão glomerular e isquemia em néfrons distintos.",
+          "primaryCompetence": "Fisiopatologia renal aplicada à interpretação de padrões vasculares.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": [
+          "Correta é a única que descreve mecanismo vascular; os outros eram vasculite, amiloidose e urato, facilmente eliminados sem conhecer a heterogeneidade."
+        ],
+        "appeal": "Sem recurso clínico substantivo além dos defeitos documentados e da duplicidade específica quando indicada.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14,
+          "rationale": "Correta é a única que descreve mecanismo vascular; os outros eram vasculite, amiloidose e urato, facilmente eliminados sem conhecer a heterogeneidade."
+        },
+        "legacy": "REESCREVER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "Arteriolopatia heterogênea pode causar hipertensão glomerular em néfrons dilatados e hipoperfusão nos estreitados; ambos coexistem. Histologia não é específica de hipertensão nem determina sozinha alvo/tratamento.",
+          "sourceIDs": [
+            "afferent"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Dilatação fisiológica isolada não implica doença, mas o contexto é nefroesclerose com padrões patológicos e o enunciado diz podem. O texto não deduz alvo de PA de calibre isolado. As inversões são erros mecanísticos plausíveis, não alternativas parcialmente corretas neste contexto.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente A — transmissão de pressão na dilatação, isquemia no estreitamento. corresponde à decisão clínica solicitada; Dilatação fisiológica isolada não implica doença, mas o contexto é nefroesclerose com padrões patológicos e o enunciado diz podem. O texto não deduz alvo de PA de calibre isolado. As inversões são erros mecanísticos plausíveis, não alternativas parcialmente corretas neste contexto."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em afferent: Arteriolopatia heterogênea pode causar hipertensão glomerular em néfrons dilatados e hipoperfusão nos estreitados; ambos coexistem. Histologia não é específica de hipertensão nem determina sozinha alvo/tratamento."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. Todos os distratores agora discutem hemodinâmica aferente; removidas etiologias remotas sem relação com a decisão."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores são inversões hemodinâmicas e falsa uniformidade, no mesmo nível da decisão."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer A — transmissão de pressão na dilatação, isquemia no estreitamento.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20,
+          "rationale": "Todos os distratores agora discutem hemodinâmica aferente; removidas etiologias remotas sem relação com a decisão."
+        },
+        "duplicationFourDimensions": "0b5ea123 trata toxicidade CNI/revisão terapêutica do transplante; arteriolopatia compartilhada não o torna duplicata. Nenhum outro par exige esta relação dilatação/estreitamento.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Nenhum dos10eliminatórios; não identificada duplicata nas quatro dimensões.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "20/20→aprovada.",
+          "lifecycle": "publicado após aplicação autorizada do pacote exato"
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "approvedQuestionExactBytes": "sha256:58b2286db4591f357f6bceb317699824fa37e4541f0a1e70926cb991f9c82f5d",
+        "approvedReferences": {
+          "afferent_arteriolopathy_2024": "sha256:7e4c8e0ffe880e228696f39abeee4b0c98b105157b73f867c1ca464b2768782f"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ]
+      }
+    },
+    {
+      "qid": "efba1640",
+      "sourceVersion": "A2.3",
+      "original": {
+        "t": "DRC-MBD — FGF23 Precoce",
+        "qid": "efba1640",
+        "q": "Na doença renal crônica (DRC), qual alteração hormonal costuma participar precocemente da manutenção do fósforo sérico normal, antes da hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "gohil_imel_fgf23_phosphate_2019"
+        ],
+        "opts": [
+          "Elevação da eritropoietina",
+          "Elevação da calcitonina",
+          "Elevação do calcitriol",
+          "Elevação do fator de crescimento de fibroblastos 23 (FGF23)"
+        ],
+        "ans": 3,
+        "exp": "O fator de crescimento de fibroblastos 23 (FGF23) participa da adaptação inicial à menor capacidade de excretar fosfato, aumentando sua excreção pelos néfrons remanescentes e reduzindo calcitriol. Estudos da coorte CRIC encontraram FGF23 elevado em categorias de função renal nas quais fósforo e paratormônio (PTH) ainda podiam ser normais; isso não demonstra uma ordem temporal obrigatória em cada pessoa. Elevação de calcitriol, calcitonina ou eritropoietina não explica essa adaptação fosfatúrica. O achado não constitui indicação de dosar FGF23 rotineiramente ou iniciar quelante com fósforo normal.",
+        "diff": "easy",
+        "cat": "eletrólitos"
+      },
+      "originalSHA256": "sha256:893224735a391723686c6cc56243de0873f5c96b8417d4ac0fdb48e0cf47401d",
+      "proposed": {
+        "t": "DRC-MBD — FGF23 Precoce",
+        "qid": "efba1640",
+        "q": "Na doença renal crônica (DRC), qual alteração hormonal costuma participar precocemente da manutenção do fósforo sérico normal, antes da hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "gohil_imel_fgf23_phosphate_2019",
+          "isakova_cric_fgf23_2011"
+        ],
+        "opts": [
+          "Elevação da eritropoietina",
+          "Elevação da calcitonina",
+          "Elevação do calcitriol",
+          "Elevação do fator de crescimento de fibroblastos 23 (FGF23)"
+        ],
+        "ans": 3,
+        "exp": "O fator de crescimento de fibroblastos 23 (FGF23) participa da adaptação inicial à menor capacidade de excretar fosfato, aumentando sua excreção pelos néfrons remanescentes e reduzindo calcitriol. Estudos da coorte CRIC encontraram FGF23 elevado em categorias de função renal nas quais fósforo e paratormônio (PTH) ainda podiam ser normais; isso não demonstra uma ordem temporal obrigatória em cada pessoa. Elevação de calcitriol, calcitonina ou eritropoietina não explica essa adaptação fosfatúrica. O achado não constitui indicação de dosar FGF23 rotineiramente ou iniciar quelante com fósforo normal.",
+        "diff": "easy",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:bc4b115af4930ddf36c21b5ea11187ab72125eaf648e79c4b8fd7e64e17c302f",
+      "referenceRevisions": {
+        "kdigo_ckd_mbd_2017": "sha256:4f2ebdc80ce2154f9826f465160a813ddccb963d6d1cfc9b36b94e732c3033f4",
+        "gohil_imel_fgf23_phosphate_2019": "sha256:4ac5adf267128eb15d1cb2963230a13d42a089a5892e6fc76deb390bac5fdb7d",
+        "isakova_cric_fgf23_2011": "sha256:0580f03dc488a37f2fdf307debbbba3e7630278d22c3fafe4d5570a78c9d47fa"
+      },
+      "bundleRevision": "sha256:9400febf2c89cab2ec1f37bfb314812712a66d658265e8235962f503b409c45b",
+      "classification": {
+        "before": {
+          "op": "Reconhecer participação precoce de FGF23 na manutenção da fosfatemia na doença renal crônica.",
+          "primaryCompetence": "Fisiologia adaptativa mineral na doença renal crônica.",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficultyAuthored": "easy",
+          "difficultyIntrinsic": "easy"
+        },
+        "after": {
+          "op": "Reconhecer participação precoce de FGF23 na manutenção da fosfatemia na doença renal crônica.",
+          "primaryCompetence": "Fisiologia adaptativa mineral na doença renal crônica.",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficultyIntrinsic": "easy",
+          "difficultyAuthored": "easy"
+        },
+        "independentAgreement": "OP/competência/Bloom/Miller/dificuldade reavaliados a partir do literal; não herdados de score autoral.",
+        "newLoidInvented": false
+      },
+      "originalReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "findings": [
+          "Não há defeito médico substantivo ou necessidade de encurtar artificialmente o nome do hormônio. Faltava atribuição primáriaCRIC explícita; impacto KDIGO podia sugerir calcitriol demasiado amplo."
+        ],
+        "appeal": "Sem recurso clínico substantivo além dos defeitos documentados e da duplicidade específica quando indicada.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Sem dependência de protocolo local."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gabarito clínico e limites confrontados com fontes; problemas de forma/atribuição descritos separadamente."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 18,
+          "rationale": "Não há defeito médico substantivo ou necessidade de encurtar artificialmente o nome do hormônio. Faltava atribuição primáriaCRIC explícita; impacto KDIGO podia sugerir calcitriol demasiado amplo."
+        },
+        "legacy": "MANTER"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "confidence": "alta para o escopo diagnóstico/mecanístico conferido; não aprovação global da literatura",
+        "claimVerification": {
+          "claim": "FGF23 reduz NaPi-IIa/IIc e calcitriol; o padrão populacional CRIC é compatível com adaptação antes da hiperfosfatemia. Não garante sequência individual ou indicação de dosagem/quelante. PredominantementeG2–G4 no card final.",
+          "sourceIDs": [
+            "gohil",
+            "cric",
+            "mbd"
+          ],
+          "result": "VERIFICADA"
+        },
+        "advogadoDoRecurso": "Calcitonina pode influenciar fósforo em outros contextos, mas não constitui a adaptação precoce reconhecida daDRC descrita. Calcitriol tende a cair; eritropoietina não explica fosfatúria. Nome próprio por extenso tornaDmaior, mas as quatro opções seguem a mesma forma Elevação de hormônio; não justifica padding/cortar acessibilidade.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Somente D — elevação de FGF23. corresponde à decisão clínica solicitada; Calcitonina pode influenciar fósforo em outros contextos, mas não constitui a adaptação precoce reconhecida daDRC descrita. Calcitriol tende a cair; eritropoietina não explica fosfatúria. Nome próprio por extenso tornaDmaior, mas as quatro opções seguem a mesma forma Elevação de hormônio; não justifica padding/cortar acessibilidade."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Afirmação decisiva conferida em gohil, cric, mbd: FGF23 reduz NaPi-IIa/IIc e calcitriol; o padrão populacional CRIC é compatível com adaptação antes da hiperfosfatemia. Não garante sequência individual ou indicação de dosagem/quelante. PredominantementeG2–G4 no card final."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "OP e competência preservados. Texto clínico já estava adequado e foi preservado. A revisão inclui fonteCRIC necessária à afirmação explícita e corrige escopo populacional no cardA2.3."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer D — elevação de FGF23.."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Texto clínico já estava adequado e foi preservado. A revisão inclui fonteCRIC necessária à afirmação explícita e corrige escopo populacional no cardA2.3."
+        },
+        "duplicationFourDimensions": "50d30738 dáFGF23 e pede ação;8ba55c24 pede transportador;ffee06f0 pede metabolismo de vitaminaD;1366b930 pede relaçãoPTH;22189222 pede sequência multihormonal. A2 identifica qual hormônio: decisão/raciocínio central distintos; não fundir por palavra-chave.",
+        "decisionTree": {
+          "step0": "EvidênciaVERIFICADA+NENHUMA: combinação válida, segue avaliação.",
+          "step1": "Nenhum dos10eliminatórios; não identificada duplicata nas quatro dimensões.",
+          "step2": "Recurso substantivo deC3corrigido emA2.1; demais argumentos confrontados com fontes e literal.",
+          "step3": "19/20→aprovada.",
+          "lifecycle": "publicado após aplicação autorizada do pacote exato"
+        },
+        "legacy": "MANTER"
+      },
+      "implementation": {
+        "ready": true,
+        "approvedQuestionExactBytes": "sha256:bc4b115af4930ddf36c21b5ea11187ab72125eaf648e79c4b8fd7e64e17c302f",
+        "approvedReferences": {
+          "kdigo_ckd_mbd_2017": "sha256:4f2ebdc80ce2154f9826f465160a813ddccb963d6d1cfc9b36b94e732c3033f4",
+          "gohil_imel_fgf23_phosphate_2019": "sha256:4ac5adf267128eb15d1cb2963230a13d42a089a5892e6fc76deb390bac5fdb7d",
+          "isakova_cric_fgf23_2011": "sha256:0580f03dc488a37f2fdf307debbbba3e7630278d22c3fafe4d5570a78c9d47fa"
+        },
+        "preserveQid": true,
+        "fsrsReset": false,
+        "identityReason": "O conceito correto, OP e competência permanecem reconhecíveis. Mudança textual/referências/dificuldade não implica resetFSRS (§18.5).",
+        "constraints": [
+          "Quatro alternativas e índiceansinalterado; não transferir resposta salva ao texto novo sem política de revisão já usada no produto.",
+          "Mudança dos cards pode alterar revisão material de outros consumidores; regenerar manifesto e preservar detecção de versões.",
+          "Nenhum arquivo data alterado por este revisor; integração exclusiva do root."
+        ]
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "renal_phospholipidosis_zebra_2017",
+      "originalSHA256": "sha256:1a2b0eb47d022b5c40aa87aff197f5ebdc45569b559416ef946c615da3b67701",
+      "proposedSHA256": "sha256:4801dab939cf1f3a1b9f64f72c734d988735062bb9b7bcc25b33a966c97425fb",
+      "proposed": {
+        "label": "Neves et al. — Corpos zebra: Fabry ou fosfolipidose? (2017)",
+        "url": "https://link.springer.com/article/10.1186/s12882-017-0571-0",
+        "journal": "BMC Nephrology 2017;18:157",
+        "ano": 2017,
+        "tipo": "Relatos de casos comparativos",
+        "badge": "CASOS",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Corpos zebra podem ocorrer na fosfolipidose medicamentosa e não confirmam Fabry",
+        "icon": "🔬",
+        "resumo": "Dois relatos clinicopatológicos comparativos: uma mulher em hidroxicloroquina com possível fosfolipidose e um homem com doença de Fabry confirmada por atividade enzimática ausente. A discussão descreve cloroquina, hidroxicloroquina e amiodarona como exposições capazes de produzir inclusões lamelares lisossomais semelhantes. No primeiro caso, as inclusões desapareceram em biópsia posterior à retirada do fármaco; não havia teste enzimático/genético inicial. O desenho não permite estimar risco nem garantir reversão em todos.",
+        "conclusao": "Revisar a exposição medicamentosa e correlacionar achados clínicos, enzimáticos e genéticos antes de atribuir corpos zebra à doença de Fabry.",
+        "curiosidade": "A regressão histológica foi documentada no caso descrito; o artigo ressalta que recuperação e tempo de reversão variam."
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "zebra"
+      ],
+      "claimChecks": [
+        {
+          "claim": "Neves/BMC2017;18:157/DOIcorretos; não JBN39:217–221.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Dois casos comparativos, mulher com suspeita porHCQsem teste inicial e homem comFDconfirmada.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "CQ/HCQ/amiodarona descritas; regressão histológica individual e variabilidade clínica, sem risco/incidência/reversibilidade universal.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "Exceção factual adjudicada pelo root: Relatos de casos comparativos/CASOS/#0ea5e9/🔬; não é coorte, revisão ou ensaio.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "ebac9c20"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "renal_amyloidosis_diagnosis_2022",
+      "originalSHA256": "sha256:0e4fd3bebf1f3abfe486c4be72db380adea244c769bf38bfb0d1c1264728b3e9",
+      "proposedSHA256": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd",
+      "proposed": {
+        "label": "Feitosa et al. — Diagnóstico completo da amiloidose renal (2022)",
+        "url": "https://www.scielo.br/j/bjmbr/a/n5NpNHMsvkwjnBV4rmzgQ3L/",
+        "journal": "Brazilian Journal of Medical and Biological Research 2022;55:e12284",
+        "ano": 2022,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmar amiloide e identificar a proteína precursora são etapas distintas",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica de Feitosa, Neves, Jorge, Noronha e Onuchic sobre diagnóstico de amiloidose renal. Vermelho Congo com birrefringência verde-maçã confirma depósito amiloide, mas não define o precursor. Métodos de imunofluorescência e imuno-histoquímica podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência nos casos inconclusivos ou discordantes. A tipagem é necessária porque as diferentes proteínas precursoras exigem abordagens distintas.",
+        "conclusao": "Não atribuir amiloidose a cadeia leve apenas por uma gamopatia concomitante. Definir o precursor antes de escolher tratamento dirigido.",
+        "curiosidade": "Anticorpos comerciais podem não reconhecer regiões alteradas das cadeias leves presentes nos depósitos; isso ajuda a explicar resultados indeterminados."
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "amyloid",
+        "ikmg"
+      ],
+      "claimChecks": [
+        {
+          "claim": "Feitosa/Neves/Jorge/Noronha/Onuchic,BJMBR55:e12284,2022,DOIcorreto.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Confirmação porCongo versus precursor;IF/IHCvalidadas eLMD/MSnos indeterminados.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "MGUSincidental não provaAL; epítopos alterados podem impedir reconhecimento por anticorpos comerciais.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "Taxonomia regular do contrato; desenho explicitado no resumo.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "2be4ea1f",
+        "bfe72457"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "ikmg_mgrs_consensus_2019",
+      "originalSHA256": "sha256:9f57bb172e7c48f394f0f8d45e5bd765e634d50cf044c0be6779c9c85e2e9c4c",
+      "proposedSHA256": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a",
+      "proposed": {
+        "label": "Consenso IKMG — Gamopatia monoclonal de significado renal (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+        "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+        "ano": 2019,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+        "icon": "📋",
+        "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group (IKMG) para investigar gamopatia monoclonal de significado renal (MGRS): um clone pode produzir imunoglobulina nefrotóxica sem preencher critérios de malignidade que justifiquem tratamento por si só. Recomenda biópsia renal, estudos dos depósitos, pesquisa sérica/urinária de componente monoclonal e avaliação do clone. Microdissecção com espectrometria de massa é referência para tipagem amiloide quando outros métodos não esclarecem.",
+        "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+        "curiosidade": ""
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "ikmg"
+      ],
+      "claimChecks": [
+        {
+          "claim": "NatRevNephrol2019;15(1):45–59, publicação on-line2018não altera ano impresso.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "MGRSproduzIgnefrotóxica sem critérios oncohematológicos independentes; clone pequeno não significa irrelevante.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Biópsia/depósitos, sérico-urinário, clone eLMD/MSquando necessário; pico não atribui causalidade.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "GUIDELINEé apresentação de orientação por consenso; resumo explicita desenho de consenso, semGRADEou eficácia de tratamento.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "2be4ea1f",
+        "bfe72457",
+        "644cb809",
+        "048435a5"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "kdigo_gn",
+      "originalSHA256": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13",
+      "proposedSHA256": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+      "proposed": {
+        "label": "KDIGO Glomerular Diseases 2021",
+        "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+        "journal": "Kidney Int 2021;100(4S):S1-S276",
+        "ano": 2021,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+        "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+        "curiosidade": ""
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "gn"
+      ],
+      "claimChecks": [
+        {
+          "claim": "KDIGO2021,KI100(4S):S1–S276; capítulo1sustenta8–10contextual eLM/IF/EM.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Capítulo8sustenta classificaçãoMPGNporIg/complemento,infecção eIgmascaradas.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Carddelimita princípios diagnósticos e avisa sobre capítulos terapêuticos atualizados; não é aprovação geral de recomendações2021nem dos39consumidores.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "Taxonomia regular do contrato; desenho explicitado no resumo.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "cd455e49",
+        "d2a32c19",
+        "00d410e2",
+        "ff741767",
+        "cf84c115",
+        "cd49b7a6",
+        "f9d81f9d",
+        "68cbe570",
+        "033aed49",
+        "68cb9c42",
+        "cf42455e",
+        "aca17286",
+        "fbb4edd0",
+        "d14954d1",
+        "2493e0dc",
+        "b1976a3f",
+        "df6caaed",
+        "1366eca9",
+        "750c9baf",
+        "8e6474eb",
+        "6fb809f3",
+        "6d007422",
+        "7888b974",
+        "8fd9452a",
+        "68f04699",
+        "80fb7281",
+        "bdcaa30c",
+        "5dcf36ae",
+        "38da9430",
+        "2198d3ba",
+        "87f96e78",
+        "673a9acf",
+        "d2143d46",
+        "4adc13fd",
+        "72fbf8f7",
+        "66905ee2",
+        "d43f9988",
+        "05fd9be9",
+        "21c883d5"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "c3g_consensus",
+      "originalSHA256": "sha256:4280284294f581e866951a7818386b770c375f2761ce056387729c1eebce5203",
+      "proposedSHA256": "sha256:225b9a8a23115f5ae4dc8715493dd1a072bebbf8dad31b560260ec7a01db662e",
+      "proposed": {
+        "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+        "journal": "Kidney Int 2013;84(6):1079-1089",
+        "ano": 2013,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "C3 dominante é um padrão de intensidade, não exigência de imunoglobulinas ausentes",
+        "icon": "📋",
+        "resumo": "Consenso internacional de especialistas (Pickering et al., 2013) sobre definição e investigação da glomerulopatia C3. Propõe o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c está pelo menos duas categorias acima de qualquer outro reagente imune na escala de 0 a 3. Pequenos depósitos de imunoglobulinas podem coexistir. Diagnóstico etiológico exige integração com microscopia óptica, eletrônica e história clínica, incluindo possível infecção. Doença de depósitos densos e glomerulonefrite C3 distinguem-se pela ultraestrutura.",
+        "conclusao": "A dominância de C3 levanta C3 glomerulopatia, mas não substitui investigação clínica nem exclui mimetizadores. É orientação de consenso, sem força terapêutica de ensaio randomizado.",
+        "curiosidade": ""
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "c3",
+        "gn"
+      ],
+      "claimChecks": [
+        {
+          "claim": "Pickering etal2013;84(6):1079–1089,DOIcorreto, texto integral lido.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "≥2categoriasacima de qualquer reagente0–3, não ausência absoluta deIg.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "IntegraçãoLM/IF/EM/clínica/infecciosa;DDDversusC3GNporultraestrutura, sem inferência terapêutica randomizada.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "GUIDELINEé orientação de consenso explicitamente declarada; não atribuiGRADE.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "f7ef303f",
+        "ff741767",
+        "cf42455e",
+        "fbb4edd0",
+        "d14954d1",
+        "8fd9452a",
+        "87f96e78",
+        "0e102752",
+        "54c78982",
+        "e4d4db47",
+        "66905ee2"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "afferent_arteriolopathy_2024",
+      "originalSHA256": "sha256:49b8df0c170bced8ef7d0a51b5626423e3c6721320ca9fc04e74495943d3d4e9",
+      "proposedSHA256": "sha256:7e4c8e0ffe880e228696f39abeee4b0c98b105157b73f867c1ca464b2768782f",
+      "proposed": {
+        "label": "Kohagura et al. — Arteriolopatia aferente heterogênea (2024)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39379463/",
+        "journal": "Hypertens Res. 2024;47(12):3383-3396",
+        "ano": 2024,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Mecanismos vasculares e limites histológicos da nefroesclerose",
+        "icon": "🔬",
+        "resumo": "Revisão contemporânea sobre arteriolopatia aferente heterogênea e dano renal dependente da pressão. Hialinose e espessamento medial da arteríola aferente, associados a espessamento íntimal de pequenas artérias, podem romper a autorregulação. Néfrons com remodelamento mais dilatado ficam expostos à hipertensão glomerular, enquanto os com lúmen estreitado sofrem isquemia; ambos os padrões podem coexistir e contribuir para glomeruloesclerose e fibrose tubulointersticial.",
+        "conclusao": "A progressão renal associada à pressão combina transmissão de hiperpressão e isquemia em néfrons diferentes; achados de arterionefroesclerose apoiam o diagnóstico, mas não são patognomônicos nem exclusivos da hipertensão.",
+        "curiosidade": "O mesmo rim pode conter arteríolas aferentes dilatadas e estreitadas, explicando por que uma descrição única de hiperfiltração ou isquemia não captura toda a fisiopatologia da nefroesclerose."
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "afferent"
+      ],
+      "claimChecks": [
+        {
+          "claim": "Kohagura etal2024;47(12):3383–3396/DOIcorretos; revisão.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Hialinose/espessamento e autorregulação heterogênea; dilatação→pressão,estreitamento→isquemia.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Coexistência e progressão, histologia não patognomônica nem exclusiva; não inventa alvoPAou benefício por modelo.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "Taxonomia regular do contrato; desenho explicitado no resumo.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "bcc592b1",
+        "d2016f23"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "kdigo_ckd_mbd_2017",
+      "originalSHA256": "sha256:8c64241ebe4456aff9697e444239eceded90b6a7310845df8c855f12bced89be",
+      "proposedSHA256": "sha256:4f2ebdc80ce2154f9826f465160a813ddccb963d6d1cfc9b36b94e732c3033f4",
+      "proposed": {
+        "label": "KDIGO — Distúrbio mineral e ósseo da doença renal crônica (2017)",
+        "url": "https://kdigo.org/guidelines/ckd-mbd/",
+        "journal": "Kidney Int Suppl 2017;7(1):1-59",
+        "ano": 2017,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Avaliar tendências de cálcio, fósforo e paratormônio; evitar tratamento por um valor isolado",
+        "icon": "📋",
+        "resumo": "Atualização KDIGO 2017 para distúrbio mineral e ósseo da doença renal crônica. Antes da diálise, paratormônio (PTH) progressivamente elevado exige avaliar hiperfosfatemia, hipocalcemia, ingestão de fósforo e deficiência de vitamina D (2C). Calcitriol e análogos não são de rotina em adultos não dialíticos; podem ser reservados a hiperparatireoidismo grave e progressivo em G4–G5. Em diálise, sugere PTH aproximadamente 2–9 vezes o limite do ensaio e seleção da terapia conforme cálcio/fósforo. Hiperparatireoidismo grave refratário pode exigir paratireoidectomia (2B).",
+        "conclusao": "O manejo deve seguir tendências de PTH, cálcio e fósforo, corrigir fatores modificáveis e reservar cirurgia ao hiperparatireoidismo grave refratário, sem transformar um limiar isolado de PTH em indicação automática.",
+        "curiosidade": "A diretriz baseia tratamento redutor de fósforo em elevação progressiva ou persistente, e não apenas em um mecanismo hormonal compensatório."
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "mbd"
+      ],
+      "claimChecks": [
+        {
+          "claim": "KDIGO2017;7(1):1–59;4.2.1modificáveis2C.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "4.2.2calcitriol não rotineiro adultoND/reservaG4–5graveprogressivo;4.2.3G5DPTH2–9LSN;4.2.4terapiaem contexto.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "4.2.5paratireoidectomia grave refratário2B;4.1.5tratamentoPporalta persistente/progressiva, não mecanismo isolado.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "Taxonomia regular do contrato; desenho explicitado no resumo.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "efba1640",
+        "b5f6baf9",
+        "67035e0e",
+        "38c82254",
+        "1366b930",
+        "0f739fb4",
+        "d4b2aa68",
+        "2beb178a",
+        "3dfa2ab5",
+        "9c43ab07",
+        "9482bda7",
+        "e77d2078",
+        "8ba55c24",
+        "c9da6fdf",
+        "21e9cefb",
+        "ffee06f0",
+        "2f2cdd55",
+        "666e748d",
+        "c44f053b",
+        "22189222",
+        "891b3e02",
+        "73069894",
+        "50d30738",
+        "0792a38e"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "gohil_imel_fgf23_phosphate_2019",
+      "originalSHA256": "sha256:fa60a05ba08bc93368f3230675e9457e7fe642efd48368d35f2fc27786588232",
+      "proposedSHA256": "sha256:4ac5adf267128eb15d1cb2963230a13d42a089a5892e6fc76deb390bac5fdb7d",
+      "proposed": {
+        "label": "Gohil & Imel — Fator de crescimento de fibroblastos 23 (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7040960/",
+        "journal": "Pediatr Endocrinol Rev. 2019;17(1):17–34",
+        "ano": 2019,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Hormônios regulam a reabsorção renal de fosfato e a ativação da vitamina D",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa fisiológica e clínica sobre fator de crescimento de fibroblastos 23 (FGF23) e distúrbios da regulação de fosfato. FGF23 e paratormônio (PTH) reduzem a expressão apical dos cotransportadores sódio-fosfato NaPi-IIa/IIc, diminuindo a reabsorção proximal. FGF23 reduz a ativação e aumenta a inativação da vitamina D, diminuindo calcitriol. A regulação recíproca de PTH/FGF23 é complexa, e achados experimentais e humanos podem variar. É fonte de mecanismo, não diretriz terapêutica da doença renal crônica.",
+        "conclusao": "Sustenta os mecanismos renais de fosfato e vitamina D; não demonstra benefício clínico de manipular FGF23 em pessoas com DRC.",
+        "curiosidade": "A revisão distingue evidência experimental de resultados humanos, que podem variar conforme o tempo de exposição ao PTH."
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "gohil"
+      ],
+      "claimChecks": [
+        {
+          "claim": "Gohil/Imel,PER2019;17(1):17–34,DOIcorreto; revisão narrativa.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "FGF23/PTHdiminuemNaPiIIa/IIc;FGF23inibeCYP27B1/aumentaCYP24A1 e reduzcalcitriol.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "InteraçãoPTH/FGF23experimental versus humanos é variável; nenhum benefício de intervençãoFGF23naDRCafirmado.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "Taxonomia regular do contrato; desenho explicitado no resumo.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [
+        "efba1640",
+        "38c82254",
+        "1366b930",
+        "8ba55c24",
+        "ffee06f0",
+        "50d30738",
+        "0792a38e"
+      ],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    },
+    {
+      "id": "isakova_cric_fgf23_2011",
+      "originalSHA256": null,
+      "proposedSHA256": "sha256:0580f03dc488a37f2fdf307debbbba3e7630278d22c3fafe4d5570a78c9d47fa",
+      "proposed": {
+        "label": "Isakova et al. — FGF23 precoce na coorte CRIC (2011)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21389978/",
+        "journal": "Kidney International 2011;79(12):1370–1378",
+        "ano": 2011,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "icon": "🔬",
+        "impacto": "FGF23 pode estar elevado enquanto fósforo e paratormônio permanecem normais",
+        "resumo": "Análise transversal de amostras basais de 3.879 participantes da Chronic Renal Insufficiency Cohort (CRIC), com doença renal crônica predominantemente nos estágios 2–4. Fator de crescimento de fibroblastos 23 (FGF23) estava elevado em estratos de função renal nos quais fósforo e paratormônio ainda eram normais. A elevação foi mais frequente em diferentes estratos de filtração do que hiperparatireoidismo ou hiperfosfatemia. O desenho basal da coorte não demonstra sequência obrigatória em cada indivíduo nem benefício de intervenção sobre FGF23.",
+        "conclusao": "Sustenta adaptação hormonal precoce em nível populacional; não autoriza prever evolução individual nem prescrever tratamento pelo biomarcador isolado.",
+        "curiosidade": ""
+      },
+      "wholeCardReviewed": true,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "sourceIDs": [
+        "cric"
+      ],
+      "claimChecks": [
+        {
+          "claim": "Isakova etalKI2011;79(12):1370–1378,DOIcorreto,3.879amostrasbasais.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "PredominantementeG2–G4:10%/70%/19%;TFGe7–114no corpo, não todos limitados2–4.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        },
+        {
+          "claim": "Desenho transversal basal e padrãoFGF23/PTH/fósforo; não temporalidade individual nem intervenção.",
+          "result": "VERIFICADA",
+          "scope": "todos os campos do literal proposto, incluindo curiosidade, desenho, bibliografia e limite clínico"
+        }
+      ],
+      "formatAdjudication": "COHORTidentifica origem da amostra; primeira frase explicita análise transversal basal. Associação ajustada/desfecho clínico não são inventados, pois o resultado apresentado é descritivo.",
+      "score": null,
+      "scoreReason": "Card científico independente não é questão com10dimensões; não atribuir20pontos a um resumo.",
+      "currentConsumers": [],
+      "consumerBoundary": "Preserva IDestável. Correção do card não aprova outras questões que o citam; fonte integral sustenta princípios indicados, não deve ser interpretada como tipagem/conduta individual sem dados.",
+      "gateExactBytes": true
+    }
+  ],
+  "explicitSupersessions": [
+    {
+      "qid": "cf42455e",
+      "blockedVersion": "A2",
+      "reason": "Comparador ambíguo: recurso substantivo/critério8.",
+      "approvedQuestionHash": "sha256:a05a82cd80d697ae429765af6a99a8b38fb6bee1bed5c2d12d206e9957001b38",
+      "replacement": "A2.1"
+    },
+    {
+      "id": "renal_phospholipidosis_zebra_2017",
+      "superseded": "A2/REVIEW",
+      "replacement": "A2.2/CASOS",
+      "reason": "Desenho real de dois relatos; exceção de formato adjudicada, conteúdo conferido independentemente."
+    },
+    {
+      "id": "isakova_cric_fgf23_2011",
+      "superseded": "A2, populaçãoG2–G4sem qualificador",
+      "replacement": "A2.3/predominantementeG2–G4",
+      "reason": "Corpo integral da fonte revelou≈1%fora dessas faixas; revisão material de card reavaliada no novo hash."
+    }
+  ],
+  "collateralHolds": [
+    {
+      "id": "mpgn_fervenza",
+      "publicationAuthorization": "BLOQUEADA",
+      "scope": "Card global não é proposto para edição aqui; removê-lo de uma atribuição não é aprovação ou reparo do corpo.",
+      "reason": "Afirmação global contra imunossupressão emC3Gnão é sustentada; KDIGO2021PP8.2.2.1já descreveMMF+glicocorticoides em cenário selecionado. Terapêutica contemporânea requer revisão específica, não receita de2021por extrapolação."
+    },
+    {
+      "qid": "c4e8b495",
+      "publicationAuthorization": "BLOQUEADA",
+      "scope": "Achado colateral ainda sem candidato/gate específico; não editar automaticamente.",
+      "reason": "Congo+pico descritos como compatívelcomALnão demonstram tipagem. Reavaliar se o caso presume diagnósticoALestabelecido ou faz inferência insegura antes de terapia dirigida ao clone."
+    }
+  ],
+  "summary": {
+    "questions": 7,
+    "clinicalCandidatesSupported": 7,
+    "questionGatesReleased": 6,
+    "questionGatesBlocked": 1,
+    "cardsReviewed": 9,
+    "cardsReleased": 9,
+    "bankDuplicateNeedsFusion": [
+      "d2a32c19",
+      "87f96e78"
+    ]
+  }
+}

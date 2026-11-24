@@ -7,6 +7,7 @@ const vm = require('node:vm');
 const crypto = require('node:crypto');
 const answers = require('../../js/answer-presentation.js');
 const revisions = require('../../js/question-revisions.js');
+const sourcePositions = require('../../data/question-source-positions.js');
 const ROOT = path.resolve(__dirname, '../..');
 const clone = value => JSON.parse(JSON.stringify(value));
 const canonical = value => Array.isArray(value) ? '[' + value.map(canonical).join(',') + ']'
@@ -16,6 +17,7 @@ const author = (extra = {}) => ({qid: 'technical-revision-fixture', t: 'Historic
   q: 'Choose the original marked token.', opts: ['marked token', 'round token', 'square token', 'plain token'],
   ans: 0, exp: 'Historical token explanation.', refs: ['technical-card'], ...extra});
 function sources(raw, index = 0) {
+  index = sourcePositions.position(raw.qid, index);
   const main = {id: raw.qid, d: raw.diff === 'hard' ? Math.min(12, 8 + Math.floor(index / 30)) : Math.min(12, 4 + Math.floor(index / 25)),
     _d: raw.diff, q: raw.q, o: [...raw.opts], a: raw.ans, e: raw.exp, r: [...raw.refs], c: raw.cat};
   return {main, exam: clone(main), study: {id: raw.qid, q: raw.q, o: [...raw.opts], a: raw.ans, e: raw.exp, refs: [...raw.refs]},
@@ -183,7 +185,7 @@ test('pure browser resolver has no storage, DOM, network or resource access', ()
   assert.equal(Object.isFrozen(context.NQQuestionRevisions), true);
   assert(context.NQQuestionRevisions.createVerifier({manifest: f.manifest, history: f.history}).restoreKnown(answers.present(sources(f.after).main), {profile: 'main'}));
 });
-test('published 741 authors and all 2964 actual profiles agree with the runtime catalog', () => {
+test('published 725 authors and all 2964 actual profiles agree with the runtime catalog', () => {
   const builder = require('../../tools/build-question-revision-manifest.cjs');
   const topics = builder.load('data/topics.js', 'topics'), refs = builder.load('data/refs.js', 'refsDB');
   const manifest = require('../../data/question-revision-manifest.js'), history = require('../../data/question-revision-history.js');
@@ -198,7 +200,7 @@ test('published 741 authors and all 2964 actual profiles agree with the runtime 
     assert.deepEqual(resolved.question, snapshot);
     assert.equal(resolved.binding.recordRevision, manifest.current[source.id].recordRevision);
   }
-  assert.equal(topics.length, 741);
+  assert.equal(topics.length, 725);
 });
 test('Study restores historical authored display and answer without writes, mentor calls or credit', () => {
   const f = fixture(), h = harness('study', f), q = answers.present(sources(f.before).study, {random: () => 0}), answer = answerFor(q);

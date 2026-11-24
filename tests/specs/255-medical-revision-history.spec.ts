@@ -22,7 +22,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741 &&
+  await page.waitForFunction(() => (window as any).questionBank?.length === 725 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 });

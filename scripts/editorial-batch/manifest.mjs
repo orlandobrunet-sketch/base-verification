@@ -1,6 +1,7 @@
 import { validarEixos } from './editorial-axes.mjs';
 import { validateReferenceOnlyManifest } from './references.mjs';
 import { validateChamberManifest } from './chamber.mjs';
+import { validateHistoricalRetentionManifest } from './historical-references.mjs';
 
 const MANIFEST_PATTERN = /^docs\/editorial\/review-batches\/[^/]+\.json$/;
 const ACTIONS = new Set(['rebuild', 'refs_only', 'retire', 'add', 'technical_only', 'reviewed_unchanged']);
@@ -37,6 +38,7 @@ export function validateManifest(value, manifestPath) {
     return { manifest: value, errors: [`${manifestPath}: manifest must be an object`] };
   }
   for (const field of REQUIRED) if (!(field in value)) errors.push(`${manifestPath}: missing ${field}`);
+  errors.push(...validateHistoricalRetentionManifest(value, manifestPath));
   if (typeof value.batch !== 'string' || !value.batch.trim()) errors.push(`${manifestPath}: batch must be non-empty`);
   if (!CHANGE_TYPES.has(value.change_type)) errors.push(`${manifestPath}: unsupported change_type`);
   if (typeof value.expected_version !== 'string' || !/^\d+\.\d+$/.test(value.expected_version)) errors.push(`${manifestPath}: invalid expected_version`);

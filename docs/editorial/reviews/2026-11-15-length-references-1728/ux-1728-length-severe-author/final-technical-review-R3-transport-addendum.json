@@ -1,0 +1,30 @@
+{
+  "schema": "NQ_FINAL_TECHNICAL_TRANSPORT_TRACE_ADDENDUM_v1",
+  "date": "2026-11-16T03:48:52.677Z",
+  "role": "INTEGRITY_ONLY_NOT_NEW_MEDICAL_APPROVAL",
+  "parentReport": "final-technical-review-R3.json",
+  "parentReportRawSHA256": "78d41d3b279fef0742c64c0f8ccdbc868bc33b69b25d316ac931ffd62ef7d615",
+  "receipt": "ux-1728-editorial-backlog/ikmg-metadata-only-binding-receipt-A1.json",
+  "receiptRawSHA256": "ee94e9c88927c3cfde291c3abc246bb5a2ecd786326311a165e4cb4b392c3daa",
+  "qid": "2be4ea1f",
+  "bindingRecordRevision": "sha256:1cb2e50569babd783a7ca7a83316b65621e5784f74f884f70671321ba0c224b0",
+  "checks": {
+    "questionLiteralMatchesLedger": true,
+    "priorQuestionReportContainsExactAuthorRevision": true,
+    "oldCardMatchesPriorReviewedPayload": true,
+    "currentCardMatchesNewWholeCardGate": true,
+    "newWholeCardReportRawDigestMatchesReceipt": true,
+    "newWholeCardReportContainsExactCardRevision": true,
+    "onlyDeclaredMetadataFieldsChanged": true,
+    "unchangedTenFieldsRemainExact": true,
+    "bindingCarriesCorrectCardRevision": true,
+    "bindingRetainsExactAuthoredRevision": true,
+    "recordRevisionDerivedFromQuestionAndReferenceMap": true,
+    "notCountedAsNewFullQuestionGate": true
+  },
+  "issues": [],
+  "resolution": "The technical metadata-only receipt deliberately stores the exact authored hash and new full-card hash instead of a precomputed recordRevision. Recomputing the record from its exact question/reference map reproduces the ledger binding; no missing medical gate was found.",
+  "limits": [
+    "This addendum only resolves the literal-digest-text traceability note in R3. It does not independently approve clinical statements or create a new full-question gate."
+  ]
+}
