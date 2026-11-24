@@ -1,0 +1,1906 @@
+{
+  "schema": "NQ_1728_INDEPENDENT_GLOMERULAR_CLINICAL_A1",
+  "date": "2026-11-15",
+  "reviewer": "/root",
+  "author": "/root/editorial_backlog_1728",
+  "skill": "revisar-nefroquest",
+  "skillSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+  "norms": [
+    "KnowledgeModel",
+    "EditorialHandbook§18.4/§19",
+    "AnnexC"
+  ],
+  "authorPackage": {
+    "file": "ux-1728-editorial-backlog/glomerular-clinical-author-A12.json",
+    "rawSHA256": "3280ba0f1646ad90c2dac0b53eec649149fbd556dba21548aefc847382943259"
+  },
+  "items": [
+    {
+      "qid": "673a9acf",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:0e8e4fa4a2f3b20bebcfb00894ae3f4e8f7b5cbd3e3975bb4b772acb90ee65b1",
+        "question": {
+          "t": "Doença Anti-MBG — Cenário de Baixíssima Recuperação Renal",
+          "qid": "673a9acf",
+          "q": "Paciente com doença anti-membrana basal glomerular chega dependente de diálise. Biópsia adequada mostra crescentes em 100% dos glomérulos, e não há hemorragia pulmonar. Qual interpretação melhor orienta a decisão terapêutica?",
+          "refs": [
+            "kdigo_gn",
+            "mcadoo_antigbm_2017"
+          ],
+          "opts": [
+            "A recuperação renal é muito improvável; esse conjunto integra a exceção da KDIGO em que se pode individualizar a não realização do regime agressivo, após discutir prognóstico e objetivos",
+            "Plasmaférese, ciclofosfamida e glicocorticoide garantem independência de diálise se iniciados nas primeiras 72 horas",
+            "A dependência de diálise não modifica o prognóstico quando os crescentes são celulares",
+            "A ausência de hemorragia pulmonar obriga tratamento mais prolongado para prevenir sangramento tardio"
+          ],
+          "ans": 0,
+          "exp": "Na doença anti-MBG, o tratamento deve em geral começar sem demora. Entretanto, quando coexistem dependência de diálise na apresentação, crescentes em 100% de uma biópsia adequada e ausência de hemorragia pulmonar, a chance de recuperação renal é excepcionalmente baixa. A KDIGO reconhece esse cenário como exceção em que a decisão de não realizar troca plasmática, ciclofosfamida e glicocorticoide pode ser individualizada, considerando prognóstico, toxicidade e preferências. Essa exceção não se aplica automaticamente se houver hemorragia pulmonar, situação em que o tratamento urgente pode salvar a vida mesmo que a recuperação renal seja improvável.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "proposed": {
+        "t": "Doença Anti-MBG — Cenário de Baixíssima Recuperação Renal",
+        "qid": "673a9acf",
+        "q": "Paciente com doença anti-membrana basal glomerular chega dependente de diálise. Biópsia adequada mostra crescentes em 100% dos glomérulos, e não há hemorragia pulmonar. Qual decisão é compatível com a exceção descrita pela KDIGO?",
+        "refs": [
+          "kdigo_gn"
+        ],
+        "opts": [
+          "Discutir não realizar o regime intensivo, ponderando chance de recuperação, toxicidade e objetivos.",
+          "Prolongar troca plasmática até recuperar independência de diálise, mesmo após negativar anticorpos.",
+          "Substituir o regime por glicocorticoide isolado, mantido até normalizar a função renal.",
+          "Indicar manutenção prolongada de ciclofosfamida para impedir uma futura hemorragia pulmonar."
+        ],
+        "ans": 0,
+        "exp": "A KDIGO recomenda em geral ciclofosfamida, glicocorticoide e troca plasmática. Reconhece exceção quando coexistem diálise na apresentação, 100% de crescentes ou mais de 50% de glomeruloesclerose global em amostra adequada, e ausência de hemorragia pulmonar. Nesse cenário, a recuperação renal é muito improvável e a decisão considera benefícios, toxicidade e preferências. A troca é guiada pela remoção do anticorpo, não por espera indefinida de recuperação. Monoterapia ou manutenção prolongada não substituem essa ponderação; a presença de hemorragia pulmonar mudaria a prioridade.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:5fe43332e702d258dece3c168fbfd332598651b7d6ce8bbf61de918af1e244ac",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+      },
+      "bundleRevision": "sha256:cffb18a7f76a9ad6a4d0c29548ca06e53338e75287d78c30211e654708f81849",
+      "classification": {
+        "op": "Reconhecer a exceção de prognóstico renal muito desfavorável na doença anti-MBG sem hemorragia pulmonar.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+      },
+      "justification": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória.",
+      "advogadoDoRecurso": {
+        "argument": "Prolongar troca após anticorpo negativo até recuperar função, monoterapia e manutenção prolongada não representam a exceção recomendada. A opção correta preserva toxicidade, objetivos e prognóstico.",
+        "response": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Discutir não realizar o regime intensivo, ponderando chance de recuperação, toxicidade e objetivos.",
+          "judgment": "CORRETA: exceção prognóstica contextualizada.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Prolongar troca plasmática até recuperar independência de diálise, mesmo após negativar anticorpos.",
+          "judgment": "Confundir alvo imunológico da troca com recuperação dialítica garantida.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Substituir o regime por glicocorticoide isolado, mantido até normalizar a função renal.",
+          "judgment": "Presumir monoterapia como alternativa comprovada para reversão da lesão extensa.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Indicar manutenção prolongada de ciclofosfamida para impedir uma futura hemorragia pulmonar.",
+          "judgment": "Confundir regime inicial e manutenção preventiva não indicada rotineiramente.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "Prolongar troca após anticorpo negativo até recuperar função, monoterapia e manutenção prolongada não representam a exceção recomendada. A opção correta preserva toxicidade, objetivos e prognóstico."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "Os três critérios da exceção KDIGO coexistem: diálise inicial,100%crescentes em amostra adequada e ausência de hemorragia pulmonar. Discussão individualizada não equivale a omissão obrigatória."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "df6caaed",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:10d5ecfe186cdebea5950b2f5605577b45a06e1f9cb46d507b260da2cfd26645",
+        "question": {
+          "qid": "df6caaed",
+          "q": "Paciente com hemorragia alveolar e glomerulonefrite rapidamente progressiva tem anti-MBG positivo. Qual estratégia inicial é mais coerente?",
+          "opts": [
+            "Iniciar sem demora troca plasmática, glicocorticoide e ciclofosfamida, mantendo a troca até o anticorpo ficar indetectável e ajustando por toxicidade",
+            "Aguardar a biópsia por várias semanas antes de tratar, mesmo com hemorragia ativa",
+            "Usar hemodiálise isolada, pois ela remove adequadamente o autoanticorpo e interrompe sua produção",
+            "Prescrever apenas glicocorticoide, sem remover anticorpo nem suprimir nova síntese"
+          ],
+          "ans": 0,
+          "exp": "Na doença anti-MBG com ameaça pulmonar ou renal, a KDIGO orienta iniciar tratamento já na suspeita: troca plasmática remove o autoanticorpo circulante, glicocorticoide controla inflamação e ciclofosfamida reduz nova produção. A troca costuma prosseguir até o título ficar indetectável. A exceção de possível futilidade renal — dependência de diálise, biópsia com destruição crescêntica quase total e ausência de hemorragia pulmonar — exige avaliação individual; ela não se aplica ao caso com hemorragia alveolar ativa.",
+          "cat": "glomerular",
+          "diff": "hard",
+          "refs": [
+            "kdigo_gn",
+            "mcadoo_antigbm_2017"
+          ],
+          "t": "Doença Anti-MBG — Tratamento Urgente"
+        }
+      },
+      "proposed": {
+        "qid": "df6caaed",
+        "q": "Paciente com hemorragia alveolar e glomerulonefrite rapidamente progressiva tem anticorpo anti-membrana basal glomerular positivo. Qual estratégia inicial é mais adequada?",
+        "opts": [
+          "Troca plasmática, glicocorticoide e ciclofosfamida, iniciados sem demora.",
+          "Rituximabe e glicocorticoide, dispensando remoção imediata do anticorpo circulante.",
+          "Troca plasmática e glicocorticoide, sem agente para suprimir nova produção de anticorpos.",
+          "Ciclofosfamida e glicocorticoide, reservando troca plasmática para falha clínica posterior."
+        ],
+        "ans": 0,
+        "exp": "A ameaça pulmonar exige tratamento imediato: troca plasmática remove anticorpos circulantes, ciclofosfamida suprime nova produção e glicocorticoide controla inflamação. A KDIGO orienta manter a troca até o anticorpo não ser detectável. Retirar uma dessas funções ou aguardar falha posterga o controle. A exceção renal para pacientes dialíticos com lesão extensa requer ausência de hemorragia pulmonar; não se aplica aqui.",
+        "cat": "glomerular",
+        "diff": "medium",
+        "refs": [
+          "kdigo_gn"
+        ],
+        "t": "Doença Anti-MBG — Tratamento Urgente"
+      },
+      "proposedSHA256": "sha256:f251903cc510fa22fe6e902bff2f8dd3612d2e73cf2ad96f4d5c554c1dfb9c1d",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+      },
+      "bundleRevision": "sha256:fff7ae37c925337040860f79b646b82dcb89c248c9ad68edc156cec366bd4534",
+      "classification": {
+        "op": "Selecionar tratamento inicial urgente da doença anti-MBG com hemorragia alveolar.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+      },
+      "justification": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora.",
+      "advogadoDoRecurso": {
+        "argument": "Rituximabe pode ser tentado em doença refratária, mas não substitui o regime inicial recomendado nem justifica omitir troca no caso grave. A exceção renal exige ausência da ameaça pulmonar.",
+        "response": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Troca plasmática, glicocorticoide e ciclofosfamida, iniciados sem demora.",
+          "judgment": "CORRETA: combina remoção, supressão de produção e controle inflamatório.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Rituximabe e glicocorticoide, dispensando remoção imediata do anticorpo circulante.",
+          "judgment": "Transpor alternativa de outras vasculites sem remoção imediata do anticorpo no cenário clássico.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Troca plasmática e glicocorticoide, sem agente para suprimir nova produção de anticorpos.",
+          "judgment": "Remover anticorpo sem controlar adequadamente nova síntese.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Ciclofosfamida e glicocorticoide, reservando troca plasmática para falha clínica posterior.",
+          "judgment": "Adiar remoção em doença com hemorragia ativa.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "Rituximabe pode ser tentado em doença refratária, mas não substitui o regime inicial recomendado nem justifica omitir troca no caso grave. A exceção renal exige ausência da ameaça pulmonar."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "Hemorragia alveolar com anti-MBG e síndrome rapidamente progressiva pede as três funções: remover anticorpos, suprimir produção e controlar inflamação, sem demora."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "fbb4edd0",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:a68a7554aeed27d1251702caad6104ebe6506503cb4676984ec6ce0593d10650",
+        "question": {
+          "qid": "fbb4edd0",
+          "q": "Três semanas após faringite, paciente apresenta síndrome nefrítica, C3 baixo e C4 normal. Como interpretar esse perfil?",
+          "opts": [
+            "É compatível com glomerulonefrite pós-infecciosa e deve ser acompanhado até normalização; persistência da hipocomplementemia exige reavaliação diagnóstica",
+            "Confirma glomerulonefrite pós-infecciosa sem necessidade de integrar clínica, sorologia ou biópsia",
+            "Exclui doença mediada pela via alternativa porque o C4 está normal",
+            "Demonstra obrigatoriamente nefrite lúpica, independentemente dos demais achados"
+          ],
+          "ans": 0,
+          "exp": "C3 baixo com C4 relativamente preservado sugere ativação predominante da via alternativa e é frequente na fase aguda da glomerulonefrite pós-infecciosa. O padrão apoia, mas não confirma sozinho, o diagnóstico: momento da infecção, culturas ou sorologias, curso clínico e histologia podem ser necessários. Na evolução típica, o C3 se recupera em semanas; ausência de normalização em aproximadamente 8–12 semanas deve levar à revisão do diagnóstico e à investigação de ativação persistente do complemento.",
+          "refs": [
+            "kdigo_gn",
+            "c3g_consensus"
+          ],
+          "cat": "glomerular",
+          "diff": "hard",
+          "t": "GN Pós-infecciosa — Trajetória do Complemento"
+        }
+      },
+      "proposed": {
+        "qid": "fbb4edd0",
+        "q": "Três semanas após faringite, paciente apresenta síndrome nefrítica, C3 baixo e C4 normal. Como interpretar e acompanhar esse perfil?",
+        "opts": [
+          "É compatível com glomerulonefrite pós-infecciosa; acompanhar C3 e reavaliar se não normalizar na evolução esperada.",
+          "É compatível com glomerulonefrite pós-infecciosa; C3 persistentemente baixo por muitos meses dispensa nova investigação.",
+          "Favorece excluir glomerulonefrite pós-infecciosa, pois a queda de C4 deveria acompanhar a de C3.",
+          "Basta para priorizar diagnóstico definitivo de glomerulopatia C3, sem considerar a recuperação do complemento."
+        ],
+        "ans": 0,
+        "exp": "C3 baixo com C4 relativamente preservado é compatível com ativação predominante da via alternativa e pode ocorrer na glomerulonefrite pós-infecciosa. Não confirma sozinho uma etiologia. A recuperação do complemento e dos achados urinários deve ser acompanhada; ausência de normalização do C3 em aproximadamente 8–12 semanas exige reconsiderar glomerulopatia C3 e outras causas. Persistência e resolução têm implicações diferentes.",
+        "refs": [
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "GN Pós-infecciosa — Trajetória do Complemento"
+      },
+      "proposedSHA256": "sha256:5bfc9975d4a6fe66235c698e93c5228bf0e3ceaeec8d5c41c225f163acc2288f",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+        "c3g_consensus": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b"
+      },
+      "bundleRevision": "sha256:95d92bf9628a39e44d6e104098bec2a4cffd2d52ea8b87bf03c0f712d9c28873",
+      "classification": {
+        "op": "Interpretar hipocomplementemia após infecção pela trajetória, sem confirmar diagnóstico por valor isolado.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+      },
+      "justification": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática.",
+      "advogadoDoRecurso": {
+        "argument": "C4 relativamente preservado não exclui GN pós-infecciosa. Nem resolver por tempo indefinido nem fechar C3G sem trajetória são interpretações defensáveis.",
+        "response": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "É compatível com glomerulonefrite pós-infecciosa; acompanhar C3 e reavaliar se não normalizar na evolução esperada.",
+          "judgment": "CORRETA: perfil compatível e acompanhamento da trajetória.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "É compatível com glomerulonefrite pós-infecciosa; C3 persistentemente baixo por muitos meses dispensa nova investigação.",
+          "judgment": "Normalizar indevidamente hipocomplementemia persistente.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Favorece excluir glomerulonefrite pós-infecciosa, pois a queda de C4 deveria acompanhar a de C3.",
+          "judgment": "Exigir consumo de via clássica em todo caso pós-infeccioso.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Basta para priorizar diagnóstico definitivo de glomerulopatia C3, sem considerar a recuperação do complemento.",
+          "judgment": "Converter um padrão laboratorial compartilhado em diagnóstico definitivo.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "C4 relativamente preservado não exclui GN pós-infecciosa. Nem resolver por tempo indefinido nem fechar C3G sem trajetória são interpretações defensáveis."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "Perfil pós-faringite é compatível, não patognomônico. Persistência deC3 baixo além da evolução típica8–12semanas pede reconsiderar C3G e investigar, não confirmação automática."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "6d007422",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:8c8c9c99cd82b0c415689a072bfbd8b1130dceed94ddfd4f1e4a387f5b1c1fb4",
+        "question": {
+          "t": "GN Relacionada à Infecção — Integração Diagnóstica",
+          "qid": "6d007422",
+          "q": "Paciente com infecção cutânea estafilocócica ativa evolui com LRA, hematúria, C3 baixo e biópsia mostrando GN exsudativa proliferativa com depósitos granulares de C3 e IgG. ANCA e anti-MBG são negativos. Qual é a interpretação mais adequada?",
+          "refs": [
+            "kdigo_gn"
+          ],
+          "opts": [
+            "O conjunto favorece glomerulonefrite relacionada à infecção, mas a conclusão depende da integração entre infecção, complemento e biópsia",
+            "ANCA negativo exclui definitivamente vasculite pauci-imune e torna a biópsia irrelevante",
+            "C3 baixo isolado confirma C3 glomerulopatia mesmo durante infecção ativa",
+            "Todo depósito granular de IgG e C3 define nefrite lúpica"
+          ],
+          "ans": 0,
+          "exp": "Infecção ativa, padrão exsudativo proliferativo e depósitos granulares de imunoglobulina e complemento formam um conjunto típico de glomerulonefrite relacionada à infecção. Nenhum dado isolado é suficiente: ANCA negativo não exclui toda vasculite, e C3 baixo pode ocorrer tanto na infecção relacionada quanto em C3 glomerulopatia. A evolução após controle da infecção e a recuperação do complemento ajudam; curso atípico ou hipocomplementemia persistente exige reconsiderar diagnósticos concorrentes.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "proposed": {
+        "t": "GN Relacionada à Infecção — Integração Diagnóstica",
+        "qid": "6d007422",
+        "q": "Durante infecção cutânea bacteriana documentada, paciente desenvolve lesão renal aguda e hematúria. Há C3 baixo; a biópsia mostra glomerulonefrite exsudativa endocapilar, com depósitos granulares de imunoglobulina G e C3 de intensidade semelhante. Qual hipótese o conjunto mais favorece?",
+        "refs": [
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "opts": [
+          "Glomerulonefrite relacionada à infecção.",
+          "Glomerulonefrite C3 por desregulação persistente da via alternativa.",
+          "Doença anti-membrana basal glomerular.",
+          "Glomerulonefrite necrosante pauci-imune."
+        ],
+        "ans": 0,
+        "exp": "Infecção documentada, padrão exsudativo endocapilar e depósitos granulares de imunoglobulina e complemento favorecem glomerulonefrite relacionada à infecção. A imunoglobulina com intensidade semelhante ao C3 não descreve o critério de dominância de C3 do consenso. Depósitos granulares também diferem do padrão linear clássico da doença anti-membrana basal e do padrão pauci-imune. A conclusão integra o conjunto; evolução atípica ou persistência da hipocomplementemia pede reavaliação.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:cd54633725d40eec1b4d4a959b02af8779a8860c04f741b9198b1649b0fe58c2",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+        "c3g_consensus": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b"
+      },
+      "bundleRevision": "sha256:49e5d4cfc7a8ee8b3e51fbe649bfb73ba2bb79caf63e4a29b4ce9af939649b55",
+      "classification": {
+        "op": "Integrar infecção ativa e biópsia exsudativa com depósitos imunes no diagnóstico de GN relacionada à infecção.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+      },
+      "justification": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia.",
+      "advogadoDoRecurso": {
+        "argument": "IgG de intensidade semelhante afasta o critério de dominância do consenso; linear e pauci-imune não correspondem ao padrão fornecido. Evolução atípica continua exigindo reavaliação.",
+        "response": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Glomerulonefrite relacionada à infecção.",
+          "judgment": "CORRETA: integração de dados clínicos e histológicos.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Glomerulonefrite C3 por desregulação persistente da via alternativa.",
+          "judgment": "SupervalorizarC3 baixo apesar de depósitos imunes e infecção ativa.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Doença anti-membrana basal glomerular.",
+          "judgment": "Confundir depósitos granulares com padrão linear.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Glomerulonefrite necrosante pauci-imune.",
+          "judgment": "Desconsiderar quantidade relevante de depósitos imunes.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "IgG de intensidade semelhante afasta o critério de dominância do consenso; linear e pauci-imune não correspondem ao padrão fornecido. Evolução atípica continua exigindo reavaliação."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "Infecção ativa,GN exsudativa e depósitos granulares deIgG/C3 semelhantes favorecem GN relacionada à infecção. Não se presume que todo depósitoC3 ou infecção feche etiologia."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "0e102752",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:033050ce512470b80261c0496c4dab99869203a8db356e4fbe358e22baacfc36",
+        "question": {
+          "t": "C3 Glomerulopatia — Doença de Depósitos Densos",
+          "qid": "0e102752",
+          "q": "Biópsia mostra C3 glomerular dominante sem imunoglobulina e, na microscopia eletrônica, depósitos intramembranosos extremamente eletrondensos em faixa na membrana basal. C3NeF está presente. Qual é o diagnóstico?",
+          "refs": [
+            "c3g_consensus",
+            "c3g_servais"
+          ],
+          "opts": [
+            "Doença de depósitos densos, subtipo de C3 glomerulopatia; o C3NeF apoia desregulação da via alternativa, mas não é necessário nem exclusivo",
+            "Glomerulonefrite pós-infecciosa, pois qualquer C3 baixo após infecção define essa entidade",
+            "Nefrite lúpica, mesmo sem imunoglobulinas ou C1q nos depósitos",
+            "Crioglobulinemia, definida apenas pela densidade intramembranosa"
+          ],
+          "ans": 0,
+          "exp": "Doença de depósitos densos é um subtipo de C3 glomerulopatia definido pela composição C3-dominante e pelo material intramembranoso muito eletrondenso, frequentemente contínuo, à microscopia eletrônica. C3NeF estabiliza a C3-convertase da via alternativa e pode explicar consumo de C3, mas não aparece em todos os casos nem é exclusivo dessa morfologia. O diagnóstico integra imunofluorescência e ultraestrutura; história de infecção ou um biomarcador isolado não substituem a biópsia.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "proposed": {
+        "t": "C3 Glomerulopatia — Doença de Depósitos Densos",
+        "qid": "0e102752",
+        "q": "A biópsia mostra C3 glomerular dominante e depósitos intramembranosos extremamente eletrondensos, em faixa, na membrana basal. O fator nefrítico C3 é positivo. Qual é o diagnóstico mais compatível?",
+        "refs": [
+          "c3g_consensus"
+        ],
+        "opts": [
+          "Doença de depósitos densos.",
+          "Glomerulonefrite C3 sem depósitos densos.",
+          "Glomerulonefrite pós-infecciosa.",
+          "Glomerulopatia imunotactoide."
+        ],
+        "ans": 0,
+        "exp": "A ultraestrutura em faixa muito eletrondensa caracteriza doença de depósitos densos, um subtipo de glomerulopatia C3. Glomerulonefrite C3 sem esse aspecto apresenta depósitos menos densos e menos definidos. O fator nefrítico C3 estabiliza a convertase da via alternativa, mas sua presença não define a morfologia nem é indispensável. O diagnóstico depende sobretudo da integração de imunofluorescência e microscopia eletrônica.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:39397de6c633f9643b242df37b1412229e9d7c005b07c3063d1698493f7844e8",
+      "referenceRevisions": {
+        "c3g_consensus": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b"
+      },
+      "bundleRevision": "sha256:6e04fce9f92d44f0ecc0cc12c242b257deb8f05a7a1596524f97af4461f7849a",
+      "classification": {
+        "op": "Reconhecer doença de depósitos densos pela ultraestrutura no contexto C3 dominante.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+      },
+      "justification": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo.",
+      "advogadoDoRecurso": {
+        "argument": "C3GN semdensidade típica ePIGN não explicam o achado ultraestrutural descrito; imunotactoide tem organização diferente. Não se declara positividadeC3NeF patognomônica.",
+        "response": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Doença de depósitos densos.",
+          "judgment": "CORRETA: ultraestrutura característica.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Glomerulonefrite C3 sem depósitos densos.",
+          "judgment": "Ignorar o aspecto que separa o subtipo com depósitos densos.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Glomerulonefrite pós-infecciosa.",
+          "judgment": "Usar um padrão imunológico compartilhado sem considerar ultraestrutura.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Glomerulopatia imunotactoide.",
+          "judgment": "Confundir depósitos densos em faixa com depósitos microtubulares organizados.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "C3GN semdensidade típica ePIGN não explicam o achado ultraestrutural descrito; imunotactoide tem organização diferente. Não se declara positividadeC3NeF patognomônica."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "Depósitos emfaixa extremamente osmiophílicos/intramembranosos definem a morfologiaDDD. C3NeF estabilizaC3bBb, mas não é requisito nem define sozinho esse subtipo."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "033aed49",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:2fcff546ab842feb69f0840edcae360f4147cd29277b2fa02a9ae8ed13a1e838",
+        "question": {
+          "t": "Crioglobulinemia Tipo I — Clone Monoclonal e Rim",
+          "qid": "033aed49",
+          "q": "Paciente apresenta Raynaud, isquemia digital, hematúria, proteinúria e crioglobulina composta apenas por IgG kappa monoclonal. Qual interpretação é mais adequada?",
+          "refs": [
+            "cryoglobulinemia_renal_menter_2021",
+            "kdigo_gn"
+          ],
+          "opts": [
+            "O quadro indica crioglobulinemia tipo I e exige investigação de clone plasmocitário ou linfoplasmocitário, inclusive gamopatia de significado renal; a lesão pode ser vascular oclusiva e também glomerular",
+            "A composição monoclonal define crioglobulinemia tipo II por HCV e torna desnecessária a avaliação hematológica",
+            "Crioglobulinemia tipo I causa apenas hiperviscosidade extrarrenal e nunca glomerulonefrite ou depósitos renais",
+            "A presença de dano renal exclui crioglobulinemia tipo I e confirma automaticamente lúpus"
+          ],
+          "ans": 0,
+          "exp": "Crioglobulinemia tipo I contém uma imunoglobulina monoclonal e se associa a clones de células plasmáticas ou B, como mieloma, macroglobulinemia de Waldenström, linfoma ou uma gamopatia menor capaz de lesar o rim. Fenômenos de hiperviscosidade e precipitação podem causar Raynaud, isquemia e oclusão vascular, mas o rim também pode apresentar glomerulonefrite com depósitos organizados ou outras lesões relacionadas ao clone. Portanto, não se deve ensinar a tipo I como exclusivamente vascular nem esperar critérios de neoplasia manifesta para investigar e tratar o clone nefrotóxico.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "proposed": {
+        "t": "Crioglobulinemia — Composição e Investigação",
+        "qid": "033aed49",
+        "q": "Paciente tem fenômeno de Raynaud, isquemia digital, hematúria e proteinúria. A crioglobulina é composta somente por imunoglobulina G kappa monoclonal. Qual interpretação é adequada?",
+        "refs": [
+          "cryoglobulinemia_renal_menter_2021"
+        ],
+        "opts": [
+          "Tipo I; investigar clone plasmocitário ou B e possível lesão renal associada.",
+          "Tipo II; priorizar a composição mista com imunoglobulina M monoclonal e imunoglobulina G policlonal.",
+          "Tipo III; interpretar a imunoglobulina monoclonal como parte de uma mistura policlonal.",
+          "Tipo I; restringir a avaliação à oclusão vascular, sem considerar lesão glomerular."
+        ],
+        "ans": 0,
+        "exp": "Crioglobulina composta por uma única imunoglobulina monoclonal define tipo I, associada a clones plasmocitários ou B. Raynaud e isquemia refletem possível precipitação/oclusão, mas envolvimento renal também pode ser glomerular. Tipo II contém mistura de imunoglobulina M monoclonal e G policlonal; tipo III é policlonal. A composição laboratorial e a avaliação clínica orientam a investigação, sem assumir que todo dano seja exclusivamente vascular.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:ca1e1f05ff0596e96f9a2603767554b3bc770f5adda091beaf4a8eb8367432c1",
+      "referenceRevisions": {
+        "cryoglobulinemia_renal_menter_2021": "sha256:e6bdefd6bb3b99cfc4e4e1b106497140f2da31f13713f83a0eba2311afd0fc6e"
+      },
+      "bundleRevision": "sha256:105b52dab7a9143beff3ff0c0449a184a349eca99643c624d2d4e2b12d8b6ba2",
+      "classification": {
+        "op": "Classificar crioglobulina monoclonal como tipo I e investigar associação clonal com dano renal.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+      },
+      "justification": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído.",
+      "advogadoDoRecurso": {
+        "argument": "TipoII contém misturaIgMmonoclonal/IgGpoliclonal; tipoIII é policlonal. A quarta opção classifica corretamente mas restringe indevidamente o dano renal.",
+        "response": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Tipo I; investigar clone plasmocitário ou B e possível lesão renal associada.",
+          "judgment": "CORRETA: composição monoclonal e investigação clonal/renal.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Tipo II; priorizar a composição mista com imunoglobulina M monoclonal e imunoglobulina G policlonal.",
+          "judgment": "Confundir uma imunoglobulina monoclonal isolada com composição mista.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Tipo III; interpretar a imunoglobulina monoclonal como parte de uma mistura policlonal.",
+          "judgment": "Confundir monoclonalidade com mistura policlonal.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Tipo I; restringir a avaliação à oclusão vascular, sem considerar lesão glomerular.",
+          "judgment": "Reconhecer o tipo, mas excluir indevidamente lesão glomerular.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "TipoII contém misturaIgMmonoclonal/IgGpoliclonal; tipoIII é policlonal. A quarta opção classifica corretamente mas restringe indevidamente o dano renal."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "IgGkappa isolada monoclonal define tipoI, com investigação clonal plasmocitária/B. Oclusão vascular é comum, mas envolvimento glomerular não é excluído."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "cc5a8b32",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:7dbd8c58d55f893757fd3ac5d85936869b50c74dc90a8f8773b72e09c842ced1",
+        "question": {
+          "t": "HCV e Crioglobulinemia Mista — Fenótipo Renal",
+          "qid": "cc5a8b32",
+          "q": "Pessoa com HCV-RNA detectável apresenta púrpura palpável, artralgia, hipertensão, hematúria e proteinúria. O fator reumatoide é positivo e o C4 está muito reduzido, com queda menor de C3. Qual interpretação integra melhor esses achados?",
+          "refs": [
+            "kdigo_hcv_ckd_2022",
+            "cryoglobulinemia_renal_menter_2021"
+          ],
+          "opts": [
+            "O conjunto favorece crioglobulinemia mista associada ao HCV, geralmente tipo II, com glomerulonefrite por imunocomplexos frequentemente em padrão membranoproliferativo",
+            "C4 baixo isoladamente confirma C3 glomerulopatia por desregulação exclusiva da via alternativa",
+            "O quadro define crioglobulinemia tipo I monoclonal e dispensa investigação de HCV ou de clone B/plasmocitário",
+            "A presença de fator reumatoide e púrpura exclui doença renal por crioglobulinas"
+          ],
+          "ans": 0,
+          "exp": "O HCV é uma causa importante de crioglobulinemia mista, sobretudo tipo II, na qual IgM monoclonal com atividade de fator reumatoide reconhece IgG policlonal. Os imunocomplexos ativam a via clássica, razão pela qual C4 costuma cair de forma desproporcional; no rim, o padrão membranoproliferativo é frequente. Púrpura, artralgia, fator reumatoide, hematúria e proteinúria reforçam o diagnóstico. A dosagem de crioglobulinas ajuda, mas a fase pré-analítica é sensível à temperatura e uma amostra mal manejada pode gerar falso-negativo.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "proposed": {
+        "t": "HCV e Crioglobulinemia Mista — Fenótipo Renal",
+        "qid": "cc5a8b32",
+        "q": "Pessoa com ácido ribonucleico detectável do vírus da hepatite C apresenta púrpura palpável, artralgia, hematúria e proteinúria. O fator reumatoide é positivo e o C4 está muito baixo, com queda menor de C3. Qual hipótese melhor integra os achados?",
+        "refs": [
+          "cryoglobulinemia_renal_menter_2021"
+        ],
+        "opts": [
+          "Glomerulonefrite crioglobulinêmica mista, frequentemente em padrão membranoproliferativo.",
+          "Glomerulopatia C3 por ativação predominante da via alternativa.",
+          "Nefropatia membranosa associada à hepatite C, sem participação de crioglobulinas.",
+          "Nefrite lúpica proliferativa como explicação suficiente do consumo de complemento."
+        ],
+        "ans": 0,
+        "exp": "Hepatite C, púrpura, artralgia, fator reumatoide e consumo desproporcional de C4 favorecem crioglobulinemia mista, em especial tipo II. Nessa forma, imunoglobulina M monoclonal com atividade de fator reumatoide se associa à imunoglobulina G policlonal; o rim frequentemente mostra padrão membranoproliferativo. Outras doenças podem consumir complemento ou ocorrer na hepatite C, mas explicam menos completamente esse conjunto. Confirmar crioglobulinas e integrar à biópsia quando indicada; uma amostra termicamente mal manejada pode ser falsamente negativa.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:826a5f7d1cbf8d734a7825c636a24c80da30958c825b4eb06f8dfa091f11670c",
+      "referenceRevisions": {
+        "cryoglobulinemia_renal_menter_2021": "sha256:e6bdefd6bb3b99cfc4e4e1b106497140f2da31f13713f83a0eba2311afd0fc6e"
+      },
+      "bundleRevision": "sha256:b665a853eb9709d2a0f2655a41fcfccaf56edce13d8259a5847dc27787170cba",
+      "classification": {
+        "op": "Reconhecer fenótipo de crioglobulinemia mista relacionada ao HCV com comprometimento glomerular.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+      },
+      "justification": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento.",
+      "advogadoDoRecurso": {
+        "argument": "C3G privilegia viaalternativa; membranosa semcrioglobulinas e lúpus explicam menos o conjunto. Falso-negativo térmico não encerra investigação; protocoloMayo37°C atésepararsoro foi lido.",
+        "response": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Glomerulonefrite crioglobulinêmica mista, frequentemente em padrão membranoproliferativo.",
+          "judgment": "CORRETA: integra todos os domínios.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Glomerulopatia C3 por ativação predominante da via alternativa.",
+          "judgment": "Troca padrão de consumo clássico desproporcional de C4 por via alternativa.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Nefropatia membranosa associada à hepatite C, sem participação de crioglobulinas.",
+          "judgment": "Ignora pistas sistêmicas de crioglobulinemia.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Nefrite lúpica proliferativa como explicação suficiente do consumo de complemento.",
+          "judgment": "Usa um marcador compartilhado sem sustentar o contexto específico de lúpus.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "C3G privilegia viaalternativa; membranosa semcrioglobulinas e lúpus explicam menos o conjunto. Falso-negativo térmico não encerra investigação; protocoloMayo37°C atésepararsoro foi lido."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "HCVdetectável,púrpura,artralgia,fatorreumatoide eC4 muito baixo integram fenótipo decrioglobulinemia mista. PadrãoMPGN é frequente; teste e biópsia contextualizam, semcertezaetiológica sópelocomplemento."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    },
+    {
+      "qid": "00d410e2",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "original": {
+        "authorRevision": "sha256:0de4ab7cd8ccfad797251ca0918a2772637231132a452fd3903e6ad6890dba2a",
+        "question": {
+          "t": "Glomerulopatia — Planejamento de Vacinas Vivas",
+          "qid": "00d410e2",
+          "q": "Paciente com síndrome nefrótica iniciará rituximabe e prednisona 40 mg/dia por período prolongado. Ao revisar a indicação de vacina contra febre amarela, qual plano é mais adequado?",
+          "refs": [
+            "kdigo_gn",
+            "cdc_immunocompromised_travelers_2026"
+          ],
+          "opts": [
+            "Aplicar durante o tratamento, porque o rituximabe reduz apenas a resposta vacinal e não altera a segurança de vacinas vivas",
+            "Se a imunossupressão puder aguardar, aplicar a vacina viva indicada pelo menos 4 semanas antes; durante imunossupressão potente, não aplicá-la e reavaliar depois conforme recuperação imune e terapia usada",
+            "Aplicar assim que a albumina superar 2,5 g/dL, pois esse valor elimina o risco de disseminação do vírus vacinal",
+            "Substituir a vacina por imunoglobulina específica de rotina e manter qualquer viagem planejada, independentemente do risco de exposição"
+          ],
+          "ans": 1,
+          "exp": "Vacinas vivas, como a de febre amarela, são contraindicadas durante imunossupressão moderada ou grave, incluindo rituximabe e corticosteroide sistêmico em alta dose. Quando a vacina está realmente indicada e o tratamento pode ser programado sem prejuízo clínico, a CDC orienta administrá-la pelo menos 4 semanas antes do início da imunossupressão. Depois do tratamento, o momento seguro não é definido pela albumina nem por um intervalo único: depende do agente, do tempo desde a última dose e da recuperação imune. Se a terapia for urgente, não se deve atrasá-la automaticamente por uma vacina eletiva; exposição e viagem precisam ser replanejadas individualmente.",
+          "diff": "medium",
+          "cat": "glomerular"
+        }
+      },
+      "proposed": {
+        "t": "Glomerulopatia — Planejamento de Vacinas Vivas",
+        "qid": "00d410e2",
+        "q": "Paciente com síndrome nefrótica iniciará rituximabe e prednisona oral 40 mg/dia por pelo menos duas semanas. A vacina contra febre amarela está indicada, e o tratamento pode ser programado sem prejuízo clínico. Qual plano é adequado?",
+        "refs": [
+          "cdc_immunocompromised_travelers_2026"
+        ],
+        "opts": [
+          "Aplicar a vacina viva na primeira dose de rituximabe para completar a prevenção antes da depleção.",
+          "Aplicar a vacina viva pelo menos quatro semanas antes e evitá-la durante a imunossupressão potente.",
+          "Aplicar a vacina viva duas semanas antes, adotando o mesmo intervalo das vacinas inativadas.",
+          "Aplicar a vacina viva um mês após o rituximabe, sem depender da recuperação imune."
+        ],
+        "ans": 1,
+        "exp": "A CDC orienta, quando viável, vacina viva pelo menos quatro semanas antes da imunossupressão. Rituximabe e prednisona nessa intensidade tornam inadequada a vacina de febre amarela durante o tratamento. Duas semanas é o intervalo geral prévio de vacinas inativadas, não das vivas. Após depleção de linfócitos, um mês não é uma regra segura universal; é preciso considerar agente e recuperação imune. Se o tratamento fosse urgente, a decisão não seria atrasá-lo automaticamente por uma vacina eletiva.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:e32bd51906b7df4a37c34dc8f68f573941560cc0dce455b8a50140f4d18c5e75",
+      "referenceRevisions": {
+        "cdc_immunocompromised_travelers_2026": "sha256:41ab7ac35dc88f5598a6fa2e65fc550f658ff81c8545a4e6eee60fde39ab5667"
+      },
+      "bundleRevision": "sha256:dc073d51f010aacc40eb5385807bf46a5b6b8fabc7b3e3052a354e1abe1e05c4",
+      "classification": {
+        "op": "Planejar vacina viva antes de imunossupressão potente sem impor janela pós-tratamento universal.",
+        "competency": "Integração clinicopatológica e segurança em glomerulopatias",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Foram explicitados dados discriminativos e refeitos distratores; não se cria OP substituto para manter quantidade.",
+        "independentRationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+      },
+      "justification": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo.",
+      "advogadoDoRecurso": {
+        "argument": "Não aplicar concomitante, usar janela deinativadas≥2semanas ou reintroduzir arbitrariamente1mês apósrituximabe. Prednisonaoral40mg/d≥2semanas e depleçãoB sustentam imunossupressão relevante.",
+        "response": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo.",
+        "plausibleUnresolved": false
+      },
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Aplicar a vacina viva na primeira dose de rituximabe para completar a prevenção antes da depleção.",
+          "judgment": "Vacinação simultânea não respeita preparação prévia nem evita o risco durante depleção.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "B",
+          "text": "Aplicar a vacina viva pelo menos quatro semanas antes e evitá-la durante a imunossupressão potente.",
+          "judgment": "CORRETA: janela de quatro semanas se clinicamente viável.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "C",
+          "text": "Aplicar a vacina viva duas semanas antes, adotando o mesmo intervalo das vacinas inativadas.",
+          "judgment": "Confundir janelas de vacinas vivas e inativadas.",
+          "independentlyChecked": true
+        },
+        {
+          "letter": "D",
+          "text": "Aplicar a vacina viva um mês após o rituximabe, sem depender da recuperação imune.",
+          "judgment": "Aplicar intervalo curto fixo sem avaliar efeito da depleção B.",
+          "independentlyChecked": true
+        }
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Múltiplas respostas",
+          "triggered": false,
+          "rationale": "Não aplicar concomitante, usar janela deinativadas≥2semanas ou reintroduzir arbitrariamente1mês apósrituximabe. Prednisonaoral40mg/d≥2semanas e depleçãoB sustentam imunossupressão relevante."
+        },
+        {
+          "number": 2,
+          "criterion": "Fonte semsuporte",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 3,
+          "criterion": "Desvio deOP",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia semconsequência",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contraditória",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo localnão declarado",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        },
+        {
+          "number": 10,
+          "criterion": "Ciência desatualizada",
+          "triggered": false,
+          "rationale": "Vacinafebreamarela é viva. CDC orienta≥4semanas antes quando viável e contraindica durante imunossupressão potente; o tratamento foi explicitamente programável semprejuízo."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento aoOP",
+            "score": 2
+          },
+          {
+            "name": "Validade deconteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade deconstruto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 1
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência depistasformais",
+            "score": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "18–20"
+      },
+      "decisionTree": "Evidência/pendência válida;OP estável;semduplicidadeeliminatória;recursoindeferido;19/20→aprovada.",
+      "implementation": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "archiveOriginal": true,
+        "noCreditTransfer": true
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "kdigo_gn",
+      "proposed": {
+        "label": "KDIGO Glomerular Diseases 2021",
+        "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+        "journal": "Kidney Int 2021;100(4S):S1-S276",
+        "ano": 2021,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+        "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+      "originalRevision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "wholeCardReviewed": true,
+      "priorExactGate": {
+        "report": "ux-1728-reference-duplicates/independent-A2-review.json",
+        "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+      },
+      "claimsVerified": "Mesmo12campos liberados; leitura adicional independente doscap7/11 para estasquestões, sem alegar queocardgenéricoresuma tratamento anti-MBG.",
+      "noApprovalInheritedByOtherConsumers": true
+    },
+    {
+      "id": "c3g_consensus",
+      "proposed": {
+        "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+        "journal": "Kidney Int 2013;84(6):1079-1089",
+        "ano": 2013,
+        "tipo": "Consenso de especialistas",
+        "badge": "CONSENSO",
+        "badgeColor": "#6366f1",
+        "impacto": "C3 dominante é um padrão de intensidade, não exigência de imunoglobulinas ausentes",
+        "icon": "📋",
+        "resumo": "Consenso internacional de especialistas (Pickering et al., 2013) sobre definição e investigação da glomerulopatia C3. Propõe o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c está pelo menos duas categorias acima de qualquer outro reagente imune na escala de 0 a 3. Pequenos depósitos de imunoglobulinas podem coexistir. Diagnóstico etiológico exige integração com microscopia óptica, eletrônica e história clínica, incluindo possível infecção. Doença de depósitos densos e glomerulonefrite C3 distinguem-se pela ultraestrutura.",
+        "conclusao": "A dominância de C3 levanta C3 glomerulopatia, mas não substitui investigação clínica nem exclui mimetizadores. É orientação de consenso, sem força terapêutica de ensaio randomizado.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b",
+      "originalRevision": "sha256:225b9a8a23115f5ae4dc8715493dd1a072bebbf8dad31b560260ec7a01db662e",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "wholeCardReviewed": true,
+      "priorExactGate": {
+        "report": "ux-1728-reference-duplicates/independent-complement-review.json",
+        "revision": "sha256:a180f6d149fb68dc258da2d222665cea5b574a8c230852212ba48adf49aa2d2b"
+      },
+      "claimsVerified": "Mesmoobjeto consenso liberado. Patologia/recomendações/complemento:dominânciaC3,DDD porEM,C3NeF e8–12semanas efetivamente lidos.",
+      "noApprovalInheritedByOtherConsumers": true
+    },
+    {
+      "id": "cryoglobulinemia_renal_menter_2021",
+      "proposed": {
+        "label": "Menter & Hopfer — Doença Renal na Crioglobulinemia",
+        "url": "https://doi.org/10.1159/000516103",
+        "journal": "Glomerular Dis. 2021;1(2):92-104",
+        "ano": 2021,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Classificação, armadilhas pré-analíticas e padrões renais da crioglobulinemia",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica dos tipos I, II e III de crioglobulinemia. O tipo I contém imunoglobulina monoclonal e associa-se a clones plasmocitários ou B; pode causar oclusão vascular e lesão glomerular. Formas mistas associam-se ao vírus da hepatite C e frequentemente exibem consumo desproporcional de C4 e padrão renal membranoproliferativo. O diagnóstico integra composição da crioglobulina, doença de base e biópsia; o teste é vulnerável a erros pré-analíticos de temperatura.",
+        "conclusao": "A crioglobulinemia renal exige integrar composição da crioglobulina, causa subjacente, complemento e biópsia; a forma tipo I não é exclusivamente vascular, e a morfologia isolada não prova crioglobulinemia.",
+        "curiosidade": "Manter a amostra a 37 °C até separar o soro ajuda a evitar precipitação antes da análise; um resultado negativo com manejo térmico inadequado não exclui a hipótese."
+      },
+      "revision": "sha256:e6bdefd6bb3b99cfc4e4e1b106497140f2da31f13713f83a0eba2311afd0fc6e",
+      "originalRevision": "sha256:eeeea7f793800bbb4e6704985d794507b8f8c0e5a3a81e1d4ecd58bb337b18fb",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "wholeCardReviewed": true,
+      "priorExactGate": null,
+      "claimsVerified": "XML primário completo e página primária:composição I/II/III,clone,HCV,C4,oclusão/lesão glomerular,MPGN,diagnóstico contextual. Curiosidade37°C conferida no protocolo laboratorialMayo, não atribuída falsamente por extenso aMenter.",
+      "noApprovalInheritedByOtherConsumers": true
+    },
+    {
+      "id": "cdc_immunocompromised_travelers_2026",
+      "proposed": {
+        "label": "CDC Yellow Book — Viajantes Imunocomprometidos (2026)",
+        "url": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+        "journal": "CDC Yellow Book 2026",
+        "ano": 2026,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Planejamento de vacinas vivas e inativadas antes, durante e após terapias imunossupressoras",
+        "icon": "📋",
+        "resumo": "Orientação da CDC para viajantes com imunocomprometimento moderado ou grave. Inclui nesse grupo pessoas em prednisona equivalente a pelo menos 20 mg/dia por duas semanas ou mais e em terapias depletoras de células B, como rituximabe. Vacinas vivas são contraindicadas durante imunossupressão relevante; quando clinicamente viável, vacinas inativadas devem ser administradas pelo menos duas semanas e vacinas vivas pelo menos quatro semanas antes de iniciar a imunossupressão. O intervalo após suspender o tratamento varia conforme o agente e a recuperação imune.",
+        "conclusao": "A indicação vacinal deve ser antecipada quando possível: não se administra vacina viva durante imunossupressão potente, e o retorno à elegibilidade depois do tratamento exige avaliação individual, não um limiar de albumina ou intervalo universal.",
+        "curiosidade": "Terapias depletoras de células B podem comprometer tanto a segurança das vacinas vivas quanto a resposta às vacinas inativadas, por isso o calendário pré-tratamento faz parte do planejamento da imunossupressão."
+      },
+      "revision": "sha256:41ab7ac35dc88f5598a6fa2e65fc550f658ff81c8545a4e6eee60fde39ab5667",
+      "originalRevision": "sha256:8d168af2e04c2c3cc6a5e10ca777a77e3441cceb88ce48f6accbb213de471d6a",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook18.4: verificação dos literais finais e fontes pertinentes, sem pendência decisiva ou recurso residual.",
+      "wholeCardReviewed": true,
+      "priorExactGate": null,
+      "claimsVerified": "CDC2026/publicação2025, prednisona≥20mg≥2semanas/depleçãoB,vivas≥4/inativadas≥2semanas,contraindicação e recuperação variável; todos12campos conferidos.",
+      "noApprovalInheritedByOtherConsumers": true
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+      "artifact": "ux-1728-length-severe-author/kdigo-gn-2021-source.pdf",
+      "rawSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+      "access": "Texto extraído doPDF primário real, capítulos7/11 e resumoPP11.2.1–7 lidos, não slides.",
+      "scope": "GN relacionada àinfecção, exceção1C anti-MBG, urgência, duração guiada por anticorpo,semmanutençãorotineira."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+      "access": "Navegação direta captcha. Página primária indexada recuperada/lida emresultados:PATHOLOGY,RECOMMENDATIONS eC3NeF; não atribuir corpo completo aXML inexistente.",
+      "scope": "DominânciaC3,DDD,mimetizadores,8–12semanas,estabilizaçãodeC3bBb."
+    },
+    {
+      "url": "https://doi.org/10.1159/000516103",
+      "artifact": "ux-1728-editorial-backlog/cryoglobulinemia-menter.xml",
+      "rawSHA256": "6be500d49f7cba0d80d6e9a737a5250a3dff380ae148b890126e7513a0c1a955",
+      "access": "XML primário comcorpo efetivamente lido,DiseaseDefinition/ClinicalManifestations; página primária indexada confirmaMorphology.",
+      "scope": "Tipos,clones,HCV/C4,padrãoglomerular e erropré-analítico."
+    },
+    {
+      "url": "https://www.mayocliniclabs.com/api/sitecore/TestCatalog/DownloadTestCatalog?testId=80988",
+      "artifact": "ux-1728-editorial-backlog/mayo-cryoglobulin-primary.pdf",
+      "rawSHA256": "f4ef705a64493ee9bd6d29da6332bf5868161b96037114787dfc4636f1bf107a",
+      "access": "PDFoficial5p efetivamente aberto,pp2–3.",
+      "scope": "37°C atéseparação dosoro,falso-negativo pormanuseio; depois da separação não exigir37°C durante todo otransporte."
+    },
+    {
+      "url": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+      "access": "Páginaoficialcorpo efetivamente aberto,Table2.2.2/Medications/Restarting; edição2026,data23/04/2025.",
+      "scope": "Vacinasvivas,inativadas,rituximabe,prednisona e recuperaçãoimune."
+    }
+  ],
+  "neighborAssessments": [
+    {
+      "qids": [
+        "673a9acf",
+        "df6caaed"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL",
+      "fourDimensions": {
+        "decision": "Exceção prognóstica versus urgência pulmonar com regime inicial.",
+        "caseDataStructure": "Diálise/100%crescentes/sem hemorragia versus hemorragia alveolar e anti-MBG positivo.",
+        "targetProfile": "Mesmo público.",
+        "language": "Português."
+      },
+      "utility": "A presença de hemorragia pulmonar muda materialmente a decisão; não é duplicata.",
+      "independentlyAdjudicated": true
+    },
+    {
+      "qids": [
+        "fbb4edd0",
+        "6d007422",
+        "0e102752"
+      ],
+      "decision": "MANTER VARIAÇÕES ÚTEIS",
+      "basis": "Trajetória temporal do complemento após faringite versus integração durante infecção ativa versus classificação pela ultraestrutura muito densa. Estrutura de dados, decisão e erros distintos.",
+      "independentlyAdjudicated": true
+    },
+    {
+      "qids": [
+        "033aed49",
+        "cc5a8b32"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL",
+      "basis": "Composição monoclonal e investigação de clone versus síndrome sistêmica mista relacionada ao vírusC; o contraste é clinicamente útil.",
+      "independentlyAdjudicated": true
+    }
+  ],
+  "provenanceCorrection": "Pacoteautoral ainda citaMPGN-A4 para gateantigoKDIGO; relatório usa priorExactGate doledger, que apontaA2 ehashliteralexato. Nenhuma aprovação inferida aos consumidores.",
+  "boundary": "8questões e4cards exatos aprovados;2cards semmudançaliteral reutilizados comvínculoatual conferido. Semcriação,fusão,resetFSRS ou transferência decrédito; referenciasnão necessárias removidas sódas8questões, nãorevisadasglobalmente.",
+  "productionWrites": 0
+}

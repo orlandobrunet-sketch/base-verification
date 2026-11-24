@@ -2996,7 +2996,8 @@
       const deck=[];
       for(let i=0;i<topics.length;i++){
         const t=topics[i];
-        const d=t.diff==='hard'?Math.min(12,8+Math.floor(i/30)):Math.min(12,4+Math.floor(i/25));
+        const sourceIndex=window.NQQuestionSourcePositions ? window.NQQuestionSourcePositions.position(t.qid,i) : i;
+        const d=t.diff==='hard'?Math.min(12,8+Math.floor(sourceIndex/30)):Math.min(12,4+Math.floor(sourceIndex/25));
         // Usar campos completos: opts, ans, exp (não abreviados)
         const opts = (t.opts || t.o || []).slice();
         const ans  = (t.ans !== undefined) ? t.ans : (t.a !== undefined ? t.a : 0);
@@ -3043,11 +3044,13 @@
     function _loadTopics(options) {
       // A primeira carta lê refsDB: o download ocioso pode ainda estar em
       // andamento quando a pessoa entra rapidamente na Jornada.
-      const referencesReady = carregarDadosGrimorio(options?.refsOnly ? {refsOnly:true} : undefined);
+      const referencesReady = carregarDadosGrimorio({refsOnly:true});
       if (questionBank) return referencesReady.then(_initializeQuestionRevisionCatalog);
       if (!_topicsPromise) _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
-        s.src = 'data/topics.js';
+        // The older worker canonicalizes only ?v=; ?release= also bypasses its
+        // unversioned data cache during the first visit after an update.
+        s.src = 'data/topics.js?release=17.28';
         s.onload  = () => {
           questionBank = buildDeck();
           // E1/IRT: expõe o banco para o calculateUserTheta (utils.js está fora
@@ -4177,7 +4180,8 @@
     }
 
     function renderRefs(keys, references = refsDB){
-      const list = [...new Set(keys)].map(k => ({ key: k, ref: references[k] })).filter(x => x.ref);
+      if (!window.NQLibraryCatalog) { ui.refs.innerHTML = '<div class="ref-card" role="status">Fontes indisponíveis neste momento. Você pode continuar a jornada.</div>'; return; }
+      const list = [...new Set(keys)].map(k => ({ key: k, ref: references[k] || (window.NQLibraryCatalog?.isRetiredReference?.(k) ? {} : null) })).filter(x => x.ref);
       if(!list.length){ ui.refs.innerHTML=''; return; }
 
       // Determinar cor de acento baseada no badge dominante
@@ -4236,6 +4240,13 @@
       };
 
       const cardsHTML = list.map(({ key, ref }) => {
+        const retirement = window.NQLibraryCatalog?.retiredReferences?.find(item => item.id === key);
+        if (retirement) return `
+          <div class="ref-card" data-ref-retired="true" style="--ref-accent:#64748b">
+            <div class="ref-card-top"><span class="ref-icon" aria-hidden="true">🔒</span><span class="ref-title">${escapeHtml(retirement.title)}</span><span class="ref-badge">HISTÓRICO</span></div>
+            <div class="ref-meta">Referência retirada</div><div class="ref-impacto">${escapeHtml(retirement.reason)}</div>
+            <div class="ref-actions"><button class="ref-resumo-btn" data-arg="${escapeHtml(key)}" disabled aria-disabled="true"><span data-ref-summary-label>Resumo retirado</span></button></div>
+          </div>`;
         const accent = ref.badgeColor || '#6366f1';
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
                              (ref.impacto && (ref.impacto.includes('não') || ref.impacto.includes('n\u00e3o'))) ? 'amber' : '';
@@ -4276,7 +4287,7 @@
       // A leitura histórica deve abrir a mesma referência exibida no cartão,
       // mesmo quando o catálogo atual já contém outra revisão dessa fonte.
       ui.refs.querySelectorAll('.ref-resumo-btn').forEach((button, index) => {
-        _refResumoSources.set(button, list[index].ref);
+        if (!window.NQLibraryCatalog?.isRetiredReference?.(list[index].key)) _refResumoSources.set(button, list[index].ref);
       });
     }
 
@@ -5211,7 +5222,8 @@
       if (recordsProgress && isCorrect && state.current?.r?.length) {
         if (typeof _unlockRefsFromQuestion === 'function') {
           const refs = state.current.r;
-          _recordCharacterProgress(() => _unlockRefsFromQuestion(refs));
+          const qid = state.current.id;
+          _recordCharacterProgress(() => _unlockRefsFromQuestion(refs, qid));
         }
       }
       const st=total();
@@ -6725,6 +6737,7 @@
 
     function _openChestDirect(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
@@ -6733,7 +6746,9 @@
         log('💰 Ouro insuficiente! Você precisa de ' + chestCost + ' ouro.');
         return;
       }
-      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      const availableArticles = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles).map(idx => nefroArticles[idx])
+        : nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
       if (availableArticles.length === 0) {
         log('🎉 Você já desbloqueou todos os artigos!');
         return;
@@ -6882,6 +6897,7 @@
     
     function openChest() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
@@ -6891,7 +6907,9 @@
         return;
       }
       
-      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      const availableArticles = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles).map(idx => nefroArticles[idx])
+        : nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
       
       if (availableArticles.length === 0) {
         log('🎉 Você já desbloqueou todos os artigos!');
@@ -6933,8 +6951,15 @@
     const _claimedChestReceipts = new WeakSet();
     let _chestRewardWatch = null;
     let _pendingVictoryResults = null;
+    function _chestLibraryReady() {
+      return !!window.NQLibraryCatalog && typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles);
+    }
+    function _retryChestLibrary() {
+      if (typeof carregarDadosGrimorio !== 'function') return;
+      carregarDadosGrimorio().then(_flushChestRewards).catch(() => {});
+    }
     function hasPendingChestReward() {
-      return !state.gameOver && _pendingChestRewards.some(entry => !entry.direct && _chestRewardCurrent(entry.binding));
+      return _chestLibraryReady() && !state.gameOver && _pendingChestRewards.some(entry => !entry.direct && _chestRewardCurrent(entry.binding));
     }
     function hasPendingVictoryResults() {
       return !!_pendingVictoryResults && _chestRewardCurrent(_pendingVictoryResults.binding) &&
@@ -7015,12 +7040,12 @@
       const entry = _pendingChestRewards[0], main = document.getElementById('mainApp');
       const campaign = !document.hidden && state.gameStarted && !state.gameOver && _chestRewardVisible(main);
       for (const pending of _pendingChestRewards) {
-        if (pending.popup && !pending.direct && !campaign) _withdrawChestReward(pending);
+        if (pending.popup && (!_chestLibraryReady() || (!pending.direct && !campaign))) _withdrawChestReward(pending);
       }
       const dialog = [...document.querySelectorAll('[aria-modal="true"],dialog[open]')].some(_chestRewardVisible);
       const focused = document.activeElement;
       const otherFocus = focused && focused !== document.body && !main?.contains(focused) && _chestRewardVisible(focused);
-      if (entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
+      if (_chestLibraryReady() && entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
       if (hasPendingVictoryResults() && !hasPendingChestReward() && campaign && !dialog) {
         const dock = document.getElementById('mobileBottomDock');
         const nativeDockFocus = _chestRewardVisible(dock) && dock.contains(focused);
@@ -7035,6 +7060,7 @@
       if (_claimedChestReceipts.has(receipt) || _pendingChestRewards.some(entry => entry.receipt === receipt)) return;
       const entry = { binding, readyAt, receipt, ready: false, popup: null, timer: null, claimTimer: null };
       _pendingChestRewards.push(entry);
+      if (!_chestLibraryReady()) _retryChestLibrary();
       entry.timer = setTimeout(() => {
         entry.timer = null;
         entry.ready = true;
@@ -7068,6 +7094,7 @@
 
     function triggerChestRewardPopup(entry = null) {
       if(state.gameOver || document.getElementById('autoChestPopup')){ return; }
+      if (!_chestLibraryReady()) { _toast('Biblioteca indisponível. O baú continua guardado.', 'info'); _retryChestLibrary(); return; }
       // Keep the existing direct render API used by previews and accessibility
       // checks. Only accepted answer callbacks use the delayed queue above.
       if (!entry) {
@@ -7102,6 +7129,13 @@
       const entry = _pendingChestRewards.find(candidate => candidate.popup === popup);
       // Ilustração e botão conduzem à mesma abertura, sem recompensa duplicada.
       if (!popup || popup.dataset.claiming || !entry || !_chestRewardCurrent(entry.binding) || state.gameOver) return;
+      if (!_chestLibraryReady()) {
+        _withdrawChestReward(entry);
+        _toast('Biblioteca indisponível. O baú continua guardado.', 'info');
+        _watchChestRewards();
+        _retryChestLibrary();
+        return;
+      }
       popup.dataset.claiming = '1';
       popup.querySelector('.nqch-dialog').classList.add('opening');
       popup.querySelector('.nqch-dialog').setAttribute('aria-busy', 'true');
@@ -7113,6 +7147,13 @@
       entry.claimTimer = setTimeout(() => {
         entry.claimTimer = null;
         if (!_pendingChestRewards.includes(entry) || !_chestRewardCurrent(entry.binding) || state.gameOver) return;
+        if (!_chestLibraryReady()) {
+          _withdrawChestReward(entry);
+          _toast('Biblioteca indisponível. O baú continua guardado.', 'info');
+          _watchChestRewards();
+          _retryChestLibrary();
+          return;
+        }
         if (!entry.direct && (document.hidden || !_chestRewardVisible(document.getElementById('mainApp')))) {
           _withdrawChestReward(entry);
           _watchChestRewards();
@@ -7130,10 +7171,13 @@
 
     function claimChestReward() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       
       // 50% scroll/article, 50% equipment
       const isScroll = Math.random() < 0.5;
-      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      const availableArticles = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles).map(idx => nefroArticles[idx])
+        : nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
       
       if (isScroll && availableArticles.length > 0) {
         const randomArticle = availableArticles[Math.floor(Math.random() * availableArticles.length)];

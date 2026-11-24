@@ -1,0 +1,66 @@
+{
+  "schema": "NQ_INDEPENDENT_SW_MIXED_RELEASE_PROOF_v1",
+  "scope": "Exact published17.27 worker evaluated unchanged in a VM; Request/Cache/Fetch adapters only. Current17.28 HTML supplies its actual queries. This is a deterministic worker proof, not an E2E or service-worker installation lifecycle test.",
+  "baseCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "publishedWorkerSHA256": "f39cbbfdc5fc6500f055959c3bd844320a99cacdf24bb77fdc44021a7354f38c",
+  "currentHTMLSHA256": "162b584142868717777f39dadb729db0a6b156befeccc053b6cd907c6e2bda5d",
+  "scenarios": [
+    {
+      "pathname": "/data/topics.js",
+      "query": "",
+      "response": "PUBLISHED_17.27 /data/topics.js",
+      "networkRequests": []
+    },
+    {
+      "pathname": "/data/topics.js",
+      "query": "?release=17.28",
+      "response": "NETWORK_17.28 /data/topics.js",
+      "networkRequests": [
+        "https://nefroquest.com/data/topics.js?release=17.28"
+      ]
+    },
+    {
+      "pathname": "/data/refs.js",
+      "query": "",
+      "response": "PUBLISHED_17.27 /data/refs.js",
+      "networkRequests": []
+    },
+    {
+      "pathname": "/data/refs.js",
+      "query": "?release=17.28",
+      "response": "NETWORK_17.28 /data/refs.js",
+      "networkRequests": [
+        "https://nefroquest.com/data/refs.js?release=17.28"
+      ]
+    },
+    {
+      "pathname": "/data/question-revision-manifest.js",
+      "query": "?v=16.25",
+      "response": "PUBLISHED_17.27 /data/question-revision-manifest.js",
+      "networkRequests": []
+    },
+    {
+      "pathname": "/data/question-revision-manifest.js",
+      "query": "?release=17.28",
+      "response": "NETWORK_17.28 /data/question-revision-manifest.js",
+      "networkRequests": [
+        "https://nefroquest.com/data/question-revision-manifest.js?release=17.28"
+      ]
+    },
+    {
+      "pathname": "/data/question-revision-history.js",
+      "query": "?v=16.20",
+      "response": "PUBLISHED_17.27 /data/question-revision-history.js",
+      "networkRequests": []
+    },
+    {
+      "pathname": "/data/question-revision-history.js",
+      "query": "?release=17.28",
+      "response": "NETWORK_17.28 /data/question-revision-history.js",
+      "networkRequests": [
+        "https://nefroquest.com/data/question-revision-history.js?release=17.28"
+      ]
+    }
+  ],
+  "conclusion": "All actual current requests are served from the old17.27 cache without network. A non-v release query avoids the old canonical-v cache key and reaches network; current worker should also recognize/version that new query to retain offline precache. No reload of active sessions is necessary."
+}

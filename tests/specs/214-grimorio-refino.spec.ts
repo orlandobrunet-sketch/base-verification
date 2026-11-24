@@ -28,9 +28,10 @@ test.beforeEach(async ({ context, baseURL, page }) => {
 
 test('catálogo inteiro preserva bloqueios e contador pessoal, inclusive no admin', async ({ page }) => {
  const stored=await page.evaluate(()=>['nq-unlocked-refs','unlockedArticles','nq-bib-favorites'].map(k=>localStorage.getItem(k)));
- const entries=page.locator('[data-library-entry]'); const total=await entries.count();
+ const total = 595;
  await expect(page.locator('[data-library-entry]:visible')).toHaveCount(total);
- await expect(page.locator('.nqd-library-summary')).toHaveText('Referências descobertas até o momento: 8/'+total);
+ await expect(page.locator('[data-library-work]:visible')).toHaveCount(558);
+ await expect(page.locator('.nqd-library-summary')).toHaveText('Obras com conteúdo descoberto: 8/558');
  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
  await expect(page.locator('#nqDashLibraryFilter option[value="guideline"]')).toHaveCount(0);
  expect(await page.locator('.nqd-library-locked-item').count()).toBeGreaterThan(0);
@@ -38,7 +39,7 @@ test('catálogo inteiro preserva bloqueios e contador pessoal, inclusive no admi
  await page.keyboard.press('Escape');await page.evaluate(()=>{(window as any).isAdminUser=()=>true;});
  await page.locator('[data-atrium-route="library"]').click();
  await expect(page.locator('[data-library-item]:visible')).toHaveCount(total);
- await expect(page.locator('.nqd-library-summary')).toHaveText('Referências descobertas até o momento: 8/'+total);
+ await expect(page.locator('.nqd-library-summary')).toHaveText('Obras com conteúdo descoberto: 8/558');
  await expect(page.locator('#nqDashLibraryCollectionCount')).not.toContainText('prévia administrativa');
  expect(await page.evaluate(()=>['nq-unlocked-refs','unlockedArticles','nq-bib-favorites'].map(k=>localStorage.getItem(k)))).toEqual(stored);
  const starKey=await page.locator('[data-library-item]:visible .nqd-favorite[aria-pressed="false"]').first().getAttribute('data-library-key');

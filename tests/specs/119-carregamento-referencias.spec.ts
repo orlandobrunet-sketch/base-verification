@@ -11,8 +11,8 @@ for (const bancoPronto of [false, true]) {
     let releaseReferences!: () => void;
     const referencesGate = new Promise<void>(resolve => { releaseReferences = resolve; });
     let referenceRequests = 0, topicRequests = 0;
-    await page.route('**/data/topics.js', route => { topicRequests++; return route.continue(); });
-    await page.route('**/data/refs.js', async route => {
+    await page.route('**/data/topics.js*', route => { topicRequests++; return route.continue(); });
+    await page.route('**/data/refs.js*', async route => {
       referenceRequests++;
       await referencesGate;
       await route.continue();
@@ -74,9 +74,9 @@ test('falha nas referências com questões em voo recupera sem duplicar o banco'
   let releaseTopics!: () => void;
   const topicsGate = new Promise<void>(resolve => { releaseTopics = resolve; });
   let referenceRequests = 0, articleRequests = 0, topicRequests = 0;
-  await page.route('**/data/refs.js', route => ++referenceRequests === 1 ? route.abort() : route.continue());
-  await page.route('**/data/articles.js', route => { articleRequests++; return route.continue(); });
-  await page.route('**/data/topics.js', async route => {
+  await page.route('**/data/refs.js*', route => ++referenceRequests === 1 ? route.abort() : route.continue());
+  await page.route('**/data/articles.js*', route => { articleRequests++; return route.continue(); });
+  await page.route('**/data/topics.js*', async route => {
     topicRequests++;
     await topicsGate;
     await route.continue();
@@ -107,10 +107,10 @@ test('falha nas referências com questões em voo recupera sem duplicar o banco'
       );
     });
     expect(await page.evaluate(() => (window as any).__firstTopicsLoad)).toEqual({
-      ok: false, message: 'Não foi possível carregar data/refs.js',
+      ok: false, message: expect.stringMatching(/^Não foi possível carregar data\/refs\.js(?:\?.+)?$/),
     });
     await expect.poll(() => topicRequests).toBe(1);
-    await expect.poll(() => articleRequests).toBe(1);
+    expect(articleRequests).toBe(0);
     expect(referenceRequests).toBe(1);
     expect(await page.evaluate(() => (window as any).questionBank)).toBeUndefined();
 
@@ -120,7 +120,7 @@ test('falha nas referências com questões em voo recupera sem duplicar o banco'
       g.__concurrentTopicsLoad = g._loadTopics();
     });
     await expect.poll(() => referenceRequests).toBe(2);
-    await expect(page.locator('script[src="data/topics.js"]')).toHaveCount(1);
+    await expect(page.locator('script[src^="data/topics.js?release="]')).toHaveCount(1);
     await expect(page.locator('#options .option')).toHaveCount(0);
     expect(await page.evaluate(() => (0, eval)('_continueGamePending'))).toBe(true);
     expect(topicRequests).toBe(1);
@@ -136,7 +136,7 @@ test('falha nas referências com questões em voo recupera sem duplicar o banco'
     expect(await page.locator('#refs .ref-card').count()).toBeGreaterThan(0);
     await page.evaluate(() => (window as any)._loadTopics());
     expect(referenceRequests).toBe(2);
-    expect(articleRequests).toBe(1);
+    expect(articleRequests).toBe(0);
     expect(topicRequests).toBe(1);
     expect(runtimeErrors).toEqual([]);
     expect(await page.evaluate(() => (window as any).rejeicoes)).toEqual([]);

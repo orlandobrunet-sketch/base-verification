@@ -1,0 +1,1770 @@
+{
+  "schema": "NQ_INDEPENDENT_SGLT2_BIOPSY_REVIEW_1728_v1",
+  "role": "INDEPENDENT_MEDICAL_EDITORIAL_REVIEW",
+  "reviewer": "/root/length_inventory_1728",
+  "author": "/root/editorial_backlog_1728",
+  "date": "2026-11-16",
+  "productionWrites": false,
+  "authorPackages": [
+    {
+      "file": "author-sglt2-biopsy-A11.json",
+      "rawSHA256": "c49b5a72cda0e9389995b9f5bc2b8f55b134feeccace5609132284b461fa3e1c"
+    },
+    {
+      "file": "author-sglt2-focal-A21.json",
+      "rawSHA256": "cca3162292ff4a50a70c60d7408f9cf34255a01bbd84abd08a970df005949db9"
+    }
+  ],
+  "normativeSources": [
+    "revisar-nefroquest real+output-contract+verification-protocol",
+    "NQ_KNOWLEDGE_MODEL_v1",
+    "NQ_EDITORIAL_HANDBOOK_v1§15–19",
+    "annex-c-nefrologia"
+  ],
+  "conflictAudit": {
+    "authoredTheseAfterCandidates": false,
+    "authoredTheseThreeCards": false,
+    "kdigo2022OwnCard": "Não usado nas novas referências e não re-gated por mim. Bindings antigos são somente históricos.",
+    "reviewDoesNotInheritCandidateSelfCheck": true
+  },
+  "independentSources": [
+    {
+      "id": "VALLON2022",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+      "actualAccessURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9558099",
+      "doi": "10.1016/j.hfc.2022.03.005",
+      "pmid": "36216484",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-length-severe-author\\independent-sglt2-biopsy/vallon-2022-independent.xml",
+      "rawSHA256": "19cfd8170ea3298b2ae83f3a85b0f72842fc7fc940fd7d38a6a1d6c13c038b5f",
+      "access": "Download próprio direto NLM; corpo XML real com20288caracteres lido integralmente, front e estatuto de manuscrito autoral aceito conferidos. Não é somente abstract, nem HTMLcaptcha.",
+      "locators": [
+        "The physiology of SGLT2: S1/S2, SGLT1 tardioS2/S3, GLUT2 basolateral.",
+        "SGLT2 inhibition lowers GFR initially: hiperreabsorção proximal reduzNaCl/fluxo àmácula e pressão retrógrada; inibição inverte a sequência.",
+        "Does SGLT2 inhibition lower glomerular capillary pressure?: adenosinaA1aferente/A2eferente, micropunção e ausência de correspondência única entre pressão e filtração.",
+        "How can loweringGFR/PGC protect the kidney?: estresse hemodinâmico e hipóteses de proteção; distinção entre modelos, experimentos e desfechos clínicos.",
+        "Perspectives: mecanismos múltiplos ainda em investigação."
+      ],
+      "limits": [
+        "Síntese narrativa mecanística, adequada ao OP fisiológico; não um RCT de mecanismo em cada paciente.",
+        "Nenhum efeito exclusivo/primário universal ou determinação individual de mecanismo foi inferido."
+      ]
+    },
+    {
+      "id": "APSN2025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12238925/",
+      "actualAccessURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12238925",
+      "doi": "10.1111/nep.70030",
+      "pmid": "40631380",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-length-severe-author\\independent-sglt2-biopsy/apsn-2025-independent.xml",
+      "rawSHA256": "ba2ed122f17e173179262801a8c0cad53f522a705a8ad7f1fa7492ff28e65f8c",
+      "access": "Download próprio NLM; BODY real de199696caracteres, front publicado final2025;30(Suppl2):3–56 e seções clínicas decisivas lidos diretamente.",
+      "locators": [
+        "Chapter1/PracticePoint1.3: não biopsiar rotineiramente a apresentação clássica; considerar quando houver evidência de doença não diabética.",
+        "TablePP1.3: queda rápida da filtração, síndrome nefrótica/albuminúria rápida, sedimento ativo, sintomas sistêmicos, cronologia atípica e ausência de retinopatia noDM1.",
+        "Rationale: ausência de retinopatia não excluiDRD noDM2; sem outros sinais, geralmente pouca indicação para biópsia."
+      ],
+      "limits": [
+        "Practice point sem grau inventado. Séries selecionadas não são prevalência universal.",
+        "ADA2026body não foi necessário nem declarado como integralmente lido; não se usou draftKDIGO2026."
+      ]
+    },
+    {
+      "id": "KDIGOIGAN2025",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-length-severe-author\\independent-sglt2-biopsy/kdigo-igan-2025-independent.pdf",
+      "rawSHA256": "6e4458916dd929caec1fab7505e858ab3e079e0acc843589dc7b31a439e6202c",
+      "access": "PDF oficial final de71p aberto viaweb e baixado independentemente; conteúdo coincide com extração do mesmohash. Capa identifica KidneyInt2025;108(Suppl4S):S1–S71.",
+      "locators": [
+        "PP1.4.1.1: proteinúria≥0,5g/d justifica considerar tratamento/adicional.",
+        "PP1.4.2.1: alvo<0,5g/d, ideal<0,3g/d, com ressalva de cicatriz renal extensa.",
+        "Rec1.4.4.1/PP1.4.4.2: IECA/BRA dose máxima tolerada1B, exceções hipotensão/estenose bilateral/hipercalemia.",
+        "Rec1.4.3.1/.2 eFig3: Nefecon2B; quando indisponível, corticoide sistêmico em dose reduzida/profilaxia2B; risco/toxicidade e disponibilidade.",
+        "Rec1.4.4.2/.3: sparsentana2B, iSGLT2 em risco de perda progressiva2B; não confundir bloqueios nem substituir terapia específica.",
+        "PP1.4.4.4/Table1–2: coortesSGLT2 mais velhas/TFGe inferior; incerteza em jovens comTFGe>60."
+      ],
+      "limits": [
+        "O URL genérico antigo retornou404 real viaInvoke-WebRequest; novoPDF é200/oficial.",
+        "ApenasURL do card foi corrigida, mantendo11campos; isso não reaprova automaticamente questões consumidoras inalteradas."
+      ]
+    }
+  ],
+  "items": [
+    {
+      "qid": "121adcc7",
+      "original": {
+        "t": "Hiperfiltração Diabética — Feedback Túbulo-Glomerular",
+        "qid": "121adcc7",
+        "q": "Na fase inicial do diabetes, qual alteração tubular contribui para vasodilatação aferente e hiperfiltração glomerular?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Maior reabsorção proximal de glicose e sódio por SGLT2, reduzindo a entrega de sódio à mácula densa",
+          "Bloqueio espontâneo de SGLT2, aumentando a entrega de sódio à mácula densa",
+          "Perda completa da reabsorção proximal de glicose sem alteração do sódio",
+          "Aumento primário da secreção distal de potássio"
+        ],
+        "ans": 0,
+        "exp": "A hiperglicemia aumenta a carga filtrada de glicose e a reabsorção proximal conjunta de glicose e sódio, em grande parte por SGLT2. Menos cloreto de sódio chega à mácula densa, o feedback túbulo-glomerular interpreta menor entrega como necessidade de elevar filtração e favorece vasodilatação aferente. O aumento da pressão intraglomerular ajuda a explicar a hiperfiltração inicial e o efeito hemodinâmico dos inibidores de SGLT2, que restauram a entrega distal e o feedback.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalAuthorRevision": "sha256:c1de70f24ca262ace09ada7aaf70c08790ff4a1f378228822c31882d5300b533",
+      "after": {
+        "t": "Hiperfiltração Diabética — Via Tubular",
+        "qid": "121adcc7",
+        "q": "Na fase inicial do diabetes, qual alteração tubular contribui para vasodilatação aferente e hiperfiltração glomerular?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022"
+        ],
+        "opts": [
+          "Maior reabsorção proximal de sódio e glicose, com menor entrega de sal à mácula densa.",
+          "Bloqueio do transporte proximal de sódio e glicose, com maior oferta de sal à mácula densa.",
+          "Ativação de receptores de adenosina A1 na arteríola aferente, aumentando seu tônus.",
+          "Aumento da pressão hidrostática no espaço de Bowman por menor reabsorção proximal."
+        ],
+        "ans": 0,
+        "exp": "A maior reabsorção proximal de sódio e glicose reduz a entrega de cloreto de sódio à mácula densa e atenua o sinal vasoconstritor aferente do feedback tubuloglomerular. Essa é uma contribuição do modelo tubular para a hiperfiltração diabética. Inibir o cotransportador sódio-glicose tipo 2 (SGLT2) tende a inverter essa sequência. Já a ativação do receptor de adenosina A1 aumenta o tônus aferente; maior pressão no espaço de Bowman se opõe à filtração. O modelo não afirma que todo paciente diabético hiperfiltre nem que a resposta dependa de um único mecanismo.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "afterAuthorRevision": "sha256:47b95aadb32ee3563775b6450815819526d64be00b470d87e23aeda803e8647f",
+      "classification": {
+        "op": "Explicar como maior reabsorção proximal no diabetes reduz a sinalização da mácula densa e contribui para hiperfiltração.",
+        "primaryCompetence": "Fisiologia e raciocínio renal; indicação de investigação de apresentação atípica conforme o item.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "claimsVerified": [
+        {
+          "claim": "Modelo tubular de hiperfiltração: maior reabsorção proximal reduz sinalNaCl na mácula; A1aferente aumenta tônus e pressão emBowman se opõe àfiltração. Duas etapas causais, sem causa universal ou decisão terapêutica.",
+          "source": "VALLON2022",
+          "evidence": "VERIFICADA"
+        }
+      ],
+      "justification": "Modelo tubular de hiperfiltração: maior reabsorção proximal reduz sinalNaCl na mácula; A1aferente aumenta tônus e pressão emBowman se opõe àfiltração. Duas etapas causais, sem causa universal ou decisão terapêutica.",
+      "appeal": {
+        "plausibleAnnullingArgument": false,
+        "considered": [
+          "A1 e A2 não são confundidos: C especificaA1na aferente e aumento de tônus, contrário àvasodilatação perguntada.",
+          "O modelo é uma contribuição, não explicação única para todo paciente com diabetes."
+        ]
+      },
+      "eliminatoryCriteria": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de objetivo pedagógico",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não declarado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 1
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "tree": "Evidência verificada/sem pendência → nenhum eliminatório → recurso sem argumento plausível →18–20 →aprovada; autorização derivada§18.4.",
+      "identityDecision": {
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true,
+        "reason": "MesmoOP/competência/conceito correto; nova avaliação dos bytes exatos, sem herança silenciosa."
+      }
+    },
+    {
+      "qid": "113bb49e",
+      "original": {
+        "t": "iSGLT2 — glicosúria e natriurese proximal",
+        "qid": "113bb49e",
+        "q": "Qual alteração tubular explica a glicosúria produzida pelos inibidores de SGLT2?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Inibição da reabsorção de glicose e sódio no túbulo proximal",
+          "Aumento da secreção de glicose no ducto coletor",
+          "Redução da filtração glomerular de glicose como efeito primário",
+          "Bloqueio da absorção intestinal de glicose por SGLT1"
+        ],
+        "ans": 0,
+        "exp": "Os inibidores de SGLT2 bloqueiam o cotransportador sódio-glicose tipo 2 no túbulo proximal, reduzindo a reabsorção de glicose filtrada e gerando glicosúria. A mesma ação aumenta a entrega distal de sódio, o que ajuda a explicar a restauração do feedback túbulo-glomerular. Não há secreção tubular relevante de glicose no ducto coletor, a queda da filtração não é o mecanismo da glicosúria, e o bloqueio intestinal de SGLT1 não é o principal mecanismo dos iSGLT2 seletivos usados na DRC.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "originalAuthorRevision": "sha256:e30dee640d466eea962fc28cb7045b079c3598ba250cba3a35083b4781a35225",
+      "after": {
+        "t": "iSGLT2 — Origem da Glicosúria",
+        "qid": "113bb49e",
+        "q": "Qual é o mecanismo tubular direto da glicosúria após inibição seletiva do cotransportador sódio-glicose tipo 2 (SGLT2)?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022"
+        ],
+        "opts": [
+          "Redução da reabsorção de glicose no segmento inicial do túbulo proximal.",
+          "Inibição do cotransportador sódio-glicose tipo 1 no segmento proximal tardio.",
+          "Bloqueio do transportador de glicose GLUT2 na membrana basolateral.",
+          "Diminuição da carga de glicose filtrada por queda da filtração glomerular."
+        ],
+        "ans": 0,
+        "exp": "A glicosúria decorre da menor reabsorção de glicose pelo SGLT2 no túbulo proximal inicial, onde seu transporte é acoplado ao sódio. O cotransportador sódio-glicose tipo 1 (SGLT1), mais distal no túbulo proximal, pode recuperar parte da glicose que escapa. O GLUT2 participa da saída basolateral de glicose; não é o alvo do bloqueio seletivo descrito. Diminuir a carga filtrada não explica maior perda urinária de glicose por inibição da reabsorção. Reconhecer o local de ação ajuda a distinguir o efeito farmacológico da glicosúria por lesão tubular difusa.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "afterAuthorRevision": "sha256:993ef8be9b0e47cb38fb1a45a2cac9f5cffe91c45c40144aea97e69760becc07",
+      "classification": {
+        "op": "Identificar a inibição da reabsorção proximal inicial de glicose como mecanismo direto da glicosúria por SGLT2.",
+        "primaryCompetence": "Fisiologia e raciocínio renal; indicação de investigação de apresentação atípica conforme o item.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "claimsVerified": [
+        {
+          "claim": "Recuperar o alvo/local direto do bloqueio seletivo é um conceito básico útil. SGLT1 eGLUT2 são transportes reais distintos; carga filtrada menor não explica perda urinária maior por inibir a reabsorção.",
+          "source": "VALLON2022",
+          "evidence": "VERIFICADA"
+        }
+      ],
+      "justification": "Recuperar o alvo/local direto do bloqueio seletivo é um conceito básico útil. SGLT1 eGLUT2 são transportes reais distintos; carga filtrada menor não explica perda urinária maior por inibir a reabsorção.",
+      "appeal": {
+        "plausibleAnnullingArgument": false,
+        "considered": [
+          "GLUT2 também participa da reabsorção, mas não é alvo da intervenção seletiva descrita.",
+          "A compensação porSGLT1 é mantida; não se afirma perda de toda glicose filtrada."
+        ]
+      },
+      "eliminatoryCriteria": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de objetivo pedagógico",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não declarado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 1
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "tree": "Evidência verificada/sem pendência → nenhum eliminatório → recurso sem argumento plausível →18–20 →aprovada; autorização derivada§18.4.",
+      "identityDecision": {
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true,
+        "reason": "MesmoOP/competência/conceito correto; nova avaliação dos bytes exatos, sem herança silenciosa."
+      }
+    },
+    {
+      "qid": "21c883d5",
+      "original": {
+        "t": "Indicação de Biópsia Renal no Paciente Diabético",
+        "qid": "21c883d5",
+        "q": "Em paciente com diabetes, qual apresentação deve aumentar a suspeita de doença renal não diabética e justificar considerar biópsia renal?",
+        "opts": [
+          "Albuminúria A2 persistente, estável, em paciente hipertenso com retinopatia diabética",
+          "Queda rápida da TFGe ou síndrome nefrótica de início súbito, especialmente sem retinopatia",
+          "HbA1c elevada isolada, sem alteração urinária ou queda de TFGe",
+          "Albuminúria leve detectada em rastreamento anual, sem sedimento ativo"
+        ],
+        "ans": 1,
+        "exp": "Biópsia renal em paciente diabético deve ser considerada quando a apresentação é atípica para doença renal diabética: queda rápida da taxa de filtração glomerular estimada (TFGe), síndrome nefrótica abrupta, sedimento urinário ativo, curta duração de diabetes ou ausência de retinopatia em contexto sugestivo. Esses achados aumentam a probabilidade de doença renal não diabética ou sobreposta, cujo tratamento pode mudar substancialmente. Albuminúria A2 persistente e estável em paciente com hipertensão/retinopatia é mais compatível com doença renal diabética; HbA1c alta isolada não é indicação de biópsia.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "kdigo_gn"
+        ]
+      },
+      "originalAuthorRevision": "sha256:a5cfa564ce4a596c1a7dca169070a2a81f52bed9e3076c7ccb878879251303ed",
+      "after": {
+        "t": "Diabetes — Quando Considerar Biópsia Renal",
+        "qid": "21c883d5",
+        "q": "Em pessoa com diabetes mellitus tipo 2, qual apresentação é um sinal de alerta mais consistente para outra doença renal e deve motivar avaliação nefrológica para considerar biópsia?",
+        "opts": [
+          "Albuminúria moderadamente aumentada e estável, com retinopatia e longa duração do diabetes.",
+          "Queda rápida e inexplicada da filtração ou desenvolvimento abrupto de síndrome nefrótica.",
+          "Ausência isolada de retinopatia, com filtração e albuminúria estáveis.",
+          "Hemoglobina glicada elevada isoladamente, com filtração preservada e urina sem alterações."
+        ],
+        "ans": 1,
+        "exp": "Queda rápida e inexplicada da filtração ou síndrome nefrótica abrupta são apresentações atípicas que justificam investigar doença renal não diabética ou sobreposta e considerar biópsia. O Practice Point 1.3 da diretriz de 2025 da Asian Pacific Society of Nephrology (APSN) inclui esses sinais, além de sedimento ativo e sinais sistêmicos. A ausência de retinopatia tem maior valor nesse contexto no diabetes tipo 1; isoladamente no tipo 2, não exclui doença renal diabética nem impõe biópsia. Albuminúria estável com longa duração do diabetes/retinopatia é uma apresentação mais típica; hemoglobina glicada elevada isoladamente não fornece indicação de biópsia.",
+        "diff": "easy",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "apsn_dkd_biopsy_2025"
+        ]
+      },
+      "afterAuthorRevision": "sha256:ce753d4c3376b6253633ca1c45a31032bc8f99b8d22c9e03737e10d462dc57eb",
+      "classification": {
+        "op": "Reconhecer apresentação renal atípica no diabetes que justifica investigar doença não diabética e considerar biópsia.",
+        "primaryCompetence": "Fisiologia e raciocínio renal; indicação de investigação de apresentação atípica conforme o item.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "claimsVerified": [
+        {
+          "claim": "Reconhece sinais de alerta e encaminhamento para considerar biópsia, sem converter ausência de retinopatia noDM2 em diagnóstico ou obrigação de procedimento.",
+          "source": "APSN2025",
+          "evidence": "VERIFICADA"
+        }
+      ],
+      "justification": "Reconhece sinais de alerta e encaminhamento para considerar biópsia, sem converter ausência de retinopatia noDM2 em diagnóstico ou obrigação de procedimento.",
+      "appeal": {
+        "plausibleAnnullingArgument": false,
+        "considered": [
+          "Ausência isolada de retinopatia pode participar da avaliação, mas noDM2 estável não supera queda rápida inexplicada ou síndrome nefrótica abrupta como sinal.",
+          "A questão pede considerar após avaliação, não biopsiar imediatamente todo declínio renal."
+        ]
+      },
+      "eliminatoryCriteria": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de objetivo pedagógico",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não declarado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 1
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "tree": "Evidência verificada/sem pendência → nenhum eliminatório → recurso sem argumento plausível →18–20 →aprovada; autorização derivada§18.4.",
+      "identityDecision": {
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true,
+        "reason": "MesmoOP/competência/conceito correto; nova avaliação dos bytes exatos, sem herança silenciosa."
+      }
+    },
+    {
+      "qid": "dfcc2096",
+      "original": {
+        "t": "Inibidores de SGLT2 — Mecanismo de Nefroproteção na DRC",
+        "qid": "dfcc2096",
+        "q": "Paciente masculino, 62 anos, histórico de insuficiência cardíaca com fração de ejeção reduzida (FE 35%), creatinina de 1,6 mg/dL e proteinúria moderada (1,2 g/24h). Está em uso de IECA e betabloqueador. Considerando o uso de inibidores de SGLT2 para proteção renal, qual é o principal mecanismo de nefroproteção independente do controle glicêmico?",
+        "opts": [
+          "Redução da pressão intraglomerular pela restauração da sinalização túbulo-glomerular, diminuindo a hiperfiltração e o estresse hemodinâmico glomerular.",
+          "Aumento da excreção urinária de glicose, que melhora diretamente a função tubular proximal e reduz a inflamação local.",
+          "Bloqueio direto dos canais de cálcio nas arteríolas aferentes, reduzindo a pressão intraglomerular e prevenindo a fibrose renal progressiva.",
+          "Melhora da resistência insulínica sistêmica, diminuindo a produção hepática de glicose e protegendo os néfrons contra lesão metabólica."
+        ],
+        "ans": 0,
+        "exp": "Os inibidores de SGLT2 promovem nefroproteção primariamente pela restauração do feedback tubuloglomerular. Ao inibir a reabsorção de sódio e glicose no túbulo proximal, aumentam a entrega de sódio à mácula densa, levando à vasoconstrição da arteríola aferente. Isso reduz a pressão intraglomerular e a hiperfiltração, diminuindo o estresse hemodinâmico e a albuminúria, independentemente do controle glicêmico, conforme demonstrado em estudos como DAPA-CKD e EMPA-KIDNEY.",
+        "diff": "hard",
+        "cat": "farmacologia",
+        "refs": [
+          "dapa",
+          "empa_kidney"
+        ]
+      },
+      "originalAuthorRevision": "sha256:c54e48fdedc568094c1c7f45f3c9eb8156203763defe33b3c11946c8a51f8b20",
+      "after": {
+        "t": "iSGLT2 — Via Hemodinâmica da Nefroproteção",
+        "qid": "dfcc2096",
+        "q": "Homem de 62 anos, com insuficiência cardíaca e fração de ejeção de 35%, apresenta creatinina de 1,6 mg/dL e proteinúria de 1,2 g/24 h. Usa um inibidor da enzima conversora de angiotensina (IECA) e betabloqueador. Ao considerar um inibidor do cotransportador sódio-glicose tipo 2 (SGLT2) para proteção renal, qual mecanismo hemodinâmico ajuda a explicar esse benefício, além do efeito glicêmico?",
+        "opts": [
+          "Redução da pressão intraglomerular pela restauração da sinalização túbulo-glomerular, diminuindo a hiperfiltração e o estresse hemodinâmico glomerular.",
+          "Aumento da excreção urinária de glicose, que melhora diretamente a função tubular proximal e reduz a inflamação local.",
+          "Bloqueio direto dos canais de cálcio nas arteríolas aferentes, reduzindo a pressão intraglomerular e prevenindo a fibrose renal progressiva.",
+          "Melhora da resistência insulínica sistêmica, diminuindo a produção hepática de glicose e protegendo os néfrons contra lesão metabólica."
+        ],
+        "ans": 0,
+        "exp": "A redução da pressão intraglomerular é uma explicação hemodinâmica para parte da nefroproteção. A menor reabsorção proximal de sódio e glicose aumenta a oferta de cloreto de sódio à mácula densa; o feedback tubuloglomerular participa da redução da pressão glomerular, com respostas pré e pós-glomerulares conforme o contexto. A revisão de Vallon integra experimentos e respostas humanas: ensaios de desfechos não demonstram, por si só, cada etapa desse mecanismo nem que ele explique sozinho todo benefício clínico. Glicosúria e adaptações metabólicas não equivalem à sequência hemodinâmica perguntada, e o fármaco não atua por bloqueio direto de canais de cálcio.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022"
+        ]
+      },
+      "afterAuthorRevision": "sha256:2c08d030150fbe7f82200e7f4127263efb0ad88745c57d26f514a1288e355125",
+      "classification": {
+        "op": "Identificar a redução da pressão intraglomerular via sinalização tubuloglomerular como componente hemodinâmico da nefroproteção porSGLT2 além do efeito glicêmico.",
+        "primaryCompetence": "Fisiologia e raciocínio renal; indicação de investigação de apresentação atípica conforme o item.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "claimsVerified": [
+        {
+          "claim": "O reparo delimita a via hemodinâmica e retira o claim de mecanismo primário demonstrado por ensaios de desfechos. O caso não é transformado em outro episódio de dip; mecanismo correto permanece reconhecível.",
+          "source": "VALLON2022",
+          "evidence": "VERIFICADA"
+        }
+      ],
+      "justification": "O reparo delimita a via hemodinâmica e retira o claim de mecanismo primário demonstrado por ensaios de desfechos. O caso não é transformado em outro episódio de dip; mecanismo correto permanece reconhecível.",
+      "appeal": {
+        "plausibleAnnullingArgument": false,
+        "considered": [
+          "Efeitos metabólicos/tubulares também podem contribuir àproteção, porém não respondem ao mecanismo hemodinâmico explicitamente solicitado.",
+          "Não se afirma que TGF seja a causa exclusiva ou demonstrada em cada paciente; referência mecanística substituiRCTs de desfechos."
+        ]
+      },
+      "eliminatoryCriteria": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de objetivo pedagógico",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não declarado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 1
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "tree": "Evidência verificada/sem pendência → nenhum eliminatório → recurso sem argumento plausível →18–20 →aprovada; autorização derivada§18.4.",
+      "identityDecision": {
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true,
+        "reason": "MesmoOP/competência/conceito correto; nova avaliação dos bytes exatos, sem herança silenciosa."
+      }
+    },
+    {
+      "qid": "0e1a838d",
+      "original": {
+        "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+        "qid": "0e1a838d",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022",
+          "kdigo_igan_2025"
+        ],
+        "opts": [
+          "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+          "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+          "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+          "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "originalAuthorRevision": "sha256:1a15b6f6d3541f54ff8dd275d76a016a56c7fea9bf52fa048e46969b43dd6379",
+      "after": {
+        "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+        "qid": "0e1a838d",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022"
+        ],
+        "opts": [
+          "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+          "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+          "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+          "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "afterAuthorRevision": "sha256:d534d9b7e929b364d788dd8fd53cc3472dcfd2322726d64df68184c8bc1ec71e",
+      "classification": {
+        "op": "Relacionar menor reabsorção proximal, maiorNaCl na mácula densa e menorpressão intraglomerular ao padrão de filtração/albuminúria observado.",
+        "primaryCompetence": "Fisiologia e raciocínio renal; indicação de investigação de apresentação atípica conforme o item.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "claimsVerified": [
+        {
+          "claim": "Melhor canônica: a questão integra o padrão temporal com a direção da cadeia tubular/hemodinâmica. Os três distratores operam na mesma cadeia e representam inversões deNaCl/feedback/tônus/pressão, em vez de reclassificar o medicamento ou repetir uma exclusão dada no caso.",
+          "source": "VALLON2022",
+          "evidence": "VERIFICADA"
+        }
+      ],
+      "justification": "Melhor canônica: a questão integra o padrão temporal com a direção da cadeia tubular/hemodinâmica. Os três distratores operam na mesma cadeia e representam inversões deNaCl/feedback/tônus/pressão, em vez de reclassificar o medicamento ou repetir uma exclusão dada no caso.",
+      "appeal": {
+        "plausibleAnnullingArgument": false,
+        "considered": [
+          "IgA e menor albuminúria contextualizam o padrão; não provam depleção imune ou mecanismo único em uma pessoa.",
+          "A pergunta solicita compatibilidade hemodinâmica; a explicação diferencia modelo/experimento de comprovação individual e não ensina suspensão ou indicação universal."
+        ]
+      },
+      "eliminatoryCriteria": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de objetivo pedagógico",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não declarado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 2
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 20,
+        "band": "Excelente"
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "tree": "Evidência verificada/sem pendência → nenhum eliminatório → recurso sem argumento plausível →18–20 →aprovada; autorização derivada§18.4.",
+      "identityDecision": {
+        "preserveQid": true,
+        "noFSRSTransferOrReset": true,
+        "reason": "MesmoOP/competência/conceito correto; nova avaliação dos bytes exatos, sem herança silenciosa."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "vallon_sglt2_renoprotection_2022",
+      "original": {
+        "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+        "journal": "Heart Fail Clin. 2022;18(4):539–549",
+        "ano": 2022,
+        "tipo": "Revisão fisiológica narrativa",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+        "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+        "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+      },
+      "originalRevision": "sha256:f6b36402dc363477a6dba6ededbcba652ff66daaaa07c6e7422e99e08bf5a16c",
+      "after": {
+        "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+        "journal": "Heart Fail Clin. 2022;18(4):539–549",
+        "ano": 2022,
+        "tipo": "Revisão fisiológica narrativa",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+        "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+        "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+      },
+      "afterRevision": "sha256:f6b36402dc363477a6dba6ededbcba652ff66daaaa07c6e7422e99e08bf5a16c",
+      "version": {
+        "referenceId": "vallon_sglt2_renoprotection_2022",
+        "sortedCompactPythonSHA256": "f6b36402dc363477a6dba6ededbcba652ff66daaaa07c6e7422e99e08bf5a16c",
+        "orderedCompactPythonSHA256": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+        "fullLiteral": {
+          "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+          "journal": "Heart Fail Clin. 2022;18(4):539–549",
+          "ano": 2022,
+          "tipo": "Revisão fisiológica narrativa",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+          "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+          "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+        }
+      },
+      "source": "VALLON2022",
+      "wholeCardFieldCoverage": [
+        {
+          "field": "label",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "url",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "journal",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "ano",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "tipo",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "badge",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "badgeColor",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "impacto",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "icon",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "resumo",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "conclusao",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "curiosidade",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        }
+      ],
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "scope": "Revisão independente integral dos12campos exatos. Não equivale a gate automático de questões vizinhas/consumidoras."
+    },
+    {
+      "id": "apsn_dkd_biopsy_2025",
+      "original": null,
+      "originalRevision": null,
+      "after": {
+        "label": "APSN — Biópsia Renal no Diabetes (2025)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12238925/",
+        "journal": "Nephrology (Carlton). 2025;30(Suppl 2):3–56. DOI:10.1111/nep.70030",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Apresentações atípicas no diabetes justificam investigar outra doença renal e considerar biópsia.",
+        "icon": "📋",
+        "resumo": "Diretriz da Asian Pacific Society of Nephrology atualizada em 2025. O Practice Point 1.3 orienta que a biópsia não é rotineira na apresentação clássica de doença renal diabética, mas deve ser considerada quando há sinais de outra doença renal. A tabela PP1.3 inclui queda rápida da filtração estimada, aumento rápido da albuminúria ou síndrome nefrótica, sedimento ativo, sinais sistêmicos e cronologia atípica. Ausência de retinopatia é um sinal mais útil no diabetes tipo 1.",
+        "conclusao": "No diabetes tipo 2, ausência isolada de retinopatia não exclui doença renal diabética nem basta para impor biópsia. Investigar apresentações atípicas e individualizar a indicação.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:ff5241fd2ce5b3e1a49d38f762d2e57ee1c623322d43e584e533341ac6c3c961",
+      "version": {
+        "referenceId": "apsn_dkd_biopsy_2025",
+        "sortedCompactPythonSHA256": "ff5241fd2ce5b3e1a49d38f762d2e57ee1c623322d43e584e533341ac6c3c961",
+        "orderedCompactPythonSHA256": "da2818ce037325a985d5d47560204fec36be8f7af72a1199d4c7c274b185db9e",
+        "fullLiteral": {
+          "label": "APSN — Biópsia Renal no Diabetes (2025)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12238925/",
+          "journal": "Nephrology (Carlton). 2025;30(Suppl 2):3–56. DOI:10.1111/nep.70030",
+          "ano": 2025,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Apresentações atípicas no diabetes justificam investigar outra doença renal e considerar biópsia.",
+          "icon": "📋",
+          "resumo": "Diretriz da Asian Pacific Society of Nephrology atualizada em 2025. O Practice Point 1.3 orienta que a biópsia não é rotineira na apresentação clássica de doença renal diabética, mas deve ser considerada quando há sinais de outra doença renal. A tabela PP1.3 inclui queda rápida da filtração estimada, aumento rápido da albuminúria ou síndrome nefrótica, sedimento ativo, sinais sistêmicos e cronologia atípica. Ausência de retinopatia é um sinal mais útil no diabetes tipo 1.",
+          "conclusao": "No diabetes tipo 2, ausência isolada de retinopatia não exclui doença renal diabética nem basta para impor biópsia. Investigar apresentações atípicas e individualizar a indicação.",
+          "curiosidade": ""
+        }
+      },
+      "source": "APSN2025",
+      "wholeCardFieldCoverage": [
+        {
+          "field": "label",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "url",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "journal",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "ano",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "tipo",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "badge",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "badgeColor",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "impacto",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "icon",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "resumo",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "conclusao",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "curiosidade",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        }
+      ],
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "scope": "Revisão independente integral dos12campos exatos. Não equivale a gate automático de questões vizinhas/consumidoras."
+    },
+    {
+      "id": "kdigo_igan_2025",
+      "original": {
+        "label": "KDIGO IgAN 2025 (Guideline Dedicada)",
+        "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz dedicada à IgAN: alvo de proteinúria <0,5 g/d e terapias dirigidas ao risco",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2025 dedicada à nefropatia por IgA. Considera proteinúria persistente ≥0,5 g/d um marcador de risco que justifica tratamento adicional. Recomenda IECA ou BRA na dose máxima tolerada para todos os pacientes sem contraindicação (1B), sugere iSGLT2 para pacientes em risco de perda progressiva da função renal (2B) e posiciona Nefecon, sparsentana e glicocorticoide sistêmico reduzido conforme mecanismo, risco, disponibilidade e toxicidade. A meta é manter proteinúria abaixo de 0,5 g/d, idealmente abaixo de 0,3 g/d.",
+        "conclusao": "O manejo combina proteção contra respostas maladaptativas à perda de néfrons com terapias dirigidas à formação de imunocomplexos e à inflamação; iSGLT2 não substitui tratamento específico da IgAN quando este é indicado.",
+        "curiosidade": "Nos subgrupos de IgAN de DAPA-CKD e EMPA-KIDNEY, os participantes eram em geral mais velhos e tinham DRC mais avançada que os incluídos em ensaios específicos de IgAN, o que limita a extrapolação para jovens com TFGe preservada."
+      },
+      "originalRevision": "sha256:95b9fad785a2a801e27e0e009b9b0f2520bf769de382ef9079e26f0a29cc9d14",
+      "after": {
+        "label": "KDIGO IgAN 2025 (Guideline Dedicada)",
+        "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz dedicada à IgAN: alvo de proteinúria <0,5 g/d e terapias dirigidas ao risco",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2025 dedicada à nefropatia por IgA. Considera proteinúria persistente ≥0,5 g/d um marcador de risco que justifica tratamento adicional. Recomenda IECA ou BRA na dose máxima tolerada para todos os pacientes sem contraindicação (1B), sugere iSGLT2 para pacientes em risco de perda progressiva da função renal (2B) e posiciona Nefecon, sparsentana e glicocorticoide sistêmico reduzido conforme mecanismo, risco, disponibilidade e toxicidade. A meta é manter proteinúria abaixo de 0,5 g/d, idealmente abaixo de 0,3 g/d.",
+        "conclusao": "O manejo combina proteção contra respostas maladaptativas à perda de néfrons com terapias dirigidas à formação de imunocomplexos e à inflamação; iSGLT2 não substitui tratamento específico da IgAN quando este é indicado.",
+        "curiosidade": "Nos subgrupos de IgAN de DAPA-CKD e EMPA-KIDNEY, os participantes eram em geral mais velhos e tinham DRC mais avançada que os incluídos em ensaios específicos de IgAN, o que limita a extrapolação para jovens com TFGe preservada."
+      },
+      "afterRevision": "sha256:989bbc5c9860681580153851de44ff1b432487325f4e0d24cc85fe66da8ae46b",
+      "version": {
+        "referenceId": "kdigo_igan_2025",
+        "sortedCompactPythonSHA256": "989bbc5c9860681580153851de44ff1b432487325f4e0d24cc85fe66da8ae46b",
+        "orderedCompactPythonSHA256": "8a8f4b267407a4a4b699e7302db7809d52fa6b98a550f1195a23c63c2464eaea",
+        "fullLiteral": {
+          "label": "KDIGO IgAN 2025 (Guideline Dedicada)",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "journal": "Kidney International",
+          "ano": 2025,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz dedicada à IgAN: alvo de proteinúria <0,5 g/d e terapias dirigidas ao risco",
+          "icon": "📋",
+          "resumo": "Diretriz KDIGO 2025 dedicada à nefropatia por IgA. Considera proteinúria persistente ≥0,5 g/d um marcador de risco que justifica tratamento adicional. Recomenda IECA ou BRA na dose máxima tolerada para todos os pacientes sem contraindicação (1B), sugere iSGLT2 para pacientes em risco de perda progressiva da função renal (2B) e posiciona Nefecon, sparsentana e glicocorticoide sistêmico reduzido conforme mecanismo, risco, disponibilidade e toxicidade. A meta é manter proteinúria abaixo de 0,5 g/d, idealmente abaixo de 0,3 g/d.",
+          "conclusao": "O manejo combina proteção contra respostas maladaptativas à perda de néfrons com terapias dirigidas à formação de imunocomplexos e à inflamação; iSGLT2 não substitui tratamento específico da IgAN quando este é indicado.",
+          "curiosidade": "Nos subgrupos de IgAN de DAPA-CKD e EMPA-KIDNEY, os participantes eram em geral mais velhos e tinham DRC mais avançada que os incluídos em ensaios específicos de IgAN, o que limita a extrapolação para jovens com TFGe preservada."
+        }
+      },
+      "source": "KDIGOIGAN2025",
+      "wholeCardFieldCoverage": [
+        {
+          "field": "label",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "url",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "journal",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "ano",
+          "status": "VERIFICADA",
+          "rationale": "Metadados e fonte primária oficial conferidos; versão de acesso descrita."
+        },
+        {
+          "field": "tipo",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "badge",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "badgeColor",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "impacto",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "icon",
+          "status": "VERIFICADA",
+          "rationale": "Desenho apresentado sem elevar nível de evidência; subtipo legado factual preservado quando inalterado."
+        },
+        {
+          "field": "resumo",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "conclusao",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        },
+        {
+          "field": "curiosidade",
+          "status": "VERIFICADA",
+          "rationale": "Afirmações e limites específicos conferidos nos localizadores do corpo primário; sem estatística, grau ou causalidade fabricados."
+        }
+      ],
+      "gate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "scope": "Revisão independente integral dos12campos exatos. Não equivale a gate automático de questões vizinhas/consumidoras."
+    }
+  ],
+  "retirements": [
+    {
+      "qid": "96c0c85d",
+      "sourceQid": "96c0c85d",
+      "destinationQid": "0e1a838d",
+      "sourcePublication": {
+        "commit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+        "release": "17.27",
+        "author": {
+          "t": "iSGLT2 — mecanismo do dip inicial da TFGe",
+          "qid": "96c0c85d",
+          "q": "Paciente com DRC inicia inibidor de SGLT2 e apresenta pequena queda inicial da TFGe nas primeiras semanas, sem sinais de hipovolemia ou lesão renal aguda. Qual mecanismo explica melhor esse “dip” esperado?",
+          "refs": [
+            "kdigo_ckd",
+            "kdigo_diabetes_in_ckd_guideline",
+            "empa_kidney",
+            "dapa"
+          ],
+          "opts": [
+            "Aumento da entrega de sódio à mácula densa, ativando feedback túbulo-glomerular e vasoconstrição aferente",
+            "Toxicidade tubular direta com necrose tubular aguda subclínica",
+            "Vasodilatação eferente idêntica ao efeito dos IECA/BRA",
+            "Aumento da pressão intraglomerular por maior reabsorção proximal de sódio"
+          ],
+          "ans": 0,
+          "exp": "O dip inicial da TFGe com iSGLT2 é predominantemente hemodinâmico: a menor reabsorção proximal de sódio e glicose aumenta a entrega de sódio à mácula densa, restaurando o feedback túbulo-glomerular, com vasoconstrição aferente e queda da pressão intraglomerular. Isso é diferente de toxicidade tubular direta e também não é o mecanismo clássico de vasodilatação eferente dos bloqueadores do sistema renina-angiotensina. A alternativa que aumenta pressão intraglomerular inverte o mecanismo nefroprotetor.",
+          "diff": "hard",
+          "cat": "drc"
+        },
+        "authorRevision": "sha256:69f48722cf25315a1716631fdab6ff6ab99cdb97e5aea0ebcf0b63460d8742ac",
+        "recordRevision": "sha256:75e6e23291ab456cb91e7bacd70a97b6d930d7cd36bbcf2318341c28b8c88103",
+        "referenceRevisions": {
+          "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+          "kdigo_diabetes_in_ckd_guideline": "sha256:d5431ad32cb1b43701ad8e054ab758bac383f2adf038cbd9f317f27d85690cca",
+          "empa_kidney": "sha256:27a5d1947a22346a9482092638d9b7627f1847d0f3a0c035173a165248069d9d",
+          "dapa": "sha256:c3c5d8694734f2fd713362b7fabfedf1d9c954133e82bb62ed8e897080d0cd28"
+        },
+        "references": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          },
+          "kdigo_diabetes_in_ckd_guideline": {
+            "label": "KDIGO Diabetes in CKD 2022",
+            "url": "https://kdigo.org/guidelines/diabetes-ckd/",
+            "journal": "Kidney International",
+            "ano": 2022,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo integrado do diabetes e DRC — metas glicêmicas, nefroproteção e tratamento",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2022 para manejo do diabetes na DRC. Recomenda controle glicêmico individualizado com alvo de HbA1c 6,5–8% conforme risco de hipoglicemia e expectativa de vida. Posiciona iSGLT2 como primeira adição ao metformim em DRC com TFGe ≥20 e ACR ≥200 mg/g ou IC; GLP-1 RA como segunda linha com benefício CV e renal demonstrado. Finerenona indicada em DRC diabética com TFGe ≥25 e ACR ≥300 mg/g para redução de risco cardiorrenal.",
+            "conclusao": "A diretriz 2022 integrou o manejo glicêmico ao cardiorrenal — iSGLT2, GLP-1 RA e finerenona deixaram de ser apenas antidiabéticos para se tornarem a base da nefroproteção na DRC diabética.",
+            "curiosidade": "A DRC é o principal fator de risco de hipoglicemia grave em DM2: a insulina e as sulfoniluréias acumulam em pacientes com TFGe reduzida. Essa é a razão pela qual o alvo de HbA1c é deliberadamente menos estrito (<8%) em DRC avançada — reduzir hipoglicemia pode ser mais importante que otimizar glicemia."
+          },
+          "empa_kidney": {
+            "label": "Herrington WG et al. — EMPA-KIDNEY (NEJM 2023)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+            "journal": "N Engl J Med 2023;388(2):117-127",
+            "ano": 2023,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Empagliflozin ↓28% progressão renal ou morte CV em DRC ampla (TFG 20-45, com ou sem DM)",
+            "icon": "🔬",
+            "resumo": "ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
+            "conclusao": "EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
+            "curiosidade": "Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
+          },
+          "dapa": {
+            "label": "DAPA-CKD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+            "journal": "New England Journal of Medicine",
+            "ano": 2020,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
+            "icon": "💊",
+            "resumo": "ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+            "conclusao": "DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+            "curiosidade": "32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
+          }
+        },
+        "sourceRevisions": {
+          "main": "sha256:01b2b7811b17d35e18193294d19cd1ad7640fa0b440282f774b93cf3435f50f6",
+          "exam": "sha256:01b2b7811b17d35e18193294d19cd1ad7640fa0b440282f774b93cf3435f50f6",
+          "study": "sha256:0b6c423c491bce51d0a5df7fe2535930257138dea58084cb7c4d1a232460926f",
+          "offline": "sha256:082911598bb686d83af736bbdc469cb901ed7d37d4425ccf3fe17cafabb6438d"
+        }
+      },
+      "draft1728": {
+        "authorRevision": "sha256:69f48722cf25315a1716631fdab6ff6ab99cdb97e5aea0ebcf0b63460d8742ac",
+        "notPublishedSource": true
+      },
+      "destinationAfter": {
+        "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+        "qid": "0e1a838d",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022"
+        ],
+        "opts": [
+          "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+          "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+          "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+          "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "destinationAfterAuthorRevision": "sha256:d534d9b7e929b364d788dd8fd53cc3472dcfd2322726d64df68184c8bc1ec71e",
+      "fourDimensions": {
+        "sameDecision": true,
+        "sameCaseDataStructure": true,
+        "sameTargetLearnerProfile": true,
+        "sameLanguage": true,
+        "decision": "Explicar a queda inicial funcional apósSGLT2 pela cadeia proximal→NaCl na mácula densa→menorpressão intraglomerular.",
+        "caseDataStructure": "Doença renal/proteinúria, início deSGLT2 e queda discreta inicial da filtração. IgA, nome dapagliflozina e albuminúria acrescentam contexto, sem mudar a inferência pedida; reversibilidade/estabilidade explicitam o padrão já chamado de esperado/hemodinâmico.",
+        "profile": "Estudante avançado/residente que distingue hemodinâmica funcional de lesão/toxicidade.",
+        "language": "Português brasileiro."
+      },
+      "canonicalSelection": {
+        "qid": "0e1a838d",
+        "score": 20,
+        "reason": "Melhor canônica: a questão integra o padrão temporal com a direção da cadeia tubular/hemodinâmica. Os três distratores operam na mesma cadeia e representam inversões deNaCl/feedback/tônus/pressão, em vez de reclassificar o medicamento ou repetir uma exclusão dada no caso.",
+        "unused96CandidateScore": 18,
+        "why96Unused": "Caso já afasta hipovolemia, e opções incluem mecanismo de outra classe/toxicidade; não oferece discriminação superior àcanônica. A novidade doAFTER não é critério de seleção."
+      },
+      "gate": {
+        "verdict": "fundir",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derivation": "Fundir não é veredito de aprovação; fonte antiga não volta ao banco. A operação de aposentadoria é autorizada separadamente, e apenas a canônica após revisão ficaLIBERADA."
+      },
+      "operationalDisposition": "APROVADA_APOSENTADORIA_POR_FUSÃO",
+      "noHistoryOrFSRSTransfer": true,
+      "noCreditTransfer": true,
+      "doNotRewriteStoredAnswers": true,
+      "preserveOriginalPublishedRecord": true
+    },
+    {
+      "qid": "a5c73397",
+      "sourceQid": "a5c73397",
+      "destinationQid": "0e1a838d",
+      "sourcePublication": {
+        "commit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+        "release": "17.27",
+        "author": {
+          "t": "iSGLT2 — Efeito \"Dip\" Inicial da TFGe",
+          "qid": "a5c73397",
+          "q": "Após iniciar um inibidor de SGLT2 em paciente com DRC albuminúrica, observa-se queda discreta inicial da TFGe. Qual mecanismo explica melhor esse \"dip\" hemodinâmico esperado?",
+          "refs": [
+            "dapa",
+            "empa_kidney",
+            "credence",
+            "canvas_program",
+            "empa_reg_outcome",
+            "declare_timi58"
+          ],
+          "opts": [
+            "Aumento da entrega de sódio à mácula densa, reativando feedback túbulo-glomerular e reduzindo pressão intraglomerular",
+            "Necrose tubular direta por glicosúria, exigindo suspensão imediata em qualquer queda de TFGe",
+            "Hiperfiltração por vasodilatação aferente persistente, com aumento sustentado da pressão intraglomerular",
+            "Obstrução tubular por cristais de glicose, corrigida por aumento obrigatório da ingestão de sal"
+          ],
+          "ans": 0,
+          "exp": "O \"dip\" inicial da TFGe com inibidores de SGLT2 costuma ser hemodinâmico, não nefrotoxicidade tubular. Ao reduzir reabsorção proximal de sódio e glicose, a classe aumenta a entrega de sódio à mácula densa, reativa o feedback túbulo-glomerular e reduz a pressão intraglomerular, sobretudo por aumento do tônus aferente. Em paciente clinicamente estável, queda discreta e esperada não deve levar à suspensão automática; é preciso avaliar volemia, diuréticos, anti-inflamatórios e magnitude da queda. O benefício de longo prazo em DRC foi demonstrado em ensaios como CREDENCE, DAPA-CKD e EMPA-KIDNEY.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "authorRevision": "sha256:1b49243816a799eb384607286a491cf1b9b64bde4bdd7add7df16f5719c8b178",
+        "recordRevision": "sha256:a9a15b8faabab436fff76f2ba66e2abed2687831ef651a88ae0f1830ff5566e1",
+        "referenceRevisions": {
+          "dapa": "sha256:c3c5d8694734f2fd713362b7fabfedf1d9c954133e82bb62ed8e897080d0cd28",
+          "empa_kidney": "sha256:27a5d1947a22346a9482092638d9b7627f1847d0f3a0c035173a165248069d9d",
+          "credence": "sha256:2d454d2760954fb0a81603c5d2859b0becf144c4392969ce1d30907d787b8d52",
+          "canvas_program": "sha256:eb9939631f4c406e2579fdc30388b6bf1d19188f9681b51a3ac37b41bd47247f",
+          "empa_reg_outcome": "sha256:1c05af4a8022dbaa0d811ab1852a604df073764ed305768e698c882f6a13968a",
+          "declare_timi58": "sha256:62cd475a2d5ebdc80eb87c4003ab738673726e487a9a8bc7316aacc8248c1a06"
+        },
+        "references": {
+          "dapa": {
+            "label": "DAPA-CKD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+            "journal": "New England Journal of Medicine",
+            "ano": 2020,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
+            "icon": "💊",
+            "resumo": "ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+            "conclusao": "DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+            "curiosidade": "32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
+          },
+          "empa_kidney": {
+            "label": "Herrington WG et al. — EMPA-KIDNEY (NEJM 2023)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+            "journal": "N Engl J Med 2023;388(2):117-127",
+            "ano": 2023,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Empagliflozin ↓28% progressão renal ou morte CV em DRC ampla (TFG 20-45, com ou sem DM)",
+            "icon": "🔬",
+            "resumo": "ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
+            "conclusao": "EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
+            "curiosidade": "Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
+          },
+          "credence": {
+            "label": "CREDENCE Trial (Canagliflozina)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1811744",
+            "journal": "New England Journal of Medicine",
+            "ano": 2019,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "↓30% desfecho renal composto · 1º RCT de SGLT2i com desfecho renal primário em DRC diabética",
+            "icon": "💊",
+            "resumo": "ECR fase III (n=4.401), canagliflozina 100 mg/dia vs placebo em DM2 com DRC diabética (TFGe 30–90, UACR 300–5.000 mg/g) em uso de SRAA otimizado. Desfecho primário composto (DRCT, duplicação de creatinina, morte renal ou CV): HR 0,70, redução relativa de 30%. Primeiro RCT de iSGLT2 com desfecho renal como endpoint primário pré-especificado. Interrompido precocemente por eficácia.",
+            "conclusao": "CREDENCE foi o trial que abriu o campo da nefroproteção com iSGLT2 em DRC diabética — evidência que desencadeou os trials subsequentes (DAPA-CKD, EMPA-KIDNEY) em populações mais amplas.",
+            "curiosidade": "O CREDENCE foi interrompido com 2,62 anos de seguimento médio (de 5,5 planejados) após análise interina mostrar benefício inequívoco — o que elevou o nível de evidência e acelerou a incorporação nas diretrizes."
+          },
+          "canvas_program": {
+            "label": "Neal B et al. — CANVAS Program (NEJM 2017)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611925",
+            "journal": "N Engl J Med 2017;377(7):644-657",
+            "ano": 2017,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Canagliflozina ↓14% desfecho CV (MACE) e ↓40% desfecho renal composto em DM2 com alto risco",
+            "icon": "🔬",
+            "resumo": "Dois ensaios clínicos integrados de fase III (CANVAS e CANVAS-R, n = 10.142 pacientes com DM2 e alto risco cardiovascular, dos quais 9.600 tinham dados renais utilizáveis, com TFGe >30 mL/min/1,73m²). Avaliou a eficácia e segurança da canagliflozina (100 ou 300 mg/dia) versus placebo. Desfecho primário: composto cardiovascular de morte CV, IAM não fatal ou AVC não fatal. Desfecho renal composto: queda sustentada de 40% na TFGe, necessidade de TRS ou morte renal. Resultados: A canagliflozina reduziu o risco do desfecho CV em 14% (HR 0,86; IC 95% 0,75–0,97; P = 0,02). O desfecho renal composto também foi significativamente reduzido em 40% (HR 0,60; IC 95% 0,47–0,77; P < 0,001). Eventos de amputação de membros inferiores foram estatisticamente maiores com a canagliflozina (6,3 vs 3,4 por 1000 paciente-anos).",
+            "conclusao": "O CANVAS estabeleceu a canagliflozina como nefroprotetora e cardioprotetora em diabéticos com alto risco cardiovascular, com um sinal de alerta para risco de amputação no Reino.",
+            "curiosidade": "O sinal de amputação do CANVAS foi atribuído a possível depleção de volume mais acentuada com a dose de 300 mg usada no programa — o CREDENCE usou 100 mg. Essa diferença de dose pode explicar parte da discordância entre os trials da mesma molécula."
+          },
+          "empa_reg_outcome": {
+            "label": "Zinman B et al. — EMPA-REG OUTCOME (NEJM 2015)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1504720",
+            "journal": "N Engl J Med 2015;373(22):2117-2128",
+            "ano": 2015,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Empagliflozin ↓38% morte CV e ↓35% hospitalização por IC em DM2 alto risco CV — primeiro SGLT2i com benefício CV",
+            "icon": "🔬",
+            "resumo": "ECR fase III (n=7.020), empagliflozina 10 mg ou 25 mg vs placebo em DM2 com alto risco cardiovascular estabelecido. Desfecho primário (MACE): HR 0,86, IC 95% 0,74–0,99, principalmente pela redução de morte CV (HR 0,62). Hospitalização por IC: HR 0,65. Também reduziu incidência ou piora de nefropatia: HR 0,61. Primeiro trial de iSGLT2 a demonstrar benefício CV — marcou a transição da classe de hipoglicemiante para cardiorrenal.",
+            "conclusao": "EMPA-REG OUTCOME foi o trial que iniciou a revolução cardiorrenal dos iSGLT2, demonstrando benefício CV e renal além do controle glicêmico em DM2 de alto risco.",
+            "curiosidade": "A redução de morte CV e hospitalização por IC foi mais rápida do que seria esperado por efeito aterosclerótico — sugerindo mecanismo hemodinâmico direto (natriurese, redução de pré e pós-carga) independente do controle glicêmico."
+          },
+          "declare_timi58": {
+            "label": "Wiviott SD et al. — DECLARE-TIMI 58 (NEJM 2019)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1812389",
+            "journal": "N Engl J Med 2019;380(4):347-357",
+            "ano": 2019,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Dapagliflozin ↓17% hospitalização por IC e ↓47% progressão renal em DM2 com múltiplos perfis de risco CV",
+            "icon": "🔬",
+            "resumo": "ECR (n=17.160), dapagliflozina 10 mg vs placebo em DM2 — maior coorte de iSGLT2, incluindo pacientes com ASCVD estabelecida e com múltiplos fatores de risco (prevenção primária). MACE: HR 0,93 (não inferior, não superior). Desfecho cardíaco composto (hospitalização por IC + morte CV): HR 0,83, P=0,005. Progressão renal (queda ≥40% TFGe ou DRCT): HR 0,53.",
+            "conclusao": "DECLARE-TIMI 58 expandiu a indicação dos iSGLT2 ao incluir pacientes sem ASCVD estabelecida, demonstrando benefício cardíaco e renal em perfis de risco menos extremos.",
+            "curiosidade": "O DECLARE incluiu ~59% de pacientes sem ASCVD estabelecida — diferença fundamental em relação ao EMPA-REG e CANVAS, restritos a alto risco CV, tornando-o o trial mais representativo da população real de DM2 e o que mais informou a expansão das indicações nas diretrizes."
+          }
+        },
+        "sourceRevisions": {
+          "main": "sha256:14e160a18c7c4c757a06ac303235130c5432fb3693cd3dfab1a646b7c0fc4eae",
+          "exam": "sha256:14e160a18c7c4c757a06ac303235130c5432fb3693cd3dfab1a646b7c0fc4eae",
+          "study": "sha256:31d3748e8df2ffa64987850aea51c165f98f6d1d65843794ddd3c5bfe179c498",
+          "offline": "sha256:776117d4d5fee608330f6c7aded67bbf42f311026ad75385015f53d8fdc41181"
+        }
+      },
+      "draft1728": {
+        "authorRevision": "sha256:1b49243816a799eb384607286a491cf1b9b64bde4bdd7add7df16f5719c8b178",
+        "notPublishedSource": true
+      },
+      "destinationAfter": {
+        "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+        "qid": "0e1a838d",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022"
+        ],
+        "opts": [
+          "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+          "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+          "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+          "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "destinationAfterAuthorRevision": "sha256:d534d9b7e929b364d788dd8fd53cc3472dcfd2322726d64df68184c8bc1ec71e",
+      "fourDimensions": {
+        "sameDecision": true,
+        "sameCaseDataStructure": true,
+        "sameTargetLearnerProfile": true,
+        "sameLanguage": true,
+        "decision": "Explicar a queda inicial funcional apósSGLT2 pela cadeia proximal→NaCl na mácula densa→menorpressão intraglomerular.",
+        "caseDataStructure": "Doença renal/proteinúria, início deSGLT2 e queda discreta inicial da filtração. IgA, nome dapagliflozina e albuminúria acrescentam contexto, sem mudar a inferência pedida; reversibilidade/estabilidade explicitam o padrão já chamado de esperado/hemodinâmico.",
+        "profile": "Estudante avançado/residente que distingue hemodinâmica funcional de lesão/toxicidade.",
+        "language": "Português brasileiro."
+      },
+      "canonicalSelection": {
+        "qid": "0e1a838d",
+        "score": 20,
+        "reason": "Melhor canônica: a questão integra o padrão temporal com a direção da cadeia tubular/hemodinâmica. Os três distratores operam na mesma cadeia e representam inversões deNaCl/feedback/tônus/pressão, em vez de reclassificar o medicamento ou repetir uma exclusão dada no caso.",
+        "unused96CandidateScore": 18,
+        "why96Unused": "Caso já afasta hipovolemia, e opções incluem mecanismo de outra classe/toxicidade; não oferece discriminação superior àcanônica. A novidade doAFTER não é critério de seleção."
+      },
+      "gate": {
+        "verdict": "fundir",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derivation": "Fundir não é veredito de aprovação; fonte antiga não volta ao banco. A operação de aposentadoria é autorizada separadamente, e apenas a canônica após revisão ficaLIBERADA."
+      },
+      "operationalDisposition": "APROVADA_APOSENTADORIA_POR_FUSÃO",
+      "noHistoryOrFSRSTransfer": true,
+      "noCreditTransfer": true,
+      "doNotRewriteStoredAnswers": true,
+      "preserveOriginalPublishedRecord": true
+    }
+  ],
+  "unusedCandidate96": {
+    "file": "author-sglt2-biopsy-A11.json",
+    "afterAuthorRevision": "sha256:5c5fef31fceccb51b54df3419861b865ef11eab90868c5884b1547f1a57142f2",
+    "reason": "Não aplicado; duplicidade e menor discriminação relativa àcanônica preservada, sem erro clínico decisivo restante na proposta."
+  },
+  "neighborAdjudication": [
+    {
+      "pair": [
+        "0e1a838d",
+        "96c0c85d"
+      ],
+      "fourDimensionsSame": true,
+      "decision": "Fundir96→0e1 pelo melhor conjunto de alternativas/explicação, não por novidade."
+    },
+    {
+      "pair": [
+        "0e1a838d",
+        "a5c73397"
+      ],
+      "fourDimensionsSame": true,
+      "decision": "Fundira5→0e1, sem perderOP útil."
+    },
+    {
+      "pair": [
+        "0e1a838d",
+        "dfcc2096"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetLearnerProfile": true,
+      "sameLanguage": true,
+      "decision": "Manter após reparo focal: interpretar mudanças observadas apósfármaco versus nomear uma via hemodinâmica de benefício a partir do cenário basal. A última pergunta deixa claro que não é mecanismo único. Compartilharbiologia não basta para fusão."
+    },
+    {
+      "pair": [
+        "121adcc7",
+        "efcbb8d4"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetLearnerProfile": true,
+      "sameLanguage": true,
+      "decision": "Evento tubular que inicia a cadeia versus padrão hemodinâmicoaferente/intraglomerular já perguntado; variação útil. Nenhum gate do vizinho."
+    },
+    {
+      "pair": [
+        "113bb49e",
+        "0e1a838d"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetLearnerProfile": true,
+      "sameLanguage": true,
+      "decision": "Alvo/local direto da glicosúria versus padrão glomerularpósinício. Nenhum segundoOPinventado."
+    },
+    {
+      "pair": [
+        "0e1a838d",
+        "a843e7d0"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetLearnerProfile": true,
+      "sameLanguage": true,
+      "decision": "Mecanismo da cadeia versus reconhecer curso bifásicoagudo/crônico; não inferir duplicata por conterdip."
+    },
+    {
+      "pair": [
+        "0e1a838d",
+        "ca8066c6"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetLearnerProfile": true,
+      "sameLanguage": true,
+      "decision": "Explicação fisiológica versus decisão clínica de manter/monitorar queda quantificada com causas concorrentes excluídas."
+    },
+    {
+      "pair": [
+        "0e1a838d",
+        "da24855e"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetLearnerProfile": true,
+      "sameLanguage": true,
+      "decision": "Cadeia mecanística versus benefício clínico e elegibilidade em população; nenhum gate do vizinho."
+    }
+  ],
+  "scopeLimits": [
+    "CincoAFTERs ativos aprovados; duas aposentadorias formalizadas; nenhumreset/crédito/FSRS transportado.",
+    "O cardIgA URL-only tem12campos rechecados, mas seus demais consumidores não recebem aprovação clínica por herança.",
+    "Não se aprovam integralmente vizinhos apenas confrontados nas quatrodimensões.",
+    "Nenhuma saída clínica é aprovada por métrica de comprimento ou por necessidade de conservar tamanho do banco.",
+    "Sem ediçãoROOT/ledger e sem novaquestão ou novaidentidade."
+  ]
+}

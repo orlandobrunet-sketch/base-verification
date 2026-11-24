@@ -1,0 +1,799 @@
+{
+  "schema": "NQ_1728_AUTHOR_ACIDBASE_A1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "author": "/root",
+  "date": "2026-11-15",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "skill": "revisar-nefroquest, fonte eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+  "norms": [
+    "NQ_KNOWLEDGE_MODEL_v1",
+    "NQ_EDITORIAL_HANDBOOK_v1§18.4/§19",
+    "annex-c-nefrologia"
+  ],
+  "readyForImplementation": false,
+  "items": [
+    {
+      "qid": "85e1d082",
+      "original": {
+        "qid": "85e1d082",
+        "q": "Ao avaliar o pH urinário para diferenciar a ATR tipo 1 (distal) da ATR tipo 2 (proximal), qual é o achado clássico?",
+        "opts": [
+          "Na ATR tipo 1, o pH urinário permanece inapropriadamente > 5,5 durante acidose sistêmica, enquanto na tipo 2 pode cair < 5,5 após queda do bicarbonato sérico.",
+          "Ambas são incapazes de baixar o pH urinário abaixo de 6,5.",
+          "Na ATR tipo 1, o pH urinário cai para menos de 4,0 devido à hiperamonemia.",
+          "Na ATR tipo 2, o pH urinário é obrigatoriamente alcalino o tempo todo, mesmo com acidose grave."
+        ],
+        "ans": 0,
+        "exp": "Na Acidose Tubular Renal (ATR) tipo 1 (distal), há defeito de secreção distal de íons hidrogênio, de modo que o pH urinário fica inapropriadamente alto, tipicamente >5,5, apesar de acidose metabólica sistêmica. Na ATR tipo 2 (proximal), o defeito primário é a reabsorção reduzida de bicarbonato filtrado; porém, o néfron distal está funcional e, depois que o bicarbonato sérico cai abaixo do limiar de reabsorção, a urina pode voltar a ser acidificada para pH <5,5.",
+        "refs": [
+          "atr_rodriguez_soriano",
+          "brenner_rector"
+        ],
+        "cat": "acido_base",
+        "diff": "hard",
+        "t": "ATR Tipo 1 vs Tipo 2 — pH Urinário"
+      },
+      "originalAuthorRevision": "sha256:57a6d6b99650be3f10bf42c28ffeabfee03161684314964f8311d58ddbd80634",
+      "after": {
+        "qid": "85e1d082",
+        "q": "Durante acidose metabólica sistêmica, qual comparação do pH urinário é compatível com as formas clássicas de acidose tubular renal (ATR) distal e proximal?",
+        "opts": [
+          "Na distal, tende a permanecer acima de 5,5; na proximal, pode cair abaixo de 5,5 após queda do bicarbonato.",
+          "Na distal, cai abaixo de 5,5; na proximal, permanece acima de 5,5 mesmo após queda do bicarbonato.",
+          "Em ambas, permanece acima de 5,5, pois os dois defeitos impedem a secreção distal de ácido.",
+          "Em ambas, cai abaixo de 5,5 assim que surge acidemia, independentemente do bicarbonato plasmático."
+        ],
+        "ans": 0,
+        "exp": "A forma distal clássica não acidifica adequadamente a urina durante acidose sistêmica. Na proximal, a reabsorção de bicarbonato é reduzida, mas a acidificação distal pode permanecer funcional: quando o bicarbonato plasmático cai abaixo do limiar de reabsorção, o pH urinário pode ficar abaixo de 5,5. O pH depende do contexto e não define sozinho o tipo de ATR; função renal, potássio e outras causas devem ser avaliados. Inverter os padrões ou presumir falha distal em toda ATR proximal é incorreto.",
+        "refs": [
+          "palmer_rta_review_2021"
+        ],
+        "cat": "acido_base",
+        "diff": "medium",
+        "t": "ATR Tipo 1 vs Tipo 2 — pH Urinário"
+      },
+      "afterAuthorRevision": "sha256:0c5e7f1433794138bea6ef0ed7192055404ab49c926fdcb464291fffad2a4af4",
+      "referenceCards": {
+        "palmer_rta_review_2021": {
+          "label": "Palmer, Kelepouris & Clegg — Acidose tubular renal (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "journal": "Advances in Therapy 2021;38(2):949–968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "icon": "🔬",
+          "impacto": "Distinguir defeitos distais, proximais e relacionados à aldosterona na acidose tubular renal",
+          "resumo": "Revisão narrativa com casos clínicos. A acidose tubular renal distal envolve dificuldade de excretar ácido; a proximal decorre de menor reabsorção de bicarbonato. Na forma proximal, a urina pode ficar ácida quando o bicarbonato plasmático cai abaixo do limiar de reabsorção. A forma tipo 4 associa hipercalemia e acidose, por deficiência ou resistência à aldosterona; diabetes e doença renal crônica são contextos importantes.",
+          "conclusao": "Interpretar pH urinário, bicarbonato, potássio e contexto em conjunto. Um marcador isolado não define toda a síndrome nem substitui a avaliação de outras causas.",
+          "curiosidade": ""
+        }
+      },
+      "referenceRevisions": {
+        "palmer_rta_review_2021": "sha256:54936c4ceceb0cf4e932000108e3fe00f1870ac761d9d3671c22f7173827b327"
+      },
+      "classification": {
+        "op": "Distinguir a acidificação urinária distal e proximal após queda do bicarbonato.",
+        "competence": "Interpretação ácido-base e decisão clínica segura",
+        "bloom": "Compreender/Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OP primário e conceito central; correções de segurança/qualificadores não criam nova tarefa. Preservar qid/FSRS."
+      },
+      "authorFindings": "Retira a miniaula da alternativa correta sem perder o qualificador de bicarbonato; os quatro padrões são comparáveis.",
+      "appeal": {
+        "question": "Há segunda resposta defensável ou dado ausente?",
+        "response": "Retira a miniaula da alternativa correta sem perder o qualificador de bicarbonato; os quatro padrões são comparáveis. Todas as alternativas foram relidas como diagnósticos/padrões ou condutas concorrentes, não apenas como comprimento."
+      },
+      "candidateStatus": "AUTHOR_ONLY_REQUIRES_INDEPENDENT_FORMAL_REVIEW",
+      "implementationAuthorization": "BLOQUEADA até revisão independente exata; este pacote não é uma liberação editorial.",
+      "sources": {
+        "rta": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "access": "Texto integral PMC e XML NLM, corpo disponível; pHtipos1/2,hipoaldosteronismoe acidoseDRC.",
+          "artifact": "primary-corpus.xml"
+        },
+        "uag": {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "access": "Resumo primário completo NLM; corpo não disponível. Não alegar leitura integral. Todas as afirmações do novo card são explícitas no resumo.",
+          "artifact": "uag-controversy.xml"
+        },
+        "methanol": {
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "access": "Recomendações oficiais integrais EXTRIP abertas."
+        },
+        "ethyleneGlycol": {
+          "url": "https://www.extrip-workgroup.org/ethylene-glycol",
+          "access": "Recomendações oficiais integrais e artigo primário2023 via XML, corpo disponível."
+        },
+        "CKD": {
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDFoficial,PP3.11.1.1–.2 e5.4.1–.3; cardglobalbyte-exato jáconferido neste lote.",
+          "originalCardRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "achanti": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "access": "Texto integral PMC aberto, passos4–5/tabela1 e cetoacidose."
+        }
+      },
+      "pending": [
+        "Revisão independente do literal, unicidade, grau de inferência em2a3a6f56 e classificação da dificuldade."
+      ]
+    },
+    {
+      "qid": "0334d0d1",
+      "original": {
+        "t": "DRC, IECA e Hipercalemia — ATR Tipo 4",
+        "qid": "0334d0d1",
+        "q": "Paciente com DRC, diabetes, hipercalemia recorrente e acidose metabólica leve de ânion gap normal apresenta renina e aldosterona baixas. Qual síndrome explica melhor o quadro?",
+        "refs": [
+          "atr_rodriguez_soriano",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico",
+          "Acidose tubular renal proximal tipo 2",
+          "Acidose tubular renal distal tipo 1 clássica",
+          "Alcalose metabólica por diurético"
+        ],
+        "ans": 0,
+        "exp": "Hipercalemia associada a acidose metabólica leve de ânion gap normal e renina/aldosterona baixas aponta para acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico, comum em nefropatia diabética e agravável por bloqueio do SRAA. ATR tipo 1 e tipo 2 clássicas tendem a cursar com hipocalemia; diurético de alça/tiazídico costuma causar alcalose metabólica. A referência específica de ATR foi adicionada ao item.",
+        "diff": "hard",
+        "cat": "eletrólitos"
+      },
+      "originalAuthorRevision": "sha256:5c56e9bc2e6cb690af92e37c49517ca29a9506e6d50cd64f2a536733f330d3dd",
+      "after": {
+        "t": "DRC, IECA e Hipercalemia — ATR Tipo 4",
+        "qid": "0334d0d1",
+        "q": "Paciente com DRC, diabetes, hipercalemia recorrente e acidose metabólica leve de ânion gap normal apresenta renina e aldosterona baixas. Qual síndrome explica melhor o quadro?",
+        "refs": [
+          "palmer_rta_review_2021"
+        ],
+        "opts": [
+          "ATR tipo 4 por hipoaldosteronismo hiporreninêmico.",
+          "ATR tipo 4 por resistência com elevação compensatória de aldosterona.",
+          "ATR tipo 2 por menor reabsorção proximal de bicarbonato.",
+          "ATR tipo 1 por defeito de secreção distal de hidrogênio."
+        ],
+        "ans": 0,
+        "exp": "Hipercalemia, acidose metabólica leve com hiato aniônico normal e renina/aldosterona baixas favorecem ATR tipo 4 por hipoaldosteronismo hiporreninêmico, frequente no contexto de diabetes. A resistência à aldosterona é outro mecanismo de ATR tipo 4, mas a opção com elevação compensatória não corresponde aos valores do caso. As formas clássicas distal e proximal costumam cursar com potássio baixo. O diagnóstico deve integrar outras causas de hipercalemia e a função renal; não é uma indicação automática de mineralocorticoide.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "afterAuthorRevision": "sha256:68e3a6aa156dc7ff2af49f736bdff94a8e0448020848aacc166a502021c51f6b",
+      "referenceCards": {
+        "palmer_rta_review_2021": {
+          "label": "Palmer, Kelepouris & Clegg — Acidose tubular renal (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "journal": "Advances in Therapy 2021;38(2):949–968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "icon": "🔬",
+          "impacto": "Distinguir defeitos distais, proximais e relacionados à aldosterona na acidose tubular renal",
+          "resumo": "Revisão narrativa com casos clínicos. A acidose tubular renal distal envolve dificuldade de excretar ácido; a proximal decorre de menor reabsorção de bicarbonato. Na forma proximal, a urina pode ficar ácida quando o bicarbonato plasmático cai abaixo do limiar de reabsorção. A forma tipo 4 associa hipercalemia e acidose, por deficiência ou resistência à aldosterona; diabetes e doença renal crônica são contextos importantes.",
+          "conclusao": "Interpretar pH urinário, bicarbonato, potássio e contexto em conjunto. Um marcador isolado não define toda a síndrome nem substitui a avaliação de outras causas.",
+          "curiosidade": ""
+        }
+      },
+      "referenceRevisions": {
+        "palmer_rta_review_2021": "sha256:54936c4ceceb0cf4e932000108e3fe00f1870ac761d9d3671c22f7173827b327"
+      },
+      "classification": {
+        "op": "Reconhecer ATR tipo4 por hipoaldosteronismo hiporreninêmico no fenótipo diabético.",
+        "competence": "Interpretação ácido-base e decisão clínica segura",
+        "bloom": "Compreender/Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OP primário e conceito central; correções de segurança/qualificadores não criam nova tarefa. Preservar qid/FSRS."
+      },
+      "authorFindings": "Mantém o diagnóstico e mecanismo do original; torna todos os distratores síndromes/mecanismos próximos.",
+      "appeal": {
+        "question": "Há segunda resposta defensável ou dado ausente?",
+        "response": "Mantém o diagnóstico e mecanismo do original; torna todos os distratores síndromes/mecanismos próximos. Todas as alternativas foram relidas como diagnósticos/padrões ou condutas concorrentes, não apenas como comprimento."
+      },
+      "candidateStatus": "AUTHOR_ONLY_REQUIRES_INDEPENDENT_FORMAL_REVIEW",
+      "implementationAuthorization": "BLOQUEADA até revisão independente exata; este pacote não é uma liberação editorial.",
+      "sources": {
+        "rta": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "access": "Texto integral PMC e XML NLM, corpo disponível; pHtipos1/2,hipoaldosteronismoe acidoseDRC.",
+          "artifact": "primary-corpus.xml"
+        },
+        "uag": {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "access": "Resumo primário completo NLM; corpo não disponível. Não alegar leitura integral. Todas as afirmações do novo card são explícitas no resumo.",
+          "artifact": "uag-controversy.xml"
+        },
+        "methanol": {
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "access": "Recomendações oficiais integrais EXTRIP abertas."
+        },
+        "ethyleneGlycol": {
+          "url": "https://www.extrip-workgroup.org/ethylene-glycol",
+          "access": "Recomendações oficiais integrais e artigo primário2023 via XML, corpo disponível."
+        },
+        "CKD": {
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDFoficial,PP3.11.1.1–.2 e5.4.1–.3; cardglobalbyte-exato jáconferido neste lote.",
+          "originalCardRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "achanti": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "access": "Texto integral PMC aberto, passos4–5/tabela1 e cetoacidose."
+        }
+      },
+      "pending": [
+        "Revisão independente do literal, unicidade, grau de inferência em2a3a6f56 e classificação da dificuldade."
+      ]
+    },
+    {
+      "qid": "387cdad2",
+      "original": {
+        "t": "Acidose Metabólica com AG Aumentado",
+        "qid": "387cdad2",
+        "q": "Paciente de 35 anos encontrado inconsciente em casa. Familiares relatam que ele estava 'bebendo' uma substância de limpeza. Gasometria: pH 7,10, HCO3 8 mEq/L, pCO2 20 mmHg. Na 140, Cl 100, K 4,2. Osmolalidade medida: 340 mOsm/kg; osmolalidade calculada: 298 mOsm/kg. Qual é a hipótese diagnóstica e o tratamento?",
+        "opts": [
+          "Intoxicação por ácido salicílico — bicarbonato IV e diurese alcalina",
+          "Cetoacidose alcoólica — glicose IV e tiamina",
+          "Intoxicação por metanol ou etilenoglicol — AG 32 mEq/L, gap osmolar 42 mOsm/kg — fomepizol IV e hemodiálise urgente",
+          "Acidose urêmica por LRA aguda — diálise urgente sem antídoto específico"
+        ],
+        "ans": 2,
+        "exp": "A resposta correta é intoxicação por álcool tóxico, como metanol ou etilenoglicol, com indicação de fomepizol e hemodiálise urgente. O ânion gap é 140 − (100 + 8) = 32 mEq/L, e o gap osmolar informado é 340 − 298 = 42 mOsm/kg. A combinação de acidose metabólica grave com AG elevado e gap osmolar aumentado sugere álcool tóxico. O pH 7,10 e o AG >24 configuram gravidade suficiente para tratamento extracorpóreo segundo recomendações EXTRIP para metanol e são também compatíveis com indicação de hemodiálise em intoxicação grave por etilenoglicol. Salicilato pode causar distúrbio misto, mas não explica tão bem o gap osmolar elevado; cetoacidose alcoólica não costuma exigir hemodiálise como medida central; acidose urêmica não justifica fomepizol nem gap osmolar aumentado.",
+        "diff": "hard",
+        "cat": "acido_base",
+        "refs": [
+          "extrip_methanol",
+          "extrip_ethylene_glycol",
+          "brenner_rector"
+        ]
+      },
+      "originalAuthorRevision": "sha256:b39e6fc4eb5db7fc4f6fa4599deead82db59b5246b0254caa9227c8ecac5c8db",
+      "after": {
+        "t": "Acidose Metabólica com AG Aumentado",
+        "qid": "387cdad2",
+        "q": "Paciente de 35 anos é encontrado inconsciente após provável ingestão de produto de limpeza. Gasometria: pH 7,22, bicarbonato 8 mEq/L e pCO₂ 20 mmHg. Sódio 140, cloro 100 e potássio 4,2 mEq/L. Osmolalidade medida 340 e calculada 298 mOsm/kg. Qual hipótese e conduta imediata são mais adequadas?",
+        "opts": [
+          "Intoxicação por salicilato; alcalinização e observação, sem avaliar álcool tóxico.",
+          "Cetoacidose alcoólica; glicose e tiamina como tratamento suficiente para o coma.",
+          "Intoxicação por álcool tóxico; fomepizol e hemodiálise urgente, com suporte clínico.",
+          "Acidose urêmica; hemodiálise sem avaliar necessidade de antídoto específico."
+        ],
+        "ans": 2,
+        "exp": "A suspeita é intoxicação por álcool tóxico, como metanol ou etilenoglicol. O hiato aniônico sem potássio é 140 − (100 + 8) = 32 mEq/L, e o hiato osmolar informado é 42 mOsm/kg. O coma e os hiatos elevados justificam avaliação e tratamento urgentes com antídoto e hemodiálise, sem esperar identificação definitiva. Para metanol, o EXTRIP considera coma ou hiato sem potássio acima de 24 critérios; para etilenoglicol, coma também é critério, e seu limiar de hiato inclui potássio, resultando em 36,2 neste caso. Não se deve decidir só pela substância relatada ou pelo hiato osmolar isolado. As alternativas rivais deixam de cobrir a intoxicação mais provável e sua gravidade.",
+        "diff": "medium",
+        "cat": "acido_base",
+        "refs": [
+          "extrip_methanol",
+          "extrip_ethylene_glycol"
+        ]
+      },
+      "afterAuthorRevision": "sha256:c01239cb398688d551c85780d7368d5a454de07792f7d8aa76e0b975988cb660",
+      "referenceCards": {
+        "extrip_methanol": {
+          "label": "EXTRIP — Methanol Poisoning Recommendations",
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "journal": "EXTRIP Workgroup / Crit Care Med 2015",
+          "ano": 2015,
+          "tipo": "Revisão sistemática e consenso",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Indicações de hemodiálise na intoxicação grave por metanol",
+          "icon": "📋",
+          "resumo": "Recomendação do EXTRIP Workgroup baseada em revisão sistemática e consenso para tratamento extracorpóreo na intoxicação por metanol. Recomenda tratamento extracorpóreo em casos graves, incluindo coma, convulsões, déficit visual novo, pH ≤7,15, acidose metabólica persistente apesar de suporte/antídoto, ânion gap >24 mmol/L, concentrações séricas elevadas de metanol conforme uso de fomepizol/etanol ou ausência de bloqueador da álcool desidrogenase, ou função renal comprometida.",
+          "conclusao": "Em intoxicação suspeita por metanol com acidose grave ou AG >24, fomepizol/etanol não substitui a hemodiálise: o tratamento extracorpóreo é recomendado para remover metanol/metabólitos e corrigir acidemia.",
+          "curiosidade": "O EXTRIP padroniza recomendações de terapia extracorpórea em intoxicações; para metanol, a hemodiálise intermitente é a modalidade de escolha quando disponível."
+        },
+        "extrip_ethylene_glycol": {
+          "label": "EXTRIP — Ethylene Glycol Poisoning Recommendations",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9921105/",
+          "journal": "Crit Care 2023;27:56",
+          "ano": 2023,
+          "tipo": "Revisão sistemática e consenso",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Define quando usar hemodiálise na intoxicação por etilenoglicol",
+          "icon": "📋",
+          "resumo": "Revisão sistemática e recomendações EXTRIP de 2023, com baixa certeza da evidência. Na exposição a etilenoglicol, critérios incluem coma, convulsões, lesão renal aguda KDIGO 2–3 e concentrações de etilenoglicol ou glicolato, conforme o contexto do antídoto. Para o hiato aniônico, usa a fórmula que inclui potássio: Na + K − Cl − bicarbonato; recomenda tratamento extracorpóreo se for maior que 27 mmol/L. Hemodiálise intermitente é preferida quando disponível.",
+          "conclusao": "Na suspeita grave, suporte e bloqueio da álcool desidrogenase não substituem tratamento extracorpóreo quando os critérios são atendidos. Não indicar diálise apenas pela dose ingerida relatada.",
+          "curiosidade": "O limiar de hiato aniônico do EXTRIP para etilenoglicol inclui potássio. A recomendação para metanol usa a fórmula sem potássio; os limiares não são intercambiáveis."
+        }
+      },
+      "referenceRevisions": {
+        "extrip_methanol": "sha256:6cce072463d262018987f4bda71214716ac7ad0d79af4d62bc478f0ba3dea1bd",
+        "extrip_ethylene_glycol": "sha256:48a39860476de2cd14b8149c299b130e9415860cab58b7414d7618cb8b2c01d5"
+      },
+      "classification": {
+        "op": "Reconhecer intoxicação grave por álcool tóxico a partir de contexto, coma e hiatos, iniciando antídoto e diálise.",
+        "competence": "Interpretação ácido-base e decisão clínica segura",
+        "bloom": "Compreender/Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OP primário e conceito central; correções de segurança/qualificadores não criam nova tarefa. Preservar qid/FSRS."
+      },
+      "authorFindings": "Retira os cálculos da correta. Corrige a incompatibilidade gasométrica original: bicarbonato8/PaCO₂20 corresponde a pH≈7,22, não7,10. A indicação persiste pelo coma eAG, sem inventar critério de pH.",
+      "appeal": {
+        "question": "Há segunda resposta defensável ou dado ausente?",
+        "response": "Retira os cálculos da correta. Corrige a incompatibilidade gasométrica original: bicarbonato8/PaCO₂20 corresponde a pH≈7,22, não7,10. A indicação persiste pelo coma eAG, sem inventar critério de pH. Todas as alternativas foram relidas como diagnósticos/padrões ou condutas concorrentes, não apenas como comprimento."
+      },
+      "candidateStatus": "AUTHOR_ONLY_REQUIRES_INDEPENDENT_FORMAL_REVIEW",
+      "implementationAuthorization": "BLOQUEADA até revisão independente exata; este pacote não é uma liberação editorial.",
+      "sources": {
+        "rta": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "access": "Texto integral PMC e XML NLM, corpo disponível; pHtipos1/2,hipoaldosteronismoe acidoseDRC.",
+          "artifact": "primary-corpus.xml"
+        },
+        "uag": {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "access": "Resumo primário completo NLM; corpo não disponível. Não alegar leitura integral. Todas as afirmações do novo card são explícitas no resumo.",
+          "artifact": "uag-controversy.xml"
+        },
+        "methanol": {
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "access": "Recomendações oficiais integrais EXTRIP abertas."
+        },
+        "ethyleneGlycol": {
+          "url": "https://www.extrip-workgroup.org/ethylene-glycol",
+          "access": "Recomendações oficiais integrais e artigo primário2023 via XML, corpo disponível."
+        },
+        "CKD": {
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDFoficial,PP3.11.1.1–.2 e5.4.1–.3; cardglobalbyte-exato jáconferido neste lote.",
+          "originalCardRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "achanti": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "access": "Texto integral PMC aberto, passos4–5/tabela1 e cetoacidose."
+        }
+      },
+      "pending": [
+        "Revisão independente do literal, unicidade, grau de inferência em2a3a6f56 e classificação da dificuldade."
+      ]
+    },
+    {
+      "qid": "8c9be3b6",
+      "original": {
+        "t": "Acidose Metabólica com AG Aumentado na DRC Avançada",
+        "qid": "8c9be3b6",
+        "q": "Paciente com DRC estágio 5 não dialítico (TFGe 8 mL/min) apresenta: pH 7,28, HCO3 14 mEq/L, pCO2 30 mmHg, AG 24 mEq/L. Ureia 180 mg/dL, creatinina 8,4 mg/dL. Qual é o principal mecanismo da acidose urêmica e a meta de tratamento?",
+        "opts": [
+          "Acidose de AG normal por perda tubular de bicarbonato — meta de HCO3 > 22 mEq/L com bicarbonato oral",
+          "Acidose de AG normal por hiperaldosteronismo hiporreninêmico — fludrocortisona e restrição de potássio",
+          "Acidose respiratória crônica por depressão do centro respiratório pela uremia — suporte ventilatório",
+          "Acidose de AG aumentado por retenção de ânions orgânicos (sulfato, fosfato, urato) não excretados — meta de HCO3 > 22 mEq/L com bicarbonato de sódio oral e considerar início de diálise"
+        ],
+        "ans": 3,
+        "exp": "Na DRC avançada, a acidose metabólica resulta da redução global da excreção renal de ácido: menor amoniogênese/excreção de NH4+ e, quando a função renal está muito reduzida, retenção de ânions não mensurados como sulfato, fosfato e outros ânions orgânicos. Por isso o caso, com AG 24 mEq/L, é melhor interpretado como acidose urêmica com ânion gap aumentado. A meta terapêutica usual é manter bicarbonato sérico acima de 22 mEq/L com bicarbonato oral quando apropriado, monitorando sódio/volume; em TFGe muito baixa e azotemia importante, deve-se também avaliar indicação clínica de início de diálise, não apenas o número isolado.",
+        "diff": "medium",
+        "cat": "acido_base",
+        "refs": [
+          "kdigo_ckd",
+          "brenner_rector",
+          "guyton_and_hall_physiology"
+        ]
+      },
+      "originalAuthorRevision": "sha256:bf665cb1138ec9f489c233e43e2541f1767cfaa6c0c346c3c049502151495e66",
+      "after": {
+        "t": "Acidose Metabólica com AG Aumentado na DRC Avançada",
+        "qid": "8c9be3b6",
+        "q": "Paciente com doença renal crônica G5 não dialítica, TFGe de 8 mL/min/1,73 m², tem pH 7,28, bicarbonato 14 mEq/L, pCO₂ 30 mmHg e hiato aniônico 24 mEq/L. A avaliação não identificou cetoacidose, acidose láctica ou exposição tóxica. Qual mecanismo e orientação de tratamento são mais adequados?",
+        "opts": [
+          "Perda tubular de bicarbonato como único mecanismo; corrigir sem avaliar a excreção renal de ácido.",
+          "Redução da excreção de ácido com retenção de ânions; tratar a acidose e avaliar indicação clínica de diálise.",
+          "Retenção primária de gás carbônico; oferecer suporte ventilatório como tratamento da acidose metabólica.",
+          "Excesso de aldosterona com retenção de ácido; iniciar fludrocortisona como medida principal."
+        ],
+        "ans": 1,
+        "exp": "A redução global da excreção renal de ácido, com menor excreção de amônio e retenção de ânions não mensurados, contribui para a acidose na doença renal avançada. Sulfato e fosfato não devem ser classificados como ânions orgânicos. A KDIGO 2024 orienta considerar tratamento para evitar acidose clinicamente relevante, citando bicarbonato abaixo de 18 mEq/L como exemplo em adultos, com monitorização de bicarbonato, pressão, potássio e volume. Não define um alvo universal obrigatório acima de 22 mEq/L com nefroproteção comprovada. Diálise depende do conjunto clínico, inclusive acidose resistente ao tratamento, e não apenas da TFGe. Outros mecanismos de acidose devem continuar sendo investigados quando o contexto mudar.",
+        "diff": "medium",
+        "cat": "acido_base",
+        "refs": [
+          "kdigo_ckd",
+          "palmer_rta_review_2021"
+        ]
+      },
+      "afterAuthorRevision": "sha256:5bfe39392793a476e4be2346c83de3a5fe139bb6df70659c01a7c4583a1e2b74",
+      "referenceCards": {
+        "kdigo_ckd": {
+          "label": "KDIGO CKD 2024",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "journal": "Kidney International",
+          "ano": 2024,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+          "icon": "📋",
+          "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+          "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+          "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+        },
+        "palmer_rta_review_2021": {
+          "label": "Palmer, Kelepouris & Clegg — Acidose tubular renal (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "journal": "Advances in Therapy 2021;38(2):949–968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "icon": "🔬",
+          "impacto": "Distinguir defeitos distais, proximais e relacionados à aldosterona na acidose tubular renal",
+          "resumo": "Revisão narrativa com casos clínicos. A acidose tubular renal distal envolve dificuldade de excretar ácido; a proximal decorre de menor reabsorção de bicarbonato. Na forma proximal, a urina pode ficar ácida quando o bicarbonato plasmático cai abaixo do limiar de reabsorção. A forma tipo 4 associa hipercalemia e acidose, por deficiência ou resistência à aldosterona; diabetes e doença renal crônica são contextos importantes.",
+          "conclusao": "Interpretar pH urinário, bicarbonato, potássio e contexto em conjunto. Um marcador isolado não define toda a síndrome nem substitui a avaliação de outras causas.",
+          "curiosidade": ""
+        }
+      },
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+        "palmer_rta_review_2021": "sha256:54936c4ceceb0cf4e932000108e3fe00f1870ac761d9d3671c22f7173827b327"
+      },
+      "classification": {
+        "op": "Relacionar acidose daDRCavançada à menor excreção deácido e escolher correção monitorada/avaliação clínica de diálise.",
+        "competence": "Interpretação ácido-base e decisão clínica segura",
+        "bloom": "Compreender/Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OP primário e conceito central; correções de segurança/qualificadores não criam nova tarefa. Preservar qid/FSRS."
+      },
+      "authorFindings": "Corrige chamar sulfato/fosfato de orgânicos e o alvo universal22; mantém mecanismo e decisão terapêutica, com dados de exclusão para não presumir uremia por qualquer hiato elevado.",
+      "appeal": {
+        "question": "Há segunda resposta defensável ou dado ausente?",
+        "response": "Corrige chamar sulfato/fosfato de orgânicos e o alvo universal22; mantém mecanismo e decisão terapêutica, com dados de exclusão para não presumir uremia por qualquer hiato elevado. Todas as alternativas foram relidas como diagnósticos/padrões ou condutas concorrentes, não apenas como comprimento."
+      },
+      "candidateStatus": "AUTHOR_ONLY_REQUIRES_INDEPENDENT_FORMAL_REVIEW",
+      "implementationAuthorization": "BLOQUEADA até revisão independente exata; este pacote não é uma liberação editorial.",
+      "sources": {
+        "rta": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "access": "Texto integral PMC e XML NLM, corpo disponível; pHtipos1/2,hipoaldosteronismoe acidoseDRC.",
+          "artifact": "primary-corpus.xml"
+        },
+        "uag": {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "access": "Resumo primário completo NLM; corpo não disponível. Não alegar leitura integral. Todas as afirmações do novo card são explícitas no resumo.",
+          "artifact": "uag-controversy.xml"
+        },
+        "methanol": {
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "access": "Recomendações oficiais integrais EXTRIP abertas."
+        },
+        "ethyleneGlycol": {
+          "url": "https://www.extrip-workgroup.org/ethylene-glycol",
+          "access": "Recomendações oficiais integrais e artigo primário2023 via XML, corpo disponível."
+        },
+        "CKD": {
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDFoficial,PP3.11.1.1–.2 e5.4.1–.3; cardglobalbyte-exato jáconferido neste lote.",
+          "originalCardRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "achanti": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "access": "Texto integral PMC aberto, passos4–5/tabela1 e cetoacidose."
+        }
+      },
+      "pending": [
+        "Revisão independente do literal, unicidade, grau de inferência em2a3a6f56 e classificação da dificuldade."
+      ]
+    },
+    {
+      "qid": "2a3a6f56",
+      "original": {
+        "t": "Acidose Hiperclorêmica — Ânion Gap Urinário Negativo",
+        "qid": "2a3a6f56",
+        "q": "Paciente com diarreia aquosa intensa apresenta acidose metabólica hiperclorêmica (pH 7,32, HCO3 16 mEq/L) e ânion gap urinário de -15 mEq/L. O que esse achado indica?",
+        "refs": [
+          "nongap_acidosis_kraut_madias",
+          "acid_base_adroguenejm"
+        ],
+        "opts": [
+          "Defeito distal de acidificação compatível com ATR tipo 1.",
+          "Excreção urinária aumentada de NH4+ com resposta renal apropriada, favorecendo perda extrarrenal de bicarbonato.",
+          "Hipoaldosteronismo hiporreninêmico como causa obrigatória.",
+          "Falência tubular indeterminada, sem utilidade diagnóstica."
+        ],
+        "ans": 1,
+        "exp": "O ânion gap urinário negativo sugere que o cloreto urinário está elevado por excreção de NH4Cl, indicando resposta renal apropriada à acidose. Em acidose metabólica hiperclorêmica, isso favorece causa extrarrenal, como diarreia, em vez de acidose tubular renal. O teste tem limitações — especialmente quando NH4+ é excretado com ânions não cloreto — mas é uma ferramenta clássica de triagem fisiológica.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "originalAuthorRevision": "sha256:061019222db9083c7e61c7b76fd6d4122c16bce57f31bedbd2aa30a7cfefb501",
+      "after": {
+        "t": "Acidose Hiperclorêmica — Ânion Gap Urinário Negativo",
+        "qid": "2a3a6f56",
+        "q": "Paciente com diarreia aquosa intensa e função renal preservada apresenta acidose metabólica hiperclorêmica e ânion gap urinário de −15 mEq/L. Qual interpretação evita extrapolar esse resultado?",
+        "refs": [
+          "palmer_rta_review_2021",
+          "uribarri_oh_uag_2021"
+        ],
+        "opts": [
+          "Confirma defeito distal importante, pois um valor negativo demonstra baixa excreção de amônio.",
+          "É compatível com excreção de NH₄Cl, mas não quantifica amônio nem confirma a causa isoladamente.",
+          "Identifica perda renal de bicarbonato e exclui a diarreia como causa da acidose.",
+          "Define hipoaldosteronismo como causa, dispensando avaliação de potássio e função renal."
+        ],
+        "ans": 1,
+        "exp": "Pelo modelo clássico, um ânion gap urinário negativo é compatível com excreção de cloreto de amônio e pode acompanhar resposta renal à perda digestiva de bicarbonato. Isso não o torna uma medida direta ou universal de amônio nem confirma sozinho a origem da acidose. Ingestão e perdas de eletrólitos, equilíbrio metabólico, função renal e ânions urinários interferem; a relação com amônio é discutida criticamente na literatura. A interpretação deve integrar o quadro, potássio e outras medidas disponíveis. Um resultado isolado não confirma ATR distal, ATR proximal ou hipoaldosteronismo.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "afterAuthorRevision": "sha256:856c082882fa9ab1b78e1ca03ceb269f4ff6a6df55427ad2da5d1f414a9675f2",
+      "referenceCards": {
+        "palmer_rta_review_2021": {
+          "label": "Palmer, Kelepouris & Clegg — Acidose tubular renal (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "journal": "Advances in Therapy 2021;38(2):949–968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "icon": "🔬",
+          "impacto": "Distinguir defeitos distais, proximais e relacionados à aldosterona na acidose tubular renal",
+          "resumo": "Revisão narrativa com casos clínicos. A acidose tubular renal distal envolve dificuldade de excretar ácido; a proximal decorre de menor reabsorção de bicarbonato. Na forma proximal, a urina pode ficar ácida quando o bicarbonato plasmático cai abaixo do limiar de reabsorção. A forma tipo 4 associa hipercalemia e acidose, por deficiência ou resistência à aldosterona; diabetes e doença renal crônica são contextos importantes.",
+          "conclusao": "Interpretar pH urinário, bicarbonato, potássio e contexto em conjunto. Um marcador isolado não define toda a síndrome nem substitui a avaliação de outras causas.",
+          "curiosidade": ""
+        },
+        "uribarri_oh_uag_2021": {
+          "label": "Uribarri & Oh — Limites do ânion gap urinário (2021)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "journal": "Journal of the American Society of Nephrology 2021;32(5):1025–1028",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "icon": "🔬",
+          "impacto": "O ânion gap urinário não é uma medida direta nem universal da excreção de amônio",
+          "resumo": "Revisão crítica de Uribarri e Oh. O resumo primário discute como ingestão de sódio, potássio e cloreto, perdas extrarrenais e ausência de equilíbrio influenciam o ânion gap urinário. Questiona a extrapolação de uma correlação inversa observada em cenários específicos para uma relação universal com amônio. A utilidade clínica exige reconhecer essas condições e limitações.",
+          "conclusao": "Evitar usar o ânion gap urinário isolado para quantificar amônio ou confirmar uma etiologia. Correlacionar contexto, função renal e outras medidas disponíveis.",
+          "curiosidade": ""
+        }
+      },
+      "referenceRevisions": {
+        "palmer_rta_review_2021": "sha256:54936c4ceceb0cf4e932000108e3fe00f1870ac761d9d3671c22f7173827b327",
+        "uribarri_oh_uag_2021": "sha256:9c4b9f2f3454b099437cd06b7752539489b7318d5169f297e91d0c4b7a3a162c"
+      },
+      "classification": {
+        "op": "Interpretar proporcionalmente umAGurinárionegativo no contexto de diarreia, com limites da inferência sobre amônio e etiologia.",
+        "competence": "Interpretação ácido-base e decisão clínica segura",
+        "bloom": "Compreender/Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OP primário e conceito central; correções de segurança/qualificadores não criam nova tarefa. Preservar qid/FSRS."
+      },
+      "authorFindings": "Mantém o raciocínio diagnóstico do original e reduz sua certeza indevida. A crítica2021foi lida no abstract primário, não no corpo; a perspectiva2025não pôde ser lida e não é usada como suporte.",
+      "appeal": {
+        "question": "Há segunda resposta defensável ou dado ausente?",
+        "response": "Mantém o raciocínio diagnóstico do original e reduz sua certeza indevida. A crítica2021foi lida no abstract primário, não no corpo; a perspectiva2025não pôde ser lida e não é usada como suporte. Todas as alternativas foram relidas como diagnósticos/padrões ou condutas concorrentes, não apenas como comprimento."
+      },
+      "candidateStatus": "AUTHOR_ONLY_REQUIRES_INDEPENDENT_FORMAL_REVIEW",
+      "implementationAuthorization": "BLOQUEADA até revisão independente exata; este pacote não é uma liberação editorial.",
+      "sources": {
+        "rta": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "access": "Texto integral PMC e XML NLM, corpo disponível; pHtipos1/2,hipoaldosteronismoe acidoseDRC.",
+          "artifact": "primary-corpus.xml"
+        },
+        "uag": {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "access": "Resumo primário completo NLM; corpo não disponível. Não alegar leitura integral. Todas as afirmações do novo card são explícitas no resumo.",
+          "artifact": "uag-controversy.xml"
+        },
+        "methanol": {
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "access": "Recomendações oficiais integrais EXTRIP abertas."
+        },
+        "ethyleneGlycol": {
+          "url": "https://www.extrip-workgroup.org/ethylene-glycol",
+          "access": "Recomendações oficiais integrais e artigo primário2023 via XML, corpo disponível."
+        },
+        "CKD": {
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDFoficial,PP3.11.1.1–.2 e5.4.1–.3; cardglobalbyte-exato jáconferido neste lote.",
+          "originalCardRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "achanti": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "access": "Texto integral PMC aberto, passos4–5/tabela1 e cetoacidose."
+        }
+      },
+      "pending": [
+        "Revisão independente do literal, unicidade, grau de inferência em2a3a6f56 e classificação da dificuldade."
+      ]
+    },
+    {
+      "qid": "51814977",
+      "original": {
+        "t": "Acidose Metabólica — Gap Aniônico",
+        "qid": "51814977",
+        "q": "Um paciente diabético em cetoacidose apresenta os seguintes resultados laboratoriais: sódio 136 mEq/L, cloro 98 mEq/L, HCO3 10 mEq/L. Qual é o gap aniônico (AG) e o que ele indica?",
+        "refs": [
+          "acid_base_adroguenejm",
+          "brenner_rector"
+        ],
+        "opts": [
+          "AG = 28 mEq/L; acidose com AG aumentado por acúmulo de ácidos orgânicos (betahidroxibutirato)",
+          "AG = 10 mEq/L; acidose com AG normal (hiperclorêmica)",
+          "AG = 18 mEq/L; acidose mista metabólica e respiratória",
+          "AG = 38 mEq/L; intoxicação por metanol"
+        ],
+        "ans": 0,
+        "exp": "A resposta correta é AG = 28 mEq/L, indicando acidose metabólica com ânion gap aumentado. O cálculo é AG = Na+ − (Cl− + HCO3−) = 136 − (98 + 10) = 28 mEq/L. Na cetoacidose diabética, esse aumento decorre do acúmulo de ânions orgânicos, sobretudo acetoacetato e betahidroxibutirato. AG = 10 mEq/L sugeriria acidose hiperclorêmica de ânion gap normal; AG = 18 mEq/L subestimaria o valor calculado e não define, por si só, distúrbio misto; AG = 38 mEq/L não corresponde aos dados fornecidos e intoxicação por metanol exigiria outro contexto clínico/laboratorial.",
+        "diff": "easy",
+        "cat": "acido_base"
+      },
+      "originalAuthorRevision": "sha256:0e42a9ec6db20b35cfaca9935cc3533234ebd8274565f5cbfb4ef184964c8722",
+      "after": {
+        "t": "Acidose Metabólica — Gap Aniônico",
+        "qid": "51814977",
+        "q": "Paciente diabético em cetoacidose tem sódio 136 mEq/L, cloro 98 mEq/L e bicarbonato 10 mEq/L. Usando a fórmula sem potássio, qual é o hiato aniônico e sua interpretação?",
+        "refs": [
+          "achanti_szerlip_acidbase_2023"
+        ],
+        "opts": [
+          "28 mEq/L; hiato elevado no contexto de acúmulo de cetoânions.",
+          "10 mEq/L; hiato normal no contexto de perda de bicarbonato.",
+          "18 mEq/L; hiato que confirma componente respiratório adicional.",
+          "38 mEq/L; hiato que identifica intoxicação por metanol."
+        ],
+        "ans": 0,
+        "exp": "O cálculo sem potássio é 136 − (98 + 10) = 28 mEq/L. Na cetoacidose diabética, o aumento se relaciona ao acúmulo de cetoânions, incluindo beta-hidroxibutirato e acetoacetato. Os outros valores não correspondem aos dados. O hiato não determina sozinho um componente respiratório nem identifica um tóxico específico; isso exigiria gasometria e contexto apropriados.",
+        "diff": "easy",
+        "cat": "acido_base"
+      },
+      "afterAuthorRevision": "sha256:c92a64507beeffbdaec57acf62a28e2e725dd9295ce647f8cac9f3b67cdb09a1",
+      "referenceCards": {
+        "achanti_szerlip_acidbase_2023": {
+          "label": "Achanti & Szerlip — Distúrbios ácido-base no paciente crítico (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "journal": "Clinical Journal of the American Society of Nephrology 2023;18(1):102–112",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "icon": "🔬",
+          "impacto": "Comparar elevação do hiato aniônico e queda do bicarbonato para buscar mistura metabólica",
+          "resumo": "Revisão clínica que organiza a avaliação ácido-base por pH, componente respiratório, hiato aniônico e comparação das variações metabólicas. A relação aproximada entre aumento do hiato e queda do bicarbonato ajuda a reconhecer distúrbios adicionais. É necessário considerar albumina e valores laboratoriais de referência; a comparação é um modelo, não confirmação isolada de etiologia ou ausência de mistura. Foi escolhida como fonte clínica acessível para o método, sem transferir recomendações terapêuticas não pertinentes.",
+          "conclusao": "Variações próximas favorecem um distúrbio metabólico predominante; desproporção exige procurar componentes adicionais. Integrar compensação respiratória e contexto.",
+          "curiosidade": ""
+        }
+      },
+      "referenceRevisions": {
+        "achanti_szerlip_acidbase_2023": "sha256:ca8296db515d3ab024794f5b83f12ed356e9eb0409b3aef4ccabdb6d026a80c6"
+      },
+      "classification": {
+        "op": "Calcular hiatoaniônicosempotássio e reconhecer aumento no contexto de cetoacidose.",
+        "competence": "Interpretação ácido-base e decisão clínica segura",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "easy",
+        "difficultyAfter": "easy",
+        "identityDecision": "Mesmo OP primário e conceito central; correções de segurança/qualificadores não criam nova tarefa. Preservar qid/FSRS."
+      },
+      "authorFindings": "Preserva tarefa de cálculo; alternativas com número e interpretação no mesmo nível, sem enfeitar distratores.",
+      "appeal": {
+        "question": "Há segunda resposta defensável ou dado ausente?",
+        "response": "Preserva tarefa de cálculo; alternativas com número e interpretação no mesmo nível, sem enfeitar distratores. Todas as alternativas foram relidas como diagnósticos/padrões ou condutas concorrentes, não apenas como comprimento."
+      },
+      "candidateStatus": "AUTHOR_ONLY_REQUIRES_INDEPENDENT_FORMAL_REVIEW",
+      "implementationAuthorization": "BLOQUEADA até revisão independente exata; este pacote não é uma liberação editorial.",
+      "sources": {
+        "rta": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+          "access": "Texto integral PMC e XML NLM, corpo disponível; pHtipos1/2,hipoaldosteronismoe acidoseDRC.",
+          "artifact": "primary-corpus.xml"
+        },
+        "uag": {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+          "access": "Resumo primário completo NLM; corpo não disponível. Não alegar leitura integral. Todas as afirmações do novo card são explícitas no resumo.",
+          "artifact": "uag-controversy.xml"
+        },
+        "methanol": {
+          "url": "https://www.extrip-workgroup.org/methanol",
+          "access": "Recomendações oficiais integrais EXTRIP abertas."
+        },
+        "ethyleneGlycol": {
+          "url": "https://www.extrip-workgroup.org/ethylene-glycol",
+          "access": "Recomendações oficiais integrais e artigo primário2023 via XML, corpo disponível."
+        },
+        "CKD": {
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDFoficial,PP3.11.1.1–.2 e5.4.1–.3; cardglobalbyte-exato jáconferido neste lote.",
+          "originalCardRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        "achanti": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "access": "Texto integral PMC aberto, passos4–5/tabela1 e cetoacidose."
+        }
+      },
+      "pending": [
+        "Revisão independente do literal, unicidade, grau de inferência em2a3a6f56 e classificação da dificuldade."
+      ]
+    }
+  ],
+  "referencePatches": [
+    {
+      "id": "palmer_rta_review_2021",
+      "before": null,
+      "beforeRevision": null,
+      "after": {
+        "label": "Palmer, Kelepouris & Clegg — Acidose tubular renal (2021)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889554/",
+        "journal": "Advances in Therapy 2021;38(2):949–968",
+        "ano": 2021,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Distinguir defeitos distais, proximais e relacionados à aldosterona na acidose tubular renal",
+        "resumo": "Revisão narrativa com casos clínicos. A acidose tubular renal distal envolve dificuldade de excretar ácido; a proximal decorre de menor reabsorção de bicarbonato. Na forma proximal, a urina pode ficar ácida quando o bicarbonato plasmático cai abaixo do limiar de reabsorção. A forma tipo 4 associa hipercalemia e acidose, por deficiência ou resistência à aldosterona; diabetes e doença renal crônica são contextos importantes.",
+        "conclusao": "Interpretar pH urinário, bicarbonato, potássio e contexto em conjunto. Um marcador isolado não define toda a síndrome nem substitui a avaliação de outras causas.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:54936c4ceceb0cf4e932000108e3fe00f1870ac761d9d3671c22f7173827b327",
+      "clinicalGate": "BLOQUEADA até revisão formal independente do corpo inteiro"
+    },
+    {
+      "id": "uribarri_oh_uag_2021",
+      "before": null,
+      "beforeRevision": null,
+      "after": {
+        "label": "Uribarri & Oh — Limites do ânion gap urinário (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33769949/",
+        "journal": "Journal of the American Society of Nephrology 2021;32(5):1025–1028",
+        "ano": 2021,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "O ânion gap urinário não é uma medida direta nem universal da excreção de amônio",
+        "resumo": "Revisão crítica de Uribarri e Oh. O resumo primário discute como ingestão de sódio, potássio e cloreto, perdas extrarrenais e ausência de equilíbrio influenciam o ânion gap urinário. Questiona a extrapolação de uma correlação inversa observada em cenários específicos para uma relação universal com amônio. A utilidade clínica exige reconhecer essas condições e limitações.",
+        "conclusao": "Evitar usar o ânion gap urinário isolado para quantificar amônio ou confirmar uma etiologia. Correlacionar contexto, função renal e outras medidas disponíveis.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:9c4b9f2f3454b099437cd06b7752539489b7318d5169f297e91d0c4b7a3a162c",
+      "clinicalGate": "BLOQUEADA até revisão formal independente do corpo inteiro"
+    },
+    {
+      "id": "extrip_ethylene_glycol",
+      "before": {
+        "label": "EXTRIP — Ethylene Glycol Poisoning Recommendations",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9921105/",
+        "journal": "Crit Care 2023;27:56",
+        "ano": 2023,
+        "tipo": "Revisão sistemática e consenso",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Define quando usar hemodiálise na intoxicação por etilenoglicol",
+        "icon": "📋",
+        "resumo": "Revisão sistemática e recomendações do EXTRIP Workgroup sobre tratamento extracorpóreo na intoxicação por etilenoglicol. O grupo recomenda ou sugere ECTR conforme concentração de etilenoglicol/glicolato, gap osmolar, ânion gap, acidemia e gravidade clínica. Recomenda ECTR em características graves como coma, convulsões ou LRA, e recomenda hemodiálise intermitente como modalidade preferencial quando disponível.",
+        "conclusao": "Na intoxicação por etilenoglicol, acidose metabólica grave, anion gap muito elevado, LRA ou manifestações neurológicas justificam hemodiálise além de suporte e bloqueio da álcool desidrogenase.",
+        "curiosidade": "Com maior disponibilidade de fomepizol, o EXTRIP refinou os limiares de diálise para evitar tanto atraso terapêutico em casos graves quanto diálise desnecessária em intoxicações menos graves."
+      },
+      "beforeRevision": "sha256:886d8d4ba3945f7258dfbec88f13e3b8f1d1381bc9ac97e9f6daf7b3f6566926",
+      "after": {
+        "label": "EXTRIP — Ethylene Glycol Poisoning Recommendations",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9921105/",
+        "journal": "Crit Care 2023;27:56",
+        "ano": 2023,
+        "tipo": "Revisão sistemática e consenso",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Define quando usar hemodiálise na intoxicação por etilenoglicol",
+        "icon": "📋",
+        "resumo": "Revisão sistemática e recomendações EXTRIP de 2023, com baixa certeza da evidência. Na exposição a etilenoglicol, critérios incluem coma, convulsões, lesão renal aguda KDIGO 2–3 e concentrações de etilenoglicol ou glicolato, conforme o contexto do antídoto. Para o hiato aniônico, usa a fórmula que inclui potássio: Na + K − Cl − bicarbonato; recomenda tratamento extracorpóreo se for maior que 27 mmol/L. Hemodiálise intermitente é preferida quando disponível.",
+        "conclusao": "Na suspeita grave, suporte e bloqueio da álcool desidrogenase não substituem tratamento extracorpóreo quando os critérios são atendidos. Não indicar diálise apenas pela dose ingerida relatada.",
+        "curiosidade": "O limiar de hiato aniônico do EXTRIP para etilenoglicol inclui potássio. A recomendação para metanol usa a fórmula sem potássio; os limiares não são intercambiáveis."
+      },
+      "afterRevision": "sha256:48a39860476de2cd14b8149c299b130e9415860cab58b7414d7618cb8b2c01d5",
+      "clinicalGate": "BLOQUEADA até revisão formal independente do corpo inteiro"
+    }
+  ],
+  "scope": "Seis itens do inventário160, sem escrever banco nem conceder gate automaticamente."
+}

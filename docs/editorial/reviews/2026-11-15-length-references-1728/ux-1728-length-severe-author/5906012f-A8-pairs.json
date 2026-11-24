@@ -1,0 +1,236 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "5906012f",
+  "family": "A8-fusao-160",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Finerenona — Classe Farmacológica",
+    "qid": "5906012f",
+    "q": "A finerenona pertence a qual classe farmacológica e qual é sua principal indicação aprovada?",
+    "opts": [
+      "Inibidor de SGLT2; DM2 com ou sem DRC",
+      "Antagonista do receptor mineralocorticoide não-esteroidal (ARM); DRC com DM2",
+      "Inibidor da ECA de longa ação; hipertensão",
+      "Inibidor direto da renina; nefropatia diabética"
+    ],
+    "ans": 1,
+    "exp": "A finerenona é um antagonista não-esteroidal do receptor mineralocorticoide (ARM), com efeito anti-inflamatório e antifibrótico mediado pelo bloqueio seletivo desse receptor. Sua principal indicação aprovada é a DRC associada ao DM2, com redução de progressão renal e de eventos cardiovasculares (FIDELIO-DKD, NEJM 2020; FIGARO-DKD, NEJM 2021). Inibidores de SGLT2 (dapagliflozina, empagliflozina) têm mecanismo distinto — bloqueio da reabsorção tubular de glicose — e constituem outra classe nefroprotetora. A finerenona não é IECA nem inibidor direto da renina; embora todos atuem no eixo SRAA, os sítios farmacológicos e as indicações aprovadas são distintos.",
+    "diff": "easy",
+    "cat": "farmacologia",
+    "refs": [
+      "fidelio_dkd"
+    ]
+  },
+  "originalSHA256": "sha256:4c508ac001ca2e1fef0d76c2c330ea24084bcd7f491438005573d6b5797b9dcc",
+  "originalRefs": [
+    {
+      "id": "fidelio_dkd",
+      "original": {
+        "label": "FIDELIO-DKD Trial (Finerenona)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+        "journal": "N Engl J Med 2020;383(23):2219-2229",
+        "ano": 2020,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",
+        "icon": "💊",
+        "resumo": "ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+        "conclusao": "FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+        "curiosidade": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
+      },
+      "originalSHA256": "sha256:3934cb5fccff3343e72207aa16b9cc41842e73b6291ce7c87d0f58fbb35ea84c"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Reconhecer a classe da finerenona, com indicação agregada à mesma tarefa.",
+    "primaryCompetence": "Mesmo OP primário da canônica correspondente.",
+    "bloom": "Lembrar",
+    "miller": "Sabe",
+    "difficultyAuthored": "easy",
+    "difficultyIntrinsic": "easy"
+  },
+  "originalReview": {
+    "verdict": "fundir",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Duplica a decisão de classe farmacológica de3d8fc3fe.",
+      "MAIOR — A pergunta soma classe e indicação sem cenário clínico; a especificidade adicional da correta é pista formal.",
+      "MENOR — Abreviações não expandidas e indicação tratada como principal, sem delimitar contexto regulatório. A canônica não depende desse rótulo."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Fundir com3d8fc3fe, canônica literal/hashes deste lote. Não criar outra paráfrase para conservar a contagem."
+  },
+  "sources": [
+    {
+      "id": "label",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+      "access": "Rotulagem oficial profissional integral, revisão9/2026, aberta no DailyMed",
+      "locators": [
+        "§1 indicação em DRC/diabetes; §2.1–2.3 potássio e TFGe; §5.1 hipercalemia; §7.1 CYP3A4/grapefruit; §12.1 classe não esteroidal/seletiva."
+      ],
+      "limitations": [
+        "Regulação norte-americana, sem inferir Anvisa ou cobertura. O item canônico não afirma ser a única indicação atual."
+      ]
+    }
+  ],
+  "claimVerification": [],
+  "proposed": null,
+  "proposedSHA256": null,
+  "classificationAfter": null,
+  "proposedRefs": [],
+  "candidateReview": null,
+  "identityDecision": {
+    "preserveQid": false,
+    "reason": "Manter histórico pretérito no qid aposentado, sem migração de FSRS, crédito, acertos, domínio ou descobertas.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": "Aposentadoria por fusão para3d8fc3fe, após adjudicação independente dos dois originais e da canônica exata.",
+  "duplicateTest": {
+    "canonicalQid": "3d8fc3fe",
+    "canonicalProposedSHA256": "sha256:f042d0cd03edb19cc684f3885f235e2f4ce3e1aa9dea70bdeb6ce75c9e574788",
+    "decision": {
+      "same": true,
+      "value": "Reconhecer classe farmacológica da finerenona."
+    },
+    "caseDataStructure": {
+      "same": true,
+      "value": "Nome do fármaco no contexto DRC/diabetes; pedir indicação como segunda tarefa não cria outro caso decisório."
+    },
+    "targetLearnerProfile": {
+      "same": true,
+      "value": "Estudante avançado/residente; não se declara perfil diferente."
+    },
+    "language": {
+      "same": true,
+      "value": "pt-BR"
+    },
+    "allFourCoincide": true
+  },
+  "lifecycleDecision": {
+    "verdict": "fundir",
+    "retiredQid": "5906012f",
+    "canonicalQid": "3d8fc3fe",
+    "retiredStatus": "aposentado",
+    "fsrsTransfer": false,
+    "creditTransfer": false,
+    "history": "Preservar registros pretéritos sob o qid original; não reconhecer resposta à aposentada como crédito na canônica.",
+    "ready": false
+  }
+}

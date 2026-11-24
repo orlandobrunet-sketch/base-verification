@@ -1,0 +1,795 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A17.1-fisiologia-patologia",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 2,
+  "readyForImplementation": false,
+  "scope": "Dois itens finais do inventário; fontes específicas reais substituem tratado não aberto. Semconduta ou novaidentidade.",
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "1867db90",
+        "dc0f89b1"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Fisiologia intrarrenal oferta-consumo versus efeito hemodinâmico de ventilação sobre retorno venoso/congestão."
+    }
+  ],
+  "newCardCount": 2,
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "1867db90",
+      "family": "A17-fisiologia-patologia",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Medula Renal — Vulnerabilidade à Hipóxia",
+        "qid": "1867db90",
+        "q": "Por que a medula externa é particularmente vulnerável à lesão hipóxica durante queda de perfusão renal?",
+        "refs": [
+          "brenner_rector"
+        ],
+        "opts": [
+          "O fluxo medular é relativamente baixo e há difusão contracorrente de oxigênio nos vasa recta, enquanto a alça espessa ascendente mantém alto consumo para transporte ativo de sódio",
+          "A medula contém a maior parte dos glomérulos e recebe todo o débito renal",
+          "As células medulares não possuem mitocôndrias nem conseguem usar oxigênio",
+          "A hipóxia decorre exclusivamente de tromboxano, independentemente de perfusão e transporte tubular"
+        ],
+        "ans": 0,
+        "exp": "A arquitetura em contracorrente preserva o gradiente osmótico, mas permite desvio de oxigênio entre ramos dos vasa recta antes que ele alcance regiões profundas. Ao mesmo tempo, a alça espessa ascendente consome muito oxigênio para reabsorver sódio. A combinação de oferta limitada e demanda elevada reduz a reserva medular; por isso hipotensão, sepse e fármacos que alteram hemodinâmica podem precipitar lesão nessa região.",
+        "diff": "hard",
+        "cat": "nefrologia_geral"
+      },
+      "originalSHA256": "sha256:aeae9a792348f093753194d0ec71bf92b998bdf3795a004e0df20567e68a026b",
+      "originalRefs": [
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Explicar a vulnerabilidade da medula externa à hipóxia pelo balanço entre oferta limitada e demanda tubular elevada.",
+        "primaryCompetence": "Explicar fisiologia e reconhecer padrão histológico renal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta é uma síntese extensa comparada a distratores absolutos/biologicamente frágeis.",
+          "MENOR — Classificação hard não corresponde a explicar uma relação fisiológica fundamental; tratado não foi aberto."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "oxygen",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5487476/",
+          "doi": "10.3389/fphys.2017.00385",
+          "pmid": "28701959",
+          "access": "Mini-revisão primária integral aberta no PMC; metadados publisherFrontiers/NLM conferidos,2017;8:385.",
+          "locators": [
+            "Tubular transport e Renal oxygenation: transporte de sódio consome energia, fluxo medular relativo baixo, desvioarteriovenoso de oxigênio, alta demanda do ramo ascendente espesso na medula externa.",
+            "Aumento de fluxo/filtração também aumenta carga de transporte; não inferir que fluxo alto elimina toda hipóxia."
+          ],
+          "limitations": [
+            "Síntese fisiológica, não ensaio de uma intervenção clínica. Não uso opções terapêuticas históricas2017 como recomendação vigente."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Fluxo relativo baixo/desvioarteriovenoso e transporteativoNaalto reduzemreserva deoxigenaçãonamedulaexterna.",
+          "source": "oxygen",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Medula Renal — Vulnerabilidade à Hipóxia",
+        "qid": "1867db90",
+        "q": "Qual combinação ajuda a explicar a vulnerabilidade da medula renal externa à hipóxia durante redução da perfusão?",
+        "refs": [
+          "renal_oxygenation_liu_2017"
+        ],
+        "opts": [
+          "Oferta relativa de oxigênio limitada e demanda elevada pelo transporte tubular de sódio.",
+          "Oferta relativa de oxigênio elevada e consumo desprezível no ramo ascendente espesso.",
+          "Perfusão uniforme com o córtex e ausência de desvio de oxigênio entre os vasos.",
+          "Predomínio da glicólise anaeróbia no ramo ascendente espesso, com baixa dependência de oxigênio."
+        ],
+        "ans": 0,
+        "exp": "A medula tem fluxo relativo menor que o córtex, e a circulação em contracorrente permite desvio de oxigênio entre vasos. Ao mesmo tempo, o ramo ascendente espesso da alça de Henle consome energia para reabsorção ativa de sódio. A relação entre entrega limitada e demanda elevada reduz a reserva na medula externa. Isso não significa que as células não tenham mitocôndrias, nem que a distribuição de oxigênio seja uniforme. A magnitude da lesão depende do contexto e não é atribuída a uma única substância vasoativa.",
+        "diff": "easy",
+        "cat": "nefrologia_geral"
+      },
+      "proposedSHA256": "sha256:3e6a2c68ddb5fa4d3a72ef109bcee812e9ec1c6e226e6c5d655339fda5f03a6e",
+      "classificationAfter": {
+        "op": "Explicar a vulnerabilidade da medula externa à hipóxia pelo balanço entre oferta limitada e demanda tubular elevada.",
+        "primaryCompetence": "Explicar fisiologia e reconhecer padrão histológico renal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "renal_oxygenation_liu_2017",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Liu et al. — Oxigenação Renal e Doença Renal Crônica (2017)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5487476/",
+            "journal": "Front Physiol. 2017;8:385. DOI:10.3389/fphys.2017.00385",
+            "ano": 2017,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Compreender o equilíbrio entre oferta de oxigênio e demanda do transporte tubular.",
+            "resumo": "Mini-revisão dos determinantes de oxigenação renal. A medula recebe menor fluxo relativo que o córtex, e a arquitetura vascular permite desvio de oxigênio entre vasos em contracorrente. Na medula externa, o ramo ascendente espesso demanda energia para transporte ativo de sódio. A combinação reduz a reserva de oxigenação quando a oferta cai ou a demanda aumenta.",
+            "conclusao": "A vulnerabilidade medular depende da relação entre oferta e consumo, sem significar ausência de mitocôndrias ou distribuição uniforme de perfusão. A revisão não fornece um limiar terapêutico universal nem comprova benefício de tratar um marcador isolado.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:fffead1be1171f871cb49fb0cec16dd483cae9cda7581bded0575f42241b28d0",
+          "sourceIDs": [
+            "oxygen"
+          ],
+          "notes": [
+            "Fonte específica real em substituição ao tratado não aberto."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "D não é defendível pelo ambiente hipóxico medular: a adaptação glicolítica não torna o ramo ascendente espesso pouco dependente de oxigênio. O gabarito integra oferta relativa limitada e demanda do transporte."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Compreender/Sabe/easy; integra oferta e consumo sem fingir uma decisão terapêutica complexa.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [
+        "Recurso independente: D confunde a adaptação glicolítica de outros segmentos medulares com o ramo ascendente espesso, que depende do metabolismo oxidativo para o transporte. Não nega a existência de mitocôndrias ou metabolismo oxidativo. Rechecados OP, gabarito único, dez eliminatórios e score para este literal."
+      ],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "c187c49d",
+      "family": "A17-fisiologia-patologia",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Emergência Hipertensiva — Arteriolosclerose Hiperplásica",
+        "qid": "c187c49d",
+        "q": "Em uma biópsia renal de paciente com hipertensão grave prolongada, observa-se estreitamento luminal por camadas concêntricas de células musculares lisas e duplicação de membranas basais. Como se denomina esse padrão?",
+        "refs": [
+          "brenner_rector"
+        ],
+        "opts": [
+          "Arteriolosclerose hiperplásica em aspecto de casca de cebola",
+          "Arteriolosclerose hialina isolada",
+          "Glomeruloesclerose nodular diabética",
+          "Vasculite granulomatosa necrosante"
+        ],
+        "ans": 0,
+        "exp": "A proliferação concêntrica da íntima e de células musculares lisas, com duplicação de membranas basais e redução do lúmen, caracteriza arteriolosclerose hiperplásica, o padrão de “casca de cebola” associado à hipertensão grave. Ela causa isquemia renal e pode coexistir com necrose fibrinoide nas lesões mais agudas. Hialinose arteriolar é um padrão distinto de dano crônico; glomeruloesclerose nodular e vasculite granulomatosa pertencem a outros mecanismos.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:3004cea18d1edb8386720e2f4f5c65a553260c2677b879ab3d6545864a066b24",
+      "originalRefs": [
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer arteriolosclerose hiperplásica pelo padrão miointimal concêntrico emcasca decebola.",
+        "primaryCompetence": "Explicar fisiologia e reconhecer padrão histológico renal.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Dificuldade hard inflada para reconhecimento de padrão; título emergência ultrapassa a informação clínica fornecida.",
+          "MENOR — Corretacom nome composto maior é comprimento natural; não precisa encher distratores para simetria."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "htn",
+          "url": "https://iris.unibs.it/retrieve/c1763ee2-b358-4cf8-9226-aa83a22159bc/malignant%20HT%20JACC%202024.pdf",
+          "doi": "10.1016/j.jacc.2024.02.037",
+          "pmid": "38658108",
+          "access": "Revisão primária publicada integral14p aberta no repositório da universidade coautora; JACC2024;83:1688–1701.",
+          "locators": [
+            "PDF5/fig1: hiperplasia miointimal, estreitamento/oclusão arteriolar e alterações isquêmicas glomerulares.",
+            "PDF9/Kidneys: proliferação miointimal e aparência emcasca decebola de pequenasartérias/arteríolas; necrose fibrinoide é menoscomum.",
+            "Morfologia corresponde ao padrão hiperplásico; não estabelece etiologia exclusiva nem indica, isoladamente, uma conduta anti-hipertensiva."
+          ],
+          "limitations": [
+            "A questão pede nome de padrão histológico, não prova de emergência por númeropressórico isolado. Lesões semelhantes podem ocorrer em outros contextos microangiopáticos."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Proliferação concêntrica miointimal comestreitamentoproduzpadrãohiperplásico emcasca decebola associado ahipertensãograve, sempatognomonicidade etiológica.",
+          "source": "htn",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Hipertensão Grave — Arteriolosclerose Hiperplásica",
+        "qid": "c187c49d",
+        "q": "Biópsia renal de paciente com hipertensão grave mostra espessamento arteriolar concêntrico por proliferação miointimal, com estreitamento do lúmen e aparência em casca de cebola. Como se denomina esse padrão?",
+        "refs": [
+          "malignant_htn_boulestreau_2024"
+        ],
+        "opts": [
+          "Arteriolosclerose hiperplásica.",
+          "Arteriolosclerose hialina.",
+          "Glomeruloesclerose nodular.",
+          "Vasculite granulomatosa."
+        ],
+        "ans": 0,
+        "exp": "O padrão concêntrico em casca de cebola corresponde à arteriolosclerose hiperplásica, que pode acompanhar lesão vascular da hipertensão grave. O estreitamento luminal contribui para isquemia; necrose fibrinoide pode coexistir. Hialinose é depósito de material hialino na parede, e não o mesmo padrão proliferativo. Glomeruloesclerose nodular e vasculite granulomatosa representam outros compartimentos ou processos. A morfologia não deve ser usada como prova exclusiva da causa, pois contextos microangiopáticos distintos podem produzir lesões semelhantes.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:e55a9732eb7ac342f01767371b1f09b35ba48f9321c5be01702f516f4c0fa01d",
+      "classificationAfter": {
+        "op": "Reconhecer arteriolosclerose hiperplásica pelo padrão miointimal concêntrico emcasca decebola.",
+        "primaryCompetence": "Explicar fisiologia e reconhecer padrão histológico renal.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "malignant_htn_boulestreau_2024",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Boulestreau et al. — Hipertensão Maligna como Doença Sistêmica (2024)",
+            "url": "https://doi.org/10.1016/j.jacc.2024.02.037",
+            "journal": "J Am Coll Cardiol. 2024;83(17):1688–1701. DOI:10.1016/j.jacc.2024.02.037",
+            "ano": 2024,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Relacionar lesão microvascular renal ao contexto de hipertensão grave.",
+            "resumo": "Revisão clínica da hipertensão maligna e de suas repercussões sistêmicas. No rim, descreve proliferação miointimal e aspecto concêntrico em casca de cebola de pequenas artérias e arteríolas, com estreitamento luminal e sinais de isquemia. Necrose fibrinoide pode coexistir, mas é menos frequente. Lesões vasculares precisam ser interpretadas com clínica e diagnóstico diferencial de microangiopatia.",
+            "conclusao": "O padrão histológico ajuda a caracterizar lesão vascular, sem definir sozinho sua causa. Emergência hipertensiva exige considerar dano de órgão e o contexto, e não apenas um número de pressão.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:595544c4fcf89d82060f997fe2b1ec303437401db2c7fe558272033a92d7f5cb",
+          "sourceIDs": [
+            "htn"
+          ],
+          "notes": [
+            "Não se deriva uma prescrição universal do padrão histológico."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Lembrar/Sabe/easy para nome de padrão. A correção não inventa conteúdo para manter rótulo hard.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ],
+  "supersedes": {
+    "file": "author-batch-A17-fisiologia-patologia.json",
+    "rawSHA256": "4abbe6aac444ee33efe4a7e1adc55812e7b97ca8d5767666f3e1cdbc3c789e82",
+    "scope": "Somente distrator D de1867db90; c187 e dois cards permanecem byte-exatos."
+  }
+}

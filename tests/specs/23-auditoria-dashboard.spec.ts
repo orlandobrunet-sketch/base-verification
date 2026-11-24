@@ -99,12 +99,9 @@ test.describe('Correções da auditoria', () => {
     await page.getByRole('tab', { name: 'Grimório', exact: true }).click();
     const pane = page.locator('#nqdPane-library');
     const summary = pane.locator('.nqd-library-summary');
-    const catalogue = await page.evaluate(() => ({
-      articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length'),
-    }));
-    // A16.23 mostra descobertos e catálogo mesmo quando a coleção começa vazia.
-    // O número é uma contagem do jogo, não uma dívida ou medida de conhecimento.
-    await expect(summary).toHaveText(`Referências descobertas até o momento: 0/${catalogue.articles + catalogue.sources}`);
+    const totalWorks = await pane.locator('[data-library-work]:visible').count();
+    expect(totalWorks).toBeGreaterThan(0);
+    await expect(summary).toHaveText(`Obras com conteúdo descoberto: 0/${totalWorks}`);
     const typography = await summary.evaluate(el => ({
       size: parseFloat(getComputedStyle(el).fontSize), root: parseFloat(getComputedStyle(document.documentElement).fontSize),
     }));

@@ -39,9 +39,8 @@ const DETAILED_STATS = {
 };
 
 // ID-only saves below intentionally exercise current, unambiguous legacy migration.
-// These pinned records have unchanged authors, four source profiles and cards
-// across 17.11/17.12, with no published history; do not pick by bank position.
-const LEGACY_CURRENT_STUDY_QIDS = ['1e5e88e9', 'e56795a6', '70129a64'];
+// Pin four-option records without published history to keep migration unambiguous.
+const LEGACY_CURRENT_STUDY_QIDS = ['1e5e88e9', '4b0822ae', '70129a64'];
 
 type CommandCenterOptions = {
   sparse?: boolean;
@@ -951,8 +950,9 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(library.getByRole('option', { name: 'Mais recentes', exact: true })).toBeAttached();
     await expect(library.locator('.nqd-library-item .nqd-state', { hasText: /^Referência$/ })).toHaveCount(0);
     await expect(library.locator('.nqd-library-item').first()).toHaveAttribute('data-library-year', /\d{4}/);
-    const catalogue = await page.evaluate(() => ({ articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length') }));
-    await expect(library.locator('.nqd-library-summary')).toHaveText(`Referências descobertas até o momento: 6/${catalogue.articles + catalogue.sources}`);
+    const works = library.locator('[data-library-work]');
+    await expect(works.filter({ has: page.locator('[data-library-discovered="true"]') })).toHaveCount(6);
+    await expect(library.locator('.nqd-library-summary')).toHaveText(`Obras com conteúdo descoberto: 6/${await works.count()}`);
     await expect(library.locator('[role="progressbar"]')).toHaveCount(0);
 
     // O leitor em popup conserva os dados editoriais da fonte; filtros e

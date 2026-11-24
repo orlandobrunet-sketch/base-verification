@@ -1,0 +1,468 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "ae31e58e",
+  "family": "A14-litíase-cisto",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Lumasiran na Hiperoxalúria Primária Tipo 1",
+    "qid": "ae31e58e",
+    "q": "Paciente com hiperoxalúria primária tipo 1 confirmada por AGXT tem oxalúria elevada apesar de medidas gerais e avaliação de piridoxina. Qual terapia reduz a produção hepática de oxalato por interferência de RNA?",
+    "refs": [
+      "lumasiran_trial",
+      "eau_urolithiasis_medical_2025"
+    ],
+    "opts": [
+      "Piridoxina como único tratamento possível para todos os genótipos",
+      "Oxalobacter formigenes oral como terapia padrão aprovada",
+      "Lumasiran, que silencia HAO1/glicolato oxidase e reduz a produção hepática de oxalato",
+      "Plasmaférese ambulatorial como prevenção crônica de primeira linha"
+    ],
+    "ans": 2,
+    "exp": "Lumasiran é uma terapia de interferência de RNA para hiperoxalúria primária tipo 1: reduz a expressão hepática de HAO1, diminuindo a atividade da glicolato oxidase e a produção de oxalato. No ILLUMINATE-A, reduziu substancialmente a oxalúria em comparação ao placebo. Piridoxina continua importante em variantes responsivas, mas não é resposta universal; plasmaférese não é prevenção crônica padrão; Oxalobacter oral não é terapia aprovada central para HP1.",
+    "diff": "medium",
+    "cat": "litíase"
+  },
+  "originalSHA256": "sha256:4f91c3e6586f9d485d66eb7922c15e5db87195c899bfd6e6de48ed5757f6d9e6",
+  "originalRefs": [
+    {
+      "id": "lumasiran_trial",
+      "original": {
+        "label": "ILLUMINATE-A Trial (Lumasiran)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
+        "journal": "N Engl J Med 2021;385(19):1737-1746",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",
+        "icon": "💊",
+        "resumo": "ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+        "conclusao": "O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+        "curiosidade": "A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
+      },
+      "originalSHA256": "sha256:4488c0b68d5409a0a2283a6d9c65d7c64a7f7e2efe2b1e6c3806134d7ee91d1c"
+    },
+    {
+      "id": "eau_urolithiasis_medical_2025",
+      "original": {
+        "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+        "url": "https://uroweb.org/guidelines/urolithiasis",
+        "journal": "European Association of Urology",
+        "ano": 2025,
+        "tipo": "Diretriz internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+        "icon": "📋",
+        "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+        "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+        "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+      },
+      "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Reconhecer lumasiran como RNA de interferência dirigido à expressão hepática de glicolato oxidase em PH1.",
+    "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Card compartilhado tem vínculo bibliográfico incorreto, desfecho na semana6 e extrapolação clínica indevida.",
+      "MENOR — A correta é a única opção com mecanismo completo; testar medicamentos reais em paralelo."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "luma",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10155853/1/nejmoa2021712.pdf",
+      "doi": "10.1056/NEJMoa2021712",
+      "pmid": "33789010",
+      "access": "Artigo primário publicado integral11p aberto pelo web no repositórioUCL; corpo Methods/Results/Table2/limitações lido. Download local403 não é usado como prova de arquivo local.",
+      "locators": [
+        "NEJM2021;384(13):1216–1226. PDF2–3:3mg/kg SC mensal por3doses, manutenção trimestral começando1mês após a última;39randomizados26/13,idade≥6,TFGe≥30.",
+        "PDF3/7: primário mudança percentual de oxalato urinário24h corrigido por superfície, média meses3–6;−65,4% versus−11,8%, diferença−53,5p.p.,IC95%−62,3 a−44,8,P<0,001.",
+        "PDF8–10: eventos de cálculo/nefrocalcinose exploratórios; não prova de reversão de DRC ou prevenção de falência renal; reações no local de injeção38%,limitado6meses."
+      ],
+      "limitations": [
+        "DOI/link/volume atuais eram incompatíveis com a obra citada; correção do vínculo sem mudar identidade do ILLUMINATE-A. Não inferir eficácia em menores6ouTFGe<30 a partir desse ensaio."
+      ]
+    },
+    {
+      "id": "gene",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1283/",
+      "access": "GeneReviews autoral integral aberto, última revisão11/12/2025 confirmada no cabeçalho.",
+      "locators": [
+        "Establishing diagnosis: achados sugestivos mais variantes patogênicas/provavelmente patogênicas bialélicas em AGXT; VUS isoladas ou em combinação não confirmam.",
+        "Summary/Diagnosis: herança autossômica recessiva, AGT hepática e oxalato; PH2=GRHPR,PH3=HOGA1.",
+        "Table8/Targeted therapies: lumasiran reduz glicolato oxidase/HAO1; nedosiran atua em lactato desidrogenase A, piridoxina em responsivos."
+      ],
+      "limitations": [
+        "Fonte expert, não ensaio comparativo entre RNAi. Escolha e acesso às terapias dependem de avaliação, genótipo, função renal e contexto regulatório."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Lumasiran reduzHAO1/GO; nedosiran atua emLDHA, piridoxina não éRNAi. O ensaio mediu oxalato meses3–6, não reversão daDRC.",
+      "source": "luma/gene",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Lumasiran na Hiperoxalúria Primária Tipo 1",
+    "qid": "ae31e58e",
+    "q": "Na hiperoxalúria primária tipo 1 confirmada, qual medicamento reduz a expressão hepática da glicolato oxidase por interferência de RNA?",
+    "refs": [
+      "lumasiran_trial",
+      "genereviews_ph1_2025"
+    ],
+    "opts": [
+      "Piridoxina.",
+      "Nedosiran.",
+      "Lumasiran.",
+      "Alopurinol."
+    ],
+    "ans": 2,
+    "exp": "Lumasiran reduz a expressão de HAO1, que codifica a glicolato oxidase, diminuindo a produção hepática de oxalato. Nedosiran também usa interferência de RNA, mas atua na lactato desidrogenase A, outro alvo. Piridoxina pode beneficiar variantes responsivas e não age por interferência de RNA; alopurinol atua no metabolismo das purinas. No ILLUMINATE-A, o benefício demonstrado foi redução do oxalato urinário em seis meses na população estudada, sem provar reversão de doença renal crônica. Tratamento e acompanhamento são individualizados.",
+    "diff": "medium",
+    "cat": "litíase"
+  },
+  "proposedSHA256": "sha256:a9ace31996a3d8605a18f5ffba59733e462a16470efa011f8f42b3c9adb2b4ba",
+  "classificationAfter": {
+    "op": "Reconhecer lumasiran como RNA de interferência dirigido à expressão hepática de glicolato oxidase em PH1.",
+    "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "lumasiran_trial",
+      "original": {
+        "label": "ILLUMINATE-A Trial (Lumasiran)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
+        "journal": "N Engl J Med 2021;385(19):1737-1746",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",
+        "icon": "💊",
+        "resumo": "ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+        "conclusao": "O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+        "curiosidade": "A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
+      },
+      "originalSHA256": "sha256:4488c0b68d5409a0a2283a6d9c65d7c64a7f7e2efe2b1e6c3806134d7ee91d1c",
+      "proposed": {
+        "label": "Garrelfs et al. — ILLUMINATE-A (Lumasiran, 2021)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2021712",
+        "journal": "N Engl J Med. 2021;384(13):1216–1226. DOI:10.1056/NEJMoa2021712",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Lumasiran reduziu oxalato urinário na hiperoxalúria primária tipo 1; desfecho bioquímico em seis meses.",
+        "icon": "🔬",
+        "resumo": "Ensaio de fase III, duplo-cego, com 39 participantes de pelo menos 6 anos, hiperoxalúria primária tipo 1 confirmada geneticamente e taxa de filtração glomerular estimada (TFGe) ≥30 mL/min/1,73 m². Comparou lumasiran 3 mg/kg por via subcutânea, mensal por três doses e depois a cada três meses a partir de um mês após a última dose inicial, com placebo (26 versus 13). A mudança no oxalato urinário de 24 horas foi calculada como média dos meses 3–6: −65,4% com lumasiran e −11,8% com placebo; diferença de −53,5 pontos percentuais (intervalo de confiança de 95%: −62,3 a−44,8; P <0,001).",
+        "conclusao": "O ensaio demonstra redução de oxalato urinário na população estudada. Não foi desenhado para provar prevenção de falência renal ou reversão de doença renal crônica em seis meses; dados de cálculos e nefrocalcinose eram exploratórios. Reações leves e transitórias no local da injeção foram frequentes.",
+        "curiosidade": "Lumasiran reduz a expressão de HAO1, que codifica a glicolato oxidase. Atua a montante do defeito em alanina-glioxilato aminotransferase, sem repor essa enzima."
+      },
+      "proposedSHA256": "sha256:e4bc863c580c30e8d740a53a1ace311b1eeb3435dabb162a4cfcb6476c64319d",
+      "sourceIDs": [
+        "luma"
+      ],
+      "notes": [
+        "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+      ]
+    },
+    {
+      "id": "genereviews_ph1_2025",
+      "original": {
+        "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+        "journal": "NCBI Bookshelf / GeneReviews",
+        "ano": 2025,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+        "icon": "🔬",
+        "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+        "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+        "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+      },
+      "originalSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+      "proposed": {
+        "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+        "journal": "NCBI Bookshelf / GeneReviews",
+        "ano": 2025,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+        "icon": "🔬",
+        "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+        "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+        "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+      },
+      "proposedSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+      "sourceIDs": [
+        "gene"
+      ],
+      "notes": [
+        "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Distinção de mecanismo atual com alternativas farmacológicas reais; não afirma que lumasiran seja o único RNAi existente nem amplia indicação do RCT.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

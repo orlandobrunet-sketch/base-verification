@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.27
-const CACHE = 'nefroquest-v17.27';
+// NefroQuest Service Worker — v17.28
+const CACHE = 'nefroquest-v17.28';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -117,6 +117,7 @@ const STATIC_ASSETS = [
   '/data/articles.js',
   '/data/topics.js',
   '/data/question-revision-manifest.js',
+  '/data/question-source-positions.js',
   '/data/question-revision-history.js',
   '/js/question-revisions.js',
   '/data/rapid-quiz.js',
@@ -152,6 +153,7 @@ const STATIC_ASSETS = [
   '/assets/badges/badge3-384.webp',
   '/assets/badges/badge4-384.webp',
   '/assets/badges/badge5-384.webp',
+  '/js/library-catalog.js',
   '/js/utils.js',
   '/js/pilot.js',
   '/js/character-benefits.js',
@@ -223,8 +225,15 @@ const ASSET_VERSIONS = {
   '/styles/lumen/cinemaframe.css': '16.28',
   '/styles/lumen/cinemalayout.css': '16.43',
   '/styles/lumen/cinemavictory.css': '16.28',
+  '/data/refs.js': '17.28',
+  '/data/articles.js': '17.28',
+  '/data/topics.js': '17.28',
+  '/data/question-revision-manifest.js': '17.28',
+  '/data/question-source-positions.js': '17.28',
+  '/data/question-revision-history.js': '17.28',
   '/js/question-revisions.js': '17.27',
-  '/style.css': '17.24',
+  '/data/competencies.js': '17.28',
+  '/style.css': '17.28',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '17.15',
@@ -243,14 +252,15 @@ const ASSET_VERSIONS = {
   '/styles/lumen/ranking.css': '17.15',
   '/styles/lumen/achievements.css': '16.75',
   '/styles/lumen/oracle.css': '16.25',
-  '/js/utils.js': '17.21',
+  '/js/library-catalog.js': '17.28',
+  '/js/utils.js': '17.28',
   '/js/pilot.js': '17.17',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
   '/js/study-mode.js': '17.27',
-  '/js/game.js': '17.27',
+  '/js/game.js': '17.28',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '17.17',
   '/js/portal.js': '17.15',
@@ -262,17 +272,17 @@ const ASSET_VERSIONS = {
   '/js/admin.js': '17.17',
   '/js/minigame.js': '17.22',
   '/js/minigame-acidbase.js': '17.24',
-  '/js/achievements.js': '16.75',
+  '/js/achievements.js': '17.28',
   '/js/changelog.js': '17.15',
   '/js/equipment-preview.js': '16.62',
   '/js/dashboard-skills.js': '17.15',
   '/styles/lumen/skills.css': '17.15',
-  '/js/dashboard.js': '17.17',
+  '/js/dashboard.js': '17.28',
 };
 // bump-release:asset-versions:fim
 
 function canonicalAssetKey(request, url) {
-  if (!url.searchParams.has('v')) return request;
+  if (!url.searchParams.has('v') && !(url.pathname.startsWith('/data/') && url.searchParams.has('release'))) return request;
   return new Request(url.pathname, { method: 'GET', credentials: 'same-origin' });
 }
 
@@ -280,7 +290,7 @@ async function canonicalizeVersionedAssetEntries(cache) {
   const requests = await cache.keys();
   await Promise.all(requests.map(async request => {
     const url = new URL(request.url);
-    if (url.origin !== location.origin || !url.searchParams.has('v')) return;
+    if (url.origin !== location.origin || (!url.searchParams.has('v') && !(url.pathname.startsWith('/data/') && url.searchParams.has('release')))) return;
 
     const canonicalKey = canonicalAssetKey(request, url);
     const existing = await cache.match(canonicalKey);
@@ -311,8 +321,9 @@ self.addEventListener('install', e => {
       Promise.allSettled(
         STATIC_ASSETS.map(caminho => {
           const versao = ASSET_VERSIONS[caminho];
+          const parametro = caminho.startsWith('/data/') ? 'release' : 'v';
           const busca = versao
-            ? fetch(`${caminho}?v=${versao}`)
+            ? fetch(`${caminho}?${parametro}=${versao}`)
             : fetch(caminho, { cache: 'no-store' });
           return busca
             .then(res => { if (res.ok) return cache.put(caminho, res.clone()); })
@@ -391,7 +402,8 @@ self.addEventListener('fetch', e => {
   // fresco. Se ela não bate com a que ESTE SW conhece, quem está atrasado é o
   // SW: vai à rede e não devolve o que tem guardado. Quando as duas batem, o
   // cache-first continua valendo inteiro — inclusive offline.
-  const versaoPedida = url.searchParams.get('v');
+  const versaoPedida = (url.pathname.startsWith('/data/') ? url.searchParams.get('release') : null)
+    ?? url.searchParams.get('v');
   const versaoConhecida = ASSET_VERSIONS[url.pathname];
   const swDesatualizado = versaoPedida !== null
     && versaoConhecida !== undefined

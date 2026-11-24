@@ -1,0 +1,394 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "c58fc63b",
+  "family": "A12-eletrólitos",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Sulfato de Magnésio — Toxicidade e Antídoto",
+    "qid": "c58fc63b",
+    "q": "Paciente com pré-eclâmpsia grave em sulfato de magnésio evolui com sonolência e desaparecimento do reflexo patelar. Qual é a melhor interpretação e conduta imediata?",
+    "refs": [
+      "magnesium_sulfate_toxicity_ahrq"
+    ],
+    "opts": [
+      "É sinal esperado de eficácia; aumentar a infusão.",
+      "É toxicidade por magnésio; suspender MgSO4, avaliar respiração e preparar/administrar gluconato de cálcio se houver depressão significativa.",
+      "É hipocalcemia por quelante de fósforo; tratar apenas com vitamina D.",
+      "É crise eclâmptica iminente; administrar nova dose de ataque de magnésio sem avaliação."
+    ],
+    "ans": 1,
+    "exp": "Perda do reflexo patelar é sinal precoce importante de toxicidade por magnésio. A resposta segura é suspender a infusão, monitorar respiração/saturação, dosar magnésio se disponível e administrar gluconato de cálcio quando houver depressão respiratória, instabilidade ou toxicidade significativa. Como o magnésio é excretado pelos rins, DRC ou LRA aumentam risco de acúmulo.",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "originalSHA256": "sha256:27571885fe554c33b45d039e5479dd5e462c8cececd723da0146762f4519d542",
+  "originalRefs": [
+    {
+      "id": "magnesium_sulfate_toxicity_ahrq",
+      "original": {
+        "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+        "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+        "journal": "Agency for Healthcare Research and Quality",
+        "ano": 2024,
+        "tipo": "Guia de Segurança Medicamentosa",
+        "badge": "SAFETY",
+        "badgeColor": "#f97316",
+        "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+        "icon": "⚠️",
+        "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+        "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+        "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+      },
+      "originalSHA256": "sha256:93532d959b6e9bcf6339b39040b231bb248c75e5184ce11451e3393fa26e77ee"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Responder imediatamente à toxicidade significativa por sulfato de magnésio, protegendo a respiração e interrompendo a exposição.",
+    "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — A correta junta interpretação e toda resposta em texto bem maior que alternativas muito frágeis.",
+      "MENOR — O original não explicita depressãorespiratória; se essa for a razão para administrar antídoto, fornecer esse dado."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "ahrq",
+      "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+      "access": "Ferramenta clínica oficial integral aberta; última revisão julho2023, criada abril2017, conforme rodapé real.",
+      "locators": [
+        "Monitorização: reflexos tendinosos, respiração/saturação, nível deconsciência e função renal.",
+        "Tabela clínica: perda de reflexo patelar é sinal de toxicidade e podeprecederdepressãorespiratória; níveis séricos nemsemprecorrelacionam comclínica.",
+        "Standingorders: parar infusão, ativarresposta rápida, monitorarrespiração, dosarMg; se depressãorespiratória, oxigênio egluconato de cálcio; suporteventilatório seapneia."
+      ],
+      "limitations": [
+        "É ferramenta operacional perinatal, nãoRCTouprotocolo universal para todo contexto. Não chamar2024depublicaçãosemcomprovante. Não postergar suporte aguardando dosagem."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "SuspenderMg,acionarajuda,suporterespiratórioecálcioIVcomdepressãorespiratória,nãoaguardarmagnesemia.",
+      "source": "ahrq",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Sulfato de Magnésio — Toxicidade e Antídoto",
+    "qid": "c58fc63b",
+    "q": "Gestante com pré-eclâmpsia recebe sulfato de magnésio e evolui com sonolência, ausência de reflexo patelar e frequência respiratória de 8/min. Há suspeita de toxicidade significativa. Qual é a resposta imediata mais adequada?",
+    "refs": [
+      "magnesium_sulfate_toxicity_ahrq"
+    ],
+    "opts": [
+      "Reduzir a infusão à metade e observar se a respiração melhora espontaneamente.",
+      "Suspender a infusão e aguardar a magnesemia antes de oferecer suporte.",
+      "Interromper a infusão, acionar ajuda e oferecer suporte respiratório e gluconato de cálcio intravenoso.",
+      "Administrar nova dose de magnésio para prevenir convulsão e reavaliar após a dose."
+    ],
+    "ans": 2,
+    "exp": "A exposição deve ser interrompida imediatamente, com acionamento de ajuda, monitorização e suporte respiratório. A bradipneia já demonstra toxicidade significativa: o gluconato de cálcio intravenoso antagoniza os efeitos do magnésio e deve estar prontamente disponível. A dosagem de magnésio ajuda na avaliação, mas não deve atrasar essas medidas. Apenas reduzir a infusão mantém a exposição, e uma nova dose pode agravar a depressão neuromuscular e respiratória. O plano deve incluir avaliação da função renal e do risco de acúmulo.",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "proposedSHA256": "sha256:9b24a963b414002cbdb277d3678dfb1c96475fcf6af75dd0d294b53b39bc8a10",
+  "classificationAfter": {
+    "op": "Responder imediatamente à toxicidade significativa por sulfato de magnésio, protegendo a respiração e interrompendo a exposição.",
+    "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "magnesium_sulfate_toxicity_ahrq",
+      "original": {
+        "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+        "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+        "journal": "Agency for Healthcare Research and Quality",
+        "ano": 2024,
+        "tipo": "Guia de Segurança Medicamentosa",
+        "badge": "SAFETY",
+        "badgeColor": "#f97316",
+        "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+        "icon": "⚠️",
+        "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+        "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+        "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+      },
+      "originalSHA256": "sha256:93532d959b6e9bcf6339b39040b231bb248c75e5184ce11451e3393fa26e77ee",
+      "proposed": {
+        "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+        "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+        "journal": "Agency for Healthcare Research and Quality",
+        "ano": 2023,
+        "tipo": "Guia de Segurança Medicamentosa",
+        "badge": "SAFETY",
+        "badgeColor": "#f97316",
+        "impacto": "Reconhecer toxicidade por sulfato de magnésio e responder sem atraso.",
+        "icon": "⚠️",
+        "resumo": "Ferramenta de segurança perinatal da Agency for Healthcare Research and Quality (AHRQ), criada em 2017 e revisada em julho de 2023. Orienta monitorar reflexos tendinosos, nível de consciência, respiração e saturação durante sulfato de magnésio. Perda de reflexo patelar, sonolência e depressão respiratória sugerem toxicidade; os níveis séricos não se correlacionam perfeitamente com os sinais. A resposta inclui interromper a infusão, acionar ajuda, apoiar a respiração e manter gluconato de cálcio acessível para antagonizar toxicidade significativa.",
+        "conclusao": "Na suspeita de toxicidade, suspender magnésio e avaliar imediatamente respiração e circulação. Depressão respiratória exige suporte e cálcio intravenoso conforme avaliação, sem aguardar o resultado laboratorial.",
+        "curiosidade": "O rodapé da fonte informa revisão em julho de 2023. A ferramenta usa exemplos operacionais de segurança perinatal e não é um ensaio clínico."
+      },
+      "proposedSHA256": "sha256:d87888ee935e003e95986712c6fe42aa838398b0915a57ab8b04bf7bd0b689e1",
+      "sourceIDs": [
+        "ahrq"
+      ],
+      "notes": [
+        "Corrige ano sem mudaridentidade dafonte; retira fraseflorida e evita definir umprimeirosinaluniversal."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Cenário explicita a gravidade que torna antídoto/suporte indicados. A correta ainda é maior porque reúne ações inseparáveis de segurança; não cortar suporte nem inflar distratores para satisfazer uma razão matemática.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

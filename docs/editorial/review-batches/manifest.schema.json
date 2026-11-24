@@ -15,6 +15,33 @@
     "external_review"
   ],
   "properties": {
+    "historical_reference_retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "references"],
+      "properties": {
+        "version": { "const": 1 },
+        "references": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[A-Za-z0-9_]+$" },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["qid", "release", "record_sha256", "reference_sha256", "current_sha256"],
+            "properties": {
+              "qid": { "type": "string", "pattern": "^[a-f0-9]{8}$" },
+              "release": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+              "record_sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "reference_sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "current_sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "author_review": { "type": "object" },
+              "independent_review": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
     "batch": {
       "type": "string",
       "minLength": 1

@@ -1,0 +1,457 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "0b5ea123",
+  "family": "A15-transplante-CMV",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Toxicidade Crônica por Tacrolimo no Transplante",
+    "qid": "0b5ea123",
+    "q": "Transplantado renal em uso de tacrolimo, com creatinina estável, realiza biópsia de protocolo aos 12 meses. O laudo mostra FI/TA grau II, arteriolopatia hialina e fibrose intersticial em faixas, sem critérios de rejeição ativa, nefropatia por BK ou doença recorrente. Os níveis de tacrolimo permanecem no limite superior do alvo. Qual interpretação e conduta são mais adequadas?",
+    "opts": [
+      "Tratar FI/TA como rejeição celular subclínica presumida e aumentar tacrolimo para intensificar imunossupressão",
+      "Suspeitar de nefrotoxicidade crônica por inibidor de calcineurina no contexto clinicopatológico; revisar exposição/interações e considerar minimização do CNI ou conversão para mTOR apenas se o risco imunológico permitir",
+      "Atribuir o achado a acúmulo lisosomal específico do tacrolimo e trocar rotineiramente por ciclosporina",
+      "Diagnosticar GEFS recorrente por deposição glomerular de tacrolimo e indicar rituximabe"
+    ],
+    "ans": 1,
+    "exp": "FI/TA isolada em biópsia de enxerto é um marcador inespecífico de dano crônico acumulado; por si só, não diagnostica toxicidade por tacrolimo. A suspeita fica mais defensável quando há padrão compatível com inibidor de calcineurina, como arteriolopatia hialina e fibrose intersticial em faixas, especialmente após excluir rejeição ativa, nefropatia por BK, isquemia/doença vascular e doença renal recorrente. A fisiopatologia não deve ser reduzida a uma única via: envolve vasoconstrição renal crônica/ischemia, lesão arteriolar e sinais pró-fibróticos, incluindo vias como TGF-β. O manejo também não é automático: deve rever exposição, interações e alvo de tacrolimo, podendo considerar minimização do CNI ou conversão para everolimo/sirolimo em pacientes selecionados, ponderando risco de rejeição, proteinúria e efeitos adversos dos mTOR. Aumentar tacrolimo sem evidência de rejeição, trocar por ciclosporina de rotina ou tratar como GEFS recorrente não responde ao padrão clinicopatológico descrito.",
+    "diff": "hard",
+    "cat": "transplante",
+    "refs": [
+      "cni_nephrotoxicity_naesens",
+      "banff_2019_kidney_meeting"
+    ]
+  },
+  "originalSHA256": "sha256:daef6dc3ba6fc93cda69017b5df7a6b07017d599c12d94f03e6568e8640b2fb3",
+  "originalRefs": [
+    {
+      "id": "cni_nephrotoxicity_naesens",
+      "original": {
+        "label": "Naesens et al. — Calcineurin Inhibitor Nephrotoxicity (CJASN 2009)",
+        "url": "https://doi.org/10.2215/CJN.04800908",
+        "journal": "Clinical Journal of the American Society of Nephrology",
+        "ano": 2009,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Caracterização clínica, hemodinâmica e histopatológica da nefrotoxicidade por ciclosporina/tacrolimo",
+        "icon": "📖",
+        "resumo": "Revisão de referência sobre nefrotoxicidade por inibidores de calcineurina, abordando lesão funcional hemodinâmica, alterações crônicas do enxerto, arteriolopatia hialina, fibrose intersticial em faixas, atrofia tubular e mecanismos pró-fibróticos. Enfatiza que a interpretação deve integrar biópsia, exposição ao fármaco e exclusão de outras causas de lesão crônica do enxerto.",
+        "conclusao": "A toxicidade crônica por CNI é hipótese clinicopatológica, não simples sinônimo de FI/TA isolada; manejo envolve revisão de exposição e minimização/conversão apenas quando clinicamente apropriado.",
+        "curiosidade": "A expressão 'striped fibrosis' descreve a fibrose intersticial em faixas, padrão historicamente associado à toxicidade crônica por CNI, mas insuficiente quando interpretado fora do contexto clínico e patológico completo."
+      },
+      "originalSHA256": "sha256:4ec9eb56b24f6805a88d4b308f8e3b82390575cb87ad18bc102d3490d2ce25c7"
+    },
+    {
+      "id": "banff_2019_kidney_meeting",
+      "original": {
+        "label": "Banff 2019 Kidney Meeting Report — Rejeição TCMR/ABMR",
+        "url": "https://doi.org/10.1111/ajt.15898",
+        "journal": "American Journal of Transplantation",
+        "ano": 2020,
+        "tipo": "Consenso de Patologia",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Atualização e clarificação dos critérios Banff para rejeição mediada por células T e por anticorpos no enxerto renal",
+        "icon": "🔬",
+        "resumo": "Relatório Banff 2019 com atualizações e clarificações dos critérios diagnósticos de rejeição mediada por células T (TCMR) e rejeição mediada por anticorpos (ABMR) em biópsias de enxerto renal. A TCMR é ancorada por inflamação intersticial/tubulite e, quando vascular, arterite intimal. A ABMR requer integração de lesão tecidual, evidência de interação anticorpo-endotélio (como C4d em capilares peritubulares, inflamação microvascular ou marcadores moleculares validados) e evidência sorológica de anticorpo doador-específico quando disponível. Também orienta a interpretação de lesões crônicas, como glomerulopatia do transplante e FI/TA, dentro do contexto clinicopatológico completo.",
+        "conclusao": "Banff evita diagnósticos por marcador isolado: C4d, tubulite, glomerulite ou FI/TA precisam ser interpretados no conjunto histológico, imunológico e clínico para distinguir TCMR, ABMR ativa/crônica ativa e lesões crônicas inespecíficas.",
+        "curiosidade": "A classificação Banff evolui por reuniões internacionais periódicas, refinando critérios diagnósticos conforme novas evidências morfológicas, imunológicas e moleculares entram na prática do transplante."
+      },
+      "originalSHA256": "sha256:55fb126d3beb0e8b42ae5a621047838f9a58988c0489abed10b394796b59ba87"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Revisar exposição ao tacrolimo e risco imunológico diante de suspeita clinicopatológica de toxicidade crônica, sem diagnóstico automático por FI/TA.",
+    "primaryCompetence": "Manejo seguro do receptor e interpretação clinicopatológica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Correta mistura diagnóstico e todas as alternativas de manejo, muito maior que distratores.",
+      "MENOR — FI/TA e CNI não expandidos, referência2009 não abriu corpo; substituir vínculo por revisão efetivamente lida."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "cni",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6161639/",
+      "doi": "10.1016/j.ekir.2017.10.010",
+      "pmid": "30276344",
+      "access": "Revisão primária integral lida no PMC e XML EuropePMC com BODY real, não abstract; artigo KidneyIntRep2018;3:281–290.",
+      "artifact": "cni-pathology-2018.xml",
+      "rawSHA256": "410fb5f17f634cd83730fce34ee49ebccf32d2f4836f24112bbdf8dfe45dd3db",
+      "locators": [
+        "Chronic CNI Toxicity: arteriolopatia hialina/fibrose em faixas são sugestivas, não patognomônicas; podem ocorrer sem CNI e refletir outros mecanismos.",
+        "Histologia exige correlação clinicopatológica; FI/TA não prova nefrotoxicidade nem rejeição por si."
+      ],
+      "limitations": [
+        "Fonte Naesens2009 DOI/CiteSeer não abriu corpo; não a declaro verificada nem altero sua identidade. A questão passa a fonte2018 real lida e EAU."
+      ]
+    },
+    {
+      "id": "eau",
+      "url": "https://uroweb.org/guidelines/renal-transplantation/chapter/the-guideline",
+      "access": "Diretriz oficial EAU2026 integral aberta; seções3.1.8,3.1.10–12 pessoalmente lidas.",
+      "locators": [
+        "3.1.10: monitorização de exposição tacrolimo/ciclosporina, mTOR com efeitos em fibroblastos/endotélio e ferida/linfocele; conversão condicionada a risco, proteinúria e função.",
+        "3.1.11: hiperaguda por anticorpos IgG pré-formados contra antígeno do doador, complemento e lesão em minutos/horas; cross-match previne risco.",
+        "3.1.11b: bolus de corticosteroide para rejeição celular, otimizar manutenção; agentes depletores em quadros graves/resistentes.",
+        "3.1.12: FI/TA inespecífica, avaliar toxicidade e outras causas; minimização/conversão apenas em contexto apropriado; reavaliar adesão nas rejeições tardias."
+      ],
+      "limitations": [
+        "Não prescrevo alvo universal de tacrolimo, conversão automática ou dose de pulso. Falhas de acesso não são culpa a punir."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Padrão é sugestivo e inespecífico; revisar exposição/interações e risco antes de minimizar ou converter.",
+      "source": "cni/eau",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Toxicidade Crônica por Tacrolimo no Transplante",
+    "qid": "0b5ea123",
+    "q": "Transplantado renal em uso de tacrolimo tem fibrose intersticial e atrofia tubular, arteriolopatia hialina e fibrose em faixas na biópsia de 12 meses. Foram avaliadas e afastadas rejeição ativa, nefropatia por BK e doença recorrente. Os vales de tacrolimo estão no limite superior do alvo individual. Qual próximo passo é mais apropriado?",
+    "opts": [
+      "Intensificar tacrolimo, pois fibrose comprova rejeição subclínica.",
+      "Revisar exposição, interações e risco imunológico antes de modificar o esquema.",
+      "Trocar rotineiramente por ciclosporina, pois ela não tem toxicidade renal.",
+      "Iniciar rituximabe, pois o padrão comprova recorrência de glomeruloesclerose segmentar e focal."
+    ],
+    "ans": 1,
+    "exp": "O conjunto permite suspeitar de toxicidade por inibidor da calcineurina, mas não a comprova: hialinose e fibrose em faixas também ocorrem por outros mecanismos. A decisão deve integrar exposição, doença do doador, evolução, proteinúria e investigação de lesão imunológica ou vascular. Minimização ou conversão para outro esquema podem ser discutidas em pacientes selecionados, ponderando rejeição e toxicidades. Fibrose isolada não justifica intensificar tacrolimo nem indica rituximabe; ciclosporina também pode ser nefrotóxica.",
+    "diff": "medium",
+    "cat": "transplante",
+    "refs": [
+      "cni_pathology_leal_2018",
+      "eau_renal_transplant_2026"
+    ]
+  },
+  "proposedSHA256": "sha256:80bc3c875fd136c980e1f9a917d29d63a060ef477b35a31a5d94ec9fc057c91c",
+  "classificationAfter": {
+    "op": "Revisar exposição ao tacrolimo e risco imunológico diante de suspeita clinicopatológica de toxicidade crônica, sem diagnóstico automático por FI/TA.",
+    "primaryCompetence": "Manejo seguro do receptor e interpretação clinicopatológica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "cni_pathology_leal_2018",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Leal et al. — Patologia dos inibidores da calcineurina e mTOR (2018)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6161639/",
+        "journal": "Kidney Int Rep. 2018;3(2):281–290. DOI:10.1016/j.ekir.2017.10.010",
+        "ano": 2018,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Interpretar sinais histológicos de toxicidade sem atribuição automática.",
+        "resumo": "Revisão dos padrões histológicos associados aos inibidores da calcineurina e do alvo da rapamicina em mamíferos (mTOR) no transplante renal. Arteriolopatia hialina, fibrose intersticial em faixas e atrofia tubular podem acompanhar exposição crônica à calcineurina, mas não são lesões patognomônicas. Alterações semelhantes podem refletir doença do doador, lesão vascular ou imunológica. Correlação com exposição, história e demais achados é indispensável.",
+        "conclusao": "Fibrose intersticial e atrofia tubular indicam dano acumulado e não definem, isoladamente, toxicidade ou rejeição. Uma hipótese de toxicidade não autoriza reduzir imunossupressão sem ponderar outras causas e risco imunológico.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:83429e1205b9f3d0311cf14ba33c9f2c27bc8a1618f6fb72e7cdcdd860730b23",
+      "sourceIDs": [
+        "cni"
+      ],
+      "notes": [
+        "Fonte distinta e real, sem rebatizar Naesens2009."
+      ]
+    },
+    {
+      "id": "eau_renal_transplant_2026",
+      "original": {
+        "label": "EAU Guidelines — Renal Transplantation (2026)",
+        "url": "https://uroweb.org/guidelines/renal-transplantation/chapter/the-guideline",
+        "journal": "EAU Guidelines Office",
+        "ano": 2026,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Imunossupressão inicial e de manutenção, monitorização de CNI e uso individualizado de inibidores de mTOR no transplante renal",
+        "icon": "📋",
+        "resumo": "Diretriz europeia vigente para transplante renal. Define como regime inicial padrão a combinação de tacrolimo, micofenolato e corticosteroide, associada a indução conforme risco imunológico. Recomenda monitorar níveis de tacrolimo e ciclosporina por sua janela terapêutica estreita e interações. Para sirolimo e everolimo, descreve toxicidades como dislipidemia, edema, proteinúria, mielotoxicidade, linfocele e problemas de cicatrização, com seleção individualizada e redução substancial do CNI quando usados em combinação.",
+        "conclusao": "Tacrolimo com micofenolato e corticosteroide permanece a espinha dorsal inicial para a maioria dos receptores; estratégias com mTOR ou minimização devem ser guiadas por risco imunológico, toxicidade, função do enxerto, proteinúria e momento pós-operatório.",
+        "curiosidade": "A diretriz chama os inibidores da calcineurina de fármacos de dose crítica: pequenas mudanças de exposição, inclusive por interação medicamentosa, podem deslocar o paciente entre rejeição por subexposição e toxicidade por superexposição."
+      },
+      "originalSHA256": "sha256:7dcae412055b8d644d08ec97b72130b4e82763d95c7a2e94bd0070f436549051",
+      "proposed": {
+        "label": "EAU Guidelines — Renal Transplantation (2026)",
+        "url": "https://uroweb.org/guidelines/renal-transplantation/chapter/the-guideline",
+        "journal": "EAU Guidelines Office",
+        "ano": 2026,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Imunossupressão e monitorização dos inibidores da calcineurina (CNI) e do alvo da rapamicina em mamíferos (mTOR) no transplante renal.",
+        "icon": "📋",
+        "resumo": "Diretriz europeia vigente para transplante renal. Define como regime inicial padrão a combinação de tacrolimo, micofenolato e corticosteroide, associada a indução conforme risco imunológico. Recomenda monitorar níveis de tacrolimo e ciclosporina por sua janela terapêutica estreita e interações. Para sirolimo e everolimo, descreve toxicidades como dislipidemia, edema, proteinúria, mielotoxicidade, linfocele e problemas de cicatrização, com seleção individualizada e redução substancial do CNI quando usados em combinação.",
+        "conclusao": "Tacrolimo com micofenolato e corticosteroide permanece a espinha dorsal inicial para a maioria dos receptores; estratégias com mTOR ou minimização devem ser guiadas por risco imunológico, toxicidade, função do enxerto, proteinúria e momento pós-operatório.",
+        "curiosidade": "A diretriz chama os inibidores da calcineurina de fármacos de dose crítica: pequenas mudanças de exposição, inclusive por interação medicamentosa, podem deslocar o paciente entre rejeição por subexposição e toxicidade por superexposição."
+      },
+      "proposedSHA256": "sha256:90aae1247069ffad8cbd079536f4628e00903cbf446c3689b48bb63abb35f15e",
+      "sourceIDs": [
+        "eau"
+      ],
+      "notes": [
+        "12campos reavaliados; novo binding deve ser revisado independentemente."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Interpretação e próximo passo ligados à mesma decisão de segurança, sem conversão automática. Padrão histológico não é apresentado como prova etiológica.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

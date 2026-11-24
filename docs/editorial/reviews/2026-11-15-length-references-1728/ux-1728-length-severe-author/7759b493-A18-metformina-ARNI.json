@@ -1,0 +1,417 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "7759b493",
+  "family": "A18-metformina-ARNI",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "ARNI — Mecanismo Duplo",
+    "qid": "7759b493",
+    "q": "Qual combinação descreve o mecanismo de sacubitril/valsartana e explica por que o fármaco não deve ser associado a um IECA?",
+    "refs": [
+      "sacubitril_valsartan_hf",
+      "sacubitril_valsartan_label_fda_2021"
+    ],
+    "opts": [
+      "Inibição da neprilisina mais bloqueio do receptor AT1; associar IECA aumenta o risco de angioedema",
+      "Inibição direta da renina mais bloqueio de ENaC; associar IECA causa hipocalemia",
+      "Bloqueio de SGLT2 mais antagonismo de aldosterona; associar IECA causa glicosúria",
+      "Agonismo de peptídeos natriuréticos mais bloqueio beta; associar IECA causa bradicardia"
+    ],
+    "ans": 0,
+    "exp": "Sacubitril inibe a neprilisina e aumenta a disponibilidade de peptídeos natriuréticos, enquanto valsartana bloqueia o receptor AT1 da angiotensina II. Como a neprilisina e a ECA participam da degradação de bradicinina, combinar ARNI com IECA aumenta o risco de angioedema e é contraindicado. O intervalo mínimo de 36 horas é obrigatório na transição. A formulação não contém inibidor direto da renina, bloqueador de ENaC, iSGLT2, antagonista mineralocorticoide ou betabloqueador.",
+    "diff": "medium",
+    "cat": "drc"
+  },
+  "originalSHA256": "sha256:c79e54ef6687a7e58d5fcb14078d3080e1370ce635b0157e4972f1c3c614a1b2",
+  "originalRefs": [
+    {
+      "id": "sacubitril_valsartan_hf",
+      "original": {
+        "label": "Voors AA et al. — LCZ696 renal effects HFpEF (EHJ 2015)",
+        "url": "https://academic.oup.com/eurheartj/article/36/7/408/2293234",
+        "journal": "Eur Heart J 2015;36(7):408-416",
+        "ano": 2015,
+        "tipo": "Análise de RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",
+        "icon": "🔬",
+        "resumo": "Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
+        "conclusao": "A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
+        "curiosidade": "O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
+      },
+      "originalSHA256": "sha256:f849521b397bffc60605e191930460ec501d5e81558be1359c47fcef41bdb173"
+    },
+    {
+      "id": "sacubitril_valsartan_label_fda_2021",
+      "original": {
+        "label": "Sacubitril/Valsartana — Rotulagem FDA",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+        "journal": "U.S. Food and Drug Administration — Prescribing Information",
+        "ano": 2021,
+        "tipo": "Rotulagem regulatória",
+        "badge": "LABEL",
+        "badgeColor": "#6366f1",
+        "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+        "icon": "📋",
+        "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+        "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+        "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+      },
+      "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Identificar o mecanismo farmacológico duplo de sacubitril/valsartana.",
+    "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+    "bloom": "Compreender",
+    "miller": "Sabe",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "easy"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Pergunta agregava mecanismo e interação; três combinações de erros pouco plausíveis entregavam a correta.",
+      "MAIOR — Fonte de análise renal HFpEF não é a referência adequada para esse objetivo farmacológico."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "label",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+      "access": "Informação oficial de prescrição integral do fabricante Novartis no DailyMed. Página atualizada em 06/07/2026; texto informa Revised 04/2024. Ambos os marcos são distinguidos no card. Corpo HTML baixado e lido.",
+      "localFile": "entresto-dailymed-2026.html",
+      "rawSHA256": "7528ce08dcd3c982ffa7e86e8858680e0856322c1b2934ce9ffa8f4227f685c9",
+      "locators": [
+        "§2.1 e §4: contraindicado com inibidor da enzima conversora de angiotensina; intervalo de36 horas ao trocar em qualquer direção.",
+        "§2.2/2.7 e §3: dose inicial usual adulta49/51mg por via oral duas vezes ao dia; insuficiência renal grave TFGe<30 requer metade, apresentação24/26mg; não é contraindicação absoluta por TFGe isolada.",
+        "§5.3/5.4/5.5: corrigir fatores de hipotensão, monitorar creatinina e potássio, tratar hipercalemia; reduzir dose ou interromper quando necessário.",
+        "§7.1 e §12.1: sacubitril via metabólito LBQ657 inibe neprilisina; valsartana bloqueia receptor AT1. Contraindicação com IECA pelo risco de angioedema; evitar outro bloqueador do receptor por já conter valsartana."
+      ],
+      "limitations": [
+        "Atualização regulatória do mesmo produto no ID legado, adjudicada pelo root; não é troca por outro ensaio ou diretriz.",
+        "Bula exige individualização e não fornece um limiar universal de suspensão definitiva em todo paciente com potássio5,8."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Sacubitril via metabólito ativo inibe neprilisina e valsartana bloqueia receptorAT1.",
+      "source": "label",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "ARNI — Mecanismo Duplo",
+    "qid": "7759b493",
+    "q": "Qual combinação descreve o mecanismo farmacológico de sacubitril/valsartana?",
+    "refs": [
+      "sacubitril_valsartan_label_fda_2021"
+    ],
+    "opts": [
+      "Inibição da neprilisina e bloqueio do receptor AT1 da angiotensina II.",
+      "Inibição da enzima conversora e bloqueio do receptor AT1 da angiotensina II.",
+      "Inibição da neprilisina e inibição da enzima conversora de angiotensina.",
+      "Inibição direta da renina e antagonismo do receptor mineralocorticoide."
+    ],
+    "ans": 0,
+    "exp": "Sacubitril é convertido em um metabólito ativo que inibe a neprilisina, aumentando a disponibilidade de peptídeos como os natriuréticos. Valsartana bloqueia o receptor AT1 da angiotensina II. A formulação não contém inibidor da enzima conversora nem inibidor direto da renina. Associá-la a inibidor da enzima conversora é contraindicado pelo risco de angioedema; por isso, a troca exige intervalo mínimo de36 horas.",
+    "diff": "easy",
+    "cat": "drc"
+  },
+  "proposedSHA256": "sha256:f6cf8c6a19fa600ce040a5de77bbbffda9acbb4f18a33e1582a34dea4af54b18",
+  "classificationAfter": {
+    "op": "Identificar o mecanismo farmacológico duplo de sacubitril/valsartana.",
+    "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+    "bloom": "Compreender",
+    "miller": "Sabe",
+    "difficultyIntrinsic": "easy",
+    "difficultyAuthored": "easy"
+  },
+  "proposedRefs": [
+    {
+      "id": "sacubitril_valsartan_label_fda_2021",
+      "original": {
+        "label": "Sacubitril/Valsartana — Rotulagem FDA",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+        "journal": "U.S. Food and Drug Administration — Prescribing Information",
+        "ano": 2021,
+        "tipo": "Rotulagem regulatória",
+        "badge": "LABEL",
+        "badgeColor": "#6366f1",
+        "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+        "icon": "📋",
+        "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+        "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+        "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+      },
+      "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01",
+      "proposed": {
+        "label": "Entresto — Bula Oficial no DailyMed (atualização 2026)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+        "journal": "Novartis Pharmaceuticals Corporation / DailyMed; página atualizada em 06/07/2026; revisão da bula 04/2024",
+        "ano": 2026,
+        "tipo": "Bula",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Transição segura do inibidor da enzima conversora de angiotensina, ajuste renal e monitorização.",
+        "icon": "📋",
+        "resumo": "Sacubitril/valsartana é contraindicado junto a inibidor da enzima conversora de angiotensina (IECA), pelo risco de angioedema; a troca em qualquer direção exige pelo menos 36 horas de intervalo. Em adultos com taxa de filtração glomerular estimada abaixo de 30 mL/min/1,73 m², a dose inicial é metade da usual: 24/26 mg por via oral, duas vezes ao dia. Monitorar pressão arterial, creatinina e potássio; reduzir dose ou interromper conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+        "conclusao": "Função renal reduzida exige dose e vigilância apropriadas. Não associar a IECA nem a outro bloqueador do receptor da angiotensina, pois a formulação já contém valsartana.",
+        "curiosidade": "Sacubitril é um pró-fármaco: seu metabólito ativo inibe a neprilisina. A valsartana bloqueia o receptor AT1 da angiotensina II."
+      },
+      "proposedSHA256": "sha256:8dede3b913cd8244516acc55e6703937a5b25efef5101646860a2c41dc1bf3d0",
+      "sourceIDs": [
+        "label"
+      ],
+      "notes": [
+        "Atualização regulatória legítima do mesmo produto autorizada pelo root; preservar ID legado e arquivar versão2021. Ano2026 corresponde à atualização do registro DailyMed, sem fingir revisão clínica da bula em2026."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Um OP farmacológico, sem carga artificial de uma segunda associação para preservar medium. A interação permanece na explicação, não como segundo gabarito.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

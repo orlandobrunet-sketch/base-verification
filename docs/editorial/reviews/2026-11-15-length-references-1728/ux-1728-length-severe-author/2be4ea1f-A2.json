@@ -1,0 +1,471 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "2be4ea1f",
+  "family": "A2-patologia-e-mecanismos",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Amiloidose Renal — Confirmação e Tipagem",
+    "qid": "2be4ea1f",
+    "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+    "refs": [
+      "renal_amyloidosis_diagnosis_2022",
+      "ikmg_mgrs_consensus_2019"
+    ],
+    "opts": [
+      "O achado confirma amiloide, mas não define o precursor; é necessário tipar a proteína, recorrendo a espectrometria de massa quando imunofluorescência ou imuno-histoquímica forem inconclusivas",
+      "O achado confirma automaticamente amiloidose AL e dispensa investigação clonal",
+      "O achado diferencia amiloidose AL de AA apenas pela intensidade da cor",
+      "O achado é específico de glomerulonefrite fibrilar e exclui amiloidose"
+    ],
+    "ans": 0,
+    "exp": "Vermelho Congo com birrefringência verde-maçã confirma a natureza amiloide do depósito, mas não identifica a proteína precursora. Essa distinção é decisiva porque AL, AA, transtirretina e formas hereditárias têm tratamentos diferentes. A tipagem começa com métodos validados de imunofluorescência ou imuno-histoquímica; microdissecção a laser com espectrometria de massa é o método de referência em casos indeterminados ou discordantes. Não se deve chamar todo depósito Congo positivo de AL apenas porque existe uma gamopatia concomitante.",
+    "diff": "hard",
+    "cat": "glomerular"
+  },
+  "originalSHA256": "sha256:37c8934d0b02961958c7098d6296d5172550b4b7540dae20fec859a5b49f09ff",
+  "originalRefs": [
+    {
+      "id": "renal_amyloidosis_diagnosis_2022",
+      "original": {
+        "label": "Said et al. — Diagnóstico Completo da Amiloidose Renal (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9529046/",
+        "journal": "Clinical Kidney Journal 2022;15(10):1817-1826",
+        "ano": 2022,
+        "tipo": "Revisão clinicopatológica",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmação por vermelho Congo e tipagem obrigatória da proteína amiloide",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica do diagnóstico renal de amiloidose. Vermelho Congo com birrefringência verde-maçã confirma material amiloide, mas não identifica seu precursor. A tipagem usa imunofluorescência ou imuno-histoquímica e, diante de resultado negativo, ambíguo ou discordante, microdissecção a laser com espectrometria de massa.",
+        "conclusao": "Diagnosticar amiloide e definir seu tipo são etapas diferentes; tratamento seguro exige identificar a proteína precursora em vez de inferi-la apenas pela presença de uma gamopatia.",
+        "curiosidade": "Na série discutida, imunofluorescência deixou de identificar a proteína amiloide em parte dos casos, ilustrando por que a proteômica é decisiva nos espécimes indeterminados."
+      },
+      "originalSHA256": "sha256:0e4fd3bebf1f3abfe486c4be72db380adea244c769bf38bfb0d1c1264728b3e9"
+    },
+    {
+      "id": "ikmg_mgrs_consensus_2019",
+      "original": {
+        "label": "Leung et al. — Consenso IKMG sobre MGRS (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+        "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+        "ano": 2019,
+        "tipo": "Consenso internacional",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+        "icon": "📋",
+        "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group que define MGRS como distúrbio clonal produtor de imunoglobulina monoclonal nefrotóxica sem critérios hematológicos para tratar uma malignidade específica. Recomenda biópsia renal, imunofluorescência, eletroforese e imunofixação sérica e urinária, cadeias leves livres e avaliação de medula para identificar lesão e clone.",
+        "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+        "curiosidade": "No MIDD, o consenso descreve depósitos lineares e pontilhados nas membranas basais glomerular e tubular, com material finamente granular e não organizado à microscopia eletrônica."
+      },
+      "originalSHA256": "sha256:9f57bb172e7c48f394f0f8d45e5bd765e634d50cf044c0be6779c9c85e2e9c4c"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Distinguir confirmação de amiloide da identificação da proteína precursora.",
+    "primaryCompetence": "Processo diagnóstico seguro antes do tratamento etiológico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Alternativa correta reúne confirmação, limite e sequência de exames, enquanto as demais são afirmações curtas.",
+      "MAIOR — Autoria/periódico do card2022 não correspondem à publicação citada: trata-se de Feitosa et al., Brazilian Journal of Medical and Biological Research55:e12284."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 0
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 13
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "amyloid",
+      "url": "https://www.scielo.br/j/bjmbr/a/n5NpNHMsvkwjnBV4rmzgQ3L/?format=pdf&lang=en",
+      "access": "PDF integral oficial SciELO, 15 páginas; Feitosa et al., Braz J Med Biol Res2022;55:e12284; DOI10.1590/1414-431X2022e12284",
+      "locators": [
+        "PDF1–2: confirmação histológica versus tipagem",
+        "PDF7–9: imunofluorescência/imuno-histoquímica e microdissecção/espectrometria",
+        "PDF12: critérios de AL exigem relação do amiloide com cadeia leve, não apenas gamopatia"
+      ],
+      "limitations": [
+        "Revisão clinicopatológica, usada para processo diagnóstico. Autoria e periódico do card legado estavam errados; corrigidos pela primeira página real do PDF."
+      ]
+    },
+    {
+      "id": "ikmg",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+      "access": "Corpo integral do consenso IKMG2019",
+      "locators": [
+        "Definição/investigação de MGRS, biópsia e identificação do clone",
+        "linhas443–445 e502–505: depósitos e tipagem por microdissecção/espectrometria"
+      ],
+      "limitations": [
+        "Consenso de diagnóstico; não inferir tratamento de clone nem benefício clínico a partir do pico monoclonal isolado."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Confirmação por Congo é diferente de tipagem do precursor",
+      "source": "amyloid",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Espectrometria por microdissecção é referência nos indeterminados",
+      "source": "ikmg",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Gamopatia isolada não demonstra AL",
+      "source": "amyloid",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Amiloidose Renal — Confirmação e Tipagem",
+    "qid": "2be4ea1f",
+    "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+    "refs": [
+      "renal_amyloidosis_diagnosis_2022",
+      "ikmg_mgrs_consensus_2019"
+    ],
+    "opts": [
+      "Tipar a proteína amiloide, recorrendo à proteômica se necessário.",
+      "Definir o tipo cadeia leve apenas pela positividade do vermelho Congo.",
+      "Definir o tipo amiloide A pela intensidade da birrefringência verde.",
+      "Usar um pico monoclonal concomitante para atribuir diretamente o tipo."
+    ],
+    "ans": 0,
+    "exp": "É necessário identificar a proteína precursora do amiloide. Vermelho Congo e birrefringência verde-maçã confirmam a natureza do depósito, mas não distinguem amiloidose por cadeia leve de outras formas. Imunofluorescência ou imuno-histoquímica validadas podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência quando o resultado é indeterminado ou discordante. Um componente monoclonal concomitante, sozinho, não prova que o amiloide deriva dele. Essa distinção muda o tratamento e evita terapia dirigida ao clone em uma amiloidose de outra origem.",
+    "diff": "medium",
+    "cat": "glomerular"
+  },
+  "proposedSHA256": "sha256:72d24d858347b64d37c56513cd8aa5f448b4b246426f2a08c09dbe068f1f0a51",
+  "classificationAfter": {
+    "op": "Distinguir confirmação de amiloide da identificação da proteína precursora.",
+    "primaryCompetence": "Processo diagnóstico seguro antes do tratamento etiológico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "renal_amyloidosis_diagnosis_2022",
+      "original": {
+        "label": "Said et al. — Diagnóstico Completo da Amiloidose Renal (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9529046/",
+        "journal": "Clinical Kidney Journal 2022;15(10):1817-1826",
+        "ano": 2022,
+        "tipo": "Revisão clinicopatológica",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmação por vermelho Congo e tipagem obrigatória da proteína amiloide",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica do diagnóstico renal de amiloidose. Vermelho Congo com birrefringência verde-maçã confirma material amiloide, mas não identifica seu precursor. A tipagem usa imunofluorescência ou imuno-histoquímica e, diante de resultado negativo, ambíguo ou discordante, microdissecção a laser com espectrometria de massa.",
+        "conclusao": "Diagnosticar amiloide e definir seu tipo são etapas diferentes; tratamento seguro exige identificar a proteína precursora em vez de inferi-la apenas pela presença de uma gamopatia.",
+        "curiosidade": "Na série discutida, imunofluorescência deixou de identificar a proteína amiloide em parte dos casos, ilustrando por que a proteômica é decisiva nos espécimes indeterminados."
+      },
+      "originalSHA256": "sha256:0e4fd3bebf1f3abfe486c4be72db380adea244c769bf38bfb0d1c1264728b3e9",
+      "proposed": {
+        "label": "Feitosa et al. — Diagnóstico completo da amiloidose renal (2022)",
+        "url": "https://www.scielo.br/j/bjmbr/a/n5NpNHMsvkwjnBV4rmzgQ3L/",
+        "journal": "Brazilian Journal of Medical and Biological Research 2022;55:e12284",
+        "ano": 2022,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmar amiloide e identificar a proteína precursora são etapas distintas",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica de Feitosa, Neves, Jorge, Noronha e Onuchic sobre diagnóstico de amiloidose renal. Vermelho Congo com birrefringência verde-maçã confirma depósito amiloide, mas não define o precursor. Métodos de imunofluorescência e imuno-histoquímica podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência nos casos inconclusivos ou discordantes. A tipagem é necessária porque as diferentes proteínas precursoras exigem abordagens distintas.",
+        "conclusao": "Não atribuir amiloidose a cadeia leve apenas por uma gamopatia concomitante. Definir o precursor antes de escolher tratamento dirigido.",
+        "curiosidade": "Anticorpos comerciais podem não reconhecer regiões alteradas das cadeias leves presentes nos depósitos; isso ajuda a explicar resultados indeterminados."
+      },
+      "proposedSHA256": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd",
+      "sourceIDs": [
+        "amyloid"
+      ],
+      "notes": []
+    },
+    {
+      "id": "ikmg_mgrs_consensus_2019",
+      "original": {
+        "label": "Leung et al. — Consenso IKMG sobre MGRS (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+        "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+        "ano": 2019,
+        "tipo": "Consenso internacional",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+        "icon": "📋",
+        "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group que define MGRS como distúrbio clonal produtor de imunoglobulina monoclonal nefrotóxica sem critérios hematológicos para tratar uma malignidade específica. Recomenda biópsia renal, imunofluorescência, eletroforese e imunofixação sérica e urinária, cadeias leves livres e avaliação de medula para identificar lesão e clone.",
+        "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+        "curiosidade": "No MIDD, o consenso descreve depósitos lineares e pontilhados nas membranas basais glomerular e tubular, com material finamente granular e não organizado à microscopia eletrônica."
+      },
+      "originalSHA256": "sha256:9f57bb172e7c48f394f0f8d45e5bd765e634d50cf044c0be6779c9c85e2e9c4c",
+      "proposed": {
+        "label": "Consenso IKMG — Gamopatia monoclonal de significado renal (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+        "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+        "ano": 2019,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+        "icon": "📋",
+        "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group (IKMG) para investigar gamopatia monoclonal de significado renal (MGRS): um clone pode produzir imunoglobulina nefrotóxica sem preencher critérios de malignidade que justifiquem tratamento por si só. Recomenda biópsia renal, estudos dos depósitos, pesquisa sérica/urinária de componente monoclonal e avaliação do clone. Microdissecção com espectrometria de massa é referência para tipagem amiloide quando outros métodos não esclarecem.",
+        "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a",
+      "sourceIDs": [
+        "ikmg"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "Comando continua medindo a etapa diagnóstica, sem desviar para tratamento. Distratores representam atribuição indevida do precursor por coloração ou pico, com valor pedagógico; evidência de taxas de acerto reais não disponível.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { openVisualDashboard, visualProgress } from '../helpers/dashboard-visual-fixture';
 
 // Stable current-only authored cases: this layout/keyboard contract must not depend on archive additions.
-const STUDY_ACTION_IDS = ['1e5e88e9', 'e56795a6', '70129a64', 'cc3248a3'];
+const STUDY_ACTION_IDS = ['1e5e88e9', '4b0822ae', '70129a64', 'cc3248a3'];
 
 async function openActions(page: Page, context: BrowserContext, baseURL: string, kinds = ['study', 'review', 'gap']) {
   await openVisualDashboard(page, context, baseURL);

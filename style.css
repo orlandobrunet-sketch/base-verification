@@ -15225,6 +15225,44 @@ body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underli
 .nqreview-statuses { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 5px; }
 .nqreview-status { font-size: .76rem; line-height: 1.5; font-weight: 700; }
 .nqreview-status--chosen { color: #f4b5bf; }
+/* One publication can retain several independently unlocked clinical texts. */
+.nqd-library-work,
+.bib-work { min-width: 0; }
+.nqd-library-work.has-variants,
+.bib-work.has-variants {
+  padding: 12px;
+  border: 1px solid rgba(170, 197, 216, .24);
+  border-radius: 14px;
+  background: rgba(16, 27, 40, .48);
+}
+.nqd-library-work-heading,
+.bib-work-heading {
+  margin: 0 4px 12px;
+  color: var(--gold, #e4ce8a);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.nqd-library-work-heading span {
+  margin-left: .5em;
+  color: var(--txt-dim, #aab8c7);
+  font-weight: 400;
+}
+.nqd-library-work-variants { display: grid; gap: 10px; min-width: 0; }
+.nqd-library-provenance {
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  font-size: .64rem;
+  line-height: 1.5;
+  opacity: .85;
+}
+.bib-work.has-variants > .bib-card + .bib-card { margin-top: 10px; }
+@media (max-width: 600px) {
+  .nqd-library-work.has-variants,
+  .bib-work.has-variants { padding: 8px; }
+  .nqd-library-work-heading span { display: block; margin-left: 0; }
+}
 .nqreview-status--correct { color: #b0eacb; }
 .nqreview-option.is-chosen { border-color: #efa7b2a0; background: #402630; }
 .nqreview-option.is-correct { border-color: #9cddbb99; background: #16382e; }

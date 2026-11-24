@@ -1,0 +1,1295 @@
+{
+  "schema": "NQ_1728_FSGS_AUTHOR_A1",
+  "date": "2026-11-15",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "productionWrites": false,
+  "scope": "Quatro itens da família GESF, com revisão de todos os distratores e duas referências. Continua a autoria dos outros32glomerulares, sem corte de escopo.",
+  "sources": {
+    "K": {
+      "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/kdigo-gn-2021-source.pdf",
+      "bytesSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+      "scope": "Guideline original integral aberto localmente; capítulo6 e recomendações6.1.1.1/6.1.2.1/6.2.1.1 lidos no corpus extraído. Card legado byte-exato já revisto no MPGN-A4 do root; não se emite nova aprovação de consumidores não examinados.",
+      "locators": [
+        "PDFp167–170, ppS162–S165",
+        "§6.1.1.1: sem síndrome nefrótica, buscar causa secundária",
+        "§6.1.2.1: genética em pacientes selecionados",
+        "§6.2.1.1: sem imunossupressão em secundária/causaindeterminada"
+      ]
+    },
+    "V": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5827609/",
+      "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+      "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-devriese-2018.xml",
+      "localAbstractBytesSHA256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279",
+      "scope": "XML local contém só abstract. Corpo original completo aberto pela web, seçõesHallmarks/PathologicEvaluation/QualityandTiming/Tabela4 lidas. Não se atribui corpo integral ao XML.",
+      "locators": [
+        "Table4: fenótipo/primária/genética/maladaptativa",
+        "LightMicroscopy: perihilar não patognomônica",
+        "QualityandTiming: amostra/córtexjustamedular/cortes/tempo"
+      ]
+    },
+    "D": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3586971/",
+      "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+      "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-dagati-2013.xml",
+      "localAbstractBytesSHA256": "56e73f2585668560c5378069911d4796b9fd1e4c3595321d8a98dac555d21111",
+      "scope": "XML local contém só abstract. Corpo primário completo aberto e métodos/tabela4/discussão lidos. Idade observada2–38 distinta de elegibilidade2–40; estimativas de falência renal são Kaplan–Meier.",
+      "locators": [
+        "AbstractN138/2–38anos",
+        "Methods: elegibilidade/corticorresistência/semsecundária",
+        "Table4footnotec: Kaplan–Meier",
+        "Results47/20/7, P0,005"
+      ]
+    }
+  },
+  "items": [
+    {
+      "qid": "f9d81f9d",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:30be3b0f834ea4ed2164ad9ef36b14a4794f324b93a615e2f32a6f97abd6fcc8",
+        "question": {
+          "t": "GESF Perihilar — Padrão Maladaptativo",
+          "qid": "f9d81f9d",
+          "q": "Pessoa com obesidade grave, rim único, albumina sérica preservada e proteinúria de 2,5 g/dia apresenta glomerulomegalia, lesões perihilares e apagamento segmentar dos pedicelos. Qual interpretação é mais coerente?",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "opts": [
+            "GESF maladaptativa por sobrecarga de néfrons; tratar o fator hemodinâmico e oferecer terapia antiproteinúrica, sem indicar imunossupressão apenas pela morfologia",
+            "GESF primária comprovada pela localização perihilar, exigindo corticoide em alta dose",
+            "HIVAN comprovada mesmo sem infecção por HIV ou padrão colapsante",
+            "Doença de lesões mínimas, pois glomerulomegalia exclui GESF"
+          ],
+          "ans": 0,
+          "exp": "Redução de massa renal e obesidade podem aumentar a carga por néfron remanescente, produzindo glomerulomegalia, esclerose perihilar e lesão podocitária segmentar. Esse conjunto, sobretudo sem síndrome nefrótica completa, favorece GESF maladaptativa. A variante perihilar é uma pista, não uma etiologia patognomônica: formas primárias ou genéticas também podem exibi-la. A conduta central é reduzir a agressão hemodinâmica e a proteinúria e tratar a causa; imunossupressão não deve ser iniciada somente porque a biópsia mostra GESF.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "GESF Perihilar — Padrão Maladaptativo",
+          "qid": "f9d81f9d",
+          "q": "Pessoa com obesidade grave e rim único tem proteinúria de 2,5 g/dia e albumina sérica preservada. A biópsia mostra glomeruloesclerose segmentar e focal (GESF), com glomerulomegalia, lesões perihilares e apagamento segmentar dos pedicelos. Qual interpretação orienta melhor a conduta?",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "opts": [
+            "Forma maladaptativa é favorecida; priorizar manejo da sobrecarga e tratamento antiproteinúrico.",
+            "Forma primária é favorecida pela lesão perihilar; iniciar glicocorticoide como conduta inicial.",
+            "Forma genética está definida pelo apagamento segmentar; a história e as causas secundárias pouco acrescentam.",
+            "Forma de causa indeterminada é obrigatória, pois albumina preservada impede reconhecer sobrecarga de néfrons."
+          ],
+          "ans": 0,
+          "exp": "A associação de redução de massa renal, obesidade, ausência de síndrome nefrótica completa e padrão de lesão favorece GESF maladaptativa. O manejo deve abordar a sobrecarga e a proteinúria; imunossupressão não deve ser iniciada apenas pela morfologia em uma forma secundária. Perihilar e glomerulomegalia não são patognomônicos, e apagamento segmentar não confirma uma mutação. A revisão clinicopatológica permanece necessária: uma pessoa obesa também pode ter GESF primária, mas o conjunto descrito favorece a interpretação maladaptativa.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:d16574a69a87f496811cdbca80db024fa9df57f452c24631f2a5360a652c0995",
+        "refCardsAfter": {
+          "kdigo_gn": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+            "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+            "curiosidade": ""
+          },
+          "de_vriese_fsgs_2018": {
+            "label": "De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
+            "url": "https://doi.org/10.1681/ASN.2017090958",
+            "journal": "J Am Soc Nephrol. 2018;29(3):759-774",
+            "ano": 2018,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Integra síndrome nefrótica, etiologia, microscopia eletrônica e padrão histológico na classificação da GESF",
+            "icon": "🔬",
+            "resumo": "A revisão propõe distinguir GESF primária, genética e secundária por avaliação clinicopatológica integrada. Síndrome nefrótica abrupta e apagamento difuso de pedicelos favorecem a forma primária; formas maladaptativas costumam ter glomerulomegalia, lesões perihilares e apagamento segmentar, mas nenhum achado isolado é patognomônico.",
+            "conclusao": "GESF é um padrão de lesão, não uma etiologia: história, fenótipo clínico, causas secundárias, genética quando indicada e extensão do apagamento de pedicelos devem orientar a classificação e evitar imunossupressão inadequada.",
+            "curiosidade": "Como a lesão é focal, ela pode não aparecer na biópsia inicial; em alguns pacientes, a primeira amostra é interpretada como doença de lesões mínimas e uma biópsia posterior demonstra GESF."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "kdigo_gn",
+            "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+            "fieldCount": 12
+          },
+          {
+            "id": "de_vriese_fsgs_2018",
+            "revision": "sha256:423e8d66f9654b009f86edb598d3dcb687da87e806adebb56f1afc5aca635773",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:3f3fbf0b3bd5cd9ee2364ed32a1f94eccb940728ebb71a141b5904245995bede",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer fenótipo de GESF maladaptativa e evitar imunossupressão baseada apenas na morfologia.",
+        "competency": "Classificação e interpretação clinicopatológica da GESF",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Integra fenótipo, morfologia e limite de inferência. Não se classifica como difícil apenas pela extensão, novidade ou número do estudo.",
+        "identity": "Mesmo OP, competência e conceito central correto; qid e gabarito preservados. Dados do estudo agora no enunciado favorecem interpretação, não memória de percentuais."
+      },
+      "evidenceSources": [
+        {
+          "id": "K",
+          "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/kdigo-gn-2021-source.pdf",
+          "bytesSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+          "scope": "Guideline original integral aberto localmente; capítulo6 e recomendações6.1.1.1/6.1.2.1/6.2.1.1 lidos no corpus extraído. Card legado byte-exato já revisto no MPGN-A4 do root; não se emite nova aprovação de consumidores não examinados.",
+          "locators": [
+            "PDFp167–170, ppS162–S165",
+            "§6.1.1.1: sem síndrome nefrótica, buscar causa secundária",
+            "§6.1.2.1: genética em pacientes selecionados",
+            "§6.2.1.1: sem imunossupressão em secundária/causaindeterminada"
+          ]
+        },
+        {
+          "id": "V",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5827609/",
+          "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+          "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-devriese-2018.xml",
+          "localAbstractBytesSHA256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279",
+          "scope": "XML local contém só abstract. Corpo original completo aberto pela web, seçõesHallmarks/PathologicEvaluation/QualityandTiming/Tabela4 lidas. Não se atribui corpo integral ao XML.",
+          "locators": [
+            "Table4: fenótipo/primária/genética/maladaptativa",
+            "LightMicroscopy: perihilar não patognomônica",
+            "QualityandTiming: amostra/córtexjustamedular/cortes/tempo"
+          ]
+        }
+      ],
+      "claimsVerified": [
+        "Massa renal reduzida/obesidade e fenótipo sem síndrome nefrótica favorecem maladaptação.",
+        "Perihilar/glomerulomegalia não são patognomônicos; genética não é confirmada por microscopia isolada.",
+        "KDIGO6.2.1.1 não indica imunossupressão em forma secundária."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Forma maladaptativa é favorecida; priorizar manejo da sobrecarga e tratamento antiproteinúrico.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "B",
+            "text": "Forma primária é favorecida pela lesão perihilar; iniciar glicocorticoide como conduta inicial.",
+            "judgment": "Converter localização histológica em primária e indicação automática de corticoide."
+          },
+          {
+            "letter": "C",
+            "text": "Forma genética está definida pelo apagamento segmentar; a história e as causas secundárias pouco acrescentam.",
+            "judgment": "Converter padrão de pedicelos em confirmação genética e dispensar contexto."
+          },
+          {
+            "letter": "D",
+            "text": "Forma de causa indeterminada é obrigatória, pois albumina preservada impede reconhecer sobrecarga de néfrons.",
+            "judgment": "Confundir fenótipo de sobrecarga com categoria indeterminada obrigatória."
+          }
+        ],
+        "attemptToDefendDistractor": "A forma primária não é impossível em obesidade; por isso, a correta diz favorecida, sem declarar exclusividade causal. O caso reúne quatro pistas coerentes. A resposta não impõe dose específica de bloqueador nem declara que toda proteinúria em rim único tenha a mesma causa.",
+        "result": "RECURSO REJEITADO no contexto proposto, sem certeza etiológica indevida."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes decisivas abertas no corpo original e locators identificados."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Os distratores representam erros clínicos de classificação, prognóstico ou amostragem, auditados acima."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7; nova revisão formal autoral dos literais exatos. Revisão independente necessária antes da aplicação.",
+        "remainingSubstantiveProblems": []
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "2493e0dc",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:7de572529e17fd852765c1eb40926aa5f59c4a5fd54a27251365637a623cf9d2",
+        "question": {
+          "qid": "2493e0dc",
+          "q": "No FSGS Clinical Trial, como as variantes tip e colapsante se associaram ao prognóstico, e qual limite deve acompanhar essa interpretação?",
+          "opts": [
+            "A variante tip teve melhor sobrevida renal e a colapsante pior evolução; a associação veio de uma população jovem com GESF primária corticorresistente e não define sozinha etiologia ou tratamento",
+            "A variante perihilar foi a de pior prognóstico e comprovou origem genética em todos os casos",
+            "A variante tip causou mais falência renal que a colapsante, independentemente da resposta à terapia",
+            "As variantes tiveram evolução idêntica, tornando a classificação de Columbia sem qualquer valor prognóstico"
+          ],
+          "ans": 0,
+          "exp": "Na análise de 138 participantes de 2 a 38 anos com GESF primária corticorresistente, a falência renal em três anos ocorreu em 47% da variante colapsante, 20% da NOS e 7% da tip. O achado sustenta associação prognóstica — tip com curso mais favorável e colapsante com pior evolução — dentro da população estudada. Não autoriza converter morfologia em causa, predizer individualmente um desfecho ou escolher imunossupressão sem considerar síndrome nefrótica, cronicidade, etiologia e resposta terapêutica.",
+          "refs": [
+            "dagati_fsgs_variants_2013",
+            "kdigo_gn"
+          ],
+          "cat": "glomerular",
+          "diff": "hard",
+          "t": "GESF — Prognóstico e Limites das Variantes"
+        }
+      },
+      "patch": {
+        "after": {
+          "qid": "2493e0dc",
+          "q": "Em uma análise de 138 participantes jovens com glomeruloesclerose segmentar e focal (GESF) primária corticorresistente, as estimativas de falência renal em três anos foram 47% na variante colapsante e 7% na tip. Como aplicar esse achado?",
+          "opts": [
+            "Usar como associação prognóstica dessa população, integrando resposta terapêutica e contexto clínico.",
+            "Escolher a imunossupressão pela variante, pois a comparação define qual tratamento funciona melhor.",
+            "Aplicar os mesmos riscos absolutos a toda GESF adulta ou secundária, independentemente do perfil.",
+            "Concluir que a variante determina a causa da doença, dispensando avaliação etiológica adicional."
+          ],
+          "ans": 0,
+          "exp": "A análise do FSGS Clinical Trial descreveu associação entre variantes e evolução numa população selecionada, com GESF primária corticorresistente e idade observada de 2 a 38 anos. A tip teve curso mais favorável e a colapsante pior evolução; as estimativas foram calculadas por Kaplan–Meier, com diferenças também na apresentação e na lesão basal. Não foi uma randomização de padrão histológico. O achado ajuda no prognóstico dessa população, mas não define sozinho etiologia, tratamento ou risco individual, nem deve ser transportado diretamente à GESF secundária ou a qualquer adulto.",
+          "refs": [
+            "dagati_fsgs_variants_2013",
+            "kdigo_gn"
+          ],
+          "cat": "glomerular",
+          "diff": "medium",
+          "t": "GESF — Prognóstico e Limites das Variantes"
+        },
+        "afterAuthorRevision": "sha256:0d6a47faf452214eb710d88d6749dc7ee98c71a6adafecd10b504e0dae3fcee6",
+        "refCardsAfter": {
+          "dagati_fsgs_variants_2013": {
+            "label": "D'Agati et al. — Variantes Histológicas da GESF (2013)",
+            "url": "https://doi.org/10.2215/CJN.06100612",
+            "journal": "Clin J Am Soc Nephrol. 2013;8(3):399-406",
+            "ano": 2013,
+            "tipo": "Coorte",
+            "badge": "COHORT",
+            "badgeColor": "#f59e0b",
+            "impacto": "Associação das variantes de Columbia com apresentação e desfechos em participantes jovens com GESF primária corticorresistente",
+            "icon": "🔬",
+            "resumo": "Análise de 138 biópsias de participantes de 2 a 38 anos com glomeruloesclerose segmentar e focal primária corticorresistente no FSGS Clinical Trial. A classificação central identificou 68% sem outra especificação, 12% colapsante, 10% tip, 7% perihilar e 3% celular. As estimativas de falência renal em três anos pelo método Kaplan–Meier foram 47% na colapsante, 20% sem outra especificação e 7% na tip (P=0,005). A comparação entre variantes foi observacional, com diferenças clínicas e de lesão basal; não randomizou pessoas a um padrão histológico.",
+            "conclusao": "Na população estudada, a variante tip associou-se a melhor sobrevida renal e a colapsante ao pior curso; essas associações prognósticas não transformam a morfologia em causa nem substituem resposta à terapia, cronicidade e contexto clínico.",
+            "curiosidade": "A amostra observada tinha 2 a 38 anos, embora o critério de elegibilidade aceitasse até 40. Os percentuais em três anos foram estimados por Kaplan–Meier, não obtidos apenas dividindo eventos pelo número inicial de cada variante."
+          },
+          "kdigo_gn": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+            "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+            "curiosidade": ""
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "dagati_fsgs_variants_2013",
+            "revision": "sha256:2345d5f5f36b54f820558d0db956374d64d42b9e2ecc17b405759b5f74952dbe",
+            "fieldCount": 12
+          },
+          {
+            "id": "kdigo_gn",
+            "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:80fb2f525206fc975436d0a8933260ee292812ee5367913270802d396760a4e9",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar associação prognóstica das variantes de GESF sem inferir causalidade, tratamento ou risco universal.",
+        "competency": "Classificação e interpretação clinicopatológica da GESF",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Integra fenótipo, morfologia e limite de inferência. Não se classifica como difícil apenas pela extensão, novidade ou número do estudo.",
+        "identity": "Mesmo OP, competência e conceito central correto; qid e gabarito preservados. Dados do estudo agora no enunciado favorecem interpretação, não memória de percentuais."
+      },
+      "evidenceSources": [
+        {
+          "id": "D",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3586971/",
+          "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+          "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-dagati-2013.xml",
+          "localAbstractBytesSHA256": "56e73f2585668560c5378069911d4796b9fd1e4c3595321d8a98dac555d21111",
+          "scope": "XML local contém só abstract. Corpo primário completo aberto e métodos/tabela4/discussão lidos. Idade observada2–38 distinta de elegibilidade2–40; estimativas de falência renal são Kaplan–Meier.",
+          "locators": [
+            "AbstractN138/2–38anos",
+            "Methods: elegibilidade/corticorresistência/semsecundária",
+            "Table4footnotec: Kaplan–Meier",
+            "Results47/20/7, P0,005"
+          ]
+        },
+        {
+          "id": "K",
+          "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/kdigo-gn-2021-source.pdf",
+          "bytesSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+          "scope": "Guideline original integral aberto localmente; capítulo6 e recomendações6.1.1.1/6.1.2.1/6.2.1.1 lidos no corpus extraído. Card legado byte-exato já revisto no MPGN-A4 do root; não se emite nova aprovação de consumidores não examinados.",
+          "locators": [
+            "PDFp167–170, ppS162–S165",
+            "§6.1.1.1: sem síndrome nefrótica, buscar causa secundária",
+            "§6.1.2.1: genética em pacientes selecionados",
+            "§6.2.1.1: sem imunossupressão em secundária/causaindeterminada"
+          ]
+        }
+      ],
+      "claimsVerified": [
+        "N138/idadeobservada2–38/corticorresistência.",
+        "EstimativasKaplan–Meier47%colapsante/7%tip em3anos.",
+        "Comparaçãohistológicaobservacional; não defineetiologia/tratamento."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Usar como associação prognóstica dessa população, integrando resposta terapêutica e contexto clínico.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "B",
+            "text": "Escolher a imunossupressão pela variante, pois a comparação define qual tratamento funciona melhor.",
+            "judgment": "Usar associação prognóstica como comparação de eficácia terapêutica."
+          },
+          {
+            "letter": "C",
+            "text": "Aplicar os mesmos riscos absolutos a toda GESF adulta ou secundária, independentemente do perfil.",
+            "judgment": "Extrapolar risco absoluto entre populações diferentes."
+          },
+          {
+            "letter": "D",
+            "text": "Concluir que a variante determina a causa da doença, dispensando avaliação etiológica adicional.",
+            "judgment": "Converter padrão histológico em causa."
+          }
+        ],
+        "attemptToDefendDistractor": "Os números e a população foram trazidos ao enunciado para interpretar a evidência, sem exigir memorização de percentuais. Nenhuma alternativa precisa decorar a classificação inteira de Columbia. A resposta não nega valor prognóstico; limita sua aplicação.",
+        "result": "RECURSO REJEITADO no contexto proposto, sem certeza etiológica indevida."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes decisivas abertas no corpo original e locators identificados."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Os distratores representam erros clínicos de classificação, prognóstico ou amostragem, auditados acima."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7; nova revisão formal autoral dos literais exatos. Revisão independente necessária antes da aplicação.",
+        "remainingSubstantiveProblems": []
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "1366eca9",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:8a5616700a598177967b757867b24bf3ebbc28786c6d9a8cd7af422a25d392e8",
+        "question": {
+          "qid": "1366eca9",
+          "q": "Adulto apresenta início abrupto de edema, proteinúria de 8 g/dia, albumina de 2,0 g/dL e padrão de GESF com apagamento difuso dos pedicelos. Não há causa secundária identificada. Qual classificação é mais provável e que cautela permanece?",
+          "opts": [
+            "GESF primária é favorecida, mas exige avaliação clinicopatológica e exclusão de formas secundárias e genéticas antes de atribuir etiologia e indicar imunossupressão",
+            "GESF secundária maladaptativa está comprovada porque toda proteinúria nefrótica decorre de hiperfiltração",
+            "A extensão do apagamento dos pedicelos prova uma mutação monogênica específica",
+            "GESF é diagnóstico etiológico único, portanto história, genética e causas secundárias são irrelevantes"
+          ],
+          "ans": 0,
+          "exp": "A KDIGO define GESF primária como síndrome clínica de podocitopatia: síndrome nefrótica, lesão de GESF à microscopia óptica e apagamento difuso de pedicelos, sem causa genética ou secundária identificável. O conjunto do caso a favorece, mas a microscopia eletrônica não é um teste etiológico isolado. Idade de início, história familiar, fármacos, infecções, obesidade, redução de massa renal e indicação de teste genético devem ser revistos antes de decidir imunossupressão. Formas maladaptativas costumam ter apagamento segmentar e podem apresentar proteinúria nefrótica sem hipoalbuminemia intensa.",
+          "cat": "glomerular",
+          "diff": "hard",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "t": "GESF Primária — Classificação Clinicopatológica"
+        }
+      },
+      "patch": {
+        "after": {
+          "qid": "1366eca9",
+          "q": "Adulto com início abrupto de edema tem proteinúria de 8 g/dia e albumina de 2,0 g/dL. A biópsia mostra glomeruloesclerose segmentar e focal (GESF) com apagamento difuso dos pedicelos, sem causa secundária identificada inicialmente. Qual interpretação é mais adequada?",
+          "opts": [
+            "Forma primária é favorecida, mantendo avaliação clinicopatológica e genética quando indicada.",
+            "Forma maladaptativa é favorecida pela quantidade de proteína, mesmo sem fator de sobrecarga identificado.",
+            "Forma genética está confirmada pelo apagamento difuso, sem necessidade de investigação dirigida.",
+            "A origem está definida pela biópsia, tornando desnecessária a revisão de fármacos, infecções e história familiar."
+          ],
+          "ans": 0,
+          "exp": "Síndrome nefrótica abrupta, lesão de GESF e apagamento difuso dos pedicelos favorecem a forma primária, mas o padrão ultraestrutural não é um teste etiológico isolado. A avaliação deve revisar causas secundárias, história familiar e manifestações que indiquem investigação genética; a KDIGO propõe testes genéticos em pacientes selecionados, não em todos indistintamente. Formas genéticas também podem ter apagamento difuso. A classificação clínica importa porque formas secundárias ou de causa indeterminada não devem receber imunossupressão apenas pelo achado histológico.",
+          "cat": "glomerular",
+          "diff": "medium",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "t": "GESF Primária — Classificação Clinicopatológica"
+        },
+        "afterAuthorRevision": "sha256:33169bf329d0683a72786d6a44bbdb7e8ab1f0999cea738513b62bfde244e074",
+        "refCardsAfter": {
+          "kdigo_gn": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+            "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+            "curiosidade": ""
+          },
+          "de_vriese_fsgs_2018": {
+            "label": "De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
+            "url": "https://doi.org/10.1681/ASN.2017090958",
+            "journal": "J Am Soc Nephrol. 2018;29(3):759-774",
+            "ano": 2018,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Integra síndrome nefrótica, etiologia, microscopia eletrônica e padrão histológico na classificação da GESF",
+            "icon": "🔬",
+            "resumo": "A revisão propõe distinguir GESF primária, genética e secundária por avaliação clinicopatológica integrada. Síndrome nefrótica abrupta e apagamento difuso de pedicelos favorecem a forma primária; formas maladaptativas costumam ter glomerulomegalia, lesões perihilares e apagamento segmentar, mas nenhum achado isolado é patognomônico.",
+            "conclusao": "GESF é um padrão de lesão, não uma etiologia: história, fenótipo clínico, causas secundárias, genética quando indicada e extensão do apagamento de pedicelos devem orientar a classificação e evitar imunossupressão inadequada.",
+            "curiosidade": "Como a lesão é focal, ela pode não aparecer na biópsia inicial; em alguns pacientes, a primeira amostra é interpretada como doença de lesões mínimas e uma biópsia posterior demonstra GESF."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "kdigo_gn",
+            "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+            "fieldCount": 12
+          },
+          {
+            "id": "de_vriese_fsgs_2018",
+            "revision": "sha256:423e8d66f9654b009f86edb598d3dcb687da87e806adebb56f1afc5aca635773",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:c1bd55decb08cb0ae94734e45731e45191f5f434ef6998d8dceba4b3b239d983",
+      "classificationBeforeAndAfter": {
+        "op": "Integrar síndrome nefrótica e biópsia na classificação provável de GESF primária, preservando investigação etiológica.",
+        "competency": "Classificação e interpretação clinicopatológica da GESF",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "rationale": "Integra fenótipo, morfologia e limite de inferência. Não se classifica como difícil apenas pela extensão, novidade ou número do estudo.",
+        "identity": "Mesmo OP, competência e conceito central correto; qid e gabarito preservados. Dados do estudo agora no enunciado favorecem interpretação, não memória de percentuais."
+      },
+      "evidenceSources": [
+        {
+          "id": "K",
+          "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/kdigo-gn-2021-source.pdf",
+          "bytesSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+          "scope": "Guideline original integral aberto localmente; capítulo6 e recomendações6.1.1.1/6.1.2.1/6.2.1.1 lidos no corpus extraído. Card legado byte-exato já revisto no MPGN-A4 do root; não se emite nova aprovação de consumidores não examinados.",
+          "locators": [
+            "PDFp167–170, ppS162–S165",
+            "§6.1.1.1: sem síndrome nefrótica, buscar causa secundária",
+            "§6.1.2.1: genética em pacientes selecionados",
+            "§6.2.1.1: sem imunossupressão em secundária/causaindeterminada"
+          ]
+        },
+        {
+          "id": "V",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5827609/",
+          "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+          "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-devriese-2018.xml",
+          "localAbstractBytesSHA256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279",
+          "scope": "XML local contém só abstract. Corpo original completo aberto pela web, seçõesHallmarks/PathologicEvaluation/QualityandTiming/Tabela4 lidas. Não se atribui corpo integral ao XML.",
+          "locators": [
+            "Table4: fenótipo/primária/genética/maladaptativa",
+            "LightMicroscopy: perihilar não patognomônica",
+            "QualityandTiming: amostra/córtexjustamedular/cortes/tempo"
+          ]
+        }
+      ],
+      "claimsVerified": [
+        "Primária favorecida pela síndrome clínica+FSGS+apagamento.",
+        "Genética também podeapagamentodifuso; testesemselecionados.",
+        "Imunossupressão não fundada apenasmorfologia."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Forma primária é favorecida, mantendo avaliação clinicopatológica e genética quando indicada.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "B",
+            "text": "Forma maladaptativa é favorecida pela quantidade de proteína, mesmo sem fator de sobrecarga identificado.",
+            "judgment": "Confundir proteinúria intensa com prova de hiperfiltração maladaptativa."
+          },
+          {
+            "letter": "C",
+            "text": "Forma genética está confirmada pelo apagamento difuso, sem necessidade de investigação dirigida.",
+            "judgment": "Tratar apagamento difuso como confirmação genética."
+          },
+          {
+            "letter": "D",
+            "text": "A origem está definida pela biópsia, tornando desnecessária a revisão de fármacos, infecções e história familiar.",
+            "judgment": "Tratar biópsia como substituta da investigação de causa."
+          }
+        ],
+        "attemptToDefendDistractor": "A expressão favorecida conserva a possibilidade genética ou secundária e evita exigir teste genético universal antes de qualquer tratamento. O dado sem causa secundária inicial não equivale a investigação concluída para todas as etiologias.",
+        "result": "RECURSO REJEITADO no contexto proposto, sem certeza etiológica indevida."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes decisivas abertas no corpo original e locators identificados."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Os distratores representam erros clínicos de classificação, prognóstico ou amostragem, auditados acima."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7; nova revisão formal autoral dos literais exatos. Revisão independente necessária antes da aplicação.",
+        "remainingSubstantiveProblems": []
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "cd455e49",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:c9141306055c9135e3a6d52fc6c63c68c4e4f5d7f31cdb9570b279303baf5de2",
+        "question": {
+          "t": "GESF — Amostragem e Integração da Biópsia",
+          "qid": "cd455e49",
+          "q": "Por que uma biópsia renal com poucos glomérulos pode não excluir glomeruloesclerose segmentar e focal (GESF), e qual é a interpretação adequada?",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "opts": [
+            "A lesão é focal e pode não estar nos glomérulos amostrados; deve-se integrar microscopia óptica, imunofluorescência, microscopia eletrônica e fenótipo clínico",
+            "A ausência de esclerose em um único glomérulo exclui GESF mesmo diante de síndrome nefrótica",
+            "A microscopia eletrônica isolada define a etiologia primária sempre que houver apagamento de pedicelos",
+            "Amostra predominantemente medular é suficiente porque a GESF não envolve o córtex"
+          ],
+          "ans": 0,
+          "exp": "Focal significa que apenas parte dos glomérulos está acometida, e segmentar, que apenas parte do tufo apresenta a lesão; uma amostra pequena pode, portanto, não captá-la. Representação cortical adequada, inclusive de córtex profundo, aumenta a chance diagnóstica. Microscopia óptica identifica esclerose, imunofluorescência avalia depósitos e microscopia eletrônica quantifica a lesão podocitária, mas nenhum método isolado estabelece a causa. Até apagamento difuso dos pedicelos deve ser interpretado junto à síndrome nefrótica, às causas secundárias e à possibilidade genética.",
+          "diff": "medium",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "GESF — Amostragem e Integração da Biópsia",
+          "qid": "cd455e49",
+          "q": "Uma biópsia com poucos glomérulos não mostra esclerose, mas a hipótese de glomeruloesclerose segmentar e focal (GESF) permanece pelo quadro clínico. Como interpretar essa amostra?",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "opts": [
+            "A lesão focal pode não ter sido amostrada; integrar adequação das técnicas e fenótipo clínico.",
+            "O apagamento difuso na microscopia eletrônica supre a amostra e confirma etiologia primária.",
+            "Glomérulos superficiais representam igualmente toda lesão inicial, dispensando córtex profundo.",
+            "A falta de esclerose na amostra define doença de lesões mínimas, independentemente da evolução."
+          ],
+          "ans": 0,
+          "exp": "Lesões segmentares podem não aparecer em uma amostra pequena ou em poucos cortes, e a doença pode comprometer primeiro o córtex justamedular. A representatividade cortical, a avaliação em cortes e o momento da biópsia importam. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares e precisam ser integradas ao fenótipo. Apagamento dos pedicelos pode preceder a esclerose e não define sozinho a etiologia primária; por isso, uma amostra negativa limitada não exclui GESF nem fixa automaticamente o diagnóstico de lesões mínimas.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:a1f9687519fbd32732aa55a76d9a02155614187783d9959f24fa62544c23ba06",
+        "refCardsAfter": {
+          "kdigo_gn": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+            "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+            "curiosidade": ""
+          },
+          "de_vriese_fsgs_2018": {
+            "label": "De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
+            "url": "https://doi.org/10.1681/ASN.2017090958",
+            "journal": "J Am Soc Nephrol. 2018;29(3):759-774",
+            "ano": 2018,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Integra síndrome nefrótica, etiologia, microscopia eletrônica e padrão histológico na classificação da GESF",
+            "icon": "🔬",
+            "resumo": "A revisão propõe distinguir GESF primária, genética e secundária por avaliação clinicopatológica integrada. Síndrome nefrótica abrupta e apagamento difuso de pedicelos favorecem a forma primária; formas maladaptativas costumam ter glomerulomegalia, lesões perihilares e apagamento segmentar, mas nenhum achado isolado é patognomônico.",
+            "conclusao": "GESF é um padrão de lesão, não uma etiologia: história, fenótipo clínico, causas secundárias, genética quando indicada e extensão do apagamento de pedicelos devem orientar a classificação e evitar imunossupressão inadequada.",
+            "curiosidade": "Como a lesão é focal, ela pode não aparecer na biópsia inicial; em alguns pacientes, a primeira amostra é interpretada como doença de lesões mínimas e uma biópsia posterior demonstra GESF."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "kdigo_gn",
+            "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+            "fieldCount": 12
+          },
+          {
+            "id": "de_vriese_fsgs_2018",
+            "revision": "sha256:423e8d66f9654b009f86edb598d3dcb687da87e806adebb56f1afc5aca635773",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:c26b22fe3ba4d04b5327c0c261fc7610c58f4ed052e38434d42c195e8195bf2b",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer erro amostral e temporal da biópsia na GESF, sem usar microscopia eletrônica como prova etiológica.",
+        "competency": "Classificação e interpretação clinicopatológica da GESF",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "rationale": "Integra fenótipo, morfologia e limite de inferência. Não se classifica como difícil apenas pela extensão, novidade ou número do estudo.",
+        "identity": "Mesmo OP, competência e conceito central correto; qid e gabarito preservados. Dados do estudo agora no enunciado favorecem interpretação, não memória de percentuais."
+      },
+      "evidenceSources": [
+        {
+          "id": "V",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5827609/",
+          "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+          "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-devriese-2018.xml",
+          "localAbstractBytesSHA256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279",
+          "scope": "XML local contém só abstract. Corpo original completo aberto pela web, seçõesHallmarks/PathologicEvaluation/QualityandTiming/Tabela4 lidas. Não se atribui corpo integral ao XML.",
+          "locators": [
+            "Table4: fenótipo/primária/genética/maladaptativa",
+            "LightMicroscopy: perihilar não patognomônica",
+            "QualityandTiming: amostra/córtexjustamedular/cortes/tempo"
+          ]
+        },
+        {
+          "id": "K",
+          "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/kdigo-gn-2021-source.pdf",
+          "bytesSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+          "scope": "Guideline original integral aberto localmente; capítulo6 e recomendações6.1.1.1/6.1.2.1/6.2.1.1 lidos no corpus extraído. Card legado byte-exato já revisto no MPGN-A4 do root; não se emite nova aprovação de consumidores não examinados.",
+          "locators": [
+            "PDFp167–170, ppS162–S165",
+            "§6.1.1.1: sem síndrome nefrótica, buscar causa secundária",
+            "§6.1.2.1: genética em pacientes selecionados",
+            "§6.2.1.1: sem imunossupressão em secundária/causaindeterminada"
+          ]
+        }
+      ],
+      "claimsVerified": [
+        "DeVrieseQualityTiming: focal/juxtamedular/amostra/cortes.",
+        "Apagamento podeprecederesclerose.",
+        "Técnicas e clínica complementares, semetiologiaisolada."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "A lesão focal pode não ter sido amostrada; integrar adequação das técnicas e fenótipo clínico.",
+            "judgment": "CORRETA"
+          },
+          {
+            "letter": "B",
+            "text": "O apagamento difuso na microscopia eletrônica supre a amostra e confirma etiologia primária.",
+            "judgment": "Usar microscopia eletrônica como prova etiológica que dispensaria amostragem."
+          },
+          {
+            "letter": "C",
+            "text": "Glomérulos superficiais representam igualmente toda lesão inicial, dispensando córtex profundo.",
+            "judgment": "Ignorar distribuição justamedular inicial."
+          },
+          {
+            "letter": "D",
+            "text": "A falta de esclerose na amostra define doença de lesões mínimas, independentemente da evolução.",
+            "judgment": "Ancorar diagnóstico definitivo em amostra negativa insuficiente."
+          }
+        ],
+        "attemptToDefendDistractor": "O caso não obriga repetir biópsia em toda amostra pequena: exige interpretar a limitação e integrar os dados. Uma revisão de cortes e da adequação pode ser útil. O OP focal/temporal da GESF é uma variação útil diante da pergunta geral de adequação cf84c115, sem inventar outro objetivo por contagem.",
+        "result": "RECURSO REJEITADO no contexto proposto, sem certeza etiológica indevida."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Referência não sustenta gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Fontes decisivas abertas no corpo original e locators identificados."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Os distratores representam erros clínicos de classificação, prognóstico ou amostragem, auditados acima."
+        },
+        {
+          "criterion": "Trivia sem consequência clínica",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "Conferir OP, contexto e recurso individual acima."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7; nova revisão formal autoral dos literais exatos. Revisão independente necessária antes da aplicação.",
+        "remainingSubstantiveProblems": []
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "referenceCandidates": [
+    {
+      "id": "de_vriese_fsgs_2018",
+      "beforeRevision": "sha256:b6152da09cfec29e5c538feca0f436b4067f320171971467f8be5fd4317944be",
+      "after": {
+        "label": "De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
+        "url": "https://doi.org/10.1681/ASN.2017090958",
+        "journal": "J Am Soc Nephrol. 2018;29(3):759-774",
+        "ano": 2018,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Integra síndrome nefrótica, etiologia, microscopia eletrônica e padrão histológico na classificação da GESF",
+        "icon": "🔬",
+        "resumo": "A revisão propõe distinguir GESF primária, genética e secundária por avaliação clinicopatológica integrada. Síndrome nefrótica abrupta e apagamento difuso de pedicelos favorecem a forma primária; formas maladaptativas costumam ter glomerulomegalia, lesões perihilares e apagamento segmentar, mas nenhum achado isolado é patognomônico.",
+        "conclusao": "GESF é um padrão de lesão, não uma etiologia: história, fenótipo clínico, causas secundárias, genética quando indicada e extensão do apagamento de pedicelos devem orientar a classificação e evitar imunossupressão inadequada.",
+        "curiosidade": "Como a lesão é focal, ela pode não aparecer na biópsia inicial; em alguns pacientes, a primeira amostra é interpretada como doença de lesões mínimas e uma biópsia posterior demonstra GESF."
+      },
+      "afterRevision": "sha256:423e8d66f9654b009f86edb598d3dcb687da87e806adebb56f1afc5aca635773",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5827609/",
+          "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+          "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-devriese-2018.xml",
+          "localAbstractBytesSHA256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279",
+          "scope": "XML local contém só abstract. Corpo original completo aberto pela web, seçõesHallmarks/PathologicEvaluation/QualityandTiming/Tabela4 lidas. Não se atribui corpo integral ao XML.",
+          "locators": [
+            "Table4: fenótipo/primária/genética/maladaptativa",
+            "LightMicroscopy: perihilar não patognomônica",
+            "QualityandTiming: amostra/córtexjustamedular/cortes/tempo"
+          ]
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7; nova revisão formal autoral dos literais exatos. Revisão independente necessária antes da aplicação."
+      },
+      "noConsumerApprovalInherited": true
+    },
+    {
+      "id": "dagati_fsgs_variants_2013",
+      "beforeRevision": "sha256:0923b26b71ec5c8d3690f78b7550f0c04b77139b373dba3f984ef7dcd9a42604",
+      "after": {
+        "label": "D'Agati et al. — Variantes Histológicas da GESF (2013)",
+        "url": "https://doi.org/10.2215/CJN.06100612",
+        "journal": "Clin J Am Soc Nephrol. 2013;8(3):399-406",
+        "ano": 2013,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "impacto": "Associação das variantes de Columbia com apresentação e desfechos em participantes jovens com GESF primária corticorresistente",
+        "icon": "🔬",
+        "resumo": "Análise de 138 biópsias de participantes de 2 a 38 anos com glomeruloesclerose segmentar e focal primária corticorresistente no FSGS Clinical Trial. A classificação central identificou 68% sem outra especificação, 12% colapsante, 10% tip, 7% perihilar e 3% celular. As estimativas de falência renal em três anos pelo método Kaplan–Meier foram 47% na colapsante, 20% sem outra especificação e 7% na tip (P=0,005). A comparação entre variantes foi observacional, com diferenças clínicas e de lesão basal; não randomizou pessoas a um padrão histológico.",
+        "conclusao": "Na população estudada, a variante tip associou-se a melhor sobrevida renal e a colapsante ao pior curso; essas associações prognósticas não transformam a morfologia em causa nem substituem resposta à terapia, cronicidade e contexto clínico.",
+        "curiosidade": "A amostra observada tinha 2 a 38 anos, embora o critério de elegibilidade aceitasse até 40. Os percentuais em três anos foram estimados por Kaplan–Meier, não obtidos apenas dividindo eventos pelo número inicial de cada variante."
+      },
+      "afterRevision": "sha256:2345d5f5f36b54f820558d0db956374d64d42b9e2ecc17b405759b5f74952dbe",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3586971/",
+          "access": "PRIMARY_FULL_WEB_BODY_OPENED",
+          "localAbstract": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/fsgs-dagati-2013.xml",
+          "localAbstractBytesSHA256": "56e73f2585668560c5378069911d4796b9fd1e4c3595321d8a98dac555d21111",
+          "scope": "XML local contém só abstract. Corpo primário completo aberto e métodos/tabela4/discussão lidos. Idade observada2–38 distinta de elegibilidade2–40; estimativas de falência renal são Kaplan–Meier.",
+          "locators": [
+            "AbstractN138/2–38anos",
+            "Methods: elegibilidade/corticorresistência/semsecundária",
+            "Table4footnotec: Kaplan–Meier",
+            "Results47/20/7, P0,005"
+          ]
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7; nova revisão formal autoral dos literais exatos. Revisão independente necessária antes da aplicação."
+      },
+      "noConsumerApprovalInherited": true
+    }
+  ],
+  "unchangedKdigoBinding": {
+    "id": "kdigo_gn",
+    "revision": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+    "literal": {
+      "label": "KDIGO Glomerular Diseases 2021",
+      "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+      "journal": "Kidney Int 2021;100(4S):S1-S276",
+      "ano": 2021,
+      "tipo": "Diretriz",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+      "icon": "📋",
+      "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+      "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+      "curiosidade": ""
+    },
+    "reusedExactIndependentGate": "ux-1728-root/MPGN-independent-A4.json — card byte-exato, não autorização dos itens FSGS que são revistos aqui.",
+    "newClinicalAssertionsVerifiedInChapter6": true
+  },
+  "usefulVariations": [
+    {
+      "qids": [
+        "f9d81f9d",
+        "1366eca9"
+      ],
+      "sameBroadObjective": "Classificar GESF",
+      "usefulCaseDifference": "Sobrecarga sem síndrome nefrótica versus síndrome abrupta com apagamento difuso; decisões de imunossupressão diferem."
+    },
+    {
+      "qids": [
+        "cd455e49",
+        "cf84c115"
+      ],
+      "sameBroadObjective": "Avaliar biópsia",
+      "usefulCognitiveAngle": "Erro focal/temporal específico da GESF versus adequação geral da amostra e dos métodos. Revisor pode consolidar se entender ausência de ganho útil."
+    }
+  ],
+  "implementationBoundary": {
+    "noRootWrites": true,
+    "noNewQid": true,
+    "noHistoryReset": true,
+    "noFSRSCopy": true,
+    "noApprovalBeforeIndependentGate": true
+  }
+}

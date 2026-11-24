@@ -40,6 +40,8 @@ const escrever = (p, s) => writeFileSync(resolve(raiz, p), s, 'utf8');
 const metadadosVersao = JSON.parse(ler('version.json'));
 const versaoAtual = metadadosVersao.version;
 const novaVersao = alvo || versaoAtual;
+const releaseDoManifesto = ler('data/question-revision-manifest.js').match(/"release":"([^"\n]+)"/)?.[1];
+const manifestoDerivou = releaseDoManifesto !== novaVersao;
 
 // Arquivos alterados em relação à base, incluindo o que ainda não foi commitado
 let alterados = [];
@@ -53,25 +55,53 @@ try {
   console.error(`Não foi possível comparar com "${base}": ${erro.message}`);
   process.exit(1);
 }
+// The generated manifest changes when only release metadata advances too.
+if (manifestoDerivou) alterados.push('data/question-revision-manifest.js');
 
 // Assets com cache-buster próprio em jogar/index.html.
 // `style.css` entra explicitamente: é o maior CSS do projeto (520 KB) e ficava
 // fora do padrão `styles/lumen/`, então a ferramenta nunca subia o buster dele
 // — quem já tinha o arquivo em cache continuava com a versão velha.
-const BUSTER = /(js\/[a-z0-9-]+\.js|styles\/lumen\/[a-z0-9-]+\.css|style\.css)\?v=([0-9.]+)/g;
+const BUSTER = /((?:js|data)\/[a-z0-9-]+\.js|styles\/lumen\/[a-z0-9-]+\.css|style\.css)\?(?:v|release)=([0-9.]+)/g;
+const DATA_BUSTER = /(data\/[a-z0-9-]+\.js)\?release=([0-9.]+)/g;
+const DATA_CONSUMERS = ['js/game.js', 'js/utils.js', 'offline.html'];
+function bustersDoApp(htmlTexto, leitor = ler) {
+  const entries = [...htmlTexto.matchAll(new RegExp(BUSTER.source, 'g'))];
+  for (const file of DATA_CONSUMERS) {
+    entries.push(...leitor(file).matchAll(new RegExp(DATA_BUSTER.source, 'g')));
+  }
+  const versions = new Map();
+  for (const match of entries) {
+    if (versions.has(match[1]) && versions.get(match[1]) !== match[2])
+      throw new Error(`Versões de dados divergentes entre consumidores: ${match[1]}`);
+    versions.set(match[1], match[2]);
+  }
+  return [...versions].map(([arquivo, versao]) => ({arquivo, versao}));
+}
 
 const html = ler('jogar/index.html');
-const comBuster = [...html.matchAll(BUSTER)]
-  .map(m => ({ arquivo: m[1], versao: m[2] }));
+const comBuster = bustersDoApp(html);
+
+// Updating a lazy data URL changes its loader's bytes too. Advance that
+// JavaScript buster even when only its underlying data changed initially.
+for (const file of DATA_CONSUMERS) {
+  if ([...ler(file).matchAll(new RegExp(DATA_BUSTER.source, 'g'))]
+    .some(match => alterados.includes(match[1]) && match[2] !== novaVersao)) alterados.push(file);
+}
 
 const precisamBump = comBuster.filter(a => alterados.includes(a.arquivo));
 const naoMudaram = comBuster.filter(a => !alterados.includes(a.arquivo));
+const bustersAtrasados = precisamBump.filter(a => a.versao !== novaVersao);
 
 console.log(`base: ${base}`);
 console.log(`versão: ${versaoAtual}${alvo && alvo !== versaoAtual ? ` -> ${novaVersao}` : ' (mantida)'}`);
 console.log(`\nassets alterados (buster sobe para ${novaVersao}):`);
 if (!precisamBump.length) console.log('  nenhum');
 precisamBump.forEach(a => console.log(`  ${a.arquivo}  ${a.versao} -> ${novaVersao}`));
+if (apenasChecar && bustersAtrasados.length) {
+  console.log('\n⚠  assets alterados ainda apontam para um cache-buster anterior:');
+  bustersAtrasados.forEach(a => console.log(`  ${a.arquivo}: ${a.versao}; esperado ${novaVersao}`));
+}
 
 // O erro clássico do replace global: o buster de um asset MUDOU em relação à
 // base, mas o arquivo em si não. O usuário rebaixaria algo intocado.
@@ -79,10 +109,8 @@ precisamBump.forEach(a => console.log(`  ${a.arquivo}  ${a.versao} -> ${novaVers
 // pode acusar nada.
 let busterBase = new Map();
 try {
-  const htmlBase = execFileSync('git', ['show', `${base}:jogar/index.html`], { cwd: raiz, encoding: 'utf8' });
-  busterBase = new Map(
-    [...htmlBase.matchAll(new RegExp(BUSTER.source, 'g'))].map(m => [m[1], m[2]])
-  );
+  const baseLer = p => execFileSync('git', ['show', `${base}:${p}`], { cwd: raiz, encoding: 'utf8' });
+  busterBase = new Map(bustersDoApp(baseLer('jogar/index.html'), baseLer).map(a => [a.arquivo, a.versao]));
 } catch { /* base indisponível: sem comparação possível, não acusa */ }
 
 const suspeitos = naoMudaram.filter(a => busterBase.has(a.arquivo) && busterBase.get(a.arquivo) !== a.versao);
@@ -117,7 +145,7 @@ function mapaDesejado(htmlTexto, swTexto) {
   const lista = blocoEntre(swTexto, 'const STATIC_ASSETS = [', '];');
   if (!lista) throw new Error('STATIC_ASSETS não encontrado em sw.js');
   const estaticos = [...lista.conteudo.matchAll(/'(\/[^']+)'/g)].map(m => m[1]);
-  const versoes = new Map([...htmlTexto.matchAll(new RegExp(BUSTER.source, 'g'))].map(m => [m[1], m[2]]));
+  const versoes = new Map(bustersDoApp(htmlTexto).map(a => [a.arquivo, a.versao]));
   const linhas = estaticos
     .filter(c => versoes.has(c.replace(/^\//, '')))
     .map(c => `  '${c}': '${versoes.get(c.replace(/^\//, ''))}',`);
@@ -187,14 +215,12 @@ if (contraAtual === null || contraBase === null || contraAtual < 0 || contraBase
 
 // O catálogo publicado identifica o release técnico, mesmo sem mudança clínica.
 // Conferir aqui evita descobrir metadado antigo apenas na bateria E2E completa.
-const releaseDoManifesto = ler('data/question-revision-manifest.js').match(/"release":"([^"\n]+)"/)?.[1];
-const manifestoDerivou = releaseDoManifesto !== novaVersao;
 if (manifestoDerivou) {
   console.log(`\nManifesto de questões no release ${releaseDoManifesto || 'ausente'}; esperado ${novaVersao}.`);
 }
 
 if (apenasChecar) {
-  process.exit(suspeitos.length || mapaDerivou || manifestoDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
+  process.exit(suspeitos.length || bustersAtrasados.length || mapaDerivou || manifestoDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
 }
 
 // `--sync` regera só o mapa, sem tocar em versão: serve para quem mexeu no
@@ -237,9 +263,17 @@ for (const p of ['index.html', 'jogar/index.html']) {
 // 4) cache-buster SOMENTE dos arquivos que o diff acusa
 let jogar = ler('jogar/index.html');
 precisamBump.forEach(a => {
-  jogar = jogar.replace(new RegExp(`${a.arquivo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?v=[0-9.]+`, 'g'), `${a.arquivo}?v=${novaVersao}`);
+  const parameter = a.arquivo.startsWith('data/') ? 'release' : 'v';
+  jogar = jogar.replace(new RegExp(`${a.arquivo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?(?:v|release)=[0-9.]+`, 'g'), `${a.arquivo}?${parameter}=${novaVersao}`);
 });
 escrever('jogar/index.html', jogar);
+
+for (const file of DATA_CONSUMERS) {
+  const before = ler(file);
+  const after = before.replace(new RegExp(DATA_BUSTER.source, 'g'), (match, asset) =>
+    alterados.includes(asset) ? `${asset}?release=${novaVersao}` : match);
+  if (after !== before) escrever(file, after);
+}
 
 // 5) ASSET_VERSIONS do sw.js, derivado do HTML JÁ com os busters finais.
 //    Precisa vir depois do passo 4, senão o mapa nasce apontando para a versão

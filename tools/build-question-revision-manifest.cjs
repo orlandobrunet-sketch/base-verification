@@ -4,6 +4,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
+const positions = require('../data/question-source-positions.js');
 const ROOT = path.resolve(__dirname, '..');
 const canonical = value => Array.isArray(value) ? '[' + value.map(canonical).join(',') + ']'
   : value && typeof value === 'object' ? '{' + Object.keys(value).sort().map(key => JSON.stringify(key) + ':' + canonical(value[key])).join(',') + '}'
@@ -16,6 +17,7 @@ function load(relative, name) {
   return JSON.parse(JSON.stringify(context.result));
 }
 function sources(topic, index) {
+  index = positions.position(topic.qid, index);
   const main = {
     id: topic.qid || String(index + 1),
     d: topic.diff === 'hard' ? Math.min(12, 8 + Math.floor(index / 30)) : Math.min(12, 4 + Math.floor(index / 25)),
@@ -30,7 +32,7 @@ function sources(topic, index) {
     offline: { id: topic.qid, q: topic.q, o: [...topic.opts], a: topic.ans, e: topic.exp || topic.e || '' } };
 }
 function build(topics, references, release, replacements = {}) {
-  assert.equal(topics.length, 741);
+  assert(Array.isArray(topics) && topics.length > 0, 'A nonempty authored bank is required.');
   const current = {};
   topics.forEach((author, index) => {
     assert.equal(typeof author.qid, 'string');
