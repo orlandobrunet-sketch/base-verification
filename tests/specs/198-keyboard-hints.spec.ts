@@ -11,6 +11,43 @@ async function open(page:Page,boss:boolean){
  else await injectGameState(page,{}, {asGuest:true});
  await expect(page.locator('#options .option')).toHaveCount(4);await page.evaluate(()=>document.fonts.ready);
 }
+
+test('Enter mantido preserva a correção da jornada até uma nova pressão', async ({ page }) => {
+  await open(page, false);
+  const question = page.locator('#question');
+  const firstQuestion = await question.innerText();
+  const answer = page.locator('#options .option').first();
+  const feedback = page.locator('#feedback');
+  const next = page.locator('#nextBtn');
+  const answerTime = new Date();
+  await page.clock.setFixedTime(answerTime);
+  await answer.focus();
+  await expect(answer).toBeFocused();
+  await page.keyboard.down('Enter');
+  await expect(answer).toBeDisabled();
+  await expect(feedback).toBeVisible();
+  await expect(next).toBeVisible();
+  await next.evaluate(button => {
+    button.setAttribute('data-test-advances', '0');
+    button.addEventListener('click', () => {
+      button.setAttribute('data-test-advances', String(Number(button.getAttribute('data-test-advances')) + 1));
+    });
+  });
+
+  // The second keydown is a real browser repeat while the first key is held.
+  await page.clock.setFixedTime(new Date(answerTime.getTime() + 1000));
+  await page.keyboard.down('Enter');
+  await expect(next).toHaveAttribute('data-test-advances', '0');
+  await expect(question).toHaveText(firstQuestion);
+  await expect(feedback).toBeVisible();
+
+  await page.keyboard.up('Enter');
+  await page.keyboard.press('Enter');
+  await expect(next).toHaveAttribute('data-test-advances', '1');
+  await expect(question).not.toHaveText(firstQuestion);
+  await expect(page.locator('#options .option').first()).toBeEnabled();
+});
+
 for(const boss of [false,true]){
  for(let index=0;index<4;index++)test(`${boss?'final':'main'} numeric shortcut ${index+1} selects the displayed option`,async({page})=>{
   await open(page,boss);const options=page.locator('#options .option');

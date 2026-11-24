@@ -3050,7 +3050,7 @@
         const s = document.createElement('script');
         // The older worker canonicalizes only ?v=; ?release= also bypasses its
         // unversioned data cache during the first visit after an update.
-        s.src = 'data/topics.js?release=17.28';
+        s.src = 'data/topics.js?release=17.29';
         s.onload  = () => {
           questionBank = buildDeck();
           // E1/IRT: expõe o banco para o calculateUserTheta (utils.js está fora
@@ -8359,7 +8359,7 @@
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
     document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      if (e.repeat || e.ctrlKey || e.altKey || e.metaKey) return;
       if (document.getElementById('nqDashboard') || document.querySelector('.modal.show, .study-mode-popup, .nqreader-overlay')) return;
       const target = e.target;
       const interactiveTarget = target instanceof Element

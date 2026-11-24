@@ -7,8 +7,9 @@ import vm from 'node:vm';
 const root = new URL('../../', import.meta.url);
 const read = name => readFileSync(new URL(name, root), 'utf8');
 const previous = read('tests/service-worker/fixtures/sw-17.27.js').replace(/\r\n/g, '\n');
-const release = JSON.parse(read('version.json')).version;
 const origin = 'https://nefroquest.com';
+const releaseDataNames = ['topics', 'refs', 'articles', 'question-revision-manifest',
+  'question-revision-history', 'question-source-positions'];
 class BrowserRequest extends Request {
   constructor(value, options) { super(typeof value === 'string' ? new URL(value, origin) : value, options); }
 }
@@ -50,26 +51,34 @@ async function nativeLazyURLs() {
   return scripts;
 }
 
+async function nativeDataURLs() {
+  const scripts = [...scriptURLs(read('jogar/index.html')), ...scriptURLs(read('offline.html')), ...await nativeLazyURLs()]
+    .map(url => new URL(url, origin));
+  return releaseDataNames.map(name => {
+    const pathname = '/data/' + name + '.js';
+    const versions = new Set(scripts.filter(url => url.pathname === pathname).map(url => url.href));
+    assert.equal(versions.size, 1, 'Missing or inconsistent data consumer URL: ' + pathname);
+    const url = new URL([...versions][0]);
+    assert.match(url.searchParams.get('release') || '', /^\d+\.\d+$/, pathname);
+    return url;
+  });
+}
+
 test('new data requests bypass the exact published 17.27 worker before its replacement activates', async () => {
   assert.equal(createHash('sha256').update(previous).digest('hex'), 'f39cbbfdc5fc6500f055959c3bd844320a99cacdf24bb77fdc44021a7354f38c');
-  const urls = [...scriptURLs(read('jogar/index.html')), ...scriptURLs(read('offline.html')), ...await nativeLazyURLs()]
-    .filter(url => /(?:^|\/)data\/(?:topics|refs|articles|question-revision-manifest|question-revision-history|question-source-positions)\.js/.test(url));
-  for (const pathname of ['/data/topics.js', '/data/refs.js', '/data/articles.js', '/data/question-revision-manifest.js', '/data/question-revision-history.js']) {
-    assert(urls.some(url => new URL(url, origin).pathname === pathname), 'Native data consumer missing: ' + pathname);
-  }
-  for (const url of urls) {
-    const old = worker(previous), pathname = new URL(url, origin).pathname;
-    if (previous.includes("'" + pathname + "'")) old.seed(pathname, 'old 17.27');
-    assert.match(await old.request(url), /^current /, 'Old worker served stale bytes for ' + url);
-    assert.equal(old.network.length, 1, url);
+  for (const url of await nativeDataURLs()) {
+    const old = worker(previous);
+    if (previous.includes("'" + url.pathname + "'")) old.seed(url.pathname, 'old 17.27');
+    assert.match(await old.request(url.href), /^current /, 'Old worker served stale bytes for ' + url.href);
+    assert.equal(old.network.length, 1, url.href);
   }
 });
 
 test('the current worker reads versioned data from canonical precache while offline', async () => {
   const current = worker(read('sw.js'), {offline: true});
-  for (const name of ['topics', 'refs', 'articles', 'question-revision-manifest', 'question-revision-history', 'question-source-positions']) {
-    current.seed('/data/' + name + '.js', 'approved ' + name);
-    assert.equal(await current.request('/data/' + name + '.js?release=' + release), 'approved ' + name);
+  for (const url of await nativeDataURLs()) {
+    current.seed(url.pathname, 'approved ' + url.pathname);
+    assert.equal(await current.request(url.href), 'approved ' + url.pathname);
   }
   assert.deepEqual(current.network, []);
 });
@@ -83,7 +92,8 @@ test('a newer data release bypasses this workers canonical cache', async () => {
 
 test('activation canonicalizes release data entries for unversioned offline consumers', async () => {
   const current = worker(read('sw.js'), {offline: true});
-  current.seed('/data/topics.js?release=' + release, 'saved approved topics');
+  const topics = (await nativeDataURLs()).find(url => url.pathname === '/data/topics.js');
+  current.seed(topics.href, 'saved approved topics');
   await current.activate();
   assert.equal(await current.request('/data/topics.js'), 'saved approved topics');
   assert.deepEqual(current.network, []);
@@ -92,7 +102,7 @@ test('activation canonicalizes release data entries for unversioned offline cons
 test('precache asks for the same release URLs as data consumers', async () => {
   const current = worker(read('sw.js'));
   await current.install();
-  for (const name of ['topics', 'refs', 'articles', 'question-revision-manifest', 'question-revision-history', 'question-source-positions']) {
-    assert(current.network.includes(origin + '/data/' + name + '.js?release=' + release), name);
+  for (const url of await nativeDataURLs()) {
+    assert(current.network.includes(url.href), url.href);
   }
 });

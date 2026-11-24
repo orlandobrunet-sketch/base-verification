@@ -1,0 +1,198 @@
+{
+  "schema": "NQ-REVISAO-INDEPENDENTE-2",
+  "reviewer": "/root/anemia_independent1729",
+  "reviewedAt": "2026-11-24",
+  "baseRelease": "17.28",
+  "baseCommit": "c449b3bad2f5918f05b88a864b3a38bb21c2203d",
+  "inputs": {
+    "proposal": "061c9bcb-proposta-A3.json",
+    "proposalSHA256": "ab2fba2a56c8e99d10bebc3c50097113fb88376af40176d81111f52612f48bcd",
+    "handbook": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+    "model": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+    "annex": "docs/editorial/annex-c-nefrologia.md",
+    "skill": "revisar-nefroquest v2, referências de verificação e contrato de saída"
+  },
+  "sources": {
+    "kdigo2026": {
+      "title": "KDIGO 2026 Clinical Practice Guideline for the Management of Anemia in Chronic Kidney Disease",
+      "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+      "officialPage": "https://kdigo.org/guidelines/anemia-in-ckd/",
+      "doi": "10.1016/j.kint.2025.06.006",
+      "journal": "Kidney International. 2026;109(Suppl 1S):S1–S99.",
+      "access": "Consultei o texto integral oficial e confrontei o vínculo bibliográfico no site da KDIGO.",
+      "check": [
+        {
+          "location": "Figura 6, Práticas 1.2.1–1.2.2, pp. S19–S20 e S34–S35",
+          "finding": "A avaliação utiliza hemograma, reticulócitos, ferritina e saturação da transferrina. A investigação adicional de causas concorrentes depende do cenário."
+        },
+        {
+          "location": "Recomendação 2.3, p. S20, e capítulo 2",
+          "finding": "Na anemia da DRC sem diálise, a faixa de ferritina de 100 até abaixo de 300 ng/mL com saturação abaixo de 25% favorece início de ferro (2D). A3 satisfaz esse ramo com ferritina de 160 ng/mL e saturação de 16%."
+        },
+        {
+          "location": "Recomendação 2.4, p. S20",
+          "finding": "As vias oral e intravenosa são opções individualizadas conforme gravidade, eficácia, tolerabilidade, disponibilidade, custo e preferências. A3 não estabelece via ou dose universal."
+        },
+        {
+          "location": "Prática 3.1.2, pp. S23 e S49, Figura 8",
+          "finding": "As causas corrigíveis da anemia, incluindo disponibilidade de ferro, devem ser abordadas antes do início de AEE ou HIF-PHI. A recomendação fundamenta a sequência cobrada."
+        },
+        {
+          "location": "Recomendação 3.2.2, pp. S24 e S52–S53",
+          "finding": "Na DRC sem diálise, o início de AEE considera sintomas, benefício esperado e riscos. A hemoglobina de 9,4 g/dL e o aumento isolado da saturação são insuficientes para automatizar a decisão."
+        },
+        {
+          "location": "Recomendação 3.3.1, p. S24",
+          "finding": "Em adultos com anemia da DRC tratados com AEE, a meta fica abaixo de 11,5 g/dL (1D). Esse limite diz respeito à manutenção sob AEE."
+        },
+        {
+          "location": "Seção 3.7, Figura 10, p. S27",
+          "finding": "Na hiporresponsividade persistente ao AEE, investigar e abordar causas corrigíveis antes de nova escalada descontextualizada."
+        },
+        {
+          "location": "Práticas 4.1–4.5, pp. S28, S66–S67",
+          "finding": "Individualizar transfusão por benefício e risco, inclusive alossensibilização no candidato a transplante. Na anemia aguda com necessidade de estabilização rápida, a diretriz admite transfusão sem exigir tentativa prévia com ferro ou AEE."
+        },
+        {
+          "location": "Capítulo 1, pp. S32–S33, Figuras 3–4",
+          "finding": "A diretriz distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro e propõe o último termo no lugar de deficiência funcional de ferro. A hepcidina induzida pela inflamação é um mecanismo de sequestro do ferro."
+        }
+      ]
+    }
+  },
+  "scope": {
+    "applyTogether": true,
+    "survivor": "061c9bcb",
+    "activeRetirement": "78823c61",
+    "publishStandalone": false,
+    "historicalSourceRelease": "17.28",
+    "previousArchiveRows": "Preservar as versões já arquivadas de ambos os QIDs e acrescentar os registros exatos da 17.28, sem reescrever o histórico.",
+    "savedSession": "Preservar correções já registradas no histórico. Aplicar ao item sem resposta a regra existente de atualização para a versão atual. O conteúdo arquivado não volta ao sorteio ativo.",
+    "fsrs": "Preservar a identidade e o FSRS de 061c9bcb. Não mesclar nem migrar maestria, histórico ou FSRS de 78823c61 para o sobrevivente. Em 061c9bcb, o conceito que determinava o gabarito anterior continua correto. A imprecisão retirada sobre transfusão era colateral ao objetivo e não justificou zerar a maestria do objetivo central.",
+    "unchangedReference": "kdigo_anemia_2026",
+    "limits": "Parecer restrito às duas questões e ao card exato reaproveitado. A conferência de outros itens por semelhança não certifica suas explicações."
+  },
+  "questions": {
+    "061c9bcb": {
+      "version": {
+        "originalAuthorRevision": "sha256:edae1bb24638bed506bffa71b8e1009101b18ccdd64aae63034ca5d37af16462",
+        "originalRecordRevision": "sha256:7251e8606a57c44565b990b123daad187312690f6479bb7f4e680b9130a26632",
+        "afterAuthorRevision": "sha256:5e43137f50f76a7a4113f5345a1f858eff066b40858170d7f5a881adf9e380bc",
+        "referenceRevisions": {
+          "kdigo_anemia_2026": "sha256:8738853475160e917b0133eca1e39ca042e1b822728aa1f1abaef07d8f7a13af"
+        }
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "gateScope": "Somente a A3 exata com retirada ativa de 78823c61 no mesmo lote, conforme Handbook §§15, 18.4 e 19. A resolução da duplicidade é condição de escopo do gate e não uma lacuna em evidência clínica.",
+      "standaloneGate": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "originalGate": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "finding": "A explicação generalizava a transfusão como dependente de falha prévia de outras intervenções. A Prática 4.5 não impõe essa espera na anemia aguda com necessidade de estabilização. O eliminatório §17.4 anula o score dessa redação."
+      },
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "reconstruction": "Homem de 66 anos com DRC G4 sem diálise, fadiga e hemoglobina de 9,4 g/dL. Tem ferritina de 160 ng/mL e saturação da transferrina de 16%. Está estável, sem sangramento ativo ou infecção aguda. O caso pede a sequência inicial diante da possibilidade de AEE. A via e a dose do ferro ficam fora da decisão testada.",
+      "op": "Selecionar a sequência de correção do ferro e de outras causas reversíveis seguida de reavaliação da indicação de AEE em anemia estável da DRC sem diálise.",
+      "primaryCompetency": "Conduta",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "Intermediária",
+      "presentationDifficulty": "O campo hard da A3 mantém o roteamento vigente de 061c9bcb. A classificação editorial do raciocínio é intermediária.",
+      "identity": "A substância do gabarito original era corrigir causas tratáveis antes de AEE. A3 contextualiza a mesma sequência com índices já informados e sintomas. Ela não exige escolher um painel, escolher AEE versus HIF-PHI ou prescrever dose. Preserva QID e FSRS.",
+      "optionAudit": {
+        "A": "Única melhor conduta. Inicia ferro indicado, investiga fatores corrigíveis em paralelo e reavalia a necessidade de AEE.",
+        "B": "Limiar isolado de Hb não autoriza iniciar AEE antes de abordar a disponibilidade de ferro.",
+        "C": "Ferro está indicado, mas a presença de fator corrigível e a estabilidade favorecem começar pela correção e reavaliar, em vez de antecipar AEE e postergar a investigação.",
+        "D": "Melhora isolada da saturação não comprova benefício do AEE. Necessidade de AEE depende da anemia residual, dos sintomas e do balanço entre benefício e dano."
+      },
+      "advocate": [
+        "Recurso por Hb de 9,4 g/dL como gatilho automático rejeitado. O limiar de diálise não se aplica ao caso e a recomendação para DRC sem diálise é individualizada.",
+        "Recurso por ferritina de 160 ng/mL excluindo ferro rejeitado. A saturação de 16% satisfaz o segundo ramo da Recomendação 2.3.",
+        "Recurso por reposição simultânea e AEE mais rápido rejeitado. A Prática 3.1.2 sustenta abordar causas corrigíveis primeiro no cenário estável descrito.",
+        "Recurso por via de ferro ou indicação de transfusão indiscriminada rejeitado. A via fica fora da pergunta e a explicação delimita a exceção transfusional à necessidade de estabilização rápida.",
+        "Na população resultante, nenhum argumento plausível de anulação por ambiguidade clínica, falta de dado, conflito com a fonte ou dica extrínseca."
+      ],
+      "score": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 1,
+          "Referências": 2,
+          "Ausência de pistas artificiais": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente",
+        "note": "A explicação discrimina os erros por princípio, sem comentar B, C e D literalmente. Os quatro comprimentos são 80, 98, 92 e 88 caracteres. O título preservado é neutro."
+      },
+      "eliminators": [],
+      "decisionTree": "Passo 0 com evidência verificada e pendência nenhuma. A duplicidade resolve-se pela retirada atômica. Nenhum eliminatório ou recurso procedente no item sobrevivente. Score 19. Aprovada para o conjunto resultante, com autorização derivada LIBERADA.",
+      "patchEditorialSugerido": "Aplicar apenas o objeto A3 literal. Manter os campos não alterados, QID, categoria, dificuldade de apresentação e card existente. Arquivar o registro exato em uso na 17.28 conforme política vigente. A retirada da questão fundida integra a mesma publicação."
+    },
+    "78823c61": {
+      "version": {
+        "originalAuthorRevision": "sha256:712ec869e6f012134cc8a32ed44ecc8953b24e86e6b33223c4cbe66c2a894724",
+        "originalRecordRevision": "sha256:47bdb9b1f68ce683f091b2b0837fa9a1ba714d47c3222ad13d1feff9ec1f0147",
+        "afterAuthorRevision": null,
+        "referenceRevisions": {
+          "kdigo_anemia_2026": "sha256:8738853475160e917b0133eca1e39ca042e1b822728aa1f1abaef07d8f7a13af"
+        }
+      },
+      "gate": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "outcome": "retirar do banco ativo com arquivo histórico exato",
+      "decisionTree": "Passo 0 permite avaliação. A duplicidade nas quatro dimensões ativa o ramo de fusão do Cap. 19 e prevalece sobre qualquer banda de score. A aprovação do destino é específica para o conjunto resultante.",
+      "duplication": {
+        "decision": "Ambas cobram iniciar ferro com reavaliação antes de AEE na anemia estável da DRC sem diálise.",
+        "data": "Ambas mostram adulto estável sem sangramento, Hb abaixo de 10 g/dL, ferritina na faixa de 100 a menos de 300 ng/mL e saturação abaixo de 25%. G3b e G4 permanecem sob o mesmo ramo da 2.3. As diferenças de VCM, fadiga e números não mudam a sequência.",
+        "profile": "Ambas exigem aplicar os mesmos critérios intermediários a um caso. O rótulo de dificuldade preexistente difere sem acrescentar exigência cognitiva ou perfil-alvo distintos.",
+        "language": "Português brasileiro.",
+        "selected": "061c9bcb A3. Título neutro, caso delimitado, distratores que comparam ordens plausíveis e ressalva para estabilização aguda.",
+        "otherPeer": "5cf5b826 permanece variação legítima. Traz ferrodeficiência documentada e seleção entre AEE e HIF-PHI, em vez de aplicar índices de ferro a DRC não dialítica e ordenar condutas."
+      },
+      "findings": "O gabarito D do item em uso é sustentado por KDIGO 2.3, 2.4, 3.1.2, 3.2.2 e a distinção entre urgência e situação estável. O título já antecipa ferro antes de AEE e a formulação do distrator B é vulnerável a leitura imprecisa. A3 mede a sequência com menos pistas. A retirada evita repetir o mesmo raciocínio.",
+      "eliminators": [],
+      "retirementReady": true,
+      "replacementQid": "061c9bcb",
+      "transferFsrs": false,
+      "preserveHistoricalBinding": true
+    }
+  },
+  "references": {
+    "kdigo_anemia_2026": {
+      "version": {
+        "originalRevision": "sha256:8738853475160e917b0133eca1e39ca042e1b822728aa1f1abaef07d8f7a13af",
+        "afterRevision": "sha256:8738853475160e917b0133eca1e39ca042e1b822728aa1f1abaef07d8f7a13af"
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "review": "Conferi o card completo contra os capítulos 1 a 4 e a página oficial. O resumo distingue os índices, as causas corrigíveis, o limite durante manutenção em adulto tratado e a individualização da transfusão. A conclusão evita alvos numéricos isolados. A curiosidade é sustentada pelas Figuras 3 e 4. O rótulo é abreviado e identifica a diretriz oficial.",
+      "unchanged": true
+    }
+  }
+}

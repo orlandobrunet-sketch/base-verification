@@ -26,7 +26,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 725 && !!(window as any).questionRevisionCatalog);
+  await page.waitForFunction(() => (window as any).questionBank?.length === 724 && !!(window as any).questionRevisionCatalog);
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 });
 test.afterEach(async ({page}, info) => {
@@ -73,9 +73,9 @@ test('a fresh user has no scheduled review and can still enter the twenty-questi
   const before = await progress(page);
   await openHub(page);
   await expect(reviewCard(page)).toContainText('Nenhuma revisão agendada para agora');
-  await expect(reviewCard(page)).not.toContainText('725');
+  await expect(reviewCard(page)).not.toContainText('724');
   await expect(reviewCard(page).getByRole('button', {name: 'Revisar agora', exact: true})).toBeDisabled();
-  expect(await page.evaluate(() => (0, eval)('getSRDueQuestions(topics).length'))).toBe(725);
+  expect(await page.evaluate(() => (0, eval)('getSRDueQuestions(topics).length'))).toBe(724);
   expect(await page.evaluate(() => (0, eval)('getSRScheduledDueQuestions(topics).length'))).toBe(0);
   await page.getByRole('button', {name: 'Iniciar estudo livre', exact: true}).click();
   await expect(page.locator('#studyOptions button')).toHaveCount(4);

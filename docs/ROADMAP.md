@@ -1,16 +1,18 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 16/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 24/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 16/11/2026
+## Estado operacional - 24/11/2026
+
+**Lote 17.29.** Recuperação da consulta de pagamento após espera na sessão, na requisição ou na leitura da resposta. A Jornada ignora repetições involuntárias de atalho enquanto a tecla é mantida. A cobertura do baú final inclui manter ou trocar um equipamento antes da vitória. O item revisado de anemia da DRC substitui a duplicata no sorteio, preservando o histórico das duas versões. [Parecer clínico](editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-independent-A3.json).
+
+**17.28 publicada e conferida em 24/11/2026.** [PR977](https://github.com/orlandobrunet-sketch/base-verification/pull/977), fonte `8524566621e8ccda03630a1286b78c262ab780ef`, merge `c449b3bad2f5918f05b88a864b3a38bb21c2203d`. [CI1104](https://github.com/orlandobrunet-sketch/base-verification/actions/runs/45485163011) com 16 etapas aprovadas, 4.270 aprovações de navegador, 268 skips previstos e zero falhas. [GitHub Pages](https://github.com/orlandobrunet-sketch/base-verification/actions/runs/45492885313) e os 19 arquivos públicos conferidos. Na primeira checagem pública, 20 percursos passaram. Seis dependiam de estado interno indisponível em produção e passaram na CI. A checagem adicional pela interface avançou da primeira para a segunda questão em computador e celular emulado. Dos 160 itens sinalizados, 149 permaneceram e 11 saíram dessa lista. A mediana das respostas corretas dos itens mantidos passou de 153 a 88 caracteres. O Grimório reúne 558 publicações e 595 variantes. [Escopo e limites](design/NQ_RELEASE_1728.md), [pareceres](editorial/reviews/2026-11-15-length-references-1728/INDEX.json).
 
 **17.27 publicada e conferida:** [PR976](https://github.com/orlandobrunet-sketch/base-verification/pull/976), fonte `80a49ec673ff5c30f45ef2a14aebe6691feff60f`, merge `34d9d6ccc674c5210eaed6578dd88161ec9ad1a3`. CI1101 (`43873697106`): 16 grupos aprovados, 3.660 aprovações diretas, 268 skips previstos e nenhuma falha ou repetição em 3.928 casos; lógica/configuração 567, PostgreSQL 43 e smoke 130. Pages `43878436683` aprovado no merge exato, 14 arquivos públicos idênticos e 58 percursos nativos públicos (29 computador, 29 celular emulado), sem repetição, skip ou erro de página. Os 58 tiveram auditorias de rede; 28 contaram tentativas WebSocket, e os outros 30 as bloquearam sem contador. Publicados TTKG com nova identidade e card aprovado, recuperação do Oráculo/diagnóstico, helper de entrada e preparo visitante187/216. Histórico/FSRS preservados; a nova questão não herda aprendizagem. [Recibo imutável](design/NQ_PUBLICATION_1727_RECEIPT.json), SHA-256 `1e07d739c2665dc1869914de5ec428adf0485675625e8fdd08b49519a1e6eec7`, e [relatório de fechamento](design/NQ_PUBLICATION_1727_REPORT.md).
-
-**17.28 preparada localmente — aguardando revisão automática e publicação:** os 160 itens sinalizados receberam disposição formal (149 mantidos e 11 retirados dessa lista). O conjunto completo inclui 175 pareceres de questões existentes, dois novos objetivos e 18 retiradas, com fontes e histórico preservados. O Grimório agrupa 558 publicações distintas em 595 variantes; os 191 índices físicos dos pergaminhos permanecem válidos, com 189 conteúdos lógicos. A implementação também corrige atualização de dados, recuperação do acervo e baús pendentes. A bateria local de 643 verificações passou sem falha ou skip; a conferência nativa final, CI, revisão de código e publicação ainda devem ser comprovadas. A revisão não certifica clinicamente todo o banco. [Escopo e limites](design/NQ_RELEASE_1728.md), [pareceres e cópias portáteis](editorial/reviews/2026-11-15-length-references-1728/INDEX.json).
 
 **Preparação anterior da17.27:** a CI1100 teve duas aprovações após repetição (187/216), preservadas no recibo. O preparo visitante foi corrigido e a fonte final passou na CI1101 acima. O documento [NQ_RELEASE_1727](design/NQ_RELEASE_1727.md) registra a preparação anterior à publicação; não é o estado atual.
 
@@ -26,7 +28,7 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 **Frente atual expressamente autorizada —15/11/2026:** continuar as pendências médicas e editoriais, começando pelas alternativas corretas muito longas e referências duplicadas, e resolver o que depender da equipe. A autorização inclui aplicação e continuidade da publicação já autorizada, mas não substitui os gates cumulativos do [guia operacional](../AGENTS.md) e do [Handbook,§18.4](editorial/NQ_EDITORIAL_HANDBOOK_v1.md). Os antigos recortes sem revisão médica são históricos.
 
-**Pendências mantidas:** concluir os lotes elegíveis da17.28, a revisão médica global e os demais recortes das35superfícies. A consolidação dos vaptanos está aplicada localmente, aguardando o fechamento da17.28. O experimento do helper demonstrou coleta da promessa sem navegação e a eficácia da retenção no documento; não atribuiu retrospectivamente a causa exclusiva da ocorrência279 na CI1098. As ocorrências96/97/98/191/193/226 conservam seus limites de atribuição. Validação em aparelhos físicos e serviços reais não foi substituída por emulação.
+**Pendências mantidas.** A revisão médica do banco e recortes das 35 superfícies continuam em lotes delimitados. Os 160 itens de comprimento e a consolidação dos vaptanos foram entregues na 17.28. A padronização dos títulos do Grimório exige avaliar rótulo de leitura e título bibliográfico por publicação. Os registros históricos 96/97/98/191/193/226/279 mantêm seus limites de atribuição. Aparelhos físicos e serviços reais ainda exigem verificação própria.
 
 ## Histórico operacional até 14/11/2026
 

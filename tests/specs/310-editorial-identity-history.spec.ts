@@ -16,4 +16,9 @@ for (const pair of [
   { oldId: 'ee219394', newId: '40c5f770', oldDigest: 'sha256:308ef4cedd93233f938cc089e6846977eaac798316cc6ec8104ca745312ac2d5' },
   { oldId: '96c0c85d', newId: '0e1a838d', oldDigest: 'sha256:69f48722cf25315a1716631fdab6ff6ab99cdb97e5aea0ebcf0b63460d8742ac' },
   { oldId: 'a5c73397', newId: '0e1a838d', oldDigest: 'sha256:1b49243816a799eb384607286a491cf1b9b64bde4bdd7add7df16f5719c8b178' },
-]) defineMedicalConsolidationTests({ ...pair, release: '17.27', expectedBankCount: 725 });
+]) defineMedicalConsolidationTests({ ...pair, release: '17.27', expectedBankCount: 724 });
+
+defineMedicalConsolidationTests({
+  oldId: '78823c61', newId: '061c9bcb', release: '17.28', expectedBankCount: 724,
+  oldDigest: 'sha256:712ec869e6f012134cc8a32ed44ecc8953b24e86e6b33223c4cbe66c2a894724',
+});
