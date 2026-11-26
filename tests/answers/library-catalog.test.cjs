@@ -21,28 +21,33 @@ const contents = () => [
     unlocked: false, discovered: false, favorite: false }))
 ];
 
-test('three verified titles add presentation metadata without replacing catalogue identities', () => {
+test('verified titles add presentation metadata without replacing catalogue identities', () => {
   const raw = contents();
   const contentsByKey = new Map(raw.map(item => [item.key, item]));
   const collapsed = catalog.collapseLibraryItems(raw, { articles });
   const titles = [
-    ['__art_27', 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial', 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control', 'https://www.nejm.org/doi/full/10.1056/NEJMoa1511939'],
-    ['__art_10', 'KDIGO 2012 — Avaliação e manejo da doença renal crônica', 'KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease', 'https://kdigo.org/wp-content/uploads/2017/02/KDIGO_2012_CKD_GL.pdf'],
-    ['hypernatremia_yun_2023', 'Hipernatremia em adultos — Avaliação e manejo', 'Evaluation and management of hypernatremia in adults: clinical perspectives', 'https://www.kjim.org/journal/view.php?number=170760'],
+    [['__art_27'], 'content:__art_27', 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial', 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control', 'https://www.nejm.org/doi/full/10.1056/NEJMoa1511939'],
+    [['__art_10'], 'content:__art_10', 'KDIGO 2012 — Avaliação e manejo da doença renal crônica', 'KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease', 'https://kdigo.org/wp-content/uploads/2017/02/KDIGO_2012_CKD_GL.pdf'],
+    [['hypernatremia_yun_2023'], 'content:hypernatremia_yun_2023', 'Hipernatremia em adultos — Avaliação e manejo', 'Evaluation and management of hypernatremia in adults: clinical perspectives', 'https://www.kjim.org/journal/view.php?number=170760'],
+    [['dapa', '__art_14'], 'work:dapa_ckd', 'DAPA-CKD — Dapagliflozina em pacientes com doença renal crônica', 'Dapagliflozin in Patients with Chronic Kidney Disease', 'https://www.nejm.org/doi/full/10.1056/NEJMoa2024816'],
+    [['empa_kidney', '__art_16'], 'work:empa_kidney', 'EMPA-KIDNEY — Empagliflozina em pacientes com doença renal crônica', 'Empagliflozin in Patients with Chronic Kidney Disease', 'https://www.nejm.org/doi/full/10.1056/NEJMoa2204233'],
+    [['credence', '__art_21'], 'work:credence', 'CREDENCE — Canagliflozina e desfechos renais em pacientes com diabetes tipo 2 e nefropatia', 'Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy', 'https://www.nejm.org/doi/full/10.1056/NEJMoa1811744'],
   ];
-  assert.equal(collapsed.filter(item => item.displayTitle).length, 3);
-  for (const [key, display, original, publication] of titles) {
-    const item = collapsed.find(entry => entry.key === key);
-    assert.equal(item.displayTitle, display);
-    assert.equal(item.originalTitle, original);
-    assert.equal(item.publicationUrl, publication);
-    assert.equal(item.title, contentsByKey.get(key).title);
-    assert.equal(item.summary, contentsByKey.get(key).summary);
-    assert.equal(item.url, contentsByKey.get(key).url);
-    assert.deepEqual(item.aliases, [key]);
-    assert.equal(catalog.workKey(item), 'content:' + key);
-    assert.equal(item.locked, true);
-    assert.equal(item.discovered, false);
+  assert.equal(collapsed.filter(item => item.displayTitle).length, 9);
+  for (const [keys, work, display, original, publication] of titles) {
+    for (const key of keys) {
+      const item = collapsed.find(entry => entry.key === key);
+      assert.equal(item.displayTitle, display);
+      assert.equal(item.originalTitle, original);
+      assert.equal(item.publicationUrl, publication);
+      assert.equal(item.title, contentsByKey.get(key).title);
+      assert.equal(item.summary, contentsByKey.get(key).summary);
+      assert.equal(item.url, contentsByKey.get(key).url);
+      assert.deepEqual(item.aliases, key === '__art_14' ? ['__art_14', '__art_22'] : [key]);
+      assert.equal(catalog.workKey(item), work);
+      assert.equal(item.locked, true);
+      assert.equal(item.discovered, false);
+    }
   }
 });
 
@@ -50,6 +55,7 @@ test('localized bibliography applies only to the pinned variant and publication'
   const raw = contents();
   const scroll = raw.find(item => item.key === '__art_27');
   const yun = raw.find(item => item.key === 'hypernatremia_yun_2023');
+  const dapa = raw.find(item => item.key === 'dapa');
   for (const variant of [
     { ...scroll, key: '__art_36', aliases: ['__art_27'] },
     { ...scroll, source: 'N Engl J Med 2021. DOI: 10.1056/NEJMoa1901281' },
@@ -58,6 +64,7 @@ test('localized bibliography applies only to the pinned variant and publication'
     { ...scroll, title: 'Another record' },
     { ...scroll, retired: true },
     { ...yun, url: 'https://pubmed.ncbi.nlm.nih.gov/26551272/' },
+    { ...dapa, url: refs.credence.url },
   ]) {
     const [item] = catalog.collapseLibraryItems([variant], { articles });
     assert.equal(item.displayTitle, undefined);
@@ -152,6 +159,17 @@ test('one work retains distinct clinical payloads, locks and favorites independe
   assert.equal(source.summary, refs.dapa.resumo);
   assert.equal(scroll.summary, articles[14].resumo);
   assert.deepEqual(catalog.groupLibraryItems(work.variants.filter(item => !item.unlocked))[0].variants.map(item => item.key), ['__art_14']);
+
+  const oldSave = contents();
+  const oldScroll = oldSave.find(item => item.key === '__art_22');
+  oldScroll.unlocked = true;
+  oldScroll.discovered = true;
+  const alias = catalog.collapseLibraryItems(oldSave, { articles }).find(item => item.key === '__art_14');
+  assert.equal(alias.title, articles[22].titulo);
+  assert.equal(alias.displayTitle, source.displayTitle);
+  assert.equal(alias.originalTitle, source.originalTitle);
+  assert.equal(alias.publicationUrl, source.publicationUrl);
+  assert.equal(alias.summary, articles[22].resumo);
 });
 
 test('verified work map groups the current catalog while preserving every nonidentical variant and access state', () => {
