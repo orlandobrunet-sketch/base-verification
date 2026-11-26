@@ -3901,7 +3901,8 @@
     function _equipJourneyItem(slot, item) {
       const hadLifeBonus = _LIFE_BONUS_ITEMS.has(state.equipment?.[slot]?.n);
       const getsLifeBonus = _LIFE_BONUS_ITEMS.has(item?.n);
-      _stateData.equipment = { ...state.equipment, [slot]: { ...item } };
+      // Trocar um item mantém o mesmo equipamento da jornada para o HUD.
+      _stateData.equipment[slot] = { ...item };
       if (getsLifeBonus && !hadLifeBonus && !state.legendaryAbilityUsed?.[_EGIDE_FIRST_LIFE] &&
           state.gameStarted && !state.gameOver && state.lives > 0) {
         _stateData.legendaryAbilityUsed = { ...state.legendaryAbilityUsed, [_EGIDE_FIRST_LIFE]: true };
@@ -5136,15 +5137,15 @@
           if (resolvido || !_matchesJourneyBinding(binding)) return;
           resolvido = true;
           const val = _itemSellVal(currentItem);
-            if (isCharacterPilot()) {
-              if (!_forjaTransacao(() => {
-                _stateData.gold += val;
-                _equipJourneyItem(slot, item);
-              })) return;
-            } else {
-              state.gold += val;
+          if (isCharacterPilot()) {
+            if (!_forjaTransacao(() => {
+              _stateData.gold += val;
               _equipJourneyItem(slot, item);
-            }
+            })) return;
+          } else {
+            state.gold += val;
+            _equipJourneyItem(slot, item);
+          }
           const msg = `⬆️ ${slotLabels[slot]}: **${currentItem.n}** → **${item.n}**. ${currentItem.n} convertido em ${val}💰.`;
           if (onDone) onDone(msg);
           renderHUD(); updateBadges(); saveGame();

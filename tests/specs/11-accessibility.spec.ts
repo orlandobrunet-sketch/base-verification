@@ -84,8 +84,16 @@ test.describe('Acessibilidade — axe-core / WCAG 2.1 AA', () => {
     await page.waitForFunction(
       () => /Resultado da Prova/.test(document.getElementById('examPage')?.textContent || ''),
       null, { timeout: 5_000 });
-    await expect(page.locator('#examResultado .nq-study-result-metrics')).toContainText('1 de 2');
-    if (expired) await expect(page.locator('#examResultado')).toContainText('1 questão ficou sem resposta');
+    const metrics = page.locator('#examResultado .nq-study-result-metrics');
+    const value = (label: string) => metrics.locator('div')
+      .filter({ has: page.getByText(label, { exact: true }) }).locator('dd');
+    await expect(value('Pontuação da prova')).toHaveText(expired ? '1 de 3 (33%)' : '1 de 2 (50%)');
+    await expect(value('Acerto nas respondidas')).toHaveText('50%');
+    await expect(value('Respondidas')).toHaveText(expired ? '2 de 3' : '2 de 2');
+    if (expired) {
+      await expect(value('Tempo')).toHaveText('3m0s');
+      await expect(page.locator('#examResultado')).toContainText('1 questão ficou sem resposta');
+    }
     await page.locator('.nq-exam-erros > summary').click();
     await page.locator('.nq-exam-revisao-demais > summary').click();
     const blocking = await audit(page, '#examPage');
