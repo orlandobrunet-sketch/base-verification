@@ -147,6 +147,38 @@ export async function waitForGame(page: Page) {
   await expect(page.locator('#question')).not.toBeEmpty({ timeout: 10_000 });
 }
 
+/** Simula apenas a consulta do plano gratuito pelo resolvedor real. */
+export async function confirmFreePlan(page: Page) {
+  const access = await page.evaluate(async () => {
+    const run = (0, eval);
+    const owner = (window as any).authUser;
+    if (!owner?.id || !owner.email) throw new Error('A fixture do plano exige ID e email.');
+    const original = run('_supaClient');
+    const setClient = run('(client) => { _supaClient = client; }');
+    const fixture = {
+      from(table: string) {
+        if (table !== 'profiles' && table !== 'access_whitelist') {
+          throw new Error('Consulta inesperada na fixture do plano: ' + table);
+        }
+        return { select: () => ({ eq: (column: string, value: string) => ({
+          async single() {
+            if (table !== 'profiles' || column !== 'id' || value !== owner.id) throw new Error('Perfil incorreto.');
+            return { data: { is_premium: false, premium_expires_at: null }, error: null };
+          },
+          async maybeSingle() {
+            if (table !== 'access_whitelist' || column !== 'email' || value !== owner.email) throw new Error('Lista de acesso incorreta.');
+            return { data: null, error: null };
+          },
+        }) }) };
+      },
+    };
+    setClient(fixture);
+    try { return await run('_awaitPremiumAccess({ refresh: true })'); }
+    finally { setClient(original); }
+  });
+  expect(access).toBe('free');
+}
+
 /** Clica na primeira opção disponível */
 export async function pickFirstOption(page: Page) {
   const option = page.locator('#options .option').first();
