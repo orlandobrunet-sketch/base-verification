@@ -1,0 +1,325 @@
+{
+  "qid": "e1f9ccd1",
+  "retiredQid": "e8040054",
+  "baseRelease": "17.30",
+  "source": "39d494fa761816ea85edc43b6539c6a4bcc52ab5",
+  "merge": "39d494fa761816ea85edc43b6539c6a4bcc52ab5",
+  "reviewedOn": "2026-11-26",
+  "status": "PROPOSTA_AUTORAL_PREPARADA_PARA_REVISÃO_INDEPENDENTE",
+  "hashMethod": "beforeHash e afterHash são SHA256(JSON.stringify(valor)) em UTF-8. Os campos version usam a função canônica do catálogo.",
+  "beforeHash": "09a82e26afd6a8d1ab1bd0ebfbcfe77a5c3881bb856510371dd2159f6ce1061a",
+  "afterHash": "81d6f7d27fbaf73c1df5dd4117eb854dc6e6371b07de681b9ea7300761d72057",
+  "retiredHash": "2c97bbdf20567758184873c0f841d694015c61d00c57862deb3895ae576bd43c",
+  "reusedCardHash": "5e20480a5aa473f955b5028a13df0776d266b0f2adf0003a32894b65ee5ae064",
+  "original": {
+    "t": "Peritonite Fúngica em Diálise Peritoneal",
+    "qid": "e1f9ccd1",
+    "q": "Paciente em diálise peritoneal apresenta efluente turvo, dor abdominal e cultura do efluente positiva para Candida albicans. Qual é a conduta recomendada após a identificação do fungo?",
+    "refs": [
+      "ispd_peritonitis_guideline"
+    ],
+    "opts": [
+      "Manter o cateter e trocar o antibiótico intraperitoneal por fluconazol durante sete dias",
+      "Remover imediatamente o cateter de diálise peritoneal e manter antifúngico apropriado à espécie e à suscetibilidade por pelo menos duas semanas após a remoção",
+      "Trocar o cateter por fio-guia na mesma sessão e reiniciar imediatamente a diálise peritoneal",
+      "Aguardar nova cultura antes de remover o cateter, porque Candida no efluente costuma representar colonização"
+    ],
+    "ans": 1,
+    "exp": "A diretriz ISPD recomenda remoção imediata do cateter quando fungos são identificados no efluente, pois manter o dispositivo reduz a chance de controle da infecção. O antifúngico deve ser escolhido conforme espécie, suscetibilidade e gravidade clínica e continuado por pelo menos duas semanas após a retirada do cateter; hemodiálise temporária pode ser necessária. Um esquema fixo de fluconazol não serve para todas as espécies, e não se deve atrasar a remoção aguardando nova cultura nem trocar o cateter por fio-guia durante a infecção ativa.",
+    "diff": "medium",
+    "cat": "nefrologia_geral"
+  },
+  "retired": {
+    "qid": "e8040054",
+    "q": "Paciente em diálise peritoneal apresenta peritonite, e a microscopia do efluente identifica leveduras. Qual é a conduta recomendada?",
+    "opts": [
+      "Iniciar antifúngico apropriado e remover imediatamente o cateter de DP, mantendo o tratamento por pelo menos 2 semanas após a retirada",
+      "Manter o cateter até terminar 14 dias de antifúngico, mesmo se o efluente permanecer turvo",
+      "Usar apenas fluconazol intraperitoneal, pois identificação da espécie e sensibilidade não modificam a escolha",
+      "Trocar empiricamente para antibiótico antibacteriano de maior espectro e repetir a cultura em uma semana"
+    ],
+    "ans": 0,
+    "exp": "Peritonite fúngica tem alto risco de falha, biofilme e mortalidade. A ISPD recomenda iniciar terapia antifúngica apropriada e remover imediatamente o cateter quando fungos são identificados no efluente; o tratamento deve continuar por pelo menos 2 semanas após a retirada, podendo ser mais longo conforme organismo e evolução. A escolha do antifúngico depende de espécie, sensibilidade, interações e via adequada: fluconazol pode servir para Candida suscetível, enquanto outras espécies exigem equinocandina, voriconazol ou outra estratégia. Tentar preservar obrigatoriamente o cateter atrasa o controle do foco.",
+    "cat": "dialise",
+    "diff": "hard",
+    "refs": [
+      "ispd_peritonitis_guideline"
+    ],
+    "t": "Peritonite Fúngica em DP — Conduta"
+  },
+  "candidate": {
+    "t": "Complicação infecciosa em diálise peritoneal",
+    "qid": "e1f9ccd1",
+    "q": "Paciente adulto em diálise peritoneal apresenta dor abdominal e efluente turvo. A cultura do efluente identifica Candida albicans. O antifúngico apropriado já foi iniciado. Qual é a conduta com o cateter?",
+    "refs": [
+      "ispd_peritonitis_guideline"
+    ],
+    "opts": [
+      "Preservar o cateter se houver melhora com o antifúngico.",
+      "Remover o cateter imediatamente após a identificação do fungo.",
+      "Substituir o cateter no mesmo procedimento de retirada.",
+      "Aguardar uma cultura de controle para indicar a retirada."
+    ],
+    "ans": 1,
+    "exp": "Remover imediatamente o cateter é a conduta recomendada pela ISPD (1C) na peritonite fúngica confirmada neste caso. Aguardar melhora clínica ou nova cultura adia o controle do foco. A substituição no mesmo procedimento reintroduziria um cateter durante a infecção ativa. A ISPD sugere manter antifúngico apropriado por pelo menos duas semanas após a retirada (2C), com escolha orientada pela espécie e pela suscetibilidade.",
+    "diff": "medium",
+    "cat": "dialise"
+  },
+  "version": {
+    "before": {
+      "authorRevision": "sha256:68bcc5b4215ce03a05c3f3929549e37c551dc389a85af3bff587c9337af9e0fc",
+      "recordRevision": "sha256:907e6433d3db5047d8b88b07622c23f432b1a87cbd4338e8859b1494ea504682",
+      "sourceRevisions": {
+        "main": "sha256:190efe8d5061a23b217fd1974ee45dc37e1e9e0ada0c23f3dccaa559e6deecc2",
+        "exam": "sha256:190efe8d5061a23b217fd1974ee45dc37e1e9e0ada0c23f3dccaa559e6deecc2",
+        "study": "sha256:bc9d2305aa0eaa5669ed40c937eb59ffb7177c6e7930e2d26f40a119864e15a9",
+        "offline": "sha256:de0c5e79abb357702798de72302d928a1bdf40069ca58938a521d6f79e5fddb7"
+      },
+      "referenceRevisions": {
+        "ispd_peritonitis_guideline": "sha256:f20bbe78ce5493a680f4f40fdcdf0ede5557a21294f8da6c993877374c2c0d41"
+      }
+    },
+    "after": {
+      "authorRevision": "sha256:15d64456b6f9dd523fa86d19af1dc8b66e422d1018e778571dd4743e9be27c1b",
+      "recordRevision": "sha256:61b69b2bdd4ebfb2e17926b940b67868cf43fd562ed5615625becf7d5ca49875",
+      "sourceRevisions": {
+        "main": "sha256:ae2bed4e222c747db17336519fe73c6b69e1589f0ab26978582f9313c7b61927",
+        "exam": "sha256:ae2bed4e222c747db17336519fe73c6b69e1589f0ab26978582f9313c7b61927",
+        "study": "sha256:ea3a4e7e094339e5e2ac69a13ce2e5fb00f01dd004deccf8e62a3c0cd9b720c9",
+        "offline": "sha256:f925617c5501db5f162414c8b14ca57bafb60e898f8a4a0e83924e39ff235b7f"
+      },
+      "referenceRevisions": {
+        "ispd_peritonitis_guideline": "sha256:f20bbe78ce5493a680f4f40fdcdf0ede5557a21294f8da6c993877374c2c0d41"
+      }
+    },
+    "retired": {
+      "authorRevision": "sha256:d34ba7ef7bbd95e0e1ba21ca69f2845c2069e478ec043e4bb0fc3e49590b71f4",
+      "recordRevision": "sha256:f8b52f1746f652b2a2b25d2984e38c8bafeb596401bd8f9ed478ea80d880d3f6",
+      "sourceRevisions": {
+        "main": "sha256:f37c3555cfdeb343030d3a2a125594727af224520514eaf5aaf1105e57520e6a",
+        "exam": "sha256:f37c3555cfdeb343030d3a2a125594727af224520514eaf5aaf1105e57520e6a",
+        "study": "sha256:e7618da749042a33866412ae48b7276b2abd76f8a951cebe6d1ab3edf11d5fdd",
+        "offline": "sha256:aa31886853b094ca7ad472b890bb5df8dafc00eb4fdbe7f1acc6f15063aa711a"
+      },
+      "referenceRevisions": {
+        "ispd_peritonitis_guideline": "sha256:f20bbe78ce5493a680f4f40fdcdf0ede5557a21294f8da6c993877374c2c0d41"
+      }
+    }
+  },
+  "publishedOriginalEvaluation": {
+    "disposition": "Consolidar as duas versões no mesmo OP.",
+    "findings": [
+      "MAIOR — As duas questões medem a mesma decisão clínica com fungo já identificado no efluente de uma pessoa em diálise peritoneal com peritonite.",
+      "O enunciado de e1f9ccd1 descreve sintomas e cultura com agente identificado. A opção correta reúne intervenção e duração do tratamento em 158 caracteres, bem acima dos distratores.",
+      "e8040054 declara peritonite e leveduras identificadas à microscopia; suas alternativas avaliam a mesma retirada e o mesmo esquema geral. A opção correta é desproporcional e a seleção de antibacteriano em uma semana é um distrator fraco."
+    ],
+    "decision": "Preservar e1f9ccd1 porque o caso clínico e a confirmação por cultura já estão explícitos, e consolidar a conduta com uma única dimensão decisória."
+  },
+  "duplicateMatrix": {
+    "decision": "Nas duas, indicar retirada imediata do cateter diante de peritonite em diálise peritoneal com fungo identificado; o tratamento antifúngico apropriado compõe o mesmo pacote clínico nos originais.",
+    "dataStructure": "Ambas fornecem diálise peritoneal, peritonite clínica e identificação de fungo no efluente. Na primeira, a peritonite é nominal e a microscopia identifica leveduras. Na segunda, sintomas e cultura identificam Candida. A diferença microbiológica não exige interpretar exame duvidoso, escolher o antifúngico ou esperar confirmação para resolver as alternativas.",
+    "targetProfile": "Estudante avançado ou residente que aplica a mesma conduta diante de peritonite fúngica. Os rótulos de apresentação hard e medium divergiam, mas as duas questões exigem o mesmo passo clínico com o fungo já dado.",
+    "language": "Português brasileiro.",
+    "strongestAppeal": "Microscopia e cultura pertencem a fases diferentes. Esse argumento justificaria duas questões se uma exigisse decidir tratamento empírico diante de Gram inconclusivo, interpretar incerteza ou selecionar fármaco pela espécie. Os itens originais declaram fungo identificado e cobram retirar o cateter de imediato; nenhuma dessas decisões distintas é necessária para o gabarito.",
+    "decisionTree": "Handbook §19 passo 0, evidência verificada e sem pendência. Passo 1, duplicata de quatro dimensões conforme §15. Fundir e retirar e8040054 do sorteio.",
+    "retiredDisposition": {
+      "verdict": "fundir",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "lifecycle": "aposentado",
+      "legacy": "sem equivalente",
+      "confidence": "alta",
+      "score": null,
+      "scoreReason": "A decisão da árvore por duplicidade precede a banda de pontuação."
+    }
+  },
+  "authorCandidate": {
+    "competency": "Conduta e controle de foco infeccioso em diálise peritoneal.",
+    "op": "Indicar o momento da retirada do cateter em adulto com peritonite fúngica associada à diálise peritoneal quando o fungo já foi identificado no efluente.",
+    "opContinuity": "A retirada imediata permanece a decisão central. O antifúngico apropriado já está dado para concentrar as opções no cateter. Duração e escolha do antifúngico permanecem contextualizadas na explicação. Nas alternativas publicadas, nenhuma opção concorrente oferece retirada imediata com uma duração alternativa. O tempo de antifúngico, portanto, não discriminava as respostas e continua explícito no feedback.",
+    "population": "Adulto em diálise peritoneal com dor abdominal, efluente turvo e cultura positiva para Candida albicans. Peritonite ativa. Nenhuma contraindicação específica à retirada é informada, e o comando pede a conduta geral com o cateter uma vez identificado o fungo.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "intrinsicDifficulty": "intermediária",
+    "presentationDifficulty": {
+      "before": "medium",
+      "after": "medium",
+      "removed": "hard",
+      "reason": "Aplica recomendação padronizada aos dados clínicos e microbiológicos e distingue retirada imediata de estratégias de preservação ou atraso; não exige escolha de regime complexo."
+    },
+    "runtimeCategory": {
+      "before": "nefrologia_geral",
+      "after": "dialise",
+      "removed": "dialise",
+      "reason": "A conduta é específica da diálise peritoneal. Os registros anteriores mantêm categoria e fontes originais; os novos sorteios classificam o item em diálise."
+    },
+    "titleReason": "Título neutro para o Modo Estudo. Identifica o contexto sem revelar o organismo ou a conduta.",
+    "implementation": "Arquivar as duas versões publicadas na 17.30, preservar IDs das tentativas e fontes nos quatro perfis, manter o QID e FSRS do sobrevivente, sem transferir progresso, crédito ou FSRS da questão retirada, e manter o card compartilhado byte a byte.",
+    "alternatives": {
+      "A": "Erro de preservação do cateter diante de melhora clínica inicial.",
+      "B": "Controle imediato do foco confirmado.",
+      "C": "Extrapolação da estratégia de troca simultânea usada em pacientes selecionados em outro contexto clínico.",
+      "D": "Atraso por exigir uma cultura de controle após microbiologia já diagnóstica."
+    },
+    "adversary": {
+      "conclusion": "Nenhum argumento plausível de anulação para o texto proposto.",
+      "considered": [
+        "Expectar melhora é previsto em algumas peritonites sob tratamento antibacteriano e com leucócitos caindo. A cultura positiva para fungo aponta para a recomendação específica de retirada imediata.",
+        "Troca simultânea é considerada em peritonites recidivantes, recorrentes ou de repetição em cenário de cultura negativada, leucócitos inferiores a 100/µL e ausência de infecção de saída ou túnel. O caso tem infecção fúngica ativa.",
+        "Esperar repetição para distinguir colonização perde força porque há dois critérios, quadro clínico e cultura positiva. O item não está apresentando uma cultura isolada em paciente assintomático.",
+        "Espécie e suscetibilidade ajudam na escolha do antifúngico. Essa escolha já foi feita e é independente da decisão imediata sobre o cateter."
+      ]
+    },
+    "eliminators": {
+      "checked": "Todos os dez critérios do Handbook §17 avaliados.",
+      "triggered": []
+    },
+    "score": {
+      "dimensions": {
+        "alinhamentoOP": 2,
+        "validadeConteudo": 2,
+        "validadeConstruto": 2,
+        "enunciado": 2,
+        "alternativas": 2,
+        "distratores": 2,
+        "explicacao": 2,
+        "referencias": 2,
+        "redacaoNatural": 2,
+        "valorPedagogico": 2
+      },
+      "total": 20,
+      "band": "Excelente"
+    },
+    "decisionTree": "Handbook §19, passo 0 evidência verificada e nenhuma pendência, passo 1 sem eliminatórios após consolidação, passo 2 sem recurso anulatório, passo 3 escore 20.",
+    "disposition": {
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "lifecycle": "publicável após aceite independente do objeto exato e execução do lote atômico com retirada da duplicata"
+    },
+    "requiredReview": "Parecer independente obrigatório. Aplicar somente o objeto exato que for conferido e formalmente aprovado em conjunto com a retirada da duplicata."
+  },
+  "sources": [
+    {
+      "claim": "Quadro compatível e cultura positiva satisfazem o conjunto diagnóstico de pelo menos dois critérios.",
+      "url": "https://journals.sagepub.com/doi/pdf/10.1177/08968608221080586",
+      "locator": "p. 113 e p. 119; Peritonitis e Initial presentation and management",
+      "access": "PDF integral conferido"
+    },
+    {
+      "claim": "Retirada imediata do cateter após identificar fungos no efluente (1C) e continuação de antifúngico apropriado por pelo menos duas semanas após retirada (2C); o fármaco depende de identificação e suscetibilidade.",
+      "url": "https://journals.sagepub.com/doi/pdf/10.1177/08968608221080586",
+      "locator": "p. 137–138; Fungal peritonitis e Figure 9",
+      "access": "PDF integral e texto vigente da editora conferidos"
+    },
+    {
+      "claim": "A recomendação de considerar troca simultânea em outro cenário exige cultura negativa, poucos leucócitos e ausência de infecção de saída ou túnel. A troca não é proposta na Figura 9 para o evento fúngico ativo.",
+      "url": "https://journals.sagepub.com/doi/pdf/10.1177/08968608221080586",
+      "locator": "p. 128–130; Relapsing, recurrent and repeat peritonitis; Figura 9",
+      "access": "PDF integral conferido"
+    },
+    {
+      "claim": "O catálogo atual da sociedade lista o capítulo de 2022 para prevenção e tratamento da peritonite, separado das diretrizes de infecção relacionada ao cateter de 2023 e infecções pediátricas de 2024.",
+      "url": "https://ispd.org/guidelines/",
+      "locator": "Peritonitis: Prevention & Treatment Guidelines; Catheter-related infections; PD Related Infections (Pediatrics)",
+      "access": "Catálogo oficial conferido em 26/11/2026"
+    },
+    {
+      "claim": "O artigo vigente incorpora as duas correções editoriais de Figura 8 e Tabela 1; o bloco fúngico aparece no texto atualizado com ambas recomendações.",
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608221080586",
+      "locator": "Nota de correções (mar/2023 e abr/2024); Fungal peritonitis",
+      "access": "PDF com nota de correções e seção fúngica conferido; PMID dos corrigenda 36989022 e 38643390"
+    }
+  ],
+  "referenceCard": {
+    "id": "ispd_peritonitis_guideline",
+    "original": {
+      "label": "ISPD — Peritonitis Guideline 2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+      "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+      "ano": 2022,
+      "tipo": "Diretriz Internacional",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+      "icon": "📋",
+      "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+      "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+      "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+    },
+    "candidate": {
+      "label": "ISPD — Peritonitis Guideline 2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+      "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+      "ano": 2022,
+      "tipo": "Diretriz Internacional",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+      "icon": "📋",
+      "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+      "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+      "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+    },
+    "canonicalDigest": "sha256:f20bbe78ce5493a680f4f40fdcdf0ede5557a21294f8da6c993877374c2c0d41",
+    "reusedCardHash": "5e20480a5aa473f955b5028a13df0776d266b0f2adf0003a32894b65ee5ae064",
+    "activeConsumersBefore": [
+      "68b630ba",
+      "28b53ff8",
+      "547a3dc2",
+      "a221d304",
+      "e8040054",
+      "5eb00a6e",
+      "11279207",
+      "4792eca5",
+      "e1f9ccd1"
+    ],
+    "activeConsumersAfter": [
+      "68b630ba",
+      "28b53ff8",
+      "547a3dc2",
+      "a221d304",
+      "5eb00a6e",
+      "11279207",
+      "4792eca5",
+      "e1f9ccd1"
+    ],
+    "changed": false,
+    "checks": [
+      {
+        "field": "URL, periódico e ano",
+        "locator": "PMID 35264029 e cabeçalho da publicação",
+        "result": "DOI, volume 42(2), páginas 110–153 e ano 2022 conferem."
+      },
+      {
+        "field": "impacto e resumo diagnóstico",
+        "locator": "Peritonitis e Initial presentation and management",
+        "result": "Dois de três critérios, permanência ≥2h, leucócitos >100/µL com >50% PMN, sintomas e cultura conferem."
+      },
+      {
+        "field": "resumo empírico e via",
+        "locator": "Empiric antibiotic selection e Dosage recommendations for antibiotics",
+        "result": "Coleta antes do início, cobertura local contra gram-positivos e gram-negativos, via intraperitoneal quando compatível e na ausência de sepse sistêmica."
+      },
+      {
+        "field": "resumo fúngico e conclusão",
+        "locator": "Fungal peritonitis, resposta clínica e algoritmos de tratamento",
+        "result": "Retirada imediata 1C, duração após retirada 2C e individualização pela resposta, organismo e foco; o texto da questão explicita a diferença entre recomendação e sugestão."
+      },
+      {
+        "field": "curiosidade",
+        "locator": "Peritonitis rate",
+        "result": "Taxa global de até 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite por ano."
+      }
+    ]
+  },
+  "editorialMetadataRevision": {
+    "previous": "peritonite-fungica-proposta-A1.json",
+    "previousSha256": "10b20b265f387c3706c3adbec1f63deadc249d3a04c14f71ce2b89122de71cee",
+    "reason": "Corrige a contagem de caracteres da alternativa original e explica continuidade do OP. Os objetos da questão, da retirada e do card, suas revisões e seus hashes são idênticos aos da A1."
+  }
+}

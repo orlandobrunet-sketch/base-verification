@@ -51,7 +51,7 @@ test('offline connectivity changes preserve the real session, answer and history
   await page.setViewportSize({ width: 320, height: 725 });
   await page.goto('/offline.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.nq-off-btn')).toHaveCount(4);
-  expect(await page.evaluate(() => (0, eval)('topics.length'))).toBe(724);
+  expect(await page.evaluate(() => (0, eval)('topics.length'))).toBe(723);
   await page.evaluate(() => document.documentElement.style.fontSize = '32px');
   const status = page.locator('#nqOffConnection');
   await expect(status).toHaveAttribute('role', 'status');

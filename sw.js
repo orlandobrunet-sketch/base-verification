@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.30
-const CACHE = 'nefroquest-v17.30';
+// NefroQuest Service Worker — v17.31
+const CACHE = 'nefroquest-v17.31';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -227,10 +227,10 @@ const ASSET_VERSIONS = {
   '/styles/lumen/cinemavictory.css': '16.28',
   '/data/refs.js': '17.28',
   '/data/articles.js': '17.28',
-  '/data/topics.js': '17.30',
-  '/data/question-revision-manifest.js': '17.30',
+  '/data/topics.js': '17.31',
+  '/data/question-revision-manifest.js': '17.31',
   '/data/question-source-positions.js': '17.28',
-  '/data/question-revision-history.js': '17.30',
+  '/data/question-revision-history.js': '17.31',
   '/js/question-revisions.js': '17.27',
   '/data/competencies.js': '17.28',
   '/style.css': '17.28',
@@ -252,15 +252,15 @@ const ASSET_VERSIONS = {
   '/styles/lumen/ranking.css': '17.15',
   '/styles/lumen/achievements.css': '16.75',
   '/styles/lumen/oracle.css': '16.25',
-  '/js/library-catalog.js': '17.28',
-  '/js/utils.js': '17.28',
+  '/js/library-catalog.js': '17.31',
+  '/js/utils.js': '17.31',
   '/js/pilot.js': '17.17',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
   '/js/study-mode.js': '17.27',
-  '/js/game.js': '17.30',
+  '/js/game.js': '17.31',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '17.17',
   '/js/portal.js': '17.15',
@@ -277,7 +277,7 @@ const ASSET_VERSIONS = {
   '/js/equipment-preview.js': '16.62',
   '/js/dashboard-skills.js': '17.15',
   '/styles/lumen/skills.css': '17.15',
-  '/js/dashboard.js': '17.28',
+  '/js/dashboard.js': '17.31',
 };
 // bump-release:asset-versions:fim
 

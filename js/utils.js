@@ -542,6 +542,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
           items.push({
             _bibKey:    key,                                          // chave única para dedup
             kind: 'source', _catalogueTitle: r.label || '', _catalogueSource: r.journal || '', _catalogueYear: r.ano || '',
+            _catalogueUrl: r.url || '',
             label:      isUnlocked ? (r.label || '') : 'Referência bloqueada',
             autores:    '',
             jornal:     isUnlocked ? (r.journal || '') : '',
@@ -571,6 +572,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
           items.push({
             _bibKey:    `__art_${idx}`,                              // chave única para dedup
             kind: 'scroll', _catalogueTitle: a.titulo || '', _catalogueSource: a.jornal || '', _catalogueYear: a.ano || '',
+            _catalogueUrl: a.url || '',
             label:      isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
             autores:    isUnlocked ? (a.autores || '') : '',
             jornal:     isUnlocked ? (a.jornal  || '') : '',
@@ -610,15 +612,17 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         }
       }
 
-      // Desbloqueados primeiro (A-Z), depois bloqueados
-      deduped.sort((a, b) => {
+      const byAccessAndTitle = (a, b) => {
         if (a.locked !== b.locked) return a.locked ? 1 : -1;
-        return a.label.localeCompare(b.label, 'pt', { sensitivity: 'base' });
-      });
-
-      return window.NQLibraryCatalog
+        return (a.displayTitle || a.label).localeCompare(b.displayTitle || b.label, 'pt', { sensitivity: 'base' });
+      };
+      // Preserve a precedência dos rótulos publicados na seleção de variantes.
+      deduped.sort(byAccessAndTitle);
+      const contents = window.NQLibraryCatalog
         ? window.NQLibraryCatalog.collapseLibraryItems(deduped, { articles: _bibArticleData(), favorites: _getBibFavorites() })
         : deduped;
+      // Os títulos localizados só são atribuídos à variante selecionada.
+      return contents.sort(byAccessAndTitle);
     }
 
     /* O acervo vem de refs.js e articles.js, carregados sob demanda. Sem eles,
@@ -652,7 +656,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
 
       const filtered = q
         ? [...unlockedItems, ...historicalItems].filter(it =>
-            [it.label, ...(it.aliasTitles || [])].some(title => title.toLowerCase().includes(q)) ||
+            [it.label, it.displayTitle, it.originalTitle, ...(it.aliasTitles || [])].some(title => title?.toLowerCase().includes(q)) ||
             it.autores.toLowerCase().includes(q) ||
             it.jornal.toLowerCase().includes(q) ||
             it.tipo.toLowerCase().includes(q) ||
@@ -715,7 +719,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       } else if (_bibActiveFilter === 'favorites') {
         const favs = _getBibFavorites();
         visibleItems = items.filter(it => catalogue ? catalogue.favoriteFor(it._bibKey, favs, _bibArticleData()) : favs.has(it._bibKey));
-        if (q) visibleItems = visibleItems.filter(it => [it._catalogueTitle, it.label, ...(it.aliasTitles || []), it.autores, it.jornal].some(value => String(value || '').toLowerCase().includes(q)));
+        if (q) visibleItems = visibleItems.filter(it => [it._catalogueTitle, it.label, it.displayTitle, it.originalTitle, ...(it.aliasTitles || []), it.autores, it.jornal].some(value => String(value || '').toLowerCase().includes(q)));
       }
 
       _bibVisibleItems = visibleItems;
@@ -734,16 +738,19 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
           return `<div class="bib-card bib-card-locked">
   <div class="bib-card-top">
     <span class="bib-card-icon">🔒</span>
-    <span class="bib-card-label">${it.retired || saved ? escapeHtml(it._catalogueTitle || it.label) : it._lockType === 'ref' ? 'Fonte clínica bloqueada' : 'Artigo bloqueado'}</span>
+    <span class="bib-card-label">${it.retired || saved ? escapeHtml(it.displayTitle || it._catalogueTitle || it.label) : it._lockType === 'ref' ? 'Fonte clínica bloqueada' : 'Artigo bloqueado'}</span>
     <span class="bib-badge" style="background:#0e749022;color:#0e7490;border:1px solid #0e749055;">${it.retired ? 'HISTÓRICO' : 'ARTIGO'}</span>
   </div>
   <div class="bib-unlock-hint">${it.retired ? escapeHtml(it.unlockHint) : it._lockType === 'ref' ? 'Acerte uma questão que cite esta fonte para liberar o resumo' : 'Abra mais baús para revelar este artigo no Grimório'}</div>
   ${saved ? `<div class="bib-card-actions"><button class="bib-resumo-btn" disabled aria-disabled="true">🔒 Resumo bloqueado</button><button class="bib-fav-btn active" data-action="_toggleBibFav" data-arg="${escapeHtml(it._bibKey)}" title="Remover dos favoritos" aria-label="Remover dos favoritos">★</button></div>` : ''}
 </div>`;
         }
-        const labelHtml = it.url
-          ? `<a href="${escapeHtml(it.url)}" target="_blank" rel="noopener">${escapeHtml(it.label)}</a>`
-          : escapeHtml(it.label);
+        const displayTitle = escapeHtml(it.displayTitle || it.label);
+        const publicationUrl = it.publicationUrl || it.url;
+        const authors = it.autores || it.bibliographicAuthors;
+        const labelHtml = publicationUrl
+          ? `<a href="${escapeHtml(publicationUrl)}" target="_blank" rel="noopener">${displayTitle}</a>`
+          : displayTitle;
         const metaParts = [
           it.jornal ? escapeHtml(it.jornal) : '',
           it.ano    ? escapeHtml(String(it.ano)) : '',
@@ -764,7 +771,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     <span class="bib-card-label">${labelHtml}${rarityLabel}</span>
     <span class="bib-badge" style="background:${it.tipoColor}22;color:${it.tipoColor};border:1px solid ${it.tipoColor}55;">${escapeHtml(it.tipo)}</span>
   </div>
-  ${it.autores ? `<div class="bib-card-authors">${escapeHtml(it.autores)}</div>` : ''}
+  ${authors ? `<div class="bib-card-authors">${escapeHtml(authors)}</div>` : ''}
   ${metaParts.length ? `<div class="bib-card-meta">${metaParts.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
   ${it.impacto ? `<div class="bib-card-impacto">${escapeHtml(it.impacto)}</div>` : ''}
   <div class="bib-card-actions">
@@ -894,6 +901,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
               <p class="nqnarr-chapter">Resumo científico${it.ano ? ' · ' + escapeHtml(String(it.ano)) : ''}</p>
               <h2>${escapeHtml(it.label || '')}</h2>
               ${metadata ? `<div class="nqreader-meta">${metadata}</div>` : ''}
+              ${it.originalTitle ? `<p class="nqreader-reference">Título original · <cite lang="en">${escapeHtml(it.originalTitle)}</cite></p>` : ''}
               ${it.autores || it.jornal ? `<p class="nqreader-reference">${it.autores ? escapeHtml(it.autores) : ''}${it.autores && it.jornal ? '<br>' : ''}${it.jornal ? '<em>' + escapeHtml(it.jornal) + '</em>' : ''}</p>` : ''}
             </header>
             <div class="nqreader-sections">${bodyHtml}</div>
@@ -914,7 +922,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
       const it = _bibVisibleItems[idx];
       if (!it || it.locked || it.retired || window.NQLibraryCatalog?.isRetiredReference?.(it._bibKey)) return;
-      _showResumoModal({ ...it, badge: it._lockType === 'ref' ? it.tipo : '', tipo: it._lockType === 'article' ? 'ARTIGO' : '' });
+      _showResumoModal({ ...it, label: it.displayTitle || it.label, autores: it.autores || it.bibliographicAuthors,
+        badge: it._lockType === 'ref' ? it.tipo : '', tipo: it._lockType === 'article' ? 'ARTIGO' : '' });
     }
 
     // Guarda apenas a fonte do cartão renderizado, sem alterar o objeto editorial.

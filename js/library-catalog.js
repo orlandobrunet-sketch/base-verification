@@ -747,6 +747,45 @@
   const canonicalLibraryKey = (key, articles) => libraryAliases(key, articles)[0] || key;
   const itemKey = item => item.key || item._bibKey;
   const unlocked = item => typeof item.unlocked === 'boolean' ? item.unlocked : !item.locked;
+  // Display metadata is pinned to the selected content record, not to its
+  // publication group or any other variant. The authored identity stays intact.
+  const BIBLIOGRAPHIC_TITLES = new Map([
+    ['__art_27', {
+      kind: 'scroll', title: 'SPRINT Trial e DRC', year: 2015, url: '',
+      source: 'N Engl J Med 2015;373(22):2103-2116. DOI: 10.1056/NEJMoa1511939',
+      displayTitle: 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial',
+      originalTitle: 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control',
+      publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1511939',
+    }],
+    ['__art_10', {
+      kind: 'scroll', title: 'KDIGO CKD Classification 2012', year: 2012, url: '',
+      source: 'Kidney Int Suppl 2013;3(1):1-150',
+      displayTitle: 'KDIGO 2012 — Avaliação e manejo da doença renal crônica',
+      originalTitle: 'KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease',
+      publicationUrl: 'https://kdigo.org/wp-content/uploads/2017/02/KDIGO_2012_CKD_GL.pdf',
+    }],
+    ['hypernatremia_yun_2023', {
+      kind: 'source', title: 'Yun G, Baek SH, Kim S — Evaluation and Management of Hypernatremia in Adults (2023)',
+      year: 2023, url: 'https://pubmed.ncbi.nlm.nih.gov/36578134/',
+      source: 'Korean J Intern Med 2023;38(3):290-302',
+      authors: 'Yun G, Baek SH, Kim S',
+      displayTitle: 'Hipernatremia em adultos — Avaliação e manejo',
+      originalTitle: 'Evaluation and management of hypernatremia in adults: clinical perspectives',
+      publicationUrl: 'https://www.kjim.org/journal/view.php?number=170760',
+    }],
+  ]);
+  function titlePresentation(item) {
+    const record = BIBLIOGRAPHIC_TITLES.get(itemKey(item));
+    if (!record || item.retired || item.kind !== record.kind ||
+        (item._catalogueTitle ?? item.title ?? item.label) !== record.title ||
+        (item._catalogueSource ?? item.source ?? item.jornal) !== record.source ||
+        String(item._catalogueYear ?? item.year ?? item.ano) !== String(record.year) ||
+        (item._catalogueUrl ?? item.url ?? '') !== record.url) return {};
+    return {
+      displayTitle: record.displayTitle, originalTitle: record.originalTitle, publicationUrl: record.publicationUrl,
+      ...(record.authors ? { bibliographicAuthors: record.authors } : {}),
+    };
+  }
   function favoriteFor(key, favorites, articles) {
     const set = favorites instanceof Set ? favorites : new Set(Array.isArray(favorites) ? favorites : []);
     return libraryAliases(key, articles).some(alias => set.has(alias));
@@ -772,7 +811,7 @@
       // With old storage only the second alias may be open. Its exact medical
       // payload is the same; retain its already available display metadata.
       const original = aliases.find(unlocked) || aliases.find(item => itemKey(item) === key) || aliases[0];
-      const result = { ...original, key, _bibKey: key, aliases: libraryAliases(key, articles),
+      const result = { ...original, ...titlePresentation(original), key, _bibKey: key, aliases: libraryAliases(key, articles),
         unlocked: aliases.some(unlocked), locked: !aliases.some(unlocked),
         discovered: aliases.some(item => typeof item.discovered === 'boolean' ? item.discovered : unlocked(item)),
         aliasTitles: [...new Set(aliases.map(item => item._catalogueTitle || item.title || item.label).filter(Boolean))] };

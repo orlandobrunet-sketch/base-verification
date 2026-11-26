@@ -185,7 +185,7 @@ test('pure browser resolver has no storage, DOM, network or resource access', ()
   assert.equal(Object.isFrozen(context.NQQuestionRevisions), true);
   assert(context.NQQuestionRevisions.createVerifier({manifest: f.manifest, history: f.history}).restoreKnown(answers.present(sources(f.after).main), {profile: 'main'}));
 });
-test('published 724 authors and all four profiles agree with the runtime catalog', () => {
+test('published 723 authors and all four profiles agree with the runtime catalog', () => {
   const builder = require('../../tools/build-question-revision-manifest.cjs');
   const topics = builder.load('data/topics.js', 'topics'), refs = builder.load('data/refs.js', 'refsDB');
   const manifest = require('../../data/question-revision-manifest.js'), history = require('../../data/question-revision-history.js');
@@ -200,7 +200,7 @@ test('published 724 authors and all four profiles agree with the runtime catalog
     assert.deepEqual(resolved.question, snapshot);
     assert.equal(resolved.binding.recordRevision, manifest.current[source.id].recordRevision);
   }
-  assert.equal(topics.length, 724);
+  assert.equal(topics.length, 723);
 });
 test('Study restores historical authored display and answer without writes, mentor calls or credit', () => {
   const f = fixture(), h = harness('study', f), q = answers.present(sources(f.before).study, {random: () => 0}), answer = answerFor(q);

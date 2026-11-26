@@ -234,7 +234,7 @@ async function assertPending(page: Page, mode: Mode, seeded: any, expectedRaw?: 
   expect(await progress(page)).toEqual(before);
 }
 
-test('fresh bank keeps 724 current identities and independently authenticates the retired 17.26 record in all four profiles', async ({page}) => {
+test('fresh bank keeps 723 current identities and independently authenticates the retired 17.26 record in all four profiles', async ({page}) => {
   const report = await page.evaluate(({oldId, newId}) => {
     const w = window as any, c = w.questionRevisionCatalog;
     return {count: w.questionBank.length, oldInBank: w.questionBank.some((q: any) => q.id === oldId),
@@ -242,7 +242,7 @@ test('fresh bank keeps 724 current identities and independently authenticates th
       rows: ['main', 'exam', 'study', 'offline'].map(profile => ({profile, oldCurrent: c.current(oldId, profile),
         retired: c.retired(oldId, profile), replacement: c.replacement(oldId, profile), current: c.current(newId, profile)}))};
   }, {oldId: OLD, newId: NEW});
-  expect(report).toMatchObject({count: 724, oldInBank: false, newInBank: true});
+  expect(report).toMatchObject({count: 723, oldInBank: false, newInBank: true});
   for (const row of report.rows) {
     expect(row.oldCurrent).toBeNull(); expect(row.retired.release).toBe(RELEASE);
     expect(row.retired.binding.qid).toBe(OLD); expect(row.retired.historical).toBe(true);
