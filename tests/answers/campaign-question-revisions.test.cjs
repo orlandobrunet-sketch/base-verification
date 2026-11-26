@@ -92,6 +92,7 @@ function harness(f) {
     nqProgressStorage: () => storage, renderHUD() {}, updateBossUI() {}, applyBossOptionBadges() {}, refreshWelcomeSave() {},
     _stopLocalJourney() { context.stopCalls++; }, stopCalls: 0, _reloadJourneyCollections() {}, resetGuardianFeedback() {},
     NQProgression: progression, xpForLevel: progression.costForLevel, shuffleQueue() { throw Error('Fixture unexpectedly lost its queue'); },
+    _guestMode: false, isPremium() { return true; },
     isCharacterPilot() { return false; }, usesLumenDebrief() { return false; }, flushPendingRating() {}, isAdminUser() { return false; },
     setLumenEvidenceAvailable() {}, _updateSkipButton() {}, _applyEpicLifelines() {},
     renderRefs(keys, cards) { context.renderedRefs = clone(cards); },
@@ -104,6 +105,8 @@ function harness(f) {
   for (const relative of ['js/answer-presentation.js', 'js/question-revisions.js', 'js/character-benefits.js']) evaluate(fs.readFileSync(path.join(ROOT, relative), 'utf8'), relative);
   context.questionRevisionCatalog = context.NQQuestionRevisions.createCatalog({manifest: context.NQQuestionRevisionManifest,
     history: context.NQQuestionRevisionHistory, authors: [f.after], sources: {main: [source(f.after)]}, references: f.refs});
+  evaluate(section('    const _hardcoreCorrect', '    function getEntitlementQuestionsAnswered('), 'game.js real Hardcore record helpers');
+  evaluate(fn('_needsJourneyPremiumCheck'), 'game.js real access guard in an already verified fixture');
   evaluate(section('    let _saveTimer = null;', '    function _savePilotGame()'), 'game.js real revision/save/start helpers');
   evaluate(section('    const _pendingChestRewards = [];', '    function triggerChestRewardPopup('), 'game.js real transient chest lifecycle');
   evaluate(section('    const state = new Proxy(_stateData, {', '    function isProgressSandbox()'), 'game.js real state Proxy');
