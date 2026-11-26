@@ -12,12 +12,59 @@ const copy = value => JSON.parse(JSON.stringify(value));
 const payload = card => Object.fromEntries(Object.entries(card).filter(([field]) => field !== 'titulo'));
 const contents = () => [
   ...Object.entries(refs).filter(([key]) => !catalog.isRetiredReference(key)).map(([key, card]) => ({ key, kind: 'source', title: card.label, source: card.journal, year: card.ano,
+    url: card.url || '',
     summary: card.resumo, conclusion: card.conclusao, impact: card.impacto, curiosity: card.curiosidade,
     unlocked: false, discovered: false, favorite: false })),
   ...articles.map((card, index) => ({ key: '__art_' + index, kind: 'scroll', title: card.titulo, source: card.jornal, year: card.ano,
+    url: card.url || '',
     summary: card.resumo, conclusion: card.conclusao, impact: card.impacto, curiosity: card.curiosidade,
     unlocked: false, discovered: false, favorite: false }))
 ];
+
+test('three verified titles add presentation metadata without replacing catalogue identities', () => {
+  const raw = contents();
+  const contentsByKey = new Map(raw.map(item => [item.key, item]));
+  const collapsed = catalog.collapseLibraryItems(raw, { articles });
+  const titles = [
+    ['__art_27', 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial', 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control', 'https://www.nejm.org/doi/full/10.1056/NEJMoa1511939'],
+    ['__art_10', 'KDIGO 2012 — Avaliação e manejo da doença renal crônica', 'KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease', 'https://kdigo.org/wp-content/uploads/2017/02/KDIGO_2012_CKD_GL.pdf'],
+    ['hypernatremia_yun_2023', 'Hipernatremia em adultos — Avaliação e manejo', 'Evaluation and management of hypernatremia in adults: clinical perspectives', 'https://www.kjim.org/journal/view.php?number=170760'],
+  ];
+  assert.equal(collapsed.filter(item => item.displayTitle).length, 3);
+  for (const [key, display, original, publication] of titles) {
+    const item = collapsed.find(entry => entry.key === key);
+    assert.equal(item.displayTitle, display);
+    assert.equal(item.originalTitle, original);
+    assert.equal(item.publicationUrl, publication);
+    assert.equal(item.title, contentsByKey.get(key).title);
+    assert.equal(item.summary, contentsByKey.get(key).summary);
+    assert.equal(item.url, contentsByKey.get(key).url);
+    assert.deepEqual(item.aliases, [key]);
+    assert.equal(catalog.workKey(item), 'content:' + key);
+    assert.equal(item.locked, true);
+    assert.equal(item.discovered, false);
+  }
+});
+
+test('localized bibliography applies only to the pinned variant and publication', () => {
+  const raw = contents();
+  const scroll = raw.find(item => item.key === '__art_27');
+  const yun = raw.find(item => item.key === 'hypernatremia_yun_2023');
+  for (const variant of [
+    { ...scroll, key: '__art_36', aliases: ['__art_27'] },
+    { ...scroll, source: 'N Engl J Med 2021. DOI: 10.1056/NEJMoa1901281' },
+    { ...scroll, year: 2021 },
+    { ...scroll, kind: 'source' },
+    { ...scroll, title: 'Another record' },
+    { ...scroll, retired: true },
+    { ...yun, url: 'https://pubmed.ncbi.nlm.nih.gov/26551272/' },
+  ]) {
+    const [item] = catalog.collapseLibraryItems([variant], { articles });
+    assert.equal(item.displayTitle, undefined);
+    assert.equal(item.originalTitle, undefined);
+    assert.equal(item.publicationUrl, undefined);
+  }
+});
 
 test('only the two declared pairs have identical complete non-title payloads; physical data stays stable', () => {
   assert.equal(articles.length, 191);

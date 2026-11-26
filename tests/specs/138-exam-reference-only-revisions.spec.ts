@@ -25,7 +25,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   });
   await page.goto('/jogar/', {waitUntil: 'domcontentloaded'});
   await injectGameState(page, {gold: 0, score: 0, correctTotal: 0}, {asGuest: true});
-  await page.waitForFunction(() => (window as any).questionBank?.length === 724 &&
+  await page.waitForFunction(() => (window as any).questionBank?.length === 723 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   await page.evaluate(() => { localStorage.removeItem('nefroquest-exam-state'); return document.fonts.ready; });
 });
@@ -86,7 +86,7 @@ async function forcePublishedDraw(page: Page, qid: string, fault?: Fault) {
       historicalSource: historical?.sourceRevision, currentRecord: current.binding.recordRevision,
       historicalRecord: historical?.binding.recordRevision};
   }, {qid, affected, fault});
-  expect(precondition.bankSize).toBe(724);
+  expect(precondition.bankSize).toBe(723);
   expect(precondition.status).toBe('ambiguous');
   expect(precondition.historicalSource).toBe(precondition.currentSource);
   expect(precondition.historicalRecord).toBeTruthy();

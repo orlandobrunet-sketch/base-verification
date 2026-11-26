@@ -3050,7 +3050,7 @@
         const s = document.createElement('script');
         // The older worker canonicalizes only ?v=; ?release= also bypasses its
         // unversioned data cache during the first visit after an update.
-        s.src = 'data/topics.js?release=17.30';
+        s.src = 'data/topics.js?release=17.31';
         s.onload  = () => {
           questionBank = buildDeck();
           // E1/IRT: expõe o banco para o calculateUserTheta (utils.js está fora

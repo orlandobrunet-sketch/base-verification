@@ -56,6 +56,94 @@ async function library(page: Page) {
   await expect(page.locator('#nqdPane-library')).toBeVisible();
 }
 
+const titlePilot = [
+  { key: '__art_27', title: 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial',
+    original: 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control',
+    legacy: 'SPRINT Trial e DRC', url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1511939' },
+  { key: 'hypernatremia_yun_2023', title: 'Hipernatremia em adultos — Avaliação e manejo',
+    original: 'Evaluation and management of hypernatremia in adults: clinical perspectives',
+    legacy: references.hypernatremia_yun_2023.label, url: 'https://www.kjim.org/journal/view.php?number=170760' },
+  { key: '__art_10', title: 'KDIGO 2012 — Avaliação e manejo da doença renal crônica',
+    original: 'KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease',
+    legacy: 'KDIGO CKD Classification 2012', url: 'https://kdigo.org/wp-content/uploads/2017/02/KDIGO_2012_CKD_GL.pdf' },
+];
+
+test('verified bibliography preserves discovery and searches, sorts, copies and opens the intended titles', async ({ page }) => {
+  await seed(page, ['hypernatremia_yun_2023'], [27, 10], titlePilot.map(item => item.key));
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+      writeText: async (text: string) => { (window as any).__catalogueCopiedTitle = text; },
+    } });
+  });
+  await library(page);
+  const before = await ledger(page);
+  const collectionCount = page.locator('#nqDashLibraryTab-all [data-library-count]');
+  const total = await collectionCount.textContent();
+  await page.getByRole('tab', { name: 'Favoritos', exact: false }).click();
+  await page.locator('#nqDashLibrarySort').selectOption('title');
+  const works = page.locator('[data-library-work]:visible');
+  await expect(works.locator('h3')).toHaveText(titlePilot.map(item => item.title));
+  const search = page.locator('#nqDashLibrarySearch');
+  const reader = page.locator('.bib-resumo-modal');
+  for (const item of titlePilot) {
+    const work = page.locator(`[data-library-work="content:${item.key}"]`);
+    for (const query of [item.title, item.original, item.legacy]) {
+      await search.fill(query);
+      await expect(works).toHaveCount(1);
+      await expect(work).toBeVisible();
+    }
+    await expect(work).toHaveAccessibleName(item.title);
+    const copy = work.locator('[data-copy-title]');
+    await expect(copy).toHaveAccessibleName('Copiar título');
+    await copy.click();
+    await expect(copy).toHaveText('Copiado');
+    expect(await page.evaluate(() => (window as any).__catalogueCopiedTitle)).toBe(item.original);
+    await expect(work.getByRole('link', { name: /Abrir artigo/ })).toHaveAttribute('href', item.url);
+    await work.getByRole('button', { name: 'Ler resumo' }).click();
+    await expect(reader.getByRole('heading', { name: item.title })).toBeVisible();
+    await expect(reader.locator('cite[lang="en"]')).toHaveText(item.original);
+    if (item.key === 'hypernatremia_yun_2023') await expect(reader).toContainText('Yun G, Baek SH, Kim S');
+    await page.keyboard.press('Escape');
+    await expect(reader).toHaveCount(0);
+  }
+  await expect(collectionCount).toHaveText(total!);
+  expect(await ledger(page)).toEqual(before);
+});
+
+test('localized titles preserve blocked favorites and the legacy reader contract', async ({ page }) => {
+  const [sprint, yun, kdigo] = titlePilot;
+  await seed(page, [], [27, 10], [yun.key]);
+  await library(page);
+  const before = await ledger(page);
+  const locked = page.locator(`[data-library-work="content:${yun.key}"]`);
+  await expect(locked.getByRole('heading', { name: yun.title })).toBeVisible();
+  await expect(locked.getByRole('button', { name: 'Resumo bloqueado' })).toBeDisabled();
+  await expect(locked.locator('a, [data-copy-title]')).toHaveCount(0);
+  await page.evaluate(() => {
+    const w = window as any;
+    w._dashToggleArticle({ dataset: { libraryReadKey: 'hypernatremia_yun_2023' } });
+  });
+  await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+  await page.evaluate(() => {
+    const w = window as any;
+    w.closeDashboard();
+    w.openDashboard = undefined;
+    w.openBibliotecaModal();
+  });
+  const legacySearch = page.locator('#bibSearch');
+  const legacyWork = page.locator(`[data-bib-work="content:${sprint.key}"]`);
+  const legacyTitles = page.locator(`[data-bib-work="content:${sprint.key}"] a, [data-bib-work="content:${kdigo.key}"] a`);
+  await expect(legacyTitles).toHaveText([sprint.title, kdigo.title]);
+  await legacySearch.fill(sprint.original);
+  await expect(legacyWork.getByRole('link', { name: sprint.title })).toHaveAttribute('href', sprint.url);
+  await legacySearch.fill(sprint.title);
+  await legacyWork.locator('[data-action="openBibResumo"]').click();
+  const reader = page.locator('.bib-resumo-modal');
+  await expect(reader.getByRole('heading', { name: sprint.title })).toBeVisible();
+  await expect(reader.locator('cite[lang="en"]')).toHaveText(sprint.original);
+  expect(await ledger(page)).toEqual(before);
+});
+
 test('legacy scroll alias is one content, preserves its favorite, and never grants the source variant', async ({ page }) => {
   await seed(page, [], [22], ['__art_22', 'unrelated-legacy-key']);
   await library(page);

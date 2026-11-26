@@ -1,14 +1,16 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 24/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 26/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 24/11/2026
+## Estado operacional - 26/11/2026
 
-**Lote 17.30.** Recuperação da consulta de pagamento após espera na sessão, na requisição ou na leitura da resposta. A Jornada ignora repetições involuntárias de atalho enquanto a tecla é mantida. A cobertura do baú final inclui manter ou trocar um equipamento antes da vitória. A Lista de Acesso permite tentar novamente após erro ou demora. O item revisado de anemia da DRC substitui a duplicata no sorteio, preservando o histórico das duas versões. [Parecer clínico](editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-independent-A3.json).
+**Lote 17.31.** Piloto de três títulos em português no Grimório, com o nome original e o vínculo da publicação nas fichas. Peritonite fúngica na diálise peritoneal ganhou uma questão revisada. A duplicata saiu do sorteio e os dois registros antigos continuam no histórico. [Parecer clínico](editorial/reviews/2026-11-26-peritonite-fungica/peritonite-independent.json).
+
+**17.30 publicada em 26/11/2026.** [PR 978](https://github.com/orlandobrunet-sketch/base-verification/pull/978), merge `39d494fa761816ea85edc43b6539c6a4bcc52ab5`. A bateria final passou nas 16 etapas e em 4.326 testes de navegador, sem falhas. Os 14 arquivos conferidos no domínio corresponderam ao commit aprovado. Recuperação da consulta de pagamento após espera na sessão, na requisição ou na leitura da resposta. A Jornada ignora repetições involuntárias de atalho enquanto a tecla é mantida. A cobertura do baú final inclui manter ou trocar um equipamento antes da vitória. A Lista de Acesso permite tentar novamente após erro ou demora. O item revisado de anemia da DRC substitui a duplicata no sorteio, preservando o histórico das duas versões. [Parecer clínico](editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-independent-A3.json).
 
 **17.28 publicada e conferida em 24/11/2026.** [PR977](https://github.com/orlandobrunet-sketch/base-verification/pull/977), fonte `8524566621e8ccda03630a1286b78c262ab780ef`, merge `c449b3bad2f5918f05b88a864b3a38bb21c2203d`. [CI1104](https://github.com/orlandobrunet-sketch/base-verification/actions/runs/45485163011) com 16 etapas aprovadas, 4.270 aprovações de navegador, 268 skips previstos e zero falhas. [GitHub Pages](https://github.com/orlandobrunet-sketch/base-verification/actions/runs/45492885313) e os 19 arquivos públicos conferidos. Na primeira checagem pública, 20 percursos passaram. Seis dependiam de estado interno indisponível em produção e passaram na CI. A checagem adicional pela interface avançou da primeira para a segunda questão em computador e celular emulado. Dos 160 itens sinalizados, 149 permaneceram e 11 saíram dessa lista. A mediana das respostas corretas dos itens mantidos passou de 153 a 88 caracteres. O Grimório reúne 558 publicações e 595 variantes. [Escopo e limites](design/NQ_RELEASE_1728.md), [pareceres](editorial/reviews/2026-11-15-length-references-1728/INDEX.json).
 

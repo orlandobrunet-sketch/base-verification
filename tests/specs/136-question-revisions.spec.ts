@@ -276,7 +276,7 @@ async function fault(page: Page, key: string, mode: string) {
   }, { key, mode });
 }
 
-test('actual full 724 catalog loads all four current runtime profiles from the published manifest', async ({ page }, info) => {
+test('actual full 723 catalog loads all four current runtime profiles from the published manifest', async ({ page }, info) => {
   const expectedRelease = await page.evaluate(async () => {
     const response = await fetch('/version.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('Canonical version.json could not be loaded');
@@ -292,8 +292,8 @@ test('actual full 724 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 724, manifestCount: 724, release: expectedRelease, all: true });
-  await info.attach('actual-724-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
+  expect(report).toMatchObject({ count: 723, manifestCount: 723, release: expectedRelease, all: true });
+  await info.attach('actual-723-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
 test('actual published archive retains every prior cohort alongside the eight 17.24 and three 17.25 versions', async ({ page }, info) => {
@@ -365,7 +365,7 @@ test('actual published archive retains every prior cohort alongside the eight 17
   ];
   const legacyReferenceIds = report.referenceIds.filter((id: string) =>
     !chamberReferenceIds.includes(id) && !continuationReferenceIds.includes(id) && !latestReferenceIds.includes(id) && !editorial1728ReferenceIds.includes(id));
-  expect(report.archiveCount).toBe(502);
+  expect(report.archiveCount).toBe(504);
   expect(report.originalCount).toBe(16);
   expect(report.additionCount).toBe(110);
   expect(report.continuationCount).toBe(43);
@@ -401,7 +401,7 @@ test('actual published archive retains every prior cohort alongside the eight 17
   expect(createHash('sha256').update(JSON.stringify(publishedLegacyIds)).digest('hex'))
     .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
   expect(report.originalQids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
-  expect(report.rows).toHaveLength(2008);
+  expect(report.rows).toHaveLength(2016);
   const retiredRows = report.rows.filter((row: any) => row.release === '17.26');
   expect(retiredRows).toHaveLength(4);
   for (const row of retiredRows) expect(row).toMatchObject({qid: '6474ec20', noCurrent: true, replacementQid: 'b515e1c7',

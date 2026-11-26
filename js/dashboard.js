@@ -1455,6 +1455,7 @@
           impact: ref.impacto || '',
           curiosity: ref.curiosidade || '',
           url: _safeHttpsUrl(ref.url),
+          _catalogueUrl: ref.url || '',
           favorite: favorites.has(key),
         });
       });
@@ -1487,6 +1488,7 @@
           impact: article.impacto || '',
           curiosity: article.curiosidade || '',
           url: _safeHttpsUrl(article.url),
+          _catalogueUrl: article.url || '',
           favorite: favorites.has(key),
         });
       });
@@ -1518,7 +1520,7 @@
 
   function _sortLibraryItems(items, mode) {
     const list = [...items];
-    const byTitle = (a, b) => a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' });
+    const byTitle = (a, b) => (a.displayTitle || a.title).localeCompare(b.displayTitle || b.title, 'pt-BR', { sensitivity: 'base' });
     const year = item => {
       const parsed = Number.parseInt(item.year, 10);
       return Number.isFinite(parsed) ? parsed : null;
@@ -1544,6 +1546,10 @@
     if (!window.NQLibraryCatalog) return '<p role="status">Biblioteca indisponível neste momento.</p>';
     const cards = items.map((item, index) => {
       const titleId = `nqdLibraryTitle-${index}`;
+      const displayTitle = item.displayTitle || item.title;
+      const copyTitle = item.originalTitle || item.title;
+      const publicationUrl = item.publicationUrl || item.url;
+      const authors = item.authors || item.bibliographicAuthors;
       const rarityLabel = _libraryRarityLabel(item.rarity);
       const themes = Array.isArray(item.themes) ? item.themes : [];
       const theme = themes.join(' · ');
@@ -1556,6 +1562,8 @@
       const guideline = item.badge === 'GUIDELINE' || /kdigo/i.test(`${item.title} ${item.source}`);
       const searchable = [
         item.title,
+        item.displayTitle,
+        item.originalTitle,
         ...(item.aliasTitles || []),
         item.source,
         item.authors,
@@ -1566,17 +1574,17 @@
         item.unlocked ? item.impact : '',
       ].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR');
       if (!item.unlocked) return `
-        <article class="nqd-library-locked-item" data-library-entry data-library-retired="${item.retired ? 'true' : 'false'}" data-library-historical-owned="${item.historicalOwned ? 'true' : 'false'}" data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-discovered="false" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}" hidden>
+        <article class="nqd-library-locked-item" data-library-entry data-library-retired="${item.retired ? 'true' : 'false'}" data-library-historical-owned="${item.historicalOwned ? 'true' : 'false'}" data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-discovered="false" data-library-title="${_escape(displayTitle)}" data-search="${_escape(searchable)}" hidden>
           <div class="nqd-library-locked-mark" aria-hidden="true">${_svg('lock')}</div>
-          <div class="nqd-library-locked-copy" data-library-guideline="${guideline}"><small>${item.retired ? 'Referência retirada · Histórico' : `A descobrir · ${_escape(item.kindLabel)}`}</small><h3>${_escape(item.title)}</h3>${meta.length ? `<p>${_escape(meta.join(' · '))}</p>` : ''}<p class="nqd-library-unlock-hint">${_escape(item.unlockHint)}</p><div class="nqd-library-actions"><button type="button" class="nqd-action nqd-library-read-locked" data-library-read-key="${_escape(item.key)}" disabled aria-disabled="true"><span>Resumo bloqueado</span>${_svg('lock')}</button>${item.favorite ? `<button type="button" class="nqd-action is-active" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="true" aria-label="Remover dos favoritos"><span>★ Salvo</span></button>` : ''}</div></div>
+          <div class="nqd-library-locked-copy" data-library-guideline="${guideline}"><small>${item.retired ? 'Referência retirada · Histórico' : `A descobrir · ${_escape(item.kindLabel)}`}</small><h3>${_escape(displayTitle)}</h3>${meta.length ? `<p>${_escape(meta.join(' · '))}</p>` : ''}<p class="nqd-library-unlock-hint">${_escape(item.unlockHint)}</p><div class="nqd-library-actions"><button type="button" class="nqd-action nqd-library-read-locked" data-library-read-key="${_escape(item.key)}" disabled aria-disabled="true"><span>Resumo bloqueado</span>${_svg('lock')}</button>${item.favorite ? `<button type="button" class="nqd-action is-active" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="true" aria-label="Remover dos favoritos"><span>★ Salvo</span></button>` : ''}</div></div>
         </article>`;
       return `
-      <article class="nqd-library-item" data-library-entry data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-discovered="${item.discovered ? 'true' : 'false'}" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}"${accentStyle}>
+      <article class="nqd-library-item" data-library-entry data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-discovered="${item.discovered ? 'true' : 'false'}" data-library-title="${_escape(displayTitle)}" data-search="${_escape(searchable)}"${accentStyle}>
         <div class="nqd-library-main" data-library-guideline="${guideline}">
           <div>
             <div class="nqd-library-kicker"><span class="nqd-library-insignia" aria-hidden="true">${_svg(item.kind === 'scroll' ? 'library' : 'publication')}</span><span class="nqd-state">${_escape(stateLabel)}</span><span class="nqd-library-provenance">${_escape(item.kindLabel)}</span>${rarityLabel ? `<span class="nqd-library-rarity">${_escape(rarityLabel)}</span>` : ''}</div>
-            <h3 class="nqd-library-title" id="${titleId}">${_escape(item.title)}</h3>
-            ${item.authors ? `<p class="nqd-library-authors">${_escape(item.authors)}</p>` : ''}
+            <h3 class="nqd-library-title" id="${titleId}">${_escape(displayTitle)}</h3>
+            ${authors ? `<p class="nqd-library-authors">${_escape(authors)}</p>` : ''}
             ${meta.length ? `<p class="nqd-library-publication">${_escape(meta.join(' · '))}</p>` : ''}
             ${theme ? `<p class="nqd-library-theme">${_escape(theme)}</p>` : ''}
           </div>
@@ -1585,19 +1593,23 @@
         <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
         <div class="nqd-library-actions">
           <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" data-library-read-key="${_escape(item.key)}" aria-haspopup="dialog"><span>Ler resumo</span>${_svg('arrow')}</button>
-          <button type="button" class="nqd-action" data-action="_dashCopyTitle" data-pass-this="1" data-copy-title="${_escape(item.title)}">Copiar título</button>
-          <a class="nqd-action" href="${_escape(item.url || `https://scholar.google.com/scholar?q=${encodeURIComponent(item.title)}`)}" target="_blank" rel="noopener noreferrer" title="${item.url ? 'Abrir publicação em nova aba' : 'Buscar o título no Google Scholar'}">${item.url ? 'Abrir artigo' : 'Buscar artigo'} ↗</a>
+          <button type="button" class="nqd-action" data-action="_dashCopyTitle" data-pass-this="1" data-copy-title="${_escape(copyTitle)}"${item.originalTitle ? ' title="Copiar título original da publicação"' : ''}>Copiar título</button>
+          <a class="nqd-action" href="${_escape(publicationUrl || `https://scholar.google.com/scholar?q=${encodeURIComponent(copyTitle)}`)}" target="_blank" rel="noopener noreferrer" title="${publicationUrl ? 'Abrir publicação em nova aba' : 'Buscar o título no Google Scholar'}">${publicationUrl ? 'Abrir artigo' : 'Buscar artigo'} ↗</a>
         </div>
       </article>
     `;
     });
     if (!window.NQLibraryCatalog) return cards.join('');
     const html = new Map(items.map((item, index) => [item.key, cards[index]]));
-    return window.NQLibraryCatalog.groupLibraryItems(items).map(work => `
-      <section class="nqd-library-work${work.variants.length > 1 ? ' has-variants' : ''}" data-library-work="${_escape(work.key)}" data-library-title="${_escape(work.variants[0].title)}" data-library-year="${_escape(work.variants[0].year)}" data-library-type="${_escape(work.variants[0].type)}" aria-label="${_escape(work.variants[0].title)}">
+    return window.NQLibraryCatalog.groupLibraryItems(items).map(work => {
+      const first = work.variants[0];
+      const title = _escape(first.displayTitle || first.title);
+      return `
+      <section class="nqd-library-work${work.variants.length > 1 ? ' has-variants' : ''}" data-library-work="${_escape(work.key)}" data-library-title="${title}" data-library-year="${_escape(first.year)}" data-library-type="${_escape(first.type)}" aria-label="${title}">
         ${work.variants.length > 1 ? `<p class="nqd-library-work-heading">Mesma publicação · ${work.variants.length} conteúdos<span> Cada resumo mantém seu próprio acesso.</span></p>` : ''}
         <div class="nqd-library-work-variants">${work.variants.map(item => html.get(item.key)).join('')}</div>
-      </section>`).join('');
+      </section>`;
+    }).join('');
   }
 
   function _tabLibrary() {
@@ -2607,7 +2619,7 @@
       if (typeof _toast === 'function') _toast('Título copiado.', 'success');
     } catch (error) {
       button.textContent = 'Tentar copiar';
-      if (typeof _toast === 'function') _toast('Não foi possível copiar. Selecione o título para copiá-lo.', 'error');
+      if (typeof _toast === 'function') _toast('Não foi possível copiar. Abra o resumo e selecione o título.', 'error');
     } finally {
       button.disabled = false;
       window.setTimeout(() => { if (button.isConnected) button.textContent = 'Copiar título'; }, 2500);
@@ -2619,7 +2631,8 @@
     const item = key && _libraryItem(key);
     if (_libraryReadBlocked(item) || typeof _showResumoModal !== 'function') return;
     _showResumoModal({
-      label: item.title, autores: item.authors, jornal: item.source, ano: item.year,
+      label: item.displayTitle || item.title, originalTitle: item.originalTitle,
+      autores: item.authors || item.bibliographicAuthors, jornal: item.source, ano: item.year,
       resumo: item.summary, conclusao: item.conclusion,
       curiosidade: item.curiosity, impacto: item.impact,
       badge: item.badge, tipo: item.type, rarity: item.rarity, badgeColor: item.badgeColor,
