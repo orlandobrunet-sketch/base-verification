@@ -58,6 +58,14 @@ const test = base.extend<{ releaseServer: { url: string; publicar: (versaoNova: 
   },
 });
 
+test.use({
+  launchOptions: {
+    // O cenário depende somente do servidor local. Fontes e Turnstile externos
+    // não devem consumir rede durante a instalação ou as recargas.
+    args: ['--no-proxy-server', '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1'],
+  },
+});
+
 function nomeCacheDaRelease() {
   const { version } = JSON.parse(lerArquivo('version.json'));
   return `nefroquest-v${version}`;
@@ -70,6 +78,10 @@ async function esperarServiceWorkerControlando(page: Page) {
 }
 
 test.describe('Upgrade de release não mistura versões', () => {
+  // A instalação grava o precache completo antes de liberar as duas recargas.
+  // Dê margem à contenção de disco e CPU sem mudar as condições verificadas.
+  test.describe.configure({ timeout: 40_000 });
+
   test('depois de uma release, o asset servido é o novo — não o do cache anterior', async ({ page, releaseServer }) => {
     // ── vN: primeira visita, o SW instala e precacheia ──────────────────────
     await page.goto(releaseServer.url, { waitUntil: 'load' });
