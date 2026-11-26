@@ -304,3 +304,26 @@ for (const {surface, phase} of [
   expect(await quota(page, surface)).toBe(0);
   expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);
 });
+
+for (const surface of ['oracle', 'diagnosis'] as const) {
+  test(`${surface}: an old local quota count cannot deny a session awaiting Premium confirmation`, async ({page}) => {
+    await prepare(page, surface);
+    await freeze(page);
+    const {known, limit} = await page.evaluate(surface => {
+      const g = (0, eval);
+      const base = surface === 'oracle' ? g('MENTOR_QUOTA_KEY') : g('DIAG_QUOTA_KEY');
+      const limit = surface === 'oracle' ? g('MENTOR_DAILY_LIMIT') : g('DIAG_DAILY_LIMIT');
+      localStorage.setItem(g('_aiQuotaStorageKey(' + JSON.stringify(base) + ')'),
+        JSON.stringify({date: new Date().toISOString().slice(0, 10), count: limit}));
+      return {known: g('_premiumAccessKnown()'), limit};
+    }, surface);
+    expect(known).toBe(false);
+    expect(await quota(page, surface)).toBe(limit);
+    await boundary(page, surface, 'success');
+    await send(page, surface);
+    await expect.poll(async () => (await calls(page)).fetchCalls, {timeout: 1500}).toBe(1);
+    await ready(page, surface);
+    await expect(page.locator(surface === 'oracle' ? '#mentorChat' : '#aiDiagnosisCard'))
+      .not.toContainText(/limite diário atingido|faça upgrade/i);
+  });
+}

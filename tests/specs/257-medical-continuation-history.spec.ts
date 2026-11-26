@@ -164,7 +164,7 @@ test('actual 17.11 archive retains its42 rewritten cohort and both past card-onl
         api.digest(intermediate.references.moeller_plosone_2014)};
   }, ARCHIVED_RELEASE);
   expect(new Set(REWRITTEN).size).toBe(42);
-  expect(report.totalHistory).toBe(504);
+  expect(report.totalHistory).toBe(505);
   expect(report.qids).toEqual([...REWRITTEN, '5530b59c'].sort());
   expect(report.rewrittenQids).toEqual(REWRITTEN);
   expect(report.materialNowQids).toEqual([...REWRITTEN, '5530b59c'].sort());

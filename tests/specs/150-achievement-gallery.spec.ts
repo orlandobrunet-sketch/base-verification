@@ -121,10 +121,22 @@ test('Lenda Hardcore mostra recorde próprio em vermelho sem confundir acertos d
   });
   const before = await snapshot(page);
   await button.click();
+  await expect(dialog.locator('#nqAchievementHardcoreRecord span')).toHaveText('Melhor tentativa registrada no Hardcore');
   await expect(dialog.locator('#nqAchievementHardcoreRecord strong')).toHaveText('17 acertos');
   await expect(dialog.locator('#nqAchievementHardcoreRecord strong')).toHaveCSS('color', 'rgb(255, 154, 158)');
   await expect(dialog).toHaveAttribute('data-acquired', 'false');
   await dialog.getByRole('button', { name: 'Voltar à coleção' }).click();
+  expect(await snapshot(page)).toEqual(before);
+});
+
+test('Lenda Hardcore conquistada antes do registro numérico mantém a vitória sem inferir o recorde', async ({ page }) => {
+  const pane = await open(page, 'all');
+  const best = page.locator('#nqAchievementHardcoreRecord');
+  const before = await snapshot(page);
+  await pane.locator('[data-achievement-id="hardcore_champion"] button').click();
+  await expect(page.getByRole('dialog', { name: 'Lenda Hardcore' })).toHaveAttribute('data-acquired', 'true');
+  await expect(best).toContainText('Vitória registrada. Histórico de acertos indisponível neste perfil.');
+  expect(await page.evaluate(() => localStorage.getItem('nefroquest-stats'))).toBeNull();
   expect(await snapshot(page)).toEqual(before);
 });
 

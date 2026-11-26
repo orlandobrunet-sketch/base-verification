@@ -1,6 +1,8 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test as base, expect, type Page } from '@playwright/test';
+import { once } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
+import { createLocalServer } from '../helpers/local-static-server.cjs';
 
 /**
  * NQ-01, terceiro eixo: uma release nunca mistura HTML novo com JS/CSS antigo.
@@ -14,70 +16,77 @@ import path from 'node:path';
  * O que salva hoje é o `activate` apagar caches de nome diferente — mas isso
  * acontece DEPOIS de a página já ter carregado com a mistura.
  *
- * ESTE TESTE É UM UPGRADE DE VERDADE. Ele roda em Node, então reescreve os
- * arquivos servidos entre uma carga e outra, exatamente como uma release faz.
- * Toda mutação é desfeita no final, com o conteúdo original guardado em memória.
+ * O servidor de cada cenário simula a publicação ao mudar três respostas em
+ * memória. Nenhum arquivo do jogo muda durante a execução.
  */
 
 const RAIZ = path.resolve(__dirname, '..', '..');
-const ALVO = path.join(RAIZ, 'js', 'changelog.js');   // asset pequeno e periférico
-const HTML = path.join(RAIZ, 'jogar', 'index.html');
-const SW = path.join(RAIZ, 'sw.js');
+const ALVO = 'js/changelog.js';   // asset pequeno e periférico
+const HTML = 'jogar/index.html';
+const SW = 'sw.js';
 
 const MARCA_NOVA = 'window.__NQ_MARCA_DE_RELEASE__ = "v-nova";';
 
-type Original = { caminho: string; conteudo: string };
-let originais: Original[] = [];
+const lerArquivo = (relativo: string) => fs.readFileSync(path.join(RAIZ, relativo), 'utf8');
 
-function guardar(...caminhos: string[]) {
-  originais = caminhos.map((c) => ({ caminho: c, conteudo: fs.readFileSync(c, 'utf8') }));
+const test = base.extend<{ releaseServer: { url: string; publicar: (versaoNova: string) => void } }>({
+  releaseServer: async ({}, use) => {
+    const substituicoes = new Map<string, string>();
+    const servidor = createLocalServer(substituicoes);
+    const ouvindo = once(servidor, 'listening');
+    servidor.listen(0, '127.0.0.1');
+    await ouvindo;
+    try {
+      const endereco = servidor.address();
+      if (!endereco || typeof endereco === 'string') throw new Error('Servidor local indisponível');
+      await use({
+        url: `http://127.0.0.1:${endereco.port}/jogar/`,
+        publicar(versaoNova) {
+          substituicoes.set(ALVO, `${MARCA_NOVA}\n${lerArquivo(ALVO)}`);
+          substituicoes.set(HTML, lerArquivo(HTML).replace(/(js\/changelog\.js\?v=)[0-9.]+/, `$1${versaoNova}`));
+          substituicoes.set(SW, lerArquivo(SW)
+            .replace(/const CACHE = 'nefroquest-v[0-9.]+';/, `const CACHE = 'nefroquest-v${versaoNova}';`)
+            .replace(/('\/js\/changelog\.js': ')[0-9.]+/, `$1${versaoNova}`));
+        },
+      });
+    } finally {
+      const encerrado = once(servidor, 'close');
+      servidor.close();
+      servidor.closeAllConnections();
+      await encerrado;
+    }
+  },
+});
+
+function nomeCacheDaRelease() {
+  const { version } = JSON.parse(lerArquivo('version.json'));
+  return `nefroquest-v${version}`;
 }
-function restaurar() {
-  for (const o of originais) fs.writeFileSync(o.caminho, o.conteudo, 'utf8');
-  originais = [];
-}
 
-/** Simula a publicação de uma release: muda o asset, o buster e o nome do cache. */
-function publicarRelease(versaoNova: string) {
-  const asset = fs.readFileSync(ALVO, 'utf8');
-  fs.writeFileSync(ALVO, `${MARCA_NOVA}\n${asset}`, 'utf8');
-
-  const html = fs.readFileSync(HTML, 'utf8');
-  fs.writeFileSync(HTML, html.replace(/(js\/changelog\.js\?v=)[0-9.]+/, `$1${versaoNova}`), 'utf8');
-
-  const sw = fs.readFileSync(SW, 'utf8');
-  fs.writeFileSync(SW, sw
-    .replace(/const CACHE = 'nefroquest-v[0-9.]+';/, `const CACHE = 'nefroquest-v${versaoNova}';`)
-    .replace(/('\/js\/changelog\.js': ')[0-9.]+/, `$1${versaoNova}`), 'utf8');
-}
-
-async function esperarServiceWorkerAtivo(page: Page) {
-  await page.waitForFunction(async () => {
-    const reg = await navigator.serviceWorker.getRegistration();
-    return !!reg?.active;
-  }, undefined, { timeout: 30000 });
-  // Dá tempo ao precache — o install não bloqueia nele de propósito.
-  await page.waitForTimeout(2500);
+async function esperarServiceWorkerControlando(page: Page) {
+  // A Promise de um predicado async pode encerrar a espera antes do resultado.
+  // O controlador ativo confirma que esta aba já pode navegar pelo worker.
+  await page.waitForFunction(() => navigator.serviceWorker.controller?.state === 'activated');
 }
 
 test.describe('Upgrade de release não mistura versões', () => {
-  test.beforeEach(() => guardar(ALVO, HTML, SW));
-  test.afterEach(() => restaurar());
-
-  test('depois de uma release, o asset servido é o novo — não o do cache anterior', async ({ page }) => {
+  test('depois de uma release, o asset servido é o novo — não o do cache anterior', async ({ page, releaseServer }) => {
     // ── vN: primeira visita, o SW instala e precacheia ──────────────────────
-    await page.goto('/jogar/', { waitUntil: 'load' });
-    await esperarServiceWorkerAtivo(page);
+    await page.goto(releaseServer.url, { waitUntil: 'load' });
+    await esperarServiceWorkerControlando(page);
 
     const antes = await page.evaluate(() => (window as any).__NQ_MARCA_DE_RELEASE__ ?? null);
     expect(antes, 'a marca não pode existir antes da release').toBeNull();
+    const assetAnterior = await page.evaluate(async (cacheName) => {
+      return (await caches.match('/js/changelog.js', { cacheName }))?.text();
+    }, nomeCacheDaRelease());
+    expect(assetAnterior, 'a release anterior precisa ter o script em cache').toBeTruthy();
 
     // ── publica vN+1 enquanto a aba está aberta ─────────────────────────────
-    publicarRelease('99.99');
+    releaseServer.publicar('99.99');
 
     // ── vN+1: a pessoa recarrega ────────────────────────────────────────────
     await page.reload({ waitUntil: 'load' });
-    await page.waitForTimeout(2500);
 
     const depois = await page.evaluate(() => (window as any).__NQ_MARCA_DE_RELEASE__ ?? null);
     expect(
@@ -86,33 +95,32 @@ test.describe('Upgrade de release não mistura versões', () => {
     ).toBe('v-nova');
   });
 
-  test('offline, a página abre com o conjunto precacheado', async ({ page, context }) => {
+  test('offline, a página abre com o conjunto precacheado', async ({ page, context, releaseServer }) => {
     // Na PRIMEIRA visita o Service Worker ainda não controla a página: aquela
     // navegação não passa por ele e o HTML não entra no cache. Medido — foi o
     // que derrubou a primeira versão deste cenário. Só a partir da segunda
     // carga o app tem um conjunto offline completo, e é esse o caso real de
     // quem volta ao app.
-    await page.goto('/jogar/', { waitUntil: 'load' });
-    await esperarServiceWorkerAtivo(page);
-    await page.reload({ waitUntil: 'load' });
-    await page.waitForTimeout(4000); // precache é background e pesado
+    await page.goto(releaseServer.url, { waitUntil: 'load' });
+    await esperarServiceWorkerControlando(page);
+    const online = await page.reload({ waitUntil: 'load' });
+    expect(online?.ok(), 'a segunda carga precisa funcionar com rede').toBe(true);
+    expect(online?.fromServiceWorker(), 'a segunda carga precisa passar pelo worker').toBe(true);
 
-    const temHtmlEmCache = await page.evaluate(async () => {
-      const nomes = await caches.keys();
-      const c = await caches.open(nomes[0]);
-      return (await c.keys()).some((r) => new URL(r.url).pathname === '/jogar/');
-    });
-    expect(temHtmlEmCache, 'a segunda carga precisa deixar o HTML em cache').toBe(true);
+    const temHtmlEmCache = await page.evaluate(async (cacheName) => {
+      return !!(await caches.match('/jogar/', { cacheName }));
+    }, nomeCacheDaRelease());
+    expect(temHtmlEmCache, 'a segunda carga precisa deixar o HTML no cache da release').toBe(true);
 
     await context.setOffline(true);
-    await page.reload({ waitUntil: 'domcontentloaded' }).catch(() => { /* a navegação pode recusar */ });
-    const abriu = await page.evaluate(() => ({
-      offlinePage: /offline/i.test(document.title),
-      temSuperficie: !!document.querySelector('#mainApp, #welcomeScreen, #landingScreen'),
-    }));
-    await context.setOffline(false);
-
-    expect(abriu.offlinePage, 'caiu na página de offline em vez de servir o app').toBe(false);
-    expect(abriu.temSuperficie, 'offline, o app precisa abrir com o conjunto precacheado').toBe(true);
+    try {
+      const offline = await page.reload({ waitUntil: 'domcontentloaded' });
+      expect(offline?.ok(), 'a navegação offline precisa devolver uma nova resposta').toBe(true);
+      expect(offline?.fromServiceWorker(), 'o worker precisa servir a navegação offline').toBe(true);
+      await expect(page).not.toHaveTitle(/offline/i);
+      await expect(page.locator('#mainApp, #welcomeScreen, #landingScreen').first()).toBeAttached();
+    } finally {
+      await context.setOffline(false);
+    }
   });
 });

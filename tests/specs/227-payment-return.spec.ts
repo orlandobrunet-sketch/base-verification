@@ -26,10 +26,13 @@ async function fixture(page: Page, {
     let session = sessionFor(owner);
     const profiles = new Map<string, { is_premium: boolean; premium_expires_at: string | null }>();
     if (existingPremium && owner) profiles.set(owner, { is_premium: true, premium_expires_at: null });
-    (window as any).setPaymentFixtureProfile = (id: string, plan: string) => profiles.set(id, {
-      is_premium: true,
-      premium_expires_at: plan === 'monthly' ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() : null,
-    });
+    (window as any).setPaymentFixtureProfile = (id: string, plan: string) => {
+      if (plan === 'free') return profiles.delete(id);
+      profiles.set(id, {
+        is_premium: true,
+        premium_expires_at: plan === 'monthly' ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() : null,
+      });
+    };
     const stalled = { started: false, requested: false, aborted: false, release: () => {} };
     function hold<T>(value: T) {
       stalled.started = true;
@@ -353,11 +356,40 @@ test('checkout encerrado mostra orientação sem consultar nem declarar aprovaç
 });
 
 test('comprovante confirmado não substitui perfil vigente indisponível', async ({ page }) => {
-  await fixture(page, { syncConfirmedEntitlement: false,
+  const requests = await fixture(page, { syncConfirmedEntitlement: false,
     lookup: async () => ({ status: 'confirmed', plan: 'monthly' }),
   });
   await page.goto(returnUrl);
   await expect(dialog(page)).toContainText('Pagamento confirmado');
   await expect(dialog(page)).toContainText('Estamos sincronizando seu acesso');
   expect(await page.evaluate(() => (window as any).isPremium())).toBe(false);
+  expect(await page.evaluate(() => sessionStorage.getItem('nq-payment-return'))).not.toBeNull();
+
+  await page.evaluate(id => (window as any).setPaymentFixtureProfile(id, 'monthly'), ownerA);
+  const retry = dialog(page).getByRole('button', { name: 'Verificar novamente' });
+  await retry.click();
+  await expect(dialog(page)).toContainText('O acesso Premium da conta está ativo.');
+  await expect(retry).toBeHidden();
+  expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);
+  expect(await page.evaluate(() => sessionStorage.getItem('nq-payment-return'))).toBeNull();
+  expect(requests).toHaveLength(2);
 });
+
+for (const active of [true, false]) {
+  test(`estorno atualiza o acesso vigente pelo perfil ${active ? 'com' : 'sem'} outro plano ativo`, async ({ page }) => {
+    await fixture(page, {
+      existingPremium: true,
+      lookup: async attempt => {
+        if (attempt === 1) return { status: 'pending' };
+        await page.evaluate(([id, plan]) => (window as any).setPaymentFixtureProfile(id, plan),
+          [ownerA, active ? 'lifetime' : 'free']);
+        return { status: 'reversed' };
+      },
+    });
+    await page.goto(returnUrl);
+    await expect(dialog(page)).toContainText('Pagamento ainda não confirmado');
+    expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);
+    await expect(dialog(page)).toContainText('Pagamento revertido');
+    expect(await page.evaluate(() => (window as any).isPremium())).toBe(active);
+  });
+}

@@ -57,19 +57,35 @@ async function library(page: Page) {
 }
 
 const titlePilot = [
-  { key: '__art_27', title: 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial',
+  { key: '__art_27', work: 'content:__art_27', title: 'Ensaio SPRINT — Controle intensivo versus padrão da pressão arterial',
     original: 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control',
     legacy: 'SPRINT Trial e DRC', url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1511939' },
-  { key: 'hypernatremia_yun_2023', title: 'Hipernatremia em adultos — Avaliação e manejo',
+  { key: 'hypernatremia_yun_2023', work: 'content:hypernatremia_yun_2023', title: 'Hipernatremia em adultos — Avaliação e manejo',
     original: 'Evaluation and management of hypernatremia in adults: clinical perspectives',
     legacy: references.hypernatremia_yun_2023.label, url: 'https://www.kjim.org/journal/view.php?number=170760' },
-  { key: '__art_10', title: 'KDIGO 2012 — Avaliação e manejo da doença renal crônica',
+  { key: '__art_10', work: 'content:__art_10', title: 'KDIGO 2012 — Avaliação e manejo da doença renal crônica',
     original: 'KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease',
     legacy: 'KDIGO CKD Classification 2012', url: 'https://kdigo.org/wp-content/uploads/2017/02/KDIGO_2012_CKD_GL.pdf' },
 ];
 
+const renalTrialTitles = {
+  credence: { key: '__art_21', work: 'work:credence',
+    title: 'CREDENCE — Canagliflozina e desfechos renais em pacientes com diabetes tipo 2 e nefropatia',
+    original: 'Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy',
+    legacy: 'CREDENCE Trial', url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1811744' },
+  dapa: { key: '__art_22', work: 'work:dapa_ckd',
+    title: 'DAPA-CKD — Dapagliflozina em pacientes com doença renal crônica',
+    original: 'Dapagliflozin in Patients with Chronic Kidney Disease',
+    legacy: 'DAPA-CKD Trial', url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2024816' },
+  empa: { key: 'empa_kidney', work: 'work:empa_kidney',
+    title: 'EMPA-KIDNEY — Empagliflozina em pacientes com doença renal crônica',
+    original: 'Empagliflozin in Patients with Chronic Kidney Disease',
+    legacy: references.empa_kidney.label, url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2204233' },
+};
+
 test('verified bibliography preserves discovery and searches, sorts, copies and opens the intended titles', async ({ page }) => {
-  await seed(page, ['hypernatremia_yun_2023'], [27, 10], titlePilot.map(item => item.key));
+  const titles = [...Object.values(renalTrialTitles), ...titlePilot];
+  await seed(page, ['hypernatremia_yun_2023', 'empa_kidney'], [27, 10, 21, 22], titles.map(item => item.key));
   await page.evaluate(() => {
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
       writeText: async (text: string) => { (window as any).__catalogueCopiedTitle = text; },
@@ -82,11 +98,11 @@ test('verified bibliography preserves discovery and searches, sorts, copies and 
   await page.getByRole('tab', { name: 'Favoritos', exact: false }).click();
   await page.locator('#nqDashLibrarySort').selectOption('title');
   const works = page.locator('[data-library-work]:visible');
-  await expect(works.locator('h3')).toHaveText(titlePilot.map(item => item.title));
+  await expect(works.locator('[data-library-entry]:visible h3')).toHaveText(titles.map(item => item.title));
   const search = page.locator('#nqDashLibrarySearch');
   const reader = page.locator('.bib-resumo-modal');
-  for (const item of titlePilot) {
-    const work = page.locator(`[data-library-work="content:${item.key}"]`);
+  for (const item of titles) {
+    const work = page.locator(`[data-library-work="${item.work}"]`);
     for (const query of [item.title, item.original, item.legacy]) {
       await search.fill(query);
       await expect(works).toHaveCount(1);
@@ -150,12 +166,15 @@ test('legacy scroll alias is one content, preserves its favorite, and never gran
   const before = await ledger(page), work = page.locator('[data-library-work="work:dapa_ckd"]');
   await expect(work).toHaveCount(1);
   await expect(work.locator('[data-library-entry]')).toHaveCount(2);
+  await expect(work).toHaveAccessibleName(renalTrialTitles.dapa.title);
+  await expect(work.getByRole('heading', { name: renalTrialTitles.dapa.title })).toHaveCount(2);
   const scroll = work.locator('[data-library-read-key="__art_14"]');
   await expect(scroll).toBeEnabled();
   await page.evaluate(() => (window as any)._dashToggleArticle({ dataset: { libraryReadKey: 'dapa' } }));
   await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
   await scroll.click();
   await expect(page.locator('.bib-resumo-modal')).toContainText(articles[22].resumo);
+  await expect(page.locator('.bib-resumo-modal cite[lang="en"]')).toHaveText(renalTrialTitles.dapa.original);
   await page.keyboard.press('Escape');
   const favorite = work.locator('[data-library-key="__art_14"]');
   await expect(favorite).toHaveAttribute('aria-pressed', 'true');
@@ -169,6 +188,7 @@ test('legacy scroll alias is one content, preserves its favorite, and never gran
   await expect(work.locator('[data-library-entry]:visible')).toHaveCount(1);
   await expect(work.locator('.nqd-library-work-heading')).toContainText('1 de 2 conteúdos nesta seleção');
   await expect(work.locator('[data-library-entry]:visible')).toContainText('Fonte clínica');
+  await expect(work.getByRole('heading', { name: renalTrialTitles.dapa.title })).toBeVisible();
   await page.evaluate(() => (window as any)._dashToggleArticle({ dataset: { libraryReadKey: 'dapa' } }));
   await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
 });
@@ -180,12 +200,13 @@ test('source and scroll keep separate readers, locks and favorites on desktop an
   await info.attach('publication-with-separate-variants', { body: await work.screenshot(), contentType: 'image/png' });
   await work.locator('[data-library-read-key="dapa"]').click();
   await expect(page.locator('.bib-resumo-modal')).toContainText(references.dapa.resumo);
+  await expect(page.locator('.bib-resumo-modal cite[lang="en"]')).toHaveText(renalTrialTitles.dapa.original);
   await page.keyboard.press('Escape');
   await page.evaluate(() => (window as any)._dashToggleArticle({ dataset: { libraryReadKey: '__art_22' } }));
   await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
   await page.getByRole('tab', { name: 'Favoritos', exact: false }).click();
   await expect(work.locator('[data-library-entry]:visible')).toHaveCount(1);
-  await expect(work.locator('[data-library-entry]:visible')).toContainText(references.dapa.label);
+  await expect(work.getByRole('heading', { name: renalTrialTitles.dapa.title })).toBeVisible();
   expect(await ledger(page)).toEqual(before);
   const overflow = await work.evaluate(node => node.getBoundingClientRect().right > window.innerWidth + 1);
   expect(overflow).toBe(false);

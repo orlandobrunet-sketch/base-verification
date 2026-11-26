@@ -1,0 +1,65 @@
+{
+  "batch": "HEMODIALISE-GRIMORIO-2026-11-26-1732",
+  "change_type": "medical_editorial",
+  "expected_version": "17.32",
+  "allowed_files": [
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/topics.js",
+    "docs/CONTINUITY.md",
+    "docs/ROADMAP.md",
+    "docs/editorial/review-batches/HEMODIALISE-GRIMORIO-2026-11-26-1732.json",
+    "docs/editorial/reviews/2026-11-26-hemodialise-mpo/application-receipt.json",
+    "docs/editorial/reviews/2026-11-26-hemodialise-mpo/mpo-bd45bf21-independent.json",
+    "docs/editorial/reviews/2026-11-26-hemodialise-mpo/mpo-bd45bf21-parecer-autoral-A1.md",
+    "docs/editorial/reviews/2026-11-26-hemodialise-mpo/mpo-bd45bf21-proposta-A1.json",
+    "index.html",
+    "jogar/index.html",
+    "js/game.js",
+    "js/library-catalog.js",
+    "offline.html",
+    "sw.js",
+    "tests/answers/catalog-construction-cache.test.cjs",
+    "tests/answers/library-catalog.test.cjs",
+    "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/257-medical-continuation-history.spec.ts",
+    "tests/specs/306-library-catalog.spec.ts",
+    "version.json"
+  ],
+  "expected_question_delta": 0,
+  "refs_policy": "unchanged",
+  "integration_base": "95f41684ede5b2c8594875c8ca1ba10ea8b2fb63",
+  "questions": {
+    "bd45bf21": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:1c3b9138a62661336467ef6cd503079511433e1f8e4c4743a1e96ac769b9ef1b",
+      "after_sha256": "sha256:fc80e7f31f693df548fe03bfb2791cde47cb0cde5106008b4093fc353cd9dd8b",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-26-hemodialise-mpo/mpo-bd45bf21-independent.json",
+        "report_sha256": "2e001d6b2096bfd25b156170c57f12a906db191af0bdd8a5a451e5637d9bd0f5",
+        "version_pointer": "/questions/bd45bf21/version",
+        "gate_pointer": "/questions/bd45bf21/gate"
+      }
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Revisão independente de conteúdo MPO e revisão técnica do Grimório em paralelo",
+    "availability_basis": "O Greptile registrou SKIPPED nas duas execuções da publicação anterior. O parecer independente verifica o candidato e o vínculo bibliográfico exatos."
+  },
+  "history_policy": {
+    "base_release": "17.31",
+    "records_before": 504,
+    "records_added": 1,
+    "records_after": 505,
+    "previous_bindings_preserved": 2016,
+    "new_bindings": 4,
+    "bindings_after": 2020,
+    "application_receipt": "docs/editorial/reviews/2026-11-26-hemodialise-mpo/application-receipt.json"
+  }
+}

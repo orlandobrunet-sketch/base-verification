@@ -29,6 +29,7 @@ function fixture(profile, whitelist = () => Promise.resolve({ data: null, error:
     window: {}, _supaClient: client, authUser: account('a'), _authSessionEpoch: 1,
     PREMIUM_KEY: 'nefroquest-premium', WHITELIST_KEY: 'nefroquest-whitelist',
     isAdminUser: () => false,
+    setTimeout, clearTimeout,
     localStorage: {
       getItem: key => storage.get(key) ?? null,
       setItem: (key, value) => storage.set(key, value),
@@ -134,4 +135,75 @@ test('a monthly grant expires in memory without account reload', async () => {
   assert.equal(f.context.isPremium(), true);
   now += 1000;
   assert.equal(f.context.isPremium(), false);
+});
+
+test('concurrent entitlement consumers share a recent pending read', async () => {
+  const profile = deferred();
+  let reads = 0;
+  const f = fixture(() => { reads++; return profile.promise; });
+  const first = f.context._awaitPremiumAccess();
+  const second = f.context._awaitPremiumAccess();
+  assert.equal(reads, 1);
+  profile.resolve(paid);
+  assert.deepEqual(await Promise.all([first, second]), ['premium', 'premium']);
+});
+
+test('a forced consultation reports a failed read separately from previously verified access', async () => {
+  let profile = paid;
+  const f = fixture(async () => profile);
+  assert.equal(await f.context._awaitPremiumAccess(), 'premium');
+  profile = {data: null, error: new Error('offline')};
+  assert.equal(await f.context._awaitPremiumAccess({refresh: true}), 'pending');
+  assert.equal(f.context.isPremium(), true);
+  profile = free;
+  assert.equal(await f.context._awaitPremiumAccess({refresh: true}), 'free');
+  assert.equal(f.context.isPremium(), false);
+});
+
+test('an older successful observation cannot stand in for a failed refresh', async () => {
+  const priorRead = deferred();
+  let reads = 0;
+  const f = fixture(() => ++reads === 1 ? priorRead.promise : Promise.resolve({data: null, error: {message: 'offline'}}));
+  const older = f.context._awaitPremiumAccess();
+  assert.equal(await f.context._awaitPremiumAccess({refresh: true}), 'pending');
+  priorRead.resolve(paid);
+  assert.equal(await older, 'pending');
+  assert.equal(f.context.isPremium(), false);
+});
+
+test('a pending consultation reports stale after a real owner change', async () => {
+  const profile = deferred();
+  const f = fixture(owner => owner === 'a' ? profile.promise : Promise.resolve(free));
+  const previous = f.context._awaitPremiumAccess();
+  f.switchTo('b');
+  assert.equal(await f.context._awaitPremiumAccess(), 'free');
+  profile.resolve(paid);
+  assert.equal(await previous, 'stale');
+  assert.equal(f.context.isPremium(), false);
+});
+
+test('a stalled profile settles the visible status at the deadline, with no false purchase offer', async () => {
+  const profile = deferred();
+  const f = fixture(() => profile.promise);
+  let timeout;
+  const timer = Symbol('timer');
+  f.context.setTimeout = (callback, delay) => {
+    assert.equal(delay, 8000);
+    timeout = callback;
+    return timer;
+  };
+  f.context.clearTimeout = handle => assert.equal(handle, timer);
+  const status = f.context._awaitPremiumAccess();
+  timeout();
+  assert.equal(await status, 'pending');
+  assert.equal(f.context.isPremium(), false);
+  profile.resolve(paid);
+});
+
+test('a malformed paid profile is unknown and cannot grant an indefinite plan', async () => {
+  for (const expires of [undefined, 'invalido']) {
+    const f = fixture(async () => ({data: {is_premium: true, premium_expires_at: expires}, error: null}));
+    assert.equal(await f.context._awaitPremiumAccess(), 'pending');
+    assert.equal(f.context.isPremium(), false);
+  }
 });

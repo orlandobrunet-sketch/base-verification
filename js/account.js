@@ -190,6 +190,7 @@
     window._closeAccountOnOwnerChange = function () {
       closeDeleteAccountConfirm(false);
       closeAccountModal(false);
+      closePlanModal(false);
       document.getElementById('accountModal')?.remove();
     };
 
@@ -283,7 +284,51 @@
     // Era só uma caixa por cima: sem papel de diálogo nem nome, o foco ficava
     // atrás (no botão que abriu), o Tab caminhava pela jornada e o Escape não
     // fechava. Agora segue o mesmo contrato da Conta.
-    let _planFocus = null, _planReturn = null;
+    let _planFocus = null, _planReturn = null, _planBinding = null;
+    function _renderPlanAccess(binding, access) {
+      const { details, closeButton } = binding;
+      const focusWasInside = details.contains(document.activeElement);
+      let badgeClass = 'free', badgeLabel = '🎓 Plano Gratuito', detailHtml;
+      if (access === 'admin') {
+        badgeClass = 'admin'; badgeLabel = '🛡 Admin — Acesso Total';
+        detailHtml = `<p class="plan-stat">Conta de administrador com acesso irrestrito.</p>`;
+      } else if (access === 'premium') {
+        badgeClass = 'premium'; badgeLabel = '👑 Premium';
+        detailHtml = `<p class="plan-stat">Acesso completo a todas as questões.</p>`;
+      } else if (access === 'free') {
+        const answered = getGameStats().questionsAnsweredAllTime || 0;
+        const pct = Math.min(100, Math.round(answered / FREE_QUESTIONS_LIMIT * 100));
+        const remaining = Math.max(0, FREE_QUESTIONS_LIMIT - answered);
+        detailHtml = `
+          <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
+          <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
+          <p class="plan-stat nqplan-remaining">${remaining} questões restantes no plano gratuito.</p>
+          <button class="nqnarr-primary nqplan-upgrade" data-action="openPricingFromPlan">✨ Fazer Upgrade</button>
+        `;
+      } else if (access === 'checking') {
+        badgeLabel = 'Verificando seu acesso';
+        detailHtml = '<p class="plan-stat">Consultando a situação do seu plano.</p>';
+      } else {
+        const active = isPremium();
+        badgeClass = active ? 'premium' : 'free';
+        badgeLabel = active ? '👑 Premium' : 'Acesso a verificar';
+        detailHtml = `<p class="plan-stat">${active
+          ? 'Seu acesso foi confirmado nesta sessão. Não foi possível atualizar a situação agora.'
+          : 'Não foi possível consultar a situação do seu plano. Tente novamente.'}</p>
+          <button type="button" class="nqnarr-primary nqplan-upgrade" data-plan-retry>Verificar novamente</button>`;
+      }
+      details.innerHTML = `<div class="plan-badge ${badgeClass}">${badgeLabel}</div>${detailHtml}`;
+      if (focusWasInside) (details.querySelector('[data-plan-retry], [data-action="openPricingFromPlan"]') || closeButton)
+        .focus({ preventScroll: true });
+    }
+    async function _refreshPlanAccess(binding) {
+      if (_planBinding !== binding || !_premiumOwnerCurrent(binding.owner)) return;
+      _renderPlanAccess(binding, 'checking');
+      const access = await _awaitPremiumAccess({ refresh: true });
+      if (_planBinding === binding && _premiumOwnerCurrent(binding.owner) && access !== 'stale') {
+        _renderPlanAccess(binding, access);
+      }
+    }
     function openPlanModal() {
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('planModal');
@@ -295,34 +340,27 @@
         modal.innerHTML = `<div class="nqnarr-card nqplan-card" id="planModalContent"></div>`;
         document.body.appendChild(modal);
       }
-      const stats = getGameStats();
-      const answered = stats.questionsAnsweredAllTime || 0;
-      let badgeClass = 'free', badgeLabel = '🎓 Plano Gratuito', detailHtml = '';
-      if (isAdminUser()) {
-        badgeClass = 'admin'; badgeLabel = '🛡 Admin — Acesso Total';
-        detailHtml = `<p class="plan-stat">Conta de administrador com acesso irrestrito.</p>`;
-      } else if (isPremium()) {
-        badgeClass = 'premium'; badgeLabel = '👑 Premium';
-        detailHtml = `<p class="plan-stat">Acesso completo a todas as questões.</p>`;
-      } else {
-        const pct = Math.min(100, Math.round(answered / FREE_QUESTIONS_LIMIT * 100));
-        const remaining = Math.max(0, FREE_QUESTIONS_LIMIT - answered);
-        detailHtml = `
-          <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
-          <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
-          <p class="plan-stat nqplan-remaining">${remaining} questões restantes no plano gratuito.</p>
-          <button class="nqnarr-primary nqplan-upgrade" data-action="openPricingFromPlan">✨ Fazer Upgrade</button>
-        `;
-      }
-      document.getElementById('planModalContent').innerHTML = `
+      const painel = document.getElementById('planModalContent');
+      painel.innerHTML = `
         <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Situação do plano">
-          <h2 id="planTitle">Seu Plano</h2><div class="plan-badge ${badgeClass}">${badgeLabel}</div>${detailHtml}
+          <h2 id="planTitle">Seu Plano</h2><div data-plan-access aria-live="polite"></div>
         </div><footer class="nqnarr-footer modal-actions"><button class="nqaccount-cancel" data-action="closePlanModal">Fechar</button></footer>
       `;
-      const painel = document.getElementById('planModalContent');
       painel.setAttribute('role', 'dialog');
       painel.setAttribute('aria-modal', 'true');
       painel.setAttribute('aria-labelledby', 'planTitle');
+      const binding = {
+        owner: _premiumOwner(),
+        details: painel.querySelector('[data-plan-access]'),
+        closeButton: painel.querySelector('.modal-actions button'),
+      };
+      _planBinding = binding;
+      binding.details.addEventListener('click', event => {
+        if (event.target.closest('[data-plan-retry]')) _refreshPlanAccess(binding);
+      });
+      if (isAdminUser()) _renderPlanAccess(binding, 'admin');
+      else if (binding.owner) _refreshPlanAccess(binding);
+      else _renderPlanAccess(binding, 'free');
       // Aberto pelo menu do perfil (que acabou de fechar), o foco volta ao
       // botão do perfil, como na Conta; aberto de outro lugar, volta à origem.
       if (!_planFocus) {
@@ -335,11 +373,12 @@
       _planFocus?.(false);
       modal.style.display = 'flex';
       _planFocus = manageDialogFocus(modal, closePlanModal, _planReturn,
-        painel.querySelector('[data-action="openPricingFromPlan"]') || painel.querySelector('.modal-actions button'));
+        painel.querySelector('[data-action="openPricingFromPlan"]') || binding.closeButton);
     }
-    function closePlanModal() {
+    function closePlanModal(restoreFocus = true) {
       const m = document.getElementById('planModal');
-      _planFocus?.();
+      _planBinding = null;
+      _planFocus?.(restoreFocus);
       _planFocus = null;
       if (m) m.style.display = 'none';
     }

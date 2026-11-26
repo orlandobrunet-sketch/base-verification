@@ -203,7 +203,7 @@
     // ── Banner promocional a cada 10 questões (free) ──
     let _lastPromoBannerAt = 0;
     function _checkPromoBanner() {
-      if (isPremium()) return;
+      if (isPremium() || (authUser && !_premiumAccessKnown())) return;
       const total = getGameStats().questionsAnsweredAllTime || 0;
       if (total < 10) return;
       if (total >= FREE_QUESTIONS_LIMIT) return; // paywall já cuida disso
@@ -578,8 +578,14 @@
           return;
         }
         if (result.status === 'reversed') {
-          _writePaymentSession(_paymentReturnKey, null);
-          _showPaymentStatus(state, 'Pagamento revertido', 'Esta compra tem um estorno ou contestação registrado.');
+          const access = await wait(_awaitPremiumAccess({ refresh: true })).catch(() => 'pending');
+          if (!current() || access === 'stale') return;
+          const synchronized = access !== 'pending';
+          if (synchronized) _writePaymentSession(_paymentReturnKey, null);
+          _showPaymentStatus(state, 'Pagamento revertido', synchronized
+            ? 'Esta compra tem um estorno ou contestação registrado.'
+            : 'O estorno está registrado. Verifique novamente para atualizar a situação do seu acesso.',
+          synchronized ? '' : 'retry');
           return;
         }
         if (!_validPaymentPlan(result.plan) || !['recorded', 'confirmed'].includes(result.status)) {
@@ -591,20 +597,19 @@
             `A compra do plano ${plan} consta no histórico. Verifique novamente ou consulte o acesso atual em Seu Plano.`, 'retry');
           return;
         }
-        let accessMessage = 'Estamos sincronizando seu acesso. Consulte Seu Plano ou reabra o jogo se necessário.';
-        try {
-          // O comprovante confirma a compra. Leia o perfil para sincronizar
-          // o direito vigente e o vencimento, sem criar uma concessão local.
-          await wait(_loadPremiumFromDB());
-          if (!current()) return;
-          if (isPremium()) accessMessage = 'O acesso Premium da conta está ativo.';
-          updateWelcomeUserBadge();
-        } catch {
-          if (!current()) return;
-        }
-        _writePaymentSession(_paymentReturnKey, null);
+        // A compra foi confirmada. A situação do acesso vem de uma nova
+        // leitura do perfil, que pode falhar sem invalidar o comprovante.
+        const access = await wait(_awaitPremiumAccess({ refresh: true })).catch(() => 'pending');
+        if (!current() || access === 'stale') return;
+        const synchronized = access === 'premium';
+        if (synchronized) _writePaymentSession(_paymentReturnKey, null);
+        try { updateWelcomeUserBadge(); } catch {}
         _trackConfirmedPurchase(state.receipt, result, state.owner);
-        _showPaymentStatus(state, 'Pagamento confirmado', `A compra do plano ${plan} foi confirmada. ${accessMessage}`);
+        const accessMessage = synchronized
+          ? 'O acesso Premium da conta está ativo.'
+          : 'Estamos sincronizando seu acesso. Verifique novamente ou consulte Seu Plano.';
+        _showPaymentStatus(state, 'Pagamento confirmado',
+          `A compra do plano ${plan} foi confirmada. ${accessMessage}`, synchronized ? '' : 'retry');
       } catch {
         if (current()) {
           _showPaymentStatus(state, 'Verificação indisponível', 'Não foi possível consultar a compra agora. Tente novamente.', 'retry');

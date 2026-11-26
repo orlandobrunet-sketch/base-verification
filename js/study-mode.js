@@ -1437,13 +1437,22 @@
       } catch {}
       const memory = _aiQuotaMemory.get(key);
       if (memory && memory.date !== today) _aiQuotaMemory.delete(key);
-      if (memory?.date === today && memory.count > (quota.count || 0)) return { ...memory };
+      if (memory?.date === today && memory.count > (quota.count || 0)) return { date: memory.date, count: memory.count };
       return quota;
     }
 
-    function _rememberAIQuota(key, quota) {
-      _aiQuotaMemory.set(key, { ...quota });
+    function _rememberAIQuota(key, quota, refused = false) {
+      _aiQuotaMemory.set(key, { ...quota, refused });
       try { localStorage.setItem(key, JSON.stringify(quota)); } catch {}
+    }
+
+    function _aiQuotaReached(base, quota, limit) {
+      if (quota.count < limit) return false;
+      const key = _aiQuotaStorageKey(base);
+      const memory = _aiQuotaMemory.get(key);
+      // O contador salvo não estabelece que o plano ainda é gratuito.
+      // Nessa situação, a Edge decide e a primeira recusa vale para o dono/dia.
+      return !key || _premiumAccessKnown() || (memory?.date === quota.date && memory.refused);
     }
 
     function _getMentorQuota() {
@@ -1472,7 +1481,7 @@
 
     function _canAskMentor() {
       if (isPremium()) return true;
-      return _getMentorQuota().count < MENTOR_DAILY_LIMIT;
+      return !_aiQuotaReached(MENTOR_QUOTA_KEY, _getMentorQuota(), MENTOR_DAILY_LIMIT);
     }
 
     function _incrementMentorQuota() {
@@ -1500,22 +1509,24 @@
       if (!key) return;
       const q = _getMentorQuota();
       q.count = MENTOR_DAILY_LIMIT;
-      _rememberAIQuota(key, q);
+      _rememberAIQuota(key, q, true);
       const barra = document.getElementById('mentorQuotaBar');
       if (barra) barra.textContent = _mentorRemainingText();
     }
 
     function _mentorRemainingText() {
       if (isPremium()) return '';
-      const { count } = _getMentorQuota();
-      const rem = Math.max(0, MENTOR_DAILY_LIMIT - count);
+      const quota = _getMentorQuota();
+      const rem = Math.max(0, MENTOR_DAILY_LIMIT - quota.count);
+      if (rem === 0 && !_aiQuotaReached(MENTOR_QUOTA_KEY, quota, MENTOR_DAILY_LIMIT)) return '';
       return `${rem}/${MENTOR_DAILY_LIMIT} perguntas restantes hoje`;
     }
 
     function _diagRemainingText() {
       if (isPremium()) return '';
-      const { count } = _getDiagQuota();
-      const rem = Math.max(0, DIAG_DAILY_LIMIT - count);
+      const quota = _getDiagQuota();
+      const rem = Math.max(0, DIAG_DAILY_LIMIT - quota.count);
+      if (rem === 0 && !_aiQuotaReached(DIAG_QUOTA_KEY, quota, DIAG_DAILY_LIMIT)) return '';
       return `${rem}/${DIAG_DAILY_LIMIT} diagnósticos restantes hoje`;
     }
 
@@ -1554,7 +1565,7 @@
 
     function _canRunDiagnosis() {
       if (isPremium()) return true;
-      return _getDiagQuota().count < DIAG_DAILY_LIMIT;
+      return !_aiQuotaReached(DIAG_QUOTA_KEY, _getDiagQuota(), DIAG_DAILY_LIMIT);
     }
 
     function _incrementDiagQuota() {
@@ -1574,7 +1585,7 @@
       if (!key) return;
       const q = _getDiagQuota();
       q.count = DIAG_DAILY_LIMIT;
-      _rememberAIQuota(key, q);
+      _rememberAIQuota(key, q, true);
     }
     
     function startStudyMode(replaceSaved = false) {

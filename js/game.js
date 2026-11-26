@@ -878,18 +878,20 @@
       const revision = ++_premiumProfileRevision;
       const current = () => revision === _premiumProfileRevision &&
         _supaClient === client && _premiumOwnerCurrent(owner);
-      const flight = { owner, promise: null, startedAt: Date.now() };
+      const flight = { owner, revision, promise: null, startedAt: Date.now() };
       _premiumProfileFlight = flight;
       flight.promise = (async () => {
         try {
           const { data: profile, error } = await client
             .from('profiles').select('is_premium, premium_expires_at').eq('id', owner.id).single();
           // Erro de rede não revoga uma concessão verificada nesta sessão.
-          if (error || !current()) return false;
+          if (error || !current() || typeof profile?.is_premium !== 'boolean' ||
+              (profile.is_premium && profile.premium_expires_at !== null &&
+                !Number.isFinite(Date.parse(profile.premium_expires_at)))) return false;
           if (_premiumAtivo(profile)) {
             _verifiedPremium = { ...owner, source: 'profile',
               expiresAt: profile.premium_expires_at === null ? null : Date.parse(profile.premium_expires_at) };
-            _premiumProfileResolved = { ...owner, source: 'profile' };
+            _premiumProfileResolved = { ...owner, source: 'profile', revision };
             return true;
           }
           // Um perfil explicitamente inativo revoga acesso por compra; a lista
@@ -903,7 +905,7 @@
           if (wlError || !current()) return false;
           _verifiedPremium = wl?.email === owner.email && !!owner.email
             ? { ...owner, source: 'whitelist', expiresAt: null } : null;
-          _premiumProfileResolved = owner;
+          _premiumProfileResolved = { ...owner, revision };
           return !!_verifiedPremium;
         } catch { return false; }
       })().finally(() => { if (_premiumProfileFlight === flight) _premiumProfileFlight = null; });
@@ -913,31 +915,63 @@
       return isPremium() || (_premiumOwnerCurrent(_premiumProfileResolved) &&
         _premiumProfileResolved.source !== 'profile');
     }
+    const PREMIUM_CHECK_TIMEOUT_MS = 8000;
+    async function _awaitPremiumAccess({ refresh = false } = {}) {
+      if (isAdminUser()) return 'premium';
+      const owner = _premiumOwner();
+      if (!owner) return 'free';
+      if (!refresh && _premiumAccessKnown()) return isPremium() ? 'premium' : 'free';
+      if (!_supaClient) return 'pending';
+      const flight = _premiumProfileFlight;
+      const reuse = !refresh && _premiumOwnerCurrent(flight?.owner) &&
+        Date.now() - flight.startedAt < PREMIUM_CHECK_TIMEOUT_MS;
+      const request = reuse ? flight.promise : _loadPremiumFromDB();
+      const revision = _premiumProfileFlight?.revision;
+      let timer;
+      try {
+        const completed = await Promise.race([
+          request.then(() => true),
+          new Promise(resolve => { timer = setTimeout(() => resolve(false), PREMIUM_CHECK_TIMEOUT_MS); })
+        ]);
+        if (!_premiumOwnerCurrent(owner)) return 'stale';
+        if (completed && revision === _premiumProfileResolved?.revision && _premiumAccessKnown()) {
+          return isPremium() ? 'premium' : 'free';
+        }
+        return 'pending';
+      } finally {
+        clearTimeout(timer);
+      }
+    }
     function _needsJourneyPremiumCheck() {
       return !_guestMode && !!authUser && !isPremium() && getEntitlementQuestionsAnswered() >= FREE_QUESTIONS_LIMIT;
     }
+    let _journeyPremiumCheck = null;
     function _showJourneyPremiumCheck() {
       const owner = _premiumOwner();
       const binding = _captureJourneyBinding();
       const question = state.current;
+      const journey = document.getElementById('mainApp');
+      if (!journey || journey.inert || journey.classList.contains('hidden')) return;
       if (_premiumAccessKnown()) { showPricingModal(); return; }
+      if (_journeyPremiumCheck?.question === question &&
+          _premiumOwnerCurrent(_journeyPremiumCheck.owner) &&
+          _matchesJourneyBinding(_journeyPremiumCheck.binding)) return;
       // Mantém o controle de próxima questão acessível como nova tentativa
       // sem abrir cobrança antes da resposta do servidor.
       ui.nextBtn.classList.remove('hidden');
       ui.dockNextBtn?.classList.remove('disabled');
       ui.nextBtn.textContent = 'Verificar meu acesso';
-      const flight = _premiumProfileFlight;
-      const request = _premiumOwnerCurrent(flight?.owner) && Date.now() - flight.startedAt < 8000
-        ? flight.promise : _loadPremiumFromDB();
-      let timer;
-      Promise.race([request, new Promise(resolve => { timer = setTimeout(resolve, 8000); })])
-        .finally(() => {
-          clearTimeout(timer);
-          if (!_matchesJourneyBinding(binding) || !_premiumOwnerCurrent(owner) || state.current !== question || !state.answered) return;
-          if (isPremium()) ui.nextBtn.textContent = 'Próxima pergunta';
-          else if (_premiumAccessKnown()) showPricingModal();
-          else _toast('Não foi possível verificar seu acesso. Tente novamente.', 'info', 4000);
-        });
+      const check = { owner, binding, question };
+      _journeyPremiumCheck = check;
+      _awaitPremiumAccess().then(access => {
+        if (_journeyPremiumCheck !== check) return;
+        _journeyPremiumCheck = null;
+        if (journey.inert || journey.classList.contains('hidden') || !_matchesJourneyBinding(binding) ||
+            !_premiumOwnerCurrent(owner) || state.current !== question || !state.answered) return;
+        if (access === 'premium') ui.nextBtn.textContent = 'Próxima pergunta';
+        else if (access === 'free') showPricingModal();
+        else _toast('Não foi possível verificar seu acesso. Tente novamente.', 'info', 4000);
+      });
     }
 
     function _incrementQuestionsAnswered() {
@@ -3109,7 +3143,7 @@
         const s = document.createElement('script');
         // The older worker canonicalizes only ?v=; ?release= also bypasses its
         // unversioned data cache during the first visit after an update.
-        s.src = 'data/topics.js?release=17.31';
+        s.src = 'data/topics.js?release=17.32';
         s.onload  = () => {
           questionBank = buildDeck();
           // E1/IRT: expõe o banco para o calculateUserTheta (utils.js está fora
@@ -5086,7 +5120,11 @@
       let resolvido = false;
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
-        if (!_forjaTransacao(() => { _equipJourneyItem(slot, item); })) return;
+        // Baú e Julgamento mantêm o salvamento normal da jornada. No Piloto,
+        // a recompensa precisa passar pela transação do progresso isolado.
+        if (isCharacterPilot()) {
+          if (!_forjaTransacao(() => { _equipJourneyItem(slot, item); })) return;
+        } else _equipJourneyItem(slot, item);
         const msg = `⬆️ Equipou **${item.n}** (${_rarLabel[item.rar] || item.rar}) no slot ${slotLabels[slot]||slot}.`;
         if (onDone) onDone(msg);
         renderHUD(); updateBadges(); saveGame();
@@ -5098,10 +5136,15 @@
           if (resolvido || !_matchesJourneyBinding(binding)) return;
           resolvido = true;
           const val = _itemSellVal(currentItem);
-          if (!_forjaTransacao(() => {
-            _stateData.gold += val;
-            _equipJourneyItem(slot, item);
-          })) return;
+            if (isCharacterPilot()) {
+              if (!_forjaTransacao(() => {
+                _stateData.gold += val;
+                _equipJourneyItem(slot, item);
+              })) return;
+            } else {
+              state.gold += val;
+              _equipJourneyItem(slot, item);
+            }
           const msg = `⬆️ ${slotLabels[slot]}: **${currentItem.n}** → **${item.n}**. ${currentItem.n} convertido em ${val}💰.`;
           if (onDone) onDone(msg);
           renderHUD(); updateBadges(); saveGame();
