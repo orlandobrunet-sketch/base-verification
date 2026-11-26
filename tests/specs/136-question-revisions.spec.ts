@@ -365,7 +365,7 @@ test('actual published archive retains every prior cohort alongside the eight 17
   ];
   const legacyReferenceIds = report.referenceIds.filter((id: string) =>
     !chamberReferenceIds.includes(id) && !continuationReferenceIds.includes(id) && !latestReferenceIds.includes(id) && !editorial1728ReferenceIds.includes(id));
-  expect(report.archiveCount).toBe(504);
+  expect(report.archiveCount).toBe(505);
   expect(report.originalCount).toBe(16);
   expect(report.additionCount).toBe(110);
   expect(report.continuationCount).toBe(43);
@@ -401,7 +401,12 @@ test('actual published archive retains every prior cohort alongside the eight 17
   expect(createHash('sha256').update(JSON.stringify(publishedLegacyIds)).digest('hex'))
     .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
   expect(report.originalQids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
-  expect(report.rows).toHaveLength(2016);
+  expect(report.rows).toHaveLength(2020);
+  const mpoRows = report.rows.filter((row: any) => row.release === '17.31');
+  expect(mpoRows.map((row: any) => row.profile).sort()).toEqual(['exam', 'main', 'offline', 'study']);
+  for (const row of mpoRows) expect(row).toMatchObject({ qid: 'bd45bf21', status: 'known', historical: true,
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: { material: true, pending: 'update-required', answered: 'historical' } });
   const retiredRows = report.rows.filter((row: any) => row.release === '17.26');
   expect(retiredRows).toHaveLength(4);
   for (const row of retiredRows) expect(row).toMatchObject({qid: '6474ec20', noCurrent: true, replacementQid: 'b515e1c7',

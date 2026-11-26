@@ -747,6 +747,21 @@
   const canonicalLibraryKey = (key, articles) => libraryAliases(key, articles)[0] || key;
   const itemKey = item => item.key || item._bibKey;
   const unlocked = item => typeof item.unlocked === 'boolean' ? item.unlocked : !item.locked;
+  const DAPA_CKD_TITLES = {
+    displayTitle: 'DAPA-CKD — Dapagliflozina em pacientes com doença renal crônica',
+    originalTitle: 'Dapagliflozin in Patients with Chronic Kidney Disease',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2024816',
+  };
+  const EMPA_KIDNEY_TITLES = {
+    displayTitle: 'EMPA-KIDNEY — Empagliflozina em pacientes com doença renal crônica',
+    originalTitle: 'Empagliflozin in Patients with Chronic Kidney Disease',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2204233',
+  };
+  const CREDENCE_TITLES = {
+    displayTitle: 'CREDENCE — Canagliflozina e desfechos renais em pacientes com diabetes tipo 2 e nefropatia',
+    originalTitle: 'Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1811744',
+  };
   // Display metadata is pinned to the selected content record, not to its
   // publication group or any other variant. The authored identity stays intact.
   const BIBLIOGRAPHIC_TITLES = new Map([
@@ -772,6 +787,34 @@
       displayTitle: 'Hipernatremia em adultos — Avaliação e manejo',
       originalTitle: 'Evaluation and management of hypernatremia in adults: clinical perspectives',
       publicationUrl: 'https://www.kjim.org/journal/view.php?number=170760',
+    }],
+    ['dapa', {
+      kind: 'source', title: 'DAPA-CKD Trial', year: 2020, url: DAPA_CKD_TITLES.publicationUrl,
+      source: 'New England Journal of Medicine', ...DAPA_CKD_TITLES,
+    }],
+    ['__art_14', {
+      kind: 'scroll', title: 'DAPA-CKD', year: 2020, url: '',
+      source: 'N Engl J Med 2020;383(15):1436-1446. DOI: 10.1056/NEJMoa2024816', ...DAPA_CKD_TITLES,
+    }],
+    ['__art_22', {
+      kind: 'scroll', title: 'DAPA-CKD Trial', year: 2020, url: '',
+      source: 'N Engl J Med 2020;383(15):1436-1446. DOI: 10.1056/NEJMoa2024816', ...DAPA_CKD_TITLES,
+    }],
+    ['empa_kidney', {
+      kind: 'source', title: 'Herrington WG et al. — EMPA-KIDNEY (NEJM 2023)', year: 2023, url: EMPA_KIDNEY_TITLES.publicationUrl,
+      source: 'N Engl J Med 2023;388(2):117-127', ...EMPA_KIDNEY_TITLES,
+    }],
+    ['__art_16', {
+      kind: 'scroll', title: 'EMPA-KIDNEY', year: 2023, url: '',
+      source: 'N Engl J Med 2023;388(2):117-127. DOI: 10.1056/NEJMoa2204233', ...EMPA_KIDNEY_TITLES,
+    }],
+    ['credence', {
+      kind: 'source', title: 'CREDENCE Trial (Canagliflozina)', year: 2019, url: CREDENCE_TITLES.publicationUrl,
+      source: 'New England Journal of Medicine', ...CREDENCE_TITLES,
+    }],
+    ['__art_21', {
+      kind: 'scroll', title: 'CREDENCE Trial', year: 2019, url: '',
+      source: 'N Engl J Med 2019;380(24):2295-2306. DOI: 10.1056/NEJMoa1811744', ...CREDENCE_TITLES,
     }],
   ]);
   function titlePresentation(item) {
