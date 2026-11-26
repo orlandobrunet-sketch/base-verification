@@ -151,5 +151,5 @@ test('a página inicial separa questões de desafios', async ({ page }) => {
   const prova = page.locator('.proof-item').first();
   await expect(prova).toContainText('Questões comentadas');
   await expect(prova).toContainText('350 desafios rápidos');
-  await expect(prova.locator('[data-count]')).toHaveAttribute('data-count', '725');
+  await expect(prova.locator('[data-count]')).toHaveAttribute('data-count', '724');
 });

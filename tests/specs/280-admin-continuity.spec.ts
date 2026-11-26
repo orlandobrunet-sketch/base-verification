@@ -29,10 +29,11 @@ test.afterEach(async ({ page }, info) => {
 
 // This is the external SDK query boundary, as in spec84. Production loaders,
 // identity checks, dialogs, selectors and rendering are never replaced.
-async function controlledDatabase(page: Page, options: { hold?: string; emptyLeaderboard?: boolean; heldFirstOnly?: boolean } = {}) {
+async function controlledDatabase(page: Page, options: { hold?: string; emptyLeaderboard?: boolean; heldFirstOnly?: boolean; failFirst?: string } = {}) {
   await page.evaluate(options => {
     const w = window as any;
     w.__adminReads = [];
+    w.__adminReadAborts = 0;
     const records: Record<string, unknown[]> = {
       leaderboard: options.emptyLeaderboard ? [] : [{ player_name: 'Registro técnico da conta A', score: 25, level: 1 }],
       question_ratings: [{ question_id: 'admin-continuity-technical', question_text: 'Registro técnico de avaliação', rating_quality: 4, rating_learning: 5, player_email: 'rating@example.invalid', created_at: '2026-11-14T12:00:00Z' }],
@@ -42,9 +43,16 @@ async function controlledDatabase(page: Page, options: { hold?: string; emptyLea
     w.__adminClient = { from: (table: string) => {
       const chain = {
         select() { return this; }, order() { return this; }, limit() { return this; },
+        abortSignal(signal: AbortSignal) {
+          signal.addEventListener('abort', () => w.__adminReadAborts++, { once: true });
+          return this;
+        },
         then(resolve: any, reject: any) {
           w.__adminReads.push(table);
           const count = w.__adminReads.filter((read: string) => read === table).length;
+          if (table === options.failFirst && count === 1) {
+            return Promise.resolve({ data: null, error: new Error('Falha simulada na consulta') }).then(resolve, reject);
+          }
           const response = { data: records[table] || [], error: null };
           if (options.heldFirstOnly && count > 1) {
             if (table === 'leaderboard') response.data = [{ player_name: 'Registro técnico atualizado', score: 30, level: 2 }];
@@ -111,6 +119,46 @@ for (const [open, root, status] of [
   await expect(page.locator(status)).toContainText(/Erro|Não foi possível|indisponível/);
   await expect(page.locator(status)).not.toContainText(/Carregando/);
   if (root === '#analyticsModal') await expect(page.locator('#anDifficultyList')).not.toContainText(/Carregando/);
+});
+
+for (const stall of [false, true]) test(`Lista de Acesso permite tentar novamente após ${stall ? 'prazo excedido' : 'falha'} com foco e rascunho preservados`, async ({ page }) => {
+  const table = 'access_whitelist';
+  await controlledDatabase(page, stall
+    ? { hold: table, heldFirstOnly: true } : { failFirst: table, heldFirstOnly: true });
+  const now = Date.UTC(2030, 0, 1);
+  await page.clock.install({ time: now - 1000 });
+  await page.clock.pauseAt(now);
+  await page.evaluate(() => (window as any).openAdminPanel());
+  const panel = page.getByRole('dialog', { name: /Lista de Acesso/ });
+  const list = panel.locator('#wlList');
+  const retry = panel.getByRole('button', { name: 'Tentar novamente', exact: true });
+  const input = panel.locator('#wlEmailInput');
+  const draft = 'rascunho@example.invalid';
+  await input.fill(draft);
+  await expect.poll(() => page.evaluate(() => (window as any).__adminReads)).toEqual([table]);
+  if (stall) {
+    await page.clock.fastForward(9999);
+    await expect(list).toContainText('Carregando');
+    await expect(retry).toBeHidden();
+    await page.clock.fastForward(1);
+  }
+  await expect(list).toContainText(stall ? 'A lista demorou para carregar.' : 'Não foi possível carregar a lista agora.');
+  expect(await page.evaluate(() => (window as any).__adminReadAborts)).toBe(stall ? 1 : 0);
+  await expect(retry).toBeVisible();
+  await retry.focus();
+  await page.keyboard.press('Enter');
+  await expect(list).toContainText('acesso-atualizado@example.invalid');
+  await expect(retry).toBeHidden();
+  await expect(list).toBeFocused();
+  await expect(input).toHaveValue(draft);
+  if (stall) {
+    // A fronteira simulada registra o cancelamento, mas resolve tarde.
+    await page.evaluate(() => (window as any).__releaseAdminRead());
+    await page.clock.runFor(1);
+    await expect(list).not.toContainText('acesso-a@example.invalid');
+    await expect(list).toContainText('acesso-atualizado@example.invalid');
+  }
+  expect(await page.evaluate(() => (window as any).__adminReads)).toEqual([table, table]);
 });
 
 for (const [table, open, refresh, close, root, currentText, oldText] of [

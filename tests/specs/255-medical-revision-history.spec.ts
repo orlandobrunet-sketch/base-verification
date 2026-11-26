@@ -22,7 +22,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 725 &&
+  await page.waitForFunction(() => (window as any).questionBank?.length === 724 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 });
@@ -111,7 +111,7 @@ test('pending ' + qid + ' requires explicit current-content confirmation before 
 });
 }
 test('a card-only legacy save without revision binding is held rather than silently assigned the new summary', async ({page}) => {
-  const fixture = await seed(page, '061c9bcb', true, false);
+  const fixture = await seed(page, '9f887485', true, false, '17.27');
   expect(fixture.current.source).toEqual(fixture.old.sources.exam);
   expect(fixture.current.references).not.toEqual(fixture.old.references);
   await openSaved(page);

@@ -25,7 +25,7 @@ async function enterGuest(page: Page) {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 725 &&
+  await page.waitForFunction(() => (window as any).questionBank?.length === 724 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 }
@@ -164,7 +164,7 @@ test('actual 17.11 archive retains its42 rewritten cohort and both past card-onl
         api.digest(intermediate.references.moeller_plosone_2014)};
   }, ARCHIVED_RELEASE);
   expect(new Set(REWRITTEN).size).toBe(42);
-  expect(report.totalHistory).toBe(500);
+  expect(report.totalHistory).toBe(502);
   expect(report.qids).toEqual([...REWRITTEN, '5530b59c'].sort());
   expect(report.rewrittenQids).toEqual(REWRITTEN);
   expect(report.materialNowQids).toEqual([...REWRITTEN, '5530b59c'].sort());

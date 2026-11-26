@@ -435,7 +435,7 @@ function publishedBundle() {
   topics.forEach((author, index) => Object.entries(builder.sources(author, index))
     .forEach(([profile, value]) => sources[profile].push(value)));
   const catalog = revisions.createCatalog({ manifest, history, authors: topics, sources, references: refs });
-  assert.equal(topics.length, 725);
+  assert.equal(topics.length, 724);
   publishedExamBundle = { topics, refs, manifest, history, sources, catalog };
   return publishedExamBundle;
 }
@@ -460,7 +460,7 @@ function publishedFreshHarness(qid, fault) {
   // still use their real implementations and the complete published bank.
   h.context.shuffle = values => {
     const target = values.find(question => question.id === qid);
-    assert(target); assert.equal(values.length, 725);
+    assert(target); assert.equal(values.length, 724);
     const first = fault === 'incompatible-source' ? { ...target, e: target.e + ' Technical fixture drift.' } : target;
     return [first, ...values.filter(question => !REFERENCE_ONLY_QIDS.includes(question.id)),
       ...values.filter(question => REFERENCE_ONLY_QIDS.includes(question.id) && question.id !== qid)];

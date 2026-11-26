@@ -459,6 +459,17 @@
       state.check = null;
     }
 
+    function _retireStalePaymentReturn(state) {
+      if (!state.owner || (state.owner === authUser?.id && state.epoch === _authSessionEpoch)) return false;
+      _cancelPaymentCheck(state);
+      state.owner = null;
+      state.epoch = null;
+      if (state.overlay?.isConnected) {
+        _showPaymentStatus(state, 'Sessão alterada', 'Verifique a compra na conta que iniciou o pagamento.', authUser ? 'retry' : 'login');
+      }
+      return true;
+    }
+
     function _dismissPaymentReturn(state, keepReceipt = false) {
       _cancelPaymentCheck(state);
       state.overlay?.remove();
@@ -519,13 +530,20 @@
       if (!state.overlay?.isConnected || state.check) return;
       const check = new AbortController();
       state.check = check;
-      const active = () => state.check === check && state.overlay?.isConnected;
-      const sameAccount = () => authUser?.id === state.owner && _authSessionEpoch === state.epoch;
-      let requestTimeout;
+      state.owner = authUser?.id ?? null;
+      state.epoch = _authSessionEpoch;
+      const current = () => state.check === check && state.overlay?.isConnected && !_retireStalePaymentReturn(state);
+      // Sessão e leitura da resposta dividem o prazo da mesma tentativa.
+      // A corrida também libera a interface se uma dependência ignorar o abort.
+      const interrupted = new Promise((_, reject) => {
+        check.signal.addEventListener('abort', () => reject(new Error('Verificação interrompida')), { once: true });
+      });
+      const wait = promise => Promise.race([promise, interrupted]);
+      const requestTimeout = setTimeout(() => check.abort(), 10000);
       _showPaymentStatus(state, 'Verificando pagamento', 'Consultando a situação da compra.');
       try {
-        const { data, error } = await _supaClient?.auth.getSession() ?? {};
-        if (!active()) return;
+        const { data, error } = (await wait(_supaClient?.auth.getSession())) ?? {};
+        if (!current()) return;
         if (error) throw error;
         if (!authUser || !data?.session?.access_token || data.session.user?.id !== authUser.id) {
           _showPaymentStatus(state, 'Entre para verificar', 'Use a mesma conta que iniciou a compra.', 'login');
@@ -533,21 +551,20 @@
         }
         state.owner = authUser.id;
         state.epoch = _authSessionEpoch;
-        requestTimeout = setTimeout(() => check.abort(), 10000);
-        const response = await fetch(`${SUPA_URL}/functions/v1/mp-payment-status`, {
+        const response = await wait(fetch(`${SUPA_URL}/functions/v1/mp-payment-status`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + data.session.access_token, apikey: SUPA_KEY },
           body: JSON.stringify({ payment_id: state.receipt.id }),
           signal: check.signal,
-        });
-        if (!active() || !sameAccount()) return;
+        }));
+        if (!current()) return;
         if (response.status === 401) {
           _showPaymentStatus(state, 'Entre para verificar', 'Renove a sessão da conta que iniciou a compra.', 'login');
           return;
         }
         if (!response.ok) throw new Error('Payment status unavailable');
-        const result = await response.json();
-        if (!active() || !sameAccount()) return;
+        const result = await wait(response.json());
+        if (!current()) return;
         if (result.status === 'pending') {
           const retry = attempt < _paymentRetryDelays.length;
           _showPaymentStatus(state, 'Pagamento ainda não confirmado',
@@ -555,7 +572,7 @@
           if (retry) {
             state.retry = setTimeout(() => {
               state.retry = null;
-              if (sameAccount()) _verifyPaymentReturn(state, attempt + 1);
+              if (!_retireStalePaymentReturn(state)) _verifyPaymentReturn(state, attempt + 1);
             }, _paymentRetryDelays[attempt]);
           }
           return;
@@ -585,7 +602,7 @@
         _trackConfirmedPurchase(state.receipt, result, state.owner);
         _showPaymentStatus(state, 'Pagamento confirmado', `A compra do plano ${plan} foi confirmada. ${accessMessage}`);
       } catch {
-        if (active() && (!state.owner || sameAccount())) {
+        if (current()) {
           _showPaymentStatus(state, 'Verificação indisponível', 'Não foi possível consultar a compra agora. Tente novamente.', 'retry');
         }
       } finally {
@@ -604,12 +621,7 @@
           // Sai do callback síncrono do Supabase antes de consultar a sessão.
           setTimeout(() => {
             if (_paymentReturnState !== state) return;
-            if (state.owner && (state.owner !== authUser?.id || state.epoch !== _authSessionEpoch)) {
-              _cancelPaymentCheck(state);
-              state.owner = null;
-              state.epoch = null;
-              if (state.overlay) _showPaymentStatus(state, 'Sessão alterada', 'Verifique a compra na conta que iniciou o pagamento.', authUser ? 'retry' : 'login');
-            }
+            _retireStalePaymentReturn(state);
             if (!authUser) return;
             if (state.waitingForLogin) {
               state.waitingForLogin = false;

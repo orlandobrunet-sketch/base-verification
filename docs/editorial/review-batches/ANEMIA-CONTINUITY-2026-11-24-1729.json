@@ -1,0 +1,101 @@
+{
+  "batch": "ANEMIA-CONTINUITY-2026-11-24-1729",
+  "change_type": "medical_editorial",
+  "expected_version": "17.30",
+  "allowed_files": [
+    "data/question-replacements.json",
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/topics.js",
+    "docs/CONTINUITY.md",
+    "docs/ROADMAP.md",
+    "docs/editorial/review-batches/ANEMIA-CONTINUITY-2026-11-24-1729.json",
+    "docs/editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-independent-A3.json",
+    "docs/editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-proposta-A3.json",
+    "docs/editorial/reviews/2026-11-24-anemia-continuity/application-receipt.json",
+    "index.html",
+    "jogar/index.html",
+    "js/admin.js",
+    "js/game.js",
+    "js/paywall.js",
+    "offline.html",
+    "sw.js",
+    "tests/answers/catalog-construction-cache.test.cjs",
+    "tests/answers/exam-question-revisions.test.cjs",
+    "tests/answers/question-revisions.test.cjs",
+    "tests/service-worker/data-release.test.mjs",
+    "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/138-exam-reference-only-revisions.spec.ts",
+    "tests/specs/182-sensacao-de-jogo.spec.ts",
+    "tests/specs/198-keyboard-hints.spec.ts",
+    "tests/specs/227-payment-return.spec.ts",
+    "tests/specs/255-medical-revision-history.spec.ts",
+    "tests/specs/257-medical-continuation-history.spec.ts",
+    "tests/specs/258-study-scheduled-only.spec.ts",
+    "tests/specs/260-exam-orientation.spec.ts",
+    "tests/specs/261-reading-feedback-stability.spec.ts",
+    "tests/specs/264-support-context.spec.ts",
+    "tests/specs/266-question-preparation.spec.ts",
+    "tests/specs/280-admin-continuity.spec.ts",
+    "tests/specs/286-final-chest-victory.spec.ts",
+    "tests/specs/303-question-objective-replacement.spec.ts",
+    "tests/specs/307-vaptan-consolidation-history.spec.ts",
+    "tests/specs/308-mpgn-consolidation-history.spec.ts",
+    "tests/specs/309-proteinuria-consolidation-history.spec.ts",
+    "tests/specs/310-editorial-identity-history.spec.ts",
+    "version.json"
+  ],
+  "expected_question_delta": -1,
+  "refs_policy": "unchanged",
+  "integration_base": "c449b3bad2f5918f05b88a864b3a38bb21c2203d",
+  "questions": {
+    "061c9bcb": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:edae1bb24638bed506bffa71b8e1009101b18ccdd64aae63034ca5d37af16462",
+      "after_sha256": "sha256:5e43137f50f76a7a4113f5345a1f858eff066b40858170d7f5a881adf9e380bc",
+      "approval_conditions": { "atomic_retirement": "78823c61" },
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-independent-A3.json",
+        "report_sha256": "ec49b9c576c1d42e9de0b39ca2a987dc61c75fd53a5ef1a7fb42e6b6c8a34e72",
+        "version_pointer": "/questions/061c9bcb/version",
+        "gate_pointer": "/questions/061c9bcb/gate"
+      }
+    },
+    "78823c61": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "fundir",
+      "publicacao": "BLOQUEADA",
+      "before_sha256": "sha256:712ec869e6f012134cc8a32ed44ecc8953b24e86e6b33223c4cbe66c2a894724",
+      "replacement_qid": "061c9bcb",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-24-anemia-continuity/061c9bcb-independent-A3.json",
+        "report_sha256": "ec49b9c576c1d42e9de0b39ca2a987dc61c75fd53a5ef1a7fb42e6b6c8a34e72",
+        "version_pointer": "/questions/78823c61/version",
+        "gate_pointer": "/questions/78823c61/gate"
+      }
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "anemia_independent1729 para conteúdo e identidade, review_technical1729 para continuidade da interface",
+    "availability_basis": "Greptile não retornou parecer nas duas verificações da publicação 17.28. Revisões independentes registradas."
+  },
+  "history_policy": {
+    "base_release": "17.28",
+    "records_before": 500,
+    "records_added": 2,
+    "records_after": 502,
+    "previous_bindings_preserved": 2000,
+    "new_bindings": 8,
+    "bindings_after": 2008,
+    "application_receipt": "docs/editorial/reviews/2026-11-24-anemia-continuity/application-receipt.json"
+  }
+}
