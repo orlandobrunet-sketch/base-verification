@@ -13,7 +13,7 @@ async function carregarPremium(page: Page, resposta: { data: unknown; error: unk
       single: async () => window.__perfil,
       maybeSingle: async () => window.__lista,
     }) }) }) }`);
-    return g('_loadPremiumFromDB()').then(() => { g('_invalidatePremiumCache()'); return g('isPremium()'); });
+    return g('_loadPremiumFromDB()').then(() => g('isPremium()'));
   }, [resposta, whitelist] as const);
 }
 
@@ -36,8 +36,30 @@ test('o mensal em dia e o vitalício continuam premium', async ({ page }) => {
   expect(await carregarPremium(page, { data: { is_premium: true, premium_expires_at: null }, error: null })).toBe(true);
 });
 
-test('falha de rede não apaga o premium já guardado', async ({ page }) => {
+test('falha de rede não revoga o premium verificado na sessão', async ({ page }) => {
   await abrir(page);
   expect(await carregarPremium(page, { data: { is_premium: true, premium_expires_at: null }, error: null })).toBe(true);
   expect(await carregarPremium(page, { data: null, error: { message: 'Failed to fetch' } })).toBe(true);
+});
+
+test('perto do limite, aguarda confirmação Premium sem abrir cobrança', async ({ page }) => {
+  await abrir(page);
+  await page.evaluate(() => {
+    const g = (0, eval);
+    const profile = new Promise(resolve => { (window as any).__confirmOwnPremium = () =>
+      resolve({ data: { is_premium: true, premium_expires_at: null }, error: null }); });
+    (window as any).__testPremiumClient = { from: () => ({ select: () => ({ eq: () => ({ single: () => profile }) }) }) };
+    g(`_guestMode=false; authUser={id:'pagante-1',email:'pagante@example.com'};
+      _supaClient=window.__testPremiumClient;
+      localStorage.setItem(STATS_KEY, JSON.stringify({...getGameStats(),questionsAnsweredAllTime:50}));
+      _invalidateStatsCache(); _loadPremiumFromDB();`);
+  });
+  const idx = await page.evaluate(() => (0, eval)('state.current.a'));
+  await page.locator('#options .option').nth(idx).click();
+  await expect(page.locator('#nextBtn')).toHaveText('Verificar meu acesso');
+  await expect(page.locator('#pricingModal')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).isPremium())).toBe(false);
+  await page.evaluate(() => (window as any).__confirmOwnPremium());
+  await expect(page.locator('#nextBtn')).toHaveText('Próxima pergunta');
+  expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);
 });

@@ -60,43 +60,15 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
     }
   });
 
-  test('bypass do premium via console/localStorage é evitado sem assinatura', async ({ page }) => {
+  test('assinaturas antigas e marcadores locais não concedem acesso Premium', async ({ page }) => {
     await page.goto('/jogar/');
     await page.waitForLoadState('domcontentloaded');
-    
-    const premiumStatus = await page.evaluate(() => {
-      // Configura um mock de authUser para simular usuário logado
-      window.authUser = { id: 'test-user-id', email: 'test@example.com' };
-      localStorage.setItem('nefroquest-premium', '1');
-      if (typeof window.isPremium === 'function') {
-        return window.isPremium();
-      }
-      return null;
+    const result = await page.evaluate(() => {
+      (window as any).authUser = { id: 'test-user-id', email: 'test@example.com' };
+      for (const key of ['nefroquest-premium', 'nefroquest-whitelist']) localStorage.setItem(key, '1');
+      for (const key of ['nefroquest-premium-sig', 'nefroquest-whitelist-sig']) localStorage.setItem(key, 'legacy-fixture');
+      return { premium: (window as any).isPremium(), signer: typeof (window as any)._generatePremiumSignature };
     });
-    
-    // Deve retornar false porque a assinatura correspondente não foi gerada/salva
-    expect(premiumStatus).toBe(false);
-  });
-
-  test('bypass do premium via console/localStorage concede acesso quando assinatura é válida', async ({ page }) => {
-    await page.goto('/jogar/');
-    await page.waitForLoadState('domcontentloaded');
-    
-    const premiumStatus = await page.evaluate(() => {
-      window.authUser = { id: 'test-user-id', email: 'test@example.com' };
-      localStorage.setItem('nefroquest-premium', '1');
-      // Gera assinatura válida usando a função exposta
-      if (typeof window._generatePremiumSignature === 'function') {
-        const sig = window._generatePremiumSignature('test-user-id');
-        localStorage.setItem('nefroquest-premium-sig', sig);
-      }
-      if (typeof window.isPremium === 'function') {
-        return window.isPremium();
-      }
-      return null;
-    });
-    
-    // Deve retornar true porque a assinatura é válida para o ID do usuário
-    expect(premiumStatus).toBe(true);
+    expect(result).toEqual({premium: false, signer: 'undefined'});
   });
 });

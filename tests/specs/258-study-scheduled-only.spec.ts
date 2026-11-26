@@ -224,3 +224,44 @@ for (const mixed of [false, true]) test('Dashboard and Study reject malformed sc
   expect(await progress(page)).toEqual(before);
   expect(await page.evaluate(key => localStorage.getItem(key), SR)).toBe(fixture.raw);
 });
+
+test('a entrada desktop concentra o aviso, três escolhas e o total de revisão em uma coluna', async ({page}, info) => {
+  test.skip(info.project.name !== 'chromium', 'Validação do layout desktop; o mobile conserva a apresentação anterior.');
+  await page.setViewportSize({width: 1280, height: 760});
+  await seedSchedules(page, 'mixed');
+  await page.evaluate(key => {
+    const w = window as any, qid = w.questionBank[0].id;
+    const current = w.questionRevisionCatalog.current(qid, 'study');
+    const question = w.NQAnswers.present(current.source, {preserveOrder: true});
+    localStorage.setItem(key, JSON.stringify({questions: [qid], index: 0, correct: 2, wrong: 1, axisStats: {},
+      savedAt: Date.now() - 25 * 3600000, presentationVersion: 1,
+      presentations: [{id: qid, question, answer: null, revisionBinding: current.binding}]}));
+  }, STUDY);
+  const before = await progress(page);
+  await openHub(page);
+  const hub = page.locator('.nq-study-hub');
+  const cards = hub.locator('.nq-study-choices > section');
+  const notice = hub.getByRole('status');
+  await expect(notice).toContainText('Sessão salva preservada');
+  await expect(cards).toHaveCount(3);
+  await expect(hub.locator('.nq-study-choice-icon:visible')).toHaveCount(3);
+  await expect(reviewCard(page).locator('.nq-study-due.has-due')).toHaveText('2 questões agendadas para revisar agora');
+  const layout = await hub.evaluate(el => {
+    const rows = [...el.querySelectorAll('.nq-study-choices > section')].map(row => {
+      const box = row.getBoundingClientRect();
+      const button = row.querySelector('button')!.getBoundingClientRect();
+      return {left: box.left, top: box.top, bottom: box.bottom, right: box.right, buttonRight: button.right};
+    });
+    return {rows, statusHeight: el.querySelector('[role="status"]')!.getBoundingClientRect().height, viewportHeight: innerHeight};
+  });
+  expect(layout.statusHeight).toBeLessThan(88);
+  for (const [i, row] of layout.rows.entries()) {
+    expect(row.left).toBeCloseTo(layout.rows[0].left, 0);
+    expect(row.buttonRight).toBeLessThan(row.right);
+    if (i) expect(row.top).toBeGreaterThan(layout.rows[i - 1].bottom);
+  }
+  expect(layout.rows[2].bottom).toBeLessThan(layout.viewportHeight);
+  await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(1280);
+  expect(await progress(page)).toEqual(before);
+});

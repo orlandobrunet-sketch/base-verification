@@ -742,6 +742,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       if (isAnswered) {
         if (key === 'ENTER' || key === ' ') {
           e.preventDefault();
+          if (key === 'ENTER' && e.repeat) return;
           nextQuestion();
         }
         return;

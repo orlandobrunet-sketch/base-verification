@@ -591,14 +591,18 @@
             `A compra do plano ${plan} consta no histórico. Verifique novamente ou consulte o acesso atual em Seu Plano.`, 'retry');
           return;
         }
-        _writePaymentSession(_paymentReturnKey, null);
-        let accessMessage = 'O acesso Premium da conta está ativo.';
+        let accessMessage = 'Estamos sincronizando seu acesso. Consulte Seu Plano ou reabra o jogo se necessário.';
         try {
-          if (!_saveVerifiedPremium(state.owner)) return;
+          // O comprovante confirma a compra. Leia o perfil para sincronizar
+          // o direito vigente e o vencimento, sem criar uma concessão local.
+          await wait(_loadPremiumFromDB());
+          if (!current()) return;
+          if (isPremium()) accessMessage = 'O acesso Premium da conta está ativo.';
           updateWelcomeUserBadge();
         } catch {
-          accessMessage = 'Reabra o jogo para sincronizar seu acesso neste navegador.';
+          if (!current()) return;
         }
+        _writePaymentSession(_paymentReturnKey, null);
         _trackConfirmedPurchase(state.receipt, result, state.owner);
         _showPaymentStatus(state, 'Pagamento confirmado', `A compra do plano ${plan} foi confirmada. ${accessMessage}`);
       } catch {

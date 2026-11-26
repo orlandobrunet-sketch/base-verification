@@ -269,3 +269,22 @@
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-progress[data-complete="true"],
 .nq-ach-detail-progress[data-complete="true"] { color: #e7c873; }
+
+/* O vermelho identifica o desafio; o estado e o valor são sempre escritos. */
+.nq-ach-detail .nq-ach-hardcore-record {
+  display: grid;
+  gap: .22rem;
+  margin-top: 1rem;
+  padding: .65rem .85rem;
+  border-inline-start: 3px solid #f36f73;
+  border-radius: .25rem;
+  background: #361d27;
+  color: #ffc4c6;
+  font-size: .86rem;
+}
+.nq-ach-detail .nq-ach-hardcore-record strong {
+  color: #ff9a9e;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}

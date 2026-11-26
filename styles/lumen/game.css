@@ -2237,11 +2237,39 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 .nqdefeat-overlay { z-index: 9990; }
 .nqdefeat-card { width: min(100%, 560px); }
 .nqdefeat-card .nqnarr-reading { padding: 30px 32px 22px; }
-.nqdefeat-card .nqnarr-chapter { margin-bottom: 18px; }
+.nqdefeat-card .nqnarr-chapter { margin: 0 0 6px; color: #e6afbb; }
 .nqdefeat-heading { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 18px; align-items: center; }
-.nqdefeat-heading img { width: 84px; height: 84px; border: 1px solid #dfc28059; border-radius: 12px; object-fit: cover; object-position: top; filter: saturate(.7); }
+.nqdefeat-scene {
+  position: relative; min-width: 0; aspect-ratio: 1; overflow: hidden; isolation: isolate;
+  border: 1px solid #916274; border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 37%, #49505e 0, #2a2e35 48%, #15151d 100%);
+}
+.nqdefeat-scene img {
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
+  filter: saturate(.58) brightness(.88);
+}
+.nqdefeat-scene::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, #13131d44, transparent 40%, #171522b0 100%),
+    radial-gradient(ellipse at 50% 42%, transparent 28%, #1a17225e 78%, #16141d87);
+}
 .nqdefeat-heading h2 { margin: 0 0 6px; color: #eee8d9; font: 600 1.6rem/1.2 var(--nql-font-display); text-align: left; }
-.nqdefeat-heading p { margin: 0; color: #b7c2cc; font: 1rem/1.5 var(--nql-font-body); }
+.nqdefeat-heading p:not(.nqnarr-chapter), .nqdefeat-progress { margin: 0; color: #b7c2cc; font: 1rem/1.5 var(--nql-font-body); }
+.nqdefeat-heading .nqdefeat-lives {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin: 0 0 6px;
+  color: #f0bac7; font-size: .875rem; font-variant-numeric: tabular-nums;
+}
+.nqdefeat-hearts { display: flex; flex-wrap: wrap; gap: 3px; color: #ea9eaf; font-size: 1.15rem; line-height: 1.2; }
+.nqdefeat-card .nqdefeat-progress { margin-top: 16px; }
+@media (min-width: 769px) {
+  .nqdefeat-card { width: min(100%, 630px); border-color: #966176; }
+  .nqdefeat-heading {
+    grid-template-columns: 176px minmax(0, 1fr); gap: 25px;
+    padding: 12px; border: 1px solid #553e51; border-radius: 16px;
+    background: radial-gradient(ellipse at 6% 60%, #3b2b3b, #1c1b29 53%, #181923 100%);
+  }
+  .nqdefeat-heading h2 { font-size: clamp(1.8rem, 4vw, 3rem); color: #ffd2d8; }
+}
 .nqdefeat-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid #ffffff12; }
 .nqdefeat-stats div { min-width: 0; }
 .nqdefeat-stats dt { color: #9fadb9; font: .8125rem/1.4 var(--nql-font-body); }
@@ -2263,7 +2291,6 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   .nqdefeat-card .nqnarr-reading { padding: 26px 20px 18px; }
   .nqdefeat-actions { padding: 14px 20px 18px; }
   .nqdefeat-heading { grid-template-columns: 64px minmax(0, 1fr); gap: 14px; }
-  .nqdefeat-heading img { width: 64px; height: 64px; }
   .nqdefeat-heading h2 { font-size: 1.35rem; }
 }
 
@@ -2554,7 +2581,19 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #ma
 #mainApp[data-nq-ui="lumen"] #lives.nql-life-track { display:flex; flex:1 1 7rem; justify-content:flex-end; flex-wrap:wrap; gap:.15rem; min-width:0; white-space:normal; font-size:1.15rem; line-height:1.1; }
 #mainApp[data-nq-ui="lumen"] .nql-life { color:#f196ad; }
 #mainApp[data-nq-ui="lumen"] .nql-life.is-empty { color:#756571; }
-#mainApp[data-nq-ui="lumen"] #guardianStreakMultiplier { color:#d8c08a; font:.7rem/1.3 var(--nql-font-body); }
+#journeyQuestionPosition { display:none; }
+@media (min-width: 769px) {
+  #mainApp[data-nq-ui="lumen"] #journeyQuestionPosition:not(:empty) {
+    display:inline-block;
+    flex:none;
+    padding:.12rem .5rem;
+    border:1px solid #35414c;
+    border-radius:.3rem;
+    color:#ccd9e3;
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+}
 #mainApp[data-nq-ui="lumen"] .hud > .tile { display:flex !important; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-progress { grid-row:6; margin-top:calc(2rem - var(--nql-guardian-row-gap)); padding:0 .2rem .25rem; gap:.3rem; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-xp-hint { grid-row:3; }
@@ -2724,4 +2763,18 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   color: #d4e3eb;
   font: 600 .6875rem/1.1 var(--nql-font-body);
   text-align: center;
+}
+
+/* Luz em queda na derrota, só dentro do retrato; controles não animam. */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .nqdefeat-scene img { animation: nqdefeat-lab-fade 780ms ease-out both; }
+  .nqdefeat-scene::after { animation: nqdefeat-shadows 780ms ease-out both; }
+}
+@keyframes nqdefeat-lab-fade {
+  from { filter: saturate(.91) brightness(1.04); }
+  to { filter: saturate(.58) brightness(.88); }
+}
+@keyframes nqdefeat-shadows {
+  from { opacity: .34; }
+  to { opacity: 1; }
 }

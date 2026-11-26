@@ -121,6 +121,22 @@ test('Offline preserva atalhos modificados e mantém a ativação do controle fo
   expect(await page.evaluate(() => (0, eval)('currentIndex'))).toBe(0);
 });
 
+test('Offline não avança com Enter mantido após responder', async ({ page }) => {
+  await prepare(page, true);
+  const question = page.locator('#nqOffQuestionTitle');
+  const feedback = page.locator('#nqOffFeedbackArea');
+  await page.locator('.nq-off-btn').first().focus();
+  await page.keyboard.down('Enter');
+  await focusedAndRevealed(feedback);
+  await page.keyboard.down('Enter');
+  await expect(question).toHaveText('Questão 1');
+  await expect(feedback).toBeFocused();
+  await page.keyboard.up('Enter');
+  await page.keyboard.press('Enter');
+  await expect(question).toHaveText('Questão 2');
+  await focusedAndRevealed(question);
+});
+
 test('Offline restaura uma resposta sem mover o foco para a correção', async ({ page }) => {
   await prepare(page, true);
   await page.locator('.nq-off-btn').first().click();

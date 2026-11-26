@@ -75,7 +75,11 @@ test('progresso mostra a meta de 100 acertos e o próximo selo', async ({ page }
 test('derrota de convidado mostra o resumo antes do ranking', async ({ page }) => {
   await abrir(page, NOTEBOOK);
   await perder(page);
-  const tela = page.getByRole('dialog', { name: 'As vidas acabaram' });
+  const tela = page.getByRole('dialog', { name: 'Derrota', exact: true });
+  await expect(tela).toContainText('As vidas acabaram.');
+  await expect(tela).toContainText('0 de 3 vidas');
+  await expect(tela.locator('.nqdefeat-hearts span')).toHaveCount(3);
+  await expect(tela.locator('.nqdefeat-scene img')).toHaveAttribute('src', /clerigo_renal\/nivel_05/);
   await expect(tela).toContainText('15 de 100 acertos');
   await expect(tela).toContainText('Faltaram 5 para o selo Vórtice do Néfron');
   await expect(tela.getByRole('button', { name: 'Tentar de novo' })).toBeFocused();
@@ -90,6 +94,23 @@ test('derrota de convidado mostra o resumo antes do ranking', async ({ page }) =
   await tela.getByRole('button', { name: 'Tentar de novo' }).click();
   await expect(page.locator('#defeatScreen')).toHaveCount(0);
   await expect(page.locator('#diffSelectorOverlay')).toBeVisible();
+});
+
+test('derrota exibe as vidas máximas reais, incluindo o equipamento', async ({ page }) => {
+  await abrir(page, NOTEBOOK, { character: 'aquaria', lives: 1, maxLives: 4 });
+  await page.evaluate(() => {
+    (0, eval)(`state.equipment.armor = { n: 'Égide Dialítica', rar: 'epic', atk: 2, def: 7, kno: 3, luck: 1 };`);
+    Math.random = () => .99; // Remove o bloqueio probabilístico da armadura neste cenário.
+  });
+  const errada = (await alternativaCerta(page) + 1) % 4;
+  await page.locator('#options .option').nth(errada).click();
+  const tela = page.getByRole('dialog', { name: 'Derrota', exact: true });
+  await expect(tela).toBeVisible();
+  await expect(tela).toContainText('0 de 5 vidas');
+  await expect(tela.locator('.nqdefeat-hearts span')).toHaveCount(5);
+  await expect(tela.locator('.nqdefeat-scene img')).toHaveAttribute('src', /maga_metabolica\/nivel_05/);
+  await page.keyboard.press('Escape');
+  await expect(tela).toHaveCount(0);
 });
 
 test('quem perde a pergunta bônus chega à tela final sem contar outra partida', async ({ page }) => {

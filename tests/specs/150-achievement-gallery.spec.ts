@@ -107,3 +107,51 @@ test('nota administrativa permanece completa no detalhe sem contar acesso como a
  await expect(page.locator('dialog.nq-ach-detail')).toHaveAttribute('data-acquired','false');
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('nefroquest-achievements')!))).toEqual([]);
 });
+
+test('Lenda Hardcore mostra recorde próprio em vermelho sem confundir acertos do modo normal', async ({ page }) => {
+  const pane = await open(page, 'few');
+  const button = pane.locator('[data-achievement-preview="hardcore_champion"]');
+  const dialog = page.getByRole('dialog', { name: 'Lenda Hardcore' });
+  await button.click();
+  await expect(dialog.locator('#nqAchievementHardcoreRecord')).toContainText('Nenhuma tentativa com acertos registrados');
+  await expect(dialog).toHaveAttribute('data-acquired', 'false');
+  await dialog.getByRole('button', { name: 'Voltar à coleção' }).click();
+  await page.evaluate(() => {
+    localStorage.setItem('nefroquest-stats', JSON.stringify({bestScore: 900, bestHardcoreCorrect: {owner:null, correct:17}}));
+  });
+  const before = await snapshot(page);
+  await button.click();
+  await expect(dialog.locator('#nqAchievementHardcoreRecord strong')).toHaveText('17 acertos');
+  await expect(dialog.locator('#nqAchievementHardcoreRecord strong')).toHaveCSS('color', 'rgb(255, 154, 158)');
+  await expect(dialog).toHaveAttribute('data-acquired', 'false');
+  await dialog.getByRole('button', { name: 'Voltar à coleção' }).click();
+  expect(await snapshot(page)).toEqual(before);
+});
+
+test('recorde Hardcore do visitante ou de outra conta não é adotado pelo perfil ativo', async ({ page }) => {
+  await open(page, 'none');
+  const result = await page.evaluate(() => {
+    const run = (code:string) => (0,eval)(code);
+    const stats = 'nefroquest-stats';
+    const record = () => run('window.getHardcoreBestCorrect()');
+    const current = () => JSON.parse(localStorage.getItem(stats) ?? '{}').bestHardcoreCorrect ?? null;
+    localStorage.setItem(stats, JSON.stringify({bestScore:900, bestHardcoreCorrect:{owner:null,correct:17}}));
+    const visitor = record();
+    run("_prepareProgressOwner('fixture-A'); _setAuthSessionUser({id:'fixture-A',email:'a@example.invalid'})");
+    const aBefore = record(), exportedGuest = run('_buildCloudProgress().stats.bestHardcoreCorrect ?? null');
+    run("_mergeCloudProgress({stats:{bestScore:999}},{keepSave:true})"); // older cloud has no record
+    const aLegacy = current();
+    run("_mergeCloudProgress({stats:{bestHardcoreCorrect:{owner:'fixture-Z',correct:87}}},{keepSave:true})");
+    const aForeign = current();
+    run("_mergeCloudProgress({stats:{bestHardcoreCorrect:{owner:'fixture-A',correct:0}}},{keepSave:true})");
+    const zero = record();
+    run("_mergeCloudProgress({stats:{bestHardcoreCorrect:{owner:'fixture-A',correct:42}}},{keepSave:true})");
+    run("_mergeCloudProgress({stats:{bestHardcoreCorrect:{owner:'fixture-A',correct:16}}},{keepSave:true})");
+    const aBest = record();
+    run("_prepareProgressOwner('fixture-B'); _setAuthSessionUser({id:'fixture-B',email:'b@example.invalid'})");
+    const bBefore = record();
+    run("_mergeCloudProgress({stats:{bestHardcoreCorrect:{owner:'fixture-A',correct:42}}},{keepSave:true})");
+    return {visitor,aBefore,exportedGuest,aLegacy,aForeign,zero,aBest,bBefore,bAfter:record()};
+  });
+  expect(result).toEqual({visitor:17,aBefore:null,exportedGuest:null,aLegacy:null,aForeign:null,zero:0,aBest:42,bBefore:null,bAfter:null});
+});

@@ -277,12 +277,24 @@ test('diagnosis: an expired session is recoverable through login and does not co
 for (const {surface, phase} of [
   {surface: 'oracle', phase: 'token'}, {surface: 'diagnosis', phase: 'json'},
 ] as const) test(`${surface}: Premium timeout restores controls without daily quota or upgrade copy`, async ({page}) => {
-  // The real Premium predicate requires this identity's signed entitlement
-  // cache. Seed that external boundary with the native signer, then reload;
-  // neither isPremium nor the account's role is replaced.
-  await page.evaluate(id => localStorage.setItem('nefroquest-premium-sig',
-    (window as any)._generatePremiumSignature(id)), owner);
-  await injectGameState(page, {gold: 0}, {authUser: {id: owner, app_metadata: {premium: true}}});
+  await injectGameState(page, {gold: 0}, {authUser: {id: owner}});
+  // Stub only the authenticated profile read, not the Premium predicate.
+  await page.evaluate(async () => {
+    const g = (0, eval);
+    const original = g('_supaClient');
+    const fixture = (window as any).__restorePremiumTestClient = {
+      ...original, from: () => ({select: () => ({eq: () => ({
+        single: async () => ({data:{is_premium:true, premium_expires_at:null},error:null})
+      })})}),
+    };
+    g('_supaClient = window.__restorePremiumTestClient');
+    try { await g('_loadPremiumFromDB()'); }
+    finally {
+      (window as any).__restorePremiumTestClient = original;
+      g('_supaClient = window.__restorePremiumTestClient');
+      delete (window as any).__restorePremiumTestClient;
+    }
+  });
   expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);
   await prepare(page, surface); await freeze(page); await boundary(page, surface, phase);
   await send(page, surface); await entered(page, phase);

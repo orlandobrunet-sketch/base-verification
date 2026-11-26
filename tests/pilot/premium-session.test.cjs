@@ -5,7 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const source = fs.readFileSync(path.join(__dirname, '../../js/game.js'), 'utf8');
-const premium = source.slice(source.indexOf('    let _isPremiumCache'), source.indexOf('    function _incrementQuestionsAnswered'));
+const premium = source.slice(source.indexOf('    let _verifiedPremium'), source.indexOf('    function _incrementQuestionsAnswered'));
 const account = id => ({ id, email: id + '@example.invalid' });
 const paid = { data: { is_premium: true, premium_expires_at: null }, error: null };
 const free = { data: { is_premium: false }, error: null };
@@ -28,7 +28,7 @@ function fixture(profile, whitelist = () => Promise.resolve({ data: null, error:
   const context = {
     window: {}, _supaClient: client, authUser: account('a'), _authSessionEpoch: 1,
     PREMIUM_KEY: 'nefroquest-premium', WHITELIST_KEY: 'nefroquest-whitelist',
-    isAdminUser: () => false, _generatePremiumSignature: owner => 'sig:' + owner,
+    isAdminUser: () => false,
     localStorage: {
       getItem: key => storage.get(key) ?? null,
       setItem: (key, value) => storage.set(key, value),
@@ -61,7 +61,7 @@ test('a late profile response cannot grant or clear another account’s premium'
     pending.resolve(delayed);
     await loadingA;
     assert.equal(f.context.isPremium(), current === paid);
-    assert.equal(f.storage.get('nefroquest-premium-sig'), current === paid ? 'sig:b' : undefined);
+    assert.equal(f.storage.has('nefroquest-premium-sig'), false);
   }
 });
 
@@ -93,13 +93,45 @@ test('a newer profile read supersedes an earlier read in the same session', asyn
   assert.equal(f.context.isPremium(), true);
 });
 
-test('a verified payment supersedes a profile read started before confirmation', async () => {
-  const pending = deferred();
-  const f = fixture(() => pending.promise);
-  const older = f.context._loadPremiumFromDB();
-  f.context._saveVerifiedPremium('a');
-  pending.resolve(free);
-  await older;
+test('legacy local flags and account metadata cannot grant access', async () => {
+  const f = fixture(async () => free);
+  f.context.authUser.app_metadata = { premium: true };
+  for (const key of ['nefroquest-premium','nefroquest-whitelist', 'nefroquest-premium-sig','nefroquest-whitelist-sig']) f.storage.set(key, 'legacy-fixture');
+  assert.equal(f.context.isPremium(), false);
+  await f.context._loadPremiumFromDB();
+  assert.equal(f.context.isPremium(), false);
+  assert.equal(f.storage.size, 0);
+});
+
+test('network failure preserves active access in the same session but not in a fresh document', async () => {
+  let response = paid;
+  const f = fixture(async () => response);
+  await f.context._loadPremiumFromDB();
+  response = {data:null,error:new Error('unavailable')};
+  await f.context._loadPremiumFromDB();
   assert.equal(f.context.isPremium(), true);
-  assert.equal(f.storage.get('nefroquest-premium-sig'), 'sig:a');
+  assert.equal(fixture(async () => response).context.isPremium(), false);
+  f.context._invalidatePremiumCache();
+  assert.equal(f.context.isPremium(), false);
+});
+
+test('only an exact own whitelist result grants access; removing it clears access', async () => {
+  let email = 'a@example.invalid';
+  const f = fixture(async () => free, async () => ({data: { email }, error:null}));
+  await f.context._loadPremiumFromDB();
+  assert.equal(f.context.isPremium(), true);
+  email = 'b@example.invalid';
+  await f.context._loadPremiumFromDB();
+  assert.equal(f.context.isPremium(), false);
+});
+
+test('a monthly grant expires in memory without account reload', async () => {
+  const f = fixture(async () => ({data:{is_premium:true,premium_expires_at:'2026-11-26T20:45:00Z'},error:null}));
+  const RealDate = Date;
+  let now = RealDate.parse('2026-11-26T20:44:59Z');
+  f.context.Date = class extends RealDate { static now() { return now; } };
+  await f.context._loadPremiumFromDB();
+  assert.equal(f.context.isPremium(), true);
+  now += 1000;
+  assert.equal(f.context.isPremium(), false);
 });

@@ -48,6 +48,8 @@ function engine() {
     // Same owner/epoch/domain contract as the journey binding, without auth I/O.
     _captureJourneyBinding: () => ({ owner, epoch, domain: 'normal' }),
     _matchesJourneyBinding: binding => binding.owner === owner && binding.epoch === epoch && binding.domain === 'normal',
+    // Keep billing out of these navigation-only fixtures via the real guest branch.
+    _guestMode: true,
     _pilotRestoredQuestion: false, _normalJourneyStaging: false, _nextQuestionOrigin: null,
     _currentQuestionRevision: null, _currentQuestionRevisionOriginRaw: null,
     state: { gameStarted: true, idx: 0, answered: false, current: null, correctTotal: 0 }, refsDB: {},
@@ -57,6 +59,7 @@ function engine() {
   };
   for (const name of ['flushPendingRating', 'renderRefs', 'setLumenEvidenceAvailable', '_renderOptions', '_applyEpicLifelines', '_updateSkipButton', 'updateBossUI', 'applyBossOptionBadges', '_renderCampaignQuestionRevisionNotice']) context[name] = noop;
   vm.createContext(context);
+  vm.runInContext(section(game, '    function _needsJourneyPremiumCheck()', '\n    function _showJourneyPremiumCheck()'), context);
   vm.runInContext(section(game, '    function renderQuestion(){', '\n    function flagQuestion()'), context);
   vm.runInContext(section(minigame, "    ui.nextBtn.addEventListener('click'", '    // Event delegation'), context);
   vm.runInContext(section(game, '    (function initSwipe()', '    // ============ CRONÔMETRO'), context);

@@ -152,8 +152,35 @@ test('tempo esgotado fora do app mostra o resultado, em vez de sumir', async ({ 
   await abrirSimulado(page);
   await expect(page.getByRole('heading', { name: 'Resultado da Prova' })).toBeFocused();
   await expect(page.locator('.nq-exam-aviso')).toHaveText('O tempo de 90 minutos terminou. 59 questões ficaram sem resposta.');
-  await expect(page.locator('.nq-study-result-metrics')).toContainText('1 de 60');
-  await expect(page.locator('.nq-study-result-metrics')).toContainText('100%');
+  const metrics = page.locator('.nq-study-result-metrics');
+  await expect(metrics.locator('div').filter({ hasText: 'Pontuação da prova' }).locator('dd')).toHaveText('1 de 60 (2%)');
+  await expect(metrics.locator('div').filter({ hasText: 'Acerto nas respondidas' }).locator('dd')).toHaveText('100%');
+  await expect(page.locator('.nq-exam-mensagem').first()).toHaveText('A pontuação considera todas as questões, inclusive as em branco.');
+  await expect(metrics.locator('div').filter({ hasText: 'Tempo' }).locator('dd')).toHaveText('90m0s');
+
+  const payloads: string[] = [];
+  await page.exposeFunction('captureExamResult', (payload: string) => payloads.push(payload));
+  await page.evaluate(() => Object.defineProperty(navigator, 'share', {
+    configurable: true,
+    value: async ({ text }: { text: string }) => { await (window as any).captureExamResult(text); }
+  }));
+  const share = page.getByRole('button', { name: 'Compartilhar' });
+  await share.click();
+  await page.clock.install();
+  await page.clock.fastForward(60 * 60 * 1000);
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, 'share', { configurable: true, value: undefined });
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+      writeText: async (text: string) => { await (window as any).captureExamResult(text); }
+    }});
+  });
+  await share.focus();
+  await page.keyboard.press('Enter');
+  await expect.poll(() => payloads.length).toBe(2);
+  expect(payloads[0]).toContain('Pontuação: 2%  |  1/60 corretas');
+  expect(payloads[0]).toContain('Em branco: 59');
+  expect(payloads[0]).toContain('90m0s');
+  expect(payloads[1]).toEqual(payloads[0]);
 });
 
 test('falha ao baixar as questões avisa e a nova tentativa funciona', async ({ page }) => {

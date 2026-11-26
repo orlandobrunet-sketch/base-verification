@@ -728,6 +728,50 @@
       catch (error) { return defaults; }
     }
     window.getNormalGameStats = getNormalGameStats;
+    // O recorde é de acertos em uma única tentativa Hardcore, não da
+    // pontuação geral ou da soma de acertos entre jornadas.
+    const _hardcoreCorrect = value => Number.isSafeInteger(value) && value >= 0 ? value : null;
+    function _hardcoreAttemptCorrect(save) {
+      return save?.difficulty === 'hardcore' && save.journeyDomain !== 'pilot' &&
+        save.gameStarted === true && Object.prototype.hasOwnProperty.call(characters, save.character)
+        ? _hardcoreCorrect(save.correctTotal) : null;
+    }
+    function _hardcoreSavedCorrect() {
+      try {
+        const owner = _currentSaveOwner(), canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
+        const save = JSON.parse(canonical ?? (owner === null ? localStorage.getItem(SAVE_KEY) : null) ?? 'null');
+        if (!save || (canonical !== null ? save.saveOwner !== owner : (save.saveOwner ?? null) !== owner)) return null;
+        return _hardcoreAttemptCorrect(save);
+      } catch (_) { return null; }
+    }
+    function _maxHardcoreCorrect(...values) {
+      const valid = values.map(_hardcoreCorrect).filter(value => value !== null);
+      return valid.length ? Math.max(...valid) : null;
+    }
+    function _hardcoreRecordFor(stats, owner) {
+      const record = stats?.bestHardcoreCorrect;
+      return record?.owner === owner ? _hardcoreCorrect(record.correct) : null;
+    }
+    function _recordHardcoreBest(stats, value, owner = _currentSaveOwner()) {
+      const previous = _hardcoreRecordFor(stats, owner);
+      const best = _maxHardcoreCorrect(previous, value);
+      if (best === null || best === previous) return false;
+      stats.bestHardcoreCorrect = { owner, correct: best };
+      return true;
+    }
+    function _persistHardcoreBest(value) {
+      if (value === null || isCharacterPilot() || isProgressSandbox()) return;
+      const stats = getNormalGameStats();
+      if (!_recordHardcoreBest(stats, value)) return;
+      try {
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        _invalidateStatsCache();
+      } catch (_) { _warnStorageFull(); }
+    }
+    window.getHardcoreBestCorrect = function () {
+      if (isCharacterPilot() || isProgressSandbox()) return null;
+      return _maxHardcoreCorrect(_hardcoreRecordFor(getNormalGameStats(), _currentSaveOwner()), _hardcoreSavedCorrect());
+    };
     function getEntitlementQuestionsAnswered() {
       const normalAnswered = Math.max(0, Number(getNormalGameStats().questionsAnsweredAllTime) || 0);
       if (!isCharacterPilot()) return normalAnswered;
@@ -780,115 +824,120 @@
       stats.gamesPlayed++;
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
+      if (!isCharacterPilot()) _recordHardcoreBest(stats, _hardcoreAttemptCorrect(state));
       try { nqProgressStorage().setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) { _warnStorageFull(); }
       _invalidateStatsCache();
       _scheduleCloudSync();
     }
 
-    // ── Geração de Assinatura Premium local para evitar bypass via console ──
-    function _generatePremiumSignature(userId) {
-      if (!userId) return '';
-      const salt = 'nefro-gold-rpg-secret-2026';
-      const str = userId + salt;
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash; // Converte para inteiro de 32 bits
-      }
-      return hash.toString(36);
+    // A sessão só recebe acesso após uma leitura autenticada do servidor.
+    // Marcadores antigos não são aceitos, nem quando o navegador fica offline.
+    let _verifiedPremium = null;
+    let _premiumProfileRevision = 0;
+    let _premiumProfileFlight = null;
+    let _premiumProfileResolved = null;
+    function _premiumOwner() {
+      return authUser?.id ? { id: authUser.id, email: authUser.email, epoch: _authSessionEpoch } : null;
     }
-    window._generatePremiumSignature = _generatePremiumSignature;
+    function _premiumOwnerCurrent(owner) {
+      return !!owner && authUser?.id === owner.id && authUser.email === owner.email && _authSessionEpoch === owner.epoch;
+    }
+    function _discardLegacyPremiumFlags() {
+      try {
+        for (const key of [PREMIUM_KEY, WHITELIST_KEY, 'nefroquest-premium-sig', 'nefroquest-whitelist-sig']) {
+          localStorage.removeItem(key);
+        }
+      } catch { /* Storage indisponível não bloqueia uma confirmação do servidor. */ }
+    }
+    function _invalidatePremiumCache() {
+      ++_premiumProfileRevision;
+      _verifiedPremium = _premiumProfileResolved = _premiumProfileFlight = null;
+      _discardLegacyPremiumFlags();
+    }
+    function isPremium() {
+      return isAdminUser() || (_premiumOwnerCurrent(_verifiedPremium) &&
+        (_verifiedPremium.expiresAt === null || _verifiedPremium.expiresAt > Date.now()));
+    }
     window.isPremium = isPremium;
     window._invalidatePremiumCache = _invalidatePremiumCache;
 
-    // ── Cache de isPremium (evita 2x localStorage por resposta) ──
-    let _isPremiumCache = null;
-    let _premiumProfileRevision = 0;
-    function isPremium() {
-      if (isAdminUser()) return true;
-      if (!authUser) return false; // sem conta ativa, localStorage não conta
-      const { id, email } = authUser;
-      const epoch = _authSessionEpoch;
-      if (_isPremiumCache && _isPremiumCache.id === id && _isPremiumCache.email === email && _isPremiumCache.epoch === epoch) {
-        return _isPremiumCache.value;
-      }
-
-      const sig = localStorage.getItem('nefroquest-premium-sig');
-      const expectedSig = _generatePremiumSignature(id);
-      const hasPremium = localStorage.getItem(PREMIUM_KEY) === '1' && sig === expectedSig;
-
-      const wlSig = localStorage.getItem('nefroquest-whitelist-sig');
-      const expectedWlSig = _generatePremiumSignature(email);
-      const hasWhitelist = localStorage.getItem(WHITELIST_KEY) === '1' && wlSig === expectedWlSig;
-
-      const value = hasPremium || hasWhitelist;
-      _isPremiumCache = { id, email, epoch, value };
-      return value;
-    }
-    function _invalidatePremiumCache() { _isPremiumCache = null; }
-
-    function _saveVerifiedPremium(id) {
-      if (!id || authUser?.id !== id) return false;
-      // A confirmação do pagamento também invalida leituras de perfil anteriores.
-      ++_premiumProfileRevision;
-      _invalidatePremiumCache();
-      localStorage.setItem('nefroquest-premium-sig', _generatePremiumSignature(id));
-      localStorage.setItem(PREMIUM_KEY, '1');
-      localStorage.removeItem(WHITELIST_KEY);
-      localStorage.removeItem('nefroquest-whitelist-sig');
-      return true;
-    }
-
-    // O mensal grava a data de vencimento e nada no banco desliga is_premium depois;
-    // por isso a data também é conferida aqui. Vitalício tem a data vazia.
+    // Para vitalício, o banco retorna explicitamente null; valores inválidos não
+    // podem transformar um mensal em vitalício.
     function _premiumAtivo(profile) {
-      if (!profile?.is_premium) return false;
-      return !profile.premium_expires_at || new Date(profile.premium_expires_at) > new Date();
+      return profile?.is_premium === true && (profile.premium_expires_at === null ||
+        Date.parse(profile.premium_expires_at) > Date.now());
     }
     window._premiumAtivo = _premiumAtivo;
 
-    async function _loadPremiumFromDB() {
-      if (!_supaClient || !authUser) return;
-      if (isAdminUser()) return;
-      const client = _supaClient;
-      const { id, email } = authUser;
-      const epoch = _authSessionEpoch;
+    function _loadPremiumFromDB() {
+      if (!_supaClient || !authUser) return Promise.resolve(false);
+      if (isAdminUser()) return Promise.resolve(true);
+      const client = _supaClient, owner = _premiumOwner();
+      if (!owner) return Promise.resolve(false);
+      _discardLegacyPremiumFlags();
       const revision = ++_premiumProfileRevision;
-      const current = () => revision === _premiumProfileRevision && _supaClient === client && _authSessionEpoch === epoch &&
-        authUser && authUser.id === id && authUser.email === email;
-      try {
-        const { data: profile, error } = await client
-          .from('profiles')
-          .select('is_premium, premium_expires_at')
-          .eq('id', id)
-          .single();
-        // Falha de rede não é resposta: sem isto, quem pagou perdia o premium guardado.
-        if (error || !current()) return;
-        if (_premiumAtivo(profile)) {
-          _saveVerifiedPremium(id);
-          return;
-        } else {
-          localStorage.removeItem(PREMIUM_KEY);
-          localStorage.removeItem('nefroquest-premium-sig');
-          _invalidatePremiumCache();
-        }
-        // Check whitelist
-        const { data: wl, error: wlError } = await client
-          .from('access_whitelist')
-          .select('email')
-          .eq('email', email)
-          .maybeSingle();
-        if (wlError || !current()) return;
-        if (wl?.email) {
-          localStorage.setItem(WHITELIST_KEY, '1');
-          localStorage.setItem('nefroquest-whitelist-sig', _generatePremiumSignature(email));
-        } else {
-          localStorage.removeItem(WHITELIST_KEY);
-          localStorage.removeItem('nefroquest-whitelist-sig');
-        }
-        _invalidatePremiumCache();
-      } catch(e) {}
+      const current = () => revision === _premiumProfileRevision &&
+        _supaClient === client && _premiumOwnerCurrent(owner);
+      const flight = { owner, promise: null, startedAt: Date.now() };
+      _premiumProfileFlight = flight;
+      flight.promise = (async () => {
+        try {
+          const { data: profile, error } = await client
+            .from('profiles').select('is_premium, premium_expires_at').eq('id', owner.id).single();
+          // Erro de rede não revoga uma concessão verificada nesta sessão.
+          if (error || !current()) return false;
+          if (_premiumAtivo(profile)) {
+            _verifiedPremium = { ...owner, source: 'profile',
+              expiresAt: profile.premium_expires_at === null ? null : Date.parse(profile.premium_expires_at) };
+            _premiumProfileResolved = { ...owner, source: 'profile' };
+            return true;
+          }
+          // Um perfil explicitamente inativo revoga acesso por compra; a lista
+          // de acesso é outra fonte e pode estar transitoriamente indisponível.
+          if (_premiumOwnerCurrent(_verifiedPremium) && _verifiedPremium.source === 'profile') {
+            _verifiedPremium = null;
+            _premiumProfileResolved = null;
+          }
+          const { data: wl, error: wlError } = await client
+            .from('access_whitelist').select('email').eq('email', owner.email).maybeSingle();
+          if (wlError || !current()) return false;
+          _verifiedPremium = wl?.email === owner.email && !!owner.email
+            ? { ...owner, source: 'whitelist', expiresAt: null } : null;
+          _premiumProfileResolved = owner;
+          return !!_verifiedPremium;
+        } catch { return false; }
+      })().finally(() => { if (_premiumProfileFlight === flight) _premiumProfileFlight = null; });
+      return flight.promise;
+    }
+    function _premiumAccessKnown() {
+      return isPremium() || (_premiumOwnerCurrent(_premiumProfileResolved) &&
+        _premiumProfileResolved.source !== 'profile');
+    }
+    function _needsJourneyPremiumCheck() {
+      return !_guestMode && !!authUser && !isPremium() && getEntitlementQuestionsAnswered() >= FREE_QUESTIONS_LIMIT;
+    }
+    function _showJourneyPremiumCheck() {
+      const owner = _premiumOwner();
+      const binding = _captureJourneyBinding();
+      const question = state.current;
+      if (_premiumAccessKnown()) { showPricingModal(); return; }
+      // Mantém o controle de próxima questão acessível como nova tentativa
+      // sem abrir cobrança antes da resposta do servidor.
+      ui.nextBtn.classList.remove('hidden');
+      ui.dockNextBtn?.classList.remove('disabled');
+      ui.nextBtn.textContent = 'Verificar meu acesso';
+      const flight = _premiumProfileFlight;
+      const request = _premiumOwnerCurrent(flight?.owner) && Date.now() - flight.startedAt < 8000
+        ? flight.promise : _loadPremiumFromDB();
+      let timer;
+      Promise.race([request, new Promise(resolve => { timer = setTimeout(resolve, 8000); })])
+        .finally(() => {
+          clearTimeout(timer);
+          if (!_matchesJourneyBinding(binding) || !_premiumOwnerCurrent(owner) || state.current !== question || !state.answered) return;
+          if (isPremium()) ui.nextBtn.textContent = 'Próxima pergunta';
+          else if (_premiumAccessKnown()) showPricingModal();
+          else _toast('Não foi possível verificar seu acesso. Tente novamente.', 'info', 4000);
+        });
     }
 
     function _incrementQuestionsAnswered() {
@@ -1480,6 +1529,7 @@
       _mirrorLegacySave(raw);
       _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
       _guestRecoveryAccepted = _guestSavePair(raw);
+      _persistHardcoreBest(_hardcoreAttemptCorrect(saveData));
       _scheduleCloudSync();
       return true;
     }
@@ -1621,9 +1671,11 @@
       _retireChestRewardContext();
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
+      const previousHardcore = _hardcoreSavedCorrect();
       try { _writeSaveTombstone('journey'); } catch (e) {
         _warnStorageFull(); return false;
       }
+      _persistHardcoreBest(previousHardcore);
       _stateData.forjaPending = null;
       _stateData.gameStarted = false;
       localStorage.removeItem(SAVE_KEY);
@@ -1968,8 +2020,11 @@
       try { unlockedRefs    = JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'); } catch(e) {}
       try { acidBaseProgress= JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}'); } catch(e) {}
       try { srData          = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch(e) {}
+      const stats = getNormalGameStats();
+      // Uma conta não importa/exporta o recorde que ficou no perfil visitante.
+      if (_hardcoreRecordFor(stats, _currentSaveOwner()) === null) delete stats.bestHardcoreCorrect;
       return {
-        stats:            getNormalGameStats(),
+        stats,
         achievements,
         mastered,
         unlockedArticles,
@@ -2179,6 +2234,10 @@
           bestScore:              Math.max(local.bestScore || 0,              cloud.stats.bestScore || 0),
           questionsAnsweredAllTime: Math.max(local.questionsAnsweredAllTime || 0, cloud.stats.questionsAnsweredAllTime || 0)
         };
+        const owner = _currentSaveOwner();
+        const hardcore = _maxHardcoreCorrect(_hardcoreRecordFor(local, owner), _hardcoreRecordFor(cloud.stats, owner),
+          _hardcoreSavedCorrect(), cloud.save?.saveOwner === owner ? _hardcoreAttemptCorrect(cloud.save) : null);
+        if (hardcore !== null) merged.bestHardcoreCorrect = { owner, correct: hardcore };
         try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) { persisted = false; console.error('[NQ] saveStats failed', e); }
         _invalidateStatsCache();
       }
@@ -3803,6 +3862,20 @@
       return bonus;
     }
     function effectiveMaxLives() { return (state.maxLives || 3) + _equipLifeBonus(); }
+    // Reusa o registro persistente de efeitos por jornada, sem mudar o formato do save.
+    const _EGIDE_FIRST_LIFE = 'egide-first-life-v1';
+    function _equipJourneyItem(slot, item) {
+      const hadLifeBonus = _LIFE_BONUS_ITEMS.has(state.equipment?.[slot]?.n);
+      const getsLifeBonus = _LIFE_BONUS_ITEMS.has(item?.n);
+      _stateData.equipment = { ...state.equipment, [slot]: { ...item } };
+      if (getsLifeBonus && !hadLifeBonus && !state.legendaryAbilityUsed?.[_EGIDE_FIRST_LIFE] &&
+          state.gameStarted && !state.gameOver && state.lives > 0) {
+        _stateData.legendaryAbilityUsed = { ...state.legendaryAbilityUsed, [_EGIDE_FIRST_LIFE]: true };
+        _stateData.lives = Math.min(effectiveMaxLives(), state.lives + 1);
+      } else if (hadLifeBonus && !getsLifeBonus) {
+        _stateData.lives = Math.min(effectiveMaxLives(), state.lives);
+      }
+    }
     const _LEG_LABELS = {
       'Excalibur do Néfron':'⚔️ Anula 1 dano',
       'Armadura Primeva':'🛡️ Salva última vida',
@@ -3815,7 +3888,7 @@
       'Ressurreição Plena':'👑 Revive com vida cheia',
       'Espada Nefroprotetora':'🎯 50/50 em 1 difícil',
       'Orbe da Cistatina':'🔮 Dica do Oráculo (1 difícil)',
-      'Égide Dialítica':'❤️ +1 vida máxima',
+      'Égide Dialítica':'❤️ +1 vida máxima · a vida extra vem cheia na primeira vez em que for equipada na jornada',
     };
 
     function renderEquip(){
@@ -3961,11 +4034,6 @@
       $('guardianLivesCount').textContent = `${Math.max(0, state.lives)}/${_ml}`;
       $('guardianVitality').setAttribute('aria-label', `Vidas: ${Math.max(0, state.lives)} de ${_ml}`);
       ui.gold.textContent=state.gold;
-      // Streak visual com multiplicador
-      const sm = getStreakMultiplier(state.streak);
-      const streakMultiplier = $('guardianStreakMultiplier');
-      streakMultiplier.hidden = sm.mult <= 1;
-      streakMultiplier.textContent = sm.mult > 1 ? `×${sm.mult.toLocaleString('pt-BR')}` : '';
       const streakTile = ui.streak.closest('.tile');
       if(streakTile) {
         streakTile.className = 'tile tile-streak';
@@ -4574,6 +4642,10 @@
 
     function renderQuestion(){
       if (_loadingNextQuestion) return;
+      if (state.answered && !_pilotRestoredQuestion && _needsJourneyPremiumCheck()) {
+        _showJourneyPremiumCheck();
+        return;
+      }
       clearTimeout(_questionRenderUnlockTimer);
       _loadingNextQuestion = true;
       const questionBinding = _captureJourneyBinding();
@@ -4614,6 +4686,8 @@
         return;
       }
       state.current = q;
+      const position = document.getElementById('journeyQuestionPosition');
+      if (position) position.textContent = state.idx > 0 ? 'Questão ' + state.idx : '';
       if (!restoringPilot) {
         if (!isProgressSandbox()) _currentQuestionRevision =
           (window.questionRevisionCatalog || _questionRevisionVerifier())?.current(String(q.id), 'main') || null;
@@ -5012,9 +5086,7 @@
       let resolvido = false;
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
-        if (isCharacterPilot()) {
-          if (!_forjaTransacao(() => { _stateData.equipment = {...state.equipment, [slot]:item}; })) return;
-        } else state.equipment[slot] = item;
+        if (!_forjaTransacao(() => { _equipJourneyItem(slot, item); })) return;
         const msg = `⬆️ Equipou **${item.n}** (${_rarLabel[item.rar] || item.rar}) no slot ${slotLabels[slot]||slot}.`;
         if (onDone) onDone(msg);
         renderHUD(); updateBadges(); saveGame();
@@ -5026,15 +5098,10 @@
           if (resolvido || !_matchesJourneyBinding(binding)) return;
           resolvido = true;
           const val = _itemSellVal(currentItem);
-          if (isCharacterPilot()) {
-            if (!_forjaTransacao(() => {
-              _stateData.gold += val;
-              _stateData.equipment = {...state.equipment, [slot]:item};
-            })) return;
-          } else {
-            state.gold += val;
-            state.equipment[slot] = item;
-          }
+          if (!_forjaTransacao(() => {
+            _stateData.gold += val;
+            _equipJourneyItem(slot, item);
+          })) return;
           const msg = `⬆️ ${slotLabels[slot]}: **${currentItem.n}** → **${item.n}**. ${currentItem.n} convertido em ${val}💰.`;
           if (onDone) onDone(msg);
           renderHUD(); updateBadges(); saveGame();
@@ -5596,9 +5663,8 @@
           renderHUD(); saveGame(); return;
         }
         finishGame();
-      } else if (!_guestMode && !isPremium() && getEntitlementQuestionsAnswered() >= FREE_QUESTIONS_LIMIT) {
-        // Convidados não bloqueiam aqui — usam _showGuestHook (hook suave em 15 questões)
-        showPricingModal();
+      } else if (_needsJourneyPremiumCheck()) {
+        _showJourneyPremiumCheck();
       } else {
         ui.nextBtn.classList.remove('hidden');
         if (ui.dockNextBtn) {
@@ -6266,6 +6332,8 @@
       const anterior = {
         gold: state.gold,
         equipment: _forjaCopia(state.equipment),
+        lives: state.lives,
+        legendaryAbilityUsed: { ...state.legendaryAbilityUsed },
         obtainedItems: [...state.obtainedItems],
         allItemsCollectedNotified: state.allItemsCollectedNotified,
         forjaPending: state.forjaPending ? _forjaCopia(state.forjaPending) : null,
@@ -6546,7 +6614,7 @@
           _markObtained(novo.n);
           if (notificarColecao) _stateData.allItemsCollectedNotified = true;
           _stateData.forjaPending = precisaEscolher ? { id, tipo, custo, slot: rolled.slot, atual, novo } : null;
-          if (!precisaEscolher) _stateData.equipment = { ...state.equipment, [rolled.slot]: { ...novo } };
+          if (!precisaEscolher) _equipJourneyItem(rolled.slot, novo);
         });
         if (!sucesso) {
           _forja.aviso = 'Não foi possível salvar a forja. Seu ouro e equipamento foram mantidos. Libere espaço e tente novamente.';
@@ -6604,7 +6672,7 @@
         const venda = _itemSellVal(vendido);
         const sucesso = _forjaTransacao(() => {
           _stateData.gold += venda;
-          _stateData.equipment = { ...state.equipment, [p.slot]: { ...mantido } };
+          if (substituir) _equipJourneyItem(p.slot, mantido);
           _stateData.forjaPending = null;
         });
         if (!sucesso) {
@@ -8263,7 +8331,8 @@
       const lines = [
         '🏆 NefroQuest: Ascension',
         tipo === 'campanha' ? `⚔️ Campanha — Nível ${data.level || '?'}` : `📝 Prova Simulada`,
-        data.correct !== undefined ? `📊 Acerto: ${data.pct}%  |  ${data.correct}/${data.total} corretas` : `📊 Acerto: ${data.pct}%`,
+        data.correct !== undefined ? `📊 ${tipo === 'prova' ? 'Pontuação' : 'Acerto'}: ${data.pct}%  |  ${data.correct}/${data.total} corretas` : `📊 Acerto: ${data.pct}%`,
+        ...(tipo === 'prova' ? [`📝 Em branco: ${data.blanks}`] : []),
         data.level ? `🎖️ Nível ${data.level}  |  ${data.score} pontos` : `⏱️ ${data.time}`,
         '',
         'Treine nefrologia em: nefroquest.vercel.app'
@@ -8277,10 +8346,11 @@
       }
     }
 
-    function _shareExamResult(pct, correct, total) {
-      const elapsed = _examState ? Math.floor((Date.now() - _examState.startTime) / 1000) : 0;
-      const m = Math.floor(elapsed/60), s = elapsed%60;
-      _shareResult('prova', { pct, correct, total, time: `${m}m${s}s` });
+    function _shareExamResult(pct, correct, total, elapsed, blanks) {
+      // The result view captures attempt time once; sharing later must not run that clock again.
+      if (!Number.isInteger(elapsed) || elapsed < 0 || !Number.isInteger(blanks) || blanks < 0) return;
+      const m = Math.floor(elapsed / 60), s = elapsed % 60;
+      _shareResult('prova', { pct, correct, total, blanks, time: `${m}m${s}s` });
     }
 
     // ============ OFFLINE BADGE ============
