@@ -47,9 +47,9 @@ test('visitante mantém bloqueios; visão administrativa não grava descobertas'
   await page.keyboard.press('Escape');
   await page.evaluate(() => { (window as any).isAdminUser = () => true; void (window as any).openBibliotecaModal(); });
   await expect(page.locator('#nqdPane-library')).toBeVisible();
-  await expect(page.locator('.nqd-library-summary')).toContainText('Referências descobertas até o momento: 0/');
-  const total = await page.evaluate(() => (0, eval)('nefroArticles.length + Object.keys(refsDB).length'));
-  await expect(page.locator('[data-library-item]')).toHaveCount(total);
+  await expect(page.locator('.nqd-library-summary')).toHaveText('Obras com conteúdo descoberto: 0/558');
+  await expect(page.locator('[data-library-work]:visible')).toHaveCount(558);
+  await expect(page.locator('[data-library-item]:visible')).toHaveCount(595);
   await expect(page.locator('#nqDashLibraryFilter option[value="guideline"]')).toHaveCount(0);
   const guidelines = await page.evaluate(() => (0, eval)(`Object.values(refsDB).filter(r => r.badge === 'GUIDELINE' || /kdigo/i.test((r.label || '') + ' ' + (r.journal || ''))).length`));
   expect(guidelines).toBeGreaterThan(0);

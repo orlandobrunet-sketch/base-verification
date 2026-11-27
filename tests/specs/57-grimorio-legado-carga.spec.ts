@@ -27,7 +27,7 @@ async function abrir(page: Page, modo: 'bloqueia' | 'atrasa' | 'normal') {
   await page.addInitScript(() => { (window as any).requestIdleCallback = () => 1; });
   if (modo !== 'normal') {
     for (const nome of ['refs', 'articles']) {
-      await page.route(`**/data/${nome}.js`, async (rota) => {
+      await page.route(`**/data/${nome}.js*`, async (rota) => {
         if (modo === 'bloqueia') return rota.abort();
         await new Promise((ok) => setTimeout(ok, 4000));
         return rota.continue();
@@ -57,9 +57,11 @@ async function conferirCatalogoRecuperado(page: Page) {
   await expect(discovery).toHaveValue('all');
   await expect(pane.locator('[data-library-item]:visible')).toHaveCount(0);
   const locked = pane.locator('[data-library-entry]:visible');
-  await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);
+  await expect(locked).toHaveCount(595);
+  await expect(pane.locator('[data-library-work]:visible')).toHaveCount(558);
   await expect(locked.first().locator('h3')).toBeVisible();
-  await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
+  await expect(locked.getByRole('button', { name: 'Resumo bloqueado', exact: true })).toHaveCount(595);
+  await expect(locked.locator('button:enabled, .nqd-library-impact')).toHaveCount(0);
   expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);
 }
 
@@ -74,8 +76,8 @@ test.describe('Acesso ao Grimório: acervo ausente, atrasado e recuperado', () =
   test('a nova tentativa recupera o acervo inteiro', async ({ page }) => {
     await abrir(page, 'bloqueia');
     await expect(page.locator('[data-action="_dashRetryLoad"]')).toBeVisible();
-    await page.unroute('**/data/refs.js');
-    await page.unroute('**/data/articles.js');
+    await page.unroute('**/data/refs.js*');
+    await page.unroute('**/data/articles.js*');
     await page.locator('[data-action="_dashRetryLoad"]').click();
     await conferirCatalogoRecuperado(page);
     await expect(page.locator('[data-action="_dashRetryLoad"]')).toHaveCount(0);

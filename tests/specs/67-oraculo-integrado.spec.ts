@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { injectGameState } from '../helpers/game';
+import { confirmFreePlan, injectGameState } from '../helpers/game';
 
 /** Tela dedicada: questão e conversa juntas, com retorno ao estado original. */
 
@@ -66,11 +66,16 @@ test.describe('Oráculo em tela dedicada', () => {
     await expect(painel.locator('[data-action="closeMentorModalAndLogin"]')).toBeVisible();
   });
 
-  test('o limite diário informado é o mesmo que o contador mostra', async ({ page }) => {
+  test('gratuito confirmado: o limite diário informado é o mesmo que o contador mostra', async ({ page }) => {
     /* A mensagem local trazia "limite diário de 3 perguntas" — o número do
      * DIAGNÓSTICO. O contrato do Oráculo é 5, igual no cliente e na Edge
      * Function. A mesma tela informava dois limites diferentes. */
     await abrirOraculo(page, { logado: true });
+    await confirmFreePlan(page);
+    const pedidos: string[] = [];
+    page.on('request', request => {
+      if (new URL(request.url()).pathname.endsWith('/ai-mentor')) pedidos.push(request.method());
+    });
     await page.evaluate(() => {
       const hoje = new Date().toISOString().slice(0, 10);
       const owner = (window as any).authUser?.id;
@@ -82,6 +87,7 @@ test.describe('Oráculo em tela dedicada', () => {
     const aviso = page.locator('.mentor-msg-system').last();
     await expect(aviso).toContainText(/limite diário de 5 perguntas/i, { timeout: 10000 });
     await expect(aviso, 'o limite anunciado é o do diagnóstico, não o do Oráculo').not.toContainText('3 perguntas');
+    expect(pedidos).toHaveLength(0);
   });
 
   test('a cota recusada pelo servidor corrige o contador; falha de servidor não gasta cota', async ({ page }) => {

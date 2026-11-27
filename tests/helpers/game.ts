@@ -76,14 +76,58 @@ export async function injectGameState(page: Page, overrides: Record<string, unkn
  * primeira pergunta — e espera a tela de jogo. Reutilizável por testes que
  * recarregam a página (o app não auto-resume a partir do save).
  */
+let continuationSequence = 0;
+
 export async function enterGame(page: Page) {
   await page.evaluate(() => {
     document.getElementById('landingScreen')?.classList.add('hidden');
     document.getElementById('welcomeScreen')?.classList.add('hidden');
   });
   await page.waitForFunction(() => typeof (window as any).continueGame === 'function', null, { timeout: 15_000 });
-  await page.evaluate(() => (window as any).continueGame());
-  await waitForGame(page);
+  const key = '__nqFixtureContinuation', token = `${Date.now()}:${++continuationSequence}`;
+  let completion: Awaited<ReturnType<Page['waitForFunction']>> | undefined;
+  try {
+    // Retain the actual action in its document. Returning its pending Promise
+    // over CDP can lose an otherwise unreachable Promise during collection.
+    await page.evaluate(({ key, token }) => {
+      const w = window as any, source = w.continueGame;
+      const marker: any = { token, source, status: 'pending', promise: null, error: null };
+      Object.defineProperty(w, key, { value: marker, configurable: true });
+      try { marker.promise = Promise.resolve(source.call(w)); }
+      catch (error) { marker.promise = Promise.reject(error); }
+      marker.promise.then(() => { marker.status = 'fulfilled'; }, (error: unknown) => {
+        let name = 'Error', message = 'The continuation rejected with an unreadable value.';
+        try {
+          const value = error as { name?: unknown; message?: unknown } | null;
+          if (typeof value?.name === 'string') name = value.name;
+          message = typeof value?.message === 'string' ? value.message : String(error);
+        } catch { /* Keep the rejection,without serializing the rejected object. */ }
+        marker.error = { name, message }; marker.status = 'rejected';
+      });
+    }, { key, token });
+    completion = await page.waitForFunction(({ key, token }) => {
+      const w = window as any, marker = w[key];
+      if (!marker || marker.token !== token)
+        throw new Error('Fixture document changed before continuation completed.');
+      if (w.continueGame !== marker.source)
+        throw new Error('Fixture continuation source changed before completion.');
+      return marker.status === 'pending' ? false : { status: marker.status, error: marker.error };
+    }, { key, token }, { timeout: 0 }); // The caller's existing test deadline remains authoritative.
+    const result = await completion.jsonValue() as { status: string; error: { name: string; message: string } | null };
+    if (result.status === 'rejected') {
+      const error = new Error(result.error!.message); error.name = result.error!.name;
+      throw error;
+    }
+    await waitForGame(page);
+  } finally {
+    try { await completion?.dispose(); } catch { /* Preserve the action's result. */ }
+    try {
+      await page.evaluate(({ key, token }) => {
+        const w = window as any;
+        if (w[key]?.token === token) delete w[key];
+      }, { key, token });
+    } catch { /* A replaced/closed document must not hide the original failure. */ }
+  }
 }
 
 /**
@@ -101,6 +145,38 @@ export async function injectBossState(page: Page) {
 export async function waitForGame(page: Page) {
   await expect(page.locator('#mainApp')).toBeVisible({ timeout: 10_000 });
   await expect(page.locator('#question')).not.toBeEmpty({ timeout: 10_000 });
+}
+
+/** Simula apenas a consulta do plano gratuito pelo resolvedor real. */
+export async function confirmFreePlan(page: Page) {
+  const access = await page.evaluate(async () => {
+    const run = (0, eval);
+    const owner = (window as any).authUser;
+    if (!owner?.id || !owner.email) throw new Error('A fixture do plano exige ID e email.');
+    const original = run('_supaClient');
+    const setClient = run('(client) => { _supaClient = client; }');
+    const fixture = {
+      from(table: string) {
+        if (table !== 'profiles' && table !== 'access_whitelist') {
+          throw new Error('Consulta inesperada na fixture do plano: ' + table);
+        }
+        return { select: () => ({ eq: (column: string, value: string) => ({
+          async single() {
+            if (table !== 'profiles' || column !== 'id' || value !== owner.id) throw new Error('Perfil incorreto.');
+            return { data: { is_premium: false, premium_expires_at: null }, error: null };
+          },
+          async maybeSingle() {
+            if (table !== 'access_whitelist' || column !== 'email' || value !== owner.email) throw new Error('Lista de acesso incorreta.');
+            return { data: null, error: null };
+          },
+        }) }) };
+      },
+    };
+    setClient(fixture);
+    try { return await run('_awaitPremiumAccess({ refresh: true })'); }
+    finally { setClient(original); }
+  });
+  expect(access).toBe('free');
 }
 
 /** Clica na primeira opção disponível */

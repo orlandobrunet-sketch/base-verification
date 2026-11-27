@@ -33,7 +33,7 @@ async function openClarity(page: Page, options: {admin?: boolean; empty?: boolea
       w.questionBank = [];
       w._loadTopics = async () => { throw new Error('deterministic topics unavailable'); };
     }
-    return {refs: keys.length, articles: articles.length, expectedDiscovered: options.empty ? 0 : 4,
+    return {
       lockedKey: keys.find(key => key !== keys[0] && key !== keys[1])!,
       lockedTitle: refs[keys.find(key => key !== keys[0] && key !== keys[1])!].label,
       unlinkedTitle: keys.filter(key => !reachable.has(key)).map(key => refs[key].label)[0],
@@ -102,11 +102,13 @@ test('oferece o inventário faltante sem resumo bloqueado nem novas descobertas'
   const before = await page.evaluate(() => [localStorage.getItem('nq-unlocked-refs'), localStorage.getItem('unlockedArticles')]);
   await page.getByRole('tab', {name: 'Grimório', exact: true}).click();
   const library = page.locator('#nqdPane-library');
-  await expect(library.locator('.nqd-library-summary')).toContainText(`Referências descobertas até o momento: 4/${meta.articles + meta.refs}`);
-  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(meta.articles + meta.refs);
-  await expect(library.locator('.nqd-library-locked-item:visible')).toHaveCount(meta.articles + meta.refs - 4);
-  await expect(library.locator('.nqd-library-locked-item:visible button')).toHaveCount(0);
-  await expect(library.locator('.nqd-library-locked-item:visible .nqd-library-impact')).toHaveCount(0);
+  await expect(library.locator('.nqd-library-summary')).toHaveText('Obras com conteúdo descoberto: 4/558');
+  await expect(library.locator('[data-library-work]:visible')).toHaveCount(558);
+  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(595);
+  const locked = library.locator('.nqd-library-locked-item:visible');
+  await expect(locked).toHaveCount(595 - 4);
+  await expect(locked.getByRole('button', {name: 'Resumo bloqueado', exact: true})).toHaveCount(595 - 4);
+  await expect(locked.locator('button:enabled, .nqd-library-impact')).toHaveCount(0);
   await expect(library.locator('#nqDashLibraryFilter option[value="guideline"]')).toHaveCount(0);
   // Além das fontes, entram os artigos que o catálogo marca como diretriz.
   expect(await library.locator('[data-library-entry]:visible').count()).toBeGreaterThanOrEqual(meta.guidelines);
@@ -126,12 +128,13 @@ test('oferece o inventário faltante sem resumo bloqueado nem novas descobertas'
 });
 
 test('mantém acesso administrativo separado das descobertas pessoais e conserva filtros ao voltar', async ({page}) => {
-  const meta = await openClarity(page, {admin: true});
+  await openClarity(page, {admin: true});
   const before = await page.evaluate(() => [localStorage.getItem('nq-unlocked-refs'), localStorage.getItem('unlockedArticles')]);
   await page.getByRole('tab', {name: 'Grimório', exact: true}).click();
   const library = page.locator('#nqdPane-library');
-  await expect(library.locator('.nqd-library-summary')).toContainText('Referências descobertas até o momento: 4/');
-  await expect(library.locator('[data-library-item]:visible')).toHaveCount(meta.articles + meta.refs);
+  await expect(library.locator('.nqd-library-summary')).toHaveText('Obras com conteúdo descoberto: 4/558');
+  await expect(library.locator('[data-library-work]:visible')).toHaveCount(558);
+  await expect(library.locator('[data-library-item]:visible')).toHaveCount(595);
   await page.locator('[data-library-filter-toggle]').click();
   await library.locator('#nqDashLibraryFilter').selectOption('theme:DRC');
   const filtered = await library.locator('[data-library-item]:visible').count();

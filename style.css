@@ -5803,7 +5803,7 @@
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0s !important;
     scroll-behavior: auto !important;
   }
 
@@ -15225,6 +15225,44 @@ body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underli
 .nqreview-statuses { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 5px; }
 .nqreview-status { font-size: .76rem; line-height: 1.5; font-weight: 700; }
 .nqreview-status--chosen { color: #f4b5bf; }
+/* One publication can retain several independently unlocked clinical texts. */
+.nqd-library-work,
+.bib-work { min-width: 0; }
+.nqd-library-work.has-variants,
+.bib-work.has-variants {
+  padding: 12px;
+  border: 1px solid rgba(170, 197, 216, .24);
+  border-radius: 14px;
+  background: rgba(16, 27, 40, .48);
+}
+.nqd-library-work-heading,
+.bib-work-heading {
+  margin: 0 4px 12px;
+  color: var(--gold, #e4ce8a);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.nqd-library-work-heading span {
+  margin-left: .5em;
+  color: var(--txt-dim, #aab8c7);
+  font-weight: 400;
+}
+.nqd-library-work-variants { display: grid; gap: 10px; min-width: 0; }
+.nqd-library-provenance {
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  font-size: .64rem;
+  line-height: 1.5;
+  opacity: .85;
+}
+.bib-work.has-variants > .bib-card + .bib-card { margin-top: 10px; }
+@media (max-width: 600px) {
+  .nqd-library-work.has-variants,
+  .bib-work.has-variants { padding: 8px; }
+  .nqd-library-work-heading span { display: block; margin-left: 0; }
+}
 .nqreview-status--correct { color: #b0eacb; }
 .nqreview-option.is-chosen { border-color: #efa7b2a0; background: #402630; }
 .nqreview-option.is-correct { border-color: #9cddbb99; background: #16382e; }
@@ -15243,4 +15281,95 @@ body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underli
   .nqreview-option { grid-template-columns: 1.3rem minmax(0, 1fr); gap: 7px; padding: 9px 8px; }
   .nqreview-explanation { padding: 12px; }
   .nqreview-footer { padding: 12px 16px 16px; }
+}
+
+/* Milestone, not a second introduction. Chapter I only. */
+.nqnarr-card[data-nq-chapter="5"] .nqnarr-chapter {
+  margin-bottom: .55rem;
+  color: #f4dc9f;
+  font-weight: 700;
+}
+.nqchapter-heading h2 {
+  color: #eee8d9;
+  text-align: left;
+  margin: 0;
+  font-size: clamp(1.25rem, 5cqi, 2rem);
+  overflow-wrap: anywhere;
+}
+.nqchapter-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: .78rem;
+  aspect-ratio: 640 / 150;
+  border: 1px solid #6f9aa066;
+  border-radius: 10px;
+  background: #122835;
+}
+.nqchapter-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem .9rem;
+  padding: 0;
+  margin: .84rem 0 0;
+  list-style: none;
+}
+.nqchapter-path li {
+  flex: 1 1 9rem;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .44rem .55rem;
+  border: 1px solid #516674;
+  border-radius: 9px;
+  background: #12232d;
+}
+.nqchapter-path li.nqchapter-current {
+  border-color: #cfb076;
+  background: #293337;
+}
+.nqchapter-path li > span {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  color: #bfd6df;
+  background: #263f4b;
+}
+.nqchapter-path li.nqchapter-current > span {
+  background: #f1d387;
+  color: #182b30;
+}
+.nqchapter-path strong, .nqchapter-path small { display: block; overflow-wrap: anywhere; }
+.nqchapter-path strong { color: #f1e9d5; font-size: .95rem; }
+.nqchapter-path small { color: #c2d0da; font-size: .8rem; }
+.nqnarr-card[data-nq-chapter="5"] #nqNarrativeStory { margin-top: .9rem; }
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .nqchapter-scroll-paper {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: nqchapter-unroll .48s cubic-bezier(.2,.65,.35,1) both;
+  }
+}
+@keyframes nqchapter-unroll { from { transform: scaleX(.22); } to { transform: scaleX(1); } }
+
+/* Uma revelação só por abertura, sem flashes ou movimento de conteúdo. */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .nqchapter-art { animation: nqchapter-reveal-light 850ms ease-out both; }
+  .nqchapter-path .nqchapter-current > span {
+    animation: nqchapter-seal-lit 590ms 230ms ease-out both;
+  }
+}
+@keyframes nqchapter-reveal-light {
+  0% { filter: saturate(.81) brightness(.80); box-shadow: 0 0 0 transparent; }
+  58% { filter: saturate(1.08) brightness(1.13); box-shadow: 0 0 1.2rem #91c8da3d; }
+  100% { filter: saturate(1) brightness(1); box-shadow: 0 0 .35rem #91c8da20; }
+}
+@keyframes nqchapter-seal-lit {
+  0% { box-shadow: 0 0 0 #f4d18400; }
+  48% { box-shadow: 0 0 0 .25rem #f4d18440, 0 0 .65rem #f4d18467; }
+  100% { box-shadow: 0 0 0 .05rem #f4d18424; }
 }

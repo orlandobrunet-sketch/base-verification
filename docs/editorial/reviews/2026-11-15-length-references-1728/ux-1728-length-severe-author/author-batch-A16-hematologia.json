@@ -1,0 +1,946 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A16-hematologia",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 2,
+  "readyForImplementation": false,
+  "scope": "Dois itens finais do inventário;2cards atuais byte-exatos rechecados, sem novo card.",
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "459c4d9a",
+        "40b3d28b"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Prioridade em reduzir produção das cadeias leves versus medida de suporte hídrico além da terapia antiplasmocitária já iniciada."
+    },
+    {
+      "pair": [
+        "459c4d9a",
+        "7780350a"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Prioridade do controle do clone versus interpretação da evidência de plasmaférese em cilindros confirmados."
+    },
+    {
+      "pair": [
+        "053bc658",
+        "048435a5"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Diagnóstico pelo padrão de depósitos versus selecionar o padrão ultraestrutural esperado de MIDD já definido."
+    }
+  ],
+  "neighbors": [
+    {
+      "qid": "40b3d28b",
+      "literal": {
+        "t": "Manejo do Rim de Mieloma",
+        "qid": "40b3d28b",
+        "q": "Na nefropatia por cilindros do mieloma, além de iniciar rapidamente terapia antiplasmocitária, qual medida de suporte renal é mais importante quando não há contraindicação volêmica?",
+        "refs": [
+          "myeloma_renal_imwg_2023",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Restrição hídrica rigorosa para evitar edema pulmonar, mesmo em paciente hipovolêmico",
+          "Hidratação com solução isotônica e manutenção de fluxo urinário adequado, com correção de hipercalcemia e retirada de nefrotóxicos",
+          "Diálise peritoneal imediata para todos os casos, independentemente de sintomas urêmicos ou distúrbios refratários",
+          "Diurético de alça em altas doses como estratégia primária, sem avaliar volume intravascular"
+        ],
+        "ans": 1,
+        "exp": "Na cast nephropathy, a lesão tubular é favorecida por alta carga de cadeias leves, baixo fluxo tubular, hipercalcemia, hipovolemia e nefrotóxicos. Por isso, o suporte renal inclui hidratação isotônica quando tolerada, correção da hipercalcemia e suspensão de fármacos que pioram a função renal, sempre junto da terapia anticlone para reduzir rapidamente as cadeias leves. Restrição hídrica indiscriminada e diurético sem avaliar volemia podem agravar a lesão. Diálise é indicada por critérios clínicos habituais de LRA, não de forma automática para todos.",
+        "diff": "medium",
+        "cat": "oncologia_renal"
+      },
+      "revision": "sha256:f1170c04890c99925244d35fe18f2b3f58f469fcbdaf59cc05f545840080dfe6",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "7780350a",
+      "literal": {
+        "t": "Nefropatia por Cilindros — Remoção Mecânica de Cadeias Leves",
+        "qid": "7780350a",
+        "q": "Paciente com mieloma recém-diagnosticado, lesão renal aguda (LRA) grave e nefropatia por cilindros confirmada por biópsia tem cadeias leves livres muito elevadas. Não há síndrome de hiperviscosidade. Qual conduta interpreta melhor a evidência sobre plasmaférese neste contexto?",
+        "refs": [
+          "myeloma_renal_imwg_2023",
+          "clark_plasma_exchange_2005"
+        ],
+        "opts": [
+          "Iniciar tratamento clonal; considerar plasmaférese após avaliação individual.",
+          "Plasmaférese de rotina; adiar terapia clonal até baixar as cadeias leves.",
+          "Plasmaférese de rotina; o ensaio randomizado confirmou benefício em doença biopsiada.",
+          "Excluir plasmaférese adjuvante; o ensaio randomizado descartou benefício individual."
+        ],
+        "ans": 0,
+        "exp": "A prioridade é iniciar imediatamente tratamento antiplasmocitário efetivo, em geral baseado em bortezomibe e dexametasona, com suporte renal. Plasmaférese não deve atrasar nem substituir o controle do clone. O ensaio de Clark não demonstrou benefício conclusivo no composto de morte, dependência de diálise ou função renal gravemente reduzida; porém não exigia biópsia, era pequeno e ocorreu antes dos esquemas modernos. Isso não prova ausência de benefício em todo paciente com doença biopsiada. O International Myeloma Working Group (IMWG), nas recomendações de 2023, considera inconclusivo o valor adjuvante da plasmaférese e não apoia métodos mecânicos isolados como substitutos da terapia clonal. Uma decisão adjuvante individualizada não equivale a uso rotineiro. A ausência de hiperviscosidade exclui outra indicação de plasmaférese que não é testada aqui.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "revision": "sha256:156c4ba15cb00f5b12f40d358d7cb9586530861a4b94f1ad6283bf04b3e41940",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "048435a5",
+      "literal": {
+        "t": "MIDD — Padrão de Depósito",
+        "qid": "048435a5",
+        "q": "Biópsia de paciente com gamopatia mostra glomeruloesclerose nodular, espessamento de membranas basais e imunofluorescência linear para cadeia leve kappa em membranas glomerulares e tubulares. Qual padrão ultraestrutural completa o diagnóstico de MIDD?",
+        "refs": [
+          "ikmg_mgrs_consensus_2019"
+        ],
+        "opts": [
+          "Depósitos não organizados, finamente granulares e eletrondensos ao longo das membranas basais",
+          "Fibrilas Congo-positivas de aproximadamente 8–12 nm dispostas aleatoriamente",
+          "Microtúbulos ocos organizados em feixes paralelos",
+          "Depósitos granulares restritos ao glomérulo, sem acometer membrana basal tubular"
+        ],
+        "ans": 0,
+        "exp": "Na doença de depósito de imunoglobulina monoclonal, cadeias leves, pesadas ou ambas se depositam em padrão linear e pontilhado nas membranas basais glomerular e tubular. À microscopia eletrônica, os depósitos são finamente granulares, eletrondensos e não organizados. Isso difere da amiloidose, que forma fibrilas Congo-positivas, da imunotactoide, que forma microtúbulos, e da PGNMID, cujos depósitos granulares ficam confinados ao glomérulo. O padrão nodular pode imitar nefropatia diabética, tornando imunofluorescência e microscopia eletrônica decisivas.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "revision": "sha256:5c4cf488a6251532b1aca5b086be52da2e06e89f48aff3c46265c852181a7158",
+      "fullMedicalGate": false
+    }
+  ],
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "459c4d9a",
+      "family": "A16-hematologia",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Mieloma Múltiplo — Nefropatia por Cilindros",
+        "qid": "459c4d9a",
+        "q": "Paciente com mieloma múltiplo apresenta LRA, hipercalcemia, cadeias leves livres elevadas e proteinúria predominantemente por Bence-Jones. Qual manifestação renal é mais provável e qual prioridade terapêutica reduz o dano renal?",
+        "refs": [
+          "myeloma_renal_imwg_2023",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Glomerulonefrite membranosa por imunocomplexos; imunossupressão glomerular isolada",
+          "Nefropatia por cilindros de cadeias leves; suporte renal e início rápido de terapia antiplasmocitária baseada em bortezomibe/dexametasona",
+          "Glomerulosclerose diabética; controle glicêmico isolado",
+          "Nefropatia obstrutiva por adenomegalia; stent ureteral como terapia principal"
+        ],
+        "ans": 1,
+        "exp": "O quadro sugere nefropatia por cilindros de cadeias leves, o rim do mieloma: cadeias leves filtradas precipitam com uromodulina no túbulo distal, causando obstrução e inflamação tubular. A prioridade é reduzir rapidamente a carga de cadeias leves com terapia antiplasmocitária efetiva, classicamente baseada em bortezomibe e dexametasona, além de suporte renal, hidratação cuidadosa, evitar nefrotóxicos e tratar hipercalcemia. Abordagens mecânicas podem ser consideradas em contextos específicos, mas não substituem o tratamento do clone plasmocitário.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "originalSHA256": "sha256:ad2c303ddd80101dd04d77d574d309f8f4760a2c34eac850b8bace881ad8e139",
+      "originalRefs": [
+        {
+          "id": "myeloma_renal_imwg_2023",
+          "original": {
+            "label": "IMWG — Management of Multiple Myeloma-related Renal Impairment (2023)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+            "journal": "Lancet Oncol 2023;24(7):e293-e311",
+            "ano": 2023,
+            "tipo": "Recomendação Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rim do mieloma: avaliar cadeias leves, evitar nefrotóxicos, suporte + dexametasona e regime baseado em bortezomibe",
+            "icon": "📋",
+            "resumo": "Recomendações atualizadas do International Myeloma Working Group para insuficiência renal relacionada ao mieloma múltiplo. Orienta medir creatinina/TFGe, cadeias leves livres séricas e proteinúria de 24 horas com eletroforese/imunofixação; biópsia renal é útil quando há albuminúria predominante ou cadeias leves envolvidas abaixo de limiar compatível com nefropatia por cilindros. Suporte clínico e dexametasona em alta dose são necessários, e esquemas baseados em bortezomibe são a pedra angular do tratamento inicial da disfunção renal relacionada ao mieloma. Abordagens mecânicas não demonstram aumento de sobrevida global.",
+            "conclusao": "Na LRA do mieloma, a prioridade é reduzir rapidamente cadeias leves com terapia antiplasmocitária efetiva, especialmente bortezomibe + dexametasona, junto de suporte renal e controle de hipercalcemia/desidratação.",
+            "curiosidade": "A proteinúria ajuda a separar pistas: muita albumina sugere glomérulo/amilóide/MIDD; muita cadeia leve com pouca albumina faz pensar em cilindros obstrutivos tubulares."
+          },
+          "originalSHA256": "sha256:6a6cd57dd074a9611b17c2e9fe8ce92ed6a4041029574829a9ca8bba51e9099b"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Priorizar redução rápida da carga de cadeias leves e suporte em quadro fortemente sugestivo de nefropatia por cilindros do mieloma.",
+        "primaryCompetence": "Interpretar doença renal associada a imunoglobulina monoclonal e priorizar tratamento do clone.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Alternativa correta agrega diagnóstico e regime terapêutico, enquanto os demais pareiam doenças pouco compatíveis.",
+          "MENOR — Cadeias leves elevadas sem magnitude/albumina podem não discriminar toda LRA do mieloma; tornar o padrão mais informativo."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "imwg",
+          "url": "https://www.binasss.sa.cr/bibliotecas/bhm/jul23/13.pdf",
+          "doi": "10.1016/S1470-2045(23)00223-1",
+          "pmid": "37414019",
+          "access": "Artigo primário publicado integral19p aberto na biblioteca nacional de saúde da CostaRica, metadados NLM conferidos. Não comentário do site.",
+          "locators": [
+            "PDF1/3: recomendações IMWG2023 para função renal, cadeias leves livres, eletroforese/imunofixação urinária; algoritmo distingue predomínio de albumina de cadeias leves.",
+            "PDF4–5: emergência clínica, início imediato de terapia antiplasmocitária efetiva, suporte e controle de hipercalcemia/volemia.",
+            "Bortezomibe e dexametasona são base de regimes; métodos mecânicos não substituem controle do clone e não demonstram ganho de sobrevida global."
+          ],
+          "limitations": [
+            "Não é uma prescrição fixa de todos os componentes/doses. Biópsia é importante quando há albuminúria predominante, cadeias baixas ou incerteza; não inferir toda LRA do mieloma como cilindros."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Predomínio de cadeias leves com carga elevada eLRA favorececilindros; terapia antiplasmocitária rápida e suporte têm prioridade.",
+          "source": "imwg",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Mieloma Múltiplo — Nefropatia por Cilindros",
+        "qid": "459c4d9a",
+        "q": "Paciente com mieloma múltiplo tem lesão renal aguda, hipercalcemia e cadeia leve livre envolvida de 2500 mg/L. A proteinúria é composta principalmente por cadeias leves, com pouca albumina. Diante da forte suspeita de nefropatia por cilindros, qual prioridade atua na fonte do dano?",
+        "refs": [
+          "myeloma_renal_imwg_2023"
+        ],
+        "opts": [
+          "Adiar a terapia do clone até normalizar espontaneamente a creatinina.",
+          "Reduzir rapidamente as cadeias leves com terapia antiplasmocitária e suporte renal.",
+          "Usar apenas plasmaférese, mantendo sem tratamento a produção de cadeias leves.",
+          "Usar apenas imunossupressão dirigida ao glomérulo, sem tratar o clone plasmocitário."
+        ],
+        "ans": 1,
+        "exp": "A lesão renal relacionada ao mieloma exige avaliação rápida e terapia efetiva do clone para reduzir a produção de cadeias leves nefrotóxicas. Regimes baseados em bortezomibe e dexametasona são centrais, com composição individualizada pela hematologia. Suporte inclui corrigir desidratação e hipercalcemia, evitar nefrotóxicos e acompanhar eletrólitos e volume. Métodos mecânicos de remoção não substituem tratamento antiplasmocitário. Se houver albuminúria importante, cadeias menos elevadas ou dúvida sobre a etiologia, biópsia renal pode ser necessária para esclarecer a lesão.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:60e4d293e483ab7106a102e309134f0be849dedbbb2a9628fa73eff77d3c32ed",
+      "classificationAfter": {
+        "op": "Priorizar redução rápida da carga de cadeias leves e suporte em quadro fortemente sugestivo de nefropatia por cilindros do mieloma.",
+        "primaryCompetence": "Interpretar doença renal associada a imunoglobulina monoclonal e priorizar tratamento do clone.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "myeloma_renal_imwg_2023",
+          "original": {
+            "label": "IMWG — Management of Multiple Myeloma-related Renal Impairment (2023)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+            "journal": "Lancet Oncol 2023;24(7):e293-e311",
+            "ano": 2023,
+            "tipo": "Recomendação Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rim do mieloma: avaliar cadeias leves, evitar nefrotóxicos, suporte + dexametasona e regime baseado em bortezomibe",
+            "icon": "📋",
+            "resumo": "Recomendações atualizadas do International Myeloma Working Group para insuficiência renal relacionada ao mieloma múltiplo. Orienta medir creatinina/TFGe, cadeias leves livres séricas e proteinúria de 24 horas com eletroforese/imunofixação; biópsia renal é útil quando há albuminúria predominante ou cadeias leves envolvidas abaixo de limiar compatível com nefropatia por cilindros. Suporte clínico e dexametasona em alta dose são necessários, e esquemas baseados em bortezomibe são a pedra angular do tratamento inicial da disfunção renal relacionada ao mieloma. Abordagens mecânicas não demonstram aumento de sobrevida global.",
+            "conclusao": "Na LRA do mieloma, a prioridade é reduzir rapidamente cadeias leves com terapia antiplasmocitária efetiva, especialmente bortezomibe + dexametasona, junto de suporte renal e controle de hipercalcemia/desidratação.",
+            "curiosidade": "A proteinúria ajuda a separar pistas: muita albumina sugere glomérulo/amilóide/MIDD; muita cadeia leve com pouca albumina faz pensar em cilindros obstrutivos tubulares."
+          },
+          "originalSHA256": "sha256:6a6cd57dd074a9611b17c2e9fe8ce92ed6a4041029574829a9ca8bba51e9099b",
+          "proposed": {
+            "label": "IMWG — Management of Multiple Myeloma-related Renal Impairment (2023)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+            "journal": "Lancet Oncol 2023;24(7):e293-e311",
+            "ano": 2023,
+            "tipo": "Recomendação Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rim do mieloma: avaliar cadeias leves, evitar nefrotóxicos, suporte + dexametasona e regime baseado em bortezomibe",
+            "icon": "📋",
+            "resumo": "Recomendações atualizadas do International Myeloma Working Group para insuficiência renal relacionada ao mieloma múltiplo. Orienta medir creatinina/TFGe, cadeias leves livres séricas e proteinúria de 24 horas com eletroforese/imunofixação; biópsia renal é útil quando há albuminúria predominante ou cadeias leves envolvidas abaixo de limiar compatível com nefropatia por cilindros. Suporte clínico e dexametasona em alta dose são necessários, e esquemas baseados em bortezomibe são a pedra angular do tratamento inicial da disfunção renal relacionada ao mieloma. Abordagens mecânicas não demonstram aumento de sobrevida global.",
+            "conclusao": "Na LRA do mieloma, a prioridade é reduzir rapidamente cadeias leves com terapia antiplasmocitária efetiva, especialmente bortezomibe + dexametasona, junto de suporte renal e controle de hipercalcemia/desidratação.",
+            "curiosidade": "A proteinúria ajuda a separar pistas: muita albumina sugere glomérulo/amilóide/MIDD; muita cadeia leve com pouca albumina faz pensar em cilindros obstrutivos tubulares."
+          },
+          "proposedSHA256": "sha256:6a6cd57dd074a9611b17c2e9fe8ce92ed6a4041029574829a9ca8bba51e9099b",
+          "sourceIDs": [
+            "imwg"
+          ],
+          "notes": [
+            "Card atual byte-exato,12campos rechecados. Não herdar gate de qualquer outro consumidor."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. OP de prioridade antiplasmocitária está explícito no original e permanece, retirando a tarefa diagnóstica agregada da alternativa. Não prevê resposta renal individual nem obriga plasmaférese.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "053bc658",
+      "family": "A16-hematologia",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Doença de Depósito de Cadeia Leve — Histologia",
+        "qid": "053bc658",
+        "q": "Paciente com gamopatia monoclonal e DRC proteinúrica apresenta biópsia com glomeruloesclerose nodular PAS-positiva, Congo vermelho negativo e depósito linear monotipo kappa em membranas basais glomerulares e tubulares. Qual é o diagnóstico?",
+        "refs": [
+          "myeloma_renal_imwg_2023",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Doença de depósito de cadeia leve, uma forma de doença por depósito de imunoglobulina monoclonal",
+          "Amiloidose AL, que obrigatoriamente é Congo vermelho negativa",
+          "Nefropatia diabética confirmada apenas pelo padrão nodular",
+          "Cast nephropathy isolada, sem depósito em membranas basais"
+        ],
+        "ans": 0,
+        "exp": "Depósito linear monotipo de cadeia leve ao longo das membranas basais, com padrão nodular PAS-positivo e Congo vermelho negativo, caracteriza doença de depósito de cadeia leve. Amiloidose AL forma fibrilas e costuma ser Congo vermelho positiva; nefropatia diabética não apresenta restrição kappa ou lambda; cast nephropathy produz cilindros intratubulares, não esse padrão linear. O diagnóstico deve levar à caracterização e ao tratamento do clone responsável, mesmo quando a carga hematológica é pequena.",
+        "diff": "hard",
+        "cat": "nefrologia_geral"
+      },
+      "originalSHA256": "sha256:88678e4e4b5ccfae16cb3f2f864cd8c6ce3bfdf398e2cbcb237c09229d2fbc03",
+      "originalRefs": [
+        {
+          "id": "myeloma_renal_imwg_2023",
+          "original": {
+            "label": "IMWG — Management of Multiple Myeloma-related Renal Impairment (2023)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+            "journal": "Lancet Oncol 2023;24(7):e293-e311",
+            "ano": 2023,
+            "tipo": "Recomendação Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rim do mieloma: avaliar cadeias leves, evitar nefrotóxicos, suporte + dexametasona e regime baseado em bortezomibe",
+            "icon": "📋",
+            "resumo": "Recomendações atualizadas do International Myeloma Working Group para insuficiência renal relacionada ao mieloma múltiplo. Orienta medir creatinina/TFGe, cadeias leves livres séricas e proteinúria de 24 horas com eletroforese/imunofixação; biópsia renal é útil quando há albuminúria predominante ou cadeias leves envolvidas abaixo de limiar compatível com nefropatia por cilindros. Suporte clínico e dexametasona em alta dose são necessários, e esquemas baseados em bortezomibe são a pedra angular do tratamento inicial da disfunção renal relacionada ao mieloma. Abordagens mecânicas não demonstram aumento de sobrevida global.",
+            "conclusao": "Na LRA do mieloma, a prioridade é reduzir rapidamente cadeias leves com terapia antiplasmocitária efetiva, especialmente bortezomibe + dexametasona, junto de suporte renal e controle de hipercalcemia/desidratação.",
+            "curiosidade": "A proteinúria ajuda a separar pistas: muita albumina sugere glomérulo/amilóide/MIDD; muita cadeia leve com pouca albumina faz pensar em cilindros obstrutivos tubulares."
+          },
+          "originalSHA256": "sha256:6a6cd57dd074a9611b17c2e9fe8ce92ed6a4041029574829a9ca8bba51e9099b"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer doença de depósito de cadeia leve pelo padrão linear monotipo em membranas basais e Congo vermelho negativo.",
+        "primaryCompetence": "Interpretar doença renal associada a imunoglobulina monoclonal e priorizar tratamento do clone.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta tem nome e classificação completos; os distratores trazem explicações falsas que se denunciam, como amiloide obrigatoriamenteCongo negativo.",
+          "MENOR — Referência específica de patologia deve substituir tratado não aberto; expandir PAS."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ikmg",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+          "doi": "10.1038/s41581-018-0077-4",
+          "access": "Corpo primário integral do consenso2019 aberto por rotaPMC sem prefixo, texto final PMC normalizado; seções classificação, biópsia e depósito lidas.",
+          "locators": [
+            "Lesions with non-organized deposits: MIDD com depósitos pontilhados lineares em membranas glomerulares e tubulares; cadeias leves isoladas definemLCDD.",
+            "Fig2/3: amiloide congofílico fibrilar versus depósito monoclonal não organizado; morfologia não equivale automaticamente ao clone causal sem tipagem.",
+            "Evaluation/Table2: biópsia, caracterização dos depósitos/clone; pico monoclonal isolado não comprova causa."
+          ],
+          "limitations": [
+            "Este consenso de avaliação não é recomendação universal de um tratamento para todaLCDD. A questão pede diagnóstico por padrão, sem dose ou regime."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Depósito linear monotipo de cadeia leve em membranas glomerulares/tubulares comnódulos eCongonegativo favoreceLCDD, distinta decilindros/amiloide.",
+          "source": "ikmg",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Doença de Depósito de Cadeia Leve — Histologia",
+        "qid": "053bc658",
+        "q": "Paciente com gamopatia monoclonal e doença renal crônica proteinúrica tem glomeruloesclerose nodular positiva ao ácido periódico de Schiff (PAS), Congo vermelho negativo e depósitos lineares monotipo kappa em membranas basais glomerulares e tubulares. Qual é o diagnóstico?",
+        "refs": [
+          "ikmg_mgrs_consensus_2019"
+        ],
+        "opts": [
+          "Doença de depósito de cadeia leve.",
+          "Amiloidose de cadeias leves.",
+          "Nefropatia diabética nodular.",
+          "Nefropatia por cilindros de cadeias leves."
+        ],
+        "ans": 0,
+        "exp": "O padrão favorece doença de depósito de cadeia leve, parte do grupo de doenças por depósito de imunoglobulina monoclonal. A restrição kappa ao longo das membranas basais glomerulares e tubulares é decisiva; nodularidade isolada não confirma nefropatia diabética. Amiloide tem organização fibrilar e tipicamente cora pelo Congo vermelho, enquanto a nefropatia por cilindros envolve agregados intratubulares. Avaliação dos depósitos e do clone deve ser integrada, sem inferir a causa de doença renal apenas pelo pico monoclonal.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "proposedSHA256": "sha256:f40de6577c245f24d01f414bb7e7b66db6681bd608bd1a088e217f8918fc05c0",
+      "classificationAfter": {
+        "op": "Reconhecer doença de depósito de cadeia leve pelo padrão linear monotipo em membranas basais e Congo vermelho negativo.",
+        "primaryCompetence": "Interpretar doença renal associada a imunoglobulina monoclonal e priorizar tratamento do clone.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "ikmg_mgrs_consensus_2019",
+          "original": {
+            "label": "Consenso IKMG — Gamopatia monoclonal de significado renal (2019)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+            "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+            "ano": 2019,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+            "icon": "📋",
+            "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group (IKMG) para investigar gamopatia monoclonal de significado renal (MGRS): um clone pode produzir imunoglobulina nefrotóxica sem preencher critérios de malignidade que justifiquem tratamento por si só. Recomenda biópsia renal, estudos dos depósitos, pesquisa sérica/urinária de componente monoclonal e avaliação do clone. Microdissecção com espectrometria de massa é referência para tipagem amiloide quando outros métodos não esclarecem.",
+            "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+            "curiosidade": ""
+          },
+          "originalSHA256": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a",
+          "proposed": {
+            "label": "Consenso IKMG — Gamopatia monoclonal de significado renal (2019)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+            "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+            "ano": 2019,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+            "icon": "📋",
+            "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group (IKMG) para investigar gamopatia monoclonal de significado renal (MGRS): um clone pode produzir imunoglobulina nefrotóxica sem preencher critérios de malignidade que justifiquem tratamento por si só. Recomenda biópsia renal, estudos dos depósitos, pesquisa sérica/urinária de componente monoclonal e avaliação do clone. Microdissecção com espectrometria de massa é referência para tipagem amiloide quando outros métodos não esclarecem.",
+            "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a",
+          "sourceIDs": [
+            "ikmg"
+          ],
+          "notes": [
+            "Card atual byte-exato,12campos rechecados. Não herdar gate de qualquer outro consumidor."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Quatro diagnósticos reais comparáveis; não acrescenta uma terapia universal para toda carga hematológica.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "d2a32c19",
+  "family": "A2-patologia-e-mecanismos",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Padrão MPGN — Classificação por Depósitos",
+    "qid": "d2a32c19",
+    "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão membranoproliferativo. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+    "refs": [
+      "kdigo_gn",
+      "mpgn_fervenza"
+    ],
+    "opts": [
+      "Reconhecer MPGN como padrão de lesão e usar a imunofluorescência para separar depósitos por imunocomplexos de deposição dominante de complemento, investigando infecção, autoimunidade, gamopatia monoclonal e desregulação do complemento conforme o grupo",
+      "Aplicar apenas a classificação histórica em tipos I, II e III, pois a etiologia não modifica a avaliação nem o tratamento",
+      "Considerar todo padrão MPGN como C3 glomerulopatia mesmo quando imunoglobulinas policlonais predominam",
+      "Definir MPGN primária pela microscopia óptica e dispensar imunofluorescência, microscopia eletrônica e investigação sistêmica"
+    ],
+    "ans": 0,
+    "exp": "MPGN descreve um padrão de lesão na microscopia óptica, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento favorecem glomerulonefrite mediada por imunocomplexos, enquanto C3 dominante levanta C3 glomerulopatia e outras doenças com ativação predominante do complemento. Depois disso, a investigação procura causas secundárias, incluindo infecções crônicas, autoimunidade e gamopatia monoclonal, ou anormalidades da via do complemento. Microscopia eletrônica e contexto clínico completam a interpretação; o padrão isolado não autoriza chamar toda MPGN de C3G ou primária.",
+    "diff": "hard",
+    "cat": "glomerular"
+  },
+  "originalSHA256": "sha256:bd6c2c5ce6d8f041b68d4cf874c14cc67a991799789d6e84e6d88534a5e41035",
+  "originalRefs": [
+    {
+      "id": "kdigo_gn",
+      "original": {
+        "label": "KDIGO Glomerular Diseases 2021",
+        "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+        "journal": "Kidney Int 2021;100(4S):S1-S276",
+        "ano": 2021,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+        "icon": "📋",
+        "resumo": "Primeira diretriz KDIGO dedicada às glomerulopatias, cobrindo síndrome nefrótica de lesões mínimas, GESF, nefropatia membranosa, nefropatia por IgA, nefrite lúpica, vasculites ANCA, C3 glomerulopatia e MPGN. Incorpora biomarcadores serológicos no diagnóstico — anti-PLA2R (presente em cerca de 70–80% dos casos de nefropatia membranosa primária) e ANCA-PR3/MPO — e gradua recomendações pelo sistema GRADE. Alguns capítulos foram complementados por atualizações posteriores específicas, como a diretriz dedicada à IgAN 2025; usar em conjunto com fontes mais recentes quando disponíveis.",
+        "conclusao": "Referência unificada para diagnóstico e imunossupressão nas glomerulopatias — substituiu capítulos fragmentados de diretrizes anteriores.",
+        "curiosidade": "O anti-PLA2R, descoberto por Beck et al. em 2009 (NEJM), permite o diagnóstico sorológico da nefropatia membranosa primária em contextos típicos — reduzindo a dependência exclusiva da biópsia renal — e serve como marcador de atividade e resposta ao tratamento pelo título sérico."
+      },
+      "originalSHA256": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13"
+    },
+    {
+      "id": "mpgn_fervenza",
+      "original": {
+        "label": "Sethi S, Fervenza FC — MPGN New Classification (NEJM 2012)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMra1108178",
+        "journal": "N Engl J Med 2012;366(12):1119-1131",
+        "ano": 2012,
+        "tipo": "Revisão Clínica",
+        "badge": "REVIEW",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Nova classificação da GNMP: por etiologia (imuno-complexos vs complemento) e não pelo padrão histológico isolado",
+        "icon": "📖",
+        "resumo": "Revisão seminal que propôs reclassificar a glomerulonefrite membranoproliferativa (GNMP) com base na etiologia, não no padrão histológico. O padrão GNMP pode resultar de: (1) depósito de imunocomplexos (infecção, doença autoimune, gamopatia) → imunofluorescência com Ig + C3; ou (2) disregulação do complemento (C3G) → IF com C3 predominante sem Ig. A classificação etiológica orienta investigação e tratamento de forma radicalmente diferente.",
+        "conclusao": "A reclassificação de Sethi & Fervenza foi o marco conceitual que permitiu distinguir C3G de GNMP mediada por imunocomplexos — transformando diagnóstico e abordagem terapêutica de um padrão histológico genérico em doenças com patogêneses específicas.",
+        "curiosidade": "Antes dessa reclassificação, 'GNMP' era tratada como diagnóstico único com esquemas imunossupressores empíricos. A distinção etiológica revelou que tratar C3G com imunossupressão convencional (dirigida a Ig) é equivocado — o alvo correto é o complemento."
+      },
+      "originalSHA256": "sha256:c1c15a3b609d3ac40d415b2cd208e49ce5e815dd4e3f1364b2da90e671899251"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Classificar padrão membranoproliferativo pela composição dos depósitos e orientar a investigação etiológica.",
+    "primaryCompetence": "Classificação clinicopatológica e investigação de causas.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — A correta concentra classificação e lista extensa de causas; os distratores acumulam absolutos.",
+      "CRÍTICO — Card mpgn_fervenza afirma que imunossupressão convencional em C3G é equivocada; tal generalização não é sustentada e conflita com a KDIGO2021. Também reduz C3G a ausência de imunoglobulinas."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": true,
+        "rationale": "Conteúdo terapêutico do card consumido não sustenta conclusão categórica."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": true,
+        "rationale": "Card apresenta condenação ampla de modalidade terapêutica, com potencial de desinformação clínica; removido das referências consumidas desta proposta."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "anulado": true
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "kdigoGN",
+      "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+      "access": "PDF oficial integral baixado e lido com pypdf; 281 páginas, 11.200.115 bytes",
+      "rawFileSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+      "locators": [
+        "PDF94 / S89: Practice Points1.1.1–1.1.2 e adequação da biópsia",
+        "PDF192–195 / S187–S190: classificação por depósitos, C3 dominante, infecção e depósitos mascarados",
+        "PDF197 / S192: Practice Point8.2.2.1, demonstra inadequação de condenar toda imunossupressão em C3G"
+      ],
+      "limitations": [
+        "Web não abriu por limite de tamanho; download oficial com rede autorizada foi bem-sucedido. Tratamentos recentes de C3G não são inferidos desta diretriz2021: o pacote trata classificação e diagnóstico."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Padrão não é etiologia; IF orienta investigação",
+      "source": "kdigoGN",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Infecção/autoimunidade/clone/complemento segundo composição",
+      "source": "kdigoGN",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "É incorreto condenar toda imunossupressão emC3G",
+      "source": "kdigoGN",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Padrão membranoproliferativo — Classificação por depósitos",
+    "qid": "d2a32c19",
+    "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão de glomerulonefrite membranoproliferativa. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+    "refs": [
+      "kdigo_gn"
+    ],
+    "opts": [
+      "Classificar os depósitos pela imunofluorescência e investigar a causa correspondente.",
+      "Classificar apenas em tipos I, II e III e considerar a doença primária.",
+      "Definir glomerulopatia C3 pelo duplo contorno, antes de avaliar a composição dos depósitos.",
+      "Definir uma causa monoclonal pelo duplo contorno, antes de investigar o clone."
+    ],
+    "ans": 0,
+    "exp": "A glomerulonefrite membranoproliferativa é um padrão de lesão, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento levam à investigação de imunocomplexos e eventual monoclonalidade; C3 dominante levanta desregulação do complemento, após excluir mimetizadores como infecção. Microscopia eletrônica e contexto clínico completam a interpretação. Infecção, autoimunidade e gamopatia devem ser pesquisadas conforme os depósitos. Nem o duplo contorno define C3 glomerulopatia ou clone, nem a classificação histórica isolada permite chamar a doença de primária.",
+    "diff": "medium",
+    "cat": "glomerular"
+  },
+  "proposedSHA256": "sha256:3402defa753ae2329e8f23445de8bb2bf79e0e3971426b6937aec371a4dbf034",
+  "classificationAfter": {
+    "op": "Classificar padrão membranoproliferativo pela composição dos depósitos e orientar a investigação etiológica.",
+    "primaryCompetence": "Classificação clinicopatológica e investigação de causas.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "kdigo_gn",
+      "original": {
+        "label": "KDIGO Glomerular Diseases 2021",
+        "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+        "journal": "Kidney Int 2021;100(4S):S1-S276",
+        "ano": 2021,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+        "icon": "📋",
+        "resumo": "Primeira diretriz KDIGO dedicada às glomerulopatias, cobrindo síndrome nefrótica de lesões mínimas, GESF, nefropatia membranosa, nefropatia por IgA, nefrite lúpica, vasculites ANCA, C3 glomerulopatia e MPGN. Incorpora biomarcadores serológicos no diagnóstico — anti-PLA2R (presente em cerca de 70–80% dos casos de nefropatia membranosa primária) e ANCA-PR3/MPO — e gradua recomendações pelo sistema GRADE. Alguns capítulos foram complementados por atualizações posteriores específicas, como a diretriz dedicada à IgAN 2025; usar em conjunto com fontes mais recentes quando disponíveis.",
+        "conclusao": "Referência unificada para diagnóstico e imunossupressão nas glomerulopatias — substituiu capítulos fragmentados de diretrizes anteriores.",
+        "curiosidade": "O anti-PLA2R, descoberto por Beck et al. em 2009 (NEJM), permite o diagnóstico sorológico da nefropatia membranosa primária em contextos típicos — reduzindo a dependência exclusiva da biópsia renal — e serve como marcador de atividade e resposta ao tratamento pelo título sérico."
+      },
+      "originalSHA256": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13",
+      "proposed": {
+        "label": "KDIGO Glomerular Diseases 2021",
+        "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+        "journal": "Kidney Int 2021;100(4S):S1-S276",
+        "ano": 2021,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+        "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+      "sourceIDs": [
+        "kdigoGN"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "Um só objetivo, classificação para investigar a causa. Sem introduzir indicação terapêutica atual e sem tornar a definição de C3G dependente de zero imunoglobulina.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [
+    "O card legado mpgn_fervenza continua sendo pendência GLOBAL da biblioteca, não escondida pelo corte da ref nesta questão. Correção/retirada global exige gate separado; não declarar backlog concluído deixando o card inseguro acessível."
+  ],
+  "hold": null
+}

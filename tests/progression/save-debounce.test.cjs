@@ -27,12 +27,14 @@ function fn(name) {
 }
 const product = [
   section('    let _autoSaveTimer = null;', '    function isProgressSandbox()'),
+  ...(game.includes('const _hardcoreCorrect =')
+    ? [section('    function getNormalGameStats()', '    function getEntitlementQuestionsAnswered(')] : []),
   section('    const _pendingChestRewards = [];', '    function triggerChestRewardPopup('),
   ...['isCharacterPilot', '_currentSaveOwner', '_guestSavePair', '_canonicalSaveRecord', '_isSaveTombstone',
     '_writeSaveTombstone', '_mirrorLegacySave', '_captureJourneyBinding', '_matchesJourneyBinding',
     '_questionSaveExtras', 'saveGame', '_doSaveGame', 'deleteSave', 'isProgressSandbox', 'beginProgressSandbox'].map(fn),
 ].join('\n');
-const constants = ['SAVE_KEY', 'CANONICAL_SAVE_KEY', 'SAVE_SCHEMA_VERSION'].map(name => {
+const constants = ['SAVE_KEY', 'CANONICAL_SAVE_KEY', 'SAVE_SCHEMA_VERSION', 'STATS_KEY'].map(name => {
   const match = new RegExp('^    const ' + name + '\\s*=([^;]+);', 'm').exec(game);
   assert(match, 'Missing production constant: ' + name);
   return 'const ' + name + ' =' + match[1] + ';';
@@ -50,7 +52,7 @@ function harness(owner = null) {
     removeItem(key) { values.delete(key); removed.push(key); },
   };
   const context = vm.createContext({
-    Date: ClockDate, console, authUser: owner === null ? null : { id: owner },
+    Date: ClockDate, console, characters: { nephros: {} }, authUser: owner === null ? null : { id: owner },
     localStorage: storage, nqProgressStorage: () => storage,
     crypto: { randomUUID: () => 'technical-save-' + (++revision) },
     _saveTimer: null, _pilotAnswerTransaction: null, _normalJourneyStaging: false,

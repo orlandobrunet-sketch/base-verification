@@ -1,0 +1,381 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "2f2dc008",
+  "family": "A12-eletrólitos",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Hipercalcemia Humoral da Malignidade",
+    "qid": "2f2dc008",
+    "q": "Mulher com perda ponderal, tosse, cálcio corrigido 13,8 mg/dL, PTH suprimido e PTHrP elevado. Qual diagnóstico é mais provável e qual conduta trata a hipercalcemia de forma sustentada?",
+    "refs": [
+      "hypercalcemia_malignancy_endo_2022"
+    ],
+    "opts": [
+      "Hiperparatireoidismo primário; paratireoidectomia imediata",
+      "Hipercalcemia humoral da malignidade; hidratação e anti-reabsortivo, como bisfosfonato IV ou denosumabe, além de tratar o tumor",
+      "Intoxicação por vitamina D; apenas suspender suplementação",
+      "Sarcoidose; prednisona como primeira medida em todo caso de PTHrP elevado"
+    ],
+    "ans": 1,
+    "exp": "PTH suprimido com PTHrP elevado e síndrome constitucional sugere hipercalcemia humoral da malignidade, frequentemente associada a neoplasias como carcinoma escamoso de pulmão. A hidratação corrige depleção de volume e aumenta calciurese, mas o controle sustentado da hipercalcemia depende de anti-reabsortivo, como bisfosfonato intravenoso ou denosumabe, além do tratamento da neoplasia. Calcitonina pode ser adjuvante em hipercalcemia grave, mas tem taquifilaxia em poucos dias. Hiperparatireoidismo primário teria PTH inapropriadamente alto.",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "originalSHA256": "sha256:a6291a034fcf04c16bac2c3ee17833cae1ef14d0f1d6eb846a892e8c7aa28a45",
+  "originalRefs": [
+    {
+      "id": "hypercalcemia_malignancy_endo_2022",
+      "original": {
+        "label": "Endocrine Society — Hypercalcemia of Malignancy Guideline (2022/2023)",
+        "url": "https://academic.oup.com/jcem/article/108/3/507/6916871",
+        "journal": "J Clin Endocrinol Metab 2023;108(3):507-528",
+        "ano": 2023,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Tratamento da hipercalcemia da malignidade com hidratação, anti-reabsortivo e calcitonina em casos graves",
+        "icon": "📋",
+        "resumo": "Diretriz da Endocrine Society para tratamento de adultos com hipercalcemia da malignidade. Recomenda anti-reabsortivo — bisfosfonato intravenoso ou denosumabe — em adultos com hipercalcemia da malignidade, além do tratamento da neoplasia de base e suporte clínico. Sugere denosumabe sobre bisfosfonato em algumas situações e, na hipercalcemia grave (cálcio sérico >14 mg/dL), combinação inicial de calcitonina com bisfosfonato IV ou denosumabe; a calcitonina deve ser limitada a 48–72 horas por taquifilaxia.",
+        "conclusao": "Hipercalcemia da malignidade exige controlar volume e osso: hidratação corrige depleção e aumenta calciurese, enquanto bisfosfonato IV ou denosumabe reduzem a reabsorção óssea de forma sustentada.",
+        "curiosidade": "A calcitonina é o 'extintor de incêndio' rápido da hipercalcemia grave, mas perde efeito em poucos dias; o tratamento sustentado depende do anti-reabsortivo e do controle do tumor."
+      },
+      "originalSHA256": "sha256:deb6264d2e052d5df61cb04bfbccdcfc6438255e4540e5cf2bdada2ca4d12dbf"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Reconhecer hipercalcemia humoral da malignidade a partir dePTHsuprimido/PTHrPelevado econtextoclínico.",
+    "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Mistura diagnóstico e tratamento sustentado, este último já cobrado em5189c79f.",
+      "MENOR — PTH/PTHrPnãoexpandidos; a correta é a única opção com múltiplos componentes corretos."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "endotext",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279129/",
+      "access": "Capítulo autoral Endotext real integral aberto; atualização19/03/2026; partesdehomeostase,diagnóstico ehipercalcemia humoral lidas.",
+      "locators": [
+        "Definition: alcalose aumenta ligaçãoalbumina-cálcio; quando proteína/pHmudam, medir cálcioionizadoépreferível.",
+        "Abstract/Diagnosis:hipercalcemia comPTHsuprimido sugere mecanismoindependente;PTHrP elevado podeapontarhipercalcemia damalignidade.",
+        "MAHwithElevatedPTHrP: mecanismoshumorais/ósseospodemcoexistir; nãofixarhistologiade tumorapenasporPTHrP."
+      ],
+      "limitations": [
+        "Capítulo expert, não diretrizdeensaio. Asquestõespedemfisiologia/diagnósticomaisprovável,nãoprova histológicadecâncerporensaioisolado."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "HipercalcemiamaisPTHsuprimidoePTHrPelevado favorece mecanismo humoralmaligno nocontexto descrito, semidentificartumor.",
+      "source": "endotext",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Hipercalcemia Humoral da Malignidade",
+    "qid": "2f2dc008",
+    "q": "Mulher com perda ponderal e tosse apresenta cálcio confirmado de 13,8 mg/dL, paratormônio (PTH) suprimido e proteína relacionada ao PTH (PTHrP) elevada. Qual é a hipótese mais provável para a hipercalcemia?",
+    "refs": [
+      "endotext_hypercalcemia_2026"
+    ],
+    "opts": [
+      "Hiperparatireoidismo primário.",
+      "Hipercalcemia humoral da malignidade.",
+      "Intoxicação isolada por vitamina D.",
+      "Hipercalcemia granulomatosa por calcitriol."
+    ],
+    "ans": 1,
+    "exp": "O conjunto favorece hipercalcemia humoral da malignidade mediada por PTHrP. O PTH suprimido torna hiperparatireoidismo primário improvável; intoxicação por vitamina D e produção de calcitriol por doença granulomatosa não são explicadas pela elevação de PTHrP como mecanismo principal. A apresentação exige investigação da neoplasia e avaliação da gravidade da hipercalcemia, mas não identifica um tipo específico de tumor apenas pelos exames. Mecanismos humorais e ósseos podem coexistir.",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "proposedSHA256": "sha256:da8681c0b478444b5c472edc298bd184bccda8173b330167f661dbb57f773920",
+  "classificationAfter": {
+    "op": "Reconhecer hipercalcemia humoral da malignidade a partir dePTHsuprimido/PTHrPelevado econtextoclínico.",
+    "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "endotext_hypercalcemia_2026",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Goltzman — Abordagem da hipercalcemia, Endotext (2026)",
+        "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279129/",
+        "journal": "Endotext/NCBI Bookshelf; atualização em 19 de março de 2026",
+        "ano": 2026,
+        "tipo": "Capítulo de livro-texto",
+        "badge": "TEXTBOOK",
+        "badgeColor": "#64748b",
+        "icon": "📚",
+        "impacto": "Interpretar cálcio ionizado, paratormônio e proteína relacionada ao paratormônio.",
+        "resumo": "Capítulo autoral sobre homeostase do cálcio e investigação da hipercalcemia. Alterações de albumina e pH podem mudar a relação entre cálcio total e ionizado; a alcalose aumenta a ligação do cálcio à albumina. Paratormônio (PTH) suprimido diante de hipercalcemia favorece investigação de mecanismos independentes de PTH. Elevação da proteína relacionada ao PTH (PTHrP), no contexto clínico adequado, é compatível com hipercalcemia humoral da malignidade, sem identificar sozinha o tumor ou excluir mecanismos associados.",
+        "conclusao": "Interpretar exames em conjunto com clínica, função renal, proteínas e pH. Se houver alterações importantes de pH ou proteínas, a medição direta de cálcio ionizado pode esclarecer a fração biologicamente ativa.",
+        "curiosidade": "Mecanismos tumorais humorais e reabsorção óssea local não são necessariamente exclusivos entre si; um resultado isolado não substitui investigação clínica."
+      },
+      "proposedSHA256": "sha256:24016bd96cd7cc8bad8639086373de83c41f32f863581983fc1d8b4855f2d2e6",
+      "sourceIDs": [
+        "endotext"
+      ],
+      "notes": [
+        "Novo card para fonte específica realmente aberta, em vez de herdar o conteúdo não lido do tratadoBrenner. Busca porEndotext/NBK279129 não encontroucardanterior."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. OPdiagnósticoprimáriopreservado, removida tarefa secundária de tratamento. Dados solicitam interpretação hormonal, não só associação de palavra.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "Mantémqid/OPprimáriode reconhecer hipercalcemiahumoral. Não transferirFSRSparaquestãoterapêutica518; são decisões separadas.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

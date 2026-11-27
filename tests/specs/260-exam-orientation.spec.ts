@@ -24,7 +24,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   await page.locator('[data-portal-route="guest"]').click();
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741);
+  await page.waitForFunction(() => (window as any).questionBank?.length === 723);
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 });
 
@@ -64,8 +64,8 @@ async function visibleBelowBand(page: Page, selector: string) {
 }
 
 const views: {width: number; height: number; font: number; safeTop?: number}[] = [
-  {width: 320, height: 740, font: 16}, {width: 390, height: 844, font: 16},
-  {width: 1440, height: 900, font: 16}, {width: 320, height: 740, font: 32},
+  {width: 320, height: 725, font: 16}, {width: 390, height: 844, font: 16},
+  {width: 1440, height: 900, font: 16}, {width: 320, height: 725, font: 32},
   {width: 390, height: 844, font: 16, safeTop: 32},
 ];
 for (const view of views) {

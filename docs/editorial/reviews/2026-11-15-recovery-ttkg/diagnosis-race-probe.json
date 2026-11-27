@@ -1,0 +1,37 @@
+{
+  "schema": "NQ_1727_DIAGNOSIS_STALE_COMPLETION_PROBE_v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "contextChange": false,
+      "retainSameCard": false,
+      "oldCannotOverwriteNew": true,
+      "lateOldFetches": 0,
+      "newFetches": 1,
+      "newLocalQuota": 1,
+      "controllersAfter": 0
+    },
+    {
+      "contextChange": true,
+      "retainSameCard": false,
+      "oldCannotOverwriteNew": true,
+      "lateOldFetches": 0,
+      "newFetches": 1,
+      "newLocalQuota": 1,
+      "controllersAfter": 0
+    },
+    {
+      "contextChange": true,
+      "retainSameCard": true,
+      "oldCannotOverwriteNew": true,
+      "lateOldFetches": 0,
+      "newFetches": 1,
+      "newLocalQuota": 1,
+      "controllersAfter": 0
+    }
+  ],
+  "sourcePortionsAreExact": true,
+  "bindingCaptureAndComparisonFromPilot": true,
+  "boundary": "Node VM: native AbortController/Promises; simulated DOM, auth/token, generation transitions and fetch. Not a browser or native onContextChange execution.",
+  "sourcePortionSHA256": "d6df851ffb221b9d941fe1d66478569cd61bdb372a051c187c3cc18f6d80eed5"
+}

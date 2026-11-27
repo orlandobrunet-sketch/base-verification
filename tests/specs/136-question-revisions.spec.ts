@@ -276,7 +276,7 @@ async function fault(page: Page, key: string, mode: string) {
   }, { key, mode });
 }
 
-test('actual full 741 catalog loads all four current runtime profiles from the published manifest', async ({ page }, info) => {
+test('actual full 723 catalog loads all four current runtime profiles from the published manifest', async ({ page }, info) => {
   const expectedRelease = await page.evaluate(async () => {
     const response = await fetch('/version.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('Canonical version.json could not be loaded');
@@ -292,11 +292,11 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: expectedRelease, all: true });
-  await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
+  expect(report).toMatchObject({ count: 723, manifestCount: 723, release: expectedRelease, all: true });
+  await info.attach('actual-723-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
-test('actual published archive retains the frozen sixteen and 17.09 records alongside the 17.11 continuation', async ({ page }, info) => {
+test('actual published archive retains every prior cohort alongside the eight 17.24 and three 17.25 versions', async ({ page }, info) => {
   const report = await page.evaluate(() => {
     const w = window as any, api = w.NQQuestionRevisions, archive = w.NQQuestionRevisionHistory;
     const rows = archive.flatMap((row: any) => ['main', 'exam', 'study', 'offline'].map(profile => {
@@ -311,7 +311,8 @@ test('actual published archive retains the frozen sixteen and 17.09 records alon
         authorExact: api.digest(checked.value?.author) === authorRevision,
         cardsExact: api.digest(checked.value?.references) === api.digest(row.references),
         bindingExact: api.digest(checked.value?.binding) === api.digest(binding),
-        currentSeparate: current.binding.recordRevision !== binding.recordRevision,
+        currentSeparate: current ? current.binding.recordRevision !== binding.recordRevision : !!w.questionRevisionCatalog.retired?.(row.qid, profile),
+        noCurrent: !current, replacementQid: w.questionRevisionCatalog.replacement?.(row.qid, profile)?.binding.qid || null,
         legacyStatus: w.questionRevisionCatalog.inspectLegacy(row.qid, { profile }).status,
         unboundStatus: w.questionRevisionCatalog.inspect(question, { profile }).status,
         policy: checked.value?.policy };
@@ -319,8 +320,12 @@ test('actual published archive retains the frozen sixteen and 17.09 records alon
     const originals = archive.filter((row: any) => ['16.09', '16.13', '16.19'].includes(row.release));
     const additions = archive.filter((row: any) => row.release === '17.09');
     const continuation = archive.filter((row: any) => row.release === '17.11');
+    const latest = archive.filter((row: any) => row.release === '17.24');
+    const hyperkalemia = archive.filter((row: any) => row.release === '17.25');
     return { archiveCount: archive.length, originalCount: originals.length, additionCount: additions.length,
       continuationCount: continuation.length, continuationQids: continuation.map((row: any) => row.qid).sort(),
+      latestCount: latest.length, latestQids: latest.map((row: any) => row.qid).sort(),
+      hyperkalemiaCount: hyperkalemia.length, hyperkalemiaQids: hyperkalemia.map((row: any) => row.qid).sort(),
       originalDigest: api.digest(originals), additionDigest: api.digest(additions),
       originalQids: originals.map((row: any) => row.qid).sort(),
       referenceCount: Object.keys((0, eval)('refsDB')).length,
@@ -338,11 +343,17 @@ test('actual published archive retains the frozen sixteen and 17.09 records alon
     'neurocritical_cerebral_edema_2020', 'surviving_sepsis_2026', 'ukka_hyperkalemia_2026',
   ];
   const newReferenceIds = ['cruzado_post_tx_parathyroidectomy_2016', 'gohil_imel_fgf23_phosphate_2019', 'kdigo_ckd_mbd_2009'];
+  const editorial1728ReferenceIds = ["achanti_szerlip_acidbase_2023","advor_renal_analysis_2023","aha_renal_denervation_statement_2024","align_final_2026","amiloride_label_dailymed_2026","apsn_dkd_biopsy_2025","click_chlorthalidone_2021","cmv_consensus_tts_2025","cni_pathology_leal_2018","crescent_formation_2020","drug_binding_nephrotic_gugler_1976","drug_induced_ain_moledina_perazella_2017","eflm_urinalysis_guideline_2024","endotext_hypercalcemia_2026","fishman_transplant_infection_2017","fresenius_hemoflow_air_warning_2023","hansa_imlifidase_smpc_2026","ipna_ahus_tma_2026","isakova_cric_fgf23_2011","isn_rps_lupus_base_2004","kdigo_potassium_homeostasis_2020","lithium_nephropathy_markowitz_2000","malignant_htn_boulestreau_2024","nephrotic_edema_thrombosis_busuioc_2022","nephrotic_lipids_infection_busuioc_2022","nochy_aps_nephropathy_1999","nodular_diabetic_differential_2007","renal_oxygenation_liu_2017","simvastatin_fda_interactions_2023","tolvaptan_teva_label_2025","ukkidney_hd_anticoag_2019","uribarri_oh_uag_2021","ventilation_kidney_review_2026","visionary_final_2026"];
+  const editorial1728RetiredReferenceIds = ["cmv_kdigo_tx"];
   const retiredReferenceIds = ['dcor_trial', 'finerenone_2025'];
   const continuationReferenceIds = [
     'barbour_igan_prediction_2019', 'eudial_hdf_2025', 'rodrigues_haas_reich_igan_2017', 'vallon_sglt2_renoprotection_2022',
   ];
   const continuationRetiredReferenceIds = ['kdigo_igan_2021'];
+  const latestReferenceIds = ['hyponatremia_verbalis2013', 'kamel_halperin_urine_electrolytes_2021'];
+  const latestQids = ['1a93346d', '21a99f07', '3fa2737c', '516ec2a6',
+    'a4c85d32', 'd9257155', 'e2aae4c7', 'e94a6488'].sort();
+  const hyperkalemiaQids = ['b35be598', 'e0853fac', 'ebea50d5'];
   const continuationRewrittenQids = [
     '02814d6c', '0c1d09c3', '0e1a838d', '12328a3e', '18784ef8', '1b4ebca6',
     '23635484', '236ed8f1', '26804856', '3a01ea4b', '3e0788ac', '4b27ea54',
@@ -353,11 +364,15 @@ test('actual published archive retains the frozen sixteen and 17.09 records alon
     'f4de7965', 'f7107bc3', 'f7fd9e8a', 'faac594e', 'fe70507d', 'ff676013',
   ];
   const legacyReferenceIds = report.referenceIds.filter((id: string) =>
-    !chamberReferenceIds.includes(id) && !continuationReferenceIds.includes(id));
-  expect(report.archiveCount).toBe(169);
+    !chamberReferenceIds.includes(id) && !continuationReferenceIds.includes(id) && !latestReferenceIds.includes(id) && !editorial1728ReferenceIds.includes(id));
+  expect(report.archiveCount).toBe(505);
   expect(report.originalCount).toBe(16);
   expect(report.additionCount).toBe(110);
   expect(report.continuationCount).toBe(43);
+  expect(report.latestCount).toBe(8);
+  expect(report.latestQids).toEqual(latestQids);
+  expect(report.hyperkalemiaCount).toBe(3);
+  expect(report.hyperkalemiaQids).toEqual(hyperkalemiaQids);
   expect(continuationRewrittenQids).toHaveLength(42);
   expect(report.continuationQids).toEqual([...continuationRewrittenQids, '5530b59c'].sort());
   // Freeze every original object, including its source, author, cards and metadata.
@@ -366,22 +381,49 @@ test('actual published archive retains the frozen sixteen and 17.09 records alon
   expect(report.additionDigest).toBe('sha256:64a0ffb3ff1571071826a052c4953e465a263d52d446297f1f725f6ceb0ea705');
   expect(chamberReferenceIds).toHaveLength(14);
   expect(continuationReferenceIds).toHaveLength(4);
-  expect(report.referenceCount).toBe(354 + chamberReferenceIds.length + 4 - 1);
+  expect(report.referenceCount).toBe(354 + chamberReferenceIds.length + 4 - 1 + 2 + editorial1728ReferenceIds.length - editorial1728RetiredReferenceIds.length);
+  expect(report.referenceCount).toBe(406);
+  expect(report.referenceIds.filter((id: string) => latestReferenceIds.includes(id))).toEqual(latestReferenceIds);
   expect(report.referenceIds.filter((id: string) => continuationReferenceIds.includes(id))).toEqual(continuationReferenceIds);
   expect(report.referenceIds.filter((id: string) => continuationRetiredReferenceIds.includes(id))).toEqual([]);
   expect(report.referenceIds.filter((id: string) => chamberReferenceIds.includes(id))).toEqual(chamberReferenceIds);
-  expect(legacyReferenceIds).toHaveLength(353);
+  // IDs retired during17.28 remain in the frozen published ID-set proof.
+  expect(report.referenceIds.filter((id: string) => editorial1728RetiredReferenceIds.includes(id))).toEqual([]);
+  expect(editorial1728RetiredReferenceIds).toEqual(['cmv_kdigo_tx']);
+  expect(legacyReferenceIds).toHaveLength(353 - editorial1728RetiredReferenceIds.length);
   expect(legacyReferenceIds.filter((id: string) => newReferenceIds.includes(id))).toEqual(newReferenceIds);
   expect(legacyReferenceIds.filter((id: string) => retiredReferenceIds.includes(id))).toEqual([]);
   const publishedLegacyIds = [...legacyReferenceIds.filter((id: string) => !newReferenceIds.includes(id)),
-    ...retiredReferenceIds, ...continuationRetiredReferenceIds].sort();
+    ...retiredReferenceIds, ...continuationRetiredReferenceIds, ...editorial1728RetiredReferenceIds].sort();
   // Frozen ID-set digest from the published353-card registry; no deleted/replaced
   // legacy ID can be hidden by adding a different card while retaining the count.
   expect(publishedLegacyIds).toHaveLength(353);
   expect(createHash('sha256').update(JSON.stringify(publishedLegacyIds)).digest('hex'))
     .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
   expect(report.originalQids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
-  expect(report.rows).toHaveLength(676);
+  expect(report.rows).toHaveLength(2020);
+  const mpoRows = report.rows.filter((row: any) => row.release === '17.31');
+  expect(mpoRows.map((row: any) => row.profile).sort()).toEqual(['exam', 'main', 'offline', 'study']);
+  for (const row of mpoRows) expect(row).toMatchObject({ qid: 'bd45bf21', status: 'known', historical: true,
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: { material: true, pending: 'update-required', answered: 'historical' } });
+  const retiredRows = report.rows.filter((row: any) => row.release === '17.26');
+  expect(retiredRows).toHaveLength(4);
+  for (const row of retiredRows) expect(row).toMatchObject({qid: '6474ec20', noCurrent: true, replacementQid: 'b515e1c7',
+    status: 'known', historical: true, sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true});
+  const hyperkalemiaRows = report.rows.filter((row: any) => row.release === '17.25');
+  expect(hyperkalemiaRows).toHaveLength(12);
+  for (const qid of hyperkalemiaQids)
+    expect(hyperkalemiaRows.filter((row: any) => row.qid === qid).map((row: any) => row.profile).sort())
+      .toEqual(['exam', 'main', 'offline', 'study']);
+  for (const row of hyperkalemiaRows) expect(row).toMatchObject({status: 'known', historical: true, release: '17.25',
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: {material: true, pending: 'update-required', answered: 'historical'}});
+  const latestRows = report.rows.filter((row: any) => row.release === '17.24');
+  expect(latestRows).toHaveLength(32);
+  for (const row of latestRows) expect(row).toMatchObject({status: 'known', historical: true, release: '17.24',
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: {material: true, pending: 'update-required', answered: 'historical'}});
   const originalRows = report.rows.filter((row: any) => ['16.09', '16.13', '16.19'].includes(row.release));
   expect(originalRows).toHaveLength(64);
   const newRows = report.rows.filter((row: any) => row.release === '17.09');

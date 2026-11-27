@@ -1,0 +1,284 @@
+{
+  "schema": "NQ_INDEPENDENT_TECHNICAL_FAILCLOSED_1728_A1",
+  "role": "INDEPENDENT_TECHNICAL_REVIEWER_NOT_IMPLEMENTER",
+  "reviewer": "/root/editorial_backlog_1728",
+  "date": "2026-11-16",
+  "scope": "READ-ONLY: ausência deNQLibraryCatalog embiblioteca, renderRefs, favoritos, conquistas e ciclo debaú/vitória. Não é revisão clínica.",
+  "findings": [
+    {
+      "id": "FC-1",
+      "priority": "P1",
+      "status": "CORRIGIDO_E_REVERIFICADO",
+      "trigger": "Catálogo desaparece depois do clique e antes de terminar a animação do baú.",
+      "oldBehavior": "Callback consumia entry/receipt e removia popup antes de claimChestReward bloquear por módulo ausente. Prêmio poderia desaparecer sem entrega.",
+      "requiredBehavior": "Revalidar módulo antes de splice/WeakSet/removal e preservar oportunidade/receipt.",
+      "observedFinal": "Callback revalida antes de mutar, retira somente popup/temporizador e mantém a mesma oportunidade. Recuperação entrega uma única recompensa.",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7119,
+          "symbol": "function _animateAndClaimChest(trigger)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7008,
+          "symbol": "function _withdrawChestReward(entry)"
+        }
+      ],
+      "proof": [
+        "Unidade nativa de perda durante animação",
+        "Cenário306 real de navegador: antes do clique, durante animação, recuperação de rede e claim único"
+      ]
+    },
+    {
+      "id": "FC-2",
+      "priority": "P1",
+      "status": "CORRIGIDO_E_REVERIFICADO",
+      "trigger": "Baú automático e resultados finais com módulo obrigatório ausente.",
+      "oldBehavior": "Popup só oferecia Abrir, guard retornava e Escape/Tab eram capturados por nqDialogo sem botão de saída. Barreira de prêmio pendente também podia adiar resultados indefinidamente.",
+      "requiredBehavior": "Não deixar overlay/barreira sem ação efetiva; guardar oportunidade e permitir navegação/resultados.",
+      "observedFinal": "trigger não cria popup sem catálogo; flush e ação retiram popup indisponível. hasPendingChestReward não barra vitória enquanto módulo falta, mas a fila continua intacta. Restauração permite o mesmo prêmio sem repetir resultados.",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 6954,
+          "symbol": "function hasPendingChestReward()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7023,
+          "symbol": "function _flushChestRewards()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7087,
+          "symbol": "function triggerChestRewardPopup(entry = null)"
+        }
+      ],
+      "proof": [
+        "Unidades before-popup/before-click/during-animation",
+        "Unidade de vitória sem módulo, prêmio guardado e resultados uma única vez",
+        "Cenário306 preserva opções/Next e saída da biblioteca"
+      ]
+    },
+    {
+      "id": "FC-3",
+      "priority": "P2",
+      "status": "CORRIGIDO_E_REVERIFICADO",
+      "trigger": "Tentar novamente após falha inicial do script obrigatório ou após uma promessa completa já resolvida.",
+      "oldBehavior": "Loader só conferia refs/articles, e promessa resolvida era reutilizada sem validar módulo. A tentativa não recuperava o catálogo faltante.",
+      "requiredBehavior": "Nova tentativa real da dependência obrigatória sem bloquear refsOnly/questões.",
+      "observedFinal": "Caminho completo reutiliza src estáticoHTML do módulo, revalida promessa completa e cache individual; refsOnly continua apenas bibliografia. Teste bloqueia rede e depois permite recuperar o módulo sem recarregar a página.",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 1123,
+          "symbol": "function carregarDadosGrimorio(options = {})"
+        }
+      ],
+      "proof": [
+        "Unidades específicas do loader",
+        "Cenário306 com route.abort do módulo e retry real de rede"
+      ]
+    }
+  ],
+  "remainingActionableFindings": [],
+  "areas": [
+    {
+      "area": "CorpoCMV inválido e leitor histórico",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 4182,
+          "symbol": "function renderRefs(keys, references = refsDB)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 925,
+          "symbol": "function openRefResumo(source)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 911,
+          "symbol": "function openBibResumo(btn)"
+        }
+      ],
+      "conclusion": "Sem catálogo, somente status de indisponibilidade; nenhum corpo/link/leitor registrado é publicado. Com catálogo, chaveCMV retirada é notice histórico sem URL/corpo, inclusive snapshot antigo e admin."
+    },
+    {
+      "area": "Acervo/cache/favoritos",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/dashboard.js",
+          "line": 1370,
+          "symbol": "function _libraryItems()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/dashboard.js",
+          "line": 1543,
+          "symbol": "function _libraryCards(items)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/dashboard.js",
+          "line": 1603,
+          "symbol": "function _tabLibrary()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/dashboard.js",
+          "line": 2208,
+          "symbol": "function _libraryReadBlocked(item, root)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 530,
+          "symbol": "function _buildBibItems()"
+        }
+      ],
+      "conclusion": "Guard antecede cache antigo. Aba indisponível preservaID/tabpanel e saída; leitores e favoritos recusam ação sem mutação. Registros retirados não são promovidos a obras descobertas."
+    },
+    {
+      "area": "Conquista e unlocks",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/achievements.js",
+          "line": 138,
+          "symbol": "id: 'grimoire_master'"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/achievements.js",
+          "line": 241,
+          "symbol": "function getGrimoireAchievementProgress()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 0,
+          "symbol": "function _unlockRefsFromQuestion(keys)"
+        }
+      ],
+      "conclusion": "Condição não concede conquista sem catálogo; progresso declara Dados indisponíveis/completefalse. Chave retirada não ganha crédito nem é trocada silenciosamente por outra obra."
+    },
+    {
+      "area": "Baú comprado e claim direto",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 6738,
+          "symbol": "function _openChestDirect()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 6898,
+          "symbol": "function openChest()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7162,
+          "symbol": "function claimChestReward()"
+        }
+      ],
+      "conclusion": "Ausência é verificada antes do débito de ouro, sorteio, unlock, score ou incremento de baús. Testes preservam recursos e registros."
+    },
+    {
+      "area": "Baú automático/última resposta/vitória",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7119,
+          "symbol": "function _animateAndClaimChest(trigger)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7008,
+          "symbol": "function _withdrawChestReward(entry)"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 6954,
+          "symbol": "function hasPendingChestReward()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7023,
+          "symbol": "function _flushChestRewards()"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 7087,
+          "symbol": "function triggerChestRewardPopup(entry = null)"
+        }
+      ],
+      "conclusion": "Janela assíncrona revalidada, popup suspenso sem consumir receipt, vitória não fica presa e recuperação não duplica resultado/prêmio."
+    },
+    {
+      "area": "Questões/navegação/recuperação",
+      "pins": [
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/utils.js",
+          "line": 1123,
+          "symbol": "function carregarDadosGrimorio(options = {})"
+        },
+        {
+          "file": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/js/game.js",
+          "line": 4182,
+          "symbol": "function renderRefs(keys, references = refsDB)"
+        }
+      ],
+      "conclusion": "Falha na biblioteca não impede a questão, alternativas ouNext. Caminho full da biblioteca permite recuperar a dependência; refsOnly não recebe a dependência nova."
+    }
+  ],
+  "verification": {
+    "ownNative": {
+      "command": "node --test tests/answers/library-retired-reference.test.cjs tests/answers/library-loader-recovery.test.cjs tests/pilot/chest-lifecycle.test.cjs",
+      "exitCode": 0,
+      "summary": [
+        "# tests 45",
+        "# pass 45",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 609.3101"
+      ],
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed/native-tests.json",
+      "rawSHA256": "ee87df27a495bae3f4c359367886d997da78fd70f0f4cbdebe82e02345dda6c5"
+    },
+    "ownBrowser": {
+      "command": "node C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/tests/node_modules/@playwright/test/cli.js test specs/306-library-catalog.spec.ts --config C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/tests/playwright.config.ts --project=chromium --grep missing mandatory catalog --retries=0 --workers=1 --reporter=json --output C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed/browser-artifacts",
+      "baseURL": "http://127.0.0.1:5501",
+      "stats": {
+        "startTime": "2026-11-16T03:33:36.311Z",
+        "duration": 9449.993,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "exitCode": 0,
+      "retries": 0,
+      "pageErrors": [
+        []
+      ],
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed/browser-independent.json",
+      "rawSHA256": "c00b87de7b549e300d0fddd27b7c38586fc50a3d06feba089adf70abcaf1cea4"
+    },
+    "sourceHashes": {
+      "js/game.js": "5fb0a178760174489b4596268ae34cc17848468f46f79664c7708232ee707850",
+      "js/utils.js": "86651bd55367c48b31e8f7c8b79b37d6c10c52aff53efd6ccba7af612a1f5c78",
+      "js/dashboard.js": "83d23509d090ff903c866f78c840be72a994233a96751d432d444719e4a18893",
+      "js/achievements.js": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d",
+      "js/library-catalog.js": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822",
+      "tests/specs/306-library-catalog.spec.ts": "6dde123a12421a4ef1502277abf536a60a610e8b70c579c398604badc40bf938"
+    },
+    "sourcesChangedDuringEitherRun": false,
+    "otherAgentBrowser": "REFagent reportou6/6R0 desktop/mobile emrodada5; essa execução não é atribuída a mim. Minha contraprova própria foi um cenárioChromiumR0 mais45unidades."
+  },
+  "limits": [
+    "Cobertura independente de navegador:Chromium desktop, um cenário integrado. Mobile foi executado pelo implementador, não por mim.",
+    "Verificação da ausência completa do módulo na página corrente, não tolerância aAPI parcial inventada ou alteração maliciosa de globals.",
+    "Não cria persistência nova para fila debaús emmemória nem comprova recuperação após fechamento total do processo. O reparo de recuperação usa carga dinâmica sem reload.",
+    "Nenhum julgamento médico ou aprovação de conteúdo próprio neste parecer; nenhuma escrita emROOT/ledger."
+  ],
+  "productionWritesByReviewer": 0,
+  "ledgerWritesByReviewer": 0,
+  "conclusion": "Nos bytes pinados, os doisP1 e oP2 comunicados estão corrigidos e reverificados; não identifiquei outro bloqueio acionável no escopo solicitado."
+}

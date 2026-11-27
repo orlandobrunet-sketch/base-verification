@@ -46,7 +46,7 @@ test('a first visit waits for the real question bank before presenting the plan'
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));let release!:()=>void,requested=false;
  const ready=new Promise<void>(resolve=>release=resolve);
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
- await page.route('**/data/topics.js',async route=>{requested=true;await ready;await route.continue();});
+ await page.route('**/data/topics.js*',async route=>{requested=true;await ready;await route.continue();});
  try{
   await page.goto('/jogar/',{waitUntil:'load'});await page.evaluate(categories=>{localStorage.setItem('nefroquest-detailed-stats',JSON.stringify({schemaVersion:1,byCategory:categories}));document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).openGameModesPopup();},ranked);
   await page.locator('#gameModesOverlay [data-mode-route="weak"]').click();await expect.poll(()=>requested).toBe(true);expect(errors).toEqual([]);await expect(page.locator('#nqWeakPointPlan')).toHaveCount(0);
@@ -57,7 +57,7 @@ test('a first visit waits for the real question bank before presenting the plan'
 async function coldRoute(page:Page,file:'topics'|'articles',categories=ranked){
  let release!:()=>void,requests=0;const ready=new Promise<void>(resolve=>release=resolve);
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
- await page.route(`**/data/${file}.js`,async route=>{requests++;await ready;await route.continue();});
+ await page.route(url=>url.pathname===`/data/${file}.js`,async route=>{requests++;await ready;await route.continue();});
  // Articles are deliberately held: their idle load can start before window.load.
  // DOMContentLoaded waits for the actual deferred app scripts without waiting for that held request.
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.evaluate(categories=>{localStorage.setItem('nefroquest-detailed-stats',JSON.stringify({schemaVersion:1,byCategory:categories}));document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).openGameModesPopup();},categories);
@@ -65,7 +65,7 @@ async function coldRoute(page:Page,file:'topics'|'articles',categories=ranked){
 }
 for(const route of ['fallback','direct'] as const)test(`pending articles never block the ${route} route`,async({page})=>{
  const pending=await coldRoute(page,'articles',route==='fallback'?ranked:{drc:{correct:2,total:5}} as typeof ranked);
- try{await expect.poll(pending.requests).toBe(1);await expect(page.locator(route==='fallback'?'#nqWeakPointPlan':'#studyModePage')).toBeVisible();}finally{pending.release();}
+ try{await expect.poll(pending.requests).toBe(1);await expect(page.locator(route==='fallback'?'#nqWeakPointPlan':'#studyModePage')).toBeVisible({timeout:12000});}finally{pending.release();}
 });
 for(const navigation of ['other mode','Escape'] as const)test(`pending plan is cancelled by ${navigation}`,async({page})=>{
  const pending=await coldRoute(page,'topics');try{

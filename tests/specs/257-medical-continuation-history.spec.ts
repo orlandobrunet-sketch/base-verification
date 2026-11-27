@@ -25,7 +25,7 @@ async function enterGuest(page: Page) {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741 &&
+  await page.waitForFunction(() => (window as any).questionBank?.length === 723 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 }
@@ -83,7 +83,7 @@ async function settleSaveTimer(page: Page) {
   const since = Date.now();
   await page.waitForFunction(start => Date.now() - start >= 900 && (0, eval)('_saveTimer === null'), since);
 }
-async function seed(page: Page, qid: string, answered: boolean, binding = true) {
+async function seed(page: Page, qid: string, answered: boolean, binding = true, release = ARCHIVED_RELEASE) {
   const fixture = await page.evaluate(({qid, answered, binding, key, release}) => {
     const w = window as any;
     const matches = w.NQQuestionRevisionHistory.filter((row: any) => row.qid === qid && row.release === release);
@@ -98,7 +98,7 @@ async function seed(page: Page, qid: string, answered: boolean, binding = true) 
       startTime: Date.now() - 1000, savedAt: Date.now()};
     const raw = JSON.stringify(saved); localStorage.setItem(key, raw);
     return {raw, saved, old, current};
-  }, {qid, answered, binding, key: KEY, release: ARCHIVED_RELEASE});
+  }, {qid, answered, binding, key: KEY, release});
   evidence.get(page)!.fixture = fixture;
   await watchSavedProgress(page);
   return fixture;
@@ -110,11 +110,16 @@ async function openSaved(page: Page) {
   await page.getByRole('button', {name: 'Retomar prova', exact: true}).click();
 }
 
-test('actual 17.11 archive contains precisely the approved42 plus the card-only consumer in all four profiles', async ({page}, info) => {
+test('actual 17.11 archive retains its42 rewritten cohort and both past card-only versions after a material update', async ({page}, info) => {
   const report = await page.evaluate(release => {
     const w = window as any, api = w.NQQuestionRevisions;
     const archive = w.NQQuestionRevisionHistory.filter((row: any) => row.release === release);
-    const rewritten = archive.filter((old: any) =>
+    // Compare the original cohort to its published17.27 author, not a later
+    // material update. Use the current author only when no later archive exists.
+    const publishedAuthor = (qid: string) => w.NQQuestionRevisionHistory.find((row: any) =>
+      row.qid === qid && row.release === '17.27')?.author || w.questionRevisionCatalog.current(qid, 'main').author;
+    const rewritten = archive.filter((old: any) => api.digest(old.author) !== api.digest(publishedAuthor(old.qid)));
+    const materialNow = archive.filter((old: any) =>
       api.digest(old.author) !== api.digest(w.questionRevisionCatalog.current(old.qid, 'main').author));
     const rows = archive.flatMap((old: any) => ['main', 'exam', 'study', 'offline'].map(profile => {
       const question = w.NQAnswers.present(old.sources[profile], {preserveOrder: true});
@@ -133,19 +138,36 @@ test('actual 17.11 archive contains precisely the approved42 plus the card-only 
     }));
     const ddb = archive.find((row: any) => row.qid === 'ddb4938a');
     const cardOnly = archive.find((row: any) => row.qid === '5530b59c');
-    const currentCardOnly = w.questionRevisionCatalog.current('5530b59c', 'exam');
+    const intermediate = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === '17.27');
+    const current = w.questionRevisionCatalog.current('5530b59c', 'exam');
+    const intermediateRows = ['main', 'exam', 'study', 'offline'].map(profile => {
+      const question = w.NQAnswers.present(intermediate.sources[profile], {preserveOrder: true});
+      const bound = w.questionRevisionCatalog.inspect(question, {profile, binding: intermediate.bindings[profile]});
+      return {profile, status: bound.status, historical: bound.value?.historical, release: bound.value?.release,
+        sourceExact: api.digest(bound.value?.source) === api.digest(intermediate.sources[profile]),
+        cardsExact: api.digest(bound.value?.references) === api.digest(intermediate.references),
+        authorExact: api.digest(bound.value?.author) === api.digest(intermediate.author),
+        bindingExact: api.digest(bound.value?.binding) === api.digest(intermediate.bindings[profile]),
+        oldSourceUnchanged: api.digest(intermediate.sources[profile]) === api.digest(cardOnly.sources[profile]),
+        unboundStatus: w.questionRevisionCatalog.inspect(question, {profile}).status,
+        currentSeparate: w.questionRevisionCatalog.current('5530b59c', profile).sourceRevision !== intermediate.sourceRevisions[profile]};
+    });
     return {totalHistory: w.NQQuestionRevisionHistory.length, qids: archive.map((row: any) => row.qid).sort(),
-      rewrittenQids: rewritten.map((row: any) => row.qid).sort(), rows,
+      rewrittenQids: rewritten.map((row: any) => row.qid).sort(), materialNowQids: materialNow.map((row: any) => row.qid).sort(), rows, intermediateRows,
       retiredCardStored: !!ddb?.references.kdigo_igan_2021,
       retiredCardCurrent: Object.hasOwn((0, eval)('refsDB'), 'kdigo_igan_2021'),
-      cardOnlySourceUnchanged: api.digest(cardOnly?.sources.exam) === api.digest(currentCardOnly.source),
+      pastCardOnlyAuthorUnchanged: api.digest(cardOnly?.author) === api.digest(intermediate.author),
+      pastCardOnlySourceUnchanged: api.digest(cardOnly?.sources.exam) === api.digest(intermediate.sources.exam),
+      pastCardOnlyRecordChanged: cardOnly?.recordRevision !== intermediate.recordRevision,
+      currentSourceChanged: api.digest(cardOnly?.sources.exam) !== api.digest(current.source),
       cardOnlySummaryChanged: api.digest(cardOnly?.references.moeller_plosone_2014) !==
-        api.digest(currentCardOnly.references.moeller_plosone_2014)};
+        api.digest(intermediate.references.moeller_plosone_2014)};
   }, ARCHIVED_RELEASE);
   expect(new Set(REWRITTEN).size).toBe(42);
-  expect(report.totalHistory).toBe(169);
+  expect(report.totalHistory).toBe(505);
   expect(report.qids).toEqual([...REWRITTEN, '5530b59c'].sort());
   expect(report.rewrittenQids).toEqual(REWRITTEN);
+  expect(report.materialNowQids).toEqual([...REWRITTEN, '5530b59c'].sort());
   expect(report.rows).toHaveLength(172);
   for (const row of report.rows) {
     expect(row).toMatchObject({status: 'known', historical: true, release: ARCHIVED_RELEASE,
@@ -155,7 +177,12 @@ test('actual 17.11 archive contains precisely the approved42 plus the card-only 
     else expect(row).toMatchObject({unboundStatus: 'known', unboundHistorical: true});
   }
   expect(report).toMatchObject({retiredCardStored: true, retiredCardCurrent: false,
-    cardOnlySourceUnchanged: true, cardOnlySummaryChanged: true});
+    pastCardOnlyAuthorUnchanged: true, pastCardOnlySourceUnchanged: true, pastCardOnlyRecordChanged: true,
+    currentSourceChanged: true, cardOnlySummaryChanged: true});
+  expect(report.intermediateRows).toHaveLength(4);
+  for (const row of report.intermediateRows) expect(row).toMatchObject({status: 'known', historical: true,
+    release: '17.27', sourceExact: true, cardsExact: true, authorExact: true, bindingExact: true,
+    oldSourceUnchanged: true, unboundStatus: 'ambiguous', currentSeparate: true});
   await info.attach('actual-17.11-43-records-172-bindings', {contentType: 'application/json', body: JSON.stringify(report)});
 });
 
@@ -184,12 +211,20 @@ for (const binding of [true, false]) {
   });
 }
 
-test('answered card-only save uses its bound old summary through result and reload without a second credit', async ({page}) => {
-  const fixture = await seed(page, '5530b59c', true), before = await progress(page);
-  expect(fixture.current.source).toEqual(fixture.old.sources.exam);
-  expect(fixture.current.references.moeller_plosone_2014).not.toEqual(fixture.old.references.moeller_plosone_2014);
+for (const release of [ARCHIVED_RELEASE, '17.27']) {
+test('answered past card-only save ' + release + ' uses its bound old summary through result and reload without a second credit', async ({page}) => {
+  const fixture = await seed(page, '5530b59c', true, true, release), before = await progress(page);
+  expect(fixture.current.source).not.toEqual(fixture.old.sources.exam);
+  expect(fixture.current.references).not.toEqual(fixture.old.references);
+  if (release === '17.11')
+    expect(fixture.current.references.moeller_plosone_2014).not.toEqual(fixture.old.references.moeller_plosone_2014);
+  else {
+    // The17.27 Moeller card remains exact; its other referenced card changed.
+    expect(fixture.current.references.moeller_plosone_2014).toEqual(fixture.old.references.moeller_plosone_2014);
+    expect(fixture.current.references.acg_celiac_2023).not.toEqual(fixture.old.references.acg_celiac_2023);
+  }
   await openSaved(page);
-  await expect(page.locator('[data-question-revision="historical"]')).toContainText('versão ' + ARCHIVED_RELEASE);
+  await expect(page.locator('[data-question-revision="historical"]')).toContainText('versão ' + release);
   expect(await page.evaluate(() => (0, eval)('_examState.revisionViews[0].references'))).toEqual(fixture.old.references);
   await page.getByRole('button', {name: 'Ver resultado', exact: true}).click();
   await expect(page.locator('#examResultado')).toContainText('100%');
@@ -207,8 +242,8 @@ test('answered card-only save uses its bound old summary through result and relo
   expect(await page.evaluate(() => (window as any).__continuationStorageWrites)).toEqual([]);
 });
 
-test('card-only save without binding stays preserved instead of guessing either summary or crediting it again', async ({page}) => {
-  const fixture = await seed(page, '5530b59c', true, false), before = await progress(page);
+test('past card-only save ' + release + ' without binding stays preserved instead of guessing either summary or crediting it again', async ({page}) => {
+  const fixture = await seed(page, '5530b59c', true, false, release), before = await progress(page);
   await openSaved(page);
   await expect(page.getByRole('heading', {name: 'Prova preservada', exact: true})).toBeVisible();
   expect(await page.evaluate(() => (0, eval)('_examState'))).toBeNull();
@@ -217,6 +252,7 @@ test('card-only save without binding stays preserved instead of guessing either 
   expect(await page.evaluate(key => localStorage.getItem(key), KEY)).toBe(fixture.raw);
   expect(await page.evaluate(() => (window as any).__continuationStorageWrites)).toEqual([]);
 });
+}
 
 test('pending retired-card answer changes revision only after the native confirmation, preserving prior raw and progress', async ({page}) => {
   const fixture = await seed(page, 'ddb4938a', false), before = await progress(page);

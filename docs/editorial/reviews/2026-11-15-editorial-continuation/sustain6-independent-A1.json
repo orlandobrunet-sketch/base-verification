@@ -1,0 +1,462 @@
+{
+  "schema": "NQ-independent-exact-candidate-review-v2",
+  "date": "2026-11-15",
+  "reviewer": "/root",
+  "independentOf": "/root/reference_metadata_1725",
+  "sourceAccess": [
+    {
+      "id": "S1-root",
+      "publication": "Marso et al., SUSTAIN-6, NEJM2016;375:1834–1844",
+      "doi": "10.1056/NEJMoa1607141",
+      "fullText": "https://cronfa.swan.ac.uk/Record/cronfa30129/Download/0030129-12112016114729.pdf",
+      "access": "Aberta e lida independentemente cópia primária disponibilizada pela Swansea University:12páginas incluindo capa. Conferidos identidade/abstract/métodos, desfechos/estatística, resultados microvasculares/Tabela2 e discussão. EditorNEJM403; ACCSecurityWarning; PubMed27633186HHSonly. Essas falhas não são chamadas de leitura integral. A leitura integral pertinente foi da cópiaSwansea.",
+      "readLocations": [
+        "1834–1836:identidade,desenho,população,exclusões,desfechos e análise",
+        "1839–1840:resultadosmicrovasculares/Tabela2",
+        "1843:discussão/limitações"
+      ],
+      "scope": "Relato original do ensaio; não protocolo/appendix integral nem auditoria de outros estudos. ConsultaPMC pós-hoc recebeurecaptcha, portanto não é evidência independente lida nesta etapa. Nenhuma candidata ensina hipótese pós-hoc como fato."
+    }
+  ],
+  "integrationBase": {
+    "branch": "codex/editorial-priorities-1725",
+    "commit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+    "release": "17.24"
+  },
+  "questions": {
+    "1a93346d": {
+      "version": {
+        "sha256": "sha256:05c629efbe7265f8dfbcc901f3373460bc60f8630fce2965c63b68c5bc779a7e",
+        "fullLiteral": {
+          "t": "SUSTAIN-6 — Retinopatia Diabética",
+          "qid": "1a93346d",
+          "q": "Uma pessoa com diabetes tipo 2 e retinopatia prévia pergunta sobre o risco ocular ao iniciar semaglutida. Que interpretação do SUSTAIN-6 é adequada para discutir esse sinal de segurança?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Mais complicações de retinopatia diabética com semaglutida, sem mecanismo causal definido pelo ensaio",
+            "Proteção contra complicações retinianas, acompanhando a melhora da glicemia com semaglutida no estudo",
+            "Complicações explicadas pela retinopatia prévia, sem diferença de risco entre semaglutida e placebo",
+            "Toxicidade direta da semaglutida na retina, demonstrada como causa das complicações observadas"
+          ],
+          "ans": 0,
+          "exp": "Houve mais complicações de retinopatia diabética com semaglutida. O desfecho incluía necessidade de fotocoagulação ou tratamento intravítreo, hemorragia vítrea e cegueira relacionada ao diabetes. A maioria dos eventos ocorreu em participantes com retinopatia prévia, mas isso não elimina a diferença observada entre os grupos. O ensaio não estabeleceu o mecanismo do aumento de complicações nem demonstrou toxicidade retiniana direta. A melhora glicêmica não permite presumir proteção ocular nesse estudo; o sinal deve integrar a discussão de segurança nessa população.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        }
+      },
+      "op": "Interpretar o sinal ocular observado no SUSTAIN-6 sem converter associação de tratamento em mecanismo demonstrado.",
+      "classification": {
+        "primaryCompetence": "Interpretação de evidência de segurança em diabetes/nefroproteção",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária; medium coerente com interpretação requerida"
+      },
+      "confidence": "alta",
+      "justification": "Preserva o sinal correto do original e seu contexto de retinopatia prévia. As alternativas agora são quatro interpretações do mesmo achado, sem catarata aguda/glaucoma/descolamento genéricos.",
+      "advogadoDoRecurso": {
+        "attempt": "Tentei defenderCcomo explicação apenas pela retinopatia prévia: o relato mantém comparação randomizada entre grupos, portanto a prevalência de doença nos eventos não apaga o sinal. Dconfunde mecanismo com associação; o original explicitamente considera a causa incerta. Bnão decorre do benefício glicêmico. A não alega causalidade da queda daHbA1c nem toxicidade direta.",
+        "result": "Nenhum argumento plausível de anulação remanescente identificado nesta versão."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "name": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "name": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "name": "Deriva de objetivo",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "name": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "name": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "name": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "name": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "name": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "name": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "name": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "nqEditorialScore": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade de construto",
+            "score": 2
+          },
+          {
+            "name": "Qualidade do enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 2
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "score": 1
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "decisionTree": "§19: evidência permite avaliação; sem eliminatório; sem recurso remanescente; sem duplicata nas quatro dimensões entre os dois itens; score19 → aprovada.",
+      "sourceId": "S1-root",
+      "claimLocations": [
+        "1834abstract",
+        "1839–1840microvascular/Tabela2",
+        "1843discussão"
+      ],
+      "distractorErrors": [
+        "Inferir benefício ocular a partir do benefício glicêmico",
+        "Atribuir todo o resultado a doença basal e negar comparação",
+        "Inferir mecanismo tóxico diretamente do resultado randomizado"
+      ],
+      "preserveFSRS": true,
+      "qidIdentity": "Mesmo OP/competência/conceito correto e pergunta reconhecível de segurança; expansão do contexto e correção da explicação não criam outro item. Preservarqid/FSRS.",
+      "duplication": "As duas questões variam na decisão clínica e no perfil de dados: sinal ocular versus interpretação de composto renal. Busca do banco porSUSTAIN6/retinopatia+semaglutida retornou apenas esses doisIDs; isso é triagem, não prova de inexistência de todo overlap semântico.",
+      "mechanical": {
+        "fourAlternatives": true,
+        "uniqueAlternatives": true,
+        "answerUnchanged": true,
+        "sourceReferences": [
+          "sustain6"
+        ]
+      }
+    },
+    "516ec2a6": {
+      "version": {
+        "sha256": "sha256:5eea57f2bfdd4ea6f33b0726ce7ded4e689084b8b6889054891cee8a566b3fed",
+        "fullLiteral": {
+          "t": "SUSTAIN-6 — Semaglutida e Desfecho Renal",
+          "qid": "516ec2a6",
+          "q": "Para uma pessoa com diabetes tipo 2 e alto risco cardiovascular, o resultado renal do SUSTAIN-6 é discutido como possível benefício da semaglutida. Qual interpretação corresponde ao que o ensaio demonstrou?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Menos nefropatia nova ou agravada, com diferença explicada principalmente pela progressão para macroalbuminúria",
+            "Menos início de terapia renal substitutiva, desfecho primário usado para demonstrar o benefício renal",
+            "Menor queda da filtração glomerular, que explicou a maior parte da diferença no desfecho renal composto",
+            "Menos duplicações persistentes da creatinina, principal componente responsável pela diferença entre os grupos"
+          ],
+          "ans": 0,
+          "exp": "O sinal foi de menor nefropatia nova ou agravada, principalmente pela diferença em macroalbuminúria. Esse era um desfecho secundário; o primário do SUSTAIN-6 era cardiovascular. O resultado não demonstra, por si, que o benefício renal decorreu principalmente de evitar terapia renal substitutiva, preservar a filtração ou reduzir duplicações da creatinina. Para interpretar o composto, é necessário identificar o componente que conduziu a diferença e evitar tomar o sinal albuminúrico como prova de benefício sobre falência renal.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        }
+      },
+      "op": "Interpretar o composto renal secundário do SUSTAIN-6 pelo componente que conduziu seu resultado.",
+      "classification": {
+        "primaryCompetence": "Interpretação de desfechos clínicos de nefroproteção",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária; medium coerente com interpretação requerida"
+      },
+      "confidence": "alta",
+      "justification": "Preserva a distinção entre sinal predominantemente albuminúrico e comprovação de benefício sobre falência renal. Não usa litíase/toxicidade direta como distratores fora do construto.",
+      "advogadoDoRecurso": {
+        "attempt": "Tentei defenderB/C/Dporque filtração, creatinina e terapia substitutiva podem compor desfechos renais. Elas lhes atribuem primazia ou contribuição principal que o relato não demonstrou. A não afirma ausência definitiva de efeito em qualquer componente; limita a interpretação à contribuição principal descrita. Não exige generalizar aos pacientes em diálise excluídos.",
+        "result": "Nenhum argumento plausível de anulação remanescente identificado nesta versão."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "name": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "name": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "name": "Deriva de objetivo",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "name": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "name": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "name": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "name": "Explicação contradiz gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "name": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "name": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "name": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "nqEditorialScore": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade de construto",
+            "score": 2
+          },
+          {
+            "name": "Qualidade do enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 2
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "score": 1
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "decisionTree": "§19: evidência permite avaliação; sem eliminatório; sem recurso remanescente; sem duplicata nas quatro dimensões entre os dois itens; score19 → aprovada.",
+      "sourceId": "S1-root",
+      "claimLocations": [
+        "1836Outcomes",
+        "1840Tabela2",
+        "1843discussão"
+      ],
+      "distractorErrors": [
+        "Trocar o primário cardiovascular por terapia renal substitutiva",
+        "Atribuir o composto principalmente à filtração",
+        "Atribuir o composto principalmente à duplicação da creatinina"
+      ],
+      "preserveFSRS": true,
+      "qidIdentity": "Mesmo OP/competência/conceito albuminúrico e estudo; reescrita de distratores preserva identidade. Preservarqid/FSRS.",
+      "duplication": "As duas questões variam na decisão clínica e no perfil de dados: sinal ocular versus interpretação de composto renal. Busca do banco porSUSTAIN6/retinopatia+semaglutida retornou apenas esses doisIDs; isso é triagem, não prova de inexistência de todo overlap semântico.",
+      "mechanical": {
+        "fourAlternatives": true,
+        "uniqueAlternatives": true,
+        "answerUnchanged": true,
+        "sourceReferences": [
+          "sustain6"
+        ]
+      }
+    }
+  },
+  "reference": {
+    "referenceId": "sustain6",
+    "version": {
+      "sha256": "sha256:6f6ed262373752793f550277a5a8b6883d91c00e2b1ca14ad82dda5036743117",
+      "fullLiteral": {
+        "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607141",
+        "journal": "N Engl J Med 2016;375(19):1834-1844",
+        "ano": 2016,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sinal renal predominantemente albuminúrico e alerta para complicações de retinopatia",
+        "icon": "🔬",
+        "resumo": "SUSTAIN-6 (2016): ensaio duplo-cego com 3.297 pessoas com diabetes tipo 2 e alto risco cardiovascular. Comparou semaglutida subcutânea 0,5 ou 1,0 mg uma vez por semana com placebo por 104 semanas. O desfecho primário foi morte cardiovascular, infarto não fatal ou acidente vascular cerebral não fatal: HR 0,74 (IC95% 0,58–0,95; P<0,001 para não inferioridade). Como desfechos secundários, houve menos nefropatia nova ou agravada (HR 0,64; IC95% 0,46–0,88; P=0,005), principalmente por diferenças em macroalbuminúria, e mais complicações de retinopatia diabética (HR 1,76; IC95% 1,11–2,78; P=0,02). O estudo não foi um ensaio renal dedicado; pessoas em diálise crônica foram excluídas.",
+        "conclusao": "O sinal renal não equivale a demonstração de benefício sobre falência renal. O alerta retiniano exige interpretação própria; o ensaio não estabeleceu o mecanismo do aumento de complicações.",
+        "curiosidade": ""
+      },
+      "sortedCompactPythonSHA256": "6f6ed262373752793f550277a5a8b6883d91c00e2b1ca14ad82dda5036743117",
+      "orderedCompactPythonSHA256": "6c64d11b5f2fb5fa750e09c98401ecc6c737529b3434df3a6161fe408d356572"
+    },
+    "wholeCardFieldCoverage": [
+      {
+        "field": "label",
+        "assessment": "Autor/acrônimo/ano conferidos na primeira página; nome reconhecível.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "url",
+        "assessment": "DOI1607141 conferido na publicação;1603827pertence aLEADER. Link canônico correto, embora acesso direto tenha403.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "journal",
+        "assessment": "Volume375,número19,páginas1834–1844 confirmados no fac-símile.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "ano",
+        "assessment": "2016 confirmado no original.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "tipo",
+        "assessment": "Desenho randomizado duplo-cego conferido emMethods; taxonomia adequada.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "badge",
+        "assessment": "RCT, conforme contrato.",
+        "sourceId": null
+      },
+      {
+        "field": "badgeColor",
+        "assessment": "#10b981, conforme contrato.",
+        "sourceId": null
+      },
+      {
+        "field": "icon",
+        "assessment": "🔬, conforme contrato.",
+        "sourceId": null
+      },
+      {
+        "field": "impacto",
+        "assessment": "Delimita sinal renal/ocular sem anunciar benefício de falência renal.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "resumo",
+        "assessment": "População,randomização,doses de manutenção/tempo,desfechos,estimativas e exclusão de diálise conferidos nos localizadores dafonte; resultados secundários identificados. Não proclama superioridade confirmatória.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "conclusao",
+        "assessment": "Interpretação conservadora compatível com desenho e discussão; não equivale a negar definitivamente qualquer benefício renal.",
+        "sourceId": "S1-root"
+      },
+      {
+        "field": "curiosidade",
+        "assessment": "Vazia; hipóteses e ensaios posteriores não verificados foram removidos.",
+        "sourceId": null
+      }
+    ],
+    "gate": {
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA"
+    },
+    "nqEditorialScore": null,
+    "confidence": "alta",
+    "consumerReview": {
+      "exactMainConsumers": [
+        "1a93346d",
+        "516ec2a6"
+      ],
+      "bothReviewedAbove": true,
+      "chamberConsumers": [],
+      "leaderCardUnchanged": true,
+      "automaticMergeRejected": true
+    },
+    "note": "Aprovação deste card exato de12campos; não revisão clínica doLEADERnemdeoutroscards. Sem NQEditorialScore, que é rubrica de questão.",
+    "limitations": [
+      "Ensaio histórico, não afirmação de posição atual de toda a classe GLP1RA.",
+      "Campos opcionais/hipóteses não sustentados pela fonte exata foram removidos; qualquer edição material exige novo gate."
+    ]
+  },
+  "disposition": "Somente esses dois objetos e esse card estãoLIBERADOSpor esta revisão. Originais e rascunhos autorais anteriores não recebem aprovação retroativa. A integração deve preservar versões publicadas antes da troca."
+}

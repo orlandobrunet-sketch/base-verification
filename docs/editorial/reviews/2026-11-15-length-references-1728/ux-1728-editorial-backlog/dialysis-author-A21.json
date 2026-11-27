@@ -1,0 +1,3186 @@
+{
+  "schema": "NQ_1728_DIALYSIS_AUTHOR_A21_v1",
+  "date": "2026-11-15",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "scope": "8 AFTERs dos10 remanescentes da família diálise +2 triagens ainda sem gate completo.",
+  "skill": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "sourceTopicsSHA256": "8b20b8fcca077a741a88becccca887ca779c6f19c0faac2b85f586231bb95862",
+  "sourceRefsSHA256": "9b1233a658e532475808f7dcbe1fcbd5008e98e7ff964346ad0da6e63a026a72",
+  "items": [
+    {
+      "qid": "f5e0666b",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:a8d1490777aae1d7fe3f997a2d780a571f3f3320592f4feb24d1dab3f5d8e781",
+        "rawObjectSHA256": "c19ee51ddf7804daed84921a86b86b909d90cb5bd20ecfee18316f8363794889",
+        "question": {
+          "t": "PISCES — Inferência Mecanística",
+          "qid": "f5e0666b",
+          "q": "O PISCES mostrou menos eventos cardiovasculares com óleo de peixe em hemodiálise. O que se pode concluir sobre o mecanismo desse benefício?",
+          "opts": [
+            "O ensaio provou que a redução ocorreu exclusivamente por queda do LDL",
+            "O benefício foi necessariamente mediado por menor ultrafiltração nas sessões",
+            "Efeitos em membranas, inflamação, trombose ou eletrofisiologia são plausíveis, mas o ensaio de desfechos não isolou um mediador causal",
+            "A randomização demonstra automaticamente qual via molecular produziu o efeito"
+          ],
+          "ans": 2,
+          "exp": "A randomização sustenta inferência causal sobre a estratégia estudada e os desfechos clínicos, mas não identifica automaticamente a via biológica responsável. EPA e DHA têm efeitos plausíveis sobre membranas, inflamação, agregação e eletrofisiologia, porém o PISCES não foi um ensaio de mediação capaz de atribuir o benefício a uma única via. Separar resultado clínico de mecanismo hipotético evita transformar plausibilidade em evidência verificada.",
+          "diff": "hard",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "PISCES — Inferência Mecanística",
+          "qid": "f5e0666b",
+          "q": "O PISCES demonstrou redução de eventos cardiovasculares com óleo de peixe em hemodiálise. O que o desenho permite concluir sobre o mecanismo?",
+          "opts": [
+            "A redução de eventos identifica a queda de lipídios como mediador principal do benefício.",
+            "A mudança dos ácidos graxos plasmáticos demonstra qual mecanismo preveniu os eventos.",
+            "Demonstra o efeito da intervenção, mas não isola a via biológica responsável pelo benefício.",
+            "A randomização permite atribuir o benefício à ação antiarrítmica, sem análise de mediação."
+          ],
+          "ans": 2,
+          "exp": "O ensaio randomizado sustenta o efeito da estratégia sobre eventos, sem identificar sozinho um mediador causal. O artigo discute mecanismos possíveis e informa que a investigação dos mecanismos continua. Alterar ácidos graxos plasmáticos confirma exposição à intervenção, mas não prova qual via produziu o resultado.",
+          "diff": "medium",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        },
+        "afterAuthorRevision": "sha256:eea1653836f4dfc774744b3671f09911f8ded00c9e03bdf56c09d67cdd1d7dcd",
+        "refCardsAfter": {
+          "pisces_study": {
+            "label": "Lok et al. — PISCES",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41201837/",
+            "journal": "N Engl J Med. 2026;394(2):128-137",
+            "ano": 2026,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente 4 g de óleo de peixe, fornecendo 1,6 g de ácido eicosapentaenoico (EPA) e 0,8 g de ácido docosa-hexaenoico (DHA), ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+            "conclusao": "Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+            "curiosidade": "O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "pisces_study",
+            "referenceRevision": "sha256:a7dfdca79947e3f3eb8bf71facda7bbdda929cb034632aa32c20ae98d1250bc7",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:dc8c837e15f9aa156a504a37e5c8cfdd557d2f1a970891efa80078609590ebc0",
+      "classificationBeforeAndAfter": {
+        "op": "Distinguir efeito causal da estratégia estudada da identificação de seu mediador biológico.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Integra dado/desenho e limita uma inferência ou decisão clínica; não exige cálculo avançado.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "P",
+          "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2513032.pdf",
+          "doi": "10.1056/NEJMoa2513032",
+          "access": "OPENED_FULL_TEXT_OFFICIAL_PUBLISHER_PDF",
+          "version": "Publicado07/11/2025, atualizado25/11/2025; ediçãoNEJM394(2),2026",
+          "locators": [
+            "p1 Abstract",
+            "p2 Methods/intervention",
+            "p6 Safety",
+            "p8 Table3",
+            "p9 bleeding not adjudicated; mechanisms ongoing"
+          ],
+          "scope": "Documento primário integral do editor. Não depende apenas de abstract, comentárioACC ou slides. Numeradores, formulação e desenho conferidos."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "Desfechos e randomização sustentam efeito da estratégia.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Paper discute mecanismos possíveis e informa trabalho mecanístico em andamento.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Incorporação plasmática não identifica mediador causal.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "A randomização identifica uma estratégia comparada, não uma única via molecular. Nenhum distrator faz hipótese obviamente alheia ao artigo; todos confundem um sinal real com mediação demonstrada.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "A redução de eventos identifica a queda de lipídios como mediador principal do benefício.",
+              "correct": false,
+              "error": "Confundir desfecho clínico com prova de mediação lipídica."
+            },
+            {
+              "letter": "B",
+              "text": "A mudança dos ácidos graxos plasmáticos demonstra qual mecanismo preveniu os eventos.",
+              "correct": false,
+              "error": "Confundir confirmação de exposição/adesão com identificação de mecanismo."
+            },
+            {
+              "letter": "C",
+              "text": "Demonstra o efeito da intervenção, mas não isola a via biológica responsável pelo benefício.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "D",
+              "text": "A randomização permite atribuir o benefício à ação antiarrítmica, sem análise de mediação.",
+              "correct": false,
+              "error": "Usar a randomização como prova automática de via antiarrítmica."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 19,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Quatro tarefas distintas do mesmo ensaio:desenho/formulação,desfecho principal,segurança e limitemecanístico;partilhar fonte não estabelece duplicidade."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            69,
+            76,
+            134,
+            77
+          ],
+          "ratio": 1.7402597402597402,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            89,
+            85,
+            92,
+            90
+          ],
+          "ratio": 1.0222222222222221,
+          "uniqueLongest": true
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "pisces_study"
+        ],
+        "change": [
+          "q",
+          "opts",
+          "exp",
+          "diff"
+        ]
+      }
+    },
+    {
+      "qid": "6ffa0ff0",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:87020d9e7e664bb3665748af35efd81df406764735d526fe0e61850c680f584e",
+        "rawObjectSHA256": "0735ae434d8782009489df1b0a8db59d8993df8b77844bc4fed485530cb7f446",
+        "question": {
+          "t": "PISCES — Segurança Hemorrágica",
+          "qid": "6ffa0ff0",
+          "q": "Como deve ser interpretado o achado de sangramento grave no PISCES?",
+          "opts": [
+            "Houve excesso inequívoco de sangramento grave com óleo de peixe, levando à interrupção do ensaio",
+            "Sangramento grave ocorreu em 4,8% com óleo de peixe e 7,6% com placebo; o ensaio não mostrou sinal de aumento, sem garantir segurança para todo contexto individual",
+            "O óleo de peixe preveniu sangramento e dispensa avaliação de anticoagulantes ou antiagregantes",
+            "O estudo excluiu qualquer pessoa com risco hemorrágico e não coletou eventos de segurança"
+          ],
+          "ans": 1,
+          "exp": "Sangramento grave foi registrado em 4,8% do grupo óleo de peixe e 7,6% do placebo, e os demais eventos adversos graves foram semelhantes. O achado não sustenta aumento de sangramento pela intervenção estudada. Entretanto, uma comparação de segurança dentro de um ensaio não elimina avaliação individual de anticoagulação, antiagregação, sangramento ativo, alergia ou diferenças entre formulações.",
+          "diff": "medium",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "PISCES — Segurança Hemorrágica",
+          "qid": "6ffa0ff0",
+          "q": "No PISCES, sangramento grave foi registrado em 29/610 participantes do grupo óleo de peixe (4,8%) e 47/618 do placebo (7,6%). Qual interpretação é mais apropriada?",
+          "opts": [
+            "A diferença numérica demonstra proteção contra sangramento na população em hemodiálise.",
+            "Não há sinal de excesso no grupo estudado; isso não elimina a avaliação individual de risco.",
+            "A ausência de diferença em eventos adversos confirma segurança equivalente entre as estratégias.",
+            "A comparação dos percentuais permite generalizar a segurança a outras doses e formulações de ômega-3."
+          ],
+          "ans": 1,
+          "exp": "No ensaio, a frequência numérica foi menor com óleo de peixe. Isso não prova um efeito preventivo de sangramento nem estabelece equivalência de segurança. Os sangramentos não foram adjudicados, e a generalização depende da população e da formulação estudadas. Risco individual e tratamentos concomitantes continuam relevantes.",
+          "diff": "medium",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        },
+        "afterAuthorRevision": "sha256:be38def0cbaa0e953ee58e74e6cffe2fc99d45e44af13890adc0d5a00c74f44d",
+        "refCardsAfter": {
+          "pisces_study": {
+            "label": "Lok et al. — PISCES",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41201837/",
+            "journal": "N Engl J Med. 2026;394(2):128-137",
+            "ano": 2026,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente 4 g de óleo de peixe, fornecendo 1,6 g de ácido eicosapentaenoico (EPA) e 0,8 g de ácido docosa-hexaenoico (DHA), ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+            "conclusao": "Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+            "curiosidade": "O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "pisces_study",
+            "referenceRevision": "sha256:a7dfdca79947e3f3eb8bf71facda7bbdda929cb034632aa32c20ae98d1250bc7",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:299111a72fac423581688333dbd5cccb7cefe3779fc937a7037ecc2257283ec9",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar o achado de segurança hemorrágica sem concluir proteção, equivalência ou ausência de risco individual.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "medium",
+        "rationale": "Integra dado/desenho e limita uma inferência ou decisão clínica; não exige cálculo avançado.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "P",
+          "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2513032.pdf",
+          "doi": "10.1056/NEJMoa2513032",
+          "access": "OPENED_FULL_TEXT_OFFICIAL_PUBLISHER_PDF",
+          "version": "Publicado07/11/2025, atualizado25/11/2025; ediçãoNEJM394(2),2026",
+          "locators": [
+            "p1 Abstract",
+            "p2 Methods/intervention",
+            "p6 Safety",
+            "p8 Table3",
+            "p9 bleeding not adjudicated; mechanisms ongoing"
+          ],
+          "scope": "Documento primário integral do editor. Não depende apenas de abstract, comentárioACC ou slides. Numeradores, formulação e desenho conferidos."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "29/610vs47/618,4,8%vs7,6%,p6Safety/p8Table3.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Limitação:p9 informa eventos de sangramento não adjudicados.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Sem comparação desenhada para provar equivalência ou extrapolar outras formulações.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "O numerador e o denominador estão no enunciado; o candidato testa interpretação. O sinal não prova proteção e não significa equivalência. A ausência de adjudicação está expressa na explicação.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "A diferença numérica demonstra proteção contra sangramento na população em hemodiálise.",
+              "correct": false,
+              "error": "Converter diferença numérica em proteção demonstrada."
+            },
+            {
+              "letter": "B",
+              "text": "Não há sinal de excesso no grupo estudado; isso não elimina a avaliação individual de risco.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "C",
+              "text": "A ausência de diferença em eventos adversos confirma segurança equivalente entre as estratégias.",
+              "correct": false,
+              "error": "Inferir equivalência de segurança de comparação não desenhada para isso."
+            },
+            {
+              "letter": "D",
+              "text": "A comparação dos percentuais permite generalizar a segurança a outras doses e formulações de ômega-3.",
+              "correct": false,
+              "error": "Transportar segurança a dose/formulação diferentes."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 19,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Quatro tarefas distintas do mesmo ensaio:desenho/formulação,desfecho principal,segurança e limitemecanístico;partilhar fonte não estabelece duplicidade."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            96,
+            163,
+            94,
+            89
+          ],
+          "ratio": 1.6979166666666667,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            87,
+            92,
+            96,
+            101
+          ],
+          "ratio": 0.9108910891089109,
+          "uniqueLongest": false
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "pisces_study"
+        ],
+        "change": [
+          "q",
+          "opts",
+          "exp"
+        ]
+      }
+    },
+    {
+      "qid": "4ea80768",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:a8b79df58138b835961dbddedc7362d9c86831297b6dc7e9ad1d531036df193c",
+        "rawObjectSHA256": "d0af2769ffd9a0fca1bdc88dbfeb8129003b89fca59c2b6fd28ae3bd073f528b",
+        "question": {
+          "t": "PISCES — Intervenção e Desenho",
+          "qid": "4ea80768",
+          "q": "Qual intervenção foi efetivamente testada no ensaio PISCES?",
+          "opts": [
+            "EPA isolado 1 g/dia em estudo aberto de pacientes sem diálise",
+            "Óleo de peixe 4 g/dia, contendo 1,6 g de EPA e 0,8 g de DHA, versus placebo de óleo de milho em ensaio randomizado e duplo-cego",
+            "Ômega-3 3 g/dia sem placebo em estudo observacional",
+            "Icosapenta etila 4 g/dia versus estatina em pacientes com hipertrigliceridemia"
+          ],
+          "ans": 1,
+          "exp": "O PISCES randomizou 1.228 adultos em hemodiálise de manutenção, em 26 centros do Canadá e da Austrália, para quatro cápsulas diárias de óleo de peixe — 4 g de ácidos graxos n−3, com 1,6 g de EPA e 0,8 g de DHA — ou placebo de óleo de milho, com mascaramento duplo. A intervenção não foi EPA isolado, icosapenta etila nem uma dose de 3 g. Identificar a formulação é essencial para não extrapolar o resultado a produtos diferentes.",
+          "diff": "medium",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "PISCES — Intervenção e Desenho",
+          "qid": "4ea80768",
+          "q": "Qual comparação e desenho foram efetivamente testados no PISCES, que avaliou ácidos graxos ômega-3 em hemodiálise?",
+          "opts": [
+            "Ácido eicosapentaenoico isolado 4 g/dia versus placebo, em ensaio randomizado e duplo-cego.",
+            "Óleo de peixe 4 g/dia versus óleo de milho, em ensaio randomizado e duplo-cego.",
+            "Óleo de peixe 4 g/dia versus ausência de suplemento, em estudo observacional.",
+            "Óleo de peixe 4 g/dia versus óleo de milho, em ensaio randomizado sem mascaramento."
+          ],
+          "ans": 1,
+          "exp": "A comparação foi óleo de peixe 4 g/dia versus placebo de óleo de milho, com alocação aleatória e duplo mascaramento. A dose fornecia 1,6 g de ácido eicosapentaenoico (EPA) e 0,8 g de ácido docosa-hexaenoico (DHA). Não era EPA isolado nem estudo observacional ou ensaio aberto; formulação e comparação delimitam a extrapolação do resultado.",
+          "diff": "easy",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        },
+        "afterAuthorRevision": "sha256:a5be1af3e386523694f71e36d63a9a22c99c32da8c1ffcc159e1373006b7ec02",
+        "refCardsAfter": {
+          "pisces_study": {
+            "label": "Lok et al. — PISCES",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41201837/",
+            "journal": "N Engl J Med. 2026;394(2):128-137",
+            "ano": 2026,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente 4 g de óleo de peixe, fornecendo 1,6 g de ácido eicosapentaenoico (EPA) e 0,8 g de ácido docosa-hexaenoico (DHA), ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+            "conclusao": "Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+            "curiosidade": "O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "pisces_study",
+            "referenceRevision": "sha256:a7dfdca79947e3f3eb8bf71facda7bbdda929cb034632aa32c20ae98d1250bc7",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:c769096c41e2ba42f82e76710f2cced2ddd0440069b25836291fef8a3281406d",
+      "classificationBeforeAndAfter": {
+        "op": "Identificar formulação, comparador e desenho do PISCES para delimitar extrapolações.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedBefore": "medium",
+        "rationale": "Tarefa conceitual direta, sem integração avançada ou cálculo; terminologia/novidade não eleva dificuldade.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "P",
+          "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2513032.pdf",
+          "doi": "10.1056/NEJMoa2513032",
+          "access": "OPENED_FULL_TEXT_OFFICIAL_PUBLISHER_PDF",
+          "version": "Publicado07/11/2025, atualizado25/11/2025; ediçãoNEJM394(2),2026",
+          "locators": [
+            "p1 Abstract",
+            "p2 Methods/intervention",
+            "p6 Safety",
+            "p8 Table3",
+            "p9 bleeding not adjudicated; mechanisms ongoing"
+          ],
+          "scope": "Documento primário integral do editor. Não depende apenas de abstract, comentárioACC ou slides. Numeradores, formulação e desenho conferidos."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "Formulação e dose emMethods,p1–2 eDiscussionp8.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Placeboóleo de milho,randomizado/duplo-cego.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "DoseEPA1,6g eDHA0,8g conferidas.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "As quatro opções se referem a estratégias plausíveis de pesquisa de ômega-3. A explicação define EPA/DHA na primeira ocorrência e não extrapola a outra formulação.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Ácido eicosapentaenoico isolado 4 g/dia versus placebo, em ensaio randomizado e duplo-cego.",
+              "correct": false,
+              "error": "Confundir a estratégia com EPAisolado."
+            },
+            {
+              "letter": "B",
+              "text": "Óleo de peixe 4 g/dia versus óleo de milho, em ensaio randomizado e duplo-cego.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "C",
+              "text": "Óleo de peixe 4 g/dia versus ausência de suplemento, em estudo observacional.",
+              "correct": false,
+              "error": "Confundir ensaio com observação sem placebo."
+            },
+            {
+              "letter": "D",
+              "text": "Óleo de peixe 4 g/dia versus óleo de milho, em ensaio randomizado sem mascaramento.",
+              "correct": false,
+              "error": "Confundir estudo duplo-cego com ensaio aberto."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 1,
+              "reason": "Objetivo conceitual útil porém restrito, sem decisão clínica individual complexa."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Quatro tarefas distintas do mesmo ensaio:desenho/formulação,desfecho principal,segurança e limitemecanístico;partilhar fonte não estabelece duplicidade."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            61,
+            127,
+            51,
+            78
+          ],
+          "ratio": 1.6282051282051282,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            91,
+            79,
+            77,
+            83
+          ],
+          "ratio": 0.8681318681318682,
+          "uniqueLongest": false
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "pisces_study"
+        ],
+        "change": [
+          "q",
+          "opts",
+          "exp",
+          "diff"
+        ]
+      }
+    },
+    {
+      "qid": "ff4c8b9e",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:643b8f305ecfaa45aa166f217854219407e12165309f62561d6786954001054e",
+        "rawObjectSHA256": "4d94122ca16e54819e83bb49d505c1643f19a194698cc2831efb4e01a6d96b34",
+        "question": {
+          "t": "PISCES — Eventos Cardiovasculares em Hemodiálise",
+          "qid": "ff4c8b9e",
+          "q": "No PISCES, adultos em hemodiálise de manutenção receberam óleo de peixe ou placebo. Qual interpretação melhor representa o desfecho cardiovascular principal?",
+          "opts": [
+            "O óleo de peixe reduziu a taxa total de eventos cardiovasculares graves em 43% (HR 0,57), resultado da formulação estudada que ainda requer aplicação clínica proporcional à evidência",
+            "O óleo de peixe não alterou eventos cardiovasculares, mas reduziu apenas triglicerídeos",
+            "O benefício ficou restrito a arritmias e não incluiu infarto, AVC ou morte cardíaca",
+            "O ensaio provou que qualquer suplemento comercial de ômega-3 deve ser prescrito rotineiramente a toda pessoa em diálise"
+          ],
+          "ans": 0,
+          "exp": "O PISCES analisou eventos cardiovasculares graves totais, incluindo eventos recorrentes. A taxa foi 0,31 versus 0,61 por 1.000 pacientes-dia com óleo de peixe e placebo, respectivamente (HR 0,57; IC 95% 0,47–0,70), redução relativa de 43%. O composto incluiu morte cardíaca, infarto, AVC e doença vascular periférica com amputação. O resultado é forte para a população e a formulação testadas, mas não demonstra equivalência de qualquer suplemento nem transforma isoladamente o ensaio em recomendação universal.",
+          "diff": "medium",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "PISCES — Eventos Cardiovasculares em Hemodiálise",
+          "qid": "ff4c8b9e",
+          "q": "No PISCES, adultos em hemodiálise de manutenção receberam óleo de peixe ou placebo. Qual interpretação melhor representa o desfecho cardiovascular principal?",
+          "opts": [
+            "Reduziu a taxa total de eventos cardiovasculares graves na população e na formulação estudadas.",
+            "Reduziu apenas o tempo até o primeiro evento, sem avaliar a carga de eventos recorrentes.",
+            "Reduziu a mortalidade global isolada, o que explica o benefício do composto cardiovascular.",
+            "Reduziu triglicerídeos, sem diferença entre grupos para o desfecho cardiovascular principal."
+          ],
+          "ans": 0,
+          "exp": "No PISCES, o desfecho principal somou eventos cardiovasculares graves, incluindo recorrências. A taxa foi 0,31 versus 0,61 por 1.000 pacientes-dia; a razão de riscos instantâneos (HR) estimada foi 0,57, com intervalo de confiança de 95% de 0,47–0,70. O achado não equivale a demonstrar redução isolada da mortalidade global nem benefício de qualquer formulação de ômega-3.",
+          "diff": "medium",
+          "cat": "dialise",
+          "refs": [
+            "pisces_study"
+          ]
+        },
+        "afterAuthorRevision": "sha256:fbafba584c0db753c045bbab70ba7f7c17096399f26e445310c6965561f37300",
+        "refCardsAfter": {
+          "pisces_study": {
+            "label": "Lok et al. — PISCES",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41201837/",
+            "journal": "N Engl J Med. 2026;394(2):128-137",
+            "ano": 2026,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente 4 g de óleo de peixe, fornecendo 1,6 g de ácido eicosapentaenoico (EPA) e 0,8 g de ácido docosa-hexaenoico (DHA), ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+            "conclusao": "Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+            "curiosidade": "O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "pisces_study",
+            "referenceRevision": "sha256:a7dfdca79947e3f3eb8bf71facda7bbdda929cb034632aa32c20ae98d1250bc7",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:247b46fe893969d800dc8f63b95d6dde7229938d738e81e1a8ed8256e5bb742a",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar o desfecho cardiovascular principal como carga total de eventos, distinguindo primeiroevento e mortalidade global.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "medium",
+        "rationale": "Integra dado/desenho e limita uma inferência ou decisão clínica; não exige cálculo avançado.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "P",
+          "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2513032.pdf",
+          "doi": "10.1056/NEJMoa2513032",
+          "access": "OPENED_FULL_TEXT_OFFICIAL_PUBLISHER_PDF",
+          "version": "Publicado07/11/2025, atualizado25/11/2025; ediçãoNEJM394(2),2026",
+          "locators": [
+            "p1 Abstract",
+            "p2 Methods/intervention",
+            "p6 Safety",
+            "p8 Table3",
+            "p9 bleeding not adjudicated; mechanisms ongoing"
+          ],
+          "scope": "Documento primário integral do editor. Não depende apenas de abstract, comentárioACC ou slides. Numeradores, formulação e desenho conferidos."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "PrimaryEndPoint eTable2:total/recurrentevents,HR0,57;IC0,47–0,70.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Primeiroevento eraoutrodesfecho.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "All-causedeath não forneceu prova isolada de redução.",
+          "sources": [
+            "P"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "O candidato distingue taxa de eventos e risco de uma pessoa ter primeiro evento. A estimativaHR permanece nomeada na explicação; não se transforma 0,31/0,61 em redução absoluta individual.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Reduziu a taxa total de eventos cardiovasculares graves na população e na formulação estudadas.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "B",
+              "text": "Reduziu apenas o tempo até o primeiro evento, sem avaliar a carga de eventos recorrentes.",
+              "correct": false,
+              "error": "Trocar o desfecho recorrente pelo primeiroevento."
+            },
+            {
+              "letter": "C",
+              "text": "Reduziu a mortalidade global isolada, o que explica o benefício do composto cardiovascular.",
+              "correct": false,
+              "error": "Explicar composto por mortalidadeglobal isolada não demonstrada."
+            },
+            {
+              "letter": "D",
+              "text": "Reduziu triglicerídeos, sem diferença entre grupos para o desfecho cardiovascular principal.",
+              "correct": false,
+              "error": "Substituir desfecho clínico por alteração lipídica."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 19,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Quatro tarefas distintas do mesmo ensaio:desenho/formulação,desfecho principal,segurança e limitemecanístico;partilhar fonte não estabelece duplicidade."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            182,
+            87,
+            83,
+            119
+          ],
+          "ratio": 1.5294117647058822,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            95,
+            89,
+            91,
+            92
+          ],
+          "ratio": 1.0326086956521738,
+          "uniqueLongest": true
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "pisces_study"
+        ],
+        "change": [
+          "opts",
+          "exp"
+        ]
+      }
+    },
+    {
+      "qid": "c7abfaf3",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:4980ed7f98e422945b08634d6583666e5f2457b09fe96c5f252ecaadd3d4b58f",
+        "rawObjectSHA256": "a57434bb83615a83f2e45cd0146331943f835533c0feabe5623b501224497317",
+        "question": {
+          "t": "Holly — Breakthrough Device não é Aprovação",
+          "qid": "c7abfaf3",
+          "q": "A patrocinadora do sistema implantável de diálise contínua Holly anunciou Breakthrough Device Designation do FDA, enquanto o dispositivo ainda se prepara para estudos em humanos. Qual interpretação regulatória é correta?",
+          "refs": [
+            "nephrodite_holly_2025",
+            "fda_breakthrough_devices_2026"
+          ],
+          "opts": [
+            "A designação facilita interação, desenvolvimento e revisão prioritária, mas não autoriza comercialização nem comprova segurança e eficácia clínica",
+            "A designação equivale à aprovação plena e permite uso clínico rotineiro imediato",
+            "O FDA já confirmou superioridade sobre hemodiálise em ensaio randomizado de mortalidade",
+            "A designação dispensa submissão futura por PMA, 510(k) ou via De Novo"
+          ],
+          "ans": 0,
+          "exp": "Breakthrough Device Designation é um mecanismo do FDA para acelerar desenvolvimento, avaliação e revisão de tecnologias promissoras destinadas a condições graves. Ela oferece interação adicional com a agência e prioridade para submissões futuras, preservando os padrões de evidência da via regulatória aplicável. O anúncio público específico do Holly veio da patrocinadora, que o descreve como investigacional e ainda em preparação para estudos em humanos. Portanto, designação não é aprovação, clearance, autorização comercial nem demonstração de benefício clínico.",
+          "diff": "medium",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Holly — Breakthrough Device não é Aprovação",
+          "qid": "c7abfaf3",
+          "q": "Em dezembro de 2025, a patrocinadora do sistema implantável Holly anunciou uma Breakthrough Device Designation do Food and Drug Administration (FDA), em fase preparatória para estudos em humanos. O que essa designação representa?",
+          "refs": [
+            "nephrodite_holly_2025",
+            "fda_breakthrough_devices_2026"
+          ],
+          "opts": [
+            "Interação e revisão regulatórias facilitadas, mantendo a exigência de autorização de mercado.",
+            "Autorização para implantação assistencial, com confirmação clínica exigida após comercialização.",
+            "Confirmação de benefício clínico relevante, com a revisão seguinte voltada à fabricação.",
+            "Autorização para iniciar estudos em humanos, substituindo a aprovação específica do ensaio."
+          ],
+          "ans": 0,
+          "exp": "A designação é um programa para acelerar desenvolvimento, avaliação e revisão, com maior interação e prioridade. Ela não substitui os requisitos de segurança e eficácia nem a autorização de mercado ou as exigências próprias de pesquisa em humanos. No comunicado de 2025, o Holly era descrito pela patrocinadora como investigacional, sem autorização comercial.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:74d4417b49b090bfedb04da2d5ae0e8d392eace992a5d371cb6f17f0cd0f83b7",
+        "refCardsAfter": {
+          "nephrodite_holly_2025": {
+            "label": "Nephrodite — Holly Breakthrough Device Announcement (2025)",
+            "url": "https://nephrodite.com/newsroom/nephrodite-earns-fdas-first-breakthrough-device-designation-for-an-implantable-kidney-replacement-system/",
+            "journal": "Nephrodite sponsor announcement, December 15, 2025",
+            "ano": 2025,
+            "tipo": "Comunicado do patrocinador",
+            "badge": "SOURCE",
+            "badgeColor": "#64748b",
+            "impacto": "Estado regulatório e estágio de desenvolvimento do sistema implantável Holly",
+            "icon": "🔬",
+            "resumo": "A patrocinadora anunciou que o sistema implantável de diálise contínua Holly recebeu Breakthrough Device Designation do FDA. O próprio comunicado o descreve como dispositivo investigacional, ainda sem autorização comercial, em preparação para estudos GLP e submissões que permitam avaliação inicial em humanos.",
+            "conclusao": "A designação favorece interação e revisão regulatória mais eficientes, mas não demonstra segurança ou eficácia clínica e não equivale a aprovação, clearance ou autorização de comercialização.",
+            "curiosidade": "O FDA geralmente não divulga publicamente designações antes da autorização de mercado; por isso, a confirmação pública específica costuma partir do patrocinador."
+          },
+          "fda_breakthrough_devices_2026": {
+            "label": "FDA — Breakthrough Devices Program (2026)",
+            "url": "https://www.fda.gov/medical-devices/how-study-and-market-your-device/breakthrough-devices-program",
+            "journal": "U.S. Food and Drug Administration",
+            "ano": 2026,
+            "tipo": "Documento regulatório oficial",
+            "badge": "REG",
+            "badgeColor": "#2563eb",
+            "impacto": "Significado, critérios e limites da Breakthrough Device Designation",
+            "icon": "📋",
+            "resumo": "O programa voluntário acelera desenvolvimento, avaliação e revisão de dispositivos destinados a doenças graves ou irreversivelmente debilitantes. A designação oferece interação adicional com o FDA e revisão priorizada de submissões futuras, preservando os padrões legais aplicáveis a PMA, 510(k) ou De Novo.",
+            "conclusao": "Breakthrough Device Designation é um mecanismo de desenvolvimento e revisão; o dispositivo ainda precisa obter a autorização de mercado apropriada antes de ser comercializado.",
+            "curiosidade": "O pedido de designação pode ser apresentado antes de enviar a submissão para autorização de mercado, conforme a etapa de desenvolvimento do dispositivo."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrodite_holly_2025",
+            "referenceRevision": "sha256:720853899f9fc428e02a21e7ffc965d0215faa60292526df3f308ef61e04c3ee",
+            "fieldCount": 12,
+            "unchangedCard": true
+          },
+          {
+            "id": "fda_breakthrough_devices_2026",
+            "referenceRevision": "sha256:79c14f121ff0222ab1247e51f5a770ec327eec4641a660ef8fe3772da40af4a0",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:7d38c89157ea0ec830933699e5df5f0a73f1327a6d4a0c4f7f3cb48c4ff2a821",
+      "classificationBeforeAndAfter": {
+        "op": "Distinguir designação de desenvolvimento regulatório de aprovação comercial ou prova de eficácia.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedBefore": "medium",
+        "rationale": "Tarefa conceitual direta, sem integração avançada ou cálculo; terminologia/novidade não eleva dificuldade.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "H",
+          "url": "https://nephrodite.com/newsroom/nephrodite-earns-fdas-first-breakthrough-device-designation-for-an-implantable-kidney-replacement-system/",
+          "access": "OPENED_FULL_TEXT_SPONSOR_ANNOUNCEMENT",
+          "version": "15/12/2025",
+          "locators": [
+            "Título/data",
+            "Parágrafos do anúncio e preparo para estudos",
+            "Declaração final: investigacional e sem aprovação comercial"
+          ],
+          "scope": "Confirma o anúncio de2025 feito pela patrocinadora; não tratado como ensaio ou eficácia comprovada nem como status em tempo real de2026."
+        },
+        {
+          "id": "HF",
+          "url": "https://www.fda.gov/medical-devices/how-study-and-market-your-device/breakthrough-devices-program",
+          "access": "OPENED_FULL_TEXT_REGULATOR",
+          "version": "Página consultada15/11/2026",
+          "locators": [
+            "What is the Breakthrough Devices Program?",
+            "What are the benefits?",
+            "When do I request designation?"
+          ],
+          "scope": "Designação acelera desenvolvimento/interação/revisão; autorização de mercado continua necessária. Não concede automaticamente autorização de estudo humano."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "Comunicado primário datado15/12/2025, statusinvestigacionalnaquelecomunicado.",
+          "sources": [
+            "H",
+            "HF"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "FDA descreveinteração/priorização eautorização demercadoaindarequerida.",
+          "sources": [
+            "H",
+            "HF"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Designação não corresponde a etapa deaprovação comercial ouensaiohumano.",
+          "sources": [
+            "H",
+            "HF"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "O enunciado ancora o anúncio em2025 e não alega o status atualizado do dispositivo em2026. A fonte patrocinadora é identificada como tal; o significado regulatório vem doFDA.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Interação e revisão regulatórias facilitadas, mantendo a exigência de autorização de mercado.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "B",
+              "text": "Autorização para implantação assistencial, com confirmação clínica exigida após comercialização.",
+              "correct": false,
+              "error": "Confundir designação pré-mercado com autorização assistencial."
+            },
+            {
+              "letter": "C",
+              "text": "Confirmação de benefício clínico relevante, com a revisão seguinte voltada à fabricação.",
+              "correct": false,
+              "error": "Tomar seleção para o programa como benefício clínico provado."
+            },
+            {
+              "letter": "D",
+              "text": "Autorização para iniciar estudos em humanos, substituindo a aprovação específica do ensaio.",
+              "correct": false,
+              "error": "Trocar designação por exigências específicas de estudo humano."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 1,
+              "reason": "Objetivo conceitual útil porém restrito, sem decisão clínica individual complexa."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Não identificado outro item com as mesmas quatro dimensões na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            146,
+            80,
+            87,
+            69
+          ],
+          "ratio": 1.6781609195402298,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            93,
+            96,
+            88,
+            91
+          ],
+          "ratio": 0.96875,
+          "uniqueLongest": false
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "fda_breakthrough_devices_2026"
+        ],
+        "change": [
+          "q",
+          "opts",
+          "exp",
+          "diff"
+        ]
+      }
+    },
+    {
+      "qid": "ef4e119e",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:70428c70bc6420b3afd42d7cada6791ec692790d93748746507540272e76d815",
+        "rawObjectSHA256": "de7b25d187f28becab8fc9bdff2c1fc049d3e90239a86bc8d8e30314b1c0c2f6",
+        "question": {
+          "t": "Água de Diálise versus Dialisato Ultrapuro",
+          "qid": "ef4e119e",
+          "q": "Qual alternativa distingue corretamente a água tratada usada para preparar o dialisato do fluido de diálise ultrapuro?",
+          "refs": [
+            "anvisa_rdc11_dialysis_water_2014",
+            "fda_hdf_water_k210575"
+          ],
+          "opts": [
+            "A RDC 11/2014 limita a água tratada a 100 UFC/mL e 0,25 EU/mL, enquanto fluido ultrapuro é categoria posterior e mais estrita: menos de 0,1 UFC/mL e menos de 0,03 EU/mL",
+            "Água tratada e fluido ultrapuro são a mesma matriz e usam necessariamente o mesmo ponto de coleta",
+            "O limite brasileiro para água tratada é menos de 0,1 UFC/mL, sem necessidade de medir endotoxinas",
+            "Dialisato ultrapuro é obtido apenas por destilação e dispensa controle do sistema de água"
+          ],
+          "ans": 0,
+          "exp": "A água tratada circula no sistema de distribuição e é matéria-prima para o dialisato. No Brasil, a RDC 11/2014 estabelece máximo de 100 UFC/mL e 0,25 EU/mL para essa água. Depois de misturada aos concentrados e processada por barreiras da máquina, pode-se produzir fluido de diálise ultrapuro, cuja especificação é muito mais estrita: menos de 0,1 UFC/mL e menos de 0,03 EU/mL. Confundir água e fluido leva a limites, amostragens e responsabilidades incorretos; ambos exigem monitorização própria.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Água de Diálise versus Dialisato Ultrapuro",
+          "qid": "ef4e119e",
+          "q": "Considerando a água tratada da RDC 11/2014 e o fluido de diálise ultrapuro descrito no documento K210575 do Food and Drug Administration (FDA), qual afirmação é correta?",
+          "refs": [
+            "anvisa_rdc11_dialysis_water_2014",
+            "fda_hdf_water_k210575"
+          ],
+          "opts": [
+            "O fluido ultrapuro exige limites microbiológicos mais estritos que os da água tratada.",
+            "A água tratada recebe os mesmos limites do fluido ultrapuro ao entrar na máquina.",
+            "O limite bacteriano da água tratada é mais estrito que o do fluido ultrapuro.",
+            "O padrão de fluido ultrapuro serve também para avaliar potabilidade da água de abastecimento."
+          ],
+          "ans": 0,
+          "exp": "A água tratada circula no sistema de distribuição e é matéria-prima para o dialisato. No Brasil, a RDC 11/2014 estabelece máximo de 100 UFC/mL e 0,25 EU/mL para essa água. Depois de misturada aos concentrados e processada por barreiras da máquina, pode-se produzir fluido de diálise ultrapuro, cuja especificação é muito mais estrita: menos de 0,1 UFC/mL e menos de 0,03 EU/mL. Confundir água e fluido leva a limites, amostragens e responsabilidades incorretos; ambos exigem monitorização própria.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:72336c58e9dd3332c1dda771fa3b8e63f359af8108b52022721fa89ba3e3fb82",
+        "refCardsAfter": {
+          "anvisa_rdc11_dialysis_water_2014": {
+            "label": "ANVISA — RDC 11/2014: Água para Hemodiálise",
+            "url": "https://bvs.saude.gov.br/bvs/saudelegis/anvisa/2014/rdc0011_13_03_2014.pdf",
+            "journal": "Agência Nacional de Vigilância Sanitária",
+            "ano": 2014,
+            "tipo": "Regulamento sanitário brasileiro",
+            "badge": "REG",
+            "badgeColor": "#2563eb",
+            "impacto": "Requisitos de funcionamento e qualidade da água tratada usada em serviços de diálise no Brasil",
+            "icon": "📋",
+            "resumo": "A RDC 11/2014 estabelece para a água tratada do sistema de distribuição de hemodiálise ausência de coliformes em 100 mL, contagem máxima de 100 UFC/mL de bactérias heterotróficas e endotoxinas de até 0,25 EU/mL, além de limites químicos e frequências de monitorização.",
+            "conclusao": "Os limites brasileiros para água de diálise não devem ser confundidos com a categoria mais estrita de fluido de diálise ultrapuro produzido depois da mistura e ultrafiltração na máquina.",
+            "curiosidade": "A norma exige coleta em pontos definidos do circuito e manutenção do sistema; qualidade no reservatório não garante ausência de biofilme no anel de distribuição."
+          },
+          "fda_hdf_water_k210575": {
+            "label": "FDA K210575 — Água e Fluido Ultrapuro para HDF",
+            "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf21/K210575.pdf",
+            "journal": "U.S. Food and Drug Administration 510(k)",
+            "ano": 2022,
+            "tipo": "Documento regulatório",
+            "badge": "REG",
+            "badgeColor": "#2563eb",
+            "impacto": "Distinção operacional entre água de entrada, dialisato ultrapuro e fluido de substituição online",
+            "icon": "📋",
+            "resumo": "O documento exige água de entrada com menos de 100 UFC/mL e menos de 0,25 EU/mL e descreve filtros que produzem fluido de diálise ultrapuro com menos de 0,1 UFC/mL e menos de 0,03 EU/mL, em conformidade com ISO 23500. O fluido de substituição online depende de barreiras redundantes adicionais.",
+            "conclusao": "Água tratada e dialisato ultrapuro são matrizes diferentes, com pontos de amostragem e limites diferentes; usar o termo correto evita aplicar um padrão ao componente errado.",
+            "curiosidade": "O nível de ação indicado para a água é metade do máximo — 50 UFC/mL e 0,125 EU/mL — permitindo intervir antes de ultrapassar o limite."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "anvisa_rdc11_dialysis_water_2014",
+            "referenceRevision": "sha256:81dce0f8ee18d875ec664f5d1c9e1fa2bd8396733f6f80a86079a3c5782d9ce7",
+            "fieldCount": 12,
+            "unchangedCard": true
+          },
+          {
+            "id": "fda_hdf_water_k210575",
+            "referenceRevision": "sha256:cde2de0b3a015ad274149cd749e829c0a8d740c51e28a8f1a4c8662075bdb39f",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:4414df9c59350d7f0c50bf34121092208fbabae4a5bca5e2cda6674917546572",
+      "classificationBeforeAndAfter": {
+        "op": "Distinguir matrizes e limites microbiológicos da água tratada e do fluido de diálise ultrapuro.",
+        "competency": "Interpretação proporcional da evidência em diálise",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedBefore": "hard",
+        "rationale": "Tarefa conceitual direta, sem integração avançada ou cálculo; terminologia/novidade não eleva dificuldade.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "R",
+          "url": "https://www.cofen.gov.br/wp-content/uploads/2017/05/RDC-11_2014.pdf",
+          "access": "OPENED_PRIMARY_DOU_REPRINT",
+          "version": "DOU14/03/2014, RDC11/2014",
+          "locators": [
+            "Art3: definições de água e dialisato",
+            "Art49–52",
+            "Anexo, QuadroII"
+          ],
+          "scope": "Reprodução do documento primário assinado digitalmente no site oficialCofen. Limites da RDC explicitamente datada; não emite parecer geral de cumprimento legal."
+        },
+        {
+          "id": "RC",
+          "url": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&cod_menu=9882&cod_modulo=310&desItem=&desItemFim=&nomeTitulo=codigos&numeroAto=00000011&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2014",
+          "access": "OPENED_FULL_TEXT_REGULATORY_COMPILATION",
+          "version": "Consultada15/11/2026",
+          "locators": [
+            "Art49–52",
+            "QuadroII; notas de alteração art26/60"
+          ],
+          "scope": "Corrobora limites e alterações localizadas; não usar texto original de reúso como se vigente sem alterações."
+        },
+        {
+          "id": "RF",
+          "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf21/K210575.pdf",
+          "access": "OPENED_FULL_TEXT_REGULATOR_PDF",
+          "version": "13/05/2022, K210575",
+          "locators": [
+            "PDFp1 carta de13/05/2022",
+            "PDFp7 limites da água e fluido ultrapuro; passos1–3"
+          ],
+          "scope": "Fonte regulatória primária: o ano2021 do card atual é incorreto, não é inferido do númeroK210575. Confirma água<100CFU/mL/<0,25EU/mL e fluido<0,1CFU/mL/<0,03EU/mL no sistema documentado."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "RDC11QuadroII:100UFC/mL e0,25EU/mL paraágua.",
+          "sources": [
+            "R",
+            "RC",
+            "RF"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "K210575p7:fluido<0,1UFC/mL e<0,03EU/mL.",
+          "sources": [
+            "R",
+            "RC",
+            "RF"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "CartaFDAé13/05/2022:ano atual2021corrigido para2022.",
+          "sources": [
+            "R",
+            "RC",
+            "RF"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "Os documentos e matrizes estão delimitados. Os números passam à explicação, sem reduzir a resposta a memorização de dois pares de limiares; os limiares permanecem verificados. Não se alega que uma autorizaçãoFDAseja norma brasileira.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "O fluido ultrapuro exige limites microbiológicos mais estritos que os da água tratada.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "B",
+              "text": "A água tratada recebe os mesmos limites do fluido ultrapuro ao entrar na máquina.",
+              "correct": false,
+              "error": "Aplicar o mesmo limite às duas matrizes."
+            },
+            {
+              "letter": "C",
+              "text": "O limite bacteriano da água tratada é mais estrito que o do fluido ultrapuro.",
+              "correct": false,
+              "error": "Inverter qual matriz tem limite mais estrito."
+            },
+            {
+              "letter": "D",
+              "text": "O padrão de fluido ultrapuro serve também para avaliar potabilidade da água de abastecimento.",
+              "correct": false,
+              "error": "Confundir água deabastecimento potável com fluido terapêutico ultrapuro."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 18,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 1,
+              "reason": "Objetivo conceitual útil porém restrito, sem decisão clínica individual complexa."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Não identificado outro item com as mesmas quatro dimensões na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            168,
+            97,
+            97,
+            89
+          ],
+          "ratio": 1.731958762886598,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            86,
+            81,
+            77,
+            93
+          ],
+          "ratio": 0.9247311827956989,
+          "uniqueLongest": false
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "fda_hdf_water_k210575"
+        ],
+        "change": [
+          "q",
+          "opts",
+          "diff"
+        ]
+      }
+    },
+    {
+      "qid": "f77abde0",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:dc5bb7045064810a3714ae4a88f0d8823f54f6c416c0c7aa93a3aaeca68bcd75",
+        "rawObjectSHA256": "25704fc199ae924888555e1ce98698c1d14d3a7077e990871ec09391ab035bff",
+        "question": {
+          "t": "Hemodiálise — Investigação de Dose Entregue Baixa",
+          "qid": "f77abde0",
+          "q": "Paciente em hemodiálise três vezes por semana apresenta, em duas avaliações, spKt/V entregue de 0,95 e URR de 58%, apesar de prescrição estável. Qual é o próximo passo mais apropriado?",
+          "refs": [
+            "kdigo_dialise",
+            "ktv_daugirdas1993"
+          ],
+          "opts": [
+            "Confirmar técnica e momento das coletas e revisar tempo efetivo, fluxos, interrupções, acesso e possível recirculação antes de ajustar a prescrição de forma dirigida",
+            "Aumentar imediatamente para quatro sessões semanais sem investigar por que a dose prescrita não foi entregue",
+            "Trocar apenas para membrana de alto fluxo, pois isso corrige qualquer causa de Kt/V baixo",
+            "Aceitar o resultado, porque URR de 58% supera o mínimo recomendado para hemodiálise trissemanal"
+          ],
+          "ans": 0,
+          "exp": "Na hemodiálise três vezes por semana, a KDOQI recomenda spKt/V alvo de 1,4 por sessão e mínimo entregue de 1,2. Resultados repetidamente baixos exigem primeiro confirmar a medida e distinguir prescrição insuficiente de falha na entrega: coleta inadequada, sessão encurtada, fluxo sanguíneo ou de dialisato reduzido, acesso disfuncional e recirculação são causas frequentes. Depois dessa investigação, tempo, frequência, fluxos, membrana ou acesso podem ser corrigidos conforme o mecanismo identificado.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Hemodiálise — Investigação de Dose Entregue Baixa",
+          "qid": "f77abde0",
+          "q": "Paciente em hemodiálise três vezes por semana, sem intercorrência aguda, apresenta em duas avaliações Kt/V de compartimento único (spKt/V) entregue de 0,95 e redução percentual da ureia (URR) de 58%, apesar de prescrição estável. Qual é o próximo passo mais apropriado?",
+          "refs": [
+            "kdigo_dialise"
+          ],
+          "opts": [
+            "Conferir coletas e entrega da dose, incluindo tempo, fluxos e acesso, antes de dirigir o ajuste.",
+            "Adicionar uma sessão semanal, usando o resultado baixo como prova de prescrição insuficiente.",
+            "Trocar o dialisador por alto fluxo, priorizando a membrana como causa da dose ureica reduzida.",
+            "Elevar o fluxo do dialisato, mantendo o restante da prescrição até a próxima medida de adequação."
+          ],
+          "ans": 0,
+          "exp": "Na hemodiálise três vezes por semana, o alvo usual é spKt/V de 1,4 e mínimo entregue de 1,2, podendo haver ajuste conforme a função renal residual. Antes de intensificar a prescrição, é preciso distinguir resultado inválido de falha na entrega. Conferem-se coletas, tempo efetivo, fluxos e acesso; a intervenção passa a ser dirigida ao problema identificado.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:e611372e05725b9a9f1cb037344d18a1807764219b36708a26d88d49fa30ae53",
+        "refCardsAfter": {
+          "kdigo_dialise": {
+            "label": "KDOQI Hemodialysis Adequacy 2015",
+            "url": "https://www.ajkd.org/article/S0272-6386(15)01019-7/fulltext",
+            "journal": "Am J Kidney Dis 2015;66(5):884-930",
+            "ano": 2015,
+            "tipo": "Diretriz Clínica (KDOQI/NKF)",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão para adequação e prescrição em hemodiálise — alvo Kt/V e dose dialítica mínima",
+            "icon": "📋",
+            "resumo": "Diretriz KDOQI para adequação da hemodiálise. Para HD três vezes por semana, recomenda spKt/V alvo de 1,4 por sessão, com valor mínimo entregue de 1,2. Aborda avaliação periódica da dose dialítica, estado nutricional e acesso vascular como componentes integrados da qualidade do tratamento.",
+            "conclusao": "Define o índice Kt/V como medida-padrão da dose de diálise — base para auditoria e controle de qualidade nos centros de hemodiálise.",
+            "curiosidade": "Na hemodiálise três vezes por semana, o alvo de spKt/V é 1,4 e o mínimo entregue é 1,2. Função renal residual significativa pode permitir redução da dose, desde que seja medida periodicamente."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "kdigo_dialise",
+            "referenceRevision": "sha256:f94df6a974879e55b35546e2ad2041fa93f0142781cd30933ea0ff09d9f7627e",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:26bdf0ed27e0092e18c6bd54cf6626a93aed42e59895d4809e6ba6cb299b2b76",
+      "classificationBeforeAndAfter": {
+        "op": "Investigar validade da medida e entrega da dose diante de adequação ureica baixa, antes de intensificação empírica.",
+        "competency": "Conduta segura em diálise",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Integra dado/desenho e limita uma inferência ou decisão clínica; não exige cálculo avançado.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "K",
+          "url": "https://www.giovambattistavirga.com/wp-content/uploads/2020/04/KDOQI-Hemodialysis-Guidelines-2015.pdf",
+          "access": "OPENED_FULL_TEXT_FINAL_GUIDELINE_REPRINT",
+          "version": "AmJKidneyDis2015;66(5):884–930; versão final junho2015, não draft",
+          "locators": [
+            "PDFp1 identificação/citação oficial",
+            "PDFp11 recomendações3.1/3.2",
+            "PDFp25–26 justificativa/medição",
+            "Guideline4: tempo/fluxo/ultrafiltração"
+          ],
+          "scope": "Documento final primário reproduzido em site de nefrologista; editor bloqueou403. Identidade do documento/citação/paginação conferidas. URL do card corrige PII final2→7; nenhuma recomendação nova inventada."
+        },
+        {
+          "id": "KS",
+          "url": "https://kidneyfoundation.cachefly.net/professionals/KDOQI/guideline_upHD_PD_VA/hd_guide3.htm",
+          "access": "OPENED_FULL_TEXT_OFFICIAL_NKF",
+          "version": "KDOQI2006, métodos de coleta",
+          "locators": [
+            "Recomendações3.1–3.4",
+            "Rationale: pre/post blood sampling"
+          ],
+          "scope": "Apoio ao controle de erros de medida, sem substituir as metas de2015 por metas antigas."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "KDOQI2015recomendações3.1/3.2:meta/minimo eajusteporfunçãoresidual.",
+          "sources": [
+            "K",
+            "KS"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "Coleta inadequada pode distorcerKt/V/URR, NKF2006métodos.",
+          "sources": [
+            "K",
+            "KS"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "Tempoefetivo/fluxos/acesso integram investigação deentrega antesdeagirapenasnoíndice.",
+          "sources": [
+            "K",
+            "KS"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "O caso explicita ausência de intercorrência aguda; investigar não adia intensificação urgente. A boa resposta inclui função residual na interpretação, não aplica o alvo sem contexto. Daugirdas1993não é necessário para esteOPe deixa somente a atribuição desteqid.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Conferir coletas e entrega da dose, incluindo tempo, fluxos e acesso, antes de dirigir o ajuste.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "B",
+              "text": "Adicionar uma sessão semanal, usando o resultado baixo como prova de prescrição insuficiente.",
+              "correct": false,
+              "error": "Presumir insuficiência de prescrição sem avaliar entrega."
+            },
+            {
+              "letter": "C",
+              "text": "Trocar o dialisador por alto fluxo, priorizando a membrana como causa da dose ureica reduzida.",
+              "correct": false,
+              "error": "Priorizar fluxo de membrana como explicação inespecífica para dose ureica baixa."
+            },
+            {
+              "letter": "D",
+              "text": "Elevar o fluxo do dialisato, mantendo o restante da prescrição até a próxima medida de adequação.",
+              "correct": false,
+              "error": "Ajustar apenasQdsem investigar tempo/acesso/coleta."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 19,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Não identificado outro item com as mesmas quatro dimensões na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            165,
+            108,
+            89,
+            95
+          ],
+          "ratio": 1.5277777777777777,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            96,
+            93,
+            94,
+            97
+          ],
+          "ratio": 0.9896907216494846,
+          "uniqueLongest": false
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "kdigo_dialise"
+        ],
+        "change": [
+          "q",
+          "refs",
+          "opts",
+          "exp",
+          "diff"
+        ]
+      }
+    },
+    {
+      "qid": "cbfdb00a",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "applied": false,
+      "original": {
+        "authorRevision": "sha256:8eab1bd90dfd8144af1f6aa0db6d54df08772a428f08633d7bba4ab9301d89ba",
+        "rawObjectSHA256": "d90e1a2531131e8c0bea629e58d60f3655d94788b278839fdcc9dd42487839c6",
+        "question": {
+          "t": "Hemodiálise — Embolia Gasosa",
+          "qid": "cbfdb00a",
+          "q": "Durante hemodiálise, o detector de ar dispara e o paciente apresenta dispneia súbita, dor torácica, hipoxemia e hipotensão. Há suspeita de embolia gasosa venosa. Qual é a conduta imediata mais apropriada?",
+          "refs": [
+            "saha_hd_emergencies_2017"
+          ],
+          "opts": [
+            "Parar a bomba, clampear as linhas para impedir nova entrada de ar, não devolver o sangue do circuito, manter o paciente em posição supina, administrar oxigênio a 100% e oferecer suporte hemodinâmico",
+            "Aumentar o fluxo da bomba para conduzir o ar rapidamente até o filtro venoso e concluir a sessão",
+            "Devolver todo o sangue do circuito antes de interromper a diálise, para evitar anemia",
+            "Manter a diálise e colocar o paciente obrigatoriamente em Trendelenburg, sem outras medidas até confirmar o diagnóstico por imagem"
+          ],
+          "ans": 0,
+          "exp": "A prioridade é interromper imediatamente a entrada de ar: parar a bomba, clampear o circuito e não reinfundir o sangue potencialmente contaminado por ar. O paciente deve receber oxigênio em alta concentração, suporte de via aérea e circulação conforme necessário e, de acordo com revisões contemporâneas, ser mantido em posição supina para facilitar oxigenação e suporte hemodinâmico. Decúbito lateral esquerdo pode ser considerado quando se tenta aspirar ar por um cateter venoso central já existente, mas a posição de Durant não substitui as medidas essenciais e não é obrigatória em todos os casos.",
+          "diff": "hard",
+          "cat": "dialise"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Hemodiálise — Embolia Gasosa",
+          "qid": "cbfdb00a",
+          "q": "Durante hemodiálise com dialisador Hemoflow F4, o detector de ar dispara e o paciente apresenta dispneia súbita, dor torácica, hipoxemia e hipotensão. Há ar no circuito que não pode ser removido com segurança e suspeita de embolia gasosa venosa. Qual é a conduta imediata mais apropriada?",
+          "refs": [
+            "saha_hd_emergencies_2017",
+            "fresenius_hemoflow_air_warning_2023"
+          ],
+          "opts": [
+            "Parar a bomba e clampear sem devolver sangue; oxigênio a 100%, posição supina e suporte circulatório.",
+            "Parar a bomba, devolver o sangue e oferecer oxigênio antes de avaliar a origem do alarme.",
+            "Parar a bomba e oferecer oxigênio, liberando o ar do circuito conectado para retomar a sessão.",
+            "Suspender a ultrafiltração, elevar as pernas e dar solução salina, mantendo a bomba de sangue."
+          ],
+          "ans": 0,
+          "exp": "A prioridade é interromper imediatamente a entrada de ar: parar a bomba, clampear o circuito e não reinfundir o sangue potencialmente contaminado por ar. O paciente deve receber oxigênio em alta concentração, suporte de via aérea e circulação conforme necessário e, de acordo com revisões contemporâneas, ser mantido em posição supina para facilitar oxigenação e suporte hemodinâmico. Decúbito lateral esquerdo pode ser considerado quando se tenta aspirar ar por um cateter venoso central já existente, mas a posição de Durant não substitui as medidas essenciais e não é obrigatória em todos os casos.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterAuthorRevision": "sha256:8807e1f279e1c51da1542d8e0935ef77a449d4d2c8cd9a6aed1548f6e6401a76",
+        "refCardsAfter": {
+          "saha_hd_emergencies_2017": {
+            "label": "Saha M, Allon M — Hemodialysis Emergencies (CJASN 2017)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/27831511/",
+            "journal": "Clinical Journal of the American Society of Nephrology 2017;12(2):357-369",
+            "ano": 2017,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Reconhecimento, tratamento e prevenção das emergências relacionadas à hemodiálise",
+            "icon": "🔬",
+            "resumo": "Revisão clínica das principais emergências da hemodiálise, incluindo síndrome de desequilíbrio e embolia gasosa. O desequilíbrio decorre de gradiente osmótico com edema cerebral após depuração rápida em pacientes de alto risco e deve ser prevenido com início menos eficiente. Na embolia gasosa, a prioridade é interromper a entrada de ar, administrar oxigênio e sustentar a hemodinâmica; posição supina é favorecida para suporte, reservando decúbito lateral esquerdo quando se tenta aspirar ar por cateter já existente.",
+            "conclusao": "Sintomas neurológicos no início da diálise e colapso respiratório após alarme de ar exigem respostas distintas, rápidas e protocolizadas, além de investigação de outras causas e análise da origem do evento.",
+            "curiosidade": "Com detectores modernos, embolia gasosa sintomática tornou-se muito rara; episódios descritos costumam envolver falha de conexão, priming inadequado ou ausência de clampeamento."
+          },
+          "fresenius_hemoflow_air_warning_2023": {
+            "label": "Fresenius — Hemoflow F3/F4: ar no circuito (IFU, 2023)",
+            "url": "https://www.freseniusmedicalcare.com/content/dam/fmcna/live/support/documents/instructions-for-use/hemodialyzers---ifus/F50002269_F3-F4%20IFU%20REV%20F_07-2023.pdf",
+            "journal": "Fresenius Medical Care — Instructions for Use",
+            "ano": 2023,
+            "tipo": "Instruções de uso do fabricante",
+            "badge": "MANUAL",
+            "badgeColor": "#64748b",
+            "impacto": "Ar não removível com segurança exige interromper e não reinfundir sangue do circuito.",
+            "icon": "📋",
+            "resumo": "Instruções de uso dos dialisadores Hemoflow F3 e F4, revisão de julho de 2023. O alerta sobre entrada de ar no circuito extracorpóreo orienta interromper o tratamento e não devolver o sangue se o ar não puder ser removido com segurança.",
+            "conclusao": "No equipamento descrito, o circuito com ar inseguro não deve ser reinfundido; o suporte clínico depende da avaliação da embolia gasosa.",
+            "curiosidade": ""
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "saha_hd_emergencies_2017",
+            "referenceRevision": "sha256:8c2a7832e16e9be3675207560d0c3f806886f909ac535ba213ddc8b42cd5d6a1",
+            "fieldCount": 12,
+            "unchangedCard": false
+          },
+          {
+            "id": "fresenius_hemoflow_air_warning_2023",
+            "referenceRevision": "sha256:8f862a4eaea795d3497d29bc2412fab6c2425290283cd71c5001dff36d84069c",
+            "fieldCount": 12,
+            "unchangedCard": false
+          }
+        ]
+      },
+      "bundleRevision": "sha256:bbd821ed54fd6c626b4b9361595d34caa645263d76f3d8b7f431be7da4c9c2ca",
+      "classificationBeforeAndAfter": {
+        "op": "Interromper entrada de ar e oferecer suporte imediato na suspeita de embolia gasosa durante hemodiálise.",
+        "competency": "Conduta segura em diálise",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedBefore": "hard",
+        "rationale": "Integra dado/desenho e limita uma inferência ou decisão clínica; não exige cálculo avançado.",
+        "identity": "MesmoOP,competência econceito correto. Preserva qid/FSRS; fornece dados e delimita contexto sem mudar decisão central."
+      },
+      "evidenceSources": [
+        {
+          "id": "E",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5293333/",
+          "doi": "10.2215/CJN.05260516",
+          "access": "OPENED_FULL_TEXT_ORIGINAL_REVIEW",
+          "version": "Saha/AllonCJASN2017;12:357–369",
+          "locators": [
+            "AirEmbolism, especialmente parágrafos deoxigênio/supino/aspiração"
+          ],
+          "scope": "Revisão original de emergências; sustenta suporte da embolia e não transforma Durant em obrigatório para todos."
+        },
+        {
+          "id": "EI",
+          "url": "https://www.freseniusmedicalcare.com/content/dam/fmcna/live/support/documents/instructions-for-use/hemodialyzers---ifus/F50002269_F3-F4%20IFU%20REV%20F_07-2023.pdf",
+          "access": "OPENED_FULL_TEXT_MANUFACTURER_IFU",
+          "version": "HemoflowF3/F4, F50002269, revisão07/2023",
+          "locators": [
+            "PDFp1 Warning, entrada de ar e não retorno do sangue",
+            "Rodapé revisão07/2023"
+          ],
+          "scope": "A advertência é do circuito extracorpóreo usado comHemoflowF3/F4. O candidato especificaF4 e ar que não pode ser removido com segurança; não extrapola funcionamento de alarmes/priming a todos os dispositivos."
+        }
+      ],
+      "claims": [
+        {
+          "id": "C1",
+          "claim": "SahaAirEmbolism:oxigênio100%,posição supina e suporte;Durantnão obrigatório.",
+          "sources": [
+            "E",
+            "EI"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C2",
+          "claim": "IFUHemoflowF3/F4:p1Warning,interromper/nãodevolversanguequandoar não pode ser removido com segurança.",
+          "sources": [
+            "E",
+            "EI"
+          ],
+          "status": "VERIFICADA"
+        },
+        {
+          "id": "C3",
+          "claim": "AFTERdelimitaHemoflowF4 e condição de ar inseguro; não importa comportamento específico paraoutros equipamentos.",
+          "sources": [
+            "E",
+            "EI"
+          ],
+          "status": "VERIFICADA"
+        }
+      ],
+      "review": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 7. Nova revisão formal autoral A2.1 do mesmo AFTER com cards corrigidos e bindings novos; não há pendência substantiva identificada no pacote exato. Não é revisão independente.",
+        "findingsBefore": [
+          "MAIOR: correta seletivamente longa/detalhada; opções precisavam avaliar erros plausíveis e não apenas extremos."
+        ],
+        "substantiveProblemsAfter": [],
+        "appeal": {
+          "conclusion": "Nenhum argumento plausível de anulação identificado após revisão autoral adversarial.",
+          "attempt": "Mantida toda a segurança do gabarito, sem encurtar por remoção de medidas essenciais. O modelo e a condição doIFU estão no caso. O fabricante sustenta não reinfundir; a revisão clínica sustenta suporte/posição. Distratores são erros reais deprioridade/transfusão/troubleshooting, não acelerar deliberadamente a entrada de ar.",
+          "optionAudit": [
+            {
+              "letter": "A",
+              "text": "Parar a bomba e clampear sem devolver sangue; oxigênio a 100%, posição supina e suporte circulatório.",
+              "correct": true,
+              "error": "Única alternativa sustentada pelas fontes no comando delimitado."
+            },
+            {
+              "letter": "B",
+              "text": "Parar a bomba, devolver o sangue e oferecer oxigênio antes de avaliar a origem do alarme.",
+              "correct": false,
+              "error": "Priorizar evitar perda sanguínea reinfundindo circuito inseguro."
+            },
+            {
+              "letter": "C",
+              "text": "Parar a bomba e oferecer oxigênio, liberando o ar do circuito conectado para retomar a sessão.",
+              "correct": false,
+              "error": "Tratar o alarme manipulando circuito conectado em paciente com suspeita clínica de embolia."
+            },
+            {
+              "letter": "D",
+              "text": "Suspender a ultrafiltração, elevar as pernas e dar solução salina, mantendo a bomba de sangue.",
+              "correct": false,
+              "error": "Tratar a hipotensão como ultrafiltração excessiva e manter entrada potencial de ar."
+            }
+          ]
+        },
+        "eliminators": [
+          {
+            "id": 1,
+            "label": "Mais de uma resposta defensável",
+            "triggered": false,
+            "basis": "Cada distrator recebeu tentativa de leitura favorável no advogado; nenhuma atende ao mesmo comando."
+          },
+          {
+            "id": 2,
+            "label": "A referência não sustenta o gabarito",
+            "triggered": false,
+            "basis": "Todas as referências de12campos e claims foram conferidas; patches e exceçãoIFUintegram o pacote."
+          },
+          {
+            "id": 3,
+            "label": "A questão mede outro OP",
+            "triggered": false,
+            "basis": "Identidade eOP explicitados sem desvio."
+          },
+          {
+            "id": 4,
+            "label": "Conduta insegura",
+            "triggered": false,
+            "basis": "Segurança preservada, sem recomendação universal ou extrapolação regulatória."
+          },
+          {
+            "id": 5,
+            "label": "Distrator absurdo",
+            "triggered": false,
+            "basis": "Erros plausíveis nomeados por alternativa, sem mecanismo aleatório ou negação fisiológica absurda."
+          },
+          {
+            "id": 6,
+            "label": "Trivia sem consequência clínica",
+            "triggered": false,
+            "basis": "Ensina interpretação ou segurança útil, não número isolado."
+          },
+          {
+            "id": 7,
+            "label": "A explicação contradiz o gabarito",
+            "triggered": false,
+            "basis": "AFTER eexplicação mantêm conceito correto."
+          },
+          {
+            "id": 8,
+            "label": "Dado decisivo ausente",
+            "triggered": false,
+            "basis": "Dados/contexto suficientes, inclusive urgência e equipamento quando decisivos."
+          },
+          {
+            "id": 9,
+            "label": "Dependência de protocolo local não informado",
+            "triggered": false,
+            "basis": "Não pede protocolo local oculto."
+          },
+          {
+            "id": 10,
+            "label": "Desatualização científica relevante",
+            "triggered": false,
+            "basis": "Fontes abertas nesta rodada; datas/versões explicitadas."
+          }
+        ],
+        "score": {
+          "total": 19,
+          "band": "Excelente",
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Validade de construto",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Alternativas",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Distratores",
+              "points": 2,
+              "reason": "Erros de interpretação/conduta específicos e auditados."
+            },
+            {
+              "dimension": "Explicação",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Referências",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "points": 1,
+              "reason": "Há cautela ou paralelismo residual ditados pela interpretação, sem comprimento exclusivo."
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "points": 2,
+              "reason": "Atende ao objetivo e às verificações registradas."
+            }
+          ]
+        },
+        "decisionTree": "0:VERIFICADA/NENHUMA permiteavaliar;1:nenhum eliminatório;2:sem recurso plausível restante;3:18–19/20→aprovada. Implementação aguarda revisão independente e aprovação dos cards/patches vinculados."
+      },
+      "duplicateAudit": {
+        "scope": "Busca dirigida pelos estudos/intervenções e perfil cognitivo; não se declara revisão semântica global do banco.",
+        "result": "Não identificado outro item com as mesmas quatro dimensões na busca dirigida."
+      },
+      "lengthSignal": {
+        "before": {
+          "chars": [
+            198,
+            96,
+            85,
+            130
+          ],
+          "ratio": 1.523076923076923,
+          "uniqueLongest": true
+        },
+        "after": {
+          "chars": [
+            101,
+            89,
+            94,
+            94
+          ],
+          "ratio": 1.074468085106383,
+          "uniqueLongest": true
+        },
+        "mechanicalSignalOnly": true
+      },
+      "implementation": {
+        "productionWrites": false,
+        "independentReviewRequired": true,
+        "preserve": [
+          "qid",
+          "ans",
+          "cat",
+          "FSRS e histórico do próprioqid"
+        ],
+        "referenceDependencies": [
+          "saha_hd_emergencies_2017",
+          "fresenius_hemoflow_air_warning_2023"
+        ],
+        "change": [
+          "q",
+          "refs",
+          "opts",
+          "diff"
+        ]
+      }
+    }
+  ],
+  "referencePatches": [
+    {
+      "id": "fda_hdf_water_k210575",
+      "before": {
+        "label": "FDA K210575 — Água e Fluido Ultrapuro para HDF",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf21/K210575.pdf",
+        "journal": "U.S. Food and Drug Administration 510(k)",
+        "ano": 2021,
+        "tipo": "Documento regulatório",
+        "badge": "REG",
+        "badgeColor": "#2563eb",
+        "impacto": "Distinção operacional entre água de entrada, dialisato ultrapuro e fluido de substituição online",
+        "icon": "📋",
+        "resumo": "O documento exige água de entrada com menos de 100 UFC/mL e menos de 0,25 EU/mL e descreve filtros que produzem fluido de diálise ultrapuro com menos de 0,1 UFC/mL e menos de 0,03 EU/mL, em conformidade com ISO 23500. O fluido de substituição online depende de barreiras redundantes adicionais.",
+        "conclusao": "Água tratada e dialisato ultrapuro são matrizes diferentes, com pontos de amostragem e limites diferentes; usar o termo correto evita aplicar um padrão ao componente errado.",
+        "curiosidade": "O nível de ação indicado para a água é metade do máximo — 50 UFC/mL e 0,125 EU/mL — permitindo intervir antes de ultrapassar o limite."
+      },
+      "beforeRevision": "sha256:adec7aa3638a24b9d719836883e77350bbcc960c2ad4a46866cb82761624efe8",
+      "after": {
+        "label": "FDA K210575 — Água e Fluido Ultrapuro para HDF",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf21/K210575.pdf",
+        "journal": "U.S. Food and Drug Administration 510(k)",
+        "ano": 2022,
+        "tipo": "Documento regulatório",
+        "badge": "REG",
+        "badgeColor": "#2563eb",
+        "impacto": "Distinção operacional entre água de entrada, dialisato ultrapuro e fluido de substituição online",
+        "icon": "📋",
+        "resumo": "O documento exige água de entrada com menos de 100 UFC/mL e menos de 0,25 EU/mL e descreve filtros que produzem fluido de diálise ultrapuro com menos de 0,1 UFC/mL e menos de 0,03 EU/mL, em conformidade com ISO 23500. O fluido de substituição online depende de barreiras redundantes adicionais.",
+        "conclusao": "Água tratada e dialisato ultrapuro são matrizes diferentes, com pontos de amostragem e limites diferentes; usar o termo correto evita aplicar um padrão ao componente errado.",
+        "curiosidade": "O nível de ação indicado para a água é metade do máximo — 50 UFC/mL e 0,125 EU/mL — permitindo intervir antes de ultrapassar o limite."
+      },
+      "afterRevision": "sha256:cde2de0b3a015ad274149cd749e829c0a8d740c51e28a8f1a4c8662075bdb39f",
+      "fieldCount": 12,
+      "change": "Somenteano2021→2022, confirmado na carta oficial de13/05/2022.",
+      "consumers": [
+        "ef4e119e"
+      ],
+      "authorGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "scope": "12campos do card exato após correção bibliográfica, sem autorização automática para alterar questões consumidoras."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "id": "kdigo_dialise",
+      "before": {
+        "label": "KDOQI Hemodialysis Adequacy 2015",
+        "url": "https://www.ajkd.org/article/S0272-6386(15)01019-2/fulltext",
+        "journal": "Am J Kidney Dis 2015;66(5):884-930",
+        "ano": 2015,
+        "tipo": "Diretriz Clínica (KDOQI/NKF)",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Padrão para adequação e prescrição em hemodiálise — alvo Kt/V e dose dialítica mínima",
+        "icon": "📋",
+        "resumo": "Diretriz KDOQI para adequação da hemodiálise. Para HD três vezes por semana, recomenda spKt/V alvo de 1,4 por sessão, com valor mínimo entregue de 1,2. Aborda avaliação periódica da dose dialítica, estado nutricional e acesso vascular como componentes integrados da qualidade do tratamento.",
+        "conclusao": "Define o índice Kt/V como medida-padrão da dose de diálise — base para auditoria e controle de qualidade nos centros de hemodiálise.",
+        "curiosidade": "O Kt/V foi proposto por Gotch e Sargent em 1985 com base no NCDS — primeiro estudo a demonstrar que a dose de diálise influencia a morbimortalidade. O 'K' representa o clearance de ureia do dialisador, 't' o tempo de sessão e 'V' o volume de distribuição da ureia, aproximadamente 60% do peso corporal."
+      },
+      "beforeRevision": "sha256:c26f2a6619b28e968fbe811be64a73f9bdc71b65734d5847b1029a4d7f239a9a",
+      "after": {
+        "label": "KDOQI Hemodialysis Adequacy 2015",
+        "url": "https://www.ajkd.org/article/S0272-6386(15)01019-7/fulltext",
+        "journal": "Am J Kidney Dis 2015;66(5):884-930",
+        "ano": 2015,
+        "tipo": "Diretriz Clínica (KDOQI/NKF)",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Padrão para adequação e prescrição em hemodiálise — alvo Kt/V e dose dialítica mínima",
+        "icon": "📋",
+        "resumo": "Diretriz KDOQI para adequação da hemodiálise. Para HD três vezes por semana, recomenda spKt/V alvo de 1,4 por sessão, com valor mínimo entregue de 1,2. Aborda avaliação periódica da dose dialítica, estado nutricional e acesso vascular como componentes integrados da qualidade do tratamento.",
+        "conclusao": "Define o índice Kt/V como medida-padrão da dose de diálise — base para auditoria e controle de qualidade nos centros de hemodiálise.",
+        "curiosidade": "Na hemodiálise três vezes por semana, o alvo de spKt/V é 1,4 e o mínimo entregue é 1,2. Função renal residual significativa pode permitir redução da dose, desde que seja medida periodicamente."
+      },
+      "afterRevision": "sha256:f94df6a974879e55b35546e2ad2041fa93f0142781cd30933ea0ff09d9f7627e",
+      "fieldCount": 12,
+      "change": "Retira a atribuição histórica não conferida a NCDS/morbimortalidade/primeiro estudo e a aproximação universal de 60% do peso. Usa somente recomendações 3.1–3.2. Mantém correção do PII final 2→7.",
+      "evidenceSources": [
+        {
+          "url": "https://www.giovambattistavirga.com/wp-content/uploads/2020/04/KDOQI-Hemodialysis-Guidelines-2015.pdf",
+          "access": "OPENED_FINAL_PRIMARY_GUIDELINE_REPRINT",
+          "locator": "PDF p11, recomendações 3.1 e 3.2",
+          "version": "Am J Kidney Dis. 2015;66(5):884–930, documento final"
+        }
+      ],
+      "consumers": [
+        "f77abde0"
+      ],
+      "authorGate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Reavaliação formal autoral dos 12 campos exatos, com as quatro correções solicitadas pelo root. Handbook §18.4 Regra 7; não herda revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "id": "saha_hd_emergencies_2017",
+      "before": {
+        "label": "Saha M, Allon M — Hemodialysis Emergencies (CJASN 2017)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27831511/",
+        "journal": "Clinical Journal of the American Society of Nephrology 2017;12(2):357-369",
+        "ano": 2017,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Reconhecimento, tratamento e prevenção das emergências relacionadas à hemodiálise",
+        "icon": "🔬",
+        "resumo": "Revisão clínica das principais emergências da hemodiálise, incluindo síndrome de desequilíbrio e embolia gasosa. O desequilíbrio decorre de gradiente osmótico com edema cerebral após depuração rápida em pacientes de alto risco e deve ser prevenido com início menos eficiente. Na embolia gasosa, a prioridade é interromper a entrada de ar, não devolver o sangue do circuito, administrar oxigênio e sustentar a hemodinâmica; posição supina é favorecida para suporte, reservando decúbito lateral esquerdo quando se tenta aspirar ar por cateter já existente.",
+        "conclusao": "Sintomas neurológicos no início da diálise e colapso respiratório após alarme de ar exigem respostas distintas, rápidas e protocolizadas, além de investigação de outras causas e análise da origem do evento.",
+        "curiosidade": "Com detectores modernos, embolia gasosa sintomática tornou-se muito rara; episódios descritos costumam envolver falha de conexão, priming inadequado ou ausência de clampeamento."
+      },
+      "beforeRevision": "sha256:0f5f54e80d3be64f93dbf9194ed640369bf4da5828da6aeaad0b8c4125d48ce6",
+      "after": {
+        "label": "Saha M, Allon M — Hemodialysis Emergencies (CJASN 2017)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27831511/",
+        "journal": "Clinical Journal of the American Society of Nephrology 2017;12(2):357-369",
+        "ano": 2017,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Reconhecimento, tratamento e prevenção das emergências relacionadas à hemodiálise",
+        "icon": "🔬",
+        "resumo": "Revisão clínica das principais emergências da hemodiálise, incluindo síndrome de desequilíbrio e embolia gasosa. O desequilíbrio decorre de gradiente osmótico com edema cerebral após depuração rápida em pacientes de alto risco e deve ser prevenido com início menos eficiente. Na embolia gasosa, a prioridade é interromper a entrada de ar, administrar oxigênio e sustentar a hemodinâmica; posição supina é favorecida para suporte, reservando decúbito lateral esquerdo quando se tenta aspirar ar por cateter já existente.",
+        "conclusao": "Sintomas neurológicos no início da diálise e colapso respiratório após alarme de ar exigem respostas distintas, rápidas e protocolizadas, além de investigação de outras causas e análise da origem do evento.",
+        "curiosidade": "Com detectores modernos, embolia gasosa sintomática tornou-se muito rara; episódios descritos costumam envolver falha de conexão, priming inadequado ou ausência de clampeamento."
+      },
+      "afterRevision": "sha256:8c2a7832e16e9be3675207560d0c3f806886f909ac535ba213ddc8b42cd5d6a1",
+      "fieldCount": 12,
+      "change": "Retira da revisão Saha a orientação de não devolver o sangue, ausente na seção VAE. A medida permanece corretamente atribuída ao IFU Hemoflow F3/F4 no caso delimitado; não foi retirada da segurança do candidato.",
+      "evidenceSources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5293333/",
+          "access": "OPENED_FULL_TEXT_ORIGINAL_REVIEW",
+          "locator": "Venous Air Embolism, tratamento e posição",
+          "version": "CJASN 2017;12(2):357–369"
+        }
+      ],
+      "consumers": [
+        "6a4259d8",
+        "cbfdb00a"
+      ],
+      "authorGate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Reavaliação formal autoral dos 12 campos exatos, com as quatro correções solicitadas pelo root. Handbook §18.4 Regra 7; não herda revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "id": "pisces_study",
+      "before": {
+        "label": "Lok et al. — PISCES",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41201837/",
+        "journal": "N Engl J Med. 2026;394(2):128-137",
+        "ano": 2026,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente óleo de peixe com 4 g de ácidos graxos n−3 — 1,6 g de EPA e 0,8 g de DHA — ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+        "conclusao": "Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+        "curiosidade": "O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
+      },
+      "beforeRevision": "sha256:836d10b4aab744ea326218e28490bab7d5064a6ae7e6c1b078a0f85a6914a6f8",
+      "after": {
+        "label": "Lok et al. — PISCES",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41201837/",
+        "journal": "N Engl J Med. 2026;394(2):128-137",
+        "ano": 2026,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente 4 g de óleo de peixe, fornecendo 1,6 g de ácido eicosapentaenoico (EPA) e 0,8 g de ácido docosa-hexaenoico (DHA), ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+        "conclusao": "Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+        "curiosidade": "O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
+      },
+      "afterRevision": "sha256:a7dfdca79947e3f3eb8bf71facda7bbdda929cb034632aa32c20ae98d1250bc7",
+      "fieldCount": 12,
+      "change": "Corrige a formulação: 4 g de óleo de peixe não são 4 g de ácidos graxos n−3. Expande EPA/DHA na primeira ocorrência. Doses conferidas no documento primário integral do editor.",
+      "evidenceSources": [
+        {
+          "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2513032.pdf",
+          "access": "OPENED_FULL_TEXT_OFFICIAL_PUBLISHER_PDF",
+          "locator": "p1–2, Methods/intervention",
+          "version": "Publicado 07/11/2025 e atualizado 25/11/2025; edição 2026;394(2):128–137"
+        }
+      ],
+      "consumers": [
+        "ff4c8b9e",
+        "4ea80768",
+        "6ffa0ff0",
+        "f5e0666b"
+      ],
+      "authorGate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Reavaliação formal autoral dos 12 campos exatos, com as quatro correções solicitadas pelo root. Handbook §18.4 Regra 7; não herda revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "id": "fda_breakthrough_devices_2026",
+      "before": {
+        "label": "FDA — Breakthrough Devices Program (2026)",
+        "url": "https://www.fda.gov/medical-devices/how-study-and-market-your-device/breakthrough-devices-program",
+        "journal": "U.S. Food and Drug Administration",
+        "ano": 2026,
+        "tipo": "Documento regulatório oficial",
+        "badge": "REG",
+        "badgeColor": "#2563eb",
+        "impacto": "Significado, critérios e limites da Breakthrough Device Designation",
+        "icon": "📋",
+        "resumo": "O programa voluntário acelera desenvolvimento, avaliação e revisão de dispositivos destinados a doenças graves ou irreversivelmente debilitantes. A designação oferece interação adicional com o FDA e revisão priorizada de submissões futuras, preservando os padrões legais aplicáveis a PMA, 510(k) ou De Novo.",
+        "conclusao": "Breakthrough Device Designation é um mecanismo de desenvolvimento e revisão; o dispositivo ainda precisa obter a autorização de mercado apropriada antes de ser comercializado.",
+        "curiosidade": "Até março de 2026, o FDA registrava 1.284 designações, mas apenas 198 autorizações de mercado consistentes com a indicação designada."
+      },
+      "beforeRevision": "sha256:807bc4814bbc9ba1f111b43386256836a9d887aa4fa33f334a00edb86c84ae56",
+      "after": {
+        "label": "FDA — Breakthrough Devices Program (2026)",
+        "url": "https://www.fda.gov/medical-devices/how-study-and-market-your-device/breakthrough-devices-program",
+        "journal": "U.S. Food and Drug Administration",
+        "ano": 2026,
+        "tipo": "Documento regulatório oficial",
+        "badge": "REG",
+        "badgeColor": "#2563eb",
+        "impacto": "Significado, critérios e limites da Breakthrough Device Designation",
+        "icon": "📋",
+        "resumo": "O programa voluntário acelera desenvolvimento, avaliação e revisão de dispositivos destinados a doenças graves ou irreversivelmente debilitantes. A designação oferece interação adicional com o FDA e revisão priorizada de submissões futuras, preservando os padrões legais aplicáveis a PMA, 510(k) ou De Novo.",
+        "conclusao": "Breakthrough Device Designation é um mecanismo de desenvolvimento e revisão; o dispositivo ainda precisa obter a autorização de mercado apropriada antes de ser comercializado.",
+        "curiosidade": "O pedido de designação pode ser apresentado antes de enviar a submissão para autorização de mercado, conforme a etapa de desenvolvimento do dispositivo."
+      },
+      "afterRevision": "sha256:79c14f121ff0222ab1247e51f5a770ec327eec4641a660ef8fe3772da40af4a0",
+      "fieldCount": 12,
+      "change": "Retira estatísticas de março/2026 não localizadas e as substitui por um fato operacional expresso no documento oficial, sem criar contagem nova.",
+      "evidenceSources": [
+        {
+          "url": "https://www.fda.gov/medical-devices/how-study-and-market-your-device/breakthrough-devices-program",
+          "access": "OPENED_FULL_TEXT_REGULATOR",
+          "locator": "When do I request a Breakthrough Device designation? Parágrafo: before sending your marketing submission",
+          "version": "Página oficial consultada 15/11/2026"
+        }
+      ],
+      "consumers": [
+        "c7abfaf3"
+      ],
+      "authorGate": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Reavaliação formal autoral dos 12 campos exatos, com as quatro correções solicitadas pelo root. Handbook §18.4 Regra 7; não herda revisão independente."
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "newReferences": [
+    {
+      "id": "fresenius_hemoflow_air_warning_2023",
+      "after": {
+        "label": "Fresenius — Hemoflow F3/F4: ar no circuito (IFU, 2023)",
+        "url": "https://www.freseniusmedicalcare.com/content/dam/fmcna/live/support/documents/instructions-for-use/hemodialyzers---ifus/F50002269_F3-F4%20IFU%20REV%20F_07-2023.pdf",
+        "journal": "Fresenius Medical Care — Instructions for Use",
+        "ano": 2023,
+        "tipo": "Instruções de uso do fabricante",
+        "badge": "MANUAL",
+        "badgeColor": "#64748b",
+        "impacto": "Ar não removível com segurança exige interromper e não reinfundir sangue do circuito.",
+        "icon": "📋",
+        "resumo": "Instruções de uso dos dialisadores Hemoflow F3 e F4, revisão de julho de 2023. O alerta sobre entrada de ar no circuito extracorpóreo orienta interromper o tratamento e não devolver o sangue se o ar não puder ser removido com segurança.",
+        "conclusao": "No equipamento descrito, o circuito com ar inseguro não deve ser reinfundido; o suporte clínico depende da avaliação da embolia gasosa.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:8f862a4eaea795d3497d29bc2412fab6c2425290283cd71c5001dff36d84069c",
+      "fieldCount": 12,
+      "newReference": true,
+      "formatException": {
+        "approvedByParent": true,
+        "type": "Instruções de uso do fabricante",
+        "badge": "MANUAL",
+        "badgeColor": "#64748b",
+        "icon": "📋",
+        "scope": "IFU oficial necessário à segurança;adjudicação de formato não é aprovação clínica."
+      },
+      "clinicalScope": "HemoflowF3/F4, revisão07/2023; candidato usaF4 e condição do próprio alerta. Nenhuma generalização de desempenho para todos os equipamentos.",
+      "authorGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "pending": [
+    {
+      "qid": "3d81f74d",
+      "authorRevision": "sha256:a375130eaf99f352662a8c67fa63465da87e1f5d90f9e0ec0db8725f9223a9b9",
+      "sourceQuestion": {
+        "qid": "3d81f74d",
+        "q": "Ao discutir modalidade de terapia renal substitutiva na LRA crítica, qual síntese interpreta corretamente o HEMODIAFE e a evidência sobre SLED/diálise estendida versus CRRT?",
+        "opts": [
+          "O HEMODIAFE comparou SLED com CRRT e demonstrou superioridade de sobrevida da SLED",
+          "O HEMODIAFE comparou hemodiálise intermitente com CVVHDF e encontrou sobrevida em 60 dias semelhante; ensaios de diálise estendida versus CRRT também não demonstram superioridade consistente de mortalidade",
+          "O HEMODIAFE provou que CRRT elimina hipotensão e reduz pela metade a mortalidade diante de qualquer modalidade intermitente",
+          "Como os desfechos são semelhantes, modalidade, estabilidade hemodinâmica e capacidade local não devem influenciar a escolha"
+        ],
+        "ans": 1,
+        "exp": "O HEMODIAFE randomizou hemodiálise intermitente e CVVHDF — não SLED — em pacientes com LRA e disfunção de múltiplos órgãos. A sobrevida em 60 dias foi semelhante, cerca de 32% versus 33%, sem superioridade da terapia contínua. Separadamente, metanálise de ensaios randomizados de diálise estendida/SLED versus CRRT não mostrou diferença significativa de mortalidade, recuperação renal, remoção de fluidos ou permanência na UTI. Portanto, a escolha deve integrar estabilidade hemodinâmica, necessidade de controle gradual, recursos e experiência local, sem prometer vantagem de sobrevida de uma modalidade.",
+        "refs": [
+          "hemodiafe_2006",
+          "sled_crrt_meta_2015",
+          "kdigo_aki"
+        ],
+        "cat": "dialise",
+        "diff": "hard",
+        "t": "LRA Crítica — HEMODIAFE, SLED e CRRT"
+      },
+      "kind": "TRIAGE_NOT_COMPLETE_FORMAL_REVIEW",
+      "after": null,
+      "publicationAuthorization": "BLOQUEADA",
+      "reason": "HEMODIAFEprimário direto não abriu (PubMedstub/Lancet403);metaSLEDabstractabriu,masnãoverifica sozinho resultadoHEMODIAFE. Não usar resumo terciário ou slides como liberação.",
+      "decisivePending": true,
+      "productionWrites": false,
+      "supersededBySeparateNewGate": "Ver dialysis-author-A31.json; não aplicar este registro histórico bloqueado."
+    },
+    {
+      "qid": "fe3a5b91",
+      "authorRevision": "sha256:debe1af849c203c2c90b75dbef0c44391f7621fe07503c7c86f2eb98f070183d",
+      "sourceQuestion": {
+        "t": "Fluxo de Dialisato — Ganho de Adequação e Custo Hídrico",
+        "qid": "fe3a5b91",
+        "q": "Paciente em hemodiálise convencional já atinge a meta de dose entregue com Qd de 500 mL/min. Como interpretar a elevação rotineira do Qd para 800 mL/min?",
+        "refs": [
+          "dialysate_flow_meta_2024"
+        ],
+        "opts": [
+          "Pode aumentar discretamente spKt/V e URR, mas faltam benefícios demonstrados em desfechos clínicos e o maior consumo de água deve entrar na decisão",
+          "Reduz comprovadamente mortalidade e sintomas, devendo ser aplicada a todos os pacientes",
+          "Não modifica nenhuma métrica de depuração ureica e por isso nunca deve ser usada",
+          "Substitui a necessidade de conferir tempo entregue, fluxo sanguíneo, acesso e recirculação"
+        ],
+        "ans": 0,
+        "exp": "Metanálise de estudos pequenos encontrou, ao elevar Qd de 500 para 800 mL/min, aumento médio modesto do spKt/V em 0,08 e da URR em 3,38 pontos. Não havia evidência adequada sobre sintomas, função, qualidade de vida ou mortalidade, e o risco de viés era relevante. Em quatro horas, o fluxo maior usa cerca de 72 litros adicionais de dialisato. Assim, Qd deve ser individualizado pela dose entregue e pelo conjunto da prescrição; não é uma meta universal nem corrige tempo encurtado, acesso disfuncional ou recirculação.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "kind": "TRIAGE_NOT_COMPLETE_FORMAL_REVIEW",
+      "after": null,
+      "publicationAuthorization": "BLOQUEADA",
+      "reason": "Resumo primário completo retornou em busca, mas acesso direto aPubMed/PMC/editor retornou stub/CAPTCHA/403; não declarar leitura integral ou liberar o gate sem completar acesso. Framework clínico e72Lderivado não substituem a diligência de fonte.",
+      "decisivePending": true,
+      "productionWrites": false,
+      "supersededBySeparateNewGate": "Ver dialysis-author-A31.json; não aplicar este registro histórico bloqueado."
+    }
+  ],
+  "productionWrites": false,
+  "edition": "A2.1: oito questões idênticas byte a byte ao AFTER do A2; quatro cards reparados, correção prévia de ano FDA/água e IFU preservados. O A2 anterior permanece intocado."
+}

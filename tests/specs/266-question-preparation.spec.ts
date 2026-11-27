@@ -51,7 +51,7 @@ test('a preparação nativa cede a tela e só publica o catálogo completo', asy
     await info.attach('native-catalog-preparation', { contentType: 'application/json', body: JSON.stringify({ result, audit }) });
     expect(result.pendingTicks, 'Browser tasks must run while actual catalog preparation is pending').toBeGreaterThanOrEqual(2);
     expect(result.completeProfiles).toEqual([true, true, true, true]);
-    expect(result.count).toBe(741); expect(result.manifestCount).toBe(741);
+    expect(result.count).toBe(723); expect(result.manifestCount).toBe(723);
     expect(result.authNull).toBe(true); expect(result.correct).toBe(0); expect(result.gold).toBe(0);
     expect(audit.errors).toEqual([]); expect(audit.nonGET).toEqual([]); expect(audit.sockets).toBe(0);
   } finally {

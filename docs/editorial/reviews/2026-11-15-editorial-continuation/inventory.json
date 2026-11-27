@@ -1,0 +1,905 @@
+{
+  "schema": 1,
+  "kind": "mechanical-screening-only",
+  "status": "SEM VEREDITO MEDICO; SEM AUTORIZACAO EDITORIAL NOVA",
+  "baseCommit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "branch": "codex/editorial-priorities-1725",
+  "source": "data/topics.js",
+  "sourceSHA256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d",
+  "refsSHA256": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5",
+  "method": "v2: Plain authored strings, without HTML stripping, as the UI escapes content; Unicode codepoints after whitespace normalization; words split by whitespace. Longest-rule ties resolved uniformly among tied maxima. Structural screening only, not editorial approval.",
+  "overall": {
+    "n": 741,
+    "chars": {
+      "uniqueLongest": 490,
+      "tiedLongest": 24,
+      "shortest": 71,
+      "longestRuleAccuracy": 0.6744264507422402,
+      "ratiosOver125": 306,
+      "ratiosOver150": 171,
+      "ratiosOver200": 31
+    },
+    "words": {
+      "uniqueLongest": 431,
+      "tiedLongest": 85,
+      "shortest": 57,
+      "longestRuleAccuracy": 0.6242690058479533,
+      "ratiosOver125": 299,
+      "ratiosOver150": 173,
+      "ratiosOver200": 48
+    }
+  },
+  "comparisonWithPrior149": {
+    "sameTopicsBytes": false,
+    "sameOverallMetrics": true,
+    "previous149Count": 149,
+    "sourceLFNormalizedSHA256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d",
+    "all741AuthoredObjectsUnchanged": true,
+    "authoredObjectDrift": [],
+    "note": "All 741 authored question objects are identical to the prior149 measured rows. Current raw source hash and LF-normalized hash both differ from historical raw source hash; no claim of byte parity or cause of wrapper differences."
+  },
+  "remainingAfterExcludingPrevious149": {
+    "n": 592,
+    "chars": {
+      "uniqueLongest": 458,
+      "tiedLongest": 13,
+      "shortest": 34,
+      "longestRuleAccuracy": 0.7823761261261262,
+      "ratiosOver125": 304,
+      "ratiosOver150": 170,
+      "ratiosOver200": 30
+    },
+    "words": {
+      "uniqueLongest": 409,
+      "tiedLongest": 53,
+      "shortest": 25,
+      "longestRuleAccuracy": 0.7250844594594594,
+      "ratiosOver125": 293,
+      "ratiosOver150": 172,
+      "ratiosOver200": 47
+    }
+  },
+  "remainingPriorityCount": 170,
+  "remainingPriorityByCategory": {
+    "acido_base": 7,
+    "dialise": 18,
+    "drc": 17,
+    "eletrólitos": 21,
+    "farmacologia": 11,
+    "genetica": 7,
+    "glomerular": 45,
+    "hipertensao": 6,
+    "infeccao": 2,
+    "litíase": 3,
+    "lra": 15,
+    "nefrologia_geral": 5,
+    "nefropatia_diabetica": 3,
+    "transplante": 6,
+    "uti": 4
+  },
+  "selectionCriterion": "Two coherent lexical groups; within each group decreasing correct/maxWrong character ratio >=1.5; previous149 excluded. Clinical validity, appropriateness of references, duplicate objectives, and correction feasibility remain for formal review.",
+  "selected": [
+    {
+      "rank": 1,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "cfeef8e1",
+      "title": "Mecanismo da tolvaptana na hiponatremia",
+      "line": 533,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 1,
+      "answerLetter": "B",
+      "authoredObjectSHA256": "c2a403f15bc1db51d0a2511f2cdfa991a3b525be91bd9bb8e5d0d0ccc2bb6553",
+      "authorRevision": "sha256:9fb7e7851f853e86c42ad2d581393300e2fe25f51b8cdd9c5999e2d669b23706",
+      "optionChars": [
+        50,
+        127,
+        46,
+        48
+      ],
+      "optionWords": [
+        9,
+        21,
+        8,
+        8
+      ],
+      "chars": {
+        "correct": 127,
+        "maxWrong": 50,
+        "ratio": 2.54,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 21,
+        "maxWrong": 9,
+        "ratio": 2.3333333333333335,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hyponatremia_adrogue2000",
+        "hyponatremia_verbalis2022",
+        "salsa_trial"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hyponatremia_adrogue2000",
+          "exists": true,
+          "authoredObjectSHA256": "9fed75a1fdd94163ae9f1b1a275a9f5e06138256751c15b156c7c1e24da6aeff",
+          "referenceRevision": "sha256:d16ea2cb47cf4b8080a3d2f6d74607d3f64354fa85ad520e3a1be15c59c9ccb9",
+          "bankConsumerCount": 15
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "salsa_trial",
+          "exists": true,
+          "authoredObjectSHA256": "729fddd34d67ef368b4e46c0b2d99aa8d006e704bb13966bcc6d56e6c901ff7f",
+          "referenceRevision": "sha256:66079fbdc16845cf3772bf5b320c9632070a0b3b580b12777291fc07a6e03978",
+          "bankConsumerCount": 9
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 2,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "a4c85d32",
+      "title": "Hiponatremia na insuficiência cardíaca",
+      "line": 421,
+      "category": "eletrólitos",
+      "difficulty": "hard",
+      "answerIndex": 2,
+      "answerLetter": "C",
+      "authoredObjectSHA256": "2390f3dbbd86d094c3a6262fa0c2f46998b122c76530de602ac7f467f2b6f00e",
+      "authorRevision": "sha256:a1fcefab6c17888a89eb154ae5e492086899c533a0789d8c49f4b0108bdcdd09",
+      "optionChars": [
+        5,
+        21,
+        53,
+        19
+      ],
+      "optionWords": [
+        1,
+        2,
+        5,
+        2
+      ],
+      "chars": {
+        "correct": 53,
+        "maxWrong": 21,
+        "ratio": 2.5238095238095237,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 5,
+        "maxWrong": 2,
+        "ratio": 2.5,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hyponatremia_adrogue2000",
+        "hyponatremia_verbalis2022",
+        "brenner_rector"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hyponatremia_adrogue2000",
+          "exists": true,
+          "authoredObjectSHA256": "9fed75a1fdd94163ae9f1b1a275a9f5e06138256751c15b156c7c1e24da6aeff",
+          "referenceRevision": "sha256:d16ea2cb47cf4b8080a3d2f6d74607d3f64354fa85ad520e3a1be15c59c9ccb9",
+          "bankConsumerCount": 15
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "brenner_rector",
+          "exists": true,
+          "authoredObjectSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02",
+          "referenceRevision": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142",
+          "bankConsumerCount": 170
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 3,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "3fa2737c",
+      "title": "Síndrome Pós-RTU — Hiponatremia Aguda",
+      "line": 522,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 3,
+      "answerLetter": "D",
+      "authoredObjectSHA256": "29aa020dbc61b3a061ceb306ed202f57ef8139200fe422a8f4205f9ba16ee145",
+      "authorRevision": "sha256:828388e041a0f622bfb600416cfdefa97d4bc3578d287bafb2c836a46348a267",
+      "optionChars": [
+        46,
+        60,
+        58,
+        131
+      ],
+      "optionWords": [
+        5,
+        7,
+        8,
+        19
+      ],
+      "chars": {
+        "correct": 131,
+        "maxWrong": 60,
+        "ratio": 2.183333333333333,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 19,
+        "maxWrong": 8,
+        "ratio": 2.375,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hypona",
+        "hyponatremia_verbalis2022",
+        "salsa_trial"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hypona",
+          "exists": true,
+          "authoredObjectSHA256": "07c43406efd738c92b8996d2ab4c8d3ee7d337d1c14e3cf5cef13c8c5a4e517c",
+          "referenceRevision": "sha256:c8f0228bd8609e44aa062b60e9a214655d304106954c9aef6beac7df543e41ec",
+          "bankConsumerCount": 11
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "salsa_trial",
+          "exists": true,
+          "authoredObjectSHA256": "729fddd34d67ef368b4e46c0b2d99aa8d006e704bb13966bcc6d56e6c901ff7f",
+          "referenceRevision": "sha256:66079fbdc16845cf3772bf5b320c9632070a0b3b580b12777291fc07a6e03978",
+          "bankConsumerCount": 9
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 4,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "e94a6488",
+      "title": "Hiponatremia — Prevenção de Hipercorreção",
+      "line": 241,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 3,
+      "answerLetter": "D",
+      "authoredObjectSHA256": "1a3ed48227bda6c826c580b5476530555c23a2f6f16537b93271a054ca28e7e0",
+      "authorRevision": "sha256:8f75ad7c582415349fee768251d9a6ff3ad82f8add818d40ffbac99e2132a2b7",
+      "optionChars": [
+        54,
+        61,
+        44,
+        133
+      ],
+      "optionWords": [
+        8,
+        11,
+        6,
+        18
+      ],
+      "chars": {
+        "correct": 133,
+        "maxWrong": 61,
+        "ratio": 2.180327868852459,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 18,
+        "maxWrong": 11,
+        "ratio": 1.6363636363636365,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hypona",
+        "hyponatremia_verbalis2022",
+        "hyponatremia_adrogue2000"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hypona",
+          "exists": true,
+          "authoredObjectSHA256": "07c43406efd738c92b8996d2ab4c8d3ee7d337d1c14e3cf5cef13c8c5a4e517c",
+          "referenceRevision": "sha256:c8f0228bd8609e44aa062b60e9a214655d304106954c9aef6beac7df543e41ec",
+          "bankConsumerCount": 11
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "hyponatremia_adrogue2000",
+          "exists": true,
+          "authoredObjectSHA256": "9fed75a1fdd94163ae9f1b1a275a9f5e06138256751c15b156c7c1e24da6aeff",
+          "referenceRevision": "sha256:d16ea2cb47cf4b8080a3d2f6d74607d3f64354fa85ad520e3a1be15c59c9ccb9",
+          "bankConsumerCount": 15
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 5,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "4c7d3db3",
+      "title": "Mecanismo de Ação dos Vaptanos",
+      "line": 277,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 2,
+      "answerLetter": "C",
+      "authoredObjectSHA256": "b6b4d567b8c239cfcbcd65551a4c02e0e1d740008b6dafc175ae6633e8cbf6c7",
+      "authorRevision": "sha256:3361cb21168c754cadd3fc5e0af3597cfe78d14ddf0e430350dedc0cfde908f1",
+      "optionChars": [
+        48,
+        57,
+        102,
+        50
+      ],
+      "optionWords": [
+        9,
+        9,
+        15,
+        7
+      ],
+      "chars": {
+        "correct": 102,
+        "maxWrong": 57,
+        "ratio": 1.7894736842105263,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 15,
+        "maxWrong": 9,
+        "ratio": 1.6666666666666667,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hyponatremia_adrogue2000",
+        "hyponatremia_verbalis2022",
+        "salsa_trial"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hyponatremia_adrogue2000",
+          "exists": true,
+          "authoredObjectSHA256": "9fed75a1fdd94163ae9f1b1a275a9f5e06138256751c15b156c7c1e24da6aeff",
+          "referenceRevision": "sha256:d16ea2cb47cf4b8080a3d2f6d74607d3f64354fa85ad520e3a1be15c59c9ccb9",
+          "bankConsumerCount": 15
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "salsa_trial",
+          "exists": true,
+          "authoredObjectSHA256": "729fddd34d67ef368b4e46c0b2d99aa8d006e704bb13966bcc6d56e6c901ff7f",
+          "referenceRevision": "sha256:66079fbdc16845cf3772bf5b320c9632070a0b3b580b12777291fc07a6e03978",
+          "bankConsumerCount": 9
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 6,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "d9257155",
+      "title": "Hiponatremia Crônica — Risco de Correção Rápida",
+      "line": 257,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 0,
+      "answerLetter": "A",
+      "authoredObjectSHA256": "0f1ca1b3f87e90d632b4451eea5617f8857926009ae8d44bc79573141bbd98e4",
+      "authorRevision": "sha256:bdfe4433132c5e6e1c71fc227bb704bb9003728a473b5261b0b44b94d5a68d98",
+      "optionChars": [
+        67,
+        35,
+        42,
+        26
+      ],
+      "optionWords": [
+        7,
+        3,
+        6,
+        3
+      ],
+      "chars": {
+        "correct": 67,
+        "maxWrong": 42,
+        "ratio": 1.5952380952380953,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 7,
+        "maxWrong": 6,
+        "ratio": 1.1666666666666667,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hypona",
+        "hyponatremia_adrogue2000",
+        "hyponatremia_verbalis2022",
+        "salsa_trial"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hypona",
+          "exists": true,
+          "authoredObjectSHA256": "07c43406efd738c92b8996d2ab4c8d3ee7d337d1c14e3cf5cef13c8c5a4e517c",
+          "referenceRevision": "sha256:c8f0228bd8609e44aa062b60e9a214655d304106954c9aef6beac7df543e41ec",
+          "bankConsumerCount": 11
+        },
+        {
+          "id": "hyponatremia_adrogue2000",
+          "exists": true,
+          "authoredObjectSHA256": "9fed75a1fdd94163ae9f1b1a275a9f5e06138256751c15b156c7c1e24da6aeff",
+          "referenceRevision": "sha256:d16ea2cb47cf4b8080a3d2f6d74607d3f64354fa85ad520e3a1be15c59c9ccb9",
+          "bankConsumerCount": 15
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "salsa_trial",
+          "exists": true,
+          "authoredObjectSHA256": "729fddd34d67ef368b4e46c0b2d99aa8d006e704bb13966bcc6d56e6c901ff7f",
+          "referenceRevision": "sha256:66079fbdc16845cf3772bf5b320c9632070a0b3b580b12777291fc07a6e03978",
+          "bankConsumerCount": 9
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 7,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "21a99f07",
+      "title": "SIADH — Papel dos Vaptanos",
+      "line": 521,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 2,
+      "answerLetter": "C",
+      "authoredObjectSHA256": "112320d9593955f571288b0f8ac6fdd78ee3b3f95ca2644d74cd70d7cda01a6d",
+      "authorRevision": "sha256:c8d0f453da32421f6c00a91aabeaf80884a373c73738ec6fb6d9b7172d8b4701",
+      "optionChars": [
+        63,
+        47,
+        110,
+        71
+      ],
+      "optionWords": [
+        8,
+        7,
+        13,
+        11
+      ],
+      "chars": {
+        "correct": 110,
+        "maxWrong": 71,
+        "ratio": 1.5492957746478873,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 13,
+        "maxWrong": 11,
+        "ratio": 1.1818181818181819,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hyponatremia_verbalis2022",
+        "hypona"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        },
+        {
+          "id": "hypona",
+          "exists": true,
+          "authoredObjectSHA256": "07c43406efd738c92b8996d2ab4c8d3ee7d337d1c14e3cf5cef13c8c5a4e517c",
+          "referenceRevision": "sha256:c8f0228bd8609e44aa062b60e9a214655d304106954c9aef6beac7df543e41ec",
+          "bankConsumerCount": 11
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 8,
+      "screeningGroup": "hiponatremia-vaptanos",
+      "qid": "e2aae4c7",
+      "title": "SIADH — Critérios Laboratoriais",
+      "line": 520,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 0,
+      "answerLetter": "A",
+      "authoredObjectSHA256": "e007fd8af389124a2fee77a432c757e9fc31366116c97d750672e49ce49c55ef",
+      "authorRevision": "sha256:32667b08037e187a0ea8dd813f6b809b79f06687b2f1007e36d2384366c9d75e",
+      "optionChars": [
+        138,
+        91,
+        68,
+        80
+      ],
+      "optionWords": [
+        18,
+        12,
+        10,
+        15
+      ],
+      "chars": {
+        "correct": 138,
+        "maxWrong": 91,
+        "ratio": 1.5164835164835164,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 18,
+        "maxWrong": 15,
+        "ratio": 1.2,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "hypona",
+        "hyponatremia_verbalis2022"
+      ],
+      "referenceBindings": [
+        {
+          "id": "hypona",
+          "exists": true,
+          "authoredObjectSHA256": "07c43406efd738c92b8996d2ab4c8d3ee7d337d1c14e3cf5cef13c8c5a4e517c",
+          "referenceRevision": "sha256:c8f0228bd8609e44aa062b60e9a214655d304106954c9aef6beac7df543e41ec",
+          "bankConsumerCount": 11
+        },
+        {
+          "id": "hyponatremia_verbalis2022",
+          "exists": true,
+          "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+          "referenceRevision": "sha256:038c69c20d22c2b16587f0e493fb35f36c4be02a0220f15a869411cb38e49fb5",
+          "bankConsumerCount": 18
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 9,
+      "screeningGroup": "hipercalemia",
+      "qid": "ebea50d5",
+      "title": "Hipercalemia: Ciclosilicato de Zircônio Sódico",
+      "line": 152,
+      "category": "eletrólitos",
+      "difficulty": "hard",
+      "answerIndex": 1,
+      "answerLetter": "B",
+      "authoredObjectSHA256": "1e5f9eab73c2929f3f5e321ff4c8db28a8004e9f951327d710b2f330a2e34351",
+      "authorRevision": "sha256:576207cdcbdab967bd607427b540ce4a180344deeba03420734c3b741861fff9",
+      "optionChars": [
+        73,
+        119,
+        69,
+        74
+      ],
+      "optionWords": [
+        10,
+        18,
+        13,
+        11
+      ],
+      "chars": {
+        "correct": 119,
+        "maxWrong": 74,
+        "ratio": 1.6081081081081081,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 18,
+        "maxWrong": 13,
+        "ratio": 1.3846153846153846,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "ukka_hyperkalemia_2023",
+        "brenner_rector"
+      ],
+      "referenceBindings": [
+        {
+          "id": "ukka_hyperkalemia_2023",
+          "exists": true,
+          "authoredObjectSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+          "referenceRevision": "sha256:ea5380d767b16470d504ffea7d1244331668be461444355022ccb02fd023d72a",
+          "bankConsumerCount": 20
+        },
+        {
+          "id": "brenner_rector",
+          "exists": true,
+          "authoredObjectSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02",
+          "referenceRevision": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142",
+          "bankConsumerCount": 170
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 10,
+      "screeningGroup": "hipercalemia",
+      "qid": "e0853fac",
+      "title": "Hipercalemia e Quelantes Modernos de Potássio",
+      "line": 15,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 0,
+      "answerLetter": "A",
+      "authoredObjectSHA256": "f22d59458105c6fb52d9b4034719e98fe313c6d2b089abdb91afa366543c1448",
+      "authorRevision": "sha256:bd961461115e71931f9f38d9d3148dcfa6cf71ea4de635c3cdb2a211af33a9d7",
+      "optionChars": [
+        136,
+        87,
+        63,
+        82
+      ],
+      "optionWords": [
+        15,
+        10,
+        9,
+        12
+      ],
+      "chars": {
+        "correct": 136,
+        "maxWrong": 87,
+        "ratio": 1.5632183908045978,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 15,
+        "maxWrong": 12,
+        "ratio": 1.25,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "ukka_hyperkalemia_2023",
+        "kdigo_ckd"
+      ],
+      "referenceBindings": [
+        {
+          "id": "ukka_hyperkalemia_2023",
+          "exists": true,
+          "authoredObjectSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+          "referenceRevision": "sha256:ea5380d767b16470d504ffea7d1244331668be461444355022ccb02fd023d72a",
+          "bankConsumerCount": 20
+        },
+        {
+          "id": "kdigo_ckd",
+          "exists": true,
+          "authoredObjectSHA256": "3ce5a188f86abdbef8d6f9ba8cf78ce5fc6e70cdb26cc28c5613cf3ebc86a31d",
+          "referenceRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+          "bankConsumerCount": 69
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 11,
+      "screeningGroup": "hipercalemia",
+      "qid": "b35be598",
+      "title": "ECG na Hipercalemia — Primeira Alteração",
+      "line": 278,
+      "category": "eletrólitos",
+      "difficulty": "medium",
+      "answerIndex": 2,
+      "answerLetter": "C",
+      "authoredObjectSHA256": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b",
+      "authorRevision": "sha256:5d77f3f66105e2c689153a86b26dc0def8977283c54bc22c7e9294bf96d589dd",
+      "optionChars": [
+        26,
+        23,
+        42,
+        27
+      ],
+      "optionWords": [
+        4,
+        2,
+        6,
+        4
+      ],
+      "chars": {
+        "correct": 42,
+        "maxWrong": 27,
+        "ratio": 1.5555555555555556,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 6,
+        "maxWrong": 4,
+        "ratio": 1.5,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "ukka_hyperkalemia_2023",
+        "brenner_rector"
+      ],
+      "referenceBindings": [
+        {
+          "id": "ukka_hyperkalemia_2023",
+          "exists": true,
+          "authoredObjectSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+          "referenceRevision": "sha256:ea5380d767b16470d504ffea7d1244331668be461444355022ccb02fd023d72a",
+          "bankConsumerCount": 20
+        },
+        {
+          "id": "brenner_rector",
+          "exists": true,
+          "authoredObjectSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02",
+          "referenceRevision": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142",
+          "bankConsumerCount": 170
+        }
+      ],
+      "previous149": false
+    },
+    {
+      "rank": 12,
+      "screeningGroup": "hipercalemia",
+      "qid": "6474ec20",
+      "title": "TTKG na Hipercalemia — Interpretação Cautelosa",
+      "line": 240,
+      "category": "eletrólitos",
+      "difficulty": "hard",
+      "answerIndex": 0,
+      "answerLetter": "A",
+      "authoredObjectSHA256": "0ba72f8511c1be465b17829c8dfcd5e50fcf4fd303ace24ebec533af8e559916",
+      "authorRevision": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+      "optionChars": [
+        96,
+        62,
+        47,
+        59
+      ],
+      "optionWords": [
+        14,
+        7,
+        6,
+        6
+      ],
+      "chars": {
+        "correct": 96,
+        "maxWrong": 62,
+        "ratio": 1.5483870967741935,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "words": {
+        "correct": 14,
+        "maxWrong": 7,
+        "ratio": 2,
+        "rank": 1,
+        "uniqueLongest": true,
+        "tiedLongest": false,
+        "randomLongestAccuracy": 1
+      },
+      "refs": [
+        "brenner_rector"
+      ],
+      "referenceBindings": [
+        {
+          "id": "brenner_rector",
+          "exists": true,
+          "authoredObjectSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02",
+          "referenceRevision": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142",
+          "bankConsumerCount": 170
+        }
+      ],
+      "previous149": false
+    }
+  ],
+  "priorScripts": {
+    "audit": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/medical-answer-bias-analysis/audit.cjs",
+    "note": "audit.cjs hardcodes original repository and writes outputs. Reuse the clean/lengths/analyze/summarize functions only, changing source and output paths; do not run unmodified.",
+    "integration": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/medical-answer-bias-analysis/integrate-bounded42.cjs",
+    "integrationNote": "Historical bounded42 scope; inspect only. New scope must receive new exact gates before any application."
+  }
+}

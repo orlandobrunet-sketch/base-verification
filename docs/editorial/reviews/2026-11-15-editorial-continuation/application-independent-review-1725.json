@@ -1,0 +1,616 @@
+{
+  "schema": "NQ_1725_INDEPENDENT_APPLICATION_REVIEW_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/study_visibility_1717",
+  "independentOfApplicationAuthor": "/root",
+  "mode": "READ_ONLY_SOURCE_AND_CANONICAL_COMPARISON",
+  "result": "PASS",
+  "baseCommit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "baseRelease": "17.24",
+  "candidateRelease": "17.25",
+  "scope": {
+    "newClinicalReviewPerformed": false,
+    "dataEdited": false,
+    "priorReportsEdited": false,
+    "browserOrExternalServiceUsed": false,
+    "testsRun": false,
+    "applicationProgressOrStorageAccessed": false,
+    "method": "Pure data definitions read in an isolated VM without browser/network/storage APIs; source bytes and canonical SHA256 recomputed independently. No application functions or test suites executed."
+  },
+  "collectorPreparation": {
+    "initialAttempt": "The external reader initially addressed manifest inside its IIFE and stopped with ReferenceError before writing a report. It was corrected to read the existing NQQuestionRevisionManifest/NQQuestionRevisionHistory exports. No data, gate or application assertion was changed."
+  },
+  "sourceHashes": {
+    "data/topics.js": {
+      "baseGit": {
+        "bytes": 975004,
+        "sha256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d"
+      },
+      "appliedWorkingRaw": {
+        "bytes": 975196,
+        "sha256": "c6a6495dfd123dc5a2085f8f5ddea001863b6b12e5ff7dc2051fcf5fed6757e8"
+      },
+      "appliedNormalizedLF": {
+        "sha256": "c6a6495dfd123dc5a2085f8f5ddea001863b6b12e5ff7dc2051fcf5fed6757e8"
+      },
+      "unchangedDuringInspection": true
+    },
+    "data/refs.js": {
+      "baseGit": {
+        "bytes": 509771,
+        "sha256": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5"
+      },
+      "appliedWorkingRaw": {
+        "bytes": 510717,
+        "sha256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95"
+      },
+      "appliedNormalizedLF": {
+        "sha256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95"
+      },
+      "unchangedDuringInspection": true
+    },
+    "data/question-revision-manifest.js": {
+      "baseGit": {
+        "bytes": 535847,
+        "sha256": "85cf5fadda59f40a2bcedc6d268b81f7cd17e64400fb3907a321fbc7c04433d3"
+      },
+      "appliedWorkingRaw": {
+        "bytes": 534805,
+        "sha256": "3cb339e75a6ac7763fb372d724caf2630ef282802736e331582e1db94f9a2aca"
+      },
+      "appliedNormalizedLF": {
+        "sha256": "3cb339e75a6ac7763fb372d724caf2630ef282802736e331582e1db94f9a2aca"
+      },
+      "unchangedDuringInspection": true
+    },
+    "data/question-revision-history.js": {
+      "baseGit": {
+        "bytes": 1663648,
+        "sha256": "323825a6cd8f3641d842785ce80dd5b9efce38f08aa76f291d1cbfe5d67e54f1"
+      },
+      "appliedWorkingRaw": {
+        "bytes": 1749041,
+        "sha256": "1282251abb6144d826ffb4b701229cf29ecc139026424177139173b639caffa0"
+      },
+      "appliedNormalizedLF": {
+        "sha256": "1282251abb6144d826ffb4b701229cf29ecc139026424177139173b639caffa0"
+      },
+      "unchangedDuringInspection": true
+    }
+  },
+  "gateBundle": {
+    "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/independent-gate-bundle-1725.json",
+    "sha256": "439985a5eaf2f64e06814a6abedaf4032624920d598133dfa0e85ea8c9802e59",
+    "gatesChecked": 10,
+    "exactApprovedLiterals": true,
+    "allDerivedAuthorizationsValid": true,
+    "pinnedIndependentReports": {
+      "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json": {
+        "sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "bytes": 61288
+      },
+      "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json": {
+        "sha256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "bytes": 19880
+      }
+    }
+  },
+  "questionTransport": {
+    "beforeCount": 741,
+    "afterCount": 741,
+    "exactChangedQIDs": [
+      "516ec2a6",
+      "1a93346d",
+      "e94a6488",
+      "d9257155",
+      "a4c85d32",
+      "e2aae4c7",
+      "21a99f07",
+      "3fa2737c"
+    ],
+    "questionArrayOrderPreserved": true,
+    "all741QIDsAndAnswerIndicesAndCategoriesStable": true,
+    "untouchedQuestionCount": 733,
+    "untouchedAuthorObjectsCanonicalExact": true,
+    "onlyEightAuthoredLinesChangedIgnoringEOL": true,
+    "changedLineNumbers": [
+      67,
+      125,
+      241,
+      257,
+      421,
+      520,
+      521,
+      522
+    ],
+    "difficultyChanges": [
+      {
+        "qid": "a4c85d32",
+        "before": "hard",
+        "after": "medium"
+      }
+    ],
+    "noNewQuestionOrRemovedQuestion": true,
+    "perQuestion": [
+      {
+        "id": "a4c85d32",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:67da5ed3ab04ffb150d11fb1342dbfcb6e1ae32852252148629fd6b2563567a5",
+        "appliedSHA256": "sha256:67da5ed3ab04ffb150d11fb1342dbfcb6e1ae32852252148629fd6b2563567a5",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "bankIndex": 419,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "3fa2737c",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:fe73c43b977353db3ce77d4344d05648ddb0e5adee79e2413ff970b5015a6972",
+        "appliedSHA256": "sha256:fe73c43b977353db3ce77d4344d05648ddb0e5adee79e2413ff970b5015a6972",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "bankIndex": 520,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "e94a6488",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:3edd811ad215c82f3fe39594371aade69ff58491d04f9a320f5ea0a5ac661454",
+        "appliedSHA256": "sha256:3edd811ad215c82f3fe39594371aade69ff58491d04f9a320f5ea0a5ac661454",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "bankIndex": 239,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "d9257155",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:017e477323fb26f8b9d7a9a70edbbe8f4d4755264c377bee970f3770c24bbc6b",
+        "appliedSHA256": "sha256:017e477323fb26f8b9d7a9a70edbbe8f4d4755264c377bee970f3770c24bbc6b",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "bankIndex": 255,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "21a99f07",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:4beb2312dce7da0ea025993f4830468e3b4c772af1212b2f0b93cde9ef84ff09",
+        "appliedSHA256": "sha256:4beb2312dce7da0ea025993f4830468e3b4c772af1212b2f0b93cde9ef84ff09",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "bankIndex": 519,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "e2aae4c7",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:5d605d1847a903463cccfe53c9bde380c364030f15922dea78c17be4ab48596e",
+        "appliedSHA256": "sha256:5d605d1847a903463cccfe53c9bde380c364030f15922dea78c17be4ab48596e",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "bankIndex": 518,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "1a93346d",
+        "reviewer": "/root",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+        "reportSHA256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "versionSHA256": "sha256:05c629efbe7265f8dfbcc901f3373460bc60f8630fce2965c63b68c5bc779a7e",
+        "appliedSHA256": "sha256:05c629efbe7265f8dfbcc901f3373460bc60f8630fce2965c63b68c5bc779a7e",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA"
+        },
+        "bankIndex": 123,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      },
+      {
+        "id": "516ec2a6",
+        "reviewer": "/root",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+        "reportSHA256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "versionSHA256": "sha256:5eea57f2bfdd4ea6f33b0726ce7ded4e689084b8b6889054891cee8a566b3fed",
+        "appliedSHA256": "sha256:5eea57f2bfdd4ea6f33b0726ce7ded4e689084b8b6889054891cee8a566b3fed",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA"
+        },
+        "bankIndex": 65,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "categoryPreserved": true,
+        "questionOrderPreserved": true,
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium"
+      }
+    ]
+  },
+  "referenceTransport": {
+    "beforeCount": 371,
+    "afterCount": 372,
+    "changedIDs": [
+      "sustain6"
+    ],
+    "addedIDs": [
+      "hyponatremia_verbalis2013"
+    ],
+    "removedIDs": [],
+    "otherExistingCardsCanonicalExact": true,
+    "noNewOrphans": true,
+    "beforeOrphans": [],
+    "afterOrphans": [],
+    "perReference": [
+      {
+        "id": "sustain6",
+        "reviewer": "/root",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+        "reportSHA256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "versionSHA256": "sha256:6f6ed262373752793f550277a5a8b6883d91c00e2b1ca14ad82dda5036743117",
+        "appliedSHA256": "sha256:6f6ed262373752793f550277a5a8b6883d91c00e2b1ca14ad82dda5036743117",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA"
+        },
+        "wholeCardFieldCoverageCount": 12,
+        "beforeConsumers": [
+          "1a93346d",
+          "516ec2a6"
+        ],
+        "afterConsumers": [
+          "1a93346d",
+          "516ec2a6"
+        ]
+      },
+      {
+        "id": "hyponatremia_verbalis2013",
+        "reviewer": "/root/study_visibility_1717",
+        "report": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "reportSHA256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "versionSHA256": "sha256:c6802c01e8b397910f501691680d8f0f5189319ed2dbf961cec86b350f4d1e3c",
+        "appliedSHA256": "sha256:c6802c01e8b397910f501691680d8f0f5189319ed2dbf961cec86b350f4d1e3c",
+        "literalExact": true,
+        "gate": {
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "verdict": "aprovada",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+        },
+        "wholeCardFieldCoverageCount": 12,
+        "beforeConsumers": [],
+        "afterConsumers": [
+          "21a99f07",
+          "d9257155",
+          "e94a6488"
+        ]
+      }
+    ]
+  },
+  "manifest": {
+    "version": 1,
+    "release": "17.25",
+    "questionCount": 741,
+    "profileDigestCount": 2964,
+    "changedQIDs": [
+      "516ec2a6",
+      "1a93346d",
+      "e94a6488",
+      "d9257155",
+      "a4c85d32",
+      "e2aae4c7",
+      "21a99f07",
+      "3fa2737c"
+    ],
+    "allAuthorReferenceRecordAndFourProfileDigestsRecomputed": true,
+    "unrelatedEntriesCanonicalExact": true,
+    "sourceProfileMappingLogicUnchanged": true
+  },
+  "history": {
+    "beforeCount": 169,
+    "afterCount": 177,
+    "previous169CanonicalExact": true,
+    "previous169CompactJSONBytesPrefixExact": true,
+    "preservedCompactJSONPrefixSHA256": "8edaa79dd3a25343d610b56c43f99bded676bda3f440242efcdcdf45876030d2",
+    "addedCount": 8,
+    "addedRelease": "17.24",
+    "actualPublishedBeforeObjectsNotDrafts": true,
+    "entries": [
+      {
+        "qid": "516ec2a6",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:026eb3288243013ffca554b36bec12b2e7790eafda8a2908c8f7d99b738f727a",
+        "historicalAuthorSHA256": "sha256:026eb3288243013ffca554b36bec12b2e7790eafda8a2908c8f7d99b738f727a",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "1a93346d",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:9841a4a4f744d745a6ec6510d0eab0a36e2baf4ec9be99f40fc23f28115c4e66",
+        "historicalAuthorSHA256": "sha256:9841a4a4f744d745a6ec6510d0eab0a36e2baf4ec9be99f40fc23f28115c4e66",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "e94a6488",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:8f75ad7c582415349fee768251d9a6ff3ad82f8add818d40ffbac99e2132a2b7",
+        "historicalAuthorSHA256": "sha256:8f75ad7c582415349fee768251d9a6ff3ad82f8add818d40ffbac99e2132a2b7",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "d9257155",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:bdfe4433132c5e6e1c71fc227bb704bb9003728a473b5261b0b44b94d5a68d98",
+        "historicalAuthorSHA256": "sha256:bdfe4433132c5e6e1c71fc227bb704bb9003728a473b5261b0b44b94d5a68d98",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "a4c85d32",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:a1fcefab6c17888a89eb154ae5e492086899c533a0789d8c49f4b0108bdcdd09",
+        "historicalAuthorSHA256": "sha256:a1fcefab6c17888a89eb154ae5e492086899c533a0789d8c49f4b0108bdcdd09",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "e2aae4c7",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:32667b08037e187a0ea8dd813f6b809b79f06687b2f1007e36d2384366c9d75e",
+        "historicalAuthorSHA256": "sha256:32667b08037e187a0ea8dd813f6b809b79f06687b2f1007e36d2384366c9d75e",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "21a99f07",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:c8d0f453da32421f6c00a91aabeaf80884a373c73738ec6fb6d9b7172d8b4701",
+        "historicalAuthorSHA256": "sha256:c8d0f453da32421f6c00a91aabeaf80884a373c73738ec6fb6d9b7172d8b4701",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      },
+      {
+        "qid": "3fa2737c",
+        "release": "17.24",
+        "publishedBeforeAuthorSHA256": "sha256:828388e041a0f622bfb600416cfdefa97d4bc3578d287bafb2c836a46348a267",
+        "historicalAuthorSHA256": "sha256:828388e041a0f622bfb600416cfdefa97d4bc3578d287bafb2c836a46348a267",
+        "sourcesExact": true,
+        "referencesExact": true,
+        "manifestIdentityExact": true,
+        "bindingsExact": true,
+        "policy": {
+          "material": true,
+          "pending": "update-required"
+        },
+        "sourceIsPublished1724NotDraft": true
+      }
+    ]
+  },
+  "unchangedLogic": [
+    {
+      "file": "tools/build-question-revision-manifest.cjs",
+      "baseGitSHA256": "cf5bb317cec96679199654d2c2b95a6480ad986ad88b3e32a06c447f2a9cf7c2",
+      "workingRawSHA256": "7d25a2432c9e6d9f129d8f902919525add59a72b5b14eea77bba903927f76243",
+      "normalizedLFSHA256": "cf5bb317cec96679199654d2c2b95a6480ad986ad88b3e32a06c447f2a9cf7c2",
+      "unchangedAfterEOLNormalization": true
+    },
+    {
+      "file": "js/question-revisions.js",
+      "baseGitSHA256": "1cf479c353e99c3adf7322f8d984691e1d4652ee01507ad0bf615128b27ee169",
+      "workingRawSHA256": "64fbbc167f6ab43ace26a32a86f06e383ee72589fa11399d00341823fd8bd36e",
+      "normalizedLFSHA256": "1cf479c353e99c3adf7322f8d984691e1d4652ee01507ad0bf615128b27ee169",
+      "unchangedAfterEOLNormalization": true
+    },
+    {
+      "file": "js/answer-presentation.js",
+      "baseGitSHA256": "3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e",
+      "workingRawSHA256": "c833ef04b1ae9c3b1f3b4aeac7f8c2b94344535d622ef258d93dc38fb63d7a0a",
+      "normalizedLFSHA256": "3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e",
+      "unchangedAfterEOLNormalization": true
+    },
+    {
+      "file": "js/game.js",
+      "baseGitSHA256": "47fa977b7b55923b51c63dab62632cefc1b03ed870a6d7fdfae2cf6d98b8b68c",
+      "workingRawSHA256": "01bddc45ddcc5c4102c1da14c1cc642953d962cf86d2f2e5a79b64c389323ebb",
+      "normalizedLFSHA256": "47fa977b7b55923b51c63dab62632cefc1b03ed870a6d7fdfae2cf6d98b8b68c",
+      "unchangedAfterEOLNormalization": true
+    },
+    {
+      "file": "js/utils.js",
+      "baseGitSHA256": "8e4585ffcae4536fe27e596844596d686642960c8a8a87316123efb6036fe815",
+      "workingRawSHA256": "7c24cbc572ff0e58eacb88506b0e4e4ed603f32c0feb68acb28003eb9ee2e6eb",
+      "normalizedLFSHA256": "8e4585ffcae4536fe27e596844596d686642960c8a8a87316123efb6036fe815",
+      "unchangedAfterEOLNormalization": true
+    },
+    {
+      "file": "js/pilot.js",
+      "baseGitSHA256": "1716455b4b61e763dd3b9ca661702ae7bdf7523d19618dc7bcf0f4780ca8b9c8",
+      "workingRawSHA256": "92256e05edcdc570eb62df71eca6731c0967151474679d538e2086b5291c05aa",
+      "normalizedLFSHA256": "1716455b4b61e763dd3b9ca661702ae7bdf7523d19618dc7bcf0f4780ca8b9c8",
+      "unchangedAfterEOLNormalization": true
+    },
+    {
+      "file": "js/study-mode.js",
+      "baseGitSHA256": "16f6ea73f7a4c5f768aad58ea8f99fdae31b8b07c2355a22fc846d3b9b5eaf57",
+      "workingRawSHA256": "3c0a962fafa1781eb8e0dff5318a3d22826aa71c819fcc4d5fb34979da673513",
+      "normalizedLFSHA256": "16f6ea73f7a4c5f768aad58ea8f99fdae31b8b07c2355a22fc846d3b9b5eaf57",
+      "unchangedAfterEOLNormalization": true
+    }
+  ],
+  "applicationReceipt": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1725-integration-application.json",
+    "sha256": "f5477c1d7aa922fac4d12532a59d8f43f5039b60ad6e07515e52c49bb005b0f3",
+    "mode": "apply",
+    "repositoryDataWritten": true,
+    "planSHA256": "sha256:150b809f6034f686136a3db454d4a9b52451970b0c1dad7478073dd1e53962eb",
+    "operationalReceipt": {
+      "path": "C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\docs\\editorial\\reviews\\2026-11-15-editorial-continuation\\operational-independent-review-1725.json",
+      "sha256": "24f3fbda58bf71129ae38e5585a0877a092e2e177eb8bd47f67b5c76502977f8",
+      "reviewer": "/root/editorial_inventory_1725"
+    },
+    "operationalReceiptHashVerified": true
+  },
+  "limitations": [
+    "This confirms transport of the existing exact editorial gates; it does not issue a new clinical judgment for altered post-gate content.",
+    "17.25 is a local candidate at this review. No claim of final commit, CI, deployment, public hashes, or physical-device testing.",
+    "Working raw bytes and normalized LF hashes are separated. Git canonical bytes of a future final commit require a separate frozen proof.",
+    "Runtime profile mapping is mirrored from the unchanged builder, while canonical hashes and comparisons are independently recomputed.",
+    "No user progress/save/localStorage was read or changed. Source comparison confirms runtime progress logic is unchanged; live session behavior was not exercised."
+  ],
+  "publishedBaseReceipt": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\NQ_PUBLICATION_1724_RECEIPT.json",
+    "sha256": "35b9338d539638130120995afc465f609a9362881a29619056e6987f8c07bf13",
+    "published": true,
+    "release": "17.24",
+    "source": "16a6776be17ab2fac1d38cc2b76fbd4dc2f44554",
+    "merge": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+    "tree": "eb87119fa481c157c75fd37be30343b05a77feae",
+    "baselineCommitAndTreeMatchPublishedReceipt": true,
+    "newNetworkVerificationPerformed": false
+  }
+}

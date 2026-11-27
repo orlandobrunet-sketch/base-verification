@@ -83,9 +83,11 @@
         const originIndices = new Set();
         if (!Array.isArray(origins) || !origins.every(origin => {
           if (!origin || !Number.isInteger(origin.index) || origin.index < 0 || origin.index >= questions.length ||
-              originIndices.has(origin.index) || origin.question?.id !== questions[origin.index].id) return false;
+              originIndices.has(origin.index)) return false;
           originIndices.add(origin.index);
           const original = _examQuestionRevision(origin.question, origin.binding);
+          if (origin.question?.id !== questions[origin.index].id &&
+              _examRevisionCatalog()?.replacement?.(origin.question?.id, 'exam')?.binding.qid !== questions[origin.index].id) return false;
           return !!original && (!_examRequiresRevisions() || (original.historical && original.policy?.material &&
             original.binding.recordRevision !== revisionViews[origin.index].binding.recordRevision));
         })) return null;
@@ -112,15 +114,17 @@
     }
     function _examRevisionHtml(view, answered, review = false) {
       if (!view?.historical) return '';
-      const current = _examRevisionCatalog()?.current(view.binding.qid, 'exam');
+      const catalog = _examRevisionCatalog();
+      const current = catalog?.current(view.binding.qid, 'exam') || catalog?.replacement?.(view.binding.qid, 'exam');
+      const replacement = current && current.binding.qid !== view.binding.qid;
       const updated = current?.source;
       return `<aside class="nq-exam-aviso" data-question-revision="historical">
         <p>${answered ? (review ? `Avaliação registrada na versão ${escapeHtml(view.release)}. Sua resposta e sua nota permanecem as registradas.` : `Resposta registrada na versão ${escapeHtml(view.release)}. A correção ficará disponível ao final da prova.`)
-          : 'Esta questão mudou desde a versão salva. Confirme a versão atual antes de responder.'}</p>
-        ${review && answered && updated ? `<details><summary>Conteúdo atual, separado da avaliação registrada</summary>
+          : replacement ? 'Esta questão foi substituída. Confirme a nova pergunta antes de responder; seu progresso anterior permanece preservado.' : 'Esta questão mudou desde a versão salva. Confirme a versão atual antes de responder.'}</p>
+        ${review && answered && updated ? `<details><summary>${replacement ? 'Nova questão, separada da avaliação registrada' : 'Conteúdo atual, separado da avaliação registrada'}</summary>
           <p>${escapeHtml(updated.q)}</p><ol>${updated.o.map((text, index) => `<li>${escapeHtml(text)}${index === updated.a ? ' <strong>Resposta correta atual</strong>' : ''}</li>`).join('')}</ol>
           <p>${escapeHtml(updated.e || '')}</p></details>` : ''}
-        ${!answered ? '<button type="button" class="btn gold" data-action="_examUseCurrentRevision">Usar versão atual desta questão</button>' : ''}</aside>`;
+        ${!answered ? `<button type="button" class="btn gold" data-action="_examUseCurrentRevision">${replacement ? 'Responder nova questão' : 'Usar versão atual desta questão'}</button>` : ''}</aside>`;
     }
     function _examProgressStorage() {
       if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(_examProgressBinding || undefined);
@@ -508,16 +512,19 @@
       if (!_examBindingCurrent() || _examRevisionBlocked || !_examNeedsCurrentRevision()) return;
       if (_examRestante() <= 0) { _examEsgotarTempo(); return; }
       const prior = _examState, idx = prior.idx;
-      const current = _examRevisionCatalog()?.current(prior.questions[idx].id, 'exam');
+      const catalog = _examRevisionCatalog(), qid = prior.questions[idx].id;
+      const current = catalog?.current(qid, 'exam') || catalog?.replacement?.(qid, 'exam');
       const question = current?.source && window.NQAnswers?.present(current.source);
       if (!question) { _examRevisionHold('A versão atual desta questão está indisponível.'); return; }
       const questions = [...prior.questions], bindings = [...prior.questionRevisionBindings];
+      const answers = [...prior.answers];
+      if (answers[idx]?.answered === false && question.id !== qid) answers[idx] = {...answers[idx], qId: question.id};
       const origins = [...(prior.questionRevisionOrigins || [])];
       if (!origins.some(origin => origin.index === idx)) origins.push({ index: idx, question: prior.questions[idx], binding: bindings[idx] });
       questions[idx] = question; bindings[idx] = current.binding;
-      const checked = _examValidateSaved({ ...prior, questions, questionRevisionBindings: bindings, questionRevisionOrigins: origins });
+      const checked = _examValidateSaved({ ...prior, questions, answers, questionRevisionBindings: bindings, questionRevisionOrigins: origins });
       if (!checked) { _examRevisionHold('Não foi possível conferir a versão atual.'); return; }
-      _examState = { ...prior, ...checked, questionRevisionOriginalRaw: prior.questionRevisionOriginalRaw ?? _examSavedRaw };
+      _examState = { ...prior, ...checked, answers, questionRevisionOriginalRaw: prior.questionRevisionOriginalRaw ?? _examSavedRaw };
       if (!_saveExamState()) {
         _examState = prior;
         _examRevisionHold('Não foi possível confirmar o salvamento da alteração. Confira a versão salva antes de continuar.'); return;
@@ -718,15 +725,17 @@
       const completedAt = _examState.completedAt ?? Date.now();
       _examState.completedAt = completedAt;
       const elapsed = Math.max(0, Math.min(durationSec, Math.floor((completedAt - startTime) / 1000)));
-      const totalAnswered = answers.filter(a => a?.answered).length;
-      const totalCorrect  = answers.filter(a => a?.correct).length;
-      const pct = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) : 0;
-      const semResposta = questions.length - totalAnswered;
+      const totalQuestions = questions.length;
+      const recordedAnswers = questions.map((_, index) => answers[index]).filter(answer => answer?.answered);
+      const totalAnswered = recordedAnswers.length;
+      const totalCorrect = recordedAnswers.filter(answer => answer.correct).length;
+      const scorePct = totalQuestions ? Math.round(totalCorrect / totalQuestions * 100) : 0;
+      const accuracyPct = totalAnswered ? Math.round(totalCorrect / totalAnswered * 100) : null;
+      const semResposta = totalQuestions - totalAnswered;
       const elMin = Math.floor(elapsed / 60), elSec = elapsed % 60;
 
       const byCat = {};
-      answers.forEach(a => {
-        if (!a?.answered) return;
+      recordedAnswers.forEach(a => {
         if (!byCat[a.cat]) byCat[a.cat] = {correct:0,total:0};
         byCat[a.cat].total++;
         if (a.correct) byCat[a.cat].correct++;
@@ -759,7 +768,8 @@
           <p class="nq-exam-explicacao">${escapeHtml(q.e || '')}</p>
         </article>`;
       const mensagem = totalAnswered === 0 ? 'Nenhuma questão foi respondida.'
-        : pct>=70?'Excelente! Aprovado com distinção.':pct>=60?'Aprovado! Continue estudando para aperfeiçoar.':pct>=40?'Abaixo da média. Revise as categorias com menor acerto.':'Resultado insuficiente. Use o Modo de Estudo para reforçar.';
+        : semResposta > 0 ? 'A pontuação considera todas as questões, inclusive as em branco.'
+        : 'Confira a correção para orientar sua revisão.';
 
       pagina.innerHTML = `
         <div class="nq-study-content" id="examResultado">
@@ -767,11 +777,12 @@
           ${historicalViews.map(view => _examRevisionHtml(view, true, true)).join('')}
           ${tempoEsgotado ? `<p class="nq-exam-aviso">O tempo de ${durationSec / 60} minutos terminou. ${semResposta} ${semResposta === 1 ? 'questão ficou' : 'questões ficaram'} sem resposta.</p>` : ''}
           <dl class="nq-study-result-metrics">
-            <div><dt>Acerto nas respondidas</dt><dd>${pct}%</dd></div>
-            <div><dt>Corretas</dt><dd>${totalCorrect} de ${totalAnswered}</dd></div>
-            <div><dt>Respondidas</dt><dd>${totalAnswered} de ${questions.length}</dd></div>
+            <div><dt>Pontuação da prova</dt><dd>${totalCorrect} de ${totalQuestions} (${scorePct}%)</dd></div>
+            <div><dt>Acerto nas respondidas</dt><dd>${accuracyPct === null ? 'Não se aplica' : accuracyPct + '%'}</dd></div>
+            <div><dt>Respondidas</dt><dd>${totalAnswered} de ${totalQuestions}</dd></div>
             <div><dt>Tempo</dt><dd>${elMin}m${elSec}s</dd></div>
           </dl>
+          ${!tempoEsgotado && semResposta > 0 ? `<p class="nq-exam-nota">Em branco: ${semResposta}.</p>` : ''}
           <p class="nq-exam-mensagem">${mensagem}</p>
           ${catRows ? `<section aria-labelledby="examCatTitulo"><h2 id="examCatTitulo">Desempenho por categoria</h2><ul class="nq-exam-categorias">${catRows}</ul></section>` : ''}
           ${!totalAnswered ? '' : erros.length ? `
@@ -781,7 +792,7 @@
             </details>` : '<p class="nq-exam-mensagem">Nenhum erro entre as respondidas.</p>'}
           ${demais.length ? `<details class="nq-exam-revisao-demais"><summary>Conferir demais questões (${demais.length})</summary>${demais.map(reviewQuestion).join('')}</details>` : ''}
           <div class="nq-exam-acoes">
-            <button type="button" class="btn sec" data-action="_shareExamResult" data-args='[${pct},${totalCorrect},${totalAnswered}]'>Compartilhar</button>
+            <button type="button" class="btn sec" data-action="_shareExamResult" data-args='[${scorePct},${totalCorrect},${totalQuestions},${elapsed},${semResposta}]'>Compartilhar</button>
             <button type="button" class="btn gold" data-action="_finishExam">Voltar ao menu</button>
           </div>
         </div>`;

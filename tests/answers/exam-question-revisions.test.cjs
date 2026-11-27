@@ -18,17 +18,24 @@ const source = author => ({ id: author.qid, q: author.q, o: [...author.opts], a:
 const beforeSource = source(beforeAuthor), currentSource = source(currentAuthor);
 const oldRefs = { 'synthetic-card': { label: 'Earlier synthetic card' } };
 const currentRefs = { 'synthetic-card': { label: 'Current synthetic card' } };
-function fixture({ sameSource = false } = {}) {
-  const author = sameSource ? beforeAuthor : currentAuthor, current = source(author);
+function fixture({ sameSource = false, replacement = false } = {}) {
+  const author = replacement ? {...currentAuthor, qid: 'technical-new-objective'} : sameSource ? beforeAuthor : currentAuthor, current = source(author);
   const authorRevision = revisions.digest(author);
   const referenceRevisions = { 'synthetic-card': revisions.digest(currentRefs['synthetic-card']) };
   const recordRevision = revisions.digest({ authorRevision, referenceRevisions });
-  const manifest = { version: 1, release: 'technical-current', current: { 'technical-1': {
+  const manifest = { version: 1, release: 'technical-current', current: { [author.qid]: {
     authorRevision, referenceRevisions, recordRevision,
     sourceRevisions: { main: revisions.digest(current), exam: revisions.digest(current) } } } };
   const history = [{ qid: 'technical-1', release: 'technical-earlier', author: clone(beforeAuthor),
     sources: { main: clone(beforeSource), exam: clone(beforeSource) }, references: clone(oldRefs),
     policy: { material: true, pending: 'update-required' } }];
+  if (replacement) {
+    for (const p of ['study', 'offline']) {
+      history[0].sources[p] = clone(beforeSource); manifest.current[author.qid].sourceRevisions[p] = revisions.digest(current);
+    }
+    manifest.replacements = {[beforeAuthor.qid]: {qid: author.qid, recordRevision: revisions.digest({authorRevision: revisions.digest(beforeAuthor),
+      referenceRevisions: {'synthetic-card': revisions.digest(oldRefs['synthetic-card'])}})}};
+  }
   const catalog = revisions.createCatalog({ manifest, history, authors: [author],
     sources: { main: [current], exam: [current] }, references: currentRefs });
   const question = answers.present(beforeSource, { random: () => 0 });
@@ -118,6 +125,19 @@ test('pending material exam blocks answer/advance until explicit update and pres
   await h.run('_examRetomar()'); assert.equal(h.run('_examNeedsCurrentRevision()'), false);
   h.run('_examAnswer(_examState.questions[0].a)'); assert.equal(h.events.tracks, 1);
   await h.run('_examRetomar()'); assert.equal(h.events.tracks, 1);
+});
+
+test('exam new-objective confirmation preserves time, original identity and grade until a fresh answer', async () => {
+  const f = fixture({replacement: true}), h = harness({f}), raw = h.map.get(KEY), before = JSON.parse(raw);
+  await h.run('_examRetomar()'); assert.equal(h.events.writes, 0);
+  h.run('_examUseCurrentRevision()');
+  const stored = JSON.parse(h.map.get(KEY));
+  assert.equal(stored.questions[0].id, 'technical-new-objective');
+  assert.equal(stored.questionRevisionOriginalRaw, raw);
+  assert.equal(stored.questionRevisionOrigins[0].question.id, 'technical-1');
+  assert.deepEqual(stored.answers, before.answers); assert.equal(stored.startTime, before.startTime); assert.equal(h.events.tracks, 0);
+  await h.run('_examRetomar()'); assert.equal(h.state().questions[0].id, 'technical-new-objective');
+  h.run('_examAnswer(_examState.questions[0].a)'); assert.equal(h.events.tracks, 1);
 });
 
 for (const failure of ['refuse', 'diverge']) test(`pending update ${failure} rolls runtime back and gives no credit`, async () => {
@@ -401,7 +421,9 @@ test('legacy exam without duration still expires at90min beyond two hours withou
 // A reference-only revision can keep the exact question source while changing
 // its record revision. A fresh exam must select current bindings explicitly;
 // an older unbound save must retain the resolver's ambiguity.
-const REFERENCE_ONLY_QIDS = ['81740f2d', '1e2668d6', '940b2835'];
+// Gitelman81740f2d now has a material update; its two old card-only versions
+// remain covered in answer-length-history. APOL1 is still a real unchanged source.
+const REFERENCE_ONLY_QIDS = ['9f887485', '1e2668d6', '940b2835'];
 let publishedExamBundle;
 function publishedBundle() {
   if (publishedExamBundle) return publishedExamBundle;
@@ -413,7 +435,7 @@ function publishedBundle() {
   topics.forEach((author, index) => Object.entries(builder.sources(author, index))
     .forEach(([profile, value]) => sources[profile].push(value)));
   const catalog = revisions.createCatalog({ manifest, history, authors: topics, sources, references: refs });
-  assert.equal(topics.length, 741);
+  assert.equal(topics.length, 723);
   publishedExamBundle = { topics, refs, manifest, history, sources, catalog };
   return publishedExamBundle;
 }
@@ -438,7 +460,7 @@ function publishedFreshHarness(qid, fault) {
   // still use their real implementations and the complete published bank.
   h.context.shuffle = values => {
     const target = values.find(question => question.id === qid);
-    assert(target); assert.equal(values.length, 741);
+    assert(target); assert.equal(values.length, 723);
     const first = fault === 'incompatible-source' ? { ...target, e: target.e + ' Technical fixture drift.' } : target;
     return [first, ...values.filter(question => !REFERENCE_ONLY_QIDS.includes(question.id)),
       ...values.filter(question => REFERENCE_ONLY_QIDS.includes(question.id) && question.id !== qid)];
@@ -499,7 +521,10 @@ for (const qid of REFERENCE_ONLY_QIDS) {
     assert.equal(state.revisionViews[0].historical, true);
     assert.equal(state.revisionViews[0].release, f.archived.release);
     assert.deepEqual(state.revisionViews[0].references, f.archived.references);
-    assert.notDeepEqual(state.revisionViews[0].references.gitelman_kdigo_2017, f.current.references.gitelman_kdigo_2017);
+    const changedReference = qid === '9f887485' ? 'niddk_apol1_2017' : 'gitelman_kdigo_2017';
+    assert(state.revisionViews[0].references[changedReference]);
+    assert(f.current.references[changedReference]);
+    assert.notDeepEqual(state.revisionViews[0].references[changedReference], f.current.references[changedReference]);
     assert.match(h.page.innerHTML, /data-question-revision="historical"/);
     assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
   });

@@ -1,0 +1,405 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "86b6b9c9",
+  "family": "A15-transplante-CMV",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "qid": "86b6b9c9",
+    "q": "Em paciente transplantado renal com infecção por CMV, qual é a dose de indução indicada de ganciclovir venoso quando o clearance de creatinina estimado está entre 25 e 49 mL/min?",
+    "opts": [
+      "2,5 mg/kg, administrada em tomada única diária.",
+      "1,25 mg/kg em tomada única diária.",
+      "5 mg/kg a cada 12 horas.",
+      "2,5 mg/kg a cada 12 horas."
+    ],
+    "ans": 0,
+    "exp": "O ganciclovir tem eliminação predominantemente renal e precisa de ajuste conforme o clearance de creatinina para preservar eficácia antiviral e reduzir toxicidade hematológica, como neutropenia e trombocitopenia. Na fase de indução para ClCr entre 25 e 49 mL/min, a dose intravenosa recomendada é 2,5 mg/kg uma vez ao dia. A dose de 5 mg/kg a cada 12 horas é a indução usual para função renal preservada; 2,5 mg/kg a cada 12 horas fica excessiva para essa faixa; e 1,25 mg/kg uma vez ao dia corresponde a função renal mais reduzida.",
+    "refs": [
+      "cmv_kdigo_tx",
+      "kdigo_transplant"
+    ],
+    "cat": "transplante",
+    "diff": "hard",
+    "t": "CMV no Transplante Renal — Ajuste de Ganciclovir"
+  },
+  "originalSHA256": "sha256:caaeeb494aff5fee1c78e9077183b34852bbd75bec1490b1ae12739124f0c57b",
+  "originalRefs": [
+    {
+      "id": "cmv_kdigo_tx",
+      "original": {
+        "label": "KDIGO CMV in Transplant 2022",
+        "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+        "journal": "American Journal of Transplantation 2022",
+        "ano": 2022,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Profilaxia, diagnóstico e tratamento de CMV em receptores de transplante renal",
+        "icon": "📋",
+        "resumo": "Diretriz especializada integrada ao manejo de infecções pós-transplante, detalhando a prevenção e controle do Citomegalovírus (CMV), o patógeno oportunista mais comum. Define a estratificação de risco pelo status sorológico do Doador (D) e Receptor (R), sendo o cenário D+/R- o de maior risco. Apresenta duas estratégias preventivas validadas: profilaxia universal (uso de valganciclovir por 3 a 6 meses pós-transplante, especialmente se uso de ATG) versus terapia preemptiva (monitoramento semanal da carga viral por PCR quantitativo e início imediato de tratamento se viremia detectada). O tratamento de escolha é valganciclovir oral para quadros leves a moderados e ganciclovir intravenoso para doença grave ou invasiva pulmonar/gastrointestinal.",
+        "conclusao": "Padroniza o uso sistemático de valganciclovir/ganciclovir e a monitorização por PCR como defesas cruciais para conter o CMV, mitigando o risco de rejeição e perda do enxerto sob a tempestade viral.",
+        "curiosidade": "O CMV não apenas causa sintomas sistêmicos e invasivos diretos, mas possui um potente efeito imunomodulador indireto ('sombra da infecção'), que aumenta o risco de outras infecções oportunistas, rejeição aguda do enxerto e desenvolvimento de vasculopatia crônica do transplante."
+      },
+      "originalSHA256": "sha256:ca06aa6a0a767a7a3b2285c51fd355e0e7bfca771019f310d18cd0f4107ae2cd"
+    },
+    {
+      "id": "kdigo_transplant",
+      "original": {
+        "label": "KDIGO Transplant 2022",
+        "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+        "journal": "American Journal of Transplantation",
+        "ano": 2022,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
+        "icon": "📋",
+        "resumo": "Diretriz internacional atualizada (KDIGO) estabelecendo o padrão ouro para o manejo do receptor de transplante renal ao longo de sua jornada. Recomenda indução imunossupressora baseada em risco imunológico: antagonista do receptor de IL-2 (basiliximabe) para baixo/moderado risco, e terapia de depleção linfocitária (Globulina Antitimócito - ATG) para alto risco. Para a manutenção, preconiza a terapia tríplice padrão com tacrolimo como inibidor de calcineurina de escolha, micofenolato (mofetil ou sódico) como antiproliferativo, e corticoide em dose baixa, com possibilidade de retirada precoce de esteroide apenas em cenários de baixo risco imunológico. Orienta monitoramento rigoroso pós-transplante com dosagem sérica de imunossupressores, triagem ativa para infecções oportunistas (CMV e BK) e controle de comorbidades metabólicas.",
+        "conclusao": "Consolida a estratificação de risco imunológico e a imunossupressão tríplice com tacrolimo e micofenolato como a espinha dorsal para preservação e sobrevida do enxerto no Reino.",
+        "curiosidade": "A ATG (Globulina Antitimócito) induz depleção profunda e prolongada de células T circulantes por apoptose e lise mediada por complemento, 'desarmando' os exércitos celulares do receptor para prevenir a rejeição aguda celular no enxerto recém-implantado."
+      },
+      "originalSHA256": "sha256:9b1f6e27be8c820c44863bbdb6f8c7c59ebb2f14067db903e563eb045d15d375"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Selecionar dose de tratamento de ganciclovir intravenoso pela depuração absoluta de creatinina em adulto.",
+    "primaryCompetence": "Manejo seguro do receptor e interpretação clinicopatológica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "CRÍTICO — Card principal CMV2022 não identificável, ainda que o esquema numérico esteja correto.",
+      "MENOR — Tomada oral é termo inadequado para administraçãoIV; esclarecer cálculo absoluto e vigilância."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "cmv",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12180710/",
+      "doi": "10.1097/TP.0000000000005374",
+      "pmid": "40200403",
+      "access": "Consenso primário2025 integral obtido em XML EuropePMC, BODY completo,852646bytes. Página PMC web exibiu captcha nesta tentativa, não fingir corpo web aberto.",
+      "artifact": "cmv-consensus-2025.xml",
+      "rawSHA256": "5e9508b814eadde6b06cc1cabbd96f2f1ed23dcb1e783718c8c5fd2f619759a9",
+      "locators": [
+        "CMV Treatment/Consensus: valganciclovir oral em leve/moderada com absorção/adesão; ganciclovirIV em grave/ameaçaàvida; não toda doença invasiva exige automaticamenteIV.",
+        "Treatment/Monitoring: ajustar pela função renal absoluta, controlar DNAemia semanal, leucopenia isolada não justifica subdose antiviral.",
+        "Table5: ganciclovirIV tratamento,CrCl25–49mL/min=2,5mg/kg a cada24h;50–69=2,5mg/kg q12h;10–24=1,25mg/kg q24h.",
+        "Prevention/Table3: rimD+/R− alto risco, profilaxia valganciclovir ou letermovir6meses ou estratégia preemptiva; preemptiva requer pelo menos semanal, limiar local/ensaio."
+      ],
+      "limitations": [
+        "Não existe um limiar universal de DNAemia; dose/estratégia depende de função renal, órgão, risco e capacidade de monitorização. A nova fonte não é KDIGO2022 nem herda esse ID fictício."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "CrCl25–49mL/min, tratamentoIVganciclovir2,5mg/kg q24h conformeTable5;não confundirmanutenção/outrafunçãorenal.",
+      "source": "cmv",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "qid": "86b6b9c9",
+    "q": "Adulto precisa de tratamento com ganciclovir intravenoso para doença por citomegalovírus (CMV). A depuração de creatinina estimada por Cockcroft–Gault é 35 mL/min e está estável. Qual esquema corresponde ao ajuste renal de tratamento?",
+    "opts": [
+      "2,5 mg/kg a cada 24 horas.",
+      "1,25 mg/kg a cada 24 horas.",
+      "5 mg/kg a cada 12 horas.",
+      "2,5 mg/kg a cada 12 horas."
+    ],
+    "ans": 0,
+    "exp": "Para depuração de creatinina entre 25 e 49 mL/min, o consenso recomenda ganciclovir intravenoso 2,5 mg/kg a cada 24 horas na fase de tratamento. Não confundir com manutenção/prevenção, que usa outro esquema, nem com a faixa 50–69 mL/min, em que o tratamento usa 2,5 mg/kg a cada 12 horas. Função renal e hemograma devem ser reavaliados; se a depuração mudar, a dose também precisa ser revista. A tabela se refere à depuração absoluta em mL/min, não à taxa normalizada por 1,73 m².",
+    "refs": [
+      "cmv_consensus_tts_2025"
+    ],
+    "cat": "transplante",
+    "diff": "medium",
+    "t": "CMV no Transplante Renal — Ajuste de Ganciclovir"
+  },
+  "proposedSHA256": "sha256:e0f0103f20ccb129b328b8954bfa0caca4a59009c4caf1ffe69ec3e6a32c49ac",
+  "classificationAfter": {
+    "op": "Selecionar dose de tratamento de ganciclovir intravenoso pela depuração absoluta de creatinina em adulto.",
+    "primaryCompetence": "Manejo seguro do receptor e interpretação clinicopatológica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "cmv_consensus_tts_2025",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Kotton et al. — Quarto Consenso Internacional sobre CMV no Transplante (2025)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12180710/",
+        "journal": "Transplantation. 2025;109(7):1066–1110. DOI:10.1097/TP.0000000000005374",
+        "ano": 2025,
+        "tipo": "Consenso de especialistas",
+        "badge": "CONSENSO",
+        "badgeColor": "#6366f1",
+        "icon": "📋",
+        "impacto": "Estratificar risco, prevenir e tratar citomegalovírus (CMV) após transplante de órgão sólido.",
+        "resumo": "Consenso internacional da Transplantation Society sobre citomegalovírus. Integra sorologia de doador e receptor, órgão transplantado e imunossupressão na prevenção. Em rim com doador positivo e receptor negativo, recomenda profilaxia prolongada ou estratégia preemptiva estruturada; esta exige monitorização pelo menos semanal e limiar de intervenção definido pelo ensaio e serviço. Para doença leve a moderada com via oral viável, valganciclovir é primeira linha; ganciclovir intravenoso é recomendado em doença grave ou ameaçadora à vida.",
+        "conclusao": "Ajustar antivirais à função renal, acompanhar resposta clínica, DNAemia e toxicidade hematológica. Leucopenia isolada não deve levar a subdose antiviral; revisar outros mielossupressores e opções de suporte. Redução da imunossupressão requer avaliar gravidade, resposta e risco de rejeição, sem suspensão indiscriminada.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:e58c62d08cdd2e95601735289654c99342364ad4e856802d98ef5e71dbff1686",
+      "sourceIDs": [
+        "cmv"
+      ],
+      "notes": [
+        "Novo ID para obra real2025. Não é a mesma obra que o card fictício KDIGO2022; nenhuma transferência de favorito/desbloqueio."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Aplicação de ajuste farmacológico com função estável explícita; dado clínico relevante, sem conduta universal emLRAinstável.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

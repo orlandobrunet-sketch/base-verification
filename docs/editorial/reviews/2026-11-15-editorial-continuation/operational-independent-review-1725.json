@@ -1,0 +1,135 @@
+{
+  "schema": "NQ_1725_OPERATIONAL_APPROVAL_v1",
+  "authorization": "APROVADA",
+  "independent": true,
+  "reviewer": "/root/editorial_inventory_1725",
+  "baseCommit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "baseRelease": "17.24",
+  "release": "17.25",
+  "utilitySHA256": "d2c43e855fd6271f7c691d4fcdfe75b2ad1c043197651c5c3ed0b1e1b2634167",
+  "planSHA256": "sha256:150b809f6034f686136a3db454d4a9b52451970b0c1dad7478073dd1e53962eb",
+  "gateBundleSHA256": "439985a5eaf2f64e06814a6abedaf4032624920d598133dfa0e85ea8c9802e59",
+  "plannedDataFiles": {
+    "data/topics.js": {
+      "sha256": "c6a6495dfd123dc5a2085f8f5ddea001863b6b12e5ff7dc2051fcf5fed6757e8",
+      "bytes": 975196
+    },
+    "data/refs.js": {
+      "sha256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95",
+      "bytes": 510717
+    },
+    "data/question-revision-history.js": {
+      "sha256": "1282251abb6144d826ffb4b701229cf29ecc139026424177139173b639caffa0",
+      "bytes": 1749041
+    },
+    "data/question-revision-manifest.js": {
+      "sha256": "3cb339e75a6ac7763fb372d724caf2630ef282802736e331582e1db94f9a2aca",
+      "bytes": 534805
+    }
+  },
+  "unresolvedConditions": [],
+  "boundedScopeReviewed": true,
+  "historyPreservationReviewed": true,
+  "reviewScope": "Technical integrity and bounded four-data-file application only. Not a new clinical approval, commit approval or declaration of deployment.",
+  "reviewDate": "2026-11-15",
+  "exactClinicalInputs": [
+    {
+      "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+      "sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+      "questionCount": 6,
+      "cardCount": 1
+    },
+    {
+      "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+      "sha256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+      "questionCount": 2,
+      "cardCount": 1
+    }
+  ],
+  "checkedPlanArtifact": {
+    "file": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1725-integration-dryrun-d2c43e855fd6.json",
+    "sha256": "e006e7921268edb88efc651cb02da617fdc7f526abece582438d95be6c0838e5",
+    "independentReproduction": "Exact proof equality after calling real prepare() with all filesystem writes disabled."
+  },
+  "sourceDataFiles": {
+    "data/topics.js": {
+      "sha256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d",
+      "bytes": 975004
+    },
+    "data/refs.js": {
+      "sha256": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5",
+      "bytes": 509771
+    },
+    "data/question-revision-history.js": {
+      "sha256": "323825a6cd8f3641d842785ce80dd5b9efce38f08aa76f291d1cbfe5d67e54f1",
+      "bytes": 1663648
+    },
+    "data/question-revision-manifest.js": {
+      "sha256": "85cf5fadda59f40a2bcedc6d268b81f7cd17e64400fb3907a321fbc7c04433d3",
+      "bytes": 535847
+    }
+  },
+  "checks": {
+    "independentGatesReady": true,
+    "independentExactGateEntries": 10,
+    "questions": 741,
+    "changedAuthors": 8,
+    "unchangedAuthors": 733,
+    "beforeHistory": 169,
+    "afterHistory": 177,
+    "previousHistoricalBindings": 676,
+    "newHistoricalBindings": 32,
+    "realAnswerPresentations": 2964,
+    "oldHistoryBytePrefixPreserved": 1663484,
+    "oldHistoryByteSuffixPreserved": 164,
+    "allUnscopedTopicLinesByteIdentical": true,
+    "sourceQuestionOrderPreserved": true,
+    "allReferenceConsumersCovered": true,
+    "fsrsResetOperations": 0,
+    "negativeControlsRejected": 14,
+    "positiveQuestionAndCardAuditControls": 10,
+    "rollbackFailureInjection": {
+      "replacement": 3,
+      "allFourOriginalBuffersRestored": true,
+      "virtualWritesIncludingRollback": 6,
+      "actualFilesystemWrites": 0
+    },
+    "reexecutionAfterSuccessfulVirtualApplyRejectedBeforeWrite": true
+  },
+  "referenceConsumers": {
+    "sustain6": {
+      "before": [
+        "1a93346d",
+        "516ec2a6"
+      ],
+      "after": [
+        "1a93346d",
+        "516ec2a6"
+      ]
+    },
+    "hyponatremia_verbalis2013": {
+      "before": [],
+      "after": [
+        "21a99f07",
+        "d9257155",
+        "e94a6488"
+      ]
+    }
+  },
+  "resolvedDraftFindings": [
+    "Sodium pin and packet input corrected from A2 to exact A4.",
+    "Explicit a4c85d32 hard-to-medium exception; all other difficulty values preserved.",
+    "Fixed JSON-pointer adapters preserve the actual sibling audit, appeal and FSRS fields rather than constructing synthetic clinical gates."
+  ],
+  "remainingReleaseWorkOutsideThisDataReceipt": [
+    "Same commit must include version.json, sw.js and index.html at17.25.",
+    "Root must create the real editorial batch manifest with exact allowed_files and both reference operations; no such final manifest was approved by this receipt.",
+    "Run final validators and the existing answer/history/runtime tests after actual integration; inspect the real diff. This audit does not replace those results.",
+    "This approval is invalid if utility, bundle, reports, candidate bytes, original four-data-file bytes, base HEAD or planned data hashes differ."
+  ],
+  "limitations": [
+    "Four-file writing is synchronous and compensating rollback handles caught failures; process termination, power loss or rollback failure still require manual recovery. The utility explicitly reports rollback failures.",
+    "No real --apply, source-data write, FSRS reset, database call, browser test, commit or deployment was performed by this reviewer.",
+    "Card/clinical evidence quality remains the responsibility of the two pinned independent clinical reviews; only their exact binding and explicit gate fields were checked here."
+  ]
+}

@@ -1,0 +1,1162 @@
+{
+  "schemaVersion": 2,
+  "reviewId": "NQ-INDEPENDENT-SODIUM-A4-2026-11-15",
+  "date": "2026-11-15",
+  "reviewer": {
+    "id": "/root/study_visibility_1717",
+    "role": "Revisor editorial independente",
+    "independentOf": "/root",
+    "authorReportsOrClaimLedgersRead": false,
+    "exactCandidateSourcesRead": [
+      "sodium-candidates-A2.json",
+      "sodium-candidates-A4.json"
+    ],
+    "originalClassificationCompletedBeforeCandidateAccess": true
+  },
+  "scope": {
+    "type": "Revisão formal da versão exata A4; relatório apenas",
+    "medicalRuntimeEdited": false,
+    "sharedDocumentsEditedForThisReview": false,
+    "candidateEdited": false,
+    "noReleaseInheritance": true,
+    "integrationBase": "ca1184916b53cddfc7581df17ed75ff3a029c14f"
+  },
+  "source": {
+    "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-candidates-A4.json",
+    "fileSHA256": "sha256:670876c2661fb3dc70606db583214d89badf62352bfcb58617ecafdad9bd0695",
+    "revision": "sodium-A4",
+    "hashDefinition": "SHA-256 do JSON autoral completo com sort_keys=True, ensure_ascii=False, separators=(comma,colon), UTF-8. Não é declarado como digest de runtime."
+  },
+  "originalReview": {
+    "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/original-independent-classification.md",
+    "sha256": "sha256:6f0445c4f00e0dc73a06775b0bf3031eabe9908ff9b1453966a815795c48a636",
+    "authorizationForOriginals": "BLOQUEADA; não herdada pela A4"
+  },
+  "norms": [
+    "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/output-contract.md",
+    "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/verification-protocol.md",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md:13–19,18.4,18.5",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md:OP,competência,identidade",
+    "docs/editorial/annex-c-nefrologia.md:C.1,C.2,C.3,C.6,C.7"
+  ],
+  "priorRevisions": {
+    "A1": "Não liberada; não foi a versão submetida ao gate final. Não foi aberta por este revisor.",
+    "A2": {
+      "fileSHA256": "sha256:dc25104ddd13a9d3f05b145aeffc8cf1984fc79bfabd43dc7758114676c1b3a0",
+      "notReleasedByThisReview": true,
+      "findings": [
+        "a4 mantinha hard sem raciocínio avançado.",
+        "Card2013 representava consenso como Diretriz/GUIDELINE.",
+        "e2 usava doença renal sem qualificação de disfunção relevante."
+      ],
+      "disposition": "Todos rechecados nos bytes exatos A4; A2 não deve ser aplicada."
+    },
+    "A3": "Obsoleta para aplicação; a revisão final se restringe à A4."
+  },
+  "evidenceSources": {
+    "E1": {
+      "kind": "Diretriz europeia publicada de2014",
+      "primary": true,
+      "doi": "10.1530/EJE-13-1020",
+      "url": "https://icuscenarios.com/wp-content/uploads/2023/02/European-hyponatremia-guidelines.pdf",
+      "identityCorroboration": "https://www.ese-hormones.org/publications/directory/ese-clinical-guideline-for-the-management-of-hyponatraemia/",
+      "access": "Texto integral da publicação primária em cópia acessível; endpoints OUP originais não entregaram o texto nesta sessão. Conferidos os trechos clínicos citados, sem usar o resumo de refs.js como fonte."
+    },
+    "E2": {
+      "kind": "Consenso de especialistas, revisão/recomendações de painel de2013; nível5 da skill",
+      "primary": true,
+      "doi": "10.1016/j.amjmed.2013.07.006",
+      "pmid": "24074529",
+      "url": "https://cdn1.redemc.net/campus/wp-content/uploads/2019/08/guia-tto-hipona-rev-amjmed2013.pdf",
+      "officialMetadata": "https://pubmed.ncbi.nlm.nih.gov/24074529/",
+      "access": "Texto integral da publicação primária aberto em cópia; trechos S18–S25 eS29 e demais passagens indicadas foram conferidos. PubMed aberto confirma autores, suplemento, páginas, DOI e publication type Consensus Statement. DOI/publisher retornaram403 na ferramenta; isso não é confirmação de link inexistente. Não é RCT, revisão sistemática ou diretriz formal multissocietária/GRADE."
+    },
+    "E3": {
+      "kind": "Bula regulatória para contrachecagem; não é card novo do lote",
+      "primary": true,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+      "labelRevision": "04/2021",
+      "access": "Bula aberta nos trechos citados; não se reivindica nova aprovação regulatória nem indicação no Brasil."
+    }
+  },
+  "sourceCurrency": {
+    "reviewedDraft2026": "https://www.ese-hormones.org/media/nfca3mga/hyponatraemia-joint-guideline-draft-for-review.pdf",
+    "draftStatus": "Identificado explicitamente como rascunho para revisão. Não usado como publicação final, substituição confirmada da2014 ou prova de desatualização."
+  },
+  "summary": [
+    {
+      "qid": "a4c85d32",
+      "op": "Interpretar a hiponatremia no paciente com insuficiência cardíaca e congestão como hipervolêmica, integrando contexto e índices urinários.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação.",
+      "score": 19,
+      "eliminatory": false,
+      "legacy": "MANTER",
+      "action": "Aplicar somente o literal A4 e preservar qid/FSRS conforme avaliação específica."
+    },
+    {
+      "qid": "3fa2737c",
+      "op": "Escolher a intervenção imediata dirigida ao sódio na hiponatremia aguda hipotônica com manifestação neurológica grave após absorção de irrigação.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação.",
+      "score": 19,
+      "eliminatory": false,
+      "legacy": "MANTER",
+      "action": "Aplicar somente o literal A4 e preservar qid/FSRS conforme avaliação específica."
+    },
+    {
+      "qid": "e94a6488",
+      "op": "Conter a sobrecorreção já em curso no paciente de alto risco para prevenir síndrome de desmielinização osmótica.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação.",
+      "score": 19,
+      "eliminatory": false,
+      "legacy": "MANTER",
+      "action": "Aplicar somente o literal A4 e preservar qid/FSRS conforme avaliação específica."
+    },
+    {
+      "qid": "d9257155",
+      "op": "Reconhecer síndrome de desmielinização osmótica como a complicação neurológica mais provável após correção excessiva de hiponatremia crônica.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação.",
+      "score": 19,
+      "eliminatory": false,
+      "legacy": "MANTER",
+      "action": "Aplicar somente o literal A4 e preservar qid/FSRS conforme avaliação específica."
+    },
+    {
+      "qid": "21a99f07",
+      "op": "Aplicar salvaguardas de início da tolvaptana em SIAD com indicação já selecionada, sem confundi-la com escolha universal ou resgate neurológico.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação.",
+      "score": 18,
+      "eliminatory": false,
+      "legacy": "MANTER",
+      "action": "Aplicar somente o literal A4 e preservar qid/FSRS conforme avaliação específica."
+    },
+    {
+      "qid": "e2aae4c7",
+      "op": "Usar o padrão compatível com antidiurese como ponto de partida e verificar exclusões antes de concluir SIAD.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação.",
+      "score": 19,
+      "eliminatory": false,
+      "legacy": "MANTER",
+      "action": "Aplicar somente o literal A4 e preservar qid/FSRS conforme avaliação específica."
+    }
+  ],
+  "questions": {
+    "a4c85d32": {
+      "version": {
+        "sha256": "sha256:67da5ed3ab04ffb150d11fb1342dbfcb6e1ae32852252148629fd6b2563567a5",
+        "fullLiteral": {
+          "t": "Hiponatremia na insuficiência cardíaca",
+          "qid": "a4c85d32",
+          "q": "Homem de 65 anos com insuficiência cardíaca apresenta edema de membros inferiores, turgência jugular e hiponatremia hipotônica. Antes de receber diuréticos, o sódio urinário é 8 mEq/L e a osmolalidade urinária, 520 mOsm/kg. Qual diagnóstico melhor integra a volemia e os exames?",
+          "refs": [
+            "hypona"
+          ],
+          "opts": [
+            "Hiponatremia euvolêmica por secreção inapropriada de ADH.",
+            "Hiponatremia hipovolêmica por perdas gastrointestinais.",
+            "Hiponatremia hipervolêmica por insuficiência cardíaca.",
+            "Hiponatremia euvolêmica por polidipsia primária."
+          ],
+          "ans": 2,
+          "exp": "A congestão indica aumento do volume extracelular. Na insuficiência cardíaca, a redução do volume arterial efetivo pode estimular vasopressina e retenção de sódio: a urina fica concentrada e com pouco sódio. Perdas digestivas sugeririam depleção, enquanto polidipsia isolada costuma produzir urina diluída. SIADH exige euvolemia e exclusão de outras causas. O sódio urinário deve ser interpretado com cautela após diuréticos.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "beforeSHA256": "sha256:a1fcefab6c17888a89eb154ae5e492086899c533a0789d8c49f4b0108bdcdd09",
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "legacyEquivalent": "MANTER",
+      "opClassification": {
+        "op": "Interpretar a hiponatremia no paciente com insuficiência cardíaca e congestão como hipervolêmica, integrando contexto e índices urinários.",
+        "primaryCompetence": "interpretação etiológica",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "physicalLoidAssumed": false
+      },
+      "justification": "A4 corrige a suficiência clínica e o rótulo de dificuldade; a resposta única mantém o conceito original. A pergunta não exige uma indicação terapêutica nem confirmação isolada por sódio urinário.",
+      "clinicalReconstructionAndSufficiency": {
+        "reconstruction": "Hipotonicidade, congestão atual e coleta pré-diurético estão explícitas. A hipótese C integra os achados sem exigir volemia presumida.",
+        "decisiveMissingData": false,
+        "relevantAlternativeInterpretationChangesKey": false
+      },
+      "problems": [],
+      "nonBlockingObservation": "Diferenciam SIAD, perdas digestivas e excesso de água; a polidipsia é a opção mais facilmente excluída. Isso limita discriminação sem criar uma alternativa absurda ou correta.",
+      "advogadoDoRecurso": {
+        "outcome": "Nenhum argumento plausível de anulação identificado.",
+        "testsAndReason": "Testei IC prévia sem congestão, interferência de diuréticos e diagnóstico concorrente euvolêmico. Os dois primeiros cenários são afastados pelos dados explícitos; as demais opções não integram o conjunto. Nenhum argumento plausível de anulação identificado."
+      },
+      "eliminatories": {
+        "checks": {
+          "1": {
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          "2": {
+            "criterion": "Referência não sustenta o gabarito",
+            "triggered": false
+          },
+          "3": {
+            "criterion": "Deriva de OP",
+            "triggered": false
+          },
+          "4": {
+            "criterion": "Conduta insegura premiada",
+            "triggered": false
+          },
+          "5": {
+            "criterion": "Distrator absurdo",
+            "triggered": false
+          },
+          "6": {
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false
+          },
+          "7": {
+            "criterion": "Explicação contradiz o gabarito",
+            "triggered": false
+          },
+          "8": {
+            "criterion": "Dado decisivo ausente",
+            "triggered": false
+          },
+          "9": {
+            "criterion": "Protocolo local não declarado",
+            "triggered": false
+          },
+          "10": {
+            "criterion": "Desatualização científica relevante",
+            "triggered": false
+          }
+        },
+        "triggered": [],
+        "scoreAnnulled": false
+      },
+      "nqEditorialScore": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Naturalidade / ausência de pistas irrelevantes": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente",
+        "meaning": "Julgamento editorial, não dado observado de discriminação/acerto."
+      },
+      "decisionTree": {
+        "path": "§19:0 evidência verificada/sem pendência →1 nenhum eliminatório →2 recurso sem argumento plausível →3 score18–20 →aprovada.",
+        "resultingLifecycle": "publicado, somente após aplicação validada e gates técnicos; o status do runtime não foi alterado por este relatório."
+      },
+      "patchEditorial": "Nenhum ajuste obrigatório na versão A4 exata; usar o objeto version.fullLiteral, sem recriar redação a partir da justificativa.",
+      "verifiedClaimChecks": [
+        {
+          "claim": "Interpretação conjunta de congestão e padrão urinário; cautela após diuréticos.",
+          "source": "E1",
+          "location": "§§5.9 e6.3, algoritmo diagnóstico; §6.3 comentários sobre diuréticos."
+        }
+      ],
+      "references": [
+        "hypona"
+      ],
+      "implementationObservation": {
+        "qid": "PRESERVAR",
+        "identityReason": "Mesmo OP de interpretação etiológica, mesma competência e mesma hiponatremia no contexto de IC. Acrescentar congestão/hipotonicidade e corrigir hard→medium não troca o conceito nem a identidade.",
+        "fsrs": "PRESERVAR",
+        "fsrsReason": "Preservar. O gabarito anterior já apontava a mesma entidade; não foi demonstrada aprendizagem inválida do conceito central que justifique reset.",
+        "materialReviewPerformed": true,
+        "priorApprovalInherited": false
+      },
+      "verificationPending": []
+    },
+    "3fa2737c": {
+      "version": {
+        "sha256": "sha256:fe73c43b977353db3ce77d4344d05648ddb0e5adee79e2413ff970b5015a6972",
+        "fullLiteral": {
+          "t": "Síndrome Pós-RTU — Hiponatremia Aguda",
+          "qid": "3fa2737c",
+          "q": "Homem de 70 anos tinha Na de 138 mEq/L antes de uma ressecção transuretral da próstata com irrigação hipotônica sem sódio. Após grande absorção da solução, apresenta convulsão, Na de 108 mEq/L, glicemia normal e osmolalidade sérica de 230 mOsm/kg. O procedimento foi interrompido e a via aérea, estabilizada. Qual é a conduta imediata para a hiponatremia?",
+          "refs": [
+            "hypona"
+          ],
+          "opts": [
+            "Iniciar restrição hídrica e aguardar a elevação espontânea do sódio.",
+            "Iniciar furosemida e aguardar a diurese antes de reavaliar o sódio.",
+            "Infundir NaCl 0,9% lentamente e reservar a solução a 3% para depois.",
+            "Administrar bólus de NaCl 3% com monitorização clínica e da natremia."
+          ],
+          "ans": 3,
+          "exp": "Trata-se de hiponatremia aguda hipotônica com manifestação neurológica grave após absorção da irrigação. A prioridade é NaCl 3% em bólus monitorados, buscando melhora dos sintomas com elevação inicial limitada do sódio, não normalização imediata. Restrição hídrica, diurético ou salina isotônica isolados não substituem esse tratamento. A tonicidade foi informada porque soluções de irrigação com outros osmóis podem produzir quadros diferentes.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "beforeSHA256": "sha256:828388e041a0f622bfb600416cfdefa97d4bc3578d287bafb2c836a46348a267",
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "legacyEquivalent": "MANTER",
+      "opClassification": {
+        "op": "Escolher a intervenção imediata dirigida ao sódio na hiponatremia aguda hipotônica com manifestação neurológica grave após absorção de irrigação.",
+        "primaryCompetence": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "physicalLoidAssumed": false
+      },
+      "justification": "A4 remove as ambiguidades sobre tonicidade, gravidade sintomática e medidas iniciais concorrentes. D é a única intervenção oferecida que atende imediatamente ao problema delimitado; o texto não promete normalização rápida.",
+      "clinicalReconstructionAndSufficiency": {
+        "reconstruction": "Sódio pré-procedimento, absorção aguda de irrigação hipotônica sem sódio, osmolalidade e glicemia são informados; a convulsão é explícita. Procedimento e via aérea já foram atendidos, delimitando a decisão restante.",
+        "decisiveMissingData": false,
+        "relevantAlternativeInterpretationChangesKey": false
+      },
+      "problems": [],
+      "nonBlockingObservation": "Comparação entre estratégias reais, mas inadequadas como substitutas imediatas nesse caso. A opção que aguarda restrição hídrica é mais fácil; não é considerada segunda melhor defensável.",
+      "advogadoDoRecurso": {
+        "outcome": "Nenhum argumento plausível de anulação identificado.",
+        "testsAndReason": "Testei solução com osmóis diferentes, pseudohiponatremia, crise por outro mecanismo e prioridade da via aérea. O caso fornece dados que afastam as duas primeiras objeções e já trata a última; a integração clínica favorece D. Nenhum distrator é uma segunda conduta imediata equivalente."
+      },
+      "eliminatories": {
+        "checks": {
+          "1": {
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          "2": {
+            "criterion": "Referência não sustenta o gabarito",
+            "triggered": false
+          },
+          "3": {
+            "criterion": "Deriva de OP",
+            "triggered": false
+          },
+          "4": {
+            "criterion": "Conduta insegura premiada",
+            "triggered": false
+          },
+          "5": {
+            "criterion": "Distrator absurdo",
+            "triggered": false
+          },
+          "6": {
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false
+          },
+          "7": {
+            "criterion": "Explicação contradiz o gabarito",
+            "triggered": false
+          },
+          "8": {
+            "criterion": "Dado decisivo ausente",
+            "triggered": false
+          },
+          "9": {
+            "criterion": "Protocolo local não declarado",
+            "triggered": false
+          },
+          "10": {
+            "criterion": "Desatualização científica relevante",
+            "triggered": false
+          }
+        },
+        "triggered": [],
+        "scoreAnnulled": false
+      },
+      "nqEditorialScore": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Naturalidade / ausência de pistas irrelevantes": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente",
+        "meaning": "Julgamento editorial, não dado observado de discriminação/acerto."
+      },
+      "decisionTree": {
+        "path": "§19:0 evidência verificada/sem pendência →1 nenhum eliminatório →2 recurso sem argumento plausível →3 score18–20 →aprovada.",
+        "resultingLifecycle": "publicado, somente após aplicação validada e gates técnicos; o status do runtime não foi alterado por este relatório."
+      },
+      "patchEditorial": "Nenhum ajuste obrigatório na versão A4 exata; usar o objeto version.fullLiteral, sem recriar redação a partir da justificativa.",
+      "verifiedClaimChecks": [
+        {
+          "claim": "Prioridade de salina hipertônica monitorada nesse estrato sintomático e objetivo inicial limitado.",
+          "source": "E1",
+          "location": "§7.1.1 e seguimento; §6.2 sobre tonicidade e §7 sobre atribuição clínica dos sintomas."
+        }
+      ],
+      "references": [
+        "hypona"
+      ],
+      "implementationObservation": {
+        "qid": "PRESERVAR",
+        "identityReason": "Mesmo contexto reconhecível pós-RTU, mesma decisão terapêutica e mesmo conceito correto. A tonicidade e a convulsão especificam o gatilho, sem trocar a doença ou a conduta central.",
+        "fsrs": "PRESERVAR",
+        "fsrsReason": "Preservar. O conceito correto anterior permanece; não foi demonstrado motivo excepcional para tratar a decisão como nova.",
+        "materialReviewPerformed": true,
+        "priorApprovalInherited": false
+      },
+      "verificationPending": []
+    },
+    "e94a6488": {
+      "version": {
+        "sha256": "sha256:3edd811ad215c82f3fe39594371aade69ff58491d04f9a320f5ea0a5ac661454",
+        "fullLiteral": {
+          "qid": "e94a6488",
+          "q": "Paciente com hiponatremia há mais de uma semana, uso de tiazídico, alcoolismo e K de 2,5 mEq/L recebeu NaCl 0,9% e reposição de potássio. Após suspensão do tiazídico, o Na subiu de 108 para 118 mEq/L em 10 horas, com diurese de 400 mL/h. Está hemodinamicamente estável. Com apoio especializado e monitorização intensiva, qual conduta é mais segura?",
+          "opts": [
+            "Suspender a salina e manter restrição hídrica para limitar novas oscilações.",
+            "Manter a salina isotônica e repor o potássio para atingir Na de 125 no mesmo dia.",
+            "Trocar a salina por tolvaptana e reduzir a correção nas próximas 24 horas.",
+            "Suspender a salina e conter a aquarese com desmopressina e água livre monitoradas."
+          ],
+          "ans": 3,
+          "exp": "O aumento de 10 mEq/L em 10 horas já ultrapassa o limite de 8 mEq/L em 24 horas recomendado para alto risco de desmielinização. A aquarese pode manter a elevação mesmo sem salina. Cabe interromper a salina, controlar as perdas de água e considerar rebaixamento com desmopressina e água livre, sob acompanhamento especializado. A reposição de potássio continua exigindo controle, pois também pode elevar a natremia.",
+          "refs": [
+            "hyponatremia_verbalis2013"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia — Prevenção de Hipercorreção"
+        }
+      },
+      "beforeSHA256": "sha256:8f75ad7c582415349fee768251d9a6ff3ad82f8add818d40ffbac99e2132a2b7",
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "legacyEquivalent": "MANTER",
+      "opClassification": {
+        "op": "Conter a sobrecorreção já em curso no paciente de alto risco para prevenir síndrome de desmielinização osmótica.",
+        "primaryCompetence": "conduta de segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "physicalLoidAssumed": false
+      },
+      "justification": "A4 exige integrar trajetória, aquarese e risco; a alternativa D responde à mesma prevenção de dano pretendida no original. Não ensina aguardar normalização, não omite o papel da reposição de potássio e não fixa dose não verificada.",
+      "clinicalReconstructionAndSufficiency": {
+        "reconstruction": "Duração crônica, risco, reposições, mudança do sódio, intervalo, diurese e estabilidade circulatória estão definidos. O apoio especializado e a monitorização fazem parte do cenário.",
+        "decisiveMissingData": false,
+        "relevantAlternativeInterpretationChangesKey": false
+      },
+      "problems": [],
+      "nonBlockingObservation": "Exploram esperar após retirar salina, perseguir um alvo rápido e confundir um aquarético com contenção. O último é mais facilmente excluído, sem alterar a unicidade da decisão.",
+      "advogadoDoRecurso": {
+        "outcome": "Nenhum argumento plausível de anulação identificado.",
+        "testsAndReason": "Testei necessidade de ressuscitação persistente, correção não excessiva e impossibilidade de intervenção por falta de monitorização. Os dados explícitos afastam essas leituras. Suspender salina com restrição hídrica não é equivalente à estratégia D diante das perdas de água descritas."
+      },
+      "eliminatories": {
+        "checks": {
+          "1": {
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          "2": {
+            "criterion": "Referência não sustenta o gabarito",
+            "triggered": false
+          },
+          "3": {
+            "criterion": "Deriva de OP",
+            "triggered": false
+          },
+          "4": {
+            "criterion": "Conduta insegura premiada",
+            "triggered": false
+          },
+          "5": {
+            "criterion": "Distrator absurdo",
+            "triggered": false
+          },
+          "6": {
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false
+          },
+          "7": {
+            "criterion": "Explicação contradiz o gabarito",
+            "triggered": false
+          },
+          "8": {
+            "criterion": "Dado decisivo ausente",
+            "triggered": false
+          },
+          "9": {
+            "criterion": "Protocolo local não declarado",
+            "triggered": false
+          },
+          "10": {
+            "criterion": "Desatualização científica relevante",
+            "triggered": false
+          }
+        },
+        "triggered": [],
+        "scoreAnnulled": false
+      },
+      "nqEditorialScore": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Naturalidade / ausência de pistas irrelevantes": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente",
+        "meaning": "Julgamento editorial, não dado observado de discriminação/acerto."
+      },
+      "decisionTree": {
+        "path": "§19:0 evidência verificada/sem pendência →1 nenhum eliminatório →2 recurso sem argumento plausível →3 score18–20 →aprovada.",
+        "resultingLifecycle": "publicado, somente após aplicação validada e gates técnicos; o status do runtime não foi alterado por este relatório."
+      },
+      "patchEditorial": "Nenhum ajuste obrigatório na versão A4 exata; usar o objeto version.fullLiteral, sem recriar redação a partir da justificativa.",
+      "verifiedClaimChecks": [
+        {
+          "claim": "Meta/teto específicos de alto risco e manejo monitorado da sobrecorreção.",
+          "source": "E2",
+          "location": "S20–S21, tabela3 e recomendações de manejo da correção excessiva."
+        },
+        {
+          "claim": "Aquarese após retirada de tiazídico e efeito da reposição de potássio.",
+          "source": "E2",
+          "location": "S24–S25, Diuretic Therapy."
+        }
+      ],
+      "references": [
+        "hyponatremia_verbalis2013"
+      ],
+      "implementationObservation": {
+        "qid": "PRESERVAR",
+        "identityReason": "A versão original já perguntava pela contenção após início de correção rápida e incluía água/desmopressina se necessário. Quantificar a trajetória concretiza o mesmo OP; não o transforma em tratamento de SDO instalada.",
+        "fsrs": "PRESERVAR",
+        "fsrsReason": "Preservar. A salvaguarda central permanece correta; a especificação de risco e limites foi revista materialmente, mas isso não exige reset automático pelo §18.5.",
+        "materialReviewPerformed": true,
+        "priorApprovalInherited": false
+      },
+      "verificationPending": []
+    },
+    "d9257155": {
+      "version": {
+        "sha256": "sha256:017e477323fb26f8b9d7a9a70edbbe8f4d4755264c377bee970f3770c24bbc6b",
+        "fullLiteral": {
+          "qid": "d9257155",
+          "q": "Paciente com hiponatremia documentada há dez dias teve Na elevado de 104 para 120 mEq/L em 24 horas. Houve melhora inicial da confusão, mas três dias depois surgiram disartria, disfagia e tetraparesia. Qual complicação melhor explica essa evolução?",
+          "opts": [
+            "Síndrome de desmielinização osmótica.",
+            "Encefalopatia hipertensiva com edema vasogênico.",
+            "Edema cerebral pela hiponatremia persistente.",
+            "Encefalopatia de Wernicke por carência de tiamina."
+          ],
+          "ans": 0,
+          "exp": "A melhora inicial seguida de novos déficits após correção excessiva da hiponatremia crônica é típica da síndrome de desmielinização osmótica. Pode haver acometimento pontino ou extrapontino; sequelas permanentes são possíveis, mas não inevitáveis. Edema pela hiponatremia explicaria melhor a fase anterior à correção. As outras encefalopatias não integram tão bem o vínculo temporal e a síndrome motora descrita.",
+          "refs": [
+            "hyponatremia_verbalis2013"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia Crônica — Risco de Correção Rápida"
+        }
+      },
+      "beforeSHA256": "sha256:bdfe4433132c5e6e1c71fc227bb704bb9003728a473b5261b0b44b94d5a68d98",
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "legacyEquivalent": "MANTER",
+      "opClassification": {
+        "op": "Reconhecer síndrome de desmielinização osmótica como a complicação neurológica mais provável após correção excessiva de hiponatremia crônica.",
+        "primaryCompetence": "diagnóstico de complicação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "physicalLoidAssumed": false
+      },
+      "justification": "O reconhecimento nominal do original foi enriquecido com uma trajetória clínica do mesmo fenômeno. A4 preserva o diagnóstico, corrige a equivalência restrita à ponte e evita prognóstico inevitavelmente irreversível.",
+      "clinicalReconstructionAndSufficiency": {
+        "reconstruction": "Crônica documentada, correção excessiva, melhora inicial e novo déficit bulbar/motor tardio. A pergunta pede hipótese que melhor explica a evolução, não confirmação por imagem ou indicação terapêutica.",
+        "decisiveMissingData": false,
+        "relevantAlternativeInterpretationChangesKey": false
+      },
+      "problems": [],
+      "nonBlockingObservation": "Hipóteses neurológicas reais e da mesma categoria; são menos fortes sem o mesmo encadeamento temporal. Uma taxa numérica por si só não foi usada como prova de que toda pessoa desenvolveria SDO.",
+      "advogadoDoRecurso": {
+        "outcome": "Nenhum argumento plausível de anulação identificado.",
+        "testsAndReason": "Testei encefalopatia hipertensiva, persistência de edema inicial e deficiência de tiamina. Sem novos dados que sustentem essas hipóteses, nenhuma integra tão bem a sequência e o déficit descritos. O texto diz mais provável/típica, não prova diagnóstica absoluta."
+      },
+      "eliminatories": {
+        "checks": {
+          "1": {
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          "2": {
+            "criterion": "Referência não sustenta o gabarito",
+            "triggered": false
+          },
+          "3": {
+            "criterion": "Deriva de OP",
+            "triggered": false
+          },
+          "4": {
+            "criterion": "Conduta insegura premiada",
+            "triggered": false
+          },
+          "5": {
+            "criterion": "Distrator absurdo",
+            "triggered": false
+          },
+          "6": {
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false
+          },
+          "7": {
+            "criterion": "Explicação contradiz o gabarito",
+            "triggered": false
+          },
+          "8": {
+            "criterion": "Dado decisivo ausente",
+            "triggered": false
+          },
+          "9": {
+            "criterion": "Protocolo local não declarado",
+            "triggered": false
+          },
+          "10": {
+            "criterion": "Desatualização científica relevante",
+            "triggered": false
+          }
+        },
+        "triggered": [],
+        "scoreAnnulled": false
+      },
+      "nqEditorialScore": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Naturalidade / ausência de pistas irrelevantes": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente",
+        "meaning": "Julgamento editorial, não dado observado de discriminação/acerto."
+      },
+      "decisionTree": {
+        "path": "§19:0 evidência verificada/sem pendência →1 nenhum eliminatório →2 recurso sem argumento plausível →3 score18–20 →aprovada.",
+        "resultingLifecycle": "publicado, somente após aplicação validada e gates técnicos; o status do runtime não foi alterado por este relatório."
+      },
+      "patchEditorial": "Nenhum ajuste obrigatório na versão A4 exata; usar o objeto version.fullLiteral, sem recriar redação a partir da justificativa.",
+      "verifiedClaimChecks": [
+        {
+          "claim": "Evolução bifásica, intervalo tardio, apresentações pontinas/extrapontinas e déficits que não são invariavelmente permanentes.",
+          "source": "E2",
+          "location": "S18, Osmotic Demyelination; parágrafos sobre padrão bifásico e déficits às vezes permanentes."
+        }
+      ],
+      "references": [
+        "hyponatremia_verbalis2013"
+      ],
+      "implementationObservation": {
+        "qid": "PRESERVAR",
+        "identityReason": "Preservação justificada: continua o mesmo OP de reconhecimento da complicação pós-correção, com competência e conceito correto idênticos e identidade causal reconhecível. Subir de recordação nominal para interpretação de caso é enriquecimento desse OP, não troca por prevenção, terapia ou outro diagnóstico.",
+        "fsrs": "PRESERVAR",
+        "fsrsReason": "Preservar. O acerto anterior já reconhecia SDO; não há decisão automática de reset por melhorar a altitude cognitiva. A generalização prognóstica corrigida não muda o conceito diagnóstico medido.",
+        "materialReviewPerformed": true,
+        "priorApprovalInherited": false
+      },
+      "verificationPending": []
+    },
+    "21a99f07": {
+      "version": {
+        "sha256": "sha256:4beb2312dce7da0ea025993f4830468e3b4c772af1212b2f0b93cde9ef84ff09",
+        "fullLiteral": {
+          "t": "SIADH — Papel dos Vaptanos",
+          "qid": "21a99f07",
+          "q": "Em paciente euvolêmico com SIADH confirmada e hiponatremia persistente apesar da restrição hídrica, a equipe especializada considera tolvaptana. Não há necessidade de elevar o sódio em caráter emergencial. Qual afirmação sobre a segurança desse uso selecionado é correta?",
+          "refs": [
+            "hyponatremia_verbalis2013"
+          ],
+          "opts": [
+            "O início ambulatorial é adequado se o primeiro controle do sódio ocorrer em uma semana.",
+            "A restrição hídrica rigorosa deve ser mantida nas primeiras 24 horas para aumentar a resposta.",
+            "O início deve ocorrer em hospital, com sódio monitorado e ingestão de água conforme a sede.",
+            "A associação com salina hipertônica é recomendada no início para tornar a resposta previsível."
+          ],
+          "ans": 2,
+          "exp": "O início hospitalar permite controlar o sódio e a resposta aquarética. É necessário acesso à água conforme a sede; restrição hídrica durante a correção ativa aumenta o risco de hipercorreção. A associação com outras terapias que elevam o sódio, como salina hipertônica, deve ser evitada. Isso não torna a tolvaptana primeira escolha universal nem tratamento de emergência. Diretrizes diferem sobre seu lugar na SIADH; o item aborda a segurança quando a indicação já foi selecionada.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "beforeSHA256": "sha256:c8d0f453da32421f6c00a91aabeaf80884a373c73738ec6fb6d9b7172d8b4701",
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "legacyEquivalent": "MANTER",
+      "opClassification": {
+        "op": "Aplicar salvaguardas de início da tolvaptana em SIAD com indicação já selecionada, sem confundi-la com escolha universal ou resgate neurológico.",
+        "primaryCompetence": "conduta de segurança",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "physicalLoidAssumed": false
+      },
+      "justification": "A4 troca a atribuição europeia inadequada por consenso explicitamente identificado e reconhece a divergência. C descreve as salvaguardas do início; não há mistura de orientações de DRPAD, promessa de benefício clínico ou tratamento de urgência por vaptano.",
+      "clinicalReconstructionAndSufficiency": {
+        "reconstruction": "SIAD confirmada, euvolemia, persistência apesar da restrição e ausência de emergência delimitam a segurança do uso considerado pela equipe. A pergunta não pede aprovar o fármaco para qualquer SIAD nem demonstrar todas as contraindicações de um candidato real.",
+        "decisiveMissingData": false,
+        "relevantAlternativeInterpretationChangesKey": false
+      },
+      "problems": [],
+      "nonBlockingObservation": "Representam erros de local/intervalo de vigilância, restrição e combinação. O controle semanal é claramente inadequado e o caso usa contexto selecionado amplo; por isso há margem de melhora na discriminação, sem falha eliminatória.",
+      "advogadoDoRecurso": {
+        "outcome": "Nenhum argumento plausível de anulação identificado.",
+        "testsAndReason": "Testei a objeção de que a diretriz europeia discorda da seleção do vaptano. O texto não exige consenso sobre a indicação: delimita uso selecionado e informa a divergência. Também testei restrição simultânea e combinação inicial com hipertônica; são precisamente os erros contrapostos à segurança de C. A conduta não deve ser extrapolada a pessoas incapazes de beber/responder à sede, fora do recorte de seleção."
+      },
+      "eliminatories": {
+        "checks": {
+          "1": {
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          "2": {
+            "criterion": "Referência não sustenta o gabarito",
+            "triggered": false
+          },
+          "3": {
+            "criterion": "Deriva de OP",
+            "triggered": false
+          },
+          "4": {
+            "criterion": "Conduta insegura premiada",
+            "triggered": false
+          },
+          "5": {
+            "criterion": "Distrator absurdo",
+            "triggered": false
+          },
+          "6": {
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false
+          },
+          "7": {
+            "criterion": "Explicação contradiz o gabarito",
+            "triggered": false
+          },
+          "8": {
+            "criterion": "Dado decisivo ausente",
+            "triggered": false
+          },
+          "9": {
+            "criterion": "Protocolo local não declarado",
+            "triggered": false
+          },
+          "10": {
+            "criterion": "Desatualização científica relevante",
+            "triggered": false
+          }
+        },
+        "triggered": [],
+        "scoreAnnulled": false
+      },
+      "nqEditorialScore": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 1,
+          "Enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Naturalidade / ausência de pistas irrelevantes": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 18,
+        "band": "Excelente",
+        "meaning": "Julgamento editorial, não dado observado de discriminação/acerto."
+      },
+      "decisionTree": {
+        "path": "§19:0 evidência verificada/sem pendência →1 nenhum eliminatório →2 recurso sem argumento plausível →3 score18–20 →aprovada.",
+        "resultingLifecycle": "publicado, somente após aplicação validada e gates técnicos; o status do runtime não foi alterado por este relatório."
+      },
+      "patchEditorial": "Nenhum ajuste obrigatório na versão A4 exata; usar o objeto version.fullLiteral, sem recriar redação a partir da justificativa.",
+      "verifiedClaimChecks": [
+        {
+          "claim": "Início hospitalar, controle da natremia, água conforme sede e cautela com terapias concomitantes.",
+          "source": "E2",
+          "location": "S23, Tolvaptan; S29, Cautions for Using Vaptans."
+        },
+        {
+          "claim": "Contrachecagem regulatória das salvaguardas e limitação de urgência.",
+          "source": "E3",
+          "location": "Advertência destacada; §§1,2.1,4 e5.1."
+        },
+        {
+          "claim": "Divergência entre recomendação europeia e uso selecionado.",
+          "source": "E1",
+          "location": "§§7.4.3.4–5, contrastados com o escopo de E2."
+        }
+      ],
+      "references": [
+        "hyponatremia_verbalis2013"
+      ],
+      "implementationObservation": {
+        "qid": "PRESERVAR",
+        "identityReason": "O original já media uso condicional seguro de tolvaptana em SIAD. Tornar o paciente selecionado explícito e perguntar pelo início não muda o mecanismo correto, a competência de segurança ou o fármaco; preserva a identidade, com nova evidência independente.",
+        "fsrs": "PRESERVAR",
+        "fsrsReason": "Preservar. A afirmação central de uso condicionado não foi substituída por proibição ou nova indicação. Corrigir a base de referência não redefine automaticamente o item como novo.",
+        "materialReviewPerformed": true,
+        "priorApprovalInherited": false
+      },
+      "verificationPending": []
+    },
+    "e2aae4c7": {
+      "version": {
+        "sha256": "sha256:5d605d1847a903463cccfe53c9bde380c364030f15922dea78c17be4ab48596e",
+        "fullLiteral": {
+          "t": "SIADH — Critérios Laboratoriais",
+          "qid": "e2aae4c7",
+          "q": "Mulher com hiponatremia hipotônica, euvolemia clínica, osmolalidade urinária de 620 mOsm/kg e sódio urinário de 68 mEq/L está em investigação de SIADH. Antes de concluir esse diagnóstico, qual avaliação ainda faz parte dos critérios?",
+          "refs": [
+            "hypona"
+          ],
+          "opts": [
+            "Excluir insuficiência adrenal, disfunção tireoidiana relevante, disfunção renal relevante e uso de diuréticos.",
+            "Confirmar vasopressina elevada e usar esse achado para dispensar a avaliação hormonal.",
+            "Demonstrar sódio urinário acima de 60 mEq/L e usar esse corte como confirmação isolada.",
+            "Documentar urina concentrada e usar esse achado para dispensar a revisão dos fármacos."
+          ],
+          "ans": 0,
+          "exp": "Os exames são compatíveis com antidiurese, mas SIADH é diagnóstico de exclusão. É necessário avaliar causas adrenais, tireoidianas, disfunção renal relevante e o uso recente de diuréticos. Insuficiência adrenal secundária pode simular o mesmo padrão; hiponatremia por hipotireoidismo costuma exigir doença clinicamente importante. Urina concentrada e sódio urinário elevado, isoladamente, não fecham o diagnóstico; dosar vasopressina não substitui essa avaliação.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "beforeSHA256": "sha256:32667b08037e187a0ea8dd813f6b809b79f06687b2f1007e36d2384366c9d75e",
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "legacyEquivalent": "MANTER",
+      "opClassification": {
+        "op": "Usar o padrão compatível com antidiurese como ponto de partida e verificar exclusões antes de concluir SIAD.",
+        "primaryCompetence": "diagnóstico",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "physicalLoidAssumed": false
+      },
+      "justification": "A4 mantém uma decisão diagnóstica única, reduz a generalização renal da A2 e contrapõe atalhos diagnósticos reais. A lista faz parte do mesmo objeto de critérios, não de condutas independentes.",
+      "clinicalReconstructionAndSufficiency": {
+        "reconstruction": "Hipotonicidade e euvolemia estão definidas; a avaliação ainda está em andamento. A pergunta solicita a exclusão pendente, de modo que a ausência de um resultado de cortisol não é um dado decisivo omitido.",
+        "decisiveMissingData": false,
+        "relevantAlternativeInterpretationChangesKey": false
+      },
+      "problems": [],
+      "nonBlockingObservation": "Atalhos reconhecíveis de confirmação por biomarcador ou corte único; a repetição de dispensar etapas facilita a exclusão, sem criar resposta parcialmente correta ao comando.",
+      "advogadoDoRecurso": {
+        "outcome": "Nenhum argumento plausível de anulação identificado.",
+        "testsAndReason": "Testei confirmação por um corte urinário isolado, dosagem de vasopressina e exclusão dispensada por urina concentrada. Nenhum substitui o critério pedido. A4 diz disfunção renal relevante, sem transformar qualquer doença renal com função preservada em veto diagnóstico. Nenhuma segunda alternativa defensável identificada."
+      },
+      "eliminatories": {
+        "checks": {
+          "1": {
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          "2": {
+            "criterion": "Referência não sustenta o gabarito",
+            "triggered": false
+          },
+          "3": {
+            "criterion": "Deriva de OP",
+            "triggered": false
+          },
+          "4": {
+            "criterion": "Conduta insegura premiada",
+            "triggered": false
+          },
+          "5": {
+            "criterion": "Distrator absurdo",
+            "triggered": false
+          },
+          "6": {
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false
+          },
+          "7": {
+            "criterion": "Explicação contradiz o gabarito",
+            "triggered": false
+          },
+          "8": {
+            "criterion": "Dado decisivo ausente",
+            "triggered": false
+          },
+          "9": {
+            "criterion": "Protocolo local não declarado",
+            "triggered": false
+          },
+          "10": {
+            "criterion": "Desatualização científica relevante",
+            "triggered": false
+          }
+        },
+        "triggered": [],
+        "scoreAnnulled": false
+      },
+      "nqEditorialScore": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Naturalidade / ausência de pistas irrelevantes": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente",
+        "meaning": "Julgamento editorial, não dado observado de discriminação/acerto."
+      },
+      "decisionTree": {
+        "path": "§19:0 evidência verificada/sem pendência →1 nenhum eliminatório →2 recurso sem argumento plausível →3 score18–20 →aprovada.",
+        "resultingLifecycle": "publicado, somente após aplicação validada e gates técnicos; o status do runtime não foi alterado por este relatório."
+      },
+      "patchEditorial": "Nenhum ajuste obrigatório na versão A4 exata; usar o objeto version.fullLiteral, sem recriar redação a partir da justificativa.",
+      "verifiedClaimChecks": [
+        {
+          "claim": "Critérios de exclusão, limitação dos testes urinários isolados e da vasopressina; contexto tireoidiano e adrenal.",
+          "source": "E1",
+          "location": "Tabela6; §6.3 e comentários sobre SIAD, insuficiência adrenal e hipotireoidismo."
+        }
+      ],
+      "references": [
+        "hypona"
+      ],
+      "implementationObservation": {
+        "qid": "PRESERVAR",
+        "identityReason": "Mesmo diagnóstico provisório e mesmas exclusões do original. O refinamento dos distratores e a precisão renal não trocam OP, competência ou conceito correto.",
+        "fsrs": "PRESERVAR",
+        "fsrsReason": "Preservar. Não há substituição de uma aprendizagem central por outra nem indicação de reset excepcional.",
+        "materialReviewPerformed": true,
+        "priorApprovalInherited": false
+      },
+      "verificationPending": []
+    }
+  },
+  "references": {
+    "hyponatremia_verbalis2013": {
+      "version": {
+        "sha256": "sha256:c6802c01e8b397910f501691680d8f0f5189319ed2dbf961cec86b350f4d1e3c",
+        "fullLiteral": {
+          "label": "Verbalis JG et al. — Diagnosis, Evaluation, and Treatment of Hyponatremia: Expert Panel Recommendations (2013)",
+          "url": "https://doi.org/10.1016/j.amjmed.2013.07.006",
+          "journal": "Am J Med 2013;126(10 Suppl 1):S1–S42",
+          "ano": 2013,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Recomendações de painel para correção segura da hiponatremia e prevenção de hipercorreção.",
+          "icon": "🔬",
+          "resumo": "Recomendações de um painel de especialistas de 2013, não ensaio clínico nem diretriz europeia. Para alto risco de desmielinização na hiponatremia crônica, propõe meta de 4–6 mEq/L por dia e limite de 8 mEq/L em qualquer período de 24 horas. Na hipercorreção, descreve suspensão das medidas que elevam o sódio, água livre e desmopressina monitoradas. Para vaptanos selecionados, orienta início hospitalar da tolvaptana, controle próximo da natremia, acesso à água e evitar combinação com outras terapias para hiponatremia.",
+          "conclusao": "O limite de correção depende do risco; aquarese e reposição de potássio também podem elevar a natremia. Não se deve perseguir normalização rápida.",
+          "curiosidade": ""
+        }
+      },
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook §18.4, regra7: evidência VERIFICADA + pendência NENHUMA + veredito de aprovação."
+      },
+      "confidence": "alta",
+      "referenceNature": "Consenso de especialistas/recomendações de painel, agrupado em Revisão/REVIEW, nível5; não GRADE nem diretriz formal.",
+      "actualPublicationType": "Consensus Statement (registro oficial PubMed24074529).",
+      "wholeCardFieldCoverage": {
+        "label": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "Título e autoria do painel conferidos na publicação e registro oficial. Não inventa acrônimo ou sociedade. A natureza de recomendações de painel está explícita."
+        },
+        "url": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "DOI exatamente confirmado no registro oficial PubMed24074529 e na publicação. Resolver retornou403 à ferramenta; a identidade foi confirmada e o texto integral foi aberto por cópia, sem declarar DOI inexistente ou acesso público garantido."
+        },
+        "journal": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "Periódico,volume126,suplemento10 Suppl1,páginasS1–S42 conferidos no registro oficial e publicação."
+        },
+        "ano": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "2013, inteiro e correspondente à publicação."
+        },
+        "tipo": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "Revisão é o agrupamento permitido para este consenso de especialistas (nível5 da skill). Publication type real é Consensus Statement; não é promovido a diretriz formal, revisão sistemática ou RCT."
+        },
+        "badge": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "REVIEW, coerente com o agrupamento e sem selo GUIDELINE/META/RCT."
+        },
+        "badgeColor": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "#8b5cf6, cor exigida para REVIEW pelo contrato."
+        },
+        "impacto": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "Síntese de recomendações, não efeito causal quantificado, superioridade ou garantia de prevenção."
+        },
+        "icon": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "🔬, ícone previsto para REVIEW."
+        },
+        "resumo": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "Escopo e natureza explicitados. Conferidos meta/teto de alto risco, manejo de correção excessiva e início seguro de vaptano nos trechos S20–S24/S29. Não fabrica grau GRADE ou ensaio."
+        },
+        "conclusao": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "Interpretação de risco, aquarese e potássio conferida em S20–S25; não promete ausência de SDO ou normalização rápida."
+        },
+        "curiosidade": {
+          "reviewed": true,
+          "supported": true,
+          "finding": "String vazia aceita pelo contrato; não foi preenchida com fato não verificado."
+        }
+      },
+      "fieldCount": 12,
+      "wholeLiteralReviewed": true,
+      "bibliographyAndClinicalClaimsCheckedSeparately": true,
+      "eliminatories": [],
+      "clinicalClaimSources": [
+        "E2"
+      ],
+      "metadataSource": "https://pubmed.ncbi.nlm.nih.gov/24074529/",
+      "evidenceLevelReason": "O painel fornece as recomendações específicas citadas; suas incertezas e diferenças em relação à Europa foram mantidas na questão de segurança. Não se atribuem força de RCT, atualização2026 ou consenso universal.",
+      "advogadoDoRecurso": "Testei confusão com2014/2022, promoção indevida a diretriz e extrapolação para benefício clínico demonstrado. A4 corrige a taxonomia e limita os textos às afirmações conferidas. Nenhum bloqueio restante.",
+      "verificationPending": [],
+      "implementation": "ADICIONAR somente este ID/literal na mesma aplicação das questões aprovadas. Não substituir os cards hypona/hyponatremia_verbalis2022 existentes nem introduzir samsca_fda_2021 por esta autorização."
+    }
+  },
+  "duplicateScreen": {
+    "method": "Triagem dirigida dos enunciados do banco-base por hiponatremia, SIADH, SDO, tolvaptana e ressecção transuretral, comparando os seis candidatos nas quatro dimensões do Handbook §15. Não é revisão médica integral dos outros itens.",
+    "nearbyComparisons": {
+      "a4c85d32": "Nenhuma decisão com a mesma estrutura IC/congestão/urina identificada.",
+      "3fa2737c": "Cenário e decisão pós-irrigação com crise distintos dos demais enunciados encontrados.",
+      "e94a6488": "9f88ff37/58b025a6/9c8d6b1e/ff5868ca tratam princípio ou limite, sem a mesma trajetória de aquarese/sobrecorreção documentada.",
+      "d9257155": "f5ceeb49 pergunta região anatômica, não hipótese clínica numa evolução bifásica.",
+      "21a99f07": "93646aa8/cfeef8e1/4c7d3db3 são mecanismos;11831459 é primeira linha; casos DRPAD têm outra indicação.",
+      "e2aae4c7": "ab12c0a9 discrimina SIAD de insuficiência adrenal primária por achado adicional; decisão não coincide com verificar as exclusões como conjunto."
+    },
+    "fourDimensionDuplicateFound": false,
+    "otherItemsEditorialVerdictIssued": false
+  },
+  "implementation": {
+    "publicationAuthorization": "LIBERADA",
+    "derivation": "Todos os6 gates exatos e o gate do card único são LIBERADA, sem pendência decisiva ou eliminatório. Não autoriza A1/A2/A3 ou outra redação.",
+    "applyOnlyRevision": "sodium-A4",
+    "referenceDependency": "Adicionar o card hyponatremia_verbalis2013 aprovado no mesmo lote das três questões que passam a referenciá-lo, antes de validar ausência de órfãs. No banco-base esse ID ainda não existe; é uma adição expressamente revisada, não uma referência já instalada.",
+    "preserve": [
+      "Seis qids, categorias, gabaritos e posições corretas.",
+      "Estado FSRS sem reset automático; identidade por item fundamentada abaixo.",
+      "Demais questões e cards existentes."
+    ],
+    "expectedDifficultyChangeOnly": "a4c85d32: hard→medium. Outras cinco continuam medium.",
+    "requiredAfterApplication": "Root deve conferir igualdade dos literais aplicados com os hashes aprovados, validação estrutural/referências e gates técnicos de versão/deploy. Nenhuma dessas validações de aplicação, CI ou publicação foi executada nesta revisão."
+  },
+  "limitations": [
+    "Aprovação editorial é específica dos objetos anexados e verificados, não uma recomendação clínica para paciente real.",
+    "Tipo e força das fontes foram diferenciados; não se atribuiu GRADE ao consenso2013.",
+    "As dificuldades são juízos editoriais; não houve análise psicométrica de dados dos usuários.",
+    "A fonteFDA é contrachecagem documental e não card ou referência extra de runtime.",
+    "A1–A3 e seus hashes não recebem autorização por semelhança. Mudança material posterior exige revisão nova."
+  ]
+}

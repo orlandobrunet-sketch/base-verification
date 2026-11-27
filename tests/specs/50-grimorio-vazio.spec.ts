@@ -93,13 +93,20 @@ test.describe('Grimório vazio', () => {
     const painel = page.locator('#nqdPane-library');
     const keys = [...CHAVES_DE_ACERVO, 'nefroquest-save', 'nefroquest-detailed-stats'];
     const before = await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys);
-    const catalogue = await page.evaluate(() => ({
-      articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length'),
-    }));
+    const catalogue = await page.evaluate(() => {
+      const refs = (0, eval)('refsDB');
+      const articles = (0, eval)('nefroArticles');
+      const catalog = (window as any).NQLibraryCatalog;
+      return { articles: catalog.articleCount(articles), sources: Object.keys(refs).length };
+    });
     expect(catalogue.articles).toBeGreaterThan(0);
     expect(catalogue.sources).toBeGreaterThan(0);
+    const works = painel.locator('[data-library-work]:visible');
+    const totalWorks = await works.count();
+    expect(totalWorks).toBeGreaterThan(0);
+    expect(totalWorks).toBeLessThan(catalogue.articles + catalogue.sources);
     const summary = painel.locator('.nqd-library-summary');
-    await expect(summary).toHaveText(`Referências descobertas até o momento: 0/${catalogue.articles + catalogue.sources}`);
+    await expect(summary).toHaveText(`Obras com conteúdo descoberto: 0/${totalWorks}`);
     await expect(painel.locator('.nqd-library-shelf'), 'estante vazia parecia elemento quebrado').toHaveCount(0);
     await expect(painel.locator('[data-library-item]:visible')).toHaveCount(0);
     await expect(painel.locator('[data-library-empty] button')).toBeVisible();
@@ -111,8 +118,9 @@ test.describe('Grimório vazio', () => {
     await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);
     await expect(locked.first().locator('h3')).toBeVisible();
     await expect(painel.locator('[data-library-entry][data-library-kind="scroll"]:visible').first().locator('.nqd-library-unlock-hint')).toContainText('baú');
-    await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
-    await expect(summary).toContainText('Referências descobertas até o momento: 0/');
+    await expect(locked.getByRole('button', { name: 'Resumo bloqueado', exact: true })).toHaveCount(catalogue.articles + catalogue.sources);
+    await expect(locked.locator('button:enabled, .nqd-library-impact')).toHaveCount(0);
+    await expect(summary.locator('strong')).toHaveText(`0/${totalWorks}`);
     expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);
   });
 

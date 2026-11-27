@@ -1,0 +1,165 @@
+{
+  "schema": "NQ_1727_PREMIUM_COPY_OVERLAY_PROOF_v1",
+  "author": "/root/editorial_inventory_1725",
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "sourceSHA256": "ce1c166420b36cf6b9c468957d4e04e06ad522579dc3306cdd74f24851df07ed",
+  "testSHA256": "064b5d4efb1584085e640b4f80d47265be261ee6e91310015ac4fbb080ac2278",
+  "change": "Only generic/timeout error-copy daily-warning suffixes are conditional on !isPremium in Oracle and diagnosis. Free warning remains literal-identical; no quota refund promise.",
+  "copyDelta": {
+    "schema": "NQ_1727_PREMIUM_COPY_DELTA_v1",
+    "beforeSHA256": "5a3b962ab68e480abad029c53726a9566991a60e89ae0293e95d02ac2f44223d",
+    "afterSHA256": "ce1c166420b36cf6b9c468957d4e04e06ad522579dc3306cdd74f24851df07ed",
+    "onlyTwoErrorCopyExpressionsChanged": true,
+    "priorSeventeenTestsUnchangedPrefix": true,
+    "blocks": [
+      {
+        "name": "resumeSavedStudyMode",
+        "sha256": "89a8578eb1a363e003249c4c13bae7a1b12285d43e49b41d037c181396ae8789",
+        "byteIdentical": true
+      },
+      {
+        "name": "useCurrentStudyRevision",
+        "sha256": "90aa4b65dc60ed37ac046a0b6822c5fe218ce2c4f750738685e5dc918852ef71",
+        "byteIdentical": true
+      },
+      {
+        "name": "viewCurrentStudyRevision",
+        "sha256": "db42010e4142d4537f16ba8936b9d9e688c23b07b1be7332faaa4b03832d9855",
+        "byteIdentical": true
+      },
+      {
+        "name": "renderStudyQuestion",
+        "sha256": "eda230dd0966568ee1f158f252166c2aeb03f1af43995ac9a100a62f506496bc",
+        "byteIdentical": true
+      },
+      {
+        "name": "deadline",
+        "sha256": "62c704a2ce71c70a74785905e984282fcd03bfa28a56396d1909835399b6ecb3",
+        "byteIdentical": true
+      }
+    ]
+  },
+  "validation": {
+    "initialFixtureAttempt": {
+      "failed": 4,
+      "reason": "app_metadata.premium alone does not activate this runtime Premium predicate; failure was before the UI bug, not product RED."
+    },
+    "validPremiumRED": {
+      "failed": 4,
+      "retries": 0,
+      "reason": "Real isPremium=true controls recovered but error copy contained daily-limit warning."
+    },
+    "finalOverlay": {
+      "direct": 8,
+      "premiumDirect": 4,
+      "freeDeadlineRegressionDirect": 4,
+      "desktop": 4,
+      "mobile": 4,
+      "flaky": 0,
+      "failures": 0,
+      "skips": 0,
+      "retries": 0,
+      "runnerErrors": 0,
+      "pageErrors": 0,
+      "unexpectedNonGET": 0,
+      "sockets": 0,
+      "durationMs": 37639.507999999994
+    },
+    "cases": [
+      {
+        "title": "oracle: token pending recovers once at the local deadline and manual retry rejects old delivery",
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "diagnosis: json pending recovers once at the local deadline and manual retry rejects old delivery",
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "oracle: Premium timeout restores controls without daily quota or upgrade copy",
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "diagnosis: Premium timeout restores controls without daily quota or upgrade copy",
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "oracle: token pending recovers once at the local deadline and manual retry rejects old delivery",
+        "project": "mobile",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "diagnosis: json pending recovers once at the local deadline and manual retry rejects old delivery",
+        "project": "mobile",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "oracle: Premium timeout restores controls without daily quota or upgrade copy",
+        "project": "mobile",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "title": "diagnosis: Premium timeout restores controls without daily quota or upgrade copy",
+        "project": "mobile",
+        "status": "passed",
+        "retry": 0
+      }
+    ]
+  },
+  "fixture": "Synthetic authenticated identity/app_metadata and native ID-signed Premium cache, reloaded before UI. Real isPremium and roles not overridden; real Auth SDK/AI/writes blocked.",
+  "priorProof": {
+    "file": "implementation-summary.json",
+    "sha256": "ac423d34dc9364ab9c4808e0e1de7a93da2a8893ec0b08295a37f3eb2c7ca46e",
+    "native66Rerun": false,
+    "classification": "Eight-case overlay; four free cases repeat the previous66. Do not sum66+8 as unique tests or claim66were rerun on the final copy."
+  },
+  "preview": {
+    "port": 5520,
+    "closed": true,
+    "hostListenersAfterClose": 0
+  },
+  "proofFiles": [
+    {
+      "file": "premium-red.json",
+      "sha256": "6a5d7582c46d88f5a4758a6269fddf9cc375839d5d235f0006dd0debdcd6c0ad"
+    },
+    {
+      "file": "premium-red-v2.json",
+      "sha256": "6aeba048628ce216048bd0812b455309bd85b1c82c1ed452b8b4ad3a4d3b49a2"
+    },
+    {
+      "file": "premium-red-v2-summary.json",
+      "sha256": "6cc34d5fb84bf545d159713c49f0ea4c35871695dfecef91cdef7470c4e40235"
+    },
+    {
+      "file": "premium-green.json",
+      "sha256": "bab215121feaec3df84bbdb3e2a5e439cbc70a67fac3639a3beb136fa1d17839"
+    },
+    {
+      "file": "premium-copy-byte-delta.json",
+      "sha256": "24c20c03b9fa5d4a85d936aa5fe7c24184dbd7582ef443fc5a9c0da688dafc75"
+    },
+    {
+      "file": "study-mode-before-premium-copy.js",
+      "sha256": "5a3b962ab68e480abad029c53726a9566991a60e89ae0293e95d02ac2f44223d"
+    },
+    {
+      "file": "302-before-premium-copy.spec.ts",
+      "sha256": "a3ded85899d2f144bd5eaea9a3748214f62de8574a84a2da3d3b351afa8a3e06"
+    }
+  ],
+  "limits": [
+    "No new deadline, controller, quota, cache or retirement mechanism changed. Byte proof preserves all retirement functions and deadline helper.",
+    "Synthetic local browser tests do not certify real Premium payment/Auth/AI services."
+  ]
+}

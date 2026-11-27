@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const libraryCatalog = require('../../js/library-catalog.js');
 const source = fs.readFileSync(path.join(__dirname, '../../js/game.js'), 'utf8').replace(/\r\n/g, '\n');
 function section(start, end) {
   const a = source.indexOf(start), b = source.indexOf(end, a + start.length);
@@ -19,7 +20,7 @@ function fixture() {
     constructor(id = '', parent = null) {
       this.id = id; this.parentElement = parent; this.isConnected = true; this.dataset = {};
       this.children = []; this.hidden = false; this.disabled = false;
-      this.classList = {add() {}};
+      this.classList = {add() {}, remove() {}};
       if (id) nodes.set(id, this);
       if (parent) parent.children.push(this);
     }
@@ -34,6 +35,7 @@ function fixture() {
       return this.controls.get(selector); }
     querySelectorAll() { return [this.querySelector('button')]; }
     setAttribute() {}
+    removeAttribute() {}
     focus() { ctx.document.activeElement = this; }
     remove() { this.isConnected = false; if (nodes.get(this.id) === this) nodes.delete(this.id);
       if (this.parentElement) this.parentElement.children = this.parentElement.children.filter(child => child !== this);
@@ -42,7 +44,7 @@ function fixture() {
   const body = new Node('body'), main = new Node('mainApp', body);
   class Observer { observe() { this.connected = true; } disconnect() { this.connected = false; } }
   const progress = () => ({domain: pilot ? 'pilot' : 'normal', journeyId: pilot ? journeyId : null, owner, generation});
-  const ctx = {console, Object, Math, WeakMap, WeakSet, Set,
+  const ctx = {console, Object, Math, WeakMap, WeakSet, Set, NQLibraryCatalog: libraryCatalog, nefroArticles: [],
     _progressEpoch: 1, _progressSandboxMode: null, _pilotAnswerTransaction: null,
     state: {gameStarted: true, gameOver: false, gameCompleted: false, correctTotal: 0},
     _currentSaveOwner: () => owner, isCharacterPilot: () => pilot,
@@ -54,7 +56,7 @@ function fixture() {
       querySelectorAll: () => [...nodes.values()].filter(node => node.dialog && node.isConnected)},
     ...events, setTimeout(fn, delay) { const timer = ++id; timers.set(timer, {fn, at: now + delay}); return timer; },
     clearTimeout: timer => timers.delete(timer),
-    playSound() {}, nqDialogo() {}, claimChestReward() { claims++; },
+    playSound() {}, nqDialogo() {}, _toast() {}, claimChestReward() { claims++; },
     renderVictoryResults() {
       if (!ctx.state.gameCompleted || ctx.state.correctTotal < 100 || nodes.has('victoryModal')) return false;
       presentations++; const result = new Node('victoryModal', body); result.dialog = true; return true;
@@ -66,6 +68,7 @@ function fixture() {
   ctx.window = ctx; vm.createContext(ctx);
   vm.runInContext(section('    function _captureJourneyBinding()', '    function _reloadJourneyCollections()'), ctx);
   vm.runInContext(section('    function _afterCharacterCommit(', '    function _recordCharacterProgress('), ctx);
+  vm.runInContext(section('    const _LIFE_BONUS_ITEMS =', '    const _LEG_LABELS ='), ctx);
   vm.runInContext(section('    const _pendingChestRewards = [];', '    function claimChestReward()'), ctx);
   vm.runInContext(section('    function showGameCompletionModal()', '    function renderVictoryResults()'), ctx);
   vm.runInContext(section('    function reopenVictoryResults()', '    function returnHomeAfterVictory()'), ctx);
@@ -93,7 +96,7 @@ function fixture() {
     retire: () => ctx._retireChestRewardContext(), notify: () => contextListeners.forEach(fn => fn())};
 }
 
-// Isolated RED regression. Fresh VM models a new document; storage alone survives.
+// A fresh VM models a new document; storage alone survives.
 // Real pilot commit/resume and production reward scheduling are used. DOM is a stub.
 test('committed earned chest remains deliverable after a fresh document resumes the save', async () => {
   const values = new Map();
@@ -136,7 +139,7 @@ test('committed earned chest remains deliverable after a fresh document resumes 
   assert.equal(recovered.chestCorrectCount,0);
   assert.equal(values.get(p.KEY),committed,'Resume did not replace the committed payload');
   after.flush();after.advance(2000);
-  // Expected future behavior: the committed opportunity survives loss of the old document.
+  // The committed opportunity survives loss of the old document.
   assert.equal(after.eval('_pendingChestRewards.length'),1,'Earned opportunity was lost across fresh-document resume');
   assert.ok(after.popup());
 });
@@ -188,6 +191,61 @@ for(const choice of ['equip','sell'])test('real game durable equipment '+choice+
   assert.equal(p.load().score,20);assert.equal(p.load().gold,20);
   assert.equal(p.load().equipment.weapon.n,choice==='equip'?'New':'Old');
   assert.equal(p.chestReceipts()[0].phase,'consumed');p.release();
+});
+
+test('durable equipment keeps the first Égide life bonus after a document reload', async () => {
+  const values = new Map();
+  let f = await durablePage(values);
+  let pilot = f.ctx.NQPilot;
+  try {
+    Object.assign(f.ctx.state, {lives: 4, maxLives: 4});
+    assert.equal(pilot.beginTransaction(), true);
+    const receipt = pilot.stageChest();
+    pilot.updateChest(receipt.id, pending => {
+      pending.phase = 'prepared';
+      pending.reward = {kind: 'equipment', slot: 'relic',
+        item: {n: 'Égide Dialítica', rar: 'legendary', atk: 0, def: 1, kno: 0, luck: 0}};
+    });
+    assert.equal(pilot.commit(f.ctx.state, pilot.classBenefits), true);
+    f.flush(); f.advance(1); f.click(); f.advance(1150);
+    assert.equal(pilot.chestReceipts()[0].phase, 'consumed');
+    assert.equal(pilot.load().lives, 5);
+    assert.equal(pilot.load().maxLives, 4);
+    assert.equal(pilot.load().legendaryAbilityUsed['egide-first-life-v1'], true);
+    pilot.release();
+    f = await durablePage(values, true);
+    pilot = f.ctx.NQPilot;
+    assert.equal(f.ctx.state.lives, 5);
+    assert.equal(f.ctx.effectiveMaxLives(), 5);
+    f.flush(); f.advance(2000);
+    assert.equal(f.popup(), undefined);
+  } finally { pilot.release(); }
+});
+
+test('a disappearing catalog leaves the durable receipt unchanged until the player can retry', async () => {
+  const f = await durablePage(new Map());
+  const pilot = f.ctx.NQPilot;
+  try {
+    assert.equal(pilot.beginTransaction(), true);
+    const receipt = pilot.stageChest();
+    pilot.updateChest(receipt.id, pending => {
+      pending.phase = 'prepared';
+      pending.reward = {kind: 'article', articleIndex: 0};
+    });
+    assert.equal(pilot.commit(f.ctx.state, pilot.classBenefits), true);
+    const prepared = JSON.stringify(pilot.chestReceipts());
+    f.flush(); f.advance(1); f.click();
+    f.ctx.NQLibraryCatalog = undefined;
+    f.advance(1150);
+    assert.equal(JSON.stringify(pilot.chestReceipts()), prepared);
+    assert.equal(pilot.load().score, 0);
+    assert.equal(f.popup(), undefined);
+    assert.equal(f.claims(), 0);
+    f.ctx.NQLibraryCatalog = libraryCatalog;
+    f.flush(); f.click(); f.advance(1150);
+    assert.equal(pilot.chestReceipts()[0].phase, 'consumed');
+    assert.equal(pilot.load().score, 40);
+  } finally { pilot.release(); }
 });
 
 test('real game normal scheduler and article reducer use unified authority after reload',async()=>{

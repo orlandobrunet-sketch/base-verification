@@ -1,0 +1,261 @@
+{
+  "qid": "bd45bf21",
+  "baseRelease": "17.31",
+  "targetRelease": "17.32",
+  "source": "95f41684ede5b2c8594875c8ca1ba10ea8b2fb63",
+  "merge": "95f41684ede5b2c8594875c8ca1ba10ea8b2fb63",
+  "reviewedOn": "2026-11-26",
+  "status": "PROPOSTA_AUTORAL_PREPARADA_PARA_REVISÃO_INDEPENDENTE",
+  "hashMethod": "beforeHash, afterHash e reusedCardHash usam SHA-256 sobre JSON.stringify(valor) em UTF-8. A seção version usa o construtor canônico.",
+  "beforeHash": "b4ceb0b86e24fadda336a833660c017b06bc996ecd2030d0ba724a989c9ce859",
+  "afterHash": "d1e4e765b554b5b4fd0849789051f3191e71091a76b0ae2879060f0bf247292b",
+  "reusedCardHash": "24fecd7dbe576752c3ae49affaeaef6289f46ba122ad266b3641c7b62516a2b3",
+  "original": {
+    "t": "Membrana High-Flux — Depuração e MPO",
+    "qid": "bd45bf21",
+    "q": "Ao comparar membranas high-flux e low-flux na hemodiálise, qual afirmação combina corretamente a propriedade técnica com o resultado do estudo MPO?",
+    "refs": [
+      "mpo_high_flux_2009"
+    ],
+    "opts": [
+      "High-flux aumenta a depuração de moléculas médias, como beta-2 microglobulina, mas não reduziu significativamente a mortalidade na população total do MPO",
+      "Low-flux depura mais beta-2 microglobulina e reduziu a mortalidade global no MPO",
+      "High-flux foi superior para mortalidade em todos os pacientes, tornando desnecessária a análise de dose entregue",
+      "As duas membranas têm permeabilidade equivalente para moléculas médias; diferem apenas na área de superfície"
+    ],
+    "ans": 0,
+    "exp": "A maior permeabilidade das membranas high-flux permite maior depuração de moléculas médias, incluindo beta-2 microglobulina. No MPO, porém, a comparação randomizada não mostrou redução estatisticamente significativa da mortalidade no conjunto dos pacientes incidentes. Houve sinal favorável no estrato pré-especificado com albumina de até 4 g/dL e análises secundárias em diabetes, mas esses achados não devem ser transformados em benefício universal de sobrevida. Propriedade de depuração e desfecho clínico são eixos distintos.",
+    "diff": "medium",
+    "cat": "dialise"
+  },
+  "candidate": {
+    "t": "Membrana High-Flux — Depuração e MPO",
+    "qid": "bd45bf21",
+    "q": "No estudo Membrane Permeability Outcome (MPO), pacientes que iniciavam hemodiálise foram randomizados para membranas de alto fluxo (high-flux) ou de baixo fluxo (low-flux). O que se pode concluir sobre o alto fluxo quanto à depuração de moléculas médias e à mortalidade por todas as causas na população total analisada?",
+    "refs": [
+      "mpo_high_flux_2009"
+    ],
+    "opts": [
+      "Maior depuração de moléculas médias, sem redução demonstrada de mortalidade.",
+      "Maior depuração de moléculas médias, com redução demonstrada de mortalidade.",
+      "Maior depuração de moléculas médias, com equivalência demonstrada de mortalidade.",
+      "Depuração semelhante de moléculas médias, sem redução demonstrada de mortalidade."
+    ],
+    "ans": 0,
+    "exp": "As membranas de alto fluxo têm maior capacidade de remover moléculas médias, como a beta-2-microglobulina. No MPO, o achado secundário foi menor acúmulo sérico dessa molécula com alto fluxo. Na população total analisada, o estudo não demonstrou redução da mortalidade por todas as causas (razão de riscos instantâneos ajustada de 0,76, com intervalo de confiança de 95% de 0,56 a 1,04). O intervalo inclui 1 e o estudo não estabeleceu equivalência. Houve menor mortalidade no estrato pré-especificado com albumina sérica ≤4 g/dL. A análise em pacientes com diabetes foi pós-hoc e requer confirmação. Uma melhora no marcador de depuração, por si só, é insuficiente para concluir que a membrana melhora a sobrevida.",
+    "diff": "medium",
+    "cat": "dialise"
+  },
+  "version": {
+    "before": {
+      "authorRevision": "sha256:1c3b9138a62661336467ef6cd503079511433e1f8e4c4743a1e96ac769b9ef1b",
+      "recordRevision": "sha256:58c86532a442a90d0f9032d50f3a47c0f035181202c27a5cbc235df93271bc91",
+      "sourceRevisions": {
+        "main": "sha256:e4a5406d8a067945acddacc436e07ecceef9d303f921437e8e2d567283736329",
+        "exam": "sha256:e4a5406d8a067945acddacc436e07ecceef9d303f921437e8e2d567283736329",
+        "study": "sha256:d7188c36bfbab9a1e5a159442da34b065bf25a99229b0cc9654c4a0c9e1eaa0a",
+        "offline": "sha256:b78aec06d70b4e2dc7f416d6d250d80ce646beb38ccd67654cf8a74b67e4debf"
+      },
+      "referenceRevisions": {
+        "mpo_high_flux_2009": "sha256:3ccabd7e6954b8f9c35a17e308624d83c358ae4356176771b151db938c005be2"
+      }
+    },
+    "after": {
+      "authorRevision": "sha256:fc80e7f31f693df548fe03bfb2791cde47cb0cde5106008b4093fc353cd9dd8b",
+      "recordRevision": "sha256:e2da199bcdd4526a179239f6bbbfe364d8eacb67ecafaf6e4619b9283bc3349e",
+      "sourceRevisions": {
+        "main": "sha256:0fa87bbc356c44ff67585321f4b4b0950956a920f5f3f5a73eeadfcb3c7ff5f0",
+        "exam": "sha256:0fa87bbc356c44ff67585321f4b4b0950956a920f5f3f5a73eeadfcb3c7ff5f0",
+        "study": "sha256:3e96307f7d03277f541559c2a04e08f64e2be1dbb0a399dba66c8cc7390d385d",
+        "offline": "sha256:7bb30b58f3772d8ffa834c853cb7862ac1fbf22ccecf6d05aa0db6ce3e69a879"
+      },
+      "referenceRevisions": {
+        "mpo_high_flux_2009": "sha256:3ccabd7e6954b8f9c35a17e308624d83c358ae4356176771b151db938c005be2"
+      }
+    }
+  },
+  "candidateScope": {
+    "changedFields": [
+      "q",
+      "opts",
+      "exp"
+    ],
+    "totalQuestions": 723,
+    "originalAlternativeLengths": [
+      153,
+      80,
+      112,
+      108
+    ],
+    "candidateAlternativeLengths": [
+      76,
+      76,
+      81,
+      81
+    ],
+    "preserved": [
+      "qid",
+      "t",
+      "refs",
+      "ans",
+      "diff",
+      "cat",
+      "posição congelada",
+      "outros registros",
+      "política de substituição"
+    ]
+  },
+  "publishedOriginalEvaluation": {
+    "findings": [
+      "MENOR — A alternativa correta é detalhada, com exemplo e ressalva, e se destaca pelo comprimento. A pista influencia o processo de resposta.",
+      "MENOR — Os distratores combinam efeitos díspares. O texto sobre dispensar a avaliação da dose entrega uma pista de descarte que não é necessária para interpretar mortalidade.",
+      "MENOR — A explicação diz “análises secundárias em diabetes”. Explicitar que a análise foi pós-hoc indica corretamente o peso dessa evidência."
+    ],
+    "disposition": "A proposta material ligada ao mesmo objetivo requer verificação nova em sua formulação exata."
+  },
+  "authorCandidate": {
+    "competency": "Interpretação de evidência de eficácia clínica de membranas na hemodiálise.",
+    "op": "Interpretar o resultado global de mortalidade do ensaio MPO considerando a maior capacidade de depuração de moléculas médias com a membrana de alto fluxo, evitando inferir benefício em sobrevida a partir de um marcador.",
+    "opContinuity": "O mesmo contraste entre característica técnica e desfecho clínico, a mesma população, o mesmo comparador e o mesmo ensaio decidem a resposta. Ajustamos a redação e a inferência dos distratores. Nenhum subgrupo, cálculo, ponto de corte ou escolha de prescrição passou a decidir o gabarito.",
+    "population": "Pacientes adultos incidentes em hemodiálise. A pergunta distingue a população total efetivamente analisada dos estratos e subgrupos. Comparação randomizada de membranas de alto e baixo fluxo. A mortalidade por todas as causas foi avaliada no seguimento da fase de manutenção.",
+    "bloom": "Analisar",
+    "miller": "Sabe como",
+    "intrinsicDifficulty": "intermediária",
+    "presentationDifficulty": {
+      "before": "medium",
+      "after": "medium",
+      "reason": "É necessário separar dois níveis de evidência e distinguir superioridade inconclusiva de equivalência, sem cálculo ou decisão de prescrição."
+    },
+    "runtimeCategory": {
+      "before": "dialise",
+      "after": "dialise"
+    },
+    "alternatives": {
+      "A": "Integra a capacidade de remoção e a ausência de redução de mortalidade demonstrada na análise global.",
+      "B": "Converte melhor remoção, a estimativa ajustada ou um efeito em estrato em demonstração de benefício global de mortalidade.",
+      "C": "Trata um resultado de superioridade inconclusivo como demonstração de equivalência entre estratégias.",
+      "D": "Estende a incerteza de mortalidade para o mecanismo de depuração, que tem suporte primário distinto."
+    },
+    "validity": {
+      "content": "Dados e interpretação conferidos no artigo integral e no registro bibliográfico. O maior poder de remoção e o menor acúmulo sérico são declarados como observações distintas.",
+      "construct": "Os pares de alternativas exigem considerar tanto depuração de moléculas médias como mortalidade. Data, percentuais, estrato de albumina e dose não são necessários para selecionar o gabarito.",
+      "response": "Todos os textos são interpretações compostas e próximas em extensão. Dominar apenas a propriedade da membrana deixa A, B e C. Reconhecer apenas o resultado global deixa A e D.",
+      "consequences": "A questão interpreta um ensaio histórico em sua população, sem prescrever modalidade, extrapolar subgrupos ou sugerir terapia inferior."
+    },
+    "duplicateMatrix": {
+      "decision": "Interpretação conjunta de permeabilidade e mortalidade do MPO. FHN Daily trata de frequência de sessões e desfechos compostos. A questão sobre fluxo de dialisato mede interpretação de índices ureicos e consumo hídrico. A questão sobre dose entregue baixa exige investigação operacional.",
+      "dataStructure": "MPO usa pacientes incidentes e compara permeabilidade das membranas. Os itens próximos têm outras intervenções, dados e inferências.",
+      "targetProfile": "Estudante avançado ou residente em nefrologia.",
+      "language": "Português brasileiro.",
+      "result": "Nenhuma duplicata detectada nos itens vizinhos ou nas referências à intervenção ou publicação no banco ativo."
+    },
+    "adversary": {
+      "conclusion": "Nenhum argumento plausível de anulação para o objeto proposto.",
+      "considered": [
+        "B poderia parecer defensável no estrato de albumina ≤4 g/dL, mas o comando circunscreve a análise ao conjunto e o IC95% global inclui 1.",
+        "C se distingue de A pela demonstração de equivalência, que exige uma hipótese e margem próprias. Esta publicação testou superioridade e admitiu resultados compatíveis com benefício ou o nulo.",
+        "D poderia apoiar-se na semelhança do Kt/V ureico entre os grupos, mas o comando pede moléculas médias. Os critérios operacionais e o resultado secundário de beta-2-microglobulina eram diferentes.",
+        "O ensaio mediu acúmulo sérico, não depuração direta de todas as moléculas médias. A explicação identifica o desfecho medido e descreve separadamente a capacidade da membrana, documentada em Métodos e Discussão.",
+        "A conclusão é limitada aos pacientes incidentes analisados. Nenhuma alternativa pede indicação contemporânea de membrana, terapia para diabetes ou transposição para pacientes prevalentes."
+      ]
+    },
+    "eliminators": {
+      "checked": "Todos os dez critérios do Handbook §17 foram avaliados. Há um gabarito, evidência direta, alinhamento, segurança, distratores plausíveis, valor interpretativo, explicação consistente, dados suficientes, independência de protocolo local e escopo histórico vigente.",
+      "triggered": []
+    },
+    "score": {
+      "dimensions": {
+        "alinhamentoOP": 2,
+        "validadeConteudo": 2,
+        "validadeConstruto": 2,
+        "enunciado": 2,
+        "alternativas": 2,
+        "distratores": 2,
+        "explicacao": 2,
+        "referencias": 2,
+        "redacaoNatural": 1,
+        "valorPedagogico": 2
+      },
+      "total": 19,
+      "band": "Excelente",
+      "note": "A construção paralela intencional aproxima três inícios de alternativas. Isso limita alguma fluidez em troca de eliminar a pista de extensão."
+    },
+    "decisionTree": "Handbook §19, passo 0 com evidência verificada e nenhuma pendência, passo 1 sem duplicata ou eliminatórios, passo 2 sem recurso anulatório, passo 3 escore 19.",
+    "disposition": {
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "lifecycle": "Candidata publicável após parecer independente sobre o objeto exato."
+    },
+    "implementation": "Substituir apenas q, opts e exp desta questão em sua linha. Vincular o card atual byte a byte. Arquivar a versão 17.31 para main, exam, study e offline antes de aplicar, preservar ordem das alternativas e gabarito originais no histórico, manter FSRS e qid para novos sorteios. Nenhum redirecionamento, transferência de progresso ou mudança nas demais questões.",
+    "requiredReview": "Parecer independente para o conteúdo exato. A presente proposta não altera o código do jogo."
+  },
+  "sources": [
+    {
+      "claim": "Ensaio randomizado em 738 pacientes incidentes, 647 na análise de sobrevida após as exclusões descritas. Desfecho clínico de mortalidade com membranas de alto e baixo fluxo.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2653681/",
+      "locator": "Figura 1, Concise Methods: Study Design e Statistical Analysis, Results: Baseline Patient Characteristics.",
+      "access": "Texto integral primário conferido."
+    },
+    {
+      "claim": "Capacidade de remoção de solutos de maior peso molecular, maior coeficiente de peneiramento para beta-2-microglobulina nos critérios de alto fluxo, menor acúmulo sérico no braço de alto fluxo após 36 meses como desfecho secundário.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2653681/",
+      "locator": "Introdução, Concise Methods: Study Procedures, Results: Secondary Outcomes, Discussion.",
+      "access": "Texto integral primário conferido."
+    },
+    {
+      "claim": "Ausência de diferença global significativa. Estimativa de Cox ajustada 0,76, IC95% 0,56–1,04, P=0,091. Log-rank P=0,214. Ensaio desenhado para superioridade e sem teste de equivalência.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2653681/",
+      "locator": "Resultados da análise de sobrevida global, Figura 2, Tabela 4, Concise Methods: Statistical Analysis.",
+      "access": "Texto integral primário conferido."
+    },
+    {
+      "claim": "Albumina sérica ≤4 g/dL foi estrato pré-especificado com sinal favorável (Cox HR 0,63, IC95% 0,45–0,90, P=0,010). Diabetes analisado pós-hoc com Cox ajustado HR 0,62, IC95% 0,38–1,01, P=0,056 e interação geral P=0,216.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2653681/",
+      "locator": "Resultados da análise por albumina, Figura 3, Subgroup Analysis: Patients with Diabetes, Concise Methods: Statistical Analysis.",
+      "access": "Texto integral primário conferido."
+    },
+    {
+      "claim": "Effect of Membrane Permeability on Survival of Hemodialysis Patients. Locatelli et al. J Am Soc Nephrol. 2009;20(3):645–654. PMID 19092122, PMCID PMC2653681, DOI 10.1681/ASN.2008060590.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19092122/",
+      "locator": "Metadados do registro NLM e corpo original no PubMed Central.",
+      "access": "Registro PubMed e artigo integral com o mesmo DOI. O acesso do coletor ao periódico via DOI retornou 402, e a cópia integral autorizada no PubMed Central foi usada como fonte primária."
+    }
+  ],
+  "referenceCard": {
+    "id": "mpo_high_flux_2009",
+    "original": {
+      "label": "MPO Study — High-Flux versus Low-Flux Hemodialysis (2009)",
+      "url": "https://doi.org/10.1681/ASN.2008060590",
+      "journal": "Journal of the American Society of Nephrology 2009;20(3):645-654",
+      "ano": 2009,
+      "tipo": "Ensaio clínico randomizado",
+      "badge": "RCT",
+      "badgeColor": "#16a34a",
+      "impacto": "Permeabilidade da membrana e sobrevida em pacientes incidentes em hemodiálise",
+      "icon": "🔬",
+      "resumo": "Ensaio multicêntrico com 738 pacientes incidentes randomizados para membranas high-flux ou low-flux e estratificados por albumina. Na população total, high-flux não reduziu significativamente a mortalidade. O estrato pré-especificado com albumina de até 4 g/dL apresentou sinal de benefício, enquanto análises em diabetes foram secundárias e não autorizam promessa universal de sobrevida.",
+      "conclusao": "Membranas high-flux ampliam a depuração de moléculas médias, mas o MPO não comprovou superioridade de mortalidade na população global; resultados de subgrupos devem ser apresentados com a devida cautela.",
+      "curiosidade": "O risco relativo ajustado de morte no conjunto foi 24% menor com high-flux, porém o intervalo de confiança cruzou a nulidade; no estrato de albumina baixa, a redução relativa foi 37%."
+    },
+    "candidate": {
+      "label": "MPO Study — High-Flux versus Low-Flux Hemodialysis (2009)",
+      "url": "https://doi.org/10.1681/ASN.2008060590",
+      "journal": "Journal of the American Society of Nephrology 2009;20(3):645-654",
+      "ano": 2009,
+      "tipo": "Ensaio clínico randomizado",
+      "badge": "RCT",
+      "badgeColor": "#16a34a",
+      "impacto": "Permeabilidade da membrana e sobrevida em pacientes incidentes em hemodiálise",
+      "icon": "🔬",
+      "resumo": "Ensaio multicêntrico com 738 pacientes incidentes randomizados para membranas high-flux ou low-flux e estratificados por albumina. Na população total, high-flux não reduziu significativamente a mortalidade. O estrato pré-especificado com albumina de até 4 g/dL apresentou sinal de benefício, enquanto análises em diabetes foram secundárias e não autorizam promessa universal de sobrevida.",
+      "conclusao": "Membranas high-flux ampliam a depuração de moléculas médias, mas o MPO não comprovou superioridade de mortalidade na população global; resultados de subgrupos devem ser apresentados com a devida cautela.",
+      "curiosidade": "O risco relativo ajustado de morte no conjunto foi 24% menor com high-flux, porém o intervalo de confiança cruzou a nulidade; no estrato de albumina baixa, a redução relativa foi 37%."
+    },
+    "action": "REUTILIZAR_CARD_EXISTENTE",
+    "referenceRevision": "sha256:3ccabd7e6954b8f9c35a17e308624d83c358ae4356176771b151db938c005be2"
+  }
+}

@@ -425,12 +425,16 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     let _bibActiveFilter = 'all';
 
     const BIB_FAV_KEY = 'nq-bib-favorites';
+    const _bibArticleData = () => typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles : [];
     function _getBibFavorites() {
       try { return new Set(JSON.parse(localStorage.getItem(BIB_FAV_KEY) || '[]')); } catch { return new Set(); }
     }
     function _toggleBibFav(key) {
-      const favs = _getBibFavorites();
-      if (favs.has(key)) { favs.delete(key); } else { favs.add(key); }
+      if (!window.NQLibraryCatalog) return;
+      let favs = _getBibFavorites();
+      if (window.NQLibraryCatalog?.isRetiredReference?.(key) && !favs.has(key)) return;
+      if (window.NQLibraryCatalog) favs = window.NQLibraryCatalog.toggleFavorite(key, favs, _bibArticleData());
+      else if (favs.has(key)) { favs.delete(key); } else { favs.add(key); }
       try { localStorage.setItem(BIB_FAV_KEY, JSON.stringify([...favs])); } catch(e) {}
       const searchEl = document.getElementById('bibSearch');
       _bibRenderList(searchEl ? searchEl.value : '');
@@ -496,11 +500,27 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       try { return new Set(JSON.parse(_nqUtilsProgressStorage().getItem(UNLOCKED_REFS_KEY) || '[]')); } catch { return new Set(); }
     }
 
-    function _unlockRefsFromQuestion(keys) {
+    function _unlockRefsFromQuestion(keys, qid) {
       if (!Array.isArray(keys) || !keys.length) return;
+      let currentReferences = null;
+      if (!window.NQLibraryCatalog) {
+        try {
+          const record = window.NQQuestionRevisionManifest?.current?.[qid];
+          const current = window.questionRevisionCatalog?.current?.(qid, 'main');
+          if (!record || !current || current.historical || record.recordRevision !== current.binding?.recordRevision ||
+              typeof window.NQQuestionRevisions?.digest !== 'function' ||
+              window.NQQuestionRevisions.digest({authorRevision: record.authorRevision, referenceRevisions: record.referenceRevisions}) !== record.recordRevision) return;
+          currentReferences = record.referenceRevisions;
+        } catch (_) { return; }
+      }
       const set = _getUnlockedRefs();
       let changed = false;
-      keys.forEach(k => { if (k && !set.has(k)) { set.add(k); changed = true; } });
+      keys.forEach(k => {
+        const eligible = typeof k === 'string' && k && (window.NQLibraryCatalog
+          ? !window.NQLibraryCatalog.isRetiredReference(k)
+          : Object.prototype.hasOwnProperty.call(currentReferences, k) && /^sha256:[a-f0-9]{64}$/.test(currentReferences[k]));
+        if (eligible && !set.has(k)) { set.add(k); changed = true; }
+      });
       if (changed) {
         try { _nqUtilsProgressStorage().setItem(UNLOCKED_REFS_KEY, JSON.stringify([...set])); } catch(e) { console.error('[NQ] _unlockRefsFromQuestion failed', e); }
         _bibItems = null;
@@ -508,6 +528,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     }
 
     function _buildBibItems() {
+      if (!window.NQLibraryCatalog) return [];
       const isUserAdmin = (typeof isAdminUser === 'function' && isAdminUser()) || (typeof window.isAdminUser === 'function' && window.isAdminUser());
       const unlockedIdxs = _getUnlockedArticles();
       const unlockedRefs = _getUnlockedRefs();
@@ -516,9 +537,12 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       // refsDB — desbloqueadas conforme aparecem nas referências de questões acertadas
       if (typeof refsDB === 'object' && refsDB !== null) {
         Object.entries(refsDB).forEach(([key, r]) => {
+          if (window.NQLibraryCatalog?.isRetiredReference?.(key)) return;
           const isUnlocked = isUserAdmin || unlockedRefs.has(key);
           items.push({
             _bibKey:    key,                                          // chave única para dedup
+            kind: 'source', _catalogueTitle: r.label || '', _catalogueSource: r.journal || '', _catalogueYear: r.ano || '',
+            _catalogueUrl: r.url || '',
             label:      isUnlocked ? (r.label || '') : 'Referência bloqueada',
             autores:    '',
             jornal:     isUnlocked ? (r.journal || '') : '',
@@ -537,13 +561,18 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         });
       }
 
+      if (window.NQLibraryCatalog) items.push(...window.NQLibraryCatalog.historicalReferenceItems({ unlockedRefs, favorites: _getBibFavorites() }));
+
       // nefroArticles — desbloqueados conforme baús abertos
       if (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) {
         const total = nefroArticles.length;
         nefroArticles.forEach((a, idx) => {
-          const isUnlocked = isUserAdmin || unlockedIdxs.includes(idx);
+          const isUnlocked = isUserAdmin || (window.NQLibraryCatalog
+            ? window.NQLibraryCatalog.articleUnlocked(idx, nefroArticles, unlockedIdxs) : unlockedIdxs.includes(idx));
           items.push({
             _bibKey:    `__art_${idx}`,                              // chave única para dedup
+            kind: 'scroll', _catalogueTitle: a.titulo || '', _catalogueSource: a.jornal || '', _catalogueYear: a.ano || '',
+            _catalogueUrl: a.url || '',
             label:      isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
             autores:    isUnlocked ? (a.autores || '') : '',
             jornal:     isUnlocked ? (a.jornal  || '') : '',
@@ -583,22 +612,26 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         }
       }
 
-      // Desbloqueados primeiro (A-Z), depois bloqueados
-      deduped.sort((a, b) => {
+      const byAccessAndTitle = (a, b) => {
         if (a.locked !== b.locked) return a.locked ? 1 : -1;
-        return a.label.localeCompare(b.label, 'pt', { sensitivity: 'base' });
-      });
-
-      return deduped;
+        return (a.displayTitle || a.label).localeCompare(b.displayTitle || b.label, 'pt', { sensitivity: 'base' });
+      };
+      // Preserve a precedência dos rótulos publicados na seleção de variantes.
+      deduped.sort(byAccessAndTitle);
+      const contents = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.collapseLibraryItems(deduped, { articles: _bibArticleData(), favorites: _getBibFavorites() })
+        : deduped;
+      // Os títulos localizados só são atribuídos à variante selecionada.
+      return contents.sort(byAccessAndTitle);
     }
 
     /* O acervo vem de refs.js e articles.js, carregados sob demanda. Sem eles,
      * esta tela dizia "0/0 artigos" e "Nenhuma referência encontrada" — que lê
      * como Grimório vazio, não como catálogo que não chegou. Denominador zero
      * não é um total; é a ausência de total. */
-    const _acervoDisponivel = () =>
+    const _acervoDisponivel = () => !!window.NQLibraryCatalog && (
       (typeof refsDB === 'object' && refsDB !== null) ||
-      (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles));
+      (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)));
 
     function _bibEstado(html) {
       const list = document.getElementById('bibList');
@@ -619,10 +652,11 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       const unlockedItems = items.filter(it => !it.locked);
       const lockedRefs    = items.filter(it =>  it.locked && it._lockType === 'ref');
       const lockedArts    = items.filter(it =>  it.locked && it._lockType === 'article');
+      const historicalItems = items.filter(it => it.retired);
 
       const filtered = q
-        ? unlockedItems.filter(it =>
-            it.label.toLowerCase().includes(q) ||
+        ? [...unlockedItems, ...historicalItems].filter(it =>
+            [it.label, it.displayTitle, it.originalTitle, ...(it.aliasTitles || [])].some(title => title?.toLowerCase().includes(q)) ||
             it.autores.toLowerCase().includes(q) ||
             it.jornal.toLowerCase().includes(q) ||
             it.tipo.toLowerCase().includes(q) ||
@@ -635,14 +669,12 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       if (!list) return;
 
       if (count) {
-        // Totais reais direto das fontes (evita distorção por dedup)
-        const totalRefs = (typeof refsDB === 'object' && refsDB) ? Object.keys(refsDB).length : 0;
-        const totalArt  = (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) ? nefroArticles.length : 0;
-        const refsOpen  = unlockedItems.filter(it => it._lockType === 'ref').length;
-        const artOpen   = unlockedItems.filter(it => it._lockType === 'article').length;
+        const workCount = values => window.NQLibraryCatalog ? window.NQLibraryCatalog.groupLibraryItems(values.filter(item => !item.retired)).length : values.length;
         count.textContent = q
-          ? `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`
-          : `${refsOpen + artOpen}/${totalRefs + totalArt} artigos`;
+          ? `${workCount(filtered)} resultado${workCount(filtered) !== 1 ? 's' : ''}`
+          : `${workCount(unlockedItems)}/${workCount(items)} obras com conteúdo descoberto`;
+        const historicalCount = (q ? filtered : historicalItems).filter(item => item.retired).length;
+        if (historicalCount) count.textContent += ` · ${historicalCount} registro${historicalCount === 1 ? '' : 's'} histórico${historicalCount === 1 ? '' : 's'}`;
       }
 
       // Banner explicativo de como desbloquear (topo da lista, sempre visível)
@@ -655,8 +687,14 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
 
       // Refs bloqueadas: card único de resumo (não lista individual)
       // Usa o total real de refsDB menos as já desbloqueadas para exibir a contagem correta
-      const _totalRefsReal = (typeof refsDB === 'object' && refsDB) ? Object.keys(refsDB).length : 0;
-      const _lockedRefsCount = _totalRefsReal - unlockedItems.filter(it => it._lockType === 'ref').length;
+      const _totalRefsReal = (typeof refsDB === 'object' && refsDB) ? Object.keys(refsDB).filter(key => !window.NQLibraryCatalog?.isRetiredReference?.(key)).length : 0;
+      const catalogue = window.NQLibraryCatalog;
+      const visibleWorkKeys = new Set(catalogue ? [...unlockedItems, ...lockedArts].map(item => catalogue.workKey(item)) : []);
+      const pairedLockedRefs = catalogue ? lockedRefs.filter(item => {
+        const key = catalogue.workKey(item);
+        return key.startsWith('work:') && visibleWorkKeys.has(key);
+      }) : [];
+      const _lockedRefsCount = _totalRefsReal - unlockedItems.filter(it => it._lockType === 'ref').length - pairedLockedRefs.length;
       const hintCard = (!q && _lockedRefsCount > 0)
         ? `<div class="bib-card bib-hint-card">
   <div class="bib-card-top">
@@ -668,7 +706,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         : '';
 
       // Visíveis: desbloqueados + artigos bloqueados individualmente
-      let visibleItems = q ? filtered : [...unlockedItems, ...lockedArts];
+      let visibleItems = q ? filtered : [...unlockedItems, ...pairedLockedRefs, ...lockedArts, ...historicalItems];
 
       if (_bibActiveFilter === 'legendary') {
         visibleItems = visibleItems.filter(it => it.raridade === 'legendary' || it.raridade === 'lendário' || it.raridade === 'lendária');
@@ -680,7 +718,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         visibleItems = visibleItems.filter(it => it.tipo === 'GUIDELINE' || (it.label && it.label.toLowerCase().includes('kdigo')) || (it.jornal && it.jornal.toLowerCase().includes('kdigo')));
       } else if (_bibActiveFilter === 'favorites') {
         const favs = _getBibFavorites();
-        visibleItems = visibleItems.filter(it => favs.has(it._bibKey));
+        visibleItems = items.filter(it => catalogue ? catalogue.favoriteFor(it._bibKey, favs, _bibArticleData()) : favs.has(it._bibKey));
+        if (q) visibleItems = visibleItems.filter(it => [it._catalogueTitle, it.label, it.displayTitle, it.originalTitle, ...(it.aliasTitles || []), it.autores, it.jornal].some(value => String(value || '').toLowerCase().includes(q)));
       }
 
       _bibVisibleItems = visibleItems;
@@ -693,26 +732,31 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         return;
       }
 
-      list.innerHTML = infoBanner + visibleItems.map(it => {
+      const cards = visibleItems.map(it => {
         if (it.locked) {
+          const saved = catalogue ? catalogue.favoriteFor(it._bibKey, _getBibFavorites(), _bibArticleData()) : _getBibFavorites().has(it._bibKey);
           return `<div class="bib-card bib-card-locked">
   <div class="bib-card-top">
     <span class="bib-card-icon">🔒</span>
-    <span class="bib-card-label">Artigo bloqueado</span>
-    <span class="bib-badge" style="background:#0e749022;color:#0e7490;border:1px solid #0e749055;">ARTIGO</span>
+    <span class="bib-card-label">${it.retired || saved ? escapeHtml(it.displayTitle || it._catalogueTitle || it.label) : it._lockType === 'ref' ? 'Fonte clínica bloqueada' : 'Artigo bloqueado'}</span>
+    <span class="bib-badge" style="background:#0e749022;color:#0e7490;border:1px solid #0e749055;">${it.retired ? 'HISTÓRICO' : 'ARTIGO'}</span>
   </div>
-  <div class="bib-unlock-hint">Abra mais baús para revelar este artigo no Grimório</div>
+  <div class="bib-unlock-hint">${it.retired ? escapeHtml(it.unlockHint) : it._lockType === 'ref' ? 'Acerte uma questão que cite esta fonte para liberar o resumo' : 'Abra mais baús para revelar este artigo no Grimório'}</div>
+  ${saved ? `<div class="bib-card-actions"><button class="bib-resumo-btn" disabled aria-disabled="true">🔒 Resumo bloqueado</button><button class="bib-fav-btn active" data-action="_toggleBibFav" data-arg="${escapeHtml(it._bibKey)}" title="Remover dos favoritos" aria-label="Remover dos favoritos">★</button></div>` : ''}
 </div>`;
         }
-        const labelHtml = it.url
-          ? `<a href="${escapeHtml(it.url)}" target="_blank" rel="noopener">${escapeHtml(it.label)}</a>`
-          : escapeHtml(it.label);
+        const displayTitle = escapeHtml(it.displayTitle || it.label);
+        const publicationUrl = it.publicationUrl || it.url;
+        const authors = it.autores || it.bibliographicAuthors;
+        const labelHtml = publicationUrl
+          ? `<a href="${escapeHtml(publicationUrl)}" target="_blank" rel="noopener">${displayTitle}</a>`
+          : displayTitle;
         const metaParts = [
           it.jornal ? escapeHtml(it.jornal) : '',
           it.ano    ? escapeHtml(String(it.ano)) : '',
         ].filter(Boolean);
         const itemIdx = visibleItems.indexOf(it);
-        const isFav = _getBibFavorites().has(it._bibKey);
+        const isFav = catalogue ? catalogue.favoriteFor(it._bibKey, _getBibFavorites(), _bibArticleData()) : _getBibFavorites().has(it._bibKey);
         let cardStyle = '';
         let rarityLabel = '';
         if (it._lockType === 'article') {
@@ -727,7 +771,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     <span class="bib-card-label">${labelHtml}${rarityLabel}</span>
     <span class="bib-badge" style="background:${it.tipoColor}22;color:${it.tipoColor};border:1px solid ${it.tipoColor}55;">${escapeHtml(it.tipo)}</span>
   </div>
-  ${it.autores ? `<div class="bib-card-authors">${escapeHtml(it.autores)}</div>` : ''}
+  ${authors ? `<div class="bib-card-authors">${escapeHtml(authors)}</div>` : ''}
   ${metaParts.length ? `<div class="bib-card-meta">${metaParts.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
   ${it.impacto ? `<div class="bib-card-impacto">${escapeHtml(it.impacto)}</div>` : ''}
   <div class="bib-card-actions">
@@ -735,7 +779,14 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     <button class="bib-fav-btn${isFav ? ' active' : ''}" data-action="_toggleBibFav" data-arg="${it._bibKey}" title="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" aria-label="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">★</button>
   </div>
 </div>`;
-      }).join('') + hintCard;
+      });
+      const html = new Map(visibleItems.map((item, index) => [item._bibKey, cards[index]]));
+      const grouped = catalogue ? catalogue.groupLibraryItems(visibleItems).map(work => `
+        <section class="bib-work${work.variants.length > 1 ? ' has-variants' : ''}" data-bib-work="${escapeHtml(work.key)}">
+          ${work.variants.length > 1 ? '<p class="bib-work-heading">Mesma publicação · resumos com acessos separados</p>' : ''}
+          ${work.variants.map(item => html.get(item._bibKey)).join('')}
+        </section>`).join('') : cards.join('');
+      list.innerHTML = infoBanner + grouped + hintCard;
     }
 
     function openBibliotecaModal() {
@@ -850,6 +901,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
               <p class="nqnarr-chapter">Resumo científico${it.ano ? ' · ' + escapeHtml(String(it.ano)) : ''}</p>
               <h2>${escapeHtml(it.label || '')}</h2>
               ${metadata ? `<div class="nqreader-meta">${metadata}</div>` : ''}
+              ${it.originalTitle ? `<p class="nqreader-reference">Título original · <cite lang="en">${escapeHtml(it.originalTitle)}</cite></p>` : ''}
               ${it.autores || it.jornal ? `<p class="nqreader-reference">${it.autores ? escapeHtml(it.autores) : ''}${it.autores && it.jornal ? '<br>' : ''}${it.jornal ? '<em>' + escapeHtml(it.jornal) + '</em>' : ''}</p>` : ''}
             </header>
             <div class="nqreader-sections">${bodyHtml}</div>
@@ -865,11 +917,13 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     }
 
     function openBibResumo(btn) {
+      if (!window.NQLibraryCatalog) return;
       if (!_bibEnsureProgressBinding()) return;
       const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
       const it = _bibVisibleItems[idx];
-      if (!it || it.locked) return;
-      _showResumoModal({ ...it, badge: it._lockType === 'ref' ? it.tipo : '', tipo: it._lockType === 'article' ? 'ARTIGO' : '' });
+      if (!it || it.locked || it.retired || window.NQLibraryCatalog?.isRetiredReference?.(it._bibKey)) return;
+      _showResumoModal({ ...it, label: it.displayTitle || it.label, autores: it.autores || it.bibliographicAuthors,
+        badge: it._lockType === 'ref' ? it.tipo : '', tipo: it._lockType === 'article' ? 'ARTIGO' : '' });
     }
 
     // Guarda apenas a fonte do cartão renderizado, sem alterar o objeto editorial.
@@ -878,7 +932,9 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     // Questão e Grimório compartilham o leitor em popup. Chamadas legadas por
     // chave continuam válidas; o botão preserva a fonte de uma revisão histórica.
     function openRefResumo(source) {
+      if (!window.NQLibraryCatalog) return;
       const key = typeof source === 'string' ? source : source?.dataset?.arg;
+      if (window.NQLibraryCatalog?.isRetiredReference?.(key)) return;
       const button = typeof source === 'string'
         ? [...document.querySelectorAll('.ref-resumo-btn[data-action="openRefResumo"]')]
           .find(element => element.dataset.arg === key && element.getClientRects().length)
@@ -1074,10 +1130,18 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     let _promessaGrimorio = null;
     const _cargasGrimorio = new Map();
     function carregarDadosGrimorio(options = {}) {
-      if (_promessaGrimorio && !options?.refsOnly) return _promessaGrimorio;
+      if (_promessaGrimorio && !options?.refsOnly && window.NQLibraryCatalog &&
+          typeof refsDB === 'object' && refsDB !== null && typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) return _promessaGrimorio;
       const um = (src, pronto) => {
         if (pronto()) return Promise.resolve();
-        if (_cargasGrimorio.has(src)) return _cargasGrimorio.get(src);
+        if (_cargasGrimorio.has(src)) {
+          const existing = _cargasGrimorio.get(src);
+          return existing.then(() => {
+            if (pronto()) return;
+            if (_cargasGrimorio.get(src) === existing) _cargasGrimorio.delete(src);
+            return um(src, pronto);
+          });
+        }
         const tarefa = new Promise((ok, falhou) => {
           const script = document.createElement('script');
           script.src = src;
@@ -1096,10 +1160,15 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         return tarefa;
       };
       // Consumers needing only bibliography share its existing script promise.
-      if (options?.refsOnly) return um('data/refs.js', () => typeof refsDB === 'object' && refsDB !== null);
+      if (options?.refsOnly) return um('data/refs.js?release=17.28', () => typeof refsDB === 'object' && refsDB !== null);
+      const catalogueScript = document.querySelector('script[src*="js/library-catalog.js"]');
+      const catalogueSource = catalogueScript?.getAttribute('src');
       _promessaGrimorio = Promise.all([
-        um('data/refs.js', () => typeof refsDB === 'object' && refsDB !== null),
-        um('data/articles.js', () => typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)),
+        window.NQLibraryCatalog ? Promise.resolve() : catalogueSource
+          ? um(catalogueSource, () => !!window.NQLibraryCatalog)
+          : Promise.reject(new Error('O módulo da biblioteca está indisponível.')),
+        um('data/refs.js?release=17.28', () => typeof refsDB === 'object' && refsDB !== null),
+        um('data/articles.js?release=17.28', () => typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)),
       ]).catch(error => {
         // O arquivo que terminou continua disponível; só a falha é repetida.
         _promessaGrimorio = null;

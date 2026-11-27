@@ -49,7 +49,8 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
     constructor(id = '', parent = null) {
       this.id = id; this.parent = parent; this.children = [];
       this.isConnected = true; this.disabled = false; this.dataset = {}; this.listeners = [];
-      this.style = {}; this.classList = {add() {}, toggle() {}};
+      this.style = {setProperty(name, value) { this[name] = String(value ?? ''); }};
+      this.classList = {add() {}, toggle() {}};
       this.lastElementChild = {insertAdjacentHTML() {}};
       if (id) nodes.set(id, this);
       if (parent) parent.children.push(this);

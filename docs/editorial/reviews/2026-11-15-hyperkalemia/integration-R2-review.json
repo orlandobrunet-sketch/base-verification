@@ -1,0 +1,117 @@
+{
+  "schema": "NQ_HYPERKALEMIA_1726_INTEGRATOR_R2_REVIEW_v1",
+  "reviewer": "/root/editorial_inventory_1725",
+  "scope": "ART-only minimal origin-validation repair; no operational application approval",
+  "frozenR1": {
+    "file": "integrate-hyperkalemia-1726.cjs",
+    "sha256": "641223cc629810030bb912cc41f85889e39b20fc28ca37030d6f5fed5d83c637",
+    "unchanged": true
+  },
+  "r2": {
+    "file": "integrate-hyperkalemia-1726-R2.cjs",
+    "sha256": "3b86f0fd27f3e525e6df615bc76d99beae22c6e35c4b77782603de82d0b1b45f"
+  },
+  "changes": [
+    {
+      "line": 6,
+      "kind": "comment",
+      "description": "Usage command points to the new R2 filename."
+    },
+    {
+      "line": 130,
+      "kind": "runtime",
+      "description": "Replace suffix-only origin regex with a fully anchored allowlist for the exact GitHub owner/repository over HTTPS, SSH SCP or ssh://git@github.com/. Optional .git and case-insensitivity preserved."
+    }
+  ],
+  "allOtherLinesIdentical": true,
+  "tests": {
+    "file": "integrate-hyperkalemia-1726-R2.test.cjs",
+    "sha256": "d38aa70be17e202fafd3c4923f2add3ce35e737c30ff4a1f4a85802e901a4607",
+    "method": "Executes the real private origin assertion from the selected integrator; expectations are literal origin cases. No publication receipt is invented and publishedBase network/planning code is not entered by origin tests.",
+    "red": {
+      "target": "frozen R1",
+      "passed": 22,
+      "failed": 14,
+      "log": "integration-R2-origin-red.log",
+      "sha256": "2492bd7ea064fa55fb7a3d359f23a65f20ef5bd2271c5a47a3c609a38200551e",
+      "failureCause": "Fourteen noncanonical origins were accepted by the suffix matcher; all failures were missing expected assertion exceptions."
+    },
+    "green": {
+      "target": "R2",
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "log": "integration-R2-origin-green.log",
+      "sha256": "288bd0f27ba1e88478248bba292c0cd5e84a0aace3416a87e184fe3c6c1a7706"
+    },
+    "caseCounts": {
+      "canonicalOrigins": 7,
+      "noncanonicalOrigins": 24,
+      "frozenR1Integrity": 1,
+      "awaitingPublication": 4
+    },
+    "syntaxPassed": true
+  },
+  "defaultRun": {
+    "file": "integration-R2-awaiting.json",
+    "sha256": "4ff25d8f58b4905591bfad4a20d79820dbd811d6d4542dfd81a1eaab63572aba",
+    "status": "AWAITING_PUBLISHED_17_25_BASE",
+    "planProduced": false,
+    "dataWritten": false,
+    "approvedQuestionObjects": [
+      "ebea50d5",
+      "e0853fac",
+      "b35be598"
+    ],
+    "approvedExistingReference": "ukka_hyperkalemia_2026",
+    "independentReviewSHA256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+    "requiredPublicationReceipt": "NQ_PUBLICATION_1725_RECEIPT.json",
+    "candidate845RejectedAsPublishedBase": true,
+    "requiredArguments": [
+      "--base",
+      "--publication-receipt",
+      "--publication-sha256"
+    ],
+    "limits": [
+      "No projected history/output hashes before publication verification.",
+      "Only three data files may change later; refs,TTKG and logic remain untouched.",
+      "Future apply also needs the exact independent operational receipt.",
+      "Synchronous rollback on caught write errors is not a cross-file transaction."
+    ]
+  },
+  "preservedGuarantees": {
+    "reviewBasis": "Original blocks retained byte-for-byte outside the two stated lines; independently audited read-only.",
+    "writeTargets": [
+      "data/topics.js",
+      "data/question-revision-history.js",
+      "data/question-revision-manifest.js"
+    ],
+    "refsFileWritten": false,
+    "existingReferenceCard": "ukka_hyperkalemia_2026",
+    "exactClinicalQuestionGates": 3,
+    "exactClinicalWholeCardGate": 1,
+    "heldTTKG": "6474ec20",
+    "unchangedOtherAuthors": 738,
+    "requiredHistoryBefore": 177,
+    "requiredHistoryAfter": 180,
+    "requiredOldBindings": 708,
+    "requiredNewBindings": 12,
+    "requiredCurrentPresentations": 2964,
+    "fsrsResets": 0,
+    "sourceAndGatePinsChanged": false,
+    "independentClinicalReportsModified": false,
+    "publicationReceiptRequired": true,
+    "operationalReceiptRequiredForApply": true
+  },
+  "futureBlockers": [
+    "A real NQ_PUBLICATION_1725_RECEIPT.json, explicit byte hash and actual published merge base remain required before any plan.",
+    "The future path must still verify Git parents, exact origin/main and live production17.25; those network/publication checks were not bypassed or simulated.",
+    "Root must independently review actual future plan and issue the exact17.26 operational receipt before apply. This review grants no such authorization."
+  ],
+  "limits": [
+    "No prepare with a declared-publication receipt was executed, no future plan/output hashes were produced, and no --apply was attempted.",
+    "Rollback remains compensating synchronous restoration on caught failures, with no cross-file transaction or abrupt-termination guarantee.",
+    "ROOT/source/test/CI files and frozen R1/clinical gates were not modified; all new outputs are within ARTauthor."
+  ]
+}

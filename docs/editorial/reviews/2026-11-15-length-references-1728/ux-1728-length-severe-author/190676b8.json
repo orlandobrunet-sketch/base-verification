@@ -1,0 +1,402 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "190676b8",
+  "family": "A1-interpretacao-e-seguranca",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Gadolínio na DRC Avançada — Escolha do Agente",
+    "qid": "190676b8",
+    "q": "Paciente com TFGe de 24 mL/min/1,73 m² precisa de ressonância com contraste para responder a uma questão clínica relevante. Qual abordagem contemporânea é mais adequada?",
+    "refs": [
+      "gadolinio_acr_manual_2026"
+    ],
+    "opts": [
+      "Se o contraste for necessário, preferir agente de gadolínio do grupo II na menor dose diagnóstica; o risco de fibrose sistêmica nefrogênica é muito baixo e não justifica proibição automática",
+      "Cancelar qualquer ressonância contrastada porque todo agente possui o mesmo risco elevado",
+      "Escolher agente linear do grupo I e iniciar hemodiálise apenas para remover o contraste",
+      "Administrar dose dupla de gadolínio para compensar a redução da filtração"
+    ],
+    "ans": 0,
+    "exp": "A fibrose sistêmica nefrogênica foi associada principalmente a agentes do grupo I em pessoas com lesão renal aguda ou DRC avançada. Agentes do grupo II apresentam risco muito baixo; quando o exame é clinicamente necessário, atrasá-lo pode causar mais dano do que administrar a menor dose diagnóstica de um agente apropriado. Agentes do grupo I devem ser evitados nesse contexto. Não se deve iniciar, intensificar ou acrescentar diálise apenas por causa do gadolínio; em quem já faz hemodiálise, pode-se coordenar o exame com uma sessão regular.",
+    "diff": "hard",
+    "cat": "drc"
+  },
+  "originalSHA256": "sha256:26b526a79911d08998652e850d3cad0cf2712ce348a8d6eb9116c19fe1e91ff8",
+  "originalRefs": [
+    {
+      "id": "gadolinio_acr_manual_2026",
+      "original": {
+        "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2026,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+        "icon": "📋",
+        "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+        "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+        "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+      },
+      "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Selecionar estratégia de gadolínio de menor risco em DRC avançada quando o exame é necessário.",
+    "primaryCompetence": "Segurança e escolha de contraste na DRC.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Distrator dobra dose para compensar menor filtração, erro sem plausibilidade suficiente; correta concentra escolha, dose e avaliação de risco.",
+      "MENOR — Referência rotulada edição2026 mistura ano de consulta com atualização do capítulo em2025."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 0
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "OP e conceito correto preservados; reescrita de forma e correção das referências/metadados antes de nova aprovação."
+  },
+  "sources": [
+    {
+      "id": "gadolinium",
+      "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+      "access": "PDF integral oficial ACR, 126 páginas, obtido pelo link4 da página do Manual",
+      "date": "2026-11-15",
+      "locators": [
+        "NSF, pp84–86 / grupoII, dose diagnóstica, DRC4–5 e diálise",
+        "pp86 e89 / Tabela1 e atualização janeiro2025, grupoII* gadopiclenol"
+      ],
+      "verified": [
+        "grupoII preferido e risco muito baixo em DRC avançada",
+        "não reduzir abaixo da qualidade diagnóstica",
+        "não iniciar/alterar diálise só pelo contraste",
+        "gadopiclenol tem status provisório; grupoIII vazio; gadoxetato reclassificado em2024"
+      ],
+      "limitations": [
+        "Não confundir página consultada em2026 com nova evidência clínica de2026: o capítulo aberto identifica atualização janeiro2025. Referência proposta explicita essa data."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "GrupoII preferido, risco muito baixo e qualidade diagnóstica",
+      "source": "gadolinium",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Não iniciar/alterar diálise exclusivamente pelo exame",
+      "source": "gadolinium",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Status provisórioII* e data do capítulo",
+      "source": "gadolinium",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Gadolínio na DRC Avançada — Escolha do Agente",
+    "qid": "190676b8",
+    "q": "Paciente com TFGe de 24 mL/min/1,73 m² precisa de ressonância com contraste para responder a uma questão clínica relevante. Qual abordagem contemporânea é mais adequada?",
+    "refs": [
+      "gadolinio_acr_manual_2026"
+    ],
+    "opts": [
+      "Realizar com agente tradicional do grupo II, usando a menor dose que mantenha qualidade diagnóstica.",
+      "Adiar até a TFGe superar 30 mL/min/1,73m², mesmo sem alternativa para a questão clínica.",
+      "Realizar com agente do grupo I, iniciando hemodiálise apenas para remover o contraste.",
+      "Realizar com agente do grupo II, acrescentando hemodiálise preventiva após o exame."
+    ],
+    "ans": 0,
+    "exp": "Se o exame contrastado é necessário, a ACR prefere agentes do grupo II em DRC avançada, na menor dose que preserve qualidade diagnóstica. O risco de fibrose sistêmica nefrogênica é muito baixo com os agentes tradicionais desse grupo; o risco de atrasar um exame necessário também deve ser considerado. GrupoI deve ser evitado nesse contexto. Não iniciar nem acrescentar diálise apenas para remover gadolínio. O gadopiclenol tem classificaçãoII* provisória e requer atenção às regras locais, distinguindo-se dos agentes tradicionais.",
+    "diff": "medium",
+    "cat": "drc"
+  },
+  "proposedSHA256": "sha256:7cb1bcc537d1c88f23e11cc92ddcc2e7248394bb08ca56a0745d082f2f3ed413",
+  "classificationAfter": {
+    "op": "Selecionar estratégia de gadolínio de menor risco em DRC avançada quando o exame é necessário.",
+    "primaryCompetence": "Segurança e escolha de contraste na DRC.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "gadolinio_acr_manual_2026",
+      "original": {
+        "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2026,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+        "icon": "📋",
+        "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+        "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+        "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+      },
+      "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c",
+      "proposed": {
+        "label": "ACR Manual on Contrast Media — NSF (atualização2025)",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "GrupoII preferido na DRC avançada; não acrescentar diálise só para remover gadolínio",
+        "icon": "📋",
+        "resumo": "Manual ACR consultado em2026, capítulo NSF atualizado em2025. GrupoII é preferido em pacientes sob risco de NSF e deve ser usado na menor dose que preserve qualidade diagnóstica. O grupo I é contraindicado na DRC avançada. Não iniciar ou alterar diálise apenas pela administração. Gadopiclenol permanece grupo II* provisório, com decisão local entre manejo de grupo II ouIII; a experiência não é equivalente à dos agentes tradicionais.",
+        "conclusao": "Se a ressonância contrastada é necessária em DRC avançada, selecionar agente apropriado do grupo II e dose diagnóstica, ponderando riscos de não realizar o exame.",
+        "curiosidade": "A classificação depende do agente específico. A atualização distingue gadopiclenol provisório dos agentes do grupo II com maior experiência clínica."
+      },
+      "proposedSHA256": "sha256:f2df4dfd52a53cf5bfadcac69357ab145589793be5fd15e44d1bb53a97df6b7a"
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na checagem autoral da versão proposta."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "decision": "Versão proposta aprovada na checagem autoral pela árvore§19; ciclo pretendido publicado somente após revisão independente do pacote exato."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; nenhum reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Pacote AUTORAL. LIBERADA, quando presente, é resultado autoral derivado para a proposta exata; não equivale a revisão independente. O parent exigiu revisão independente antes de escrever data/topics.js ou data/refs.js."
+  },
+  "hold": null
+}

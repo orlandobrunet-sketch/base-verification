@@ -1,0 +1,476 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "9fd2cfdb",
+  "family": "A8-IgA-canonica-exata",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+    "qid": "9fd2cfdb",
+    "q": "Na análise pré-especificada do DAPA-CKD, 270 participantes com nefropatia por imunoglobulina A (IgA) tiveram 6 eventos do composto primário com dapagliflozina e 20 com placebo: razão de riscos 0,29, com intervalo de confiança de 95% de 0,12–0,73. Qual interpretação é mais adequada?",
+    "refs": [
+      "dapa_ckd_igan_2021",
+      "kdigo_igan_igav_2025"
+    ],
+    "opts": [
+      "Há sinal de nefroproteção, com precisão limitada pelo número de eventos do subgrupo",
+      "A estimativa identifica ação imune específica, pois a produção patogênica de IgA foi o desfecho",
+      "O intervalo confirma benefício de igual magnitude em qualquer estágio de função renal",
+      "Por ser análise de subgrupo, o resultado não contribui para decisões de nefroproteção"
+    ],
+    "ans": 0,
+    "exp": "A análise apoia nefroproteção, com incerteza sobre a magnitude exata do efeito pelo número limitado de eventos. O composto primário incluía queda sustentada ≥50% da taxa de filtração glomerular estimada (TFGe), falência renal ou morte renal/cardiovascular; não era produção de IgA nem hematúria. Houve 26 eventos entre 270 participantes, em mediana de 2,1 anos. A TFGe média era 43,8 mL/min/1,73 m², e 94% tinham confirmação por biópsia. Ser pré-especificada aumenta a relevância dessa análise, mas não a transforma em ensaio autônomo com poder próprio para toda população de IgA. Nem a estimativa pontual nem o intervalo provam efeito idêntico em todos os estágios ou mecanismo imune direto.",
+    "diff": "medium",
+    "cat": "glomerular"
+  },
+  "originalSHA256": "sha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5",
+  "originalRefs": [
+    {
+      "id": "dapa_ckd_igan_2021",
+      "original": {
+        "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215–224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+        "icon": "🔬",
+        "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+        "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+        "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+      },
+      "originalSHA256": "sha256:81eb4f74d92b3871753b52579eebe9a894e2f88f2965c40f2e1c1b26a5d2655e"
+    },
+    {
+      "id": "kdigo_igan_igav_2025",
+      "original": {
+        "label": "KDIGO 2025 IgAN/IgAV Guideline",
+        "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Diretriz clínica",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Referência central atual para manejo da NIgA.",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+        "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+        "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+      },
+      "originalSHA256": "sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Interpretar o benefício observado no subgrupo IgA do DAPA-CKD respeitando a precisão limitada e sem inferir mecanismo imune específico.",
+    "primaryCompetence": "Interpretação.",
+    "bloom": "Analisar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "problems": [],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 2
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 20
+    },
+    "decision": "Manter byte-exata como canônica do par, com fullcards conferidos; não transferir o histórico de a4ffbe05."
+  },
+  "sources": [
+    {
+      "id": "dapaIgA",
+      "url": "https://www.gov.br/conitec/pt-br/midias/consultas/contribuicoes/2022/anexos/cp48/519-2.pdf/%40%40display-file/file",
+      "doi": "10.1016/j.kint.2021.03.033",
+      "pmid": "33878338",
+      "access": "Artigo primário integral KidneyInt2021;100:215–224, cópia hospedada no acervo de contribuições Conitec; não é endosso de um parecer Conitec",
+      "locators": [
+        "Métodos/Resultados e Figuras1–2, texto extraído linhas123–158:270,254biópsias,137/133,6/20eventos,HR0,29,IC0,12–0,73,P0,005;TFGe43,8,seguimento2,1anos,UACR900,queda26%.",
+        "Discussion/limitações, linhas339–352: subgrupo pré-especificado, estudo não desenhado especificamente para IgA, poucos participantes/eventos limitam precisão.",
+        "Figura1 e texto: composto primário inclui morteCV; composto renal secundário exclui morteCV."
+      ],
+      "limitations": [
+        "Cópia é a obra primária real, não slides/reescrita de contribuição. URL PubMed retornou página vazia nesta tentativa; não alegar corpo PubMed aberto."
+      ]
+    },
+    {
+      "id": "kdigoIgA",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "access": "PDF oficial integral,71páginas, capaOutubro2025; trechos de síntese e manejo lidos",
+      "locators": [
+        "S18–S25: risco, nefroproteção e manejo dirigido aos mecanismos, terapias adicionais e contraindicações.",
+        "S25, recomendações1.4.4.1–3:IECA/BRA, sparsentana,SGLT2;PP1.4.4.4 limites em jovens/TFGe preservada.",
+        "S22–S24: Nefecon e regime sistêmico reduzido em contexto selecionado.",
+        "Busca textual integral por gluten sem ocorrência; seção nutricional/estilo de vida e resumo terapêutico não estabelecem dieta sem glúten como tratamento universal."
+      ],
+      "limitations": [
+        "O card canônico não afirma contraindicação a glúten nem nega indicação individual por doença celíaca; descreve ausência de recomendação universal no documento."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Amostra, eventos,HR/intervalo e demais números da questão e do card correspondem ao artigo.",
+      "source": "dapaIgA",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Subgrupo pré-especificado limitado em precisão; não mede produção patogênicaIgA nem prova efeito idêntico em todos os estágios.",
+      "source": "dapaIgA",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Uso de SGLT2 como nefroproteção em IgA sob risco, sem substituir automaticamente terapias específicas e com limites populacionais.",
+      "source": "kdigoIgA",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+    "qid": "9fd2cfdb",
+    "q": "Na análise pré-especificada do DAPA-CKD, 270 participantes com nefropatia por imunoglobulina A (IgA) tiveram 6 eventos do composto primário com dapagliflozina e 20 com placebo: razão de riscos 0,29, com intervalo de confiança de 95% de 0,12–0,73. Qual interpretação é mais adequada?",
+    "refs": [
+      "dapa_ckd_igan_2021",
+      "kdigo_igan_igav_2025"
+    ],
+    "opts": [
+      "Há sinal de nefroproteção, com precisão limitada pelo número de eventos do subgrupo",
+      "A estimativa identifica ação imune específica, pois a produção patogênica de IgA foi o desfecho",
+      "O intervalo confirma benefício de igual magnitude em qualquer estágio de função renal",
+      "Por ser análise de subgrupo, o resultado não contribui para decisões de nefroproteção"
+    ],
+    "ans": 0,
+    "exp": "A análise apoia nefroproteção, com incerteza sobre a magnitude exata do efeito pelo número limitado de eventos. O composto primário incluía queda sustentada ≥50% da taxa de filtração glomerular estimada (TFGe), falência renal ou morte renal/cardiovascular; não era produção de IgA nem hematúria. Houve 26 eventos entre 270 participantes, em mediana de 2,1 anos. A TFGe média era 43,8 mL/min/1,73 m², e 94% tinham confirmação por biópsia. Ser pré-especificada aumenta a relevância dessa análise, mas não a transforma em ensaio autônomo com poder próprio para toda população de IgA. Nem a estimativa pontual nem o intervalo provam efeito idêntico em todos os estágios ou mecanismo imune direto.",
+    "diff": "medium",
+    "cat": "glomerular"
+  },
+  "proposedSHA256": "sha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5",
+  "classificationAfter": {
+    "op": "Interpretar o benefício observado no subgrupo IgA do DAPA-CKD respeitando a precisão limitada e sem inferir mecanismo imune específico.",
+    "primaryCompetence": "Interpretação.",
+    "bloom": "Analisar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "dapa_ckd_igan_2021",
+      "original": {
+        "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215–224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+        "icon": "🔬",
+        "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+        "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+        "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+      },
+      "originalSHA256": "sha256:81eb4f74d92b3871753b52579eebe9a894e2f88f2965c40f2e1c1b26a5d2655e",
+      "proposed": {
+        "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215–224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+        "icon": "🔬",
+        "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+        "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+        "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+      },
+      "proposedSHA256": "sha256:81eb4f74d92b3871753b52579eebe9a894e2f88f2965c40f2e1c1b26a5d2655e",
+      "sourceIDs": [
+        "dapaIgA"
+      ],
+      "notes": [
+        "Reavaliado integralmente; literal e hash preservados, sem alteração global de card."
+      ]
+    },
+    {
+      "id": "kdigo_igan_igav_2025",
+      "original": {
+        "label": "KDIGO 2025 IgAN/IgAV Guideline",
+        "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Diretriz clínica",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Referência central atual para manejo da NIgA.",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+        "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+        "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+      },
+      "originalSHA256": "sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2",
+      "proposed": {
+        "label": "KDIGO 2025 IgAN/IgAV Guideline",
+        "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Diretriz clínica",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Referência central atual para manejo da NIgA.",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+        "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+        "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+      },
+      "proposedSHA256": "sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2",
+      "sourceIDs": [
+        "kdigoIgA"
+      ],
+      "notes": [
+        "Reavaliado integralmente; literal e hash preservados, sem alteração global de card."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 2
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 20
+    },
+    "scoreRationale": "20/20 autoral para esseOPdelimitado. Os números estão fornecidos; a tarefa é interpretar precisão e não decorarHR. As quatro interpretações correspondem a erros de inferência distintos.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "9fd2cfdb permanece com seu qid, texto e histórico próprios. A fusão não transporta FSRS, crédito ou domínio de a4ffbe05.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

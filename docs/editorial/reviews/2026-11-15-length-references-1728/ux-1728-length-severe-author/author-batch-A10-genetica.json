@@ -1,0 +1,2229 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A10-genetica",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 5,
+  "readyForImplementation": false,
+  "scope": "Quatro itens doinventário160 e umvizinhoAlportde2OP para coerência. Quatrocards existentes e umnovoIPNA2026. Autoria,nãogateindependente.",
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "77ef6918",
+        "82728652"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "ConhecidoAlport→manifestações/audição-olhos versus caso comdadosclínico/ultraestruturais→diagnóstico. Compartilha pistas, mas não a mesma decisão nem estrutura."
+    },
+    {
+      "pair": [
+        "77ef6918",
+        "d1e9ed7e"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Após correção,77fenótipoextra/órgãos;d1egene daformaX. RemoveusegundaOPfenotípicaqueantesse sobrepunha."
+    },
+    {
+      "pair": [
+        "f4034105",
+        "918962ea"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Interpretar limitação de ensaiomolecularconvencional vsdiagnosticarfenótipocomgota precoce porUMOD."
+    },
+    {
+      "pair": [
+        "56e146ac",
+        "4f399a3c"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Interpretação do painel já negativo vsescolherinibiçãoC5/proteçãoinfecciosacomSHUaprovável. Não usar pergunta degenéticacomo gateautomáticodaconduta."
+    }
+  ],
+  "neighbors": [
+    {
+      "qid": "d1e9ed7e",
+      "literal": {
+        "t": "Síndrome de Alport: Genética e Clínica",
+        "qid": "d1e9ed7e",
+        "q": "Qual é o gene mais frequentemente envolvido na forma mais comum da síndrome de Alport e qual manifestação extra-renal é clássica?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "Gene do receptor de vitamina D; osteomalácia",
+          "COL4A5, com herança ligada ao X; perda auditiva neurossensorial",
+          "PKD1; aneurismas intracranianos como manifestação principal",
+          "COL4A3 bialélico como forma mais comum; catarata congênita"
+        ],
+        "ans": 1,
+        "exp": "A forma mais comum da síndrome de Alport é a ligada ao X, causada por variantes em COL4A5. Além da hematúria/proteinúria e progressão renal, a perda auditiva neurossensorial é uma manifestação extra-renal clássica, especialmente em formas mais graves. COL4A3 e COL4A4 também causam Alport, em padrões autossômicos recessivo ou dominante, mas não são a forma mais frequente. PKD1 remete à doença renal policística autossômica dominante, e receptor de vitamina D/osteomalácia não pertence a esse quadro.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "revision": "sha256:2e39b22aa107e7c815e38848f29e229a5685517f56ab59e546d8ce5d20531d6e",
+      "fullMedicalReview": false
+    },
+    {
+      "qid": "00b4d27e",
+      "literal": {
+        "t": "Síndrome de Alport e Colágeno IV",
+        "qid": "00b4d27e",
+        "q": "Paciente com hematúria familiar persistente e perda auditiva neurossensorial recebe diagnóstico de síndrome de Alport. Qual rede de colágeno IV da membrana basal glomerular pode estar comprometida?",
+        "refs": [
+          "alport_erknet_era_espn_guideline_2024"
+        ],
+        "opts": [
+          "Cadeias alfa-1, alfa-2 e alfa-6.",
+          "Cadeias alfa-1, alfa-3 e alfa-5.",
+          "Cadeias alfa-2, alfa-4 e alfa-6.",
+          "Cadeias alfa-3, alfa-4 e alfa-5."
+        ],
+        "ans": 3,
+        "exp": "A rede alfa-3/alfa-4/alfa-5 do colágeno IV está relacionada à síndrome de Alport. Os genes COL4A3, COL4A4 e COL4A5 codificam essas cadeias; variantes patogênicas podem alterar a membrana basal glomerular. A combinação de hematúria familiar e perda auditiva neurossensorial é compatível com o fenótipo clássico, mas as manifestações e a evolução variam entre indivíduos e formas de herança. As outras listas misturam cadeias que não correspondem à rede característica cobrada. A identificação molecular informa a avaliação familiar; o enunciado não exige que todo paciente apresente a tríade clínica completa.",
+        "diff": "easy",
+        "cat": "genetica"
+      },
+      "revision": "sha256:aae1d22874c2e6b0c52a9b929f3494c1c22ca97a2a3830bddd21e3076b579e3b",
+      "fullMedicalReview": false
+    },
+    {
+      "qid": "01b9d179",
+      "literal": {
+        "t": "Síndrome de Alport: Imunomarcação do Colágeno IV",
+        "qid": "01b9d179",
+        "q": "Em um homem com síndrome de Alport ligada ao X clássica, qual padrão de imunomarcação para cadeias alfa-3/alfa-4/alfa-5 do colágeno IV é mais sugestivo do diagnóstico?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "Ausência de marcação na membrana basal glomerular para as cadeias alfa-3, alfa-4 e alfa-5",
+          "Deposição linear intensa de IgG ao longo da membrana basal glomerular",
+          "Deposição granular de C3 predominante em alças capilares",
+          "Padrão em céu estrelado por depósitos mesangiais policlonais"
+        ],
+        "ans": 0,
+        "exp": "Em homens com Alport ligado ao X clássico, a imunomarcação renal pode mostrar ausência de cadeias alfa-3, alfa-4 e alfa-5 do colágeno IV na membrana basal glomerular, refletindo falha de incorporação da rede alfa-3/4/5. A formulação deve ser lida como achado sugestivo, não como teste perfeito: uma parcela de pacientes, especialmente com variantes missense ou fenótipos mais leves, pode ter marcação preservada, e o diagnóstico definitivo hoje é frequentemente molecular. Deposição linear de IgG sugere doença anti-MBG; C3 granular sugere glomerulopatia mediada por complemento/imunocomplexos; céu estrelado não é padrão de Alport.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "revision": "sha256:e7a004eb9b8ee2ea45ad06602d575adbb193d98ec89ae8d1499ddf4c0d43020e",
+      "fullMedicalReview": false
+    },
+    {
+      "qid": "918962ea",
+      "literal": {
+        "t": "ADTKD-UMOD — Reconhecimento do Fenótipo",
+        "qid": "918962ea",
+        "q": "Adulto com DRC lentamente progressiva, sedimento urinário brando, proteinúria discreta, hiperuricemia e gota desde os 25 anos tem pai e avô com quadro semelhante. Qual diagnóstico deve ser priorizado?",
+        "refs": [
+          "genereviews_adtkd_umod_2021"
+        ],
+        "opts": [
+          "Doença renal tubulointersticial autossômica dominante por UMOD",
+          "Nefropatia membranosa hereditária",
+          "DRPAD, mesmo sem cistos ou rins aumentados",
+          "Nefropatia por depósito maciço de urato como causa única da herança vertical"
+        ],
+        "ans": 0,
+        "exp": "A combinação de herança vertical compatível com padrão autossômico dominante, DRC tubulointersticial lentamente progressiva, urina relativamente branda e gota precoce é típica de ADTKD-UMOD. Variantes patogênicas causam dobramento anormal e retenção intracelular de uromodulina, além de menor excreção renal de urato. Cistos medulares não são necessários. A confirmação é molecular e permite aconselhamento familiar; hiperuricemia é pista fenotípica, não prova isolada de depósito de urato como causa da DRC.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "revision": "sha256:581c24c8dd60e35d6d9c51423bb9b86a6d713ec8c474479fed21c7d6611d2b28",
+      "fullMedicalReview": false
+    },
+    {
+      "qid": "4f399a3c",
+      "literal": {
+        "t": "SHUa — Inibição de C5 e Segurança",
+        "qid": "4f399a3c",
+        "q": "Após excluir deficiência grave de ADAMTS13 e SHU por toxina Shiga, a equipe considera SHUa altamente provável em paciente com LRA e microangiopatia trombótica. Qual estratégia é mais adequada?",
+        "refs": [
+          "genereviews_ahus_2021",
+          "ema_soliris_2026"
+        ],
+        "opts": [
+          "Iniciar inibição de C5 sem aguardar o painel genético e organizar proteção contra meningococo conforme a urgência e o protocolo local",
+          "Aguardar obrigatoriamente uma variante em CFH antes de tratar",
+          "Usar plasmaférese como equivalente definitivo ao bloqueio do complemento em todos os casos",
+          "Evitar eculizumab se o paciente estiver em diálise, por contraindicação absoluta"
+        ],
+        "ans": 0,
+        "exp": "Em SHUa clinicamente provável, o tratamento precoce com inibidor terminal do complemento pode preservar função renal e não deve depender do retorno genético, que pode ser negativo. Eculizumab bloqueia C5 e aumenta de forma importante o risco de infecção meningocócica; vacinação e, quando indicada, antibioticoprofilaxia devem ser providenciadas conforme urgência e normas locais. Antes, é essencial avaliar rapidamente PTT, SHU-STEC e causas secundárias de microangiopatia. Diálise não é contraindicação absoluta ao fármaco.",
+        "diff": "hard",
+        "cat": "genetica"
+      },
+      "revision": "sha256:94a2d426678915204fda6849dc40b01b463d78024a4a905bbadfdd1d6f2dae93",
+      "fullMedicalReview": false
+    },
+    {
+      "qid": "82728652",
+      "literal": {
+        "t": "Síndrome de Alport — Diagnóstico Básico",
+        "qid": "82728652",
+        "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "Nefropatia por IgA",
+          "Doença de Fabry",
+          "Síndrome de Alport",
+          "Doença de lesões mínimas"
+        ],
+        "ans": 2,
+        "exp": "O diagnóstico mais provável é síndrome de Alport. Hematúria persistente, perda auditiva neurossensorial e lamelação da membrana basal glomerular formam um conjunto típico. O pedigree sugere herança ligada ao X, mas não identifica sozinho a variante; a investigação molecular inclui COL4A3, COL4A4 e COL4A5. IgA não explica esse conjunto hereditário-auditivo; Fabry produz inclusões lisossomais, distintas da lamelação da membrana basal; lesões mínimas costuma apresentar síndrome nefrótica com apagamento podocitário.",
+        "diff": "easy",
+        "cat": "genetica"
+      },
+      "revision": "sha256:85614de3f4705862aecc64ba61ed5290cb8ec1b36077ec7b458ee5301a69b9ea",
+      "fullMedicalReview": false
+    }
+  ],
+  "cardConsumerPolicy": "MUC1/LCAT têm apenas o item deste lote como consumidor direto atual. Alport/GeneReviewsSHUa preservados byte-exatos; demaisconsumidores não herdamrevisão poraprovação de card.",
+  "sourceAccess": "MUC1/SHUapágina/booksretornourecaptcha; /sites/booksabreutextoreal. LCATcorpoXMLobtidoEuropePMC. Nenhuma conclusão baseadanapáginadebloqueio.",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "f4034105",
+      "family": "A10-genetica",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "ADTKD-MUC1 — Painel Genético Negativo",
+        "qid": "f4034105",
+        "q": "Família com DRC tubulointersticial autossômica dominante e sedimento brando tem painel multigênico convencional negativo. Por que ADTKD-MUC1 ainda permanece no diagnóstico diferencial?",
+        "opts": [
+          "A variante clássica é uma duplicação de citosina em uma VNTR altamente repetitiva, frequentemente não detectada por painéis e leituras curtas",
+          "MUC1 sofre apenas mutações somáticas limitadas ao rim",
+          "O gene é invisível a qualquer método molecular disponível",
+          "A doença exige cistos medulares, que substituem completamente o teste genético"
+        ],
+        "ans": 0,
+        "exp": "A maioria das variantes causais de ADTKD-MUC1 está no domínio VNTR, especialmente uma duplicação de citosina que gera a proteína frameshift MUC1fs. A arquitetura repetitiva dificulta amplificação, alinhamento e chamada por painéis convencionais, exoma e muitas abordagens de genoma com leituras curtas. Quando o fenótipo é compatível, deve-se confirmar se houve ensaio dirigido à VNTR ou método especializado. As variantes são germinativas, e cistos medulares não são necessários nem bom marcador da doença.",
+        "diff": "hard",
+        "cat": "genetica",
+        "refs": [
+          "genereviews_adtkd_muc1_2021"
+        ]
+      },
+      "originalSHA256": "sha256:dd16595f41b18b6ced1f50cc6b75ea19ff7662b9bf9ee5a3d5709584d8df6a1e",
+      "originalRefs": [
+        {
+          "id": "genereviews_adtkd_muc1_2021",
+          "original": {
+            "label": "GeneReviews — ADTKD-MUC1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK153723/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2021,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fenótipo e limitação técnica do sequenciamento convencional na ADTKD-MUC1.",
+            "icon": "🧬",
+            "resumo": "GeneReviews sobre ADTKD-MUC1, doença autossômica dominante de DRC tubulointersticial progressiva com sedimento urinário brando. Quase todas as variantes causais estão no domínio VNTR de MUC1; a alteração clássica é uma duplicação de citosina em uma sequência repetitiva que produz a proteína frameshift MUC1fs. Painéis convencionais e sequenciamento de leituras curtas frequentemente não detectam a variante.",
+            "conclusao": "Um painel genético negativo não exclui ADTKD-MUC1 quando o fenótipo e a herança são compatíveis; é necessário confirmar se o laboratório usa ensaio dirigido à VNTR ou método validado equivalente.",
+            "curiosidade": "Cistos medulares não são achado obrigatório nem bom preditor de ADTKD-MUC1, razão pela qual o nome histórico 'doença cística medular' foi abandonado."
+          },
+          "originalSHA256": "sha256:2fb2685e5196dbb4e58ab0a16abeb27bdab2057dcbabfe159483add8ca47b470"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Interpretar painel convencional negativo em fenótipo compatível comADTKD-MUC1, reconhecendo limitação na região repetitiva.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta agregaVNTR,duplicaçãoeplataforma,contra alternativascurtas eabsolutas.",
+          "MENOR — SiglasADTKD/DRC/VNTRnãoexpandidas e risco de ler a limitação como impossibilidade tecnológica universal."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "muc1",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK153723/",
+          "access": "GeneReviews primária integral, última atualização21/10/2021, texto real aberto e seções de teste/laboratório/nomenclatura lidas",
+          "locators": [
+            "DiagnosisSteps1–3: variantesrepetitivasfrequentementeescapamaos painéisconvencionais;ensaiodirigidocomlaboratórioespecializado.",
+            "MolecularGenetics:regiãocomrepetiçõesemtandem,nucleotídeoadicionalfrequenteemcitossinas,proteínaMUC1fs.",
+            "Nomenclature: cistosmedularesnãocomunsnemobrigatórios;urina branda/herança vertical."
+          ],
+          "limitations": [
+            "Não se trata de atualizar toda a tecnologia diagnóstica para2026: o enunciado delimita painel convencional sem ensaio especializado. A fonte reconhece métodoslong-read e outrosespecializados; não afirmar quequalquerleitcurtafalha."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Variantes na região repetitiva deMUC1podemescaparaopainelconvencional e exigem ensaioespecializado.",
+          "source": "muc1",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Cistosmedularesnãoobrigatórios;herançaautossômicadominanteesedimentobrando.",
+          "source": "muc1",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "ADTKD-MUC1 — Painel Genético Negativo",
+        "qid": "f4034105",
+        "q": "Família com doença renal crônica tubulointersticial de herança autossômica dominante e sedimento urinário brando tem painel multigênico convencional negativo, sem ensaio específico para a região repetitiva de MUC1. Por que a doença por MUC1 ainda permanece no diagnóstico diferencial?",
+        "opts": [
+          "Variantes na região repetitiva de MUC1 podem escapar à técnica usada no painel.",
+          "O painel deixa de detectar MUC1 apenas quando ainda não surgiram cistos medulares.",
+          "As variantes hereditárias de MUC1 ficam restritas ao rim e não aparecem no sangue.",
+          "A detecção de MUC1 depende da presença de hematúria glomerular na coleta."
+        ],
+        "ans": 0,
+        "exp": "Um resultado negativo só é interpretável em conjunto com a cobertura e as limitações do teste. Na doença renal tubulointersticial autossômica dominante por MUC1 (ADTKD-MUC1), as variantes causais costumam estar em uma região de repetições em tandem em número variável (VNTR), difícil para métodos convencionais. A alteração mais comum adiciona uma citosina e produz uma proteína anormal por mudança do quadro de leitura. Deve-se confirmar com o laboratório se a região foi avaliada por método especializado; não concluir que nenhum teste disponível pode detectá-la. Cistos medulares não são necessários, e a presença de hematúria glomerular não determina a detecção molecular.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "genereviews_adtkd_muc1_2021"
+        ]
+      },
+      "proposedSHA256": "sha256:493b6e59d79bf5e4464fb62b0a425626b6f8e736c98739718cd2530d10226b48",
+      "classificationAfter": {
+        "op": "Interpretar painel convencional negativo em fenótipo compatível comADTKD-MUC1, reconhecendo limitação na região repetitiva.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "genereviews_adtkd_muc1_2021",
+          "original": {
+            "label": "GeneReviews — ADTKD-MUC1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK153723/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2021,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fenótipo e limitação técnica do sequenciamento convencional na ADTKD-MUC1.",
+            "icon": "🧬",
+            "resumo": "GeneReviews sobre ADTKD-MUC1, doença autossômica dominante de DRC tubulointersticial progressiva com sedimento urinário brando. Quase todas as variantes causais estão no domínio VNTR de MUC1; a alteração clássica é uma duplicação de citosina em uma sequência repetitiva que produz a proteína frameshift MUC1fs. Painéis convencionais e sequenciamento de leituras curtas frequentemente não detectam a variante.",
+            "conclusao": "Um painel genético negativo não exclui ADTKD-MUC1 quando o fenótipo e a herança são compatíveis; é necessário confirmar se o laboratório usa ensaio dirigido à VNTR ou método validado equivalente.",
+            "curiosidade": "Cistos medulares não são achado obrigatório nem bom preditor de ADTKD-MUC1, razão pela qual o nome histórico 'doença cística medular' foi abandonado."
+          },
+          "originalSHA256": "sha256:2fb2685e5196dbb4e58ab0a16abeb27bdab2057dcbabfe159483add8ca47b470",
+          "proposed": {
+            "label": "GeneReviews — ADTKD-MUC1",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK153723/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2021,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fenótipo e limitação técnica do sequenciamento convencional na ADTKD-MUC1.",
+            "icon": "🧬",
+            "resumo": "GeneReviews sobre doença renal tubulointersticial autossômica dominante por MUC1 (ADTKD-MUC1), com doença renal crônica progressiva e sedimento urinário brando. Quase todas as variantes causais estão no domínio de repetições em tandem em número variável (VNTR) de MUC1; a alteração clássica é uma duplicação de citosina que produz a proteína anormal MUC1fs por mudança do quadro de leitura. Painéis convencionais frequentemente não detectam essas variantes, exigindo avaliar a técnica usada.",
+            "conclusao": "Um painel genético convencional negativo não exclui ADTKD-MUC1 quando o fenótipo e a herança são compatíveis. Confirmar com o laboratório se foi avaliada a região repetitiva por ensaio dirigido ou outro método validado.",
+            "curiosidade": "Cistos medulares não são obrigatórios nem um bom preditor de ADTKD-MUC1; o nome histórico doença cística medular era impreciso."
+          },
+          "proposedSHA256": "sha256:48e5c807147b36df33f07e48745b63834445e1dd8775a9e85c0a35d2bbd2a4ac",
+          "sourceIDs": [
+            "muc1"
+          ],
+          "notes": [
+            "Mantém mesma obra/ID; clarifica siglas e evita afirmar falha universal de toda tecnologia de leituras curtas."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Limite técnico aplicado a cenário clínico, não memorização do nucleotídeo; correta paralela e sem carregar todos os detalhes. Distratores refletem confusão entre fenótipo e desempenho do teste, embora os dois últimos tenham menor discriminação.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "56e146ac",
+      "family": "A10-genetica",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "SHUa — Interpretação do Teste Genético",
+        "qid": "56e146ac",
+        "q": "Paciente com microangiopatia trombótica compatível com SHUa apresenta painel genético sem variante patogênica identificada. Qual interpretação é correta?",
+        "opts": [
+          "O resultado negativo não exclui SHUa; a avaliação clínica, exclusão de PTT/SHU-STEC e investigação da via do complemento continuam decisivas",
+          "SHUa está excluída porque todo caso decorre obrigatoriamente de variante em CFH",
+          "O resultado confirma PTT, independentemente da atividade de ADAMTS13",
+          "Só variantes em C3 podem causar SHUa, portanto os demais genes são irrelevantes"
+        ],
+        "ans": 0,
+        "exp": "SHUa decorre de desregulação da via alternativa do complemento, mas nem toda pessoa afetada apresenta variante identificável nos testes atuais. Variantes podem envolver CFH, CFI, CD46, C3, CFB e outros genes; autoanticorpos anti-fator H e fatores desencadeantes também importam. O painel negativo não deve encerrar o diagnóstico nem atrasar tratamento em quadro compatível. É indispensável excluir rapidamente deficiência grave de ADAMTS13, toxina Shiga e causas secundárias de microangiopatia trombótica.",
+        "refs": [
+          "genereviews_ahus_2021"
+        ],
+        "cat": "genetica",
+        "diff": "hard"
+      },
+      "originalSHA256": "sha256:bef959725b37803cf51b8387d8b98434ff2463104ebba91aa4ad50e393f34fce",
+      "originalRefs": [
+        {
+          "id": "genereviews_ahus_2021",
+          "original": {
+            "label": "GeneReviews — Genetic Atypical Hemolytic-Uremic Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1367/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2021,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Diagnóstico genético, via alternativa do complemento e tratamento da SHUa.",
+            "icon": "🧬",
+            "resumo": "GeneReviews sobre síndrome hemolítico-urêmica atípica genética, uma microangiopatia trombótica ligada à desregulação da via alternativa do complemento. Variantes podem afetar reguladores como CFH, CFI e CD46 ou componentes efetores como C3 e CFB; ausência de variante identificável não exclui SHUa. O teste genético ajuda em aconselhamento, risco de recorrência e planejamento de transplante, mas o resultado não deve atrasar tratamento de uma apresentação clínica compatível.",
+            "conclusao": "A suspeita de SHUa exige excluir rapidamente PTT grave por deficiência de ADAMTS13, SHU por toxina Shiga e causas secundárias; confirmada a probabilidade clínica, a inibição terminal do complemento pode preservar função renal antes do retorno genético.",
+            "curiosidade": "CFH regula o complemento na fase fluida e nas superfícies celulares; variantes de perda de função podem deixar o endotélio renal particularmente vulnerável à ativação da via alternativa."
+          },
+          "originalSHA256": "sha256:5bdc5af15f26a5a5eacd699d96900dfa01798c3d3f112b8aaf3961243feb19a2"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Interpretar ausência de variante patogênica em investigação deSHUa, sem excluir o diagnóstico clínico por esse resultado isolado.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta échecklistmuitomaior;alternativasabsolutasconfundemgenéticaeoutrosdiagnósticos.",
+          "MENOR — SiglasSHUa/PTT/SHU-STECsemexpansão; hardsemraciocíniocomplexo."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ahus",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1367/",
+          "access": "GeneReviews primária integral atualizada23/09/2021 aberta; tabelas de causas, diagnóstico diferencial e manejo lidos",
+          "locators": [
+            "Table1: fração de etiologiagenéticadesconhecida; váriosgenes, nãoapenasCFH/C3.",
+            "DifferentialDiagnosis: toxinaShiga eatividadeADAMTS13; Table2anticorposantifatorH.",
+            "Treatment: benefício deintervençãoprecocequandoSHUainequívoca; testesgenéticosservemaconsselho/recorrência/transplante."
+          ],
+          "limitations": [
+            "A obra histórica inclui síndromes genéticas não mediadas por complemento, comoDGKE, e não é usada para exigir que todamicroangiopatiasejacomplementar. Não transferir orientaçãopediátrica2026paraadultosemmarcaropo."
+          ]
+        },
+        {
+          "id": "ipna",
+          "url": "https://link.springer.com/article/10.1007/s00467-026-07537-7",
+          "doi": "10.1007/s00467-026-07537-7",
+          "access": "Texto integral primário de recomendaçõesIPNA efetivamente aberto, publicado23/09/2026; seçõesIntroduction/Methods/diagnosticlaboratorytesting/PICO2lidas",
+          "locators": [
+            "Introduction: aHUSincluigenética/autoimunidade/casossemvariante; genética/anticorposencontradosem50–60%.",
+            "Laboratorytesting: ADAMTS13, toxinaShiga, complemento/antifatorH;30–40%semcausaatribuívelapesardainvestigação.",
+            "Recommendation2.1: nãoretardartratamentoemcriançasaguardandogenética/ADAMTS13; outrasmicroangiopatiasdevemseravaliadas.",
+            "Methods:6PICO,2rodadasDelphi,limiarde80%;semclassificaçãoformaldeforçapelaevidêncialimitada."
+          ],
+          "limitations": [
+            "Escopo explicitamente pediátrico. Não inserir dose, duração deC5 ou regra universal de suspensão apósnegativo no card ou na questão. Não é RCT nem recomendação com GRADE formal."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Painel negativo não excluiSHUa; existem causas autoimunes e etiologias não identificadas.",
+          "source": "ipna",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Excluiroutrosmecanismosdemicroangiopatiaénecessário, incluindoADAMTS13deficienteetoxinaShiga.",
+          "source": "ahus",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "SHUa — Interpretação do Teste Genético",
+        "qid": "56e146ac",
+        "q": "Adolescente com microangiopatia trombótica e suspeita clínica de síndrome hemolítico-urêmica atípica (SHUa) recebe painel genético sem variante patogênica identificada. Qual é a interpretação mais adequada desse resultado?",
+        "opts": [
+          "O resultado confirma púrpura trombocitopênica trombótica, dispensando outros exames.",
+          "O resultado exclui SHUa, pois toda desregulação do complemento é detectada no painel.",
+          "O resultado não exclui SHUa; a avaliação clínica e dos diagnósticos diferenciais continua.",
+          "O resultado indica que a investigação só deve ser retomada se surgir um familiar afetado."
+        ],
+        "ans": 2,
+        "exp": "Um painel negativo não afasta sozinho a SHUa. Nem todos os pacientes têm variante detectável; mecanismos autoimunes, como anticorpos contra o fator H, e limitações do teste também devem ser considerados. A equipe deve avaliar rapidamente deficiência grave da protease ADAMTS13, associada à púrpura trombocitopênica trombótica, infecção por bactéria produtora de toxina Shiga e outras causas de microangiopatia. A recomendação pediátrica da IPNA de 2026 mantém a necessidade de interpretação clínica e investigação etiológica: a genética não é um requisito isolado para iniciar o manejo necessário. Isso também não significa confirmar SHUa ou manter indefinidamente um tratamento apenas porque o painel foi negativo.",
+        "refs": [
+          "genereviews_ahus_2021",
+          "ipna_ahus_tma_2026"
+        ],
+        "cat": "genetica",
+        "diff": "medium"
+      },
+      "proposedSHA256": "sha256:d8cb4e141e3bda4e5ae110db71a168a72f101d4bd3be9b1a8a9e1f812438580a",
+      "classificationAfter": {
+        "op": "Interpretar ausência de variante patogênica em investigação deSHUa, sem excluir o diagnóstico clínico por esse resultado isolado.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "genereviews_ahus_2021",
+          "original": {
+            "label": "GeneReviews — Genetic Atypical Hemolytic-Uremic Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1367/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2021,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Diagnóstico genético, via alternativa do complemento e tratamento da SHUa.",
+            "icon": "🧬",
+            "resumo": "GeneReviews sobre síndrome hemolítico-urêmica atípica genética, uma microangiopatia trombótica ligada à desregulação da via alternativa do complemento. Variantes podem afetar reguladores como CFH, CFI e CD46 ou componentes efetores como C3 e CFB; ausência de variante identificável não exclui SHUa. O teste genético ajuda em aconselhamento, risco de recorrência e planejamento de transplante, mas o resultado não deve atrasar tratamento de uma apresentação clínica compatível.",
+            "conclusao": "A suspeita de SHUa exige excluir rapidamente PTT grave por deficiência de ADAMTS13, SHU por toxina Shiga e causas secundárias; confirmada a probabilidade clínica, a inibição terminal do complemento pode preservar função renal antes do retorno genético.",
+            "curiosidade": "CFH regula o complemento na fase fluida e nas superfícies celulares; variantes de perda de função podem deixar o endotélio renal particularmente vulnerável à ativação da via alternativa."
+          },
+          "originalSHA256": "sha256:5bdc5af15f26a5a5eacd699d96900dfa01798c3d3f112b8aaf3961243feb19a2",
+          "proposed": {
+            "label": "GeneReviews — Genetic Atypical Hemolytic-Uremic Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1367/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2021,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Diagnóstico genético, via alternativa do complemento e tratamento da SHUa.",
+            "icon": "🧬",
+            "resumo": "GeneReviews sobre síndrome hemolítico-urêmica atípica genética, uma microangiopatia trombótica ligada à desregulação da via alternativa do complemento. Variantes podem afetar reguladores como CFH, CFI e CD46 ou componentes efetores como C3 e CFB; ausência de variante identificável não exclui SHUa. O teste genético ajuda em aconselhamento, risco de recorrência e planejamento de transplante, mas o resultado não deve atrasar tratamento de uma apresentação clínica compatível.",
+            "conclusao": "A suspeita de SHUa exige excluir rapidamente PTT grave por deficiência de ADAMTS13, SHU por toxina Shiga e causas secundárias; confirmada a probabilidade clínica, a inibição terminal do complemento pode preservar função renal antes do retorno genético.",
+            "curiosidade": "CFH regula o complemento na fase fluida e nas superfícies celulares; variantes de perda de função podem deixar o endotélio renal particularmente vulnerável à ativação da via alternativa."
+          },
+          "proposedSHA256": "sha256:5bdc5af15f26a5a5eacd699d96900dfa01798c3d3f112b8aaf3961243feb19a2",
+          "sourceIDs": [
+            "ahus"
+          ],
+          "notes": [
+            "Card atual preservado byte-exato; sentido clínico conferido e limites da classificação histórica declarados."
+          ]
+        },
+        {
+          "id": "ipna_ahus_tma_2026",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "IPNA — SHUa e microangiopatias trombóticas secundárias em crianças (2026)",
+            "url": "https://link.springer.com/article/10.1007/s00467-026-07537-7",
+            "journal": "Pediatric Nephrology. Publicado em 23 de setembro de 2026",
+            "ano": 2026,
+            "tipo": "Diretriz de prática clínica",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "icon": "📋",
+            "impacto": "Painel genético negativo não exclui SHUa; investigar rapidamente os diagnósticos diferenciais.",
+            "resumo": "Recomendações da International Pediatric Nephrology Association (IPNA) para síndrome hemolítico-urêmica atípica (SHUa) e microangiopatias trombóticas em crianças. Usam revisão da literatura e consenso Delphi, sem graduação formal de força pela limitação da evidência. O diagnóstico é clínico e exige avaliar toxina Shiga, atividade de ADAMTS13, causas secundárias e mecanismos não mediados por complemento. Cerca de 30%–40% permanecem sem causa específica atribuída após investigação; ausência de variante não exclui SHUa.",
+            "conclusao": "Na suspeita clínica relevante, investigar genética, complemento e autoanticorpos sem transformar o resultado genético em requisito para iniciar o manejo necessário. A interpretação e o tratamento devem ser individualizados pela equipe especializada.",
+            "curiosidade": "A recomendação tem escopo pediátrico e distingue formas mediadas por complemento de outras causas genéticas de microangiopatia; não autoriza tratar toda microangiopatia como SHUa."
+          },
+          "proposedSHA256": "sha256:834153a06059df49e0fe91f98ce34abcd8aa62c4f7498fc6b6bc9a80d13ae504",
+          "sourceIDs": [
+            "ipna"
+          ],
+          "notes": [
+            "Novo card só porque fonte2026é atual, pediátrica e decisiva para os limites da interpretação. Nenhum outrocardmesmaobra/DOI encontrado no banco."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Interpretação de teste com consequência clínica imediata; idadeadolescentedelimita fonteIPNA, não criaOPnovo. Não cobra porcentagem, geneúnico ou decisão autônoma de dose/duração deC5.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "77ef6918",
+      "family": "A10-genetica",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "qid": "77ef6918",
+        "q": "A síndrome de Alport é uma doença genética do colágeno IV. Além da nefropatia por hematúria/proteinúria, quais manifestações extra-renais são classicamente associadas ao quadro?",
+        "opts": [
+          "Ouvido interno, com perda auditiva neurossensorial, e olhos, com achados como lenticone anterior e maculopatia.",
+          "Pele, com angioqueratomas e anidrose difusa.",
+          "Vasos cerebrais, com aneurismas saculares como manifestação típica.",
+          "Fígado e pâncreas, com doença cística progressiva."
+        ],
+        "ans": 0,
+        "exp": "A síndrome de Alport envolve a rede alfa-3/alfa-4/alfa-5 do colágeno IV, importante na membrana basal glomerular, no ouvido interno e em estruturas oculares. Por isso, além de hematúria/proteinúria e progressão renal, os achados extra-renais clássicos são perda auditiva neurossensorial e manifestações oculares, como lenticone anterior e maculopatia. Angioqueratomas/anidrose sugerem Fabry; aneurismas saculares remetem mais à doença renal policística autossômica dominante; doença cística hepática/pancreática não é manifestação típica de Alport.",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "cat": "genetica",
+        "diff": "medium",
+        "t": "Síndrome de Alport — Manifestações Extra-renais"
+      },
+      "originalSHA256": "sha256:034a7a657a0d8e0fc35048f47a3ab78c2842c1b150e63ad0b1d1d5fa890ea41c",
+      "originalRefs": [
+        {
+          "id": "alport_genereviews_2025",
+          "original": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer manifestações auditivas e oculares clássicas da síndrome deAlport conhecida.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta especifica órgãos, tipo de surdez e dois achados oculares; demais alternativas são bem menores.",
+          "MENOR — Associação básica rotulada medium, sem interpretação de caso complexo."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "alport",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1207/",
+          "access": "GeneReviews primária integral atualizada14/08/2025, texto real aberto no navegador; seções clínicas, moleculares e histológicas lidas",
+          "locators": [
+            "Summary: audição neurossensorial, lenticone anterior/maculopatia; variação por sexo/herança.",
+            "Diagnosis/Table1: COL4A5ligadoaoX, COL4A3/4autossômicos;80–85%COL4A5.",
+            "Biopsy: redealfa3/4/5, imunomarcaçãonormalnãodescarta, EMlamelação/afinamento."
+          ],
+          "limitations": [
+            "Não se prediz gene apenas pela tríade nem se exige manifestação ocular/auditiva em todos."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Surdez neurossensorial e lenticoneanterior são manifestações clássicas, variáveis por forma/indivíduo.",
+          "source": "alport",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "qid": "77ef6918",
+        "q": "Na síndrome de Alport, qual par de manifestações extrarrenais é classicamente associado à doença?",
+        "opts": [
+          "Perda auditiva neurossensorial e lenticone anterior.",
+          "Angioqueratomas cutâneos e redução da sudorese.",
+          "Aneurismas intracranianos e cistos hepáticos múltiplos.",
+          "Coloboma do nervo óptico e malformação das orelhas."
+        ],
+        "ans": 0,
+        "exp": "As manifestações extrarrenais clássicas da síndrome de Alport incluem perda auditiva neurossensorial e alterações oculares, como lenticone anterior e retinopatia macular. A presença e a idade de aparecimento variam conforme a forma genética e o indivíduo; esses achados não são obrigatórios em todo paciente. A associação orienta avaliação audiológica e oftalmológica. O gene e a herança não devem ser deduzidos apenas desse par de manifestações.",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "cat": "genetica",
+        "diff": "easy",
+        "t": "Síndrome de Alport — Manifestações Extra-renais"
+      },
+      "proposedSHA256": "sha256:fde2a0072d394343f59fe6b90c298069d52408e289ddd2d334a0a6137b92a8c6",
+      "classificationAfter": {
+        "op": "Reconhecer manifestações auditivas e oculares clássicas da síndrome deAlport conhecida.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "alport_genereviews_2025",
+          "original": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b",
+          "proposed": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "proposedSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b",
+          "sourceIDs": [
+            "alport"
+          ],
+          "notes": [
+            "Card atual já integrado, preservado byte-exato; todos12campos rechecados neste escopo. Não se herda aprovação do diagnóstico para a questão de fenótipo."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Associação clínica básica útil para avaliação de órgãos, easy. Alternativas são pares de manifestações reais, de comprimento semelhante; ausência de psicometria impede alegar melhora causal de discriminação.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "03f980dd",
+      "family": "A10-genetica",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "qid": "03f980dd",
+        "q": "Em um paciente com proteinúria/hematúria, HDL-colesterol muito baixo e suspeita de deficiência familiar de lecitina-colesterol aciltransferase (LCAT), qual achado extra-renal reforça esse diagnóstico?",
+        "opts": [
+          "Angioqueratomas e anidrose difusa.",
+          "Lipodistrofia parcial com perda de gordura facial.",
+          "Opacidades corneanas difusas associadas a anemia hemolítica com hemácias em alvo.",
+          "Surdez neurossensorial progressiva."
+        ],
+        "ans": 2,
+        "exp": "A deficiência familiar completa de LCAT é uma doença autossômica recessiva rara em que a falha de esterificação do colesterol cursa com HDL muito baixo, opacidade corneana precoce e, na forma familiar completa, nefropatia progressiva. Anemia hemolítica com hemácias em alvo também pode ocorrer. A doença do olho de peixe é uma forma parcial predominantemente ocular e geralmente sem a mesma nefropatia progressiva. Angioqueratomas/anidrose sugerem Fabry; lipodistrofia parcial é outro grupo de doenças; surdez neurossensorial é mais típica de síndromes como Alport.",
+        "refs": [
+          "lcat_deficiency_vitali_2022"
+        ],
+        "cat": "genetica",
+        "diff": "medium",
+        "t": "Deficiência de LCAT — Manifestações Extra-renais"
+      },
+      "originalSHA256": "sha256:d581b2908f9dac1f05cf0b936160f155cd725e43bd3063193cde704262fc6ff6",
+      "originalRefs": [
+        {
+          "id": "lcat_deficiency_vitali_2022",
+          "original": {
+            "label": "Vitali et al. — Natural history of primary LCAT deficiency (JLR 2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8953693/",
+            "journal": "Journal of Lipid Research",
+            "ano": 2022,
+            "tipo": "Revisão sistemática",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Define fenótipo de deficiência familiar de LCAT: córnea, HDL baixo e nefropatia.",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática da história natural e biomarcadores da deficiência primária de lecitina-colesterol aciltransferase (LCAT). Incluiu estudos observacionais de deficiência familiar de LCAT (FLD), doença do olho de peixe (FED) e heterozigotos, identificando 146 pacientes com FLD e 53 com FED em 219 publicações. Ambas as síndromes cursaram com opacidade corneana precoce e HDL-colesterol muito baixo; na FLD, proteinúria/hematúria foram os primeiros sinais renais, seguidos por declínio rápido da função renal.",
+            "conclusao": "Na deficiência familiar completa de LCAT com nefropatia, a associação de opacidades corneanas, HDL muito baixo, anemia hemolítica/hemácias em alvo e proteinúria/hematúria sustenta o diagnóstico; doença do olho de peixe é forma parcial predominantemente ocular.",
+            "curiosidade": "A revisão sugere que restaurar a atividade da LCAT para níveis subnormais pode ser suficiente para prevenir progressão renal, hipótese que orienta terapias em desenvolvimento."
+          },
+          "originalSHA256": "sha256:c19d84b9c1dbd83baa6820481c8ce38a71ae245e1100ce242625dcd00703ff93"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer manifestação extrarrenal que reforça suspeita de deficiência familiar deLCATcomnefropatia/HDLbaixo.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Apenas a correta agrupa córnea eanemia/hemáciasemalvo, dando pistas de extensão e completude.",
+          "MENOR — Detalhehemáciasemalvonãoéencontradonafontecitada; nãoénecessárioparaoOP."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "lcat",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8953693/",
+          "doi": "10.1016/j.jlr.2022.100169",
+          "pmid": "35065092",
+          "access": "Corpo primárioXMLintegral obtido doEuropePMC e lido diretamente, não abstract mascarado como corpo",
+          "artifact": "lcat-2022-full.xml",
+          "rawSHA256": "62818ecbe63a652b31dfc19d3efe37b790915680cadbb8bff25454225b72db97",
+          "additionalURLs": [
+            "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8953693/fullTextXML"
+          ],
+          "locators": [
+            "Methods/Results:219publicações,146FLD/53FED;ambascórnea/HDLbaixo,FLDcomproteinúria/hematúriaeprogressãorenal.",
+            "Introduction: herançaautossômicarecessiva;formacompleta/olhodepeixeparcial.",
+            "Discussion/Anemia:fragilidadedeeritrócitos/anemiahemolítica,baseempoucoscasos.",
+            "Discussion: atividadeenzimáticasubnormalnormalizouproporçãoesterificada;prevenirprogressãorenaléhipótesenãobenefícioclínicoestabelecido."
+          ],
+          "limitations": [
+            "AcessoPMCwebretornourecaptcha;XMLcontémtodosostextosfront/body/tabelas/referências. Nãoatribuirleituraintegralàpágina bloqueada.",
+            "Nãoencontreimençãoahemáciasemalvonessecorpo: esse detalhenãodecisivofoiremovidoemvezdechamarfalsoouinventarfonte."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "OpacidadecorneanadifusaeHDLbaixosãocaracterísticos; formacompletacursacomnefropatiaeanemiahemolíticapossível.",
+          "source": "lcat",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "qid": "03f980dd",
+        "q": "Paciente com proteinúria, hematúria e colesterol em lipoproteínas de alta densidade (HDL) muito baixo tem suspeita de deficiência familiar completa de lecitina-colesterol aciltransferase (LCAT). Qual achado extrarrenal reforça essa suspeita?",
+        "opts": [
+          "Angioqueratomas cutâneos.",
+          "Opacidade corneana difusa.",
+          "Surdez neurossensorial.",
+          "Coloboma do nervo óptico."
+        ],
+        "ans": 1,
+        "exp": "A deficiência familiar completa de LCAT associa colesterol HDL muito baixo, opacidades corneanas e nefropatia progressiva, na qual proteinúria e hematúria podem ser os primeiros sinais. Anemia hemolítica também pode ocorrer, mas não é necessária para responder a este caso. A forma parcial, conhecida como doença do olho de peixe, também produz alterações corneanas e HDL baixo, porém não apresenta tipicamente a mesma nefropatia progressiva. Os achados reforçam uma suspeita que deve ser confirmada por avaliação especializada, não constituem diagnóstico molecular isoladamente.",
+        "refs": [
+          "lcat_deficiency_vitali_2022"
+        ],
+        "cat": "genetica",
+        "diff": "medium",
+        "t": "Deficiência de LCAT — Manifestações Extra-renais"
+      },
+      "proposedSHA256": "sha256:9eaf6e1cf85e5f28b641723d7f67b7023d92a5de5a70003338c9ce06f78c3042",
+      "classificationAfter": {
+        "op": "Reconhecer manifestação extrarrenal que reforça suspeita de deficiência familiar deLCATcomnefropatia/HDLbaixo.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "lcat_deficiency_vitali_2022",
+          "original": {
+            "label": "Vitali et al. — Natural history of primary LCAT deficiency (JLR 2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8953693/",
+            "journal": "Journal of Lipid Research",
+            "ano": 2022,
+            "tipo": "Revisão sistemática",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Define fenótipo de deficiência familiar de LCAT: córnea, HDL baixo e nefropatia.",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática da história natural e biomarcadores da deficiência primária de lecitina-colesterol aciltransferase (LCAT). Incluiu estudos observacionais de deficiência familiar de LCAT (FLD), doença do olho de peixe (FED) e heterozigotos, identificando 146 pacientes com FLD e 53 com FED em 219 publicações. Ambas as síndromes cursaram com opacidade corneana precoce e HDL-colesterol muito baixo; na FLD, proteinúria/hematúria foram os primeiros sinais renais, seguidos por declínio rápido da função renal.",
+            "conclusao": "Na deficiência familiar completa de LCAT com nefropatia, a associação de opacidades corneanas, HDL muito baixo, anemia hemolítica/hemácias em alvo e proteinúria/hematúria sustenta o diagnóstico; doença do olho de peixe é forma parcial predominantemente ocular.",
+            "curiosidade": "A revisão sugere que restaurar a atividade da LCAT para níveis subnormais pode ser suficiente para prevenir progressão renal, hipótese que orienta terapias em desenvolvimento."
+          },
+          "originalSHA256": "sha256:c19d84b9c1dbd83baa6820481c8ce38a71ae245e1100ce242625dcd00703ff93",
+          "proposed": {
+            "label": "Vitali et al. — Natural history of primary LCAT deficiency (JLR 2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8953693/",
+            "journal": "Journal of Lipid Research",
+            "ano": 2022,
+            "tipo": "Revisão sistemática",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Define fenótipo de deficiência familiar de LCAT: córnea, HDL baixo e nefropatia.",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática da história natural e biomarcadores da deficiência primária de lecitina-colesterol aciltransferase (LCAT). Incluiu estudos observacionais de deficiência familiar de LCAT (FLD), doença do olho de peixe (FED) e heterozigotos, identificando 146 pacientes com FLD e 53 com FED em 219 publicações. Ambas as síndromes cursaram com opacidade corneana precoce e HDL-colesterol muito baixo; na FLD, proteinúria/hematúria foram os primeiros sinais renais, seguidos por declínio rápido da função renal.",
+            "conclusao": "Na deficiência familiar completa de LCAT, a associação de opacidades corneanas, colesterol em lipoproteínas de alta densidade muito baixo, anemia hemolítica e proteinúria/hematúria sustenta a suspeita. A doença do olho de peixe é uma forma parcial predominantemente ocular, sem a mesma nefropatia progressiva típica.",
+            "curiosidade": "A revisão sugere que restaurar a atividade da LCAT para níveis subnormais pode ser suficiente para prevenir progressão renal, hipótese que orienta terapias em desenvolvimento."
+          },
+          "proposedSHA256": "sha256:b09905a488ecdcca0f042d5138992053a210259e2219c34101b0d81e6192a31c",
+          "sourceIDs": [
+            "lcat"
+          ],
+          "notes": [
+            "Remove apenas detalhe dehemáciasemalvonãolocalizadonessafonte; não afirma que seja falso. O restante do card foi conferido integralmente."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Dados fornecidos exigem associar fenótipo renal/metabólico e outroórgão; não há estratégia de igualarcomprimentos artificialmente, apenas uma manifestação por alternativa.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "d1e9ed7e",
+      "family": "A10-genetica",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Síndrome de Alport: Genética e Clínica",
+        "qid": "d1e9ed7e",
+        "q": "Qual é o gene mais frequentemente envolvido na forma mais comum da síndrome de Alport e qual manifestação extra-renal é clássica?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "Gene do receptor de vitamina D; osteomalácia",
+          "COL4A5, com herança ligada ao X; perda auditiva neurossensorial",
+          "PKD1; aneurismas intracranianos como manifestação principal",
+          "COL4A3 bialélico como forma mais comum; catarata congênita"
+        ],
+        "ans": 1,
+        "exp": "A forma mais comum da síndrome de Alport é a ligada ao X, causada por variantes em COL4A5. Além da hematúria/proteinúria e progressão renal, a perda auditiva neurossensorial é uma manifestação extra-renal clássica, especialmente em formas mais graves. COL4A3 e COL4A4 também causam Alport, em padrões autossômicos recessivo ou dominante, mas não são a forma mais frequente. PKD1 remete à doença renal policística autossômica dominante, e receptor de vitamina D/osteomalácia não pertence a esse quadro.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "originalSHA256": "sha256:2e39b22aa107e7c815e38848f29e229a5685517f56ab59e546d8ce5d20531d6e",
+      "originalRefs": [
+        {
+          "id": "alport_genereviews_2025",
+          "original": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+        }
+      ],
+      "classificationBefore": {
+        "op": "ReconhecerCOL4A5comoogeneassociadoàformaligadaaoXda síndromedeAlport.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Mistura duas tarefas independentes: gene/herança e manifestação extrarrenal. A segunda já é avaliada em77ef6918.",
+          "MENOR — Distratores misturam gene, herança e manifestação com detalhes heterogêneos."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "alport",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1207/",
+          "access": "GeneReviews primária integral atualizada14/08/2025, texto real aberto no navegador; seções clínicas, moleculares e histológicas lidas",
+          "locators": [
+            "Summary: audição neurossensorial, lenticone anterior/maculopatia; variação por sexo/herança.",
+            "Diagnosis/Table1: COL4A5ligadoaoX, COL4A3/4autossômicos;80–85%COL4A5.",
+            "Biopsy: redealfa3/4/5, imunomarcaçãonormalnãodescarta, EMlamelação/afinamento."
+          ],
+          "limitations": [
+            "Não se prediz gene apenas pela tríade nem se exige manifestação ocular/auditiva em todos."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "AformaAlportligadaaoXéassociadaaCOL4A5;COL4A3/4associam-seàsformasautossômicas.",
+          "source": "alport",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Síndrome de Alport — Gene da Forma Ligada ao X",
+        "qid": "d1e9ed7e",
+        "q": "Qual gene está associado à forma ligada ao X da síndrome de Alport?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "COL4A3",
+          "COL4A5",
+          "COL4A4",
+          "PKD1"
+        ],
+        "ans": 1,
+        "exp": "A forma ligada ao X da síndrome de Alport é causada por variantes patogênicas em COL4A5. COL4A3 e COL4A4 podem causar formas autossômicas dominantes ou recessivas; PKD1 está relacionado à doença renal policística autossômica dominante. Conhecer o gene e o padrão de herança orienta a investigação molecular e o aconselhamento familiar. A manifestação auditiva foi retirada da pergunta para manter um único objetivo pedagógico.",
+        "diff": "easy",
+        "cat": "genetica"
+      },
+      "proposedSHA256": "sha256:db8578ac8e369e28881eeb5dd82be333cd61baa86df5eaee87badeee90055e6c",
+      "classificationAfter": {
+        "op": "ReconhecerCOL4A5comoogeneassociadoàformaligadaaoXda síndromedeAlport.",
+        "primaryCompetence": "Reconhecimento e interpretação clínica de testes genéticos.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "alport_genereviews_2025",
+          "original": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "originalSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b",
+          "proposed": {
+            "label": "GeneReviews — Alport Syndrome",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+            "journal": "NCBI Bookshelf / GeneReviews",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+            "icon": "🔬",
+            "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+            "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+            "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+          },
+          "proposedSHA256": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b",
+          "sourceIDs": [
+            "alport"
+          ],
+          "notes": [
+            "Card atual já integrado, preservado byte-exato; todos12campos rechecados neste escopo. Não se herda aprovação do diagnóstico para a questão de fenótipo."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. OPgenéticoprimáriopreservado e estreitado, sem exigir segundaresposta fenotípica. Recalljustificadopelainvestigaçãomolecular/herança; nãocobranúmerodefrequência.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "Mantém qid porque o geneCOL4A5/formaXeraoprimeiroeprincipalOPdaversãooriginal. Remove a pergunta secundária de manifestação, não substitui por novo construto. Não resetar ou transferirFSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ]
+}

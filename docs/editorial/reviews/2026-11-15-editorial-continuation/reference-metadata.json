@@ -1,0 +1,1054 @@
+{
+  "schema": "NQ_REFERENCE_METADATA_INVENTORY_v1",
+  "date": "2026-11-15",
+  "reviewer": "reference_metadata_1725",
+  "scope": "Mechanical bibliography and consumer inventory only. No clinical review, evidence verification, editorial verdict, publication authorization or runtime edit.",
+  "base": {
+    "branch": "codex/editorial-priorities-1725",
+    "commit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+    "release": "17.24"
+  },
+  "sourceFiles": [
+    {
+      "path": "data/refs.js",
+      "bytes": 509771,
+      "sha256": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5"
+    },
+    {
+      "path": "data/topics.js",
+      "bytes": 975004,
+      "sha256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d"
+    },
+    {
+      "path": "js/minigame-acidbase.js",
+      "bytes": 255850,
+      "sha256": "67a7f759d26c335541fc5fe27a108ace526dad94ebb05bcff080a6f0ef8b5340"
+    },
+    {
+      "path": "data/question-revision-history.js",
+      "bytes": 1663648,
+      "sha256": "323825a6cd8f3641d842785ce80dd5b9efce38f08aa76f291d1cbfe5d67e54f1"
+    },
+    {
+      "path": "scripts/editorial-batch/references.mjs",
+      "bytes": 14071,
+      "sha256": "d42f8841356a85f75f3b2cc014f994218495adf2fd8b146382735ba2df3e8a52"
+    },
+    {
+      "path": "scripts/editorial-batch/questions.mjs",
+      "bytes": 2159,
+      "sha256": "d7a49e831242b4b75ed13a083064d2cec9fd170e4a49abcb311786e64c665bdc"
+    },
+    {
+      "path": "scripts/editorial-batch/chamber.mjs",
+      "bytes": 9071,
+      "sha256": "accb2f085b72353af44918bcf2834b48b3eee39b4c7c3c20a41a050f0a9e9f66"
+    },
+    {
+      "path": "js/question-revisions.js",
+      "bytes": 18577,
+      "sha256": "64fbbc167f6ab43ace26a32a86f06e383ee72589fa11399d00341823fd8bd36e"
+    },
+    {
+      "path": "js/utils.js",
+      "bytes": 58768,
+      "sha256": "7c24cbc572ff0e58eacb88506b0e4e4ed603f32c0feb68acb28003eb9ee2e6eb"
+    },
+    {
+      "path": "tools/build-question-revision-manifest.cjs",
+      "bytes": 4168,
+      "sha256": "7d25a2432c9e6d9f129d8f902919525add59a72b5b14eea77bba903927f76243"
+    }
+  ],
+  "methods": {
+    "parsing": "Read-only repository parsers parseReferenceCards, parseQuestions and parseChamberSources; history extracted as JSON literal; no runtime JavaScript evaluation.",
+    "normalization": "URL only: force HTTPS; lowercase hostname; remove www.; strip fragment and final slash; remove utm_, fbclid, gclid query keys; sort remaining query params. DOI identity decoded from literal URL, lowercased and trailing /full|abstract|pdf|fulltext removed. PMID and PMCID only explicit URL identifiers. No title-similarity equivalence.",
+    "usage": "mainQuestionUses counts unique qids in data/topics.js, not runtime sessions. chamberCaseUses counts exact case IDs bound by _appendCaseSources. Historical snapshots are listed separately and are not current consumers. All refsDB entries are catalogue cards, including entries without these two consumer surfaces.",
+    "externalVerification": "None; URL targets and bibliographic correctness have not been verified online."
+  },
+  "registrySchema": {
+    "wrapper": "const refsDB = { reference_id: { ... } };",
+    "referenceIdGrammar": "[A-Za-z0-9_]+",
+    "fields": {
+      "label": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "url": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "journal": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "ano": {
+        "type": "integer",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "tipo": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "badge": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "badgeColor": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "impacto": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "icon": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "resumo": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "conclusao": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      },
+      "curiosidade": {
+        "type": "string",
+        "present": 371,
+        "allObservedTyped": true
+      }
+    },
+    "absentStructuredMetadata": [
+      "title",
+      "originalTitle",
+      "translatedTitle",
+      "titleLanguage",
+      "doi",
+      "pmid",
+      "pmcid",
+      "publicationId",
+      "edition",
+      "scope",
+      "canonicalReferenceId",
+      "alias",
+      "redirect"
+    ],
+    "note": "label is a combined display label, often author/study/year/scope; it cannot be treated as a verified original publication title. Narrative fields exist, but this inventory does not interpret their clinical content."
+  },
+  "counts": {
+    "referenceCards": 371,
+    "mainQuestions": 741,
+    "mainConsumedReferenceIds": 337,
+    "chamberCases": 20,
+    "chamberConsumedReferenceIds": 21,
+    "currentConsumedReferenceIdsAcrossMainAndChamber": 351,
+    "cardsWithNoMainConsumer": 34,
+    "cardsWithNoMainOrChamberConsumer": 20,
+    "historyRecords": 169,
+    "historyDistinctReferenceIds": 75,
+    "normalizedURLDuplicateGroups": 5,
+    "exactDOIDuplicateGroups": 1,
+    "exactPMIDDuplicateGroups": 0,
+    "exactPMCIDDuplicateGroups": 0
+  },
+  "duplicates": {
+    "normalizedURL": [
+      {
+        "identity": "https://uroweb.org/guidelines/urolithiasis",
+        "ids": [
+          "eau_urolithiasis_2025",
+          "eau_urolithiasis_medical_2025"
+        ]
+      },
+      {
+        "identity": "https://kdigo.org/guidelines/glomerular-diseases",
+        "ids": [
+          "kdigo_gn",
+          "kdigo_igan_2025"
+        ]
+      },
+      {
+        "identity": "https://kdigo.org/guidelines/transplant-recipient-care",
+        "ids": [
+          "kdigo_tx",
+          "kdigo_transplant",
+          "cmv_kdigo_tx"
+        ]
+      },
+      {
+        "identity": "https://nejm.org/doi/full/10.1056/NEJMoa1603827",
+        "ids": [
+          "sustain6",
+          "leader_trial"
+        ]
+      },
+      {
+        "identity": "https://acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "ids": [
+          "acr_manual_iodinated_2026",
+          "gadolinio_acr_manual_2026"
+        ]
+      }
+    ],
+    "doi": [
+      {
+        "identity": "10.1056/nejmoa1603827",
+        "ids": [
+          "sustain6",
+          "leader_trial"
+        ]
+      }
+    ],
+    "pmid": [],
+    "pmcid": []
+  },
+  "priorityGroups": [
+    {
+      "id": "G01",
+      "classification": "exact_DOI_collision",
+      "observation": "Exact DOI and URL are repeated while label and journal issue/pages name different studies. This is a bibliographic conflict requiring source verification; no same-paper equivalence or merge is inferred.",
+      "cardCount": 2,
+      "mainQuestionDistinctUnion": 2,
+      "mainReferenceOccurrences": 2,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "sustain6",
+          "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+          "journal": "N Engl J Med 2016;375(19):1834-1844",
+          "ano": 2016,
+          "tipo": "Ensaio Clínico RCT",
+          "identityFromURL": {
+            "normalizedURL": "https://nejm.org/doi/full/10.1056/NEJMoa1603827",
+            "doi": "10.1056/nejmoa1603827",
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 2,
+          "mainQuestionIds": [
+            "1a93346d",
+            "516ec2a6"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        },
+        {
+          "id": "leader_trial",
+          "label": "Marso SP et al. — LEADER (NEJM 2016)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+          "journal": "N Engl J Med 2016;375(4):311-322",
+          "ano": 2016,
+          "tipo": "Ensaio Clínico RCT",
+          "identityFromURL": {
+            "normalizedURL": "https://nejm.org/doi/full/10.1056/NEJMoa1603827",
+            "doi": "10.1056/nejmoa1603827",
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 0,
+          "mainQuestionIds": [],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        }
+      ]
+    },
+    {
+      "id": "G02",
+      "classification": "shared_URL_with_year_conflict",
+      "observation": "All three keys use the same generic transplant-recipient-care URL; label/ano distinguish 2009 from 2022. Identical URL alone does not establish an edition or identity. Four current questions carry two keys from this group.",
+      "cardCount": 3,
+      "mainQuestionDistinctUnion": 14,
+      "mainReferenceOccurrences": 18,
+      "coReferencedQuestionIds": [
+        "26c87114",
+        "2c86b3a0",
+        "6d6d8d57",
+        "86b6b9c9"
+      ],
+      "members": [
+        {
+          "id": "kdigo_tx",
+          "label": "KDIGO Transplant Recipient Care 2009",
+          "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+          "journal": "Am J Transplant 2009;9(Suppl 3):S1-S155",
+          "ano": 2009,
+          "tipo": "Diretriz Internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://kdigo.org/guidelines/transplant-recipient-care",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 13,
+          "mainQuestionIds": [
+            "26c87114",
+            "2c86b3a0",
+            "3b4384ec",
+            "3ecb266a",
+            "6d6d8d57",
+            "6ff54fb3",
+            "7d74f839",
+            "90d60afb",
+            "9de3ba72",
+            "c365fc69",
+            "c6b5ffb0",
+            "ea308d22",
+            "fe54f9b1"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        },
+        {
+          "id": "kdigo_transplant",
+          "label": "KDIGO Transplant 2022",
+          "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+          "journal": "American Journal of Transplantation",
+          "ano": 2022,
+          "tipo": "Diretriz Internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://kdigo.org/guidelines/transplant-recipient-care",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 1,
+          "mainQuestionIds": [
+            "86b6b9c9"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        },
+        {
+          "id": "cmv_kdigo_tx",
+          "label": "KDIGO CMV in Transplant 2022",
+          "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+          "journal": "American Journal of Transplantation 2022",
+          "ano": 2022,
+          "tipo": "Diretriz Internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://kdigo.org/guidelines/transplant-recipient-care",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 4,
+          "mainQuestionIds": [
+            "26c87114",
+            "2c86b3a0",
+            "6d6d8d57",
+            "86b6b9c9"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        }
+      ]
+    },
+    {
+      "id": "G03",
+      "classification": "shared_generic_URL_with_distinct_year_labels",
+      "observation": "The first two cards share the generic glomerular-diseases URL but have 2021 and 2025 labels/years. The third card uses a distinct dedicated PDF URL. Neither label similarity nor shared organization establishes equivalence.",
+      "cardCount": 3,
+      "mainQuestionDistinctUnion": 64,
+      "mainReferenceOccurrences": 64,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "kdigo_gn",
+          "label": "KDIGO Glomerular Diseases 2021",
+          "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+          "journal": "Kidney Int 2021;100(4S):S1-S276",
+          "ano": 2021,
+          "tipo": "Diretriz Internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://kdigo.org/guidelines/glomerular-diseases",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 39,
+          "mainQuestionIds": [
+            "00d410e2",
+            "033aed49",
+            "05fd9be9",
+            "1366eca9",
+            "2198d3ba",
+            "21c883d5",
+            "2493e0dc",
+            "38da9430",
+            "4adc13fd",
+            "5dcf36ae",
+            "66905ee2",
+            "673a9acf",
+            "68cb9c42",
+            "68cbe570",
+            "68f04699",
+            "6d007422",
+            "6fb809f3",
+            "72fbf8f7",
+            "750c9baf",
+            "7888b974",
+            "80fb7281",
+            "87f96e78",
+            "8e6474eb",
+            "8fd9452a",
+            "aca17286",
+            "b1976a3f",
+            "bdcaa30c",
+            "cd455e49",
+            "cd49b7a6",
+            "cf42455e",
+            "cf84c115",
+            "d14954d1",
+            "d2143d46",
+            "d2a32c19",
+            "d43f9988",
+            "df6caaed",
+            "f9d81f9d",
+            "fbb4edd0",
+            "ff741767"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "26804856",
+              "release": "17.11"
+            },
+            {
+              "qid": "12328a3e",
+              "release": "17.11"
+            },
+            {
+              "qid": "ea37c153",
+              "release": "17.11"
+            }
+          ]
+        },
+        {
+          "id": "kdigo_igan_2025",
+          "label": "KDIGO IgAN 2025 (Guideline Dedicada)",
+          "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+          "journal": "Kidney International",
+          "ano": 2025,
+          "tipo": "Diretriz Internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://kdigo.org/guidelines/glomerular-diseases",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 4,
+          "mainQuestionIds": [
+            "02814d6c",
+            "0e1a838d",
+            "18784ef8",
+            "a4ffbe05"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "02814d6c",
+              "release": "17.11"
+            }
+          ]
+        },
+        {
+          "id": "kdigo_igan_igav_2025",
+          "label": "KDIGO 2025 IgAN/IgAV Guideline",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "journal": "Kidney International",
+          "ano": 2025,
+          "tipo": "Diretriz clínica",
+          "identityFromURL": {
+            "normalizedURL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 21,
+          "mainQuestionIds": [
+            "03397c91",
+            "12328a3e",
+            "26804856",
+            "2a595b23",
+            "3a01ea4b",
+            "5530b59c",
+            "5e5b8558",
+            "795d4589",
+            "856f45a6",
+            "9961a406",
+            "9dd26bf4",
+            "9fd2cfdb",
+            "b7a93d7a",
+            "c1089f2e",
+            "c18e6af7",
+            "ce79d609",
+            "d81defbb",
+            "ddb4938a",
+            "ea37c153",
+            "f7107bc3",
+            "ff676013"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "2a595b23",
+              "release": "17.09"
+            },
+            {
+              "qid": "d81defbb",
+              "release": "17.11"
+            },
+            {
+              "qid": "ce79d609",
+              "release": "17.11"
+            },
+            {
+              "qid": "9fd2cfdb",
+              "release": "17.11"
+            },
+            {
+              "qid": "9961a406",
+              "release": "17.11"
+            },
+            {
+              "qid": "0e1a838d",
+              "release": "17.11"
+            },
+            {
+              "qid": "f7107bc3",
+              "release": "17.11"
+            },
+            {
+              "qid": "795d4589",
+              "release": "17.11"
+            },
+            {
+              "qid": "ddb4938a",
+              "release": "17.11"
+            },
+            {
+              "qid": "5530b59c",
+              "release": "17.11"
+            },
+            {
+              "qid": "3a01ea4b",
+              "release": "17.11"
+            },
+            {
+              "qid": "b7a93d7a",
+              "release": "17.11"
+            },
+            {
+              "qid": "5e5b8558",
+              "release": "17.11"
+            },
+            {
+              "qid": "26804856",
+              "release": "17.11"
+            },
+            {
+              "qid": "12328a3e",
+              "release": "17.11"
+            },
+            {
+              "qid": "ea37c153",
+              "release": "17.11"
+            },
+            {
+              "qid": "c1089f2e",
+              "release": "17.11"
+            },
+            {
+              "qid": "18784ef8",
+              "release": "17.11"
+            },
+            {
+              "qid": "ff676013",
+              "release": "17.11"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G04",
+      "classification": "same_URL_different_scope_labels",
+      "observation": "Exact URL and year match; the second label explicitly adds diagnostic and medical management. These are two card identities pointing to one landing page, not proof of duplicate evidence-card content.",
+      "cardCount": 2,
+      "mainQuestionDistinctUnion": 22,
+      "mainReferenceOccurrences": 22,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "eau_urolithiasis_2025",
+          "label": "EAU Guidelines on Urolithiasis 2025",
+          "url": "https://uroweb.org/guidelines/urolithiasis",
+          "journal": "European Association of Urology",
+          "ano": 2025,
+          "tipo": "Diretriz internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://uroweb.org/guidelines/urolithiasis",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 1,
+          "mainQuestionIds": [
+            "ca596f32"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        },
+        {
+          "id": "eau_urolithiasis_medical_2025",
+          "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+          "url": "https://uroweb.org/guidelines/urolithiasis",
+          "journal": "European Association of Urology",
+          "ano": 2025,
+          "tipo": "Diretriz internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://uroweb.org/guidelines/urolithiasis",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 21,
+          "mainQuestionIds": [
+            "010b6339",
+            "0aa9eaa4",
+            "0dce2344",
+            "11df44bf",
+            "14af2b14",
+            "167f0ed8",
+            "23c732a4",
+            "321a25ae",
+            "4d3fd561",
+            "4ecfd6aa",
+            "50305bd8",
+            "8071ef90",
+            "89bab6a0",
+            "8d443cc2",
+            "9046d70e",
+            "9eafbe49",
+            "ae31e58e",
+            "bd5a8015",
+            "d86f36d3",
+            "ea7fe551",
+            "fcf76497"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        }
+      ]
+    },
+    {
+      "id": "G05",
+      "classification": "same_URL_different_scope_labels",
+      "observation": "Exact URL and year match; Portuguese label suffixes describe different named scopes. No consolidation follows from URL identity.",
+      "cardCount": 2,
+      "mainQuestionDistinctUnion": 3,
+      "mainReferenceOccurrences": 3,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "acr_manual_iodinated_2026",
+          "label": "ACR Manual on Contrast Media (2026) — Contraste iodado e metformina",
+          "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+          "journal": "American College of Radiology",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "identityFromURL": {
+            "normalizedURL": "https://acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 1,
+          "mainQuestionIds": [
+            "aef8aed3"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        },
+        {
+          "id": "gadolinio_acr_manual_2026",
+          "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+          "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+          "journal": "American College of Radiology",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "identityFromURL": {
+            "normalizedURL": "https://acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 2,
+          "mainQuestionIds": [
+            "03b3db65",
+            "190676b8"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        }
+      ]
+    },
+    {
+      "id": "G06",
+      "classification": "distinct_identifiers_related_study_family",
+      "observation": "Different URLs, years and labels distinguish the trial card from a named IgA analysis. Do not collapse by shared DAPA-CKD text. English trial label and Portuguese scope label coexist without structured title-language fields.",
+      "cardCount": 2,
+      "mainQuestionDistinctUnion": 17,
+      "mainReferenceOccurrences": 17,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "dapa",
+          "label": "DAPA-CKD Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+          "journal": "New England Journal of Medicine",
+          "ano": 2020,
+          "tipo": "Ensaio Clínico Fase III",
+          "identityFromURL": {
+            "normalizedURL": "https://nejm.org/doi/full/10.1056/NEJMoa2024816",
+            "doi": "10.1056/nejmoa2024816",
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 15,
+          "mainQuestionIds": [
+            "03cdd0ce",
+            "61cff858",
+            "6cd39dfb",
+            "8a565e5e",
+            "8d943d85",
+            "96c0c85d",
+            "a4ffbe05",
+            "a5c73397",
+            "a843e7d0",
+            "ca8066c6",
+            "da24855e",
+            "df2517a7",
+            "dfcc2096",
+            "e2181457",
+            "ee219394"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "0e1a838d",
+              "release": "17.11"
+            },
+            {
+              "qid": "02814d6c",
+              "release": "17.11"
+            },
+            {
+              "qid": "18784ef8",
+              "release": "17.11"
+            }
+          ]
+        },
+        {
+          "id": "dapa_ckd_igan_2021",
+          "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+          "journal": "Kidney Int. 2021;100(1):215–224",
+          "ano": 2021,
+          "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+          "identityFromURL": {
+            "normalizedURL": "https://pubmed.ncbi.nlm.nih.gov/33878338",
+            "doi": null,
+            "pmid": "33878338",
+            "pmcid": null
+          },
+          "mainQuestionUses": 2,
+          "mainQuestionIds": [
+            "02814d6c",
+            "9fd2cfdb"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "9fd2cfdb",
+              "release": "17.11"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G07",
+      "classification": "distinct_identifiers_related_study_family",
+      "observation": "Different URLs, years and labels distinguish the trial card from a named primary-disease analysis. Do not collapse by shared EMPA-KIDNEY text. English trial label and Portuguese scope label coexist without structured title-language fields.",
+      "cardCount": 2,
+      "mainQuestionDistinctUnion": 14,
+      "mainReferenceOccurrences": 14,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "empa_kidney",
+          "label": "Herrington WG et al. — EMPA-KIDNEY (NEJM 2023)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+          "journal": "N Engl J Med 2023;388(2):117-127",
+          "ano": 2023,
+          "tipo": "Ensaio Clínico RCT",
+          "identityFromURL": {
+            "normalizedURL": "https://nejm.org/doi/full/10.1056/NEJMoa2204233",
+            "doi": "10.1056/nejmoa2204233",
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 13,
+          "mainQuestionIds": [
+            "03cdd0ce",
+            "252a2e88",
+            "6cd39dfb",
+            "8a565e5e",
+            "8ba89ec6",
+            "96c0c85d",
+            "a5c73397",
+            "ca8066c6",
+            "da24855e",
+            "df2517a7",
+            "dfcc2096",
+            "e2181457",
+            "f781f397"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "0e1a838d",
+              "release": "17.11"
+            },
+            {
+              "qid": "02814d6c",
+              "release": "17.11"
+            },
+            {
+              "qid": "18784ef8",
+              "release": "17.11"
+            }
+          ]
+        },
+        {
+          "id": "empa_kidney_primary_disease_2024",
+          "label": "EMPA-KIDNEY — efeito por doença renal primária (2024)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+          "journal": "Lancet Diabetes Endocrinol. 2024;12(1):51–60",
+          "ano": 2024,
+          "tipo": "Análise secundária de ensaio clínico randomizado",
+          "identityFromURL": {
+            "normalizedURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536",
+            "doi": null,
+            "pmid": null,
+            "pmcid": "PMC7618536"
+          },
+          "mainQuestionUses": 1,
+          "mainQuestionIds": [
+            "3a01ea4b"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": [
+            {
+              "qid": "3a01ea4b",
+              "release": "17.11"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G08",
+      "classification": "distinct_version_labels_and_consumer_surfaces",
+      "observation": "Different URL, year and update wording are explicit in metadata. The 2026 key has no topics.js consumers but has one chamber consumer, so a topics-only zero count is not an unused-card finding.",
+      "cardCount": 2,
+      "mainQuestionDistinctUnion": 20,
+      "mainReferenceOccurrences": 20,
+      "coReferencedQuestionIds": [],
+      "members": [
+        {
+          "id": "ukka_hyperkalemia_2023",
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "identityFromURL": {
+            "normalizedURL": "https://ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 20,
+          "mainQuestionIds": [
+            "17dc6d7e",
+            "1b286739",
+            "1f962c0e",
+            "32f342fc",
+            "43313455",
+            "65d19905",
+            "69018bb9",
+            "6a19aece",
+            "7ec80c77",
+            "805733f8",
+            "8b80b0a9",
+            "985d735c",
+            "a73f61f6",
+            "a799c154",
+            "b35be598",
+            "d92f30a9",
+            "db25ef93",
+            "e0853fac",
+            "ebea50d5",
+            "f3d5015d"
+          ],
+          "chamberCaseUses": 0,
+          "chamberCaseIds": [],
+          "historicalQuestionRecords": []
+        },
+        {
+          "id": "ukka_hyperkalemia_2026",
+          "label": "UK Kidney Association — Treatment of Acute Hyperkalaemia in Adults (updated July 2026)",
+          "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+          "journal": "UK Kidney Association Clinical Practice Guideline. Updated July 2026",
+          "ano": 2026,
+          "tipo": "Diretriz Clínica",
+          "identityFromURL": {
+            "normalizedURL": "https://guidelines.ukkidney.org/hyperkalaemia",
+            "doi": null,
+            "pmid": null,
+            "pmcid": null
+          },
+          "mainQuestionUses": 0,
+          "mainQuestionIds": [],
+          "chamberCaseUses": 1,
+          "chamberCaseIds": [
+            "borius"
+          ],
+          "historicalQuestionRecords": []
+        }
+      ]
+    }
+  ],
+  "labelLanguageObservations": {
+    "status": "Descriptive display-label observations only; no proposed translation or title edit.",
+    "examples": [
+      {
+        "ids": [
+          "dapa",
+          "dapa_ckd_igan_2021"
+        ],
+        "observedDifference": "DAPA-CKD Trial vs DAPA-CKD na nefropatia por IgA (2021)"
+      },
+      {
+        "ids": [
+          "empa_kidney",
+          "empa_kidney_primary_disease_2024"
+        ],
+        "observedDifference": "EMPA-KIDNEY (NEJM 2023) vs EMPA-KIDNEY — efeito por doença renal primária (2024)"
+      },
+      {
+        "ids": [
+          "eau_urolithiasis_2025",
+          "eau_urolithiasis_medical_2025"
+        ],
+        "observedDifference": "Two English display labels; the second adds an English scope suffix."
+      },
+      {
+        "ids": [
+          "acr_manual_iodinated_2026",
+          "gadolinio_acr_manual_2026"
+        ],
+        "observedDifference": "Both combine an English manual name with Portuguese scope suffixes."
+      }
+    ],
+    "limitation": "Without originalTitle/titleLanguage fields or target verification, original publication titles cannot be separated mechanically from Portuguese editorial descriptions. Translation consistency requires an explicit editorial policy and source verification."
+  },
+  "publishedMechanisms": {
+    "referenceAliases": {
+      "found": false,
+      "scopeSearched": [
+        "data/refs.js",
+        "js/question-revisions.js",
+        "scripts/editorial-batch",
+        "tools/build-question-revision-manifest.cjs"
+      ],
+      "observation": "No structured reference-ID alias or redirect mechanism found in these current registry/parser/revision paths. Lookup referencesFor is exact-key and uses null for missing IDs."
+    },
+    "catalogueDedup": {
+      "path": "js/utils.js",
+      "lines": [
+        514,
+        518,
+        567,
+        575
+      ],
+      "identity": "_bibKey equals refsDB key; articles use __art_<index>",
+      "observation": "Deduplication is by key only. Different keys with the same URL remain separate catalogue items. A same-key score chooses a more complete item; journal dedup is explicitly rejected in comments."
+    },
+    "revisionHistory": {
+      "manifest": "data/question-revision-manifest.js",
+      "history": "data/question-revision-history.js",
+      "consumer": "js/question-revisions.js",
+      "builder": "tools/build-question-revision-manifest.cjs",
+      "observation": "Current question identity includes exact authorRevision plus referenceRevisions. The recordRevision hashes both. Trusted published history stores full prior card literals keyed by exact reference ID and per-profile source snapshots. This preserves prior card versions; it does not redirect one reference key into another.",
+      "technicalConsequence": "Changing even metadata of a consumed card changes its card digest and each dependent published record digest. A reference-only batch is still a declared medical_editorial change under current validator."
+    },
+    "referenceOnlyBatch": {
+      "path": "scripts/editorial-batch/references.mjs",
+      "constraints": [
+        "Only update of an existing card ID is supported.",
+        "Cannot add/remove IDs; changed IDs must exactly equal manifest declarations.",
+        "topics.js bytes and complete consumer sets must remain unchanged.",
+        "Exactly all 12 typed fields required for changed cards.",
+        "Own author and independent reports must bind exact full card versions and have matching publication gates."
+      ],
+      "observation": "This inventory neither supplies these formal reports nor approves any update."
+    },
+    "priorScopeDisposition": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-bibliographic-eau-four-disposition-A1.json",
+      "observation": "Existing report describes four proposed EAU2026 evidence cards sharing one publication and keeps distinct scopes. It expressly says no question/reference card applied. This is report-level precedent only, not a current alias or permission to merge the present2025 cards."
+    }
+  },
+  "fullInventoryArchive": {
+    "absolutePath": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1725-reference-metadata-full.json",
+    "bytes": 325131,
+    "sha256": "1ca0bb04425b517309c40efea6ffafffd2d518f05676c688c757c115fc0a1dd1",
+    "omittedFromCompact": [
+      "inventory",
+      "cardsWithNoMainOrChamberConsumer"
+    ],
+    "note": "Original full mechanical inventory preserved byte-for-byte; this compact report retains counts, groups, usage and mechanisms."
+  }
+}

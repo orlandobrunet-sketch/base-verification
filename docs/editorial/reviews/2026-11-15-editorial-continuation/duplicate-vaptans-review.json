@@ -1,0 +1,363 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "mode": "formal-independent-review-of-originals-only",
+  "baseCommit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "skill": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "originals": [
+    {
+      "qid": "cfeef8e1",
+      "authoredObjectSHA256": "c2a403f15bc1db51d0a2511f2cdfa991a3b525be91bd9bb8e5d0d0ccc2bb6553",
+      "authorRevision": "sha256:9fb7e7851f853e86c42ad2d581393300e2fe25f51b8cdd9c5999e2d669b23706",
+      "original": {
+        "t": "Mecanismo da tolvaptana na hiponatremia",
+        "qid": "cfeef8e1",
+        "q": "Qual é o mecanismo de ação da tolvaptana no tratamento de hiponatremia euvolêmica ou hipervolêmica selecionada?",
+        "refs": [
+          "hyponatremia_adrogue2000",
+          "hyponatremia_verbalis2022",
+          "salsa_trial"
+        ],
+        "opts": [
+          "Estimula a secreção de ADH para concentrar a urina",
+          "Antagonista seletivo do receptor V2 da vasopressina (no ducto coletor) → impede inserção de AQP2 → aquarese → elevação do sódio",
+          "Aumenta a excreção de sódio pelo néfron distal",
+          "Bloqueia canais de sódio do ducto coletor (ENaC)"
+        ],
+        "ans": 1,
+        "exp": "A tolvaptana antagoniza seletivamente o receptor V2 da vasopressina no ducto coletor, reduz a inserção de aquaporina-2 (AQP2) e aumenta a excreção de água livre, sem natriurese proporcional. Esse efeito de aquarese pode elevar o sódio sérico em hiponatremia euvolêmica ou hipervolêmica selecionada, mas exige monitorização para evitar correção rápida. Ela não estimula ADH, não atua primariamente como natriurético distal e não bloqueia o canal epitelial de sódio (ENaC).",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "optionChars": [
+        50,
+        127,
+        46,
+        48
+      ],
+      "optionWords": [
+        9,
+        21,
+        8,
+        8
+      ],
+      "correctLengthRatio": 2.54
+    },
+    {
+      "qid": "4c7d3db3",
+      "authoredObjectSHA256": "b6b4d567b8c239cfcbcd65551a4c02e0e1d740008b6dafc175ae6633e8cbf6c7",
+      "authorRevision": "sha256:3361cb21168c754cadd3fc5e0af3597cfe78d14ddf0e430350dedc0cfde908f1",
+      "original": {
+        "qid": "4c7d3db3",
+        "q": "Qual o mecanismo de ação dos vaptanos (como o Tolvaptan) no manejo da hiponatremia?",
+        "opts": [
+          "Aumentam a reabsorção de sódio na alça de Henle.",
+          "Estimulam a inserção de Aquaporinas 2 na membrana apical.",
+          "Antagonizam os receptores V2 da vasopressina no ducto coletor, gerando aquarese (perda de água livre).",
+          "Bloqueiam a anidrase carbônica no túbulo proximal."
+        ],
+        "ans": 2,
+        "exp": "Os vaptanos, como a tolvaptana, são antagonistas seletivos dos receptores V2 da vasopressina (ADH) nas células principais do ducto coletor. Ao bloquear esses receptores, reduzem a inserção de aquaporinas-2 (AQP2) na membrana apical, diminuem a reabsorção de água livre e produzem aquarese, o que pode elevar a concentração sérica de sódio em hiponatremia euvolêmica ou hipervolêmica selecionada. Eles não aumentam a reabsorção de sódio, não estimulam AQP2 e não atuam como inibidores da anidrase carbônica.",
+        "refs": [
+          "hyponatremia_adrogue2000",
+          "hyponatremia_verbalis2022",
+          "salsa_trial"
+        ],
+        "cat": "eletrólitos",
+        "diff": "medium",
+        "t": "Mecanismo de Ação dos Vaptanos"
+      },
+      "optionChars": [
+        48,
+        57,
+        102,
+        50
+      ],
+      "optionWords": [
+        9,
+        9,
+        15,
+        7
+      ],
+      "correctLengthRatio": 1.7894736842105263
+    }
+  ],
+  "duplicateTest": {
+    "canonicalDimensions": [
+      {
+        "dimension": "decisão/OP",
+        "coincides": true,
+        "reason": "Reconhecer antagonismo V2 e aquarese da tolvaptana; o exemplo Tolvaptan no item de classe exige o mesmo fato."
+      },
+      {
+        "dimension": "estrutura de dados do caso",
+        "coincides": true,
+        "reason": "Ambos perguntas conceituais diretas, sem vinheta, exames, temporalidade, gravidade ou conflito terapêutico; euvolemia/hipervolemia selecionada não é usada para escolha clínica."
+      },
+      {
+        "dimension": "perfil-alvo",
+        "coincides": true,
+        "reason": "Nenhum alvo diferente é declarado; ambos pressupõem a mesma formação e o mesmo conhecimento prévio."
+      },
+      {
+        "dimension": "língua",
+        "coincides": true,
+        "reason": "Português brasileiro em ambos; Tolvaptan é apenas variação terminológica."
+      }
+    ],
+    "auxiliaryDimensions": {
+      "cognitiveProfile": "Mesmo reconhecimento de mecanismo; nenhum exige aplicar o mecanismo a dados de paciente.",
+      "difficulty": "Ambos medium no banco; ambos easy pela rubrica intrínseca do formato atual."
+    },
+    "conclusion": "DUPLICATAS",
+    "confidence": "alta",
+    "pairDisposition": "FUNDIR 4c7d3db3 EM cfeef8e1, apenas como decisão editorial proposta; nenhum patch aplicado."
+  },
+  "decisions": [
+    {
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "op": "Reconhecer que a tolvaptana antagoniza V2, reduz a reabsorção de água mediada por AQP2 e produz aquarese, distinguindo esse mecanismo de estímulo antidiurético ou natriurese.",
+      "competency": "mecanismo farmacológico renal",
+      "bloom": "Lembrar, predominante no formato de reconhecimento",
+      "miller": "Sabe",
+      "intrinsicDifficulty": "easy",
+      "storedDifficulty": "medium",
+      "targetProfile": "mesmo perfil implícito de estudante de medicina/residente; nenhum perfil diferente está declarado",
+      "score": {
+        "status": "anulado por eliminatório",
+        "reason": "Handbook17.2: salsa_trial é referência atribuída fora do OP; duplicidade também força rota própria na árvore §19."
+      },
+      "eliminators": [
+        {
+          "id": 2,
+          "label": "A referência não sustenta o gabarito",
+          "finding": "A referência atribuída salsa_trial investiga NaCl 3%, não o mecanismo V2/AQP2 dos vaptanos."
+        }
+      ],
+      "noEliminator5Claim": true,
+      "noAutomaticTriviaClaim": true,
+      "qid": "cfeef8e1",
+      "verdict": "revisão maior",
+      "legacy": "REESCREVER",
+      "lifecycleProposed": "em_revisão",
+      "role": "destinatário preferencial da consolidação futura, condicionado a reparo e nova revisão da versão exata",
+      "appeal": [
+        "A alternativa correta B é a única com cadeia explicativa completa e tem 127 caracteres contra máximo 50 nos distratores; fator 2.540.",
+        "Bibliografia atual: SALSA fora do mecanismo; NEJM 2000 e URL da diretriz 2014 não puderam ser integralmente conferidos neste acesso."
+      ],
+      "findings": [
+        "MAIOR: extensão e especificidade seletivas; sinal estrutural concreto, sem inferência de funcionamento psicométrico.",
+        "MAIOR: referências precisam ser corrigidas/reatribuídas, sem herança de aprovação.",
+        "MENOR: diff medium não corresponde à tarefa atual de reconhecimento de um mecanismo, intrinsecamente básica."
+      ],
+      "tree": "0: PARCIALMENTE VERIFICADA+DECISIVA bloqueia aprovação;1: referência fora do OP é eliminatório recuperável; relação de duplicidade é resolvida no parceiro4c7d3db3; original retido retorna a revisão maior.",
+      "fsrs": "Preservar qid cfeef8e1 e seu próprio FSRS se a futura versão mantiver OP/competência/conceito; não resetar ou importar a maestria de 4c7d3db3."
+    },
+    {
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "op": "Reconhecer que a tolvaptana antagoniza V2, reduz a reabsorção de água mediada por AQP2 e produz aquarese, distinguindo esse mecanismo de estímulo antidiurético ou natriurese.",
+      "competency": "mecanismo farmacológico renal",
+      "bloom": "Lembrar, predominante no formato de reconhecimento",
+      "miller": "Sabe",
+      "intrinsicDifficulty": "easy",
+      "storedDifficulty": "medium",
+      "targetProfile": "mesmo perfil implícito de estudante de medicina/residente; nenhum perfil diferente está declarado",
+      "score": {
+        "status": "anulado por eliminatório",
+        "reason": "Handbook17.2: salsa_trial é referência atribuída fora do OP; duplicidade também força rota própria na árvore §19."
+      },
+      "eliminators": [
+        {
+          "id": 2,
+          "label": "A referência não sustenta o gabarito",
+          "finding": "A referência atribuída salsa_trial investiga NaCl 3%, não o mecanismo V2/AQP2 dos vaptanos."
+        }
+      ],
+      "noEliminator5Claim": true,
+      "noAutomaticTriviaClaim": true,
+      "qid": "4c7d3db3",
+      "verdict": "fundir",
+      "legacy": null,
+      "lifecycleProposed": "aposentado após eventual implementação autorizada da fusão; nenhum estado foi mudado",
+      "role": "duplicata a consolidar em cfeef8e1; não manter os dois como itens independentes de mesmo OP",
+      "appeal": [
+        "Mesma decisão, mesma ausência de caso/dados discriminantes, mesmo perfil e mesma língua do parceiro.",
+        "A explicação atribui seletividade V2 a todos os vaptanos; conivaptana é contraexemplo primário V1A/V2.",
+        "A correta C é a única com sítio+efeito/definição de aquarese;102 caracteres contra máximo 57; fator 1.789."
+      ],
+      "findings": [
+        "MAIOR: duplicidade nas quatro dimensões canônicas; trocar fármaco específico por classe com exemplo não cria ângulo cognitivo útil.",
+        "MAIOR: generalização inadequada de seletividade farmacológica na explicação.",
+        "MAIOR: extensão/especificidade seletivas e SALSA fora do mecanismo.",
+        "MENOR: diff medium sem dados/caso/raciocínio que o distingam do par básico."
+      ],
+      "tree": "0: evidência parcial+pendência decisiva mantém BLOQUEADA;1: duplicata nas quatro dimensões conduz a FUNDIR; defeitos adicionais impedem liberar qualquer texto atual ou futuro.",
+      "fsrs": "Preservar o histórico de 4c7d3db3, avaliações e seus dados FSRS sem apagar, transferir, somar ou renomear para cfeef8e1. Eventual retirada de novas filas precisa tratamento técnico específico e autorizado; não reutilizar4c7d3db3 para outro OP."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "identity": "SAMSCA (tolvaptan), Otsuka, full US prescribing information",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+      "access": "OPENED_FULL_TEXT",
+      "labelUpdated": "2026-05-07",
+      "clinicalRevision": "04/2021",
+      "sections": [
+        "1",
+        "2.1",
+        "12.1",
+        "12.2"
+      ],
+      "verified": "Tolvaptan selective V2 antagonism; aquaresis and serum sodium increase; no corresponding primary natriuresis; monitoring of sodium; AVP can rise secondarily. Mechanistic source, no treatment recommendation created."
+    },
+    {
+      "id": "S2",
+      "identity": "Tolvaptan (ADPKD product), Teva, full US prescribing information",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=808a9a1f-2f58-4677-9127-e749ad007094",
+      "access": "OPENED_FULL_TEXT",
+      "labelUpdated": "2025-03-09",
+      "sections": [
+        "12.1"
+      ],
+      "verified": "Decreased V2 signalling lowers cAMP and reduces AQP2-vesicle fusion, producing aquaresis. Used only for molecular mechanism, never to extrapolate ADPKD indication/doses to hyponatremia.",
+      "independence": "Same pharmacological mechanism chain as S1, not a second independent clinical experiment."
+    },
+    {
+      "id": "S3",
+      "identity": "VAPRISOL (conivaptan), FDA archived label 2008",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2008/021697s001lbl.pdf",
+      "access": "OPENED_FULL_TEXT",
+      "sections": [
+        "Description, page 1"
+      ],
+      "verified": "Conivaptan is a dual V1A/V2 antagonist; a counterexample to calling all vaptans V2-selective.",
+      "limitation": "Historical label; used only for stable receptor pharmacology, not current dosing/indication guidance."
+    },
+    {
+      "id": "S4",
+      "identity": "Baek SH et al. SALSA. JAMA Intern Med. 2021;181(1):81-92. DOI 10.1001/jamainternmed.2020.5519; PMID 33104189",
+      "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2772353",
+      "access": "OPENED_FULL_TEXT",
+      "sections": [
+        "Abstract, Objective/Interventions",
+        "Methods"
+      ],
+      "verified": "Compares intermittent bolus and continuous infusion of 3% saline. Does not test vaptan receptor mechanism; not an adequate assigned reference for this OP.",
+      "independence": "One study shared by both questions, not two independent sources."
+    }
+  ],
+  "originalReferenceAccess": [
+    {
+      "id": "hyponatremia_adrogue2000",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJM 200005253422107",
+      "status": "403 Forbidden; não lida integralmente",
+      "consequence": "Não certificada; nenhuma afirmação de que seu texto não contenha o mecanismo."
+    },
+    {
+      "id": "hyponatremia_verbalis2022",
+      "url": "https://academic.oup.com/ejendo/article/170/3/G1/6655834",
+      "status": "URL não acessível pelo navegador nesta revisão",
+      "consequence": "ID tem nome 2022, mas o card identifica diretriz 2014; sem inferir publicação 2022. Conteúdo integral não certificado."
+    },
+    {
+      "id": "salsa_trial",
+      "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2780319",
+      "status": "URL atribuída 2780319 não abriu; SALSA correto 2772353 abriu em JAMA",
+      "consequence": "Discrepância de endereço registrada; SALSA é inadequado para o OP mecânico independentemente da URL."
+    }
+  ],
+  "independence": "Os dois itens têm os mesmos três IDs/URLs, que constituem uma única cadeia bibliográfica herdada. URLs repetidos, cópias de bula e dois acessos não são evidências independentes.",
+  "limits": [
+    "Sem consulta a telemetria, votos ou discriminação empírica; comprimento não prova uso real de pista.",
+    "O perfil-alvo é inferido do banco e formato, não de metadado individual inexistente.",
+    "Sem revisão integral dos demais itens ou certificação global dos cards.",
+    "Sem nova questão, novo card ou reescrita pronta; nenhuma futura versão está aprovada.",
+    "Nenhuma alteração em data/topics.js, data/refs.js, runtime, catálogos, FSRS ou banco remoto."
+  ],
+  "operationalDisposition": {
+    "implemented": false,
+    "survivorQid": "cfeef8e1",
+    "duplicateQid": "4c7d3db3",
+    "futureWork": [
+      "Obter/adjudicar decisão de consolidação operacional; relatório não autoriza exclusão.",
+      "Reparar apenas o destinatário cfeef8e1: equilíbrio de granularidade das alternativas, referências específicas do mecanismo e explicação delimitada à tolvaptana.",
+      "Submeter qualquer versão materialmente alterada a nova revisão formal e gate dos hashes exatos.",
+      "Se futuramente autorizada, implementar retirada da duplicata de novas filas com preservação de histórico; não destruir dados nem migrar FSRS automaticamente."
+    ],
+    "noGlobalReworkRequirement": true
+  },
+  "originalReferenceBindings": {
+    "hyponatremia_adrogue2000": {
+      "authoredObjectSHA256": "9fed75a1fdd94163ae9f1b1a275a9f5e06138256751c15b156c7c1e24da6aeff",
+      "card": {
+        "label": "Adrogue HJ, Madias NE — Hyponatremia (NEJM 2000)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005253422107",
+        "journal": "N Engl J Med 2000;342(21):1581-1589",
+        "ano": 2000,
+        "tipo": "Revisão Clínica",
+        "badge": "REVIEW",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Revisão clássica de hiponatremia: diagnóstico, causas, manejo e velocidade de correção segura (máx 10-12 mEq/L/24h)",
+        "icon": "📖",
+        "resumo": "Revisão clássica que organizou diagnóstico e manejo da hiponatremia. Fórmula prática: ΔNa ≈ ([Na + K]infusato − Na sérico) / (ACT + 1); ACT ≈ 0,6 × peso em homens, 0,5 × peso em mulheres, menor em idosos. Para soluções sem potássio, usar apenas Na do infusato. A correção deve ser lenta na hiponatremia crônica; alvo usual 4–6 mEq/L/dia, evitando correções excessivas, especialmente em alto risco de desmielinização osmótica.",
+        "conclusao": "A fórmula de Adrogué-Madias é ferramenta de estimativa, não substitui rechecagem seriada do sódio.",
+        "curiosidade": "Hipocalemia aumenta risco de desmielinização; reposição de K também eleva a natremia efetiva."
+      }
+    },
+    "hyponatremia_verbalis2022": {
+      "authoredObjectSHA256": "76fcb65ca4484e73dda67c6147c9387dc1365bb65e208f6ec2250121dc6bb9ce",
+      "card": {
+        "label": "European Clinical Practice Guideline on Hyponatraemia (ESE/ERA-EDTA 2014)",
+        "url": "https://academic.oup.com/ejendo/article/170/3/G1/6655834",
+        "journal": "Eur J Endocrinol 2014;170(3):G1-G47",
+        "ano": 2014,
+        "tipo": "Diretriz Europeia",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz europeia para diagnóstico e tratamento de hiponatremia: classificação por gravidade, fluxograma diagnóstico, indicações de solução hipertônica e vaptanas",
+        "icon": "📋",
+        "resumo": "Em hiponatremia sintomática grave, priorizar sintomas e tempo de instalação. A diretriz europeia recomenda NaCl 3% 150 mL IV em 20 minutos, repetível até 2 vezes ou até elevação de ~5 mmol/L. Após melhora, limitar a correção a 10 mmol/L nas primeiras 24h e 8 mmol/L a cada 24h subsequente. Vaptanas exigem cautela: evitar em hiponatremia hipovolêmica, incapacidade de monitorização e hepatopatia relevante.",
+        "conclusao": "A abordagem da hiponatremia é guiada pela gravidade sintomática e velocidade de instalação — não apenas pelo nível sérico — com metas de correção para prevenir síndrome de desmielinização osmótica.",
+        "curiosidade": "A síndrome de desmielinização osmótica resulta da re-osmolarização cerebral abrupta em pacientes com hiponatremia crônica — o cérebro adapta seu conteúdo de osmóis orgânicos à hipoosmolaridade e não tolera correção rápida."
+      }
+    },
+    "salsa_trial": {
+      "authoredObjectSHA256": "729fddd34d67ef368b4e46c0b2d99aa8d006e704bb13966bcc6d56e6c901ff7f",
+      "card": {
+        "label": "Baek SH et al. — SALSA Trial (JAMA Intern Med 2021)",
+        "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2780319",
+        "journal": "JAMA Intern Med 2021;181(1):81-92",
+        "ano": 2021,
+        "tipo": "Ensaio Clínico RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Bolus intermitente de NaCl 3% vs infusão contínua: eficácia e segurança semelhantes, sem maior risco de hipercorreção no SALSA",
+        "icon": "🔬",
+        "resumo": "ECR multicêntrico (n=178) comparou bolus intermitente rápido de NaCl 3% com infusão contínua lenta em hiponatremia sintomática. Hipercorreção ocorreu em 17,2% no grupo bolus e 24,2% no grupo infusão contínua, sem diferença estatisticamente significativa. Não houve casos de síndrome de desmielinização osmótica. O bolus teve menor necessidade de terapia de rebaixamento e maior chance de atingir correção inicial de 5 mmol/L em 1 hora na análise por intenção de tratar.",
+        "conclusao": "O SALSA apoia que bolus intermitente e infusão contínua de NaCl 3% podem ser seguros sob protocolo e monitorização rigorosos; o ponto crítico não é a forma isolada de administração, mas evitar hipercorreção e intervir rapidamente se o sódio subir demais.",
+        "curiosidade": "O ensaio ajuda a reconciliar diretrizes que favorecem bolus na hiponatremia sintomática: a conveniência do bolus não eliminou a necessidade de medir sódio seriado e estar pronto para rebaixar a natremia com água livre/desmopressina."
+      }
+    }
+  }
+}

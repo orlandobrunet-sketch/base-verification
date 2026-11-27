@@ -1,0 +1,1174 @@
+{
+  "schema": "NQ_1728_INDEPENDENT_FORMAL_BATCH_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root",
+  "independentOf": "/root/length_inventory_1728",
+  "sourceFile": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-length-severe-author\\author-batch-A1.1.json",
+  "sourceSHA256": "abd02ea99094639b1f859c2f4fc41655725e6b5023ed07426ee3591f3fd3ea03",
+  "sourceCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "skill": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "questions": [
+    {
+      "qid": "c94c8d2d",
+      "original": {
+        "t": "EMPACT-MI — Interpretação do Resultado",
+        "qid": "c94c8d2d",
+        "q": "No EMPACT-MI, pacientes após infarto com risco de insuficiência cardíaca receberam empagliflozina ou placebo. Qual interpretação evita extrapolar o estudo?",
+        "refs": [
+          "empact_mi_trial"
+        ],
+        "opts": [
+          "O composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa não foi significativamente reduzido; houve menos hospitalizações por insuficiência cardíaca, sem prova de benefício renal definitivo no ensaio principal",
+          "O estudo provou redução de mortalidade global e deve levar ao uso após qualquer infarto",
+          "O desfecho primário foi renal e demonstrou prevenção inequívoca de terapia renal substitutiva",
+          "A empagliflozina aumentou significativamente lesão renal aguda e foi considerada insegura após infarto"
+        ],
+        "ans": 0,
+        "exp": "No EMPACT-MI, o composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa teve HR 0,90 e não alcançou significância estatística. A hospitalização por insuficiência cardíaca foi menor, mas a mortalidade isolada não foi reduzida. Análises renais posteriores sugerem segurança e possível benefício, porém o composto renal foi numericamente menor sem significância estatística; isso não transforma o ensaio principal em prova renal definitiva nem justifica prescrição automática após todo infarto.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalAuthorRevision": "sha256:30498054a1367b674f304dda44ff3050ae190a98db71401dc7763b8248942911",
+      "after": {
+        "t": "EMPACT-MI — Interpretação do Resultado",
+        "qid": "c94c8d2d",
+        "q": "No EMPACT-MI, pacientes após infarto com risco de insuficiência cardíaca (IC) receberam empagliflozina ou placebo. Qual interpretação evita extrapolar o estudo?",
+        "refs": [
+          "empact_mi_trial"
+        ],
+        "opts": [
+          "O composto primário não foi reduzido significativamente; o componente de internação por IC foi favorável.",
+          "O composto primário foi reduzido significativamente, explicado pela menor mortalidade após o infarto.",
+          "A nefroproteção foi o resultado primário, suficiente para indicar empagliflozina após qualquer infarto.",
+          "O componente favorável de internação por IC permite reclassificar o composto primário como positivo."
+        ],
+        "ans": 0,
+        "exp": "O EMPACT-MI teve resultado primário neutro: primeira internação por IC ou morte apresentou razão de riscos (HR) de 0,90 (intervalo de confiança de 95%: 0,76–1,06; P = 0,21). A primeira internação por IC foi menos frequente, mas um componente favorável não transforma o composto primário em positivo. A mortalidade isolada não foi significativamente reduzida. O estudo não tinha benefício renal como desfecho primário; suas conclusões também não anulam indicações de empagliflozina fundamentadas em outros ensaios.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "afterAuthorRevision": "sha256:b85a72c70aa41e6a8b9eb5b2142ca7e57a290e7e076ea94bea5715615075267c",
+      "referenceCards": [
+        {
+          "id": "empact_mi_trial",
+          "original": {
+            "label": "EMPACT-MI Trial (Empagliflozina pós-IAM)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2401316",
+            "journal": "N Engl J Med 2024;390(16):1455-1466",
+            "ano": 2024,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Desfecho primário neutro · menos hospitalizações por IC · segurança renal sem benefício definitivo",
+            "icon": "💊",
+            "resumo": "ECR multicêntrico duplo-cego (EMPACT-MI, n=6.522) em pacientes hospitalizados por IAM com nova fração de ejeção <45% e/ou congestão. Empagliflozina 10 mg ou placebo foi iniciada até 14 dias após a admissão. O composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa não foi significativamente reduzido (HR 0,90; IC95% 0,76–1,06; P=0,21). A primeira hospitalização por IC foi menor (HR 0,77; IC95% 0,60–0,98), sem redução de mortalidade isolada. Análise cardiovascular-renal posterior encontrou composto renal numericamente menor, mas não significativo (HR 0,73; IC95% 0,47–1,14).",
+            "conclusao": "EMPACT-MI não sustenta indicação automática de empagliflozina após qualquer IAM nem prova benefício renal definitivo; o sinal favorável concentrou-se em eventos de insuficiência cardíaca e segurança.",
+            "curiosidade": "A distinção entre resultado primário neutro e componente favorável é central: um componente secundário não transforma o composto pré-especificado em positivo."
+          },
+          "originalSHA256": "sha256:b3ca5d1be68e26cee5ec3c94db408857048e0b2325658deba9dee68544710b16",
+          "proposed": {
+            "label": "EMPACT-MI — Empagliflozina após infarto (2024)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2314051",
+            "journal": "N Engl J Med 2024;390(16):1455-1466",
+            "ano": 2024,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Primário neutro; componente de internação por insuficiência cardíaca favorável",
+            "icon": "🔬",
+            "resumo": "EMPACT-MI (2024): 6.522 pacientes após infarto agudo do miocárdio (IAM), sob risco de insuficiência cardíaca (IC), receberam empagliflozina 10 mg/dia ou placebo até 14 dias da admissão. Em 17,9 meses, o composto primário de primeira internação por IC ou morte não foi significativamente reduzido: razão de riscos (HR) 0,90 (intervalo de confiança de 95%: 0,76–1,06; P = 0,21). A primeira internação por IC teve HR 0,77 (IC95%: 0,60–0,98), e a mortalidade, HR 0,96 (IC95%: 0,78–1,19). Componentes favoráveis não revertem o primário neutro.",
+            "conclusao": "O ensaio não demonstra redução do composto primário nem sustenta benefício renal como resultado primário; indicações de empagliflozina em outras populações exigem suas próprias evidências.",
+            "curiosidade": "A estimativa de um componente pode ser favorável mesmo quando o teste do composto primário é neutro."
+          },
+          "proposedSHA256": "sha256:092a6f67e6b0b18c9315612d18044f41f1137f9c98e286684562d187b0f0d5ee"
+        }
+      ],
+      "classification": {
+        "op": "Distinguir resultado primário neutro de componente favorável sem extrapolar o EMPACT-MI.",
+        "primaryCompetence": "Interpretação crítica de ensaio clínico.",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "independentEvidence": {
+        "source": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2314051.pdf",
+        "access": "FULL_PRIMARY_TRIAL_PDF",
+        "locators": [
+          "p1 DOI/methods/results",
+          "p2 eligibility",
+          "PubMed38587237 journal metadata"
+        ],
+        "checks": [
+          "Primary endpoint, sample, follow-up, dose, HR/CI/P and component estimates independently match the opened primary article.",
+          "The candidate removes the unverified later renal-composite estimate and corrects the DOI."
+        ],
+        "appeal": "A favorable component cannot change the neutral prespecified composite; the answer does not negate independently supported indications in other populations.",
+        "duplicate": "Only current question naming EMPACT-MI; other trial-interpretation items concern different populations, endpoints and interventions.",
+        "score": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      "findings": [
+        "Primary endpoint, sample, follow-up, dose, HR/CI/P and component estimates independently match the opened primary article.",
+        "The candidate removes the unverified later renal-composite estimate and corrects the DOI."
+      ],
+      "appeal": {
+        "attempt": "A favorable component cannot change the neutral prespecified composite; the answer does not negate independently supported indications in other populations.",
+        "result": "Sem recurso plausível decisivo no AFTER exato."
+      },
+      "duplicateTest": {
+        "fourDimensions": [
+          "OP/decisão",
+          "estrutura de dados decisivos",
+          "perfil-alvo",
+          "língua"
+        ],
+        "result": "Only current question naming EMPACT-MI; other trial-interpretation items concern different populations, endpoints and interventions."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "score": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "score": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "score": 2
+          },
+          {
+            "dimension": "Distratores",
+            "score": 1
+          },
+          {
+            "dimension": "Explicação",
+            "score": 2
+          },
+          {
+            "dimension": "Referências",
+            "score": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "score": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 18,
+        "rationale": "Distratores ainda simplificados e estrutura paralela pontuados com1; não há critério eliminatório."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta",
+      "tree": "Passo0:VERIFICADA/NENHUMA; nenhum eliminatório ou recurso decisivo; score≥17 conduz a aprovação; liberação derivada pelo Handbook§18.4 para estes bytes exatos.",
+      "identity": {
+        "preserveQid": true,
+        "reason": "Mesmo OP, competência e conceito correto; redação, evidência atribuída e classificação de dificuldade corrigidas sem transferir aprendizagem."
+      },
+      "implementation": "Arquivar BEFORE publicado17.27 com todos os cards antigos; qualquer consumidor de card alterado também deve ter seu registro anterior arquivado. Não alterar FSRS/votos/respostas antigas.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "9602dcbc",
+      "original": {
+        "t": "APOL1 — Genótipo de Alto Risco",
+        "qid": "9602dcbc",
+        "q": "Pessoa com ancestralidade africana e GESF apresenta genótipo APOL1 G1/G2. Como esse resultado deve ser interpretado?",
+        "opts": [
+          "Duas variantes de risco formam um genótipo de alto risco, mas a penetrância é incompleta e o resultado não determina sozinho que haverá falência renal",
+          "Uma única cópia G0 é a variante que causa HIVAN e GESF",
+          "O genótipo confirma que todos os familiares desenvolverão doença renal",
+          "APOL1 só modifica risco em pessoas de ancestralidade asiática"
+        ],
+        "ans": 0,
+        "exp": "G1/G2 é heterozigose composta com duas variantes de risco e integra o genótipo APOL1 de alto risco, associado a maior suscetibilidade a GESF, HIVAN e progressão renal em pessoas com ancestralidade africana recente. Entretanto, muitas pessoas com duas variantes nunca desenvolvem doença: penetrância é incompleta e fatores clínicos ou ambientais funcionam como 'segundos eventos'. O teste deve ser interpretado com fenótipo, ancestralidade e aconselhamento, não como diagnóstico determinístico ou previsão individual exata.",
+        "refs": [
+          "niddk_apol1_2017"
+        ],
+        "cat": "genetica",
+        "diff": "hard"
+      },
+      "originalAuthorRevision": "sha256:0cf839addfe91e398beddd3ea1dbfc8d1323d683c68297e4e7d8734fdf39046c",
+      "after": {
+        "t": "APOL1 — Genótipo de Alto Risco",
+        "qid": "9602dcbc",
+        "q": "Pessoa com ancestralidade africana e glomeruloesclerose segmentar e focal (GESF) apresenta genótipo APOL1 G1/G2. Como esse resultado deve ser interpretado?",
+        "opts": [
+          "Genótipo de alto risco renal, com penetrância incompleta.",
+          "Genótipo de baixo risco renal, pois as variantes são diferentes.",
+          "Confirma a causa da GESF e prevê falência renal inevitável.",
+          "Exclui doença relacionada a APOL1 na ausência de homozigose."
+        ],
+        "ans": 0,
+        "exp": "G1/G2 contém duas variantes de risco de APOL1, em heterozigose composta, e integra o genótipo renal de alto risco. Isso aumenta suscetibilidade a GESF e outras nefropatias, mas não confirma sozinho a causa da doença nem prevê falência renal inevitável. A maioria dos portadores de duas variantes não desenvolve doença; fenótipo e possíveis gatilhos adicionais importam. Duas variantes diferentes não tornam o resultado de baixo risco, e homozigose não é obrigatória.",
+        "refs": [
+          "niddk_apol1_2017"
+        ],
+        "cat": "genetica",
+        "diff": "easy"
+      },
+      "afterAuthorRevision": "sha256:f986ed1f3bfcbcf2e513a6bf9f94359daabaf0266c54ca259d53e333074bf6d6",
+      "referenceCards": [
+        {
+          "id": "niddk_apol1_2017",
+          "original": {
+            "label": "NIDDK — APOL1 Kidney Risk Variants",
+            "url": "https://www.niddk.nih.gov/news/archive/2017/story-variants-unraveling-genetic-basis-elevated-risk-kidney-disease-african-americans",
+            "journal": "National Institute of Diabetes and Digestive and Kidney Diseases",
+            "ano": 2017,
+            "tipo": "Revisão institucional",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Síntese institucional sobre genótipo APOL1 de alto risco e doença renal em pessoas com ancestralidade africana.",
+            "icon": "🧬",
+            "resumo": "Recurso do NIDDK sobre as variantes G1 e G2 de APOL1, mais frequentes em pessoas com ancestralidade africana recente. O genótipo renal de alto risco é formado por duas variantes de risco, em homozigose ou heterozigose composta, e associa-se a maior suscetibilidade a GESF, HIVAN e progressão renal. A maioria das pessoas com esse genótipo, contudo, não desenvolve doença, indicando penetrância incompleta e participação de fatores adicionais.",
+            "conclusao": "APOL1 modifica risco, não determina destino clínico: duas variantes definem o genótipo de alto risco, mas fenótipo, contexto e possíveis gatilhos continuam necessários para interpretar um resultado.",
+            "curiosidade": "As variantes G1 e G2 aumentaram de frequência por protegerem contra tripanossomíase africana, ilustrando um benefício infeccioso populacional que traz custo renal em determinados contextos."
+          },
+          "originalSHA256": "sha256:2af99e561291bdc35f89436d136155af24d4b8b3d76751c3413c5f4cc75d6cb1",
+          "proposed": {
+            "label": "NIDDK — APOL1 Kidney Risk Variants",
+            "url": "https://www.niddk.nih.gov/news/archive/2017/story-variants-unraveling-genetic-basis-elevated-risk-kidney-disease-african-americans",
+            "journal": "National Institute of Diabetes and Digestive and Kidney Diseases",
+            "ano": 2017,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Síntese institucional sobre genótipo APOL1 de alto risco e doença renal em pessoas com ancestralidade africana.",
+            "icon": "🔬",
+            "resumo": "Revisão institucional do NIDDK sobre as variantes G1 e G2 do gene APOL1, que codifica a apolipoproteína L1, mais frequentes em pessoas com ancestralidade africana recente. O genótipo renal de alto risco contém duas variantes de risco, em homozigose ou heterozigose composta, e associa-se a maior suscetibilidade a glomeruloesclerose segmentar e focal (GESF), nefropatia associada ao HIV (HIVAN) e progressão renal. A maioria dos portadores, contudo, não desenvolve doença, indicando penetrância incompleta e participação de fatores adicionais.",
+            "conclusao": "APOL1 modifica risco, não determina destino clínico: duas variantes definem o genótipo de alto risco, mas fenótipo, contexto e possíveis gatilhos continuam necessários para interpretar um resultado.",
+            "curiosidade": "G0 é a variante de baixo risco; G1 e G2 são variantes de risco renal descritas pelo NIDDK."
+          },
+          "proposedSHA256": "sha256:da872317a19054803dc4420faaf1780bd09a58279c8727aa19dec776c956713c"
+        }
+      ],
+      "classification": {
+        "op": "Interpretar APOL1 G1/G2 como genótipo de alto risco com penetrância incompleta.",
+        "primaryCompetence": "Interpretação probabilística de teste genético.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "independentEvidence": {
+        "source": "https://www.niddk.nih.gov/news/archive/2017/story-variants-unraveling-genetic-basis-elevated-risk-kidney-disease-african-americans",
+        "access": "FULL_OFFICIAL_INSTITUTIONAL_SOURCE",
+        "locators": [
+          "lines128–140 genotype/risk/G0 and incomplete penetrance",
+          "lines141–146 progression"
+        ],
+        "checks": [
+          "Two risk variants define the high-risk genotype; risk association is not a deterministic diagnosis.",
+          "The card removes a broad infection-protection generalization outside the question objective."
+        ],
+        "appeal": "G1/G2 is compound heterozygosity. Different alleles do not imply low risk; the existing GESF phenotype is not established as solely caused by genotype.",
+        "duplicate": "9f887485 asks interpretation of one APOL1 risk variant using H3Africa evidence; this item asks two risk variants and penetrance. Decisive genotype and evidence task differ.",
+        "score": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "findings": [
+        "Two risk variants define the high-risk genotype; risk association is not a deterministic diagnosis.",
+        "The card removes a broad infection-protection generalization outside the question objective."
+      ],
+      "appeal": {
+        "attempt": "G1/G2 is compound heterozygosity. Different alleles do not imply low risk; the existing GESF phenotype is not established as solely caused by genotype.",
+        "result": "Sem recurso plausível decisivo no AFTER exato."
+      },
+      "duplicateTest": {
+        "fourDimensions": [
+          "OP/decisão",
+          "estrutura de dados decisivos",
+          "perfil-alvo",
+          "língua"
+        ],
+        "result": "9f887485 asks interpretation of one APOL1 risk variant using H3Africa evidence; this item asks two risk variants and penetrance. Decisive genotype and evidence task differ."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "score": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "score": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "score": 2
+          },
+          {
+            "dimension": "Distratores",
+            "score": 1
+          },
+          {
+            "dimension": "Explicação",
+            "score": 2
+          },
+          {
+            "dimension": "Referências",
+            "score": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "score": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "score": 1
+          }
+        ],
+        "total": 17,
+        "rationale": "Distratores ainda simplificados e estrutura paralela pontuados com1; não há critério eliminatório."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta",
+      "tree": "Passo0:VERIFICADA/NENHUMA; nenhum eliminatório ou recurso decisivo; score≥17 conduz a aprovação; liberação derivada pelo Handbook§18.4 para estes bytes exatos.",
+      "identity": {
+        "preserveQid": true,
+        "reason": "Mesmo OP, competência e conceito correto; redação, evidência atribuída e classificação de dificuldade corrigidas sem transferir aprendizagem."
+      },
+      "implementation": "Arquivar BEFORE publicado17.27 com todos os cards antigos; qualquer consumidor de card alterado também deve ter seu registro anterior arquivado. Não alterar FSRS/votos/respostas antigas.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "0408b280",
+      "original": {
+        "t": "Nefrite Intersticial Aguda por Antibiótico",
+        "qid": "0408b280",
+        "q": "Mulher de 35 anos apresenta LRA oligúrica, creatinina 4,8 mg/dL, febre, rash cutâneo e eosinofilia periférica. Iniciou amoxicilina-clavulanato há 12 dias. Urinálise: leucocitúria e cilindros leucocitários; sem bacteriúria significativa. Qual é o diagnóstico mais provável e a conduta inicial?",
+        "refs": [
+          "drug_induced_ain_perazella_2010",
+          "kdigo_aki"
+        ],
+        "opts": [
+          "Nefrite intersticial aguda por hipersensibilidade a antibiótico; suspender imediatamente o fármaco, dar suporte e considerar biópsia/corticosteroide se não houver recuperação ou se o diagnóstico for incerto",
+          "Pielonefrite aguda; manter e aumentar a dose de amoxicilina-clavulanato",
+          "Glomerulonefrite pós-infecciosa; solicitar complemento e ANCA antes de suspender o antibiótico",
+          "Rabdomiólise; tratar com alcalinização urinária por mioglobinúria presumida"
+        ],
+        "ans": 0,
+        "exp": "O quadro é mais compatível com nefrite intersticial aguda (NIA) medicamentosa por beta-lactâmico: início dias a semanas após exposição ao antibiótico, febre, rash, eosinofilia e sedimento urinário inflamatório. A tríade clássica não está presente em todos os casos, e eosinofilúria isolada tem utilidade limitada; por isso, a correlação temporal e a exclusão de diagnósticos alternativos são importantes, e a biópsia renal é o padrão para confirmação quando o diagnóstico é incerto ou a evolução é grave. A conduta inicial é suspender o agente causal e oferecer suporte. Corticosteroide pode ser considerado precocemente em casos selecionados, especialmente se não houver recuperação após retirada do fármaco ou se a biópsia confirmar NIA ativa. Manter/aumentar o antibiótico, tratar como GN pós-infecciosa sem sustação do gatilho ou presumir rabdomiólise não se ajusta ao caso.",
+        "diff": "medium",
+        "cat": "lra"
+      },
+      "originalAuthorRevision": "sha256:e39371954f5456f656cf151748d94d955b69a98dae8bd970bdea915229e24e9d",
+      "after": {
+        "t": "Nefrite Intersticial Aguda por Antibiótico",
+        "qid": "0408b280",
+        "q": "Mulher de 35 anos apresenta lesão renal aguda (LRA) oligúrica, creatinina de 4,8 mg/dL, febre, rash cutâneo e eosinofilia periférica. Iniciou amoxicilina-clavulanato há 12 dias. Urinálise: leucocitúria e cilindros leucocitários; sem bacteriúria significativa. Qual é o diagnóstico mais provável e a conduta inicial?",
+        "refs": [
+          "drug_induced_ain_moledina_perazella_2017"
+        ],
+        "opts": [
+          "Nefrite intersticial por fármaco; suspender amoxicilina-clavulanato.",
+          "Pielonefrite bacteriana; ampliar o esquema antimicrobiano.",
+          "Glomerulonefrite pós-infecciosa; manter o antibiótico e investigar o foco.",
+          "Necrose tubular por sepse; manter o antibiótico e oferecer suporte."
+        ],
+        "ans": 0,
+        "exp": "A hipótese principal é nefrite intersticial aguda (NIA) medicamentosa, pela relação temporal com o antibiótico e pelo quadro inflamatório. Suspender amoxicilina-clavulanato e oferecer suporte não deve aguardar biópsia. Febre, rash, eosinofilia e cilindros leucocitários apoiam a suspeita, mas não a confirmam isoladamente. Como a LRA é grave e oligúrica, cabe avaliação nefrológica e biópsia quando indicada. Corticoide exige decisão individualizada, preferencialmente com confirmação histológica; os dados terapêuticos são sobretudo observacionais. As hipóteses infecciosas ou tubulares dos distratores não explicam tão bem o conjunto nem justificam manter o possível gatilho.",
+        "diff": "medium",
+        "cat": "lra"
+      },
+      "afterAuthorRevision": "sha256:b5eecc6a7ce5248cea597feee30c24fa4453f23c71c796423db96cbc729df25e",
+      "referenceCards": [
+        {
+          "id": "drug_induced_ain_moledina_perazella_2017",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Moledina & Perazella — Nefrite intersticial medicamentosa (2017)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5718279/",
+            "journal": "Clinical Journal of the American Society of Nephrology",
+            "ano": 2017,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Retirar o fármaco sem aguardar biópsia; corticoide exige decisão individualizada",
+            "icon": "🔬",
+            "resumo": "Revisão clínica de nefrite intersticial aguda (NIA) medicamentosa, necessária para diagnóstico e manejo sem ensaio terapêutico definitivo. Antibióticos são desencadeantes frequentes. Febre, rash, eosinofilia, piúria e cilindros leucocitários podem apoiar suspeita, mas não confirmam isoladamente. A retirada precoce do fármaco não deve aguardar biópsia. Biópsia confirma diagnóstico e avalia fibrose. Evidência de corticoide é principalmente retrospectiva e sujeita a confundimento.",
+            "conclusao": "Suspender o agente suspeito e oferecer suporte; na lesão renal aguda grave ou dúvida diagnóstica, avaliar biópsia e individualizar corticoide, sem prometer benefício comprovado.",
+            "curiosidade": "A tríade clássica febre, rash e eosinofilia ocorre em menos de 10% dos casos descritos na revisão."
+          },
+          "proposedSHA256": "sha256:7ca0a97eded7a452f82dc6ea4e3a103a7c5e7f30efca9a910c25c750e2c6d7ea"
+        }
+      ],
+      "classification": {
+        "op": "Reconhecer NIA por antibiótico e escolher retirada imediata do agente com suporte.",
+        "primaryCompetence": "Diagnóstico e conduta inicial segura na LRA medicamentosa.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "independentEvidence": {
+        "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5718279/",
+        "access": "FULL_AUTHORED_CLINICAL_REVIEW",
+        "locators": [
+          "lines81–85 diagnostic limitations",
+          "lines87–96 withdrawal and biopsy",
+          "lines98–105 retrospective corticosteroid evidence",
+          "lines121–128 biopsy before corticosteroid exposure"
+        ],
+        "checks": [
+          "Temporal exposure and inflammatory findings support suspicion but are not independently diagnostic.",
+          "Withdrawal of the suspect antibiotic should not wait for biopsy; severe AKI requires assessment.",
+          "The proposed card accurately identifies the 2017 review and its therapeutic uncertainty; it does not assert proven corticosteroid efficacy."
+        ],
+        "appeal": "The question asks the most probable diagnosis and first action, not a confirmed histological diagnosis or unconditional steroid prescription. The alternatives are parallel diagnostic/action pairs.",
+        "duplicate": "The anti-PD1 case2acaa158 has biopsy-confirmed nephritis and a different oncological treatment decision. Lithium/herbal cases ask chronic lesions and do not duplicate this antibiotic-first-action case.",
+        "score": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      "findings": [
+        "Temporal exposure and inflammatory findings support suspicion but are not independently diagnostic.",
+        "Withdrawal of the suspect antibiotic should not wait for biopsy; severe AKI requires assessment.",
+        "The proposed card accurately identifies the 2017 review and its therapeutic uncertainty; it does not assert proven corticosteroid efficacy."
+      ],
+      "appeal": {
+        "attempt": "The question asks the most probable diagnosis and first action, not a confirmed histological diagnosis or unconditional steroid prescription. The alternatives are parallel diagnostic/action pairs.",
+        "result": "Sem recurso plausível decisivo no AFTER exato."
+      },
+      "duplicateTest": {
+        "fourDimensions": [
+          "OP/decisão",
+          "estrutura de dados decisivos",
+          "perfil-alvo",
+          "língua"
+        ],
+        "result": "The anti-PD1 case2acaa158 has biopsy-confirmed nephritis and a different oncological treatment decision. Lithium/herbal cases ask chronic lesions and do not duplicate this antibiotic-first-action case."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "score": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "score": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "score": 2
+          },
+          {
+            "dimension": "Distratores",
+            "score": 1
+          },
+          {
+            "dimension": "Explicação",
+            "score": 2
+          },
+          {
+            "dimension": "Referências",
+            "score": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "score": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 18,
+        "rationale": "Distratores ainda simplificados e estrutura paralela pontuados com1; não há critério eliminatório."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta",
+      "tree": "Passo0:VERIFICADA/NENHUMA; nenhum eliminatório ou recurso decisivo; score≥17 conduz a aprovação; liberação derivada pelo Handbook§18.4 para estes bytes exatos.",
+      "identity": {
+        "preserveQid": true,
+        "reason": "Mesmo OP, competência e conceito correto; redação, evidência atribuída e classificação de dificuldade corrigidas sem transferir aprendizagem."
+      },
+      "implementation": "Arquivar BEFORE publicado17.27 com todos os cards antigos; qualquer consumidor de card alterado também deve ter seu registro anterior arquivado. Não alterar FSRS/votos/respostas antigas.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "190676b8",
+      "original": {
+        "t": "Gadolínio na DRC Avançada — Escolha do Agente",
+        "qid": "190676b8",
+        "q": "Paciente com TFGe de 24 mL/min/1,73 m² precisa de ressonância com contraste para responder a uma questão clínica relevante. Qual abordagem contemporânea é mais adequada?",
+        "refs": [
+          "gadolinio_acr_manual_2026"
+        ],
+        "opts": [
+          "Se o contraste for necessário, preferir agente de gadolínio do grupo II na menor dose diagnóstica; o risco de fibrose sistêmica nefrogênica é muito baixo e não justifica proibição automática",
+          "Cancelar qualquer ressonância contrastada porque todo agente possui o mesmo risco elevado",
+          "Escolher agente linear do grupo I e iniciar hemodiálise apenas para remover o contraste",
+          "Administrar dose dupla de gadolínio para compensar a redução da filtração"
+        ],
+        "ans": 0,
+        "exp": "A fibrose sistêmica nefrogênica foi associada principalmente a agentes do grupo I em pessoas com lesão renal aguda ou DRC avançada. Agentes do grupo II apresentam risco muito baixo; quando o exame é clinicamente necessário, atrasá-lo pode causar mais dano do que administrar a menor dose diagnóstica de um agente apropriado. Agentes do grupo I devem ser evitados nesse contexto. Não se deve iniciar, intensificar ou acrescentar diálise apenas por causa do gadolínio; em quem já faz hemodiálise, pode-se coordenar o exame com uma sessão regular.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalAuthorRevision": "sha256:26b526a79911d08998652e850d3cad0cf2712ce348a8d6eb9116c19fe1e91ff8",
+      "after": {
+        "t": "Gadolínio na doença renal crônica avançada — Escolha do agente",
+        "qid": "190676b8",
+        "q": "Paciente com doença renal crônica e taxa de filtração glomerular estimada (TFGe) de 24 mL/min/1,73 m² precisa de ressonância com contraste para responder a uma questão clínica relevante. Qual abordagem é mais adequada?",
+        "refs": [
+          "gadolinio_acr_manual_2026"
+        ],
+        "opts": [
+          "Realizar com gadobutrol, agente do grupo II, na menor dose que mantenha qualidade diagnóstica.",
+          "Adiar até a TFGe superar 30 mL/min/1,73 m², mesmo sem alternativa para a questão clínica.",
+          "Realizar com agente do grupo I, iniciando hemodiálise apenas para remover o contraste.",
+          "Realizar com agente do grupo II, acrescentando hemodiálise preventiva após o exame."
+        ],
+        "ans": 0,
+        "exp": "Se o exame contrastado é necessário, o American College of Radiology (ACR) prefere agentes do grupo II em doença renal crônica avançada. O gadobutrol integra esse grupo e deve ser usado na menor dose que preserve qualidade diagnóstica. O risco de fibrose sistêmica nefrogênica é muito baixo; atrasar um exame necessário também traz riscos. Agentes do grupo I devem ser evitados nesse contexto. Não iniciar nem acrescentar diálise apenas para remover gadolínio. O gadopiclenol tem classificação II* provisória e requer atenção às regras locais.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "afterAuthorRevision": "sha256:ec08844eed2db7cb30fb389ce03f3cfde42401882bf2cd0f61cabebe826ed623",
+      "referenceCards": [
+        {
+          "id": "gadolinio_acr_manual_2026",
+          "original": {
+            "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+            "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "journal": "American College of Radiology",
+            "ano": 2026,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+            "icon": "📋",
+            "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+            "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+            "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+          },
+          "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c",
+          "proposed": {
+            "label": "Manual de contraste — Fibrose sistêmica nefrogênica (2025)",
+            "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "journal": "American College of Radiology",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Grupo II preferido na doença renal crônica avançada; não acrescentar diálise pelo exame",
+            "icon": "📋",
+            "resumo": "Manual do American College of Radiology (ACR), consultado em 2026, capítulo sobre fibrose sistêmica nefrogênica (FSN) atualizado em 2025. O grupo II é preferido em pacientes sob risco de FSN, na menor dose que preserve qualidade diagnóstica; inclui gadobutrol. O grupo I é contraindicado na doença renal crônica avançada. Não iniciar nem alterar diálise apenas pelo contraste. Gadopiclenol permanece no grupo II* provisório, com decisão local sobre manejo como grupo II ou III.",
+            "conclusao": "Se a ressonância contrastada é necessária em doença renal crônica avançada, selecionar agente apropriado do grupo II e dose diagnóstica, ponderando riscos de não realizar o exame.",
+            "curiosidade": "A classificação depende do agente específico. A atualização distingue gadopiclenol provisório dos agentes do grupo II com maior experiência clínica."
+          },
+          "proposedSHA256": "sha256:88daa011b4ff1ee92a6ca6dfe562457da3f59972aa455d1d86937687cb6495b5"
+        }
+      ],
+      "classification": {
+        "op": "Selecionar estratégia de gadolínio de menor risco em DRC avançada quando o exame é necessário.",
+        "primaryCompetence": "Segurança e escolha de contraste na DRC.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "independentEvidence": {
+        "source": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+        "access": "FULL_OFFICIAL_GUIDELINE_PDF",
+        "locators": [
+          "p82 lines3473–3483 risk and provisional group",
+          "p84 lines3543–3560 diagnostic dose and risk balancing",
+          "p85 lines3577–3583 dialysis/CKD4–5",
+          "p86 Table1 gadobutrol/groupII*",
+          "p89 January2025 clarification"
+        ],
+        "checks": [
+          "The manual cover is2026; the cited NSF clarification is dated January2025, correctly distinguished in the proposed card.",
+          "Gadobutrol is explicitly listed in groupII, and the lowest dose must preserve diagnostic adequacy.",
+          "No new or additional dialysis is recommended solely to remove gadolinium; provisional gadopiclenol remains qualified."
+        ],
+        "appeal": "The vignette establishes that the contrast study is clinically necessary; the answer is not blanket contrast administration for every patient with low filtration.",
+        "duplicate": "03b3db65 concerns a patient already receiving hemodialysis and management of that schedule. This item concerns nondialysis CKD4 and agent selection. The shared-reference neighbor is also assigned for a separate consistency review.",
+        "score": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      "findings": [
+        "The manual cover is2026; the cited NSF clarification is dated January2025, correctly distinguished in the proposed card.",
+        "Gadobutrol is explicitly listed in groupII, and the lowest dose must preserve diagnostic adequacy.",
+        "No new or additional dialysis is recommended solely to remove gadolinium; provisional gadopiclenol remains qualified."
+      ],
+      "appeal": {
+        "attempt": "The vignette establishes that the contrast study is clinically necessary; the answer is not blanket contrast administration for every patient with low filtration.",
+        "result": "Sem recurso plausível decisivo no AFTER exato."
+      },
+      "duplicateTest": {
+        "fourDimensions": [
+          "OP/decisão",
+          "estrutura de dados decisivos",
+          "perfil-alvo",
+          "língua"
+        ],
+        "result": "03b3db65 concerns a patient already receiving hemodialysis and management of that schedule. This item concerns nondialysis CKD4 and agent selection. The shared-reference neighbor is also assigned for a separate consistency review."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "score": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "score": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "score": 2
+          },
+          {
+            "dimension": "Distratores",
+            "score": 1
+          },
+          {
+            "dimension": "Explicação",
+            "score": 2
+          },
+          {
+            "dimension": "Referências",
+            "score": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "score": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 18,
+        "rationale": "Distratores ainda simplificados e estrutura paralela pontuados com1; não há critério eliminatório."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta",
+      "tree": "Passo0:VERIFICADA/NENHUMA; nenhum eliminatório ou recurso decisivo; score≥17 conduz a aprovação; liberação derivada pelo Handbook§18.4 para estes bytes exatos.",
+      "identity": {
+        "preserveQid": true,
+        "reason": "Mesmo OP, competência e conceito correto; redação, evidência atribuída e classificação de dificuldade corrigidas sem transferir aprendizagem."
+      },
+      "implementation": "Arquivar BEFORE publicado17.27 com todos os cards antigos; qualquer consumidor de card alterado também deve ter seu registro anterior arquivado. Não alterar FSRS/votos/respostas antigas.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "3fbc1a5a",
+      "original": {
+        "t": "Imlifidase — Clivagem de IgG e Rebote",
+        "qid": "3fbc1a5a",
+        "q": "Candidato altamente sensibilizado recebe oferta de rim de doador falecido contra o qual o crossmatch é positivo. A imlifidase converte rapidamente o teste em negativo, mas a equipe mantém imunossupressão padrão e vigilância para rejeição mediada por anticorpos. Qual mecanismo explica tanto o efeito rápido quanto seu caráter transitório?",
+        "opts": [
+          "Clivagem de todas as subclasses de IgG circulante, inclusive DSA, sem eliminar as células que continuam produzindo anticorpos",
+          "Depleção irreversível de plasmócitos por bloqueio de CD20",
+          "Inibição permanente de C5 e de toda produção de complemento",
+          "Bloqueio seletivo de IgM, preservando IgG anti-HLA"
+        ],
+        "ans": 0,
+        "exp": "A imlifidase é uma protease derivada de Streptococcus pyogenes que cliva as cadeias pesadas de todas as subclasses de IgG humana. Isso reduz rapidamente DSA e pode converter o crossmatch, abrindo uma janela para o transplante. Como não elimina de forma duradoura linfócitos B ou plasmócitos produtores, a IgG pode reaparecer; por isso é necessário confirmar a conversão antes do implante, manter o esquema imunossupressor e monitorar rebote e rejeição mediada por anticorpos. CD20, C5 e IgM correspondem a mecanismos diferentes.",
+        "diff": "hard",
+        "cat": "transplante",
+        "refs": [
+          "ema_imlifidase_2020"
+        ]
+      },
+      "originalAuthorRevision": "sha256:c700ae4cda16d29760d02ebd91951c3be72e10919d0c16a67bc54b7195f32f6e",
+      "after": {
+        "t": "Imlifidase — Clivagem de IgG e Rebote",
+        "qid": "3fbc1a5a",
+        "q": "Candidato altamente sensibilizado recebe oferta de rim de doador falecido contra o qual o teste de compatibilidade cruzada (crossmatch) é positivo. A imlifidase converte rapidamente o teste em negativo, mas a equipe mantém imunossupressão padrão e vigilância para rejeição mediada por anticorpos. São monitorados os anticorpos específicos contra o doador (DSA), da classe imunoglobulina G (IgG). Qual mecanismo explica tanto o efeito rápido quanto seu caráter transitório?",
+        "opts": [
+          "Clivagem enzimática de IgG, inclusive DSA, com persistência das células produtoras.",
+          "Depleção de linfócitos B e plasmócitos, com supressão duradoura da produção de DSA.",
+          "Inibição de C5, preservando anticorpos e bloqueando a lise mediada por complemento.",
+          "Remoção de IgG por adsorção extracorpórea, sem impedir a síntese de novos anticorpos."
+        ],
+        "ans": 0,
+        "exp": "A imlifidase cliva enzimaticamente todas as subclasses de IgG, inclusive DSA, e permite rápida conversão do crossmatch. Não é uma terapia de depleção das células produtoras: a IgG endógena começa a retornar em 1–2 semanas. Por isso, é necessário confirmar a conversão antes do implante, manter a imunossupressão padrão e vigiar rejeição. Depleção celular, bloqueio de C5 e adsorção extracorpórea representam estratégias diferentes e não descrevem a ação da imlifidase.",
+        "diff": "medium",
+        "cat": "transplante",
+        "refs": [
+          "hansa_imlifidase_smpc_2026"
+        ]
+      },
+      "afterAuthorRevision": "sha256:2de152a6cf13fdf589f031d0a9bfdece4f4c05de53276d1e1d753437187ff342",
+      "referenceCards": [
+        {
+          "id": "hansa_imlifidase_smpc_2026",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Idefirix — Bula profissional do Reino Unido (30/07/2026)",
+            "url": "https://www.medicines.org.uk/emc/product/13155/smpc",
+            "journal": "Hansa Biopharma AB — SmPC do Reino Unido, PLGB 46323/0002 (emc)",
+            "ano": 2026,
+            "tipo": "Resumo das Características do Medicamento (SmPC)",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Clivagem transitória de imunoglobulina G; manter imunossupressão e vigilância",
+            "icon": "📋",
+            "resumo": "Resumo das Características do Medicamento (SmPC) para imlifidase, revisão de 30/07/2026 do titular Hansa Biopharma AB, no Reino Unido. Indicada para dessensibilização de adultos altamente sensibilizados, com crossmatch positivo contra doador falecido e baixa chance por alocação. A protease de Streptococcus pyogenes cliva as cadeias pesadas de todas as subclasses de imunoglobulina G (IgG), incluindo anticorpos específicos contra o doador (DSA), sem clivar outras imunoglobulinas. A IgG endógena começa a retornar em 1–2 semanas. Não dispensa imunossupressão padrão.",
+            "conclusao": "Confirmar crossmatch negativo antes do transplante e manter imunossupressão e vigilância de rejeição: a clivagem não equivale a suprimir permanentemente a produção de anticorpos.",
+            "curiosidade": "A clivagem elimina funções dependentes de Fc, incluindo citotoxicidade dependente de complemento e de células."
+          },
+          "proposedSHA256": "sha256:740e17b0c81defe91323bec8d775c843f04044000de85aece902ba3e694130d3"
+        }
+      ],
+      "classification": {
+        "op": "Relacionar clivagem de IgG pela imlifidase à janela transitória e persistência da produção de anticorpos.",
+        "primaryCompetence": "Mecanismo terapêutico aplicado à dessensibilização do transplante.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "independentEvidence": {
+        "source": "https://www.medicines.org.uk/emc/product/13155/smpc",
+        "access": "FULL_MANUFACTURER_REGULATORY_SMPC_UK",
+        "locators": [
+          "§4.1–4.2 lines249–263",
+          "§4.4 lines306–308 rejection and monitoring",
+          "§5.1 lines418–426 IgG mechanism and return",
+          "§7–10 lines518–537 holder/license/text revision"
+        ],
+        "checks": [
+          "All IgG subclasses/DSA cleavage, preservation of other immunoglobulins and endogenous IgG return are stated in the opened document.",
+          "Crossmatch confirmation, continued standard immunosuppression and rejection surveillance are supported.",
+          "Holder HansaBiopharmaAB, PLGB46323/0002 and text revision30/07/2026 independently verified; the card does not present a UK label as an EMA document."
+        ],
+        "appeal": "Adsorption and C5 blockade can affect humoral injury but are not imlifidase action. The specific mechanism and transient antibody recovery distinguish the correct answer without permanent/irreversible distractor tells.",
+        "duplicate": "The only current imlifidase question; no other item tests this enzyme and its transient window.",
+        "score": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      "findings": [
+        "All IgG subclasses/DSA cleavage, preservation of other immunoglobulins and endogenous IgG return are stated in the opened document.",
+        "Crossmatch confirmation, continued standard immunosuppression and rejection surveillance are supported.",
+        "Holder HansaBiopharmaAB, PLGB46323/0002 and text revision30/07/2026 independently verified; the card does not present a UK label as an EMA document."
+      ],
+      "appeal": {
+        "attempt": "Adsorption and C5 blockade can affect humoral injury but are not imlifidase action. The specific mechanism and transient antibody recovery distinguish the correct answer without permanent/irreversible distractor tells.",
+        "result": "Sem recurso plausível decisivo no AFTER exato."
+      },
+      "duplicateTest": {
+        "fourDimensions": [
+          "OP/decisão",
+          "estrutura de dados decisivos",
+          "perfil-alvo",
+          "língua"
+        ],
+        "result": "The only current imlifidase question; no other item tests this enzyme and its transient window."
+      },
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "score": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "score": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "score": 2
+          },
+          {
+            "dimension": "Distratores",
+            "score": 1
+          },
+          {
+            "dimension": "Explicação",
+            "score": 2
+          },
+          {
+            "dimension": "Referências",
+            "score": 2
+          },
+          {
+            "dimension": "Ausência de pistas formais",
+            "score": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 18,
+        "rationale": "Distratores ainda simplificados e estrutura paralela pontuados com1; não há critério eliminatório."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta",
+      "tree": "Passo0:VERIFICADA/NENHUMA; nenhum eliminatório ou recurso decisivo; score≥17 conduz a aprovação; liberação derivada pelo Handbook§18.4 para estes bytes exatos.",
+      "identity": {
+        "preserveQid": true,
+        "reason": "Mesmo OP, competência e conceito correto; redação, evidência atribuída e classificação de dificuldade corrigidas sem transferir aprendizagem."
+      },
+      "implementation": "Arquivar BEFORE publicado17.27 com todos os cards antigos; qualquer consumidor de card alterado também deve ter seu registro anterior arquivado. Não alterar FSRS/votos/respostas antigas.",
+      "pendingVerification": []
+    }
+  ],
+  "exclusions": [
+    {
+      "qid": "13e53210",
+      "status": "No candidate approval; redirection/creation in progress under appropriate skills."
+    },
+    {
+      "qid": "82728652",
+      "status": "Independent duplicate-pair adjudication with82d7373c remains incomplete; no gate granted by this batch."
+    }
+  ],
+  "taxonomyException": {
+    "card": "hansa_imlifidase_smpc_2026",
+    "scope": "Truthful UKregulatorySmPC taxonomy only, BULA; source identity and date independently checked; not FDA/EMA equivalence."
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "schema": "nq-ci1100-216-final-fixture-review-v1",
+  "status": "TEST_ONLY_FIX_VALIDATED",
+  "sourceCommit": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+  "rootChange": {
+    "file": "tests/specs/216-progressao-xp.spec.ts",
+    "callSites": 7,
+    "onlyAddedOption": "asGuest:true",
+    "source": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal\\final-216.ts",
+      "sha256": "a9d272cb2aa0dc4ed94b6f27ccc0dabe813492392953eef4f11d61ba1d27b7fe",
+      "bytes": 16186
+    },
+    "canonicalSHA256": "05624421da7de7dc1c6f68b27ee4d63075def63485b63e4c0f9de80e4721ac38",
+    "byteDeltaProof": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal\\ROOT_216_GUEST_BYTE_DELTA.json",
+      "sha256": "5a21f3364601311399566e9df28450d05e25d54540bf09e006350050ab354294",
+      "bytes": 2706
+    },
+    "allOriginalAssertionsInputsDeadlinesActionsPreserved": true
+  },
+  "causalEvidence": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal\\CI216_CAUSAL_REVIEW.json",
+    "sha256": "0c5689a236ab165e3d77a5ef94bce9b1acbee1989c95850efee132906a1be91e",
+    "bytes": 11065
+  },
+  "controlledCounts": {
+    "originalExpectedRED": 2,
+    "sameAuthGuestPASS": 2,
+    "nativeReloadPASS": 1,
+    "actualTechnicalAuditAttachments": 5,
+    "pageErrors": 0,
+    "nonGETAttempts": 0,
+    "socketAttempts": 0
+  },
+  "originalComplete": {
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "runnerErrors": 0,
+    "profiles": {
+      "chromium": 14,
+      "mobile": 14
+    },
+    "defaultTimeoutMs": 20000,
+    "originalExplicit45000msOverridesPreserved": true,
+    "networkAttemptCountersAvailable": false,
+    "pageErrorCounterAvailable": false,
+    "actualAttachmentNames": {
+      "progress-before-assertion": 2
+    },
+    "results": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal\\original-final-results.json",
+      "sha256": "b80afeb00be4717d2db7085f06c79118986b0c30a51788c6cede2e09f9ffdfa7",
+      "bytes": 1374775
+    },
+    "log": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal\\original-final-run.log",
+      "sha256": "12daa8e042b1314bf2fb80d913f137f483941bc4f7fd8871bfd68f630078ecc6",
+      "bytes": 5020
+    },
+    "cases": [
+      {
+        "project": "chromium",
+        "title": "L1 com sete acertos aplica70% do limiar, sem prometer nível com barra cheia",
+        "durationMs": 3944,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "XP excedente permanece guardado quando o teto por acertos impede evolução",
+        "durationMs": 3685,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "limiar9/10 sobe somente após o acerto e conserva o saldo",
+        "durationMs": 3997,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+        "durationMs": 3948,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "limiar89/90 sobe somente após o acerto e conserva o saldo",
+        "durationMs": 4208,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "save legado reconcilia níveis já conquistados e não consome XP ou vidas duas vezes",
+        "durationMs": 6209,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "prévias projetam o nível ganho sem reescrever o save",
+        "durationMs": 3715,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "vidas e Sequência usam valores reais, quatro campos no rodapé e refluem sem sobreposição",
+        "durationMs": 3928,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "acertos consecutivos avançam valor e barra juntos e guardam todos os bônus",
+        "durationMs": 7280,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "vida máxima inclui equipamento e zero vidas continua legível sem inventar preenchimento",
+        "durationMs": 4217,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "painel do personagem continua alcançável no celular com texto200% e foco restaurado",
+        "durationMs": 4593,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "prévia de legado mostra a mesma vida extra que será restaurada, sem escrever",
+        "durationMs": 4494,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "Nephros guarda o XP no cap e uma falha de persistência não duplica o bônus no reload",
+        "durationMs": 9403,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "chromium",
+        "title": "save mais novo da nuvem conserva o XP guardado, progresso e conquistas anteriores",
+        "durationMs": 5356,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "L1 com sete acertos aplica70% do limiar, sem prometer nível com barra cheia",
+        "durationMs": 6480,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "XP excedente permanece guardado quando o teto por acertos impede evolução",
+        "durationMs": 6275,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "limiar9/10 sobe somente após o acerto e conserva o saldo",
+        "durationMs": 9966,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+        "durationMs": 6421,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "limiar89/90 sobe somente após o acerto e conserva o saldo",
+        "durationMs": 5648,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "save legado reconcilia níveis já conquistados e não consome XP ou vidas duas vezes",
+        "durationMs": 8276,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "prévias projetam o nível ganho sem reescrever o save",
+        "durationMs": 5420,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "vidas e Sequência usam valores reais, quatro campos no rodapé e refluem sem sobreposição",
+        "durationMs": 6449,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "acertos consecutivos avançam valor e barra juntos e guardam todos os bônus",
+        "durationMs": 8234,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "vida máxima inclui equipamento e zero vidas continua legível sem inventar preenchimento",
+        "durationMs": 4281,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "painel do personagem continua alcançável no celular com texto200% e foco restaurado",
+        "durationMs": 4608,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "prévia de legado mostra a mesma vida extra que será restaurada, sem escrever",
+        "durationMs": 4283,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "Nephros guarda o XP no cap e uma falha de persistência não duplica o bônus no reload",
+        "durationMs": 7350,
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "project": "mobile",
+        "title": "save mais novo da nuvem conserva o XP guardado, progresso e conquistas anteriores",
+        "durationMs": 3356,
+        "status": "passed",
+        "retry": 0
+      }
+    ]
+  },
+  "unchangedRuntimeAndHelpers": [
+    {
+      "file": "js/game.js",
+      "canonicalSHA256": "2d112fd0609ac54c2a58a078304666243e9347b9dbca2baf79fffc07d81054f8",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "js/auth.js",
+      "canonicalSHA256": "fe10cc6f86d9aac294d758bb972050531a9a928856dc71fadfb44da7635497ae",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "js/utils.js",
+      "canonicalSHA256": "8e4585ffcae4536fe27e596844596d686642960c8a8a87316123efb6036fe815",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "tests/helpers/game.ts",
+      "canonicalSHA256": "b9bc578b9f5e11c89bd07e8b9e55e6758c9401c70ccde0539c12d7f0ec0b77bf",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "tests/helpers/pilot.ts",
+      "canonicalSHA256": "40555078600ff6549f2c9591d34d5c38e5d085283a3cb2776d712c4d6351eaca",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "tests/helpers/cinema.ts",
+      "canonicalSHA256": "276db1dbe6859a6399a248ef6372bdd78a4618ffe04a458d80af5322dc1c6bb2",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "data/topics.js",
+      "canonicalSHA256": "32e76a61e669ad9673370810eb223b303efc4c3e8980a11971f82a11f3cd1e7f",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "data/refs.js",
+      "canonicalSHA256": "9874303865b0a9a803eda9cffb7d7034509b1dcecb43f507ad2de1acb86b274b",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "version.json",
+      "canonicalSHA256": "2b4e1441b9c4bed81bfa75d19725f52540c17e16da3853ac44e1768e224b8389",
+      "identicalToReviewedCommit": true
+    },
+    {
+      "file": "sw.js",
+      "canonicalSHA256": "f39cbbfdc5fc6500f055959c3bd844320a99cacdf24bb77fdc44021a7354f38c",
+      "identicalToReviewedCommit": true
+    }
+  ],
+  "serverClosure": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal\\server-closed.json",
+    "sha256": "5c2183843f7bd637637d57bfcd5c568a4f6c061d4521be33e14885b57d5de01d",
+    "bytes": 504
+  },
+  "limits": [
+    "The official trace proves Portal interception before the click and progression assertions. It does not identify the specific Auth callback.",
+    "The controlled event was getSession returning null after the existing helper hid Portal. Only explicit native Guest changed; no Portal DOM force, question-bank replacement or progression stub was added.",
+    "The causal attachment top-level optionClicks field is an unused initialized field. Only state.optionClicks is the real DOM listener counter: zero in RED, one in threshold GREEN.",
+    "The five controlled audit attachments have actual counters. The 28 original tests enforce their existing origin/method/WS guards but do not measure attempted-network/page-error counters; no 28-network-audit claim is made.",
+    "Guest persistence was observed in the original legacy reload, including storedGuest=1/nativeGuest=true at DOMContentLoaded and unchanged level6/xp5/lives2/gold500/score9876; it was not inferred.",
+    "No product progression defect is demonstrated here. No medical, runtime, shared helper, timeout, retry, commit, deploy or public-browser change was made in this task."
+  ]
+}

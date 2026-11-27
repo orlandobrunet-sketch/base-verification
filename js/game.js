@@ -746,6 +746,50 @@
       catch (error) { return defaults; }
     }
     window.getNormalGameStats = getNormalGameStats;
+    // O recorde é de acertos em uma única tentativa Hardcore, não da
+    // pontuação geral ou da soma de acertos entre jornadas.
+    const _hardcoreCorrect = value => Number.isSafeInteger(value) && value >= 0 ? value : null;
+    function _hardcoreAttemptCorrect(save) {
+      return save?.difficulty === 'hardcore' && save.journeyDomain !== 'pilot' &&
+        save.gameStarted === true && Object.prototype.hasOwnProperty.call(characters, save.character)
+        ? _hardcoreCorrect(save.correctTotal) : null;
+    }
+    function _hardcoreSavedCorrect() {
+      try {
+        const owner = _currentSaveOwner(), canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
+        const save = JSON.parse(canonical ?? (owner === null ? localStorage.getItem(SAVE_KEY) : null) ?? 'null');
+        if (!save || (canonical !== null ? save.saveOwner !== owner : (save.saveOwner ?? null) !== owner)) return null;
+        return _hardcoreAttemptCorrect(save);
+      } catch (_) { return null; }
+    }
+    function _maxHardcoreCorrect(...values) {
+      const valid = values.map(_hardcoreCorrect).filter(value => value !== null);
+      return valid.length ? Math.max(...valid) : null;
+    }
+    function _hardcoreRecordFor(stats, owner) {
+      const record = stats?.bestHardcoreCorrect;
+      return record?.owner === owner ? _hardcoreCorrect(record.correct) : null;
+    }
+    function _recordHardcoreBest(stats, value, owner = _currentSaveOwner()) {
+      const previous = _hardcoreRecordFor(stats, owner);
+      const best = _maxHardcoreCorrect(previous, value);
+      if (best === null || best === previous) return false;
+      stats.bestHardcoreCorrect = { owner, correct: best };
+      return true;
+    }
+    function _persistHardcoreBest(value) {
+      if (value === null || isCharacterPilot() || isProgressSandbox()) return;
+      const stats = getNormalGameStats();
+      if (!_recordHardcoreBest(stats, value)) return;
+      try {
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        _invalidateStatsCache();
+      } catch (_) { _warnStorageFull(); }
+    }
+    window.getHardcoreBestCorrect = function () {
+      if (isCharacterPilot() || isProgressSandbox()) return null;
+      return _maxHardcoreCorrect(_hardcoreRecordFor(getNormalGameStats(), _currentSaveOwner()), _hardcoreSavedCorrect());
+    };
     function getEntitlementQuestionsAnswered() {
       const normalAnswered = Math.max(0, Number(getNormalGameStats().questionsAnsweredAllTime) || 0);
       if (!isCharacterPilot()) return normalAnswered;
@@ -798,115 +842,154 @@
       stats.gamesPlayed++;
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
+      if (!isCharacterPilot()) _recordHardcoreBest(stats, _hardcoreAttemptCorrect(state));
       try { nqProgressStorage().setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) { _warnStorageFull(); }
       _invalidateStatsCache();
       _scheduleCloudSync();
     }
 
-    // ── Geração de Assinatura Premium local para evitar bypass via console ──
-    function _generatePremiumSignature(userId) {
-      if (!userId) return '';
-      const salt = 'nefro-gold-rpg-secret-2026';
-      const str = userId + salt;
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash; // Converte para inteiro de 32 bits
-      }
-      return hash.toString(36);
+    // A sessão só recebe acesso após uma leitura autenticada do servidor.
+    // Marcadores antigos não são aceitos, nem quando o navegador fica offline.
+    let _verifiedPremium = null;
+    let _premiumProfileRevision = 0;
+    let _premiumProfileFlight = null;
+    let _premiumProfileResolved = null;
+    function _premiumOwner() {
+      return authUser?.id ? { id: authUser.id, email: authUser.email, epoch: _authSessionEpoch } : null;
     }
-    window._generatePremiumSignature = _generatePremiumSignature;
+    function _premiumOwnerCurrent(owner) {
+      return !!owner && authUser?.id === owner.id && authUser.email === owner.email && _authSessionEpoch === owner.epoch;
+    }
+    function _discardLegacyPremiumFlags() {
+      try {
+        for (const key of [PREMIUM_KEY, WHITELIST_KEY, 'nefroquest-premium-sig', 'nefroquest-whitelist-sig']) {
+          localStorage.removeItem(key);
+        }
+      } catch { /* Storage indisponível não bloqueia uma confirmação do servidor. */ }
+    }
+    function _invalidatePremiumCache() {
+      ++_premiumProfileRevision;
+      _verifiedPremium = _premiumProfileResolved = _premiumProfileFlight = null;
+      _discardLegacyPremiumFlags();
+    }
+    function isPremium() {
+      return isAdminUser() || (_premiumOwnerCurrent(_verifiedPremium) &&
+        (_verifiedPremium.expiresAt === null || _verifiedPremium.expiresAt > Date.now()));
+    }
     window.isPremium = isPremium;
     window._invalidatePremiumCache = _invalidatePremiumCache;
 
-    // ── Cache de isPremium (evita 2x localStorage por resposta) ──
-    let _isPremiumCache = null;
-    let _premiumProfileRevision = 0;
-    function isPremium() {
-      if (isAdminUser()) return true;
-      if (!authUser) return false; // sem conta ativa, localStorage não conta
-      const { id, email } = authUser;
-      const epoch = _authSessionEpoch;
-      if (_isPremiumCache && _isPremiumCache.id === id && _isPremiumCache.email === email && _isPremiumCache.epoch === epoch) {
-        return _isPremiumCache.value;
-      }
-
-      const sig = localStorage.getItem('nefroquest-premium-sig');
-      const expectedSig = _generatePremiumSignature(id);
-      const hasPremium = localStorage.getItem(PREMIUM_KEY) === '1' && sig === expectedSig;
-
-      const wlSig = localStorage.getItem('nefroquest-whitelist-sig');
-      const expectedWlSig = _generatePremiumSignature(email);
-      const hasWhitelist = localStorage.getItem(WHITELIST_KEY) === '1' && wlSig === expectedWlSig;
-
-      const value = hasPremium || hasWhitelist;
-      _isPremiumCache = { id, email, epoch, value };
-      return value;
-    }
-    function _invalidatePremiumCache() { _isPremiumCache = null; }
-
-    function _saveVerifiedPremium(id) {
-      if (!id || authUser?.id !== id) return false;
-      // A confirmação do pagamento também invalida leituras de perfil anteriores.
-      ++_premiumProfileRevision;
-      _invalidatePremiumCache();
-      localStorage.setItem('nefroquest-premium-sig', _generatePremiumSignature(id));
-      localStorage.setItem(PREMIUM_KEY, '1');
-      localStorage.removeItem(WHITELIST_KEY);
-      localStorage.removeItem('nefroquest-whitelist-sig');
-      return true;
-    }
-
-    // O mensal grava a data de vencimento e nada no banco desliga is_premium depois;
-    // por isso a data também é conferida aqui. Vitalício tem a data vazia.
+    // Para vitalício, o banco retorna explicitamente null; valores inválidos não
+    // podem transformar um mensal em vitalício.
     function _premiumAtivo(profile) {
-      if (!profile?.is_premium) return false;
-      return !profile.premium_expires_at || new Date(profile.premium_expires_at) > new Date();
+      return profile?.is_premium === true && (profile.premium_expires_at === null ||
+        Date.parse(profile.premium_expires_at) > Date.now());
     }
     window._premiumAtivo = _premiumAtivo;
 
-    async function _loadPremiumFromDB() {
-      if (!_supaClient || !authUser) return;
-      if (isAdminUser()) return;
-      const client = _supaClient;
-      const { id, email } = authUser;
-      const epoch = _authSessionEpoch;
+    function _loadPremiumFromDB() {
+      if (!_supaClient || !authUser) return Promise.resolve(false);
+      if (isAdminUser()) return Promise.resolve(true);
+      const client = _supaClient, owner = _premiumOwner();
+      if (!owner) return Promise.resolve(false);
+      _discardLegacyPremiumFlags();
       const revision = ++_premiumProfileRevision;
-      const current = () => revision === _premiumProfileRevision && _supaClient === client && _authSessionEpoch === epoch &&
-        authUser && authUser.id === id && authUser.email === email;
+      const current = () => revision === _premiumProfileRevision &&
+        _supaClient === client && _premiumOwnerCurrent(owner);
+      const flight = { owner, revision, promise: null, startedAt: Date.now() };
+      _premiumProfileFlight = flight;
+      flight.promise = (async () => {
+        try {
+          const { data: profile, error } = await client
+            .from('profiles').select('is_premium, premium_expires_at').eq('id', owner.id).single();
+          // Erro de rede não revoga uma concessão verificada nesta sessão.
+          if (error || !current() || typeof profile?.is_premium !== 'boolean' ||
+              (profile.is_premium && profile.premium_expires_at !== null &&
+                !Number.isFinite(Date.parse(profile.premium_expires_at)))) return false;
+          if (_premiumAtivo(profile)) {
+            _verifiedPremium = { ...owner, source: 'profile',
+              expiresAt: profile.premium_expires_at === null ? null : Date.parse(profile.premium_expires_at) };
+            _premiumProfileResolved = { ...owner, source: 'profile', revision };
+            return true;
+          }
+          // Um perfil explicitamente inativo revoga acesso por compra; a lista
+          // de acesso é outra fonte e pode estar transitoriamente indisponível.
+          if (_premiumOwnerCurrent(_verifiedPremium) && _verifiedPremium.source === 'profile') {
+            _verifiedPremium = null;
+            _premiumProfileResolved = null;
+          }
+          const { data: wl, error: wlError } = await client
+            .from('access_whitelist').select('email').eq('email', owner.email).maybeSingle();
+          if (wlError || !current()) return false;
+          _verifiedPremium = wl?.email === owner.email && !!owner.email
+            ? { ...owner, source: 'whitelist', expiresAt: null } : null;
+          _premiumProfileResolved = { ...owner, revision };
+          return !!_verifiedPremium;
+        } catch { return false; }
+      })().finally(() => { if (_premiumProfileFlight === flight) _premiumProfileFlight = null; });
+      return flight.promise;
+    }
+    function _premiumAccessKnown() {
+      return isPremium() || (_premiumOwnerCurrent(_premiumProfileResolved) &&
+        _premiumProfileResolved.source !== 'profile');
+    }
+    const PREMIUM_CHECK_TIMEOUT_MS = 8000;
+    async function _awaitPremiumAccess({ refresh = false } = {}) {
+      if (isAdminUser()) return 'premium';
+      const owner = _premiumOwner();
+      if (!owner) return 'free';
+      if (!refresh && _premiumAccessKnown()) return isPremium() ? 'premium' : 'free';
+      if (!_supaClient) return 'pending';
+      const flight = _premiumProfileFlight;
+      const reuse = !refresh && _premiumOwnerCurrent(flight?.owner) &&
+        Date.now() - flight.startedAt < PREMIUM_CHECK_TIMEOUT_MS;
+      const request = reuse ? flight.promise : _loadPremiumFromDB();
+      const revision = _premiumProfileFlight?.revision;
+      let timer;
       try {
-        const { data: profile, error } = await client
-          .from('profiles')
-          .select('is_premium, premium_expires_at')
-          .eq('id', id)
-          .single();
-        // Falha de rede não é resposta: sem isto, quem pagou perdia o premium guardado.
-        if (error || !current()) return;
-        if (_premiumAtivo(profile)) {
-          _saveVerifiedPremium(id);
-          return;
-        } else {
-          localStorage.removeItem(PREMIUM_KEY);
-          localStorage.removeItem('nefroquest-premium-sig');
-          _invalidatePremiumCache();
+        const completed = await Promise.race([
+          request.then(() => true),
+          new Promise(resolve => { timer = setTimeout(() => resolve(false), PREMIUM_CHECK_TIMEOUT_MS); })
+        ]);
+        if (!_premiumOwnerCurrent(owner)) return 'stale';
+        if (completed && revision === _premiumProfileResolved?.revision && _premiumAccessKnown()) {
+          return isPremium() ? 'premium' : 'free';
         }
-        // Check whitelist
-        const { data: wl, error: wlError } = await client
-          .from('access_whitelist')
-          .select('email')
-          .eq('email', email)
-          .maybeSingle();
-        if (wlError || !current()) return;
-        if (wl?.email) {
-          localStorage.setItem(WHITELIST_KEY, '1');
-          localStorage.setItem('nefroquest-whitelist-sig', _generatePremiumSignature(email));
-        } else {
-          localStorage.removeItem(WHITELIST_KEY);
-          localStorage.removeItem('nefroquest-whitelist-sig');
-        }
-        _invalidatePremiumCache();
-      } catch(e) {}
+        return 'pending';
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    function _needsJourneyPremiumCheck() {
+      return !_guestMode && !!authUser && !isPremium() && getEntitlementQuestionsAnswered() >= FREE_QUESTIONS_LIMIT;
+    }
+    let _journeyPremiumCheck = null;
+    function _showJourneyPremiumCheck() {
+      const owner = _premiumOwner();
+      const binding = _captureJourneyBinding();
+      const question = state.current;
+      const journey = document.getElementById('mainApp');
+      if (!journey || journey.inert || journey.classList.contains('hidden')) return;
+      if (_premiumAccessKnown()) { showPricingModal(); return; }
+      if (_journeyPremiumCheck?.question === question &&
+          _premiumOwnerCurrent(_journeyPremiumCheck.owner) &&
+          _matchesJourneyBinding(_journeyPremiumCheck.binding)) return;
+      // Mantém o controle de próxima questão acessível como nova tentativa
+      // sem abrir cobrança antes da resposta do servidor.
+      ui.nextBtn.classList.remove('hidden');
+      ui.dockNextBtn?.classList.remove('disabled');
+      ui.nextBtn.textContent = 'Verificar meu acesso';
+      const check = { owner, binding, question };
+      _journeyPremiumCheck = check;
+      _awaitPremiumAccess().then(access => {
+        if (_journeyPremiumCheck !== check) return;
+        _journeyPremiumCheck = null;
+        if (journey.inert || journey.classList.contains('hidden') || !_matchesJourneyBinding(binding) ||
+            !_premiumOwnerCurrent(owner) || state.current !== question || !state.answered) return;
+        if (access === 'premium') ui.nextBtn.textContent = 'Próxima pergunta';
+        else if (access === 'free') showPricingModal();
+        else _toast('Não foi possível verificar seu acesso. Tente novamente.', 'info', 4000);
+      });
     }
 
     function _incrementQuestionsAnswered() {
@@ -1526,6 +1609,7 @@
       _mirrorLegacySave(raw);
       _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
       _guestRecoveryAccepted = _guestSavePair(raw);
+      _persistHardcoreBest(_hardcoreAttemptCorrect(saveData));
       _scheduleCloudSync();
       return true;
     }
@@ -1705,9 +1789,11 @@
       _retireChestRewardContext();
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
+      const previousHardcore = _hardcoreSavedCorrect();
       try { _writeSaveTombstone('journey'); } catch (e) {
         _warnStorageFull(); return false;
       }
+      _persistHardcoreBest(previousHardcore);
       _stateData.forjaPending = null;
       _stateData.gameStarted = false;
       localStorage.removeItem(SAVE_KEY);
@@ -2295,8 +2381,11 @@
       try { unlockedRefs    = JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'); } catch(e) {}
       try { acidBaseProgress= JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}'); } catch(e) {}
       try { srData          = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch(e) {}
+      const stats = getNormalGameStats();
+      // Uma conta não importa/exporta o recorde que ficou no perfil visitante.
+      if (_hardcoreRecordFor(stats, _currentSaveOwner()) === null) delete stats.bestHardcoreCorrect;
       const progress = {
-        stats:            getNormalGameStats(),
+        stats,
         achievements,
         mastered,
         unlockedArticles,
@@ -2325,7 +2414,7 @@
         .eq('id', binding.owner).eq('game_progress_version', version)
         .select('game_progress_version').maybeSingle();
       if (!_cloudBindingCurrent(binding)) return 'obsolete';
-      if (error?.code === '40001' || (!error && !data)) return 'conflict';
+      if (error?.code === 'PT409' || error?.code === '40001' || (!error && !data)) return 'conflict';
       if (error || data.game_progress_version !== version + 1) throw new Error('Gravação do progresso não confirmada');
       _rememberCloudProgress(binding.owner, { version: data.game_progress_version, progress });
       _cloudStatus('Salvo na nuvem');
@@ -2537,6 +2626,10 @@
           bestScore:              Math.max(local.bestScore || 0,              cloud.stats.bestScore || 0),
           questionsAnsweredAllTime: Math.max(local.questionsAnsweredAllTime || 0, cloud.stats.questionsAnsweredAllTime || 0)
         };
+        const owner = _currentSaveOwner();
+        const hardcore = _maxHardcoreCorrect(_hardcoreRecordFor(local, owner), _hardcoreRecordFor(cloud.stats, owner),
+          _hardcoreSavedCorrect(), cloud.save?.saveOwner === owner ? _hardcoreAttemptCorrect(cloud.save) : null);
+        if (hardcore !== null) merged.bestHardcoreCorrect = { owner, correct: hardcore };
         try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) { persisted = false; console.error('[NQ] saveStats failed', e); }
         _invalidateStatsCache();
       }
@@ -2861,7 +2954,8 @@
         const bankMap = {};
         questionBank.forEach(q => bankMap[q.id] = q);
         state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
-        state.idx = save.idx || 0;
+        // Retiring an identity must not shift the cursor past the next eligible item.
+        state.idx = save.queueIds.slice(0, save.idx || 0).filter(id => bankMap[id]).length;
         if (save.recentIds) _recentIds = save.recentIds.slice(-HISTORY_SIZE);
         if ((window.NQPilot?.active || save.classBenefits) && save.currentQuestionId && bankMap[save.currentQuestionId] && presentation.legacy) {
           state.current = legacyCurrent;
@@ -3364,7 +3458,8 @@
       const deck=[];
       for(let i=0;i<topics.length;i++){
         const t=topics[i];
-        const d=t.diff==='hard'?Math.min(12,8+Math.floor(i/30)):Math.min(12,4+Math.floor(i/25));
+        const sourceIndex=window.NQQuestionSourcePositions ? window.NQQuestionSourcePositions.position(t.qid,i) : i;
+        const d=t.diff==='hard'?Math.min(12,8+Math.floor(sourceIndex/30)):Math.min(12,4+Math.floor(sourceIndex/25));
         // Usar campos completos: opts, ans, exp (não abreviados)
         const opts = (t.opts || t.o || []).slice();
         const ans  = (t.ans !== undefined) ? t.ans : (t.a !== undefined ? t.a : 0);
@@ -3411,11 +3506,13 @@
     function _loadTopics(options) {
       // A primeira carta lê refsDB: o download ocioso pode ainda estar em
       // andamento quando a pessoa entra rapidamente na Jornada.
-      const referencesReady = carregarDadosGrimorio(options?.refsOnly ? {refsOnly:true} : undefined);
+      const referencesReady = carregarDadosGrimorio({refsOnly:true});
       if (questionBank) return referencesReady.then(_initializeQuestionRevisionCatalog);
       if (!_topicsPromise) _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
-        s.src = 'data/topics.js';
+        // The older worker canonicalizes only ?v=; ?release= also bypasses its
+        // unversioned data cache during the first visit after an update.
+        s.src = 'data/topics.js?release=17.32';
         s.onload  = () => {
           questionBank = buildDeck();
           // E1/IRT: expõe o banco para o calculateUserTheta (utils.js está fora
@@ -4168,6 +4265,21 @@
       return bonus;
     }
     function effectiveMaxLives() { return (state.maxLives || 3) + _equipLifeBonus(); }
+    // Reusa o registro persistente de efeitos por jornada, sem mudar o formato do save.
+    const _EGIDE_FIRST_LIFE = 'egide-first-life-v1';
+    function _equipJourneyItem(slot, item) {
+      const hadLifeBonus = _LIFE_BONUS_ITEMS.has(state.equipment?.[slot]?.n);
+      const getsLifeBonus = _LIFE_BONUS_ITEMS.has(item?.n);
+      // Trocar um item mantém o mesmo equipamento da jornada para o HUD.
+      _stateData.equipment[slot] = { ...item };
+      if (getsLifeBonus && !hadLifeBonus && !state.legendaryAbilityUsed?.[_EGIDE_FIRST_LIFE] &&
+          state.gameStarted && !state.gameOver && state.lives > 0) {
+        _stateData.legendaryAbilityUsed = { ...state.legendaryAbilityUsed, [_EGIDE_FIRST_LIFE]: true };
+        _stateData.lives = Math.min(effectiveMaxLives(), state.lives + 1);
+      } else if (hadLifeBonus && !getsLifeBonus) {
+        _stateData.lives = Math.min(effectiveMaxLives(), state.lives);
+      }
+    }
     const _LEG_LABELS = {
       'Excalibur do Néfron':'⚔️ Anula 1 dano',
       'Armadura Primeva':'🛡️ Salva última vida',
@@ -4180,7 +4292,7 @@
       'Ressurreição Plena':'👑 Revive com vida cheia',
       'Espada Nefroprotetora':'🎯 50/50 em 1 difícil',
       'Orbe da Cistatina':'🔮 Dica do Oráculo (1 difícil)',
-      'Égide Dialítica':'❤️ +1 vida máxima',
+      'Égide Dialítica':'❤️ +1 vida máxima · a vida extra vem cheia na primeira vez em que for equipada na jornada',
     };
 
     function renderEquip(){
@@ -4326,11 +4438,6 @@
       $('guardianLivesCount').textContent = `${Math.max(0, state.lives)}/${_ml}`;
       $('guardianVitality').setAttribute('aria-label', `Vidas: ${Math.max(0, state.lives)} de ${_ml}`);
       ui.gold.textContent=state.gold;
-      // Streak visual com multiplicador
-      const sm = getStreakMultiplier(state.streak);
-      const streakMultiplier = $('guardianStreakMultiplier');
-      streakMultiplier.hidden = sm.mult <= 1;
-      streakMultiplier.textContent = sm.mult > 1 ? `×${sm.mult.toLocaleString('pt-BR')}` : '';
       const streakTile = ui.streak.closest('.tile');
       if(streakTile) {
         streakTile.className = 'tile tile-streak';
@@ -4545,7 +4652,8 @@
     }
 
     function renderRefs(keys, references = refsDB){
-      const list = [...new Set(keys)].map(k => ({ key: k, ref: references[k] })).filter(x => x.ref);
+      if (!window.NQLibraryCatalog) { ui.refs.innerHTML = '<div class="ref-card" role="status">Fontes indisponíveis neste momento. Você pode continuar a jornada.</div>'; return; }
+      const list = [...new Set(keys)].map(k => ({ key: k, ref: references[k] || (window.NQLibraryCatalog?.isRetiredReference?.(k) ? {} : null) })).filter(x => x.ref);
       if(!list.length){ ui.refs.innerHTML=''; return; }
 
       // Determinar cor de acento baseada no badge dominante
@@ -4604,6 +4712,13 @@
       };
 
       const cardsHTML = list.map(({ key, ref }) => {
+        const retirement = window.NQLibraryCatalog?.retiredReferences?.find(item => item.id === key);
+        if (retirement) return `
+          <div class="ref-card" data-ref-retired="true" style="--ref-accent:#64748b">
+            <div class="ref-card-top"><span class="ref-icon" aria-hidden="true">🔒</span><span class="ref-title">${escapeHtml(retirement.title)}</span><span class="ref-badge">HISTÓRICO</span></div>
+            <div class="ref-meta">Referência retirada</div><div class="ref-impacto">${escapeHtml(retirement.reason)}</div>
+            <div class="ref-actions"><button class="ref-resumo-btn" data-arg="${escapeHtml(key)}" disabled aria-disabled="true"><span data-ref-summary-label>Resumo retirado</span></button></div>
+          </div>`;
         const accent = ref.badgeColor || '#6366f1';
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
                              (ref.impacto && (ref.impacto.includes('não') || ref.impacto.includes('n\u00e3o'))) ? 'amber' : '';
@@ -4644,7 +4759,7 @@
       // A leitura histórica deve abrir a mesma referência exibida no cartão,
       // mesmo quando o catálogo atual já contém outra revisão dessa fonte.
       ui.refs.querySelectorAll('.ref-resumo-btn').forEach((button, index) => {
-        _refResumoSources.set(button, list[index].ref);
+        if (!window.NQLibraryCatalog?.isRetiredReference?.(list[index].key)) _refResumoSources.set(button, list[index].ref);
       });
     }
 
@@ -4854,11 +4969,13 @@
       notice.className = 'nq-version-notice';
       notice.setAttribute('role', 'status');
       notice.style.cssText = 'margin:16px 0;padding:16px;border:1px solid var(--blue);border-radius:12px;line-height:1.6;overflow-wrap:anywhere';
-      const current = window.questionRevisionCatalog?.current(String(state.current.id), 'main');
+      const catalog = window.questionRevisionCatalog, qid = String(state.current.id);
+      const current = catalog?.current(qid, 'main') || catalog?.replacement?.(qid, 'main');
+      const replacement = !!current && current.binding.qid !== qid;
       if (wasAnswered) {
         notice.innerHTML = `<strong>Avaliação registrada na versão ${escapeHtml(revision.release)}.</strong>
           <p>Sua escolha, avaliação e recursos foram mantidos.</p>
-          ${current?.source ? `<details><summary>Ver conteúdo atual da questão</summary>
+          ${current?.source ? `<details><summary>${replacement ? 'Consultar nova questão, sem alterar a avaliação anterior' : 'Ver conteúdo atual da questão'}</summary>
             <p>${escapeHtml(current.source.q)}</p>
             <p><strong>Resposta na versão atual:</strong> ${escapeHtml(current.source.o[current.source.a])}</p>
             <p>${escapeHtml(current.source.e || '')}</p>
@@ -4866,9 +4983,9 @@
         if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
         window.resetMentorQuestion?.();
       } else {
-        notice.innerHTML = `<strong>Esta pergunta foi atualizada.</strong>
-          <p>A versão ${escapeHtml(revision.release)} permanece aqui para consulta. Use a versão atual antes de responder; esta troca não consome resposta, vida ou benefício.</p>
-          <button type="button" class="btn gold" data-action="useCurrentCampaignQuestionRevision">Usar versão atual</button>`;
+        notice.innerHTML = `<strong>${replacement ? 'Esta pergunta foi substituída.' : 'Esta pergunta foi atualizada.'}</strong>
+          <p>A versão ${escapeHtml(revision.release)} permanece aqui para consulta. ${replacement ? 'Você pode responder à nova questão; a resposta anterior continua preservada.' : 'Use a versão atual antes de responder.'} Esta troca não consome resposta, vida ou benefício.</p>
+          <button type="button" class="btn gold" data-action="useCurrentCampaignQuestionRevision">${replacement ? 'Responder nova questão' : 'Usar versão atual'}</button>`;
         notice.querySelector('button').disabled = !current?.source;
         [...ui.options.querySelectorAll('.option')].forEach(option => { option.disabled = true; });
         ui.feedback.textContent = 'Confira a versão atual para responder.';
@@ -4879,7 +4996,8 @@
       if (!state.gameStarted || state.answered || isProgressSandbox() ||
           !_currentQuestionRevision?.historical || _currentQuestionRevision.policy.pending !== 'update-required') return false;
       const binding = _captureJourneyBinding();
-      const current = window.questionRevisionCatalog?.current(String(state.current.id), 'main');
+      const catalog = window.questionRevisionCatalog, qid = String(state.current.id);
+      const current = catalog?.current(qid, 'main') || catalog?.replacement?.(qid, 'main');
       const next = current?.source && window.NQAnswers?.present(current.source);
       if (!next) return false;
       let expectedRaw;
@@ -4888,7 +5006,7 @@
         if (!expectedRaw || (!isCharacterPilot() && localStorage.getItem(CANONICAL_SAVE_KEY) === null &&
             _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline)) return false;
       } catch (_) { return false; }
-      const previous = {question:state.current, answer:state.questionAnswer,
+      const previous = {question:state.current, answer:state.questionAnswer, recent:_recentIds.slice(),
         revision:_currentQuestionRevision, origin:_currentQuestionRevisionOriginRaw};
       const previousStaging = _normalJourneyStaging;
       _normalJourneyStaging = true;
@@ -4899,11 +5017,16 @@
         _stateData.questionAnswer = null;
         _currentQuestionRevision = current;
         _currentQuestionRevisionOriginRaw = previous.origin || expectedRaw;
+        if (String(next.id) !== qid) {
+          _recentIds.push(next.id);
+          if (_recentIds.length > HISTORY_SIZE) _recentIds.shift();
+        }
         committed = _doSaveGame() === true && _matchesJourneyBinding(binding);
         return committed;
       } finally {
         if (!committed) {
           _stateData.current = previous.question; _stateData.questionAnswer = previous.answer;
+          _recentIds = previous.recent;
           _currentQuestionRevision = previous.revision; _currentQuestionRevisionOriginRaw = previous.origin;
         }
         _normalJourneyStaging = previousStaging;
@@ -4923,6 +5046,10 @@
 
     function renderQuestion(){
       if (_loadingNextQuestion) return;
+      if (state.answered && !_pilotRestoredQuestion && _needsJourneyPremiumCheck()) {
+        _showJourneyPremiumCheck();
+        return;
+      }
       clearTimeout(_questionRenderUnlockTimer);
       _loadingNextQuestion = true;
       const questionBinding = _captureJourneyBinding();
@@ -4963,6 +5090,8 @@
         return;
       }
       state.current = q;
+      const position = document.getElementById('journeyQuestionPosition');
+      if (position) position.textContent = state.idx > 0 ? 'Questão ' + state.idx : '';
       if (!restoringPilot) {
         if (!isProgressSandbox()) _currentQuestionRevision =
           (window.questionRevisionCatalog || _questionRevisionVerifier())?.current(String(q.id), 'main') || null;
@@ -5108,6 +5237,17 @@
           `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}`,
       };
 
+      // One deadline covers session lookup, delivery and response body. Aborting
+      // a request does not prove that the server did not receive the report.
+      const controller = new AbortController();
+      let deadlineTimer;
+      const deadline = new Promise((_, reject) => {
+        deadlineTimer = setTimeout(() => {
+          controller.abort();
+          reject(new Error('Report confirmation timed out'));
+        }, 30000);
+      });
+      const waitFor = operation => Promise.race([operation, deadline]);
       try {
         // Headers de auth obrigatórios (verify_jwt): sem apikey/Authorization o
         // Supabase rejeita com 401 antes de chegar na função. Quando logado,
@@ -5117,12 +5257,13 @@
           || (typeof SUPA_KEY !== 'undefined' ? SUPA_KEY : '');
         let _authToken = _supaKey;
         try {
-          const _sess = await (typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession();
+          const _sess = await waitFor((typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession());
           _authToken = _sess?.data?.session?.access_token || _supaKey;
-        } catch {}
+        } catch (err) { if (controller.signal.aborted) throw err; }
         if (!isCurrent()) return;
-        const res = await fetch(`${SUPA_URL}/functions/v1/send-flag`, {
+        const res = await waitFor(fetch(`${SUPA_URL}/functions/v1/send-flag`, {
           method: 'POST',
+          signal: controller.signal,
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -5130,9 +5271,9 @@
             Authorization: `Bearer ${_authToken}`,
           },
           body: JSON.stringify(body),
-        });
+        }));
         let data = {};
-        try { data = await res.json(); } catch {}
+        try { data = await waitFor(res.json()); } catch (err) { if (controller.signal.aborted) throw err; }
         if (!isCurrent()) return;
         if (res.ok && data.success) {
           status.className = 'flag-status flag-status--success';
@@ -5157,10 +5298,14 @@
         if (!isCurrent()) return;
         // Erro de rede / função inexistente / CORS bloqueado.
         status.className = 'flag-status flag-status--error';
-        status.textContent = '❌ Falha de conexão com o servidor. Verifique sua rede.';
+        status.textContent = controller.signal.aborted
+          ? 'Não foi possível confirmar o envio. Seu texto foi mantido. Você pode tentar novamente.'
+          : '❌ Falha de conexão com o servidor. Verifique sua rede.';
         btn.disabled = false;
         btn.textContent = '📧 Enviar';
         _track('error_flag_submit', { msg: String(err) });
+      } finally {
+        clearTimeout(deadlineTimer);
       }
     }
 
@@ -5345,9 +5490,11 @@
       let resolvido = false;
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
+        // Baú e Julgamento mantêm o salvamento normal da jornada. No Piloto,
+        // a recompensa precisa passar pela transação do progresso isolado.
         if (isCharacterPilot()) {
-          if (!_forjaTransacao(() => { _stateData.equipment = {...state.equipment, [slot]:item}; })) return;
-        } else state.equipment[slot] = item;
+          if (!_forjaTransacao(() => { _equipJourneyItem(slot, item); })) return;
+        } else _equipJourneyItem(slot, item);
         const msg = `⬆️ Equipou **${item.n}** (${_rarLabel[item.rar] || item.rar}) no slot ${slotLabels[slot]||slot}.`;
         if (onDone) onDone(msg);
         renderHUD(); updateBadges(); saveGame();
@@ -5362,11 +5509,11 @@
           if (isCharacterPilot()) {
             if (!_forjaTransacao(() => {
               _stateData.gold += val;
-              _stateData.equipment = {...state.equipment, [slot]:item};
+              _equipJourneyItem(slot, item);
             })) return;
           } else {
             state.gold += val;
-            state.equipment[slot] = item;
+            _equipJourneyItem(slot, item);
           }
           const msg = `⬆️ ${slotLabels[slot]}: **${currentItem.n}** → **${item.n}**. ${currentItem.n} convertido em ${val}💰.`;
           if (onDone) onDone(msg);
@@ -5555,7 +5702,8 @@
       if (recordsProgress && isCorrect && state.current?.r?.length) {
         if (typeof _unlockRefsFromQuestion === 'function') {
           const refs = state.current.r;
-          _recordCharacterProgress(() => _unlockRefsFromQuestion(refs));
+          const qid = state.current.id;
+          _recordCharacterProgress(() => _unlockRefsFromQuestion(refs, qid));
         }
       }
       const st=total();
@@ -5929,9 +6077,8 @@
           renderHUD(); saveGame(); return;
         }
         finishGame();
-      } else if (!_guestMode && !isPremium() && getEntitlementQuestionsAnswered() >= FREE_QUESTIONS_LIMIT) {
-        // Convidados não bloqueiam aqui — usam _showGuestHook (hook suave em 15 questões)
-        showPricingModal();
+      } else if (_needsJourneyPremiumCheck()) {
+        _showJourneyPremiumCheck();
       } else {
         ui.nextBtn.classList.remove('hidden');
         if (ui.dockNextBtn) {
@@ -6599,6 +6746,8 @@
       const anterior = {
         gold: state.gold,
         equipment: _forjaCopia(state.equipment),
+        lives: state.lives,
+        legendaryAbilityUsed: { ...state.legendaryAbilityUsed },
         obtainedItems: [...state.obtainedItems],
         allItemsCollectedNotified: state.allItemsCollectedNotified,
         forjaPending: state.forjaPending ? _forjaCopia(state.forjaPending) : null,
@@ -6879,7 +7028,7 @@
           _markObtained(novo.n);
           if (notificarColecao) _stateData.allItemsCollectedNotified = true;
           _stateData.forjaPending = precisaEscolher ? { id, tipo, custo, slot: rolled.slot, atual, novo } : null;
-          if (!precisaEscolher) _stateData.equipment = { ...state.equipment, [rolled.slot]: { ...novo } };
+          if (!precisaEscolher) _equipJourneyItem(rolled.slot, novo);
         });
         if (!sucesso) {
           _forja.aviso = 'Não foi possível salvar a forja. Seu ouro e equipamento foram mantidos. Libere espaço e tente novamente.';
@@ -6937,7 +7086,7 @@
         const venda = _itemSellVal(vendido);
         const sucesso = _forjaTransacao(() => {
           _stateData.gold += venda;
-          _stateData.equipment = { ...state.equipment, [p.slot]: { ...mantido } };
+          if (substituir) _equipJourneyItem(p.slot, mantido);
           _stateData.forjaPending = null;
         });
         if (!sucesso) {
@@ -7089,6 +7238,7 @@
     function _openChestDirect(){return _atomicPurchasedChest(_openChestDirectCore);}
     function _openChestDirectCore(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
@@ -7097,7 +7247,9 @@
         log('💰 Ouro insuficiente! Você precisa de ' + chestCost + ' ouro.');
         return;
       }
-      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      const availableArticles = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles).map(idx => nefroArticles[idx])
+        : nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
       if (availableArticles.length === 0) {
         log('🎉 Você já desbloqueou todos os artigos!');
         return;
@@ -7247,6 +7399,7 @@
     function openChest() {return _atomicPurchasedChest(openChestCore);}
     function openChestCore() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
@@ -7256,7 +7409,9 @@
         return;
       }
       
-      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      const availableArticles = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles).map(idx => nefroArticles[idx])
+        : nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
       
       if (availableArticles.length === 0) {
         log('🎉 Você já desbloqueou todos os artigos!');
@@ -7298,8 +7453,15 @@
     const _claimedChestReceipts = new WeakSet();
     let _chestRewardWatch = null;
     let _pendingVictoryResults = null;
+    function _chestLibraryReady() {
+      return !!window.NQLibraryCatalog && typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles);
+    }
+    function _retryChestLibrary() {
+      if (typeof carregarDadosGrimorio !== 'function') return;
+      carregarDadosGrimorio().then(_flushChestRewards).catch(() => {});
+    }
     function hasPendingChestReward() {
-      return !state.gameOver && _pendingChestRewards.some(entry => !entry.direct && _chestRewardCurrent(entry.binding));
+      return _chestLibraryReady() && !state.gameOver && _pendingChestRewards.some(entry => !entry.direct && _chestRewardCurrent(entry.binding));
     }
     function hasPendingVictoryResults() {
       return !!_pendingVictoryResults && _chestRewardCurrent(_pendingVictoryResults.binding) &&
@@ -7388,12 +7550,12 @@
       const entry = _pendingChestRewards[0], main = document.getElementById('mainApp');
       const campaign = !document.hidden && state.gameStarted && !state.gameOver && _chestRewardVisible(main);
       for (const pending of _pendingChestRewards) {
-        if (pending.popup && !pending.direct && !campaign) _withdrawChestReward(pending);
+        if (pending.popup && (!_chestLibraryReady() || (!pending.direct && !campaign))) _withdrawChestReward(pending);
       }
       const dialog = [...document.querySelectorAll('[aria-modal="true"],dialog[open]')].some(_chestRewardVisible);
       const focused = document.activeElement;
       const otherFocus = focused && focused !== document.body && !main?.contains(focused) && _chestRewardVisible(focused);
-      if (entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
+      if (_chestLibraryReady() && entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
       if (hasPendingVictoryResults() && !hasPendingChestReward() && campaign && !dialog) {
         const dock = document.getElementById('mobileBottomDock');
         const nativeDockFocus = _chestRewardVisible(dock) && dock.contains(focused);
@@ -7408,6 +7570,7 @@
       if (_claimedChestReceipts.has(receipt) || _pendingChestRewards.some(entry => (entry.receipt === receipt || (receipt.id && entry.receipt.id === receipt.id)))) return;
       const entry = { binding, readyAt, receipt, ready: false, popup: null, timer: null, claimTimer: null };
       _pendingChestRewards.push(entry);
+      if (!_chestLibraryReady()) _retryChestLibrary();
       entry.timer = setTimeout(() => {
         entry.timer = null;
         entry.ready = true;
@@ -7441,6 +7604,7 @@
 
     function triggerChestRewardPopup(entry = null) {
       if(state.gameOver || document.getElementById('autoChestPopup')){ return; }
+      if (!_chestLibraryReady()) { _toast('Biblioteca indisponível. O baú continua guardado.', 'info'); _retryChestLibrary(); return; }
       // Keep the existing direct render API used by previews and accessibility
       // checks. Only accepted answer callbacks use the delayed queue above.
       if (!entry) {
@@ -7475,6 +7639,13 @@
       const entry = _pendingChestRewards.find(candidate => candidate.popup === popup);
       // Ilustração e botão conduzem à mesma abertura, sem recompensa duplicada.
       if (!popup || popup.dataset.claiming || !entry || !_chestRewardCurrent(entry.binding) || state.gameOver) return;
+      if (!_chestLibraryReady()) {
+        _withdrawChestReward(entry);
+        _toast('Biblioteca indisponível. O baú continua guardado.', 'info');
+        _watchChestRewards();
+        _retryChestLibrary();
+        return;
+      }
       popup.dataset.claiming = '1';
       popup.querySelector('.nqch-dialog').classList.add('opening');
       popup.querySelector('.nqch-dialog').setAttribute('aria-busy', 'true');
@@ -7486,6 +7657,13 @@
       entry.claimTimer = setTimeout(() => {
         entry.claimTimer = null;
         if (!_pendingChestRewards.includes(entry) || !_chestRewardCurrent(entry.binding) || state.gameOver) return;
+        if (!_chestLibraryReady()) {
+          _withdrawChestReward(entry);
+          _toast('Biblioteca indisponível. O baú continua guardado.', 'info');
+          _watchChestRewards();
+          _retryChestLibrary();
+          return;
+        }
         if (!entry.direct && (document.hidden || !_chestRewardVisible(document.getElementById('mainApp')))) {
           _withdrawChestReward(entry);
           _watchChestRewards();
@@ -7522,6 +7700,7 @@
       const store = _durableChestStore();
       if (!store?.writable || !store.beginTransaction()) return false;
       const snapshot = {score:state.score, gold:state.gold, chestsOpened:state.chestsOpened,
+        lives:state.lives, legendaryAbilityUsed:state.legendaryAbilityUsed,
         equipment:JSON.parse(JSON.stringify(state.equipment)), obtainedItems:[...(state.obtainedItems || [])]};
       const articles = unlockedArticles.slice();
       try {
@@ -7541,7 +7720,9 @@
       if (!receipt) return false;
       if (receipt.phase==='earned') {
         if (!_mutateDurableChest(id, r=>{
-          const available=nefroArticles.map((_,index)=>index).filter(index=>!unlockedArticles.includes(index));
+          const available = window.NQLibraryCatalog
+            ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles)
+            : nefroArticles.map((_, index) => index).filter(index => !unlockedArticles.includes(index));
           if (Math.random()<0.5 && available.length) {
             r.reward={kind:'article',articleIndex:available[Math.floor(Math.random()*available.length)]};
           } else {
@@ -7589,7 +7770,7 @@
           if(choice==='equip') {
             if(JSON.stringify(state.equipment[reward.slot])!==JSON.stringify(currentItem))throw Error('Equipamento mudou');
             if(currentItem && currentItem.n!=='Vazio')state.gold+=_itemSellVal(currentItem);
-            state.equipment[reward.slot]={...reward.item};
+            _equipJourneyItem(reward.slot, reward.item);
           } else state.gold+=_itemSellVal(reward.item);
           state.score+=20+state.chestsOpened*5;r.phase='consumed';r.choice=choice;
         }))return;
@@ -7603,10 +7784,13 @@
 
     function claimChestReward() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       
       // 50% scroll/article, 50% equipment
       const isScroll = Math.random() < 0.5;
-      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      const availableArticles = window.NQLibraryCatalog
+        ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles).map(idx => nefroArticles[idx])
+        : nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
       
       if (isScroll && availableArticles.length > 0) {
         const randomArticle = availableArticles[Math.floor(Math.random() * availableArticles.length)];
@@ -8692,7 +8876,8 @@
       const lines = [
         '🏆 NefroQuest: Ascension',
         tipo === 'campanha' ? `⚔️ Campanha — Nível ${data.level || '?'}` : `📝 Prova Simulada`,
-        data.correct !== undefined ? `📊 Acerto: ${data.pct}%  |  ${data.correct}/${data.total} corretas` : `📊 Acerto: ${data.pct}%`,
+        data.correct !== undefined ? `📊 ${tipo === 'prova' ? 'Pontuação' : 'Acerto'}: ${data.pct}%  |  ${data.correct}/${data.total} corretas` : `📊 Acerto: ${data.pct}%`,
+        ...(tipo === 'prova' ? [`📝 Em branco: ${data.blanks}`] : []),
         data.level ? `🎖️ Nível ${data.level}  |  ${data.score} pontos` : `⏱️ ${data.time}`,
         '',
         'Treine nefrologia em: nefroquest.vercel.app'
@@ -8706,10 +8891,11 @@
       }
     }
 
-    function _shareExamResult(pct, correct, total) {
-      const elapsed = _examState ? Math.floor((Date.now() - _examState.startTime) / 1000) : 0;
-      const m = Math.floor(elapsed/60), s = elapsed%60;
-      _shareResult('prova', { pct, correct, total, time: `${m}m${s}s` });
+    function _shareExamResult(pct, correct, total, elapsed, blanks) {
+      // The result view captures attempt time once; sharing later must not run that clock again.
+      if (!Number.isInteger(elapsed) || elapsed < 0 || !Number.isInteger(blanks) || blanks < 0) return;
+      const m = Math.floor(elapsed / 60), s = elapsed % 60;
+      _shareResult('prova', { pct, correct, total, blanks, time: `${m}m${s}s` });
     }
 
     // ============ OFFLINE BADGE ============
@@ -8788,7 +8974,7 @@
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
     document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      if (e.repeat || e.ctrlKey || e.altKey || e.metaKey) return;
       if (document.getElementById('nqDashboard') || document.querySelector('.modal.show, .study-mode-popup, .nqreader-overlay')) return;
       const target = e.target;
       const interactiveTarget = target instanceof Element

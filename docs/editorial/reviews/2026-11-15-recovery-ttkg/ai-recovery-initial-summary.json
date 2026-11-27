@@ -1,0 +1,187 @@
+{
+  "schema": "NQ_1727_ORACLE_STUDY_IMPLEMENTATION_PROOF_v1",
+  "author": "/root/editorial_inventory_1725",
+  "reviewedAtUTC": "2026-11-15T20:34:05.158Z",
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "baseCommit": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+  "branch": "codex/recovery-editorial-1727",
+  "ownedFiles": [
+    {
+      "file": "js/study-mode.js",
+      "sha256": "5a3b962ab68e480abad029c53726a9566991a60e89ae0293e95d02ac2f44223d"
+    },
+    {
+      "file": "tests/specs/302-ai-request-recovery.spec.ts",
+      "sha256": "a3ded85899d2f144bd5eaea9a3748214f62de8574a84a2da3d3b351afa8a3e06"
+    }
+  ],
+  "behavior": {
+    "deadlineMs": 30000,
+    "oneBudgetOver": [
+      "getAuthToken",
+      "fetch response headers",
+      "native Response.json"
+    ],
+    "abortOwnedController": true,
+    "settlesWhenExternalPromiseIgnoresAbort": true,
+    "lateWorkChecksSignalAndContext": true,
+    "timerAndAbortListenerCleanup": true,
+    "oracleCloseReopenKeepsPendingRequestUntilDeadline": true,
+    "oracleDraftConversationAndQuotaPreservedUntilSuccess": true,
+    "manualRetryOnly": true,
+    "noQuotaRefundPromise": true,
+    "sharedGetAuthTokenBackendAndSharedHelpersEditedByAuthor": false,
+    "diagnosisRetirement": [
+      "native exit",
+      "replacement of study surface",
+      "NQPilot context notification"
+    ],
+    "studyReplacement": {
+      "hydrateRetiredIDBeforeFiltering": true,
+      "usesPinnedCatalogRetiredPolicy": true,
+      "explicitConfirmationOnly": true,
+      "answeredOriginalCannotBeReplacedInPlace": true,
+      "originalRawAndProgressPreservedBeforeAnswer": true,
+      "noFSRSMigration": true,
+      "neutralNewObjectiveMessage": true
+    }
+  },
+  "validation": {
+    "aiRedBeforeProduct": {
+      "failed": 3,
+      "retryAttempts": 0,
+      "sourceSHA256": "3c0a962fafa1781eb8e0dff5318a3d22826aa71c819fcc4d5fb34979da673513"
+    },
+    "initialFullAttempt": {
+      "passed": 32,
+      "failed": 2,
+      "flaky": 0,
+      "reason": "Test action assumed authUser assignment emits NQPilot.onContextChange. Source disproved this; the action was corrected to native NQPilot.release, with all cancellation/settlement assertions retained. Prior result and test source are preserved."
+    },
+    "correctedAIOnly": {
+      "direct": 34,
+      "flaky": 0,
+      "failures": 0,
+      "skips": 0
+    },
+    "finalNativeRegression": {
+      "direct": 66,
+      "failures": 0,
+      "flaky": 0,
+      "skips": 0,
+      "retryAttempts": 0,
+      "projects": {
+        "chromium": 33,
+        "mobile": 33
+      },
+      "specs": {
+        "270-oracle-report-continuity.spec.ts": 8,
+        "272-ai-quota-ownership.spec.ts": 12,
+        "288-ai-quota-cache-failure.spec.ts": 12,
+        "302-ai-request-recovery.spec.ts": 34
+      },
+      "durationMs": 189915.38
+    },
+    "audits": {
+      "pageErrorCases": 66,
+      "pageErrors": 0,
+      "fullNetworkCounterCases": 54,
+      "unexpectedNonGET": 0,
+      "webSocketsInMeasuredCases": 0,
+      "auditNames": {
+        "oracle-report-audit": 8,
+        "quota-runtime": 12,
+        "ai-quota-cache-audit": 12,
+        "ai-request-recovery-audit": 34
+      },
+      "limit": "Twelve quota-runtime audits record page errors only; source routes block external writes/WebSockets, but counters are not invented for those cases."
+    },
+    "studyNativeRetirement": {
+      "red": 3,
+      "green": 6,
+      "projects": 2,
+      "retries": 0,
+      "fullSnapshotsAnsweredAndPending": true,
+      "legacyFutureQueueID": true,
+      "localProgressAndOriginalRawExact": true
+    },
+    "studyNodeRetirement": {
+      "red": 2,
+      "green": 2,
+      "failures": 0,
+      "skips": 0
+    },
+    "syntaxCheckPassed": true,
+    "diffCheckPassed": true
+  },
+  "environment": {
+    "realAuthSDKBlocked": true,
+    "realAIAndRemoteWritesBlocked": true,
+    "technicalQuestionsOnly": true,
+    "clock": "Native Playwright install/pause/runFor; no wall-clock30s test waits.",
+    "browserPath": "C:/Users/orlan/AppData/Local/ms-playwright",
+    "ownedPreviewPort": 5520,
+    "previewClosed": true,
+    "hostListenerCountAfterClose": 0,
+    "preflightFailuresSeparatedFromProduct": true,
+    "sourceNameFilterCorrectionSeparatedFromProductFailure": true
+  },
+  "proofFiles": [
+    {
+      "file": "red.json",
+      "sha256": "9bd7c6f303f97e59644c87c228ca03b8e3c689b3492f46711473139f15b10b03"
+    },
+    {
+      "file": "red-summary.json",
+      "sha256": "5c82b19cde262aa5cae2a0aa0dbbf30650134618c02ef390539105db372a091a"
+    },
+    {
+      "file": "green-focal.json",
+      "sha256": "e9b9ef0404fb0d7068c99de79260b03ce63721de99597eb0b1b6e465e540f3e2"
+    },
+    {
+      "file": "green.json",
+      "sha256": "da89d0108aa1a05abd8e3e24c0395cfc451c639ac1a1bda8838a01bd16f239b9"
+    },
+    {
+      "file": "first-green-test-assumption.json",
+      "sha256": "70c54db4d07796eae3a9e290550f88533f9c8866ec7428134efa4db53f1bc4a0"
+    },
+    {
+      "file": "302-before-context-action-correction.spec.ts",
+      "sha256": "c6c87f607177547e9ad2b1d6a7c8e0a869ffd236b99090875161ba72fccc2139"
+    },
+    {
+      "file": "green-v2.json",
+      "sha256": "9da4e3d59cb85d35a93042e5937cc62c53235e115a79f307fdc3840ac5739304"
+    },
+    {
+      "file": "final-regression.json",
+      "sha256": "f8adf1bedb0434b9bf0a6bb753e11cf26d543443a5dc99e78c55c08bafc7a050"
+    },
+    {
+      "file": "retirement-red.json",
+      "sha256": "290ba02c47efdab2532bbbacd9eaaca28cf43203e14054511bf89bf548131f0f"
+    },
+    {
+      "file": "retirement-green.json",
+      "sha256": "0427a9beef306996e26cf773fe48275fae1aabdc32794d84bfcfec0c9682b42a"
+    },
+    {
+      "file": "retirement-study-node-red.log",
+      "sha256": "c01203cae0459e9d5685bd33c52b093345a4af0dace8541cb78b9bcaeca31333"
+    },
+    {
+      "file": "retirement-study-node-green.log",
+      "sha256": "2e0bb3d70a23028eb18586eec3deb89bc28a08b0c4c87aae0d081674463d6d10"
+    }
+  ],
+  "limits": [
+    "This is author implementation evidence, not independent approval or publication authorization.",
+    "A local timeout cannot prove remote processing stopped or that server quota was refunded. No backend or shared token helper was changed.",
+    "The context-action test uses real NQPilot.release. Plain authUser assignment alone does not emit that context notification; existing ownership regressions cover stale replies and owner-specific quota.",
+    "Tests use emulated desktop/mobile contexts and synthetic identities; no physical device or realAuth/AI/service claim.",
+    "The three original RED failures and the32PASS/2incorrect-action failures remain preserved, without being folded into a fictional clean initial round.",
+    "Broad Node/CI/versioning and medical gates remain with the root task."
+  ]
+}

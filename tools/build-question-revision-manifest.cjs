@@ -4,6 +4,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
+const positions = require('../data/question-source-positions.js');
 const ROOT = path.resolve(__dirname, '..');
 const canonical = value => Array.isArray(value) ? '[' + value.map(canonical).join(',') + ']'
   : value && typeof value === 'object' ? '{' + Object.keys(value).sort().map(key => JSON.stringify(key) + ':' + canonical(value[key])).join(',') + '}'
@@ -16,6 +17,7 @@ function load(relative, name) {
   return JSON.parse(JSON.stringify(context.result));
 }
 function sources(topic, index) {
+  index = positions.position(topic.qid, index);
   const main = {
     id: topic.qid || String(index + 1),
     d: topic.diff === 'hard' ? Math.min(12, 8 + Math.floor(index / 30)) : Math.min(12, 4 + Math.floor(index / 25)),
@@ -29,8 +31,8 @@ function sources(topic, index) {
       e: topic.exp || '', refs: [...(topic.refs || [])] },
     offline: { id: topic.qid, q: topic.q, o: [...topic.opts], a: topic.ans, e: topic.exp || topic.e || '' } };
 }
-function build(topics, references, release) {
-  assert.equal(topics.length, 741);
+function build(topics, references, release, replacements = {}) {
+  assert(Array.isArray(topics) && topics.length > 0, 'A nonempty authored bank is required.');
   const current = {};
   topics.forEach((author, index) => {
     assert.equal(typeof author.qid, 'string');
@@ -42,14 +44,18 @@ function build(topics, references, release) {
       sourceRevisions: Object.fromEntries(Object.entries(sources(author, index)).map(([profile, source]) => [profile, digest(source)])),
       referenceRevisions };
   });
-  return { version: 1, release, current };
+  assert(replacements && typeof replacements === 'object' && !Array.isArray(replacements));
+  return { version: 1, release, current, ...(Object.keys(replacements).length ? {replacements: JSON.parse(JSON.stringify(replacements))} : {}) };
 }
 if (require.main === module) {
   const release = process.argv[2];
   assert(/^\d+\.\d+$/.test(release), 'Pass the technical release explicitly.');
   const topics = load('data/topics.js', 'topics');
   const references = load('data/refs.js', 'refsDB');
-  const manifest = build(topics, references, release);
+  const policyPath = path.join(ROOT, 'data/question-replacements.json');
+  const policy = fs.existsSync(policyPath) ? JSON.parse(fs.readFileSync(policyPath, 'utf8')) : {version: 1, replacements: {}};
+  assert.equal(policy.version, 1, 'Supported replacement policy required.');
+  const manifest = build(topics, references, release, policy.replacements);
   const answers = require('../js/answer-presentation.js');
   for (const [index, author] of topics.entries()) for (const [profile, source] of Object.entries(sources(author, index))) {
     const presentation = answers.present(source, { preserveOrder: true });

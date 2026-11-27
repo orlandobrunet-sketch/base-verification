@@ -3,7 +3,9 @@ import {enterGame, injectGameState} from '../helpers/game';
 
 // Read the published bank/catalog intact. Only the new-exam draw is forced.
 const EXAM = 'nefroquest-exam-state';
-const affected = ['81740f2d', '1e2668d6', '940b2835'];
+// APOL1 still has a genuine current/card-only ambiguity. Gitelman81740f2d
+// now has new authored content; its two old versions are exercised separately.
+const affected = ['9f887485', '1e2668d6', '940b2835'];
 type Fault = 'missing-catalog' | 'missing-current' | 'incompatible-source';
 const errors = new WeakMap<Page, string[]>();
 const progressKeys = [EXAM, 'nefroquest-save-v7', 'nefroquest-stats', 'nefroquest-detailed-stats',
@@ -23,7 +25,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   });
   await page.goto('/jogar/', {waitUntil: 'domcontentloaded'});
   await injectGameState(page, {gold: 0, score: 0, correctTotal: 0}, {asGuest: true});
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741 &&
+  await page.waitForFunction(() => (window as any).questionBank?.length === 723 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   await page.evaluate(() => { localStorage.removeItem('nefroquest-exam-state'); return document.fonts.ready; });
 });
@@ -84,7 +86,7 @@ async function forcePublishedDraw(page: Page, qid: string, fault?: Fault) {
       historicalSource: historical?.sourceRevision, currentRecord: current.binding.recordRevision,
       historicalRecord: historical?.binding.recordRevision};
   }, {qid, affected, fault});
-  expect(precondition.bankSize).toBe(741);
+  expect(precondition.bankSize).toBe(723);
   expect(precondition.status).toBe('ambiguous');
   expect(precondition.historicalSource).toBe(precondition.currentSource);
   expect(precondition.historicalRecord).toBeTruthy();
@@ -149,13 +151,16 @@ for (const fault of ['missing-catalog', 'missing-current', 'incompatible-source'
   });
 }
 
-async function installHistoricalSave(page: Page, bindings: boolean) {
-  return page.evaluate(({qid, bindings, key}) => {
+async function installHistoricalSave(page: Page, bindings: boolean, qid = affected[0], release?: string) {
+  return page.evaluate(({qid, bindings, key, release}) => {
     const w = window as any, current = w.questionRevisionCatalog.current(qid, 'exam');
-    const question = w.NQAnswers.present(current.source, {preserveOrder: true});
+    const published = release ? w.NQQuestionRevisionHistory.filter((row: any) => row.qid === qid && row.release === release) : [];
+    if (release && published.length !== 1) throw Error('Expected one actual published archive: ' + qid + ':' + release);
+    const question = w.NQAnswers.present(release ? published[0].sources.exam : current.source, {preserveOrder: true});
     const unbound = w.questionRevisionCatalog.inspect(question, {profile: 'exam'});
     const historical = unbound.candidates.find((value: any) => value.historical &&
-      value.sourceRevision === current.sourceRevision && value.binding.recordRevision !== current.binding.recordRevision);
+      value.sourceRevision === question._answerPresentation.sourceRevision && value.binding.recordRevision !== current.binding.recordRevision &&
+      (!release || value.binding.recordRevision === published[0].bindings.exam.recordRevision));
     if (unbound.status !== 'ambiguous' || !historical) throw Error('Missing published reference-only archive');
     const chosen = question.a;
     const saved = {questions: [question], idx: 0,
@@ -164,7 +169,7 @@ async function installHistoricalSave(page: Page, bindings: boolean) {
       ...(bindings ? {questionRevisionBindings: [historical.binding]} : {}), startTime: Date.now() - 1000, savedAt: Date.now()};
     const raw = JSON.stringify(saved); localStorage.setItem(key, raw);
     return {raw, saved, references: historical.references, release: historical.release};
-  }, {qid: affected[0], bindings, key: EXAM});
+  }, {qid, bindings, key: EXAM, release});
 }
 test('legacy reference-only save remains ambiguous and preserves its original bytes and grade', async ({page}) => {
   const fixture = await installHistoricalSave(page, false);
@@ -175,8 +180,38 @@ test('legacy reference-only save remains ambiguous and preserves its original by
   await expect(page.locator('#examTimer')).toHaveCount(0);
   expect(await page.evaluate(key => localStorage.getItem(key), EXAM)).toBe(fixture.raw);
 });
-test('explicit published historical binding preserves the recorded answer and archived card', async ({page}) => {
-  const fixture = await installHistoricalSave(page, true);
+for (const source of [{qid: affected[0], release: undefined},
+    {qid: '81740f2d', release: '16.19'}, {qid: '81740f2d', release: '17.27'}]) {
+test('explicit published historical binding ' + source.qid + ':' + (source.release || 'card-only') + ' preserves the recorded answer and archived card', async ({page}) => {
+  const fixture = await installHistoricalSave(page, true, source.qid, source.release);
+  if (source.qid === '81740f2d') {
+    const profiles = await page.evaluate(() => {
+      const w = window as any;
+      const archived = w.NQQuestionRevisionHistory.filter((row: any) => row.qid === '81740f2d');
+      return ['main', 'exam', 'study', 'offline'].map(profile => {
+        const current = w.questionRevisionCatalog.current('81740f2d', profile);
+        const unbound = w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source, {preserveOrder: true}), {profile});
+        return {profile, currentStatus: unbound.status, currentHistorical: unbound.value?.historical,
+          archives: archived.map((row: any) => {
+            const question = w.NQAnswers.present(row.sources[profile], {preserveOrder: true});
+            const bound = w.questionRevisionCatalog.inspect(question, {profile, binding: row.bindings[profile]});
+            const legacy = w.questionRevisionCatalog.inspect(question, {profile});
+            return {release: row.release, status: bound.status, historical: bound.value?.historical,
+              sourceExact: w.NQQuestionRevisions.digest(bound.value?.source) === w.NQQuestionRevisions.digest(row.sources[profile]),
+              cardsExact: w.NQQuestionRevisions.digest(bound.value?.references) === w.NQQuestionRevisions.digest(row.references),
+              bindingExact: w.NQQuestionRevisions.digest(bound.value?.binding) === w.NQQuestionRevisions.digest(row.bindings[profile]),
+              oldAmbiguous: legacy.status === 'ambiguous', currentDistinct: current.sourceRevision !== row.sourceRevisions[profile]};
+          })};
+      });
+    });
+    expect(profiles).toHaveLength(4);
+    for (const profile of profiles) {
+      expect(profile).toMatchObject({currentStatus: 'known', currentHistorical: false});
+      expect(profile.archives.map(row => row.release).sort()).toEqual(['16.19', '17.27']);
+      for (const row of profile.archives) expect(row).toMatchObject({status: 'known', historical: true,
+        sourceExact: true, cardsExact: true, bindingExact: true, oldAmbiguous: true, currentDistinct: true});
+    }
+  }
   await openExam(page);
   await saveIdle(page);
   const before = await storageBytes(page);
@@ -201,3 +236,4 @@ test('explicit published historical binding preserves the recorded answer and ar
   await saveIdle(page);
   expect(await storageBytes(page)).toEqual(before);
 });
+}

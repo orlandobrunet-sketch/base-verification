@@ -1,0 +1,396 @@
+{
+  "schema": "NQ_1728_ICI_AUTHOR_A1",
+  "date": "2026-11-15",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "productionWrites": false,
+  "scope": "Resolve hold clínico de2acaa158 no alcance do pre-proof ASON efetivamente aberto, sem alegar acesso ao VoR final. Não inclui o hold lítio.",
+  "item": {
+    "qid": "2acaa158",
+    "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+    "original": {
+      "authorRevision": "sha256:0a17df6680cecf0775ea4d03c60b10c83618214d05886529b35d446e43474dc9",
+      "question": {
+        "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+        "qid": "2acaa158",
+        "q": "Um paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico (anti-PD-1) apresenta, após cerca de 8 semanas, elevação da creatinina sérica de 0,9 para 2,6 mg/dL (aumento de 2,9 vezes o valor basal), proteinúria leve e leucocitúria, sem sinais de infecção ou hipovolemia. A biópsia renal, já realizada, revela nefrite tubulointersticial aguda com eosinófilos, sem necrose tubular. Qual é a conduta mais adequada?",
+        "opts": [
+          "Manter o inibidor de checkpoint e iniciar diuréticos para controlar o edema e melhorar a função renal.",
+          "Suspender temporariamente o inibidor de checkpoint, retirar outros fármacos potencialmente associados à nefrite intersticial e iniciar corticosteroide sistêmico, com monitorização da função renal.",
+          "Realizar plasmaférese para remover o agente imunoterápico e iniciar diálise precoce.",
+          "Manter o inibidor de checkpoint e iniciar antibióticos empíricos por suspeita de nefrite intersticial infecciosa."
+        ],
+        "ans": 1,
+        "exp": "O aumento da creatinina de 0,9 para 2,6 mg/dL corresponde a lesão renal aguda KDIGO estágio 2 pelo critério de creatinina (2,0–2,9 vezes o basal), com biópsia mostrando nefrite tubulointersticial aguda — o padrão predominante da lesão renal por inibidores de checkpoint. A conduta é: suspender temporariamente o inibidor de checkpoint (a suspensão definitiva não é regra universal e depende da gravidade, da resposta e da necessidade oncológica); retirar outros fármacos que também causam nefrite intersticial (por exemplo, inibidor de bomba de prótons, anti-inflamatório não esteroidal e antibióticos); e iniciar corticosteroide sistêmico, com a dose ajustada à gravidade conforme a diretriz, sob monitorização da função renal. Neste caso a biópsia já foi realizada e confirmou o diagnóstico; quando o diagnóstico é incerto, a biópsia idealmente precede a escalada terapêutica. Diuréticos (A) não tratam a inflamação intersticial. Plasmaférese e diálise precoce (C) não estão indicadas sem indicação dialítica, pois a patogênese não envolve anticorpos circulantes removíveis. Antibiótico empírico (D) é inadequado na ausência de infecção. O rechallenge com o inibidor de checkpoint, quando considerado, é individualizado — em séries observacionais, cerca de um quarto dos pacientes reexpostos apresenta recidiva da lesão renal.",
+        "diff": "hard",
+        "cat": "farmacologia",
+        "refs": [
+          "ici_aki_cortazar_multicenter_2020",
+          "ason_ici_nephrotoxicity_2025"
+        ]
+      }
+    },
+    "patch": {
+      "after": {
+        "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+        "qid": "2acaa158",
+        "q": "Paciente com carcinoma metastático usa inibidor de checkpoint imunológico anti-PD-1 há oito semanas. A creatinina, de 0,9 mg/dL há cinco dias, agora é de 2,6 mg/dL, com proteinúria leve e leucocitúria, sem infecção, hipovolemia ou obstrução. A biópsia já realizada mostra nefrite tubulointersticial aguda. Qual conduta inicial é mais adequada?",
+        "opts": [
+          "Pausar o inibidor e apenas retirar agentes concomitantes, aguardando melhora antes de tratar a inflamação.",
+          "Pausar o inibidor e iniciar glicocorticoide, retirando outros agentes que possam causar nefrite.",
+          "Interromper definitivamente a imunoterapia em todo episódio de estágio 2, mesmo com recuperação renal.",
+          "Manter o inibidor com glicocorticoide e reservar a pausa oncológica para necessidade de diálise."
+        ],
+        "ans": 1,
+        "exp": "A creatinina aumentou cerca de 2,9 vezes em cinco dias, compatível com estágio 2 da lesão renal aguda. Com biópsia confirmando nefrite intersticial, o consenso ASON orienta pausar o inibidor em discussão com a oncologia, retirar outros medicamentos associados à nefrite e iniciar prontamente glicocorticoide, monitorando a resposta. Não é necessário aguardar piora até diálise; retirar apenas agentes concomitantes e observar posterga o tratamento da inflamação já demonstrada. Pausa temporária não obriga suspensão definitiva em todos os pacientes. Fora deste caso com biópsia pronta, planejar a investigação histológica quando viável não deve atrasar tratamento necessário na forte suspeita. A evidência de recuperação com esteroides é predominantemente observacional e não garante resposta individual.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "ici_aki_cortazar_multicenter_2020",
+          "ason_ici_nephrotoxicity_2025"
+        ]
+      },
+      "afterAuthorRevision": "sha256:27092bfc02a734e9f7ae6f0453fa34b26b0fc4e2dfaa3c5d386cf3d97c4cc801",
+      "refCardsAfter": {
+        "ici_aki_cortazar_multicenter_2020": {
+          "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+          "url": "https://doi.org/10.1681/ASN.2019070676",
+          "journal": "Journal of the American Society of Nephrology",
+          "ano": 2020,
+          "tipo": "Coorte",
+          "badge": "COHORT",
+          "badgeColor": "#f59e0b",
+          "impacto": "Coorte de 138 casos: nefrite intersticial predominante e associação entre corticosteroide e recuperação.",
+          "icon": "🔬",
+          "resumo": "Coorte multicêntrica de 138 pacientes com lesão renal aguda associada a inibidores de checkpoint imunológico e276 controles. A definição exigia pelo menos duplicação da creatinina ou diálise atribuída ao agente. O tempo mediano até a lesão foi 14 semanas; nefrite tubulointersticial foi a lesão dominante em 93% dos 60 biopsiados. Glicocorticoides foram usados em 86%; recuperação completa, parcial ou ausente ocorreu em 40%,45% e15%. Tratamento com esteroide associou-se a melhor prognóstico, sem randomização. Entre os 22% reexpostos ao inibidor, 23% tiveram recorrência.",
+          "conclusao": "O estudo descreve apresentação e evolução, com predomínio de nefrite intersticial nos biopsiados. A associação com recuperação não prova efeito causal do esteroide; a reexposição exige decisão individual.",
+          "curiosidade": "As60 biópsias não representam todos os 138 casos. O predomínio histológico foi observado nesse subconjunto e não exclui outras lesões durante imunoterapia."
+        },
+        "ason_ici_nephrotoxicity_2025": {
+          "label": "ASON — Nefrotoxicidade por Inibidores de Checkpoint (2025)",
+          "url": "https://doi.org/10.1016/j.kint.2024.09.017",
+          "journal": "Kidney International",
+          "ano": 2025,
+          "tipo": "Consenso de especialistas",
+          "badge": "CONSENSO",
+          "badgeColor": "#6366f1",
+          "impacto": "Posição profissional para avaliação e manejo individualizado da nefrotoxicidade por imunoterapia.",
+          "icon": "📋",
+          "resumo": "Posição da American Society of Onco-nephrology publicada em 2025; a versão primária consultada foi o Journal Pre-proof aceito em setembro de 2024, com o mesmo DOI. Apresenta pontos de prática por consenso iterativo de especialistas, sem graduação formal de recomendações. Em lesão renal aguda estágio 2 ou maior, com nefrite intersticial confirmada ou forte suspeita, orienta pausar o inibidor em discussão com oncologia, interromper outros agentes associados à nefrite e iniciar prontamente glicocorticoide. Biópsia deve ser fortemente considerada quando viável, sem retardar tratamento necessário aguardando seu resultado.",
+          "conclusao": "A conduta depende da gravidade e do tipo histológico. Pausa inicial não significa interrupção oncológica definitiva em todo caso; eventual reintrodução após recuperação deve ponderar riscos, resposta e alternativas terapêuticas.",
+          "curiosidade": "O documento reconhece que a base disponível é principalmente observacional. Pontos de prática de um painel profissional não são resultados de um ensaio randomizado."
+        }
+      },
+      "referenceBindings": [
+        {
+          "id": "ici_aki_cortazar_multicenter_2020",
+          "revision": "sha256:dddf42fab81a7515ef1339c0e729334696fbae995e3b470b15031ae112da039a",
+          "fieldCount": 12
+        },
+        {
+          "id": "ason_ici_nephrotoxicity_2025",
+          "revision": "sha256:07064e533b14d81f42eea0ef668fc87683150d5019e389b8575fa86fc509311c",
+          "fieldCount": 12
+        }
+      ]
+    },
+    "bundleRevision": "sha256:34121df2fe7b0522d31460cc5684ec2f919b471fb574b581c4f0551627d742af",
+    "classificationBeforeAndAfter": {
+      "op": "Selecionar manejo inicial da nefrite intersticial associada a imunoterapia com lesão renal aguda estágio2 e biópsia confirmada.",
+      "competency": "Farmacologia renal e segurança da imunoterapia",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "difficultyBefore": "hard",
+      "difficultyAfter": "medium",
+      "rationale": "O tipo histológico e a gravidade estão fornecidos; a tarefa é aplicar plano inicial conhecido, não resolver diagnóstico diferencial complexo.",
+      "identity": "Mesmo OP, gabarito e conceito clínico. Janela de cinco dias apenas explicita o critério temporal necessário ao estágio; não cria outro caso ou objetivo."
+    },
+    "evidenceSources": [
+      {
+        "id": "ASON",
+        "url": "https://www.onconephindia.in/pdf/article/PIIS0085253824007245.pdf",
+        "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-reference-duplicates/independent-bibliographic/ason-2025-primary.pdf",
+        "bytesSHA256": "ced12a551b0695e9606c0ce391d742c7629d37b2318dea8f03a191cb7d70bfbb",
+        "access": "PRIMARY_ACCEPTED_PREPROOF_OPENED_FROM_PUBLIC_REPRINT",
+        "version": "Journal Pre-proof, aceito13/09/2024; DOI10.1016/j.kint.2024.09.017. Metadados finais NLM:KidneyInt2025;107(1):21–32, PMID39455026.",
+        "scope": "Li o corpo fornecido pelo revisor, pp10–17 e Boxes1/2. O revisor recuperou o arquivo com incompatibilidade de certificado do servidor de reprint; esse limite de proveniência é explícito. Não foi aberto o VoR final diagramado e não se inferem alterações de versão.",
+        "claims": [
+          "Para estágio2 ou maior com biópsia positiva ou forte suspeita, pausarICI em discussão oncológica e iniciar prontamente glicocorticoide.",
+          "Interromper agentes associados à nefrite intersticial.",
+          "Biópsia fortemente considerada quando viável; não retardar tratamento necessário aguardando resultado.",
+          "Reintrodução após recuperação é individualizada, não suspensão definitiva automática."
+        ]
+      },
+      {
+        "id": "CORTAZAR",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+        "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/ici-cortazar.xml",
+        "bytesSHA256": "412adb007b9b98fb5b184e25edfcab3da68e67d92f96cb3a290be5256f1396e2",
+        "scope": "XML local contém apenas abstract; corpo primário completo foi aberto pelo navegador, não atribuído ao XML. N138casos/276controles,60biópsias/93%NTIA; efeitos dos esteroides são associações observacionais."
+      },
+      {
+        "id": "KDIGO",
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+        "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/kdigo-aki-2012-full.pdf",
+        "bytesSHA256": "20db2b44ea228cd1006ea9f867ee8d830663fae04c7f1ac3d24aaab7388ed1ad",
+        "scope": "Corpo original aberto; diagnóstico/estágio por mudança de creatinina em janela temporal definida."
+      }
+    ],
+    "claimsVerified": [
+      "Para estágio2 ou maior com biópsia positiva ou forte suspeita, pausarICI em discussão oncológica e iniciar prontamente glicocorticoide.",
+      "Interromper agentes associados à nefrite intersticial.",
+      "Biópsia fortemente considerada quando viável; não retardar tratamento necessário aguardando resultado.",
+      "Reintrodução após recuperação é individualizada, não suspensão definitiva automática."
+    ],
+    "appeal": {
+      "optionAudit": [
+        {
+          "letter": "A",
+          "text": "Pausar o inibidor e apenas retirar agentes concomitantes, aguardando melhora antes de tratar a inflamação.",
+          "judgment": "Aguardar sem tratar inflamação confirmada em lesão moderada."
+        },
+        {
+          "letter": "B",
+          "text": "Pausar o inibidor e iniciar glicocorticoide, retirando outros agentes que possam causar nefrite.",
+          "judgment": "CORRETA"
+        },
+        {
+          "letter": "C",
+          "text": "Interromper definitivamente a imunoterapia em todo episódio de estágio 2, mesmo com recuperação renal.",
+          "judgment": "Confundir pausa inicial com suspensão definitiva automática."
+        },
+        {
+          "letter": "D",
+          "text": "Manter o inibidor com glicocorticoide e reservar a pausa oncológica para necessidade de diálise.",
+          "judgment": "Postergar pausa até necessidade de diálise."
+        }
+      ],
+      "attemptToDefendDistractor": "A imunoterapia tem benefício oncológico, mas o caso já confirma inflamação renal e estágio2; o consenso fornece pausa e tratamento prontamente. Não se usa gravidade leve ou incerteza histológica para defender continuidade ou espera. A pausa não é proibição permanente de reexposição.",
+      "result": "RECURSO REJEITADO no contexto explicitado."
+    },
+    "eliminatoryCriteria": [
+      {
+        "criterion": "Mais de uma resposta defensável",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Referência não sustenta gabarito",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Manejo decisivo conferido nas pp12–15 eBox2 do pre-proof primário aceito, com versão/proveniência declaradas."
+      },
+      {
+        "criterion": "Mede outro OP",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Conduta insegura",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Distrator absurdo",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Trivia sem consequência clínica",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Explicação contradiz gabarito",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Dado decisivo ausente",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Protocolo local não informado",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      },
+      {
+        "criterion": "Desatualização relevante",
+        "result": "NÃO PRESENTE NO AFTER",
+        "basis": "Contexto, janela, biópsia e quatro opções confrontados com as fontes."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "dimension": "Alinhamento ao OP",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Validade de conteúdo",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Validade de construto",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Enunciado",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Alternativas",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Distratores",
+          "points": 1,
+          "max": 2
+        },
+        {
+          "dimension": "Explicação",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Referências",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Ausência de cara de IA",
+          "points": 2,
+          "max": 2
+        },
+        {
+          "dimension": "Valor pedagógico",
+          "points": 2,
+          "max": 2
+        }
+      ],
+      "total": 19,
+      "max": 20
+    },
+    "formalReview": {
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Handbook §18.4 Regra7, revisão formal autoral exata. O acesso é ao pre-proof primário aceito, explicitamente identificado; não se alega VoR integral. Gate independente dos bytes finais é obrigatório antes de aplicação.",
+      "remainingSubstantiveProblems": []
+    },
+    "independentReviewRequired": true
+  },
+  "referenceCandidates": [
+    {
+      "id": "ici_aki_cortazar_multicenter_2020",
+      "beforeRevision": "sha256:e37ad584f0bb5775197be0811f522f496c790036521b3f3752474f04a044e034",
+      "after": {
+        "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+        "url": "https://doi.org/10.1681/ASN.2019070676",
+        "journal": "Journal of the American Society of Nephrology",
+        "ano": 2020,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "impacto": "Coorte de 138 casos: nefrite intersticial predominante e associação entre corticosteroide e recuperação.",
+        "icon": "🔬",
+        "resumo": "Coorte multicêntrica de 138 pacientes com lesão renal aguda associada a inibidores de checkpoint imunológico e276 controles. A definição exigia pelo menos duplicação da creatinina ou diálise atribuída ao agente. O tempo mediano até a lesão foi 14 semanas; nefrite tubulointersticial foi a lesão dominante em 93% dos 60 biopsiados. Glicocorticoides foram usados em 86%; recuperação completa, parcial ou ausente ocorreu em 40%,45% e15%. Tratamento com esteroide associou-se a melhor prognóstico, sem randomização. Entre os 22% reexpostos ao inibidor, 23% tiveram recorrência.",
+        "conclusao": "O estudo descreve apresentação e evolução, com predomínio de nefrite intersticial nos biopsiados. A associação com recuperação não prova efeito causal do esteroide; a reexposição exige decisão individual.",
+        "curiosidade": "As60 biópsias não representam todos os 138 casos. O predomínio histológico foi observado nesse subconjunto e não exclui outras lesões durante imunoterapia."
+      },
+      "afterRevision": "sha256:dddf42fab81a7515ef1339c0e729334696fbae995e3b470b15031ae112da039a",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "CORTAZAR",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/ici-cortazar.xml",
+          "bytesSHA256": "412adb007b9b98fb5b184e25edfcab3da68e67d92f96cb3a290be5256f1396e2",
+          "scope": "XML local contém apenas abstract; corpo primário completo foi aberto pelo navegador, não atribuído ao XML. N138casos/276controles,60biópsias/93%NTIA; efeitos dos esteroides são associações observacionais."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, revisão formal autoral exata. O acesso é ao pre-proof primário aceito, explicitamente identificado; não se alega VoR integral. Gate independente dos bytes finais é obrigatório antes de aplicação."
+      },
+      "currentConsumerQids": [
+        "2acaa158",
+        "f769660d"
+      ],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "ason_ici_nephrotoxicity_2025",
+      "beforeRevision": "sha256:56c0fe77cd15f9d086cd41981de680ed01171af5419e85fe6112c0c56c26eace",
+      "after": {
+        "label": "ASON — Nefrotoxicidade por Inibidores de Checkpoint (2025)",
+        "url": "https://doi.org/10.1016/j.kint.2024.09.017",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Consenso de especialistas",
+        "badge": "CONSENSO",
+        "badgeColor": "#6366f1",
+        "impacto": "Posição profissional para avaliação e manejo individualizado da nefrotoxicidade por imunoterapia.",
+        "icon": "📋",
+        "resumo": "Posição da American Society of Onco-nephrology publicada em 2025; a versão primária consultada foi o Journal Pre-proof aceito em setembro de 2024, com o mesmo DOI. Apresenta pontos de prática por consenso iterativo de especialistas, sem graduação formal de recomendações. Em lesão renal aguda estágio 2 ou maior, com nefrite intersticial confirmada ou forte suspeita, orienta pausar o inibidor em discussão com oncologia, interromper outros agentes associados à nefrite e iniciar prontamente glicocorticoide. Biópsia deve ser fortemente considerada quando viável, sem retardar tratamento necessário aguardando seu resultado.",
+        "conclusao": "A conduta depende da gravidade e do tipo histológico. Pausa inicial não significa interrupção oncológica definitiva em todo caso; eventual reintrodução após recuperação deve ponderar riscos, resposta e alternativas terapêuticas.",
+        "curiosidade": "O documento reconhece que a base disponível é principalmente observacional. Pontos de prática de um painel profissional não são resultados de um ensaio randomizado."
+      },
+      "afterRevision": "sha256:07064e533b14d81f42eea0ef668fc87683150d5019e389b8575fa86fc509311c",
+      "fieldCount": 12,
+      "evidenceSources": [
+        {
+          "id": "ASON",
+          "url": "https://www.onconephindia.in/pdf/article/PIIS0085253824007245.pdf",
+          "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-reference-duplicates/independent-bibliographic/ason-2025-primary.pdf",
+          "bytesSHA256": "ced12a551b0695e9606c0ce391d742c7629d37b2318dea8f03a191cb7d70bfbb",
+          "access": "PRIMARY_ACCEPTED_PREPROOF_OPENED_FROM_PUBLIC_REPRINT",
+          "version": "Journal Pre-proof, aceito13/09/2024; DOI10.1016/j.kint.2024.09.017. Metadados finais NLM:KidneyInt2025;107(1):21–32, PMID39455026.",
+          "scope": "Li o corpo fornecido pelo revisor, pp10–17 e Boxes1/2. O revisor recuperou o arquivo com incompatibilidade de certificado do servidor de reprint; esse limite de proveniência é explícito. Não foi aberto o VoR final diagramado e não se inferem alterações de versão.",
+          "claims": [
+            "Para estágio2 ou maior com biópsia positiva ou forte suspeita, pausarICI em discussão oncológica e iniciar prontamente glicocorticoide.",
+            "Interromper agentes associados à nefrite intersticial.",
+            "Biópsia fortemente considerada quando viável; não retardar tratamento necessário aguardando resultado.",
+            "Reintrodução após recuperação é individualizada, não suspensão definitiva automática."
+          ]
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra7, revisão formal autoral exata. O acesso é ao pre-proof primário aceito, explicitamente identificado; não se alega VoR integral. Gate independente dos bytes finais é obrigatório antes de aplicação."
+      },
+      "currentConsumerQids": [
+        "2acaa158"
+      ],
+      "noQuestionApprovalInherited": true
+    }
+  ],
+  "formatAdjudication": {
+    "by": "root",
+    "document": "ASON",
+    "type": "Consenso de especialistas",
+    "badge": "CONSENSO",
+    "condition": "Posição profissional e fonte pre-proof explícitas; adjudicação não é gate clínico."
+  },
+  "implementationBoundary": {
+    "noRootWrites": true,
+    "noHistoryReset": true,
+    "noFSRSCopy": true,
+    "preserveQid": true,
+    "noApplyBeforeIndependentGate": true
+  }
+}

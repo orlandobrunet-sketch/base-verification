@@ -1,0 +1,749 @@
+{
+  "schema": "NQ_1728_RCT_AUTHOR_A21",
+  "author": "/root",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "date": "2026-11-15",
+  "skill": "revisar-nefroquest",
+  "skillSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+  "productionWrites": 0,
+  "items": [
+    {
+      "qid": "e56795a6",
+      "original": {
+        "question": {
+          "t": "BPROAD — Controle Intensivo da PA no Diabetes Tipo 2",
+          "qid": "e56795a6",
+          "q": "Adulto com diabetes tipo 2, hipertensão e alto risco cardiovascular pergunta sobre o resultado do BPROAD. Qual interpretação é correta?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "Alvo de pressão arterial sistólica abaixo de 120 mmHg reduziu o composto cardiovascular primário em comparação com alvo abaixo de 140 mmHg",
+            "Alvo abaixo de 130 mmHg foi equivalente ao alvo abaixo de 150 mmHg para todos os desfechos cardiovasculares",
+            "Alvo abaixo de 120 mmHg aumentou eventos cardiovasculares e levou à interrupção precoce do estudo por dano",
+            "O benefício do controle intensivo ocorreu apenas em participantes com doença renal crônica G5 em diálise"
+          ],
+          "ans": 0,
+          "exp": "No BPROAD, adultos com diabetes tipo 2, hipertensão e maior risco cardiovascular foram randomizados para alvo de pressão arterial sistólica inferior a 120 mmHg ou inferior a 140 mmHg. O controle intensivo reduziu o desfecho primário composto cardiovascular (HR 0,79; IC95% 0,69–0,90). Hipotensão sintomática e hipercalemia foram mais frequentes, portanto o resultado apoia intensificação com medida adequada e monitorização, não aplicação automática a pessoas frágeis ou fora da população estudada.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "authorRevision": "sha256:fa54408f3b028cc884fde2cc2e1426f7a44f771806e57b33b8098df7b15e172c"
+      },
+      "patch": {
+        "after": {
+          "t": "BPROAD — Controle Intensivo da PA no Diabetes Tipo 2",
+          "qid": "e56795a6",
+          "q": "No BPROAD, adultos com diabetes tipo 2 e risco cardiovascular aumentado foram tratados para pressão sistólica abaixo de 120 ou 140 mmHg. O primário reuniu acidente vascular cerebral ou infarto não fatais, tratamento ou internação por insuficiência cardíaca e morte cardiovascular. A razão de riscos instantâneos (hazard ratio, HR) foi 0,79, com intervalo de confiança de 95% de 0,69–0,90. Qual interpretação é adequada?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "O alvo intensivo reduziu o composto cardiovascular na população estudada.",
+            "O alvo intensivo reduziu exclusivamente a necessidade de diálise crônica.",
+            "O alvo intensivo demonstrou a mesma redução isolada em cada componente.",
+            "O alvo intensivo demonstrou ausência de risco renal ou eletrolítico."
+          ],
+          "ans": 0,
+          "exp": "O resultado favoreceu o alvo intensivo para o composto cardiovascular, não para um primário de diálise. A estimativa do composto não demonstra redução idêntica em todos os componentes isolados e não certifica ausência de dano. A aplicabilidade exige considerar a população, a técnica de medida, a tolerabilidade e a monitorização.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "afterAuthorRevision": "sha256:5cabfd191d048a68e6b32eda39fe26e396022f2ec1a35b36aa3751ade4ebdfe8",
+        "refCardsAfter": {
+          "bproad": {
+            "label": "BPROAD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+            "journal": "N Engl J Med 2025;392(12):1155-1167",
+            "ano": 2025,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Meta sistólica intensiva reduziu eventos cardiovasculares; os poucos eventos renais agudos não provam ausência de risco.",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado com 12.821 adultos de pelo menos 50 anos, diabetes tipo 2, pressão elevada e risco cardiovascular aumentado, em 145 centros chineses. Comparou pressão sistólica alvo abaixo de 120 ou 140 mmHg, com adjudicação cega dos desfechos. O primário reuniu acidente vascular cerebral ou infarto não fatais, tratamento ou internação por insuficiência cardíaca e morte cardiovascular. Em mediana de 4,2 anos, ocorreu em 393 versus 492 participantes: razão de riscos instantâneos (hazard ratio, HR) 0,79; intervalo de confiança de 95% (IC 95%) 0,69–0,90; P<0,001. Eventos graves ocorreram em 36,5% versus 36,3%; insuficiência renal aguda, em 4 versus 5 (HR 0,79; IC 95% 0,21–2,95). Hipotensão sintomática foi numericamente mais frequente, 8 versus 1; potássio acima de 5,5 mmol/L ocorreu em 177 versus 125.",
+            "conclusao": "O alvo intensivo reduziu o composto cardiovascular nessa população. A ausência de diferença detectada nos poucos eventos de insuficiência renal aguda não demonstra equivalência ou ausência de dano; requer vigilância de pressão, potássio e função renal.",
+            "curiosidade": "O artigo saiu online em 16/11/2024 e no volume de 2025. A tabela 3 separa eventos graves e condições que levaram à emergência dos alertas laboratoriais de segurança."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "bproad",
+            "revision": "sha256:238eda53074cab268f38c8e9332ca6319c0865a99ab5a28844b1cc717e899f7c"
+          }
+        ]
+      },
+      "bundleRevision": "sha256:cdef56a8c8e20a5d8d52105a80bc5b5b6514956bb83bf8fed12dc8bdd3a38780",
+      "classification": {
+        "op": "Reconhecer a direção e o desfecho do benefício cardiovascular do BPROAD.",
+        "competency": "Leitura crítica aplicada à segurança cardiorrenal",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identity": "MesmoOP da canônica. Consolidar as duplicatas sem inventar estrutura nova para manter contagem."
+      },
+      "publicationAuthorization": "BLOQUEADA",
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "709ad94a",
+      "original": {
+        "question": {
+          "t": "BPROAD — segurança do alvo intensivo",
+          "qid": "709ad94a",
+          "q": "Qual ressalva de segurança deve acompanhar a interpretação do alvo intensivo de PAS <120 mmHg no BPROAD?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "Eventos adversos graves foram semelhantes, mas hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo",
+            "O grupo intensivo teve excesso marcante de diálise crônica e o estudo foi interrompido por dano renal",
+            "O estudo não monitorou eventos adversos de hipotensão, potássio ou função renal",
+            "A estratégia intensiva eliminou o risco de hipercalemia por reduzir a pressão arterial"
+          ],
+          "ans": 0,
+          "exp": "No BPROAD, a incidência global de eventos adversos graves foi semelhante entre os grupos, mas hipotensão sintomática e hipercalemia ocorreram com maior frequência no braço intensivo. Portanto, o alvo <120 mmHg deve ser interpretado como benefício cardiovascular em população selecionada, exigindo medida padronizada e vigilância clínica. As demais alternativas inventam dano renal dominante, negam monitorização de segurança ou atribuem efeito protetor inexistente contra hipercalemia.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "authorRevision": "sha256:0e9a642a57f8a3a4531b48444c372eccfa71e03c04726782c51f9eb2f3b264f2"
+      },
+      "patch": {
+        "after": {
+          "t": "BPROAD — segurança do alvo intensivo",
+          "qid": "709ad94a",
+          "q": "No BPROAD, o alvo sistólico intensivo reduziu o composto cardiovascular. As taxas globais de eventos adversos graves foram semelhantes entre os grupos, mas houve mais hipercalemia e hipotensão sintomática no intensivo. Qual ressalva deve acompanhar a interpretação?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "Benefício cardiovascular pode coexistir com riscos específicos; individualizar e monitorar.",
+            "Taxas globais semelhantes demonstram ausência de qualquer alerta específico de segurança.",
+            "O aumento de eventos específicos exige proibir o alvo intensivo em toda pessoa com diabetes.",
+            "O benefício cardiovascular permite dispensar vigilância de potássio e sintomas durante o tratamento."
+          ],
+          "ans": 0,
+          "exp": "A semelhança global de eventos graves não apaga diferenças específicas. Na tabela 3, potássio acima de 5,5 mmol/L ocorreu em 177 versus 125 participantes; hipotensão sintomática foi numericamente mais frequente, em 8 versus 1. O benefício deve ser interpretado com medida pressórica adequada, tolerabilidade e vigilância de potássio, função renal e sintomas. Esses achados não demonstram ausência absoluta de dano nem tornam o alvo uma proibição universal.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "afterAuthorRevision": "sha256:b2efcc93878f1317fe5fd6bf076b2fd51e36d821393a8293456e8c78fe0d7acd",
+        "refCardsAfter": {
+          "bproad": {
+            "label": "BPROAD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+            "journal": "N Engl J Med 2025;392(12):1155-1167",
+            "ano": 2025,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Meta sistólica intensiva reduziu eventos cardiovasculares; os poucos eventos renais agudos não provam ausência de risco.",
+            "icon": "🔬",
+            "resumo": "Ensaio randomizado com 12.821 adultos de pelo menos 50 anos, diabetes tipo 2, pressão elevada e risco cardiovascular aumentado, em 145 centros chineses. Comparou pressão sistólica alvo abaixo de 120 ou 140 mmHg, com adjudicação cega dos desfechos. O primário reuniu acidente vascular cerebral ou infarto não fatais, tratamento ou internação por insuficiência cardíaca e morte cardiovascular. Em mediana de 4,2 anos, ocorreu em 393 versus 492 participantes: razão de riscos instantâneos (hazard ratio, HR) 0,79; intervalo de confiança de 95% (IC 95%) 0,69–0,90; P<0,001. Eventos graves ocorreram em 36,5% versus 36,3%; insuficiência renal aguda, em 4 versus 5 (HR 0,79; IC 95% 0,21–2,95). Hipotensão sintomática foi numericamente mais frequente, 8 versus 1; potássio acima de 5,5 mmol/L ocorreu em 177 versus 125.",
+            "conclusao": "O alvo intensivo reduziu o composto cardiovascular nessa população. A ausência de diferença detectada nos poucos eventos de insuficiência renal aguda não demonstra equivalência ou ausência de dano; requer vigilância de pressão, potássio e função renal.",
+            "curiosidade": "O artigo saiu online em 16/11/2024 e no volume de 2025. A tabela 3 separa eventos graves e condições que levaram à emergência dos alertas laboratoriais de segurança."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "bproad",
+            "revision": "sha256:238eda53074cab268f38c8e9332ca6319c0865a99ab5a28844b1cc717e899f7c"
+          }
+        ]
+      },
+      "bundleRevision": "sha256:25d14dd278d1a26e317bef000745aa67350a0794f3afa2913bbbb102c7ed3057",
+      "classification": {
+        "op": "Interpretar os alertas de segurança que coexistem com o benefício cardiovascular no BPROAD.",
+        "competency": "Leitura crítica aplicada à segurança cardiorrenal",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identity": "MesmoOP da canônica. Consolidar as duplicatas sem inventar estrutura nova para manter contagem."
+      },
+      "publicationAuthorization": "BLOQUEADA",
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "8462029c",
+      "original": {
+        "question": {
+          "t": "ADVOR — Acetazolamida e Descongestão",
+          "qid": "8462029c",
+          "q": "No ADVOR, qual resultado descreve melhor a adição de acetazolamida intravenosa ao diurético de alça em insuficiência cardíaca aguda com congestão?",
+          "refs": [
+            "advor_trial"
+          ],
+          "opts": [
+            "Aumentou a descongestão bem-sucedida até o terceiro dia; piora transitória da função renal foi mais frequente em análise secundária, sem pior desfecho clínico associado",
+            "Reduziu mortalidade em 90 dias como desfecho primário, independentemente da descongestão",
+            "Não alterou natriurese nem descongestão, mas preveniu hipocalemia",
+            "Provocou lesão tubular persistente e pior creatinina aos três meses"
+          ],
+          "ans": 0,
+          "exp": "O desfecho primário foi descongestão bem-sucedida em até três dias, sem necessidade de intensificar a terapia, e ocorreu mais com acetazolamida. O fármaco aumentou natriurese e diurese ao bloquear reabsorção proximal de sódio e bicarbonato. Uma análise renal pré-especificada encontrou mais piora transitória da função renal durante o tratamento, mas sem diferença de creatinina aos três meses nem associação com piores desfechos. Portanto, é incorreto resumir o ensaio como ausência absoluta de alteração renal ou como prova de benefício de mortalidade.",
+          "diff": "hard",
+          "cat": "drc"
+        },
+        "authorRevision": "sha256:906fceff0dcaccf2f3129302f1f19c211b7ce8ec6564c70ded5fb106f9649821"
+      },
+      "patch": {
+        "after": {
+          "t": "ADVOR — Acetazolamida e Descongestão",
+          "qid": "8462029c",
+          "q": "No ADVOR, acetazolamida intravenosa adicionada ao diurético de alça aumentou a descongestão em três dias. Uma análise renal pré-especificada encontrou mais elevações transitórias de creatinina, sem diferença aos três meses. Qual leitura desses achados é adequada?",
+          "refs": [
+            "advor_trial",
+            "advor_renal_analysis_2023"
+          ],
+          "opts": [
+            "Melhor descongestão pode coexistir com alteração transitória de creatinina; manter vigilância renal.",
+            "A descongestão mais rápida demonstra redução de mortalidade, mesmo sem diferença clínica conclusiva.",
+            "Qualquer elevação de creatinina demonstra lesão tubular persistente causada pela acetazolamida.",
+            "A creatinina semelhante aos três meses demonstra ausência de qualquer risco durante o tratamento."
+          ],
+          "ans": 0,
+          "exp": "O primário foi descongestão em até três dias, sem escalada terapêutica, e favoreceu acetazolamida. Na análise renal, aumento de creatinina ≥0,3 mg/dL foi mais frequente durante o tratamento, sem diferença de creatinina em três meses ou associação com piores desfechos. Isso não comprova dano tubular estrutural nem inocuidade absoluta; também não transforma descongestão em prova de menor mortalidade. Função renal e eletrólitos exigem acompanhamento.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "afterAuthorRevision": "sha256:3a6fe71adbc8b5a0ca66ec01364b872aaead571e775e9261250cde83de66aa97",
+        "refCardsAfter": {
+          "advor_trial": {
+            "label": "Mullens et al. — ADVOR, análise principal (2022)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/36027559/",
+            "journal": "N Engl J Med. 2022;387:1185–1195",
+            "ano": 2022,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "icon": "🔬",
+            "impacto": "Acetazolamida aumentou a descongestão precoce quando adicionada ao diurético de alça.",
+            "resumo": "Ensaio multicêntrico duplo-cego com 519 pacientes randomizados por insuficiência cardíaca aguda e sobrecarga de volume. Acetazolamida 500 mg intravenosa uma vez ao dia ou placebo foi adicionada a diurético de alça intravenoso padronizado. O primário foi ausência de sinais de sobrecarga em até três dias, sem indicação de intensificar a terapia: 42,2% versus 30,5%; razão de riscos 1,46; intervalo de confiança de 95% (IC 95%) 1,17–1,82; P<0,001. Morte ou reinternação por insuficiência cardíaca em três meses teve razão de riscos instantâneos (hazard ratio, HR) 1,07 (IC 95% 0,78–1,48). Diurese e natriurese foram maiores.",
+            "conclusao": "O resultado sustenta melhor descongestão precoce. O intervalo do composto de morte/reinternação não demonstra benefício conclusivo nem equivalência. A análise renal pré-especificada de 2023 é uma publicação distinta.",
+            "curiosidade": "O desfecho primário combinava ausência de sinais de sobrecarga e ausência de necessidade de escalada terapêutica."
+          },
+          "advor_renal_analysis_2023": {
+            "label": "Meekers et al. — ADVOR, análise renal pré-especificada (2023)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37623428/",
+            "journal": "Eur Heart J. 2023;44(37):3672–3682",
+            "ano": 2023,
+            "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "icon": "🔬",
+            "impacto": "Maior descongestão coexistiu com mais elevações transitórias de creatinina durante o tratamento.",
+            "resumo": "Análise pré-especificada dos mesmos 519 participantes do ADVOR, randomizados para acetazolamida 500 mg intravenosa uma vez ao dia ou placebo, ambos adicionados a diurético de alça intravenoso. A mediana da filtração glomerular estimada na admissão foi 40 mL/min/1,73 m². Acetazolamida aumentou a descongestão nas faixas de função renal estudadas. Elevação de creatinina ≥0,3 mg/dL durante o tratamento ocorreu em 40,5% versus 18,9%; P<0,001. A creatinina não diferiu aos três meses (P=0,565), e essa piora não se associou a maior incidência de hospitalização por insuficiência cardíaca ou mortalidade.",
+            "conclusao": "Distinguir resposta descongestiva, alteração transitória de creatinina e desfechos clínicos. Esses dados não comprovam lesão tubular persistente nem dispensam monitorização renal e eletrolítica.",
+            "curiosidade": "É uma análise do mesmo ensaio, com pergunta e definição renal específicas; não deve ser contada como uma segunda randomização independente."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "advor_trial",
+            "revision": "sha256:b126c831d101512992d5f5b8b8d496d1ba97227381a2e36e27a9883ab70b668a"
+          },
+          {
+            "id": "advor_renal_analysis_2023",
+            "revision": "sha256:6647fcbd1d92ab00c6778e889742ba774f7da3d9ddbd8d6b989914517b65e584"
+          }
+        ]
+      },
+      "bundleRevision": "sha256:7913ffd32ce3b4c0b26b38b4238e803f5fd32571826f2d073069b06214ae980c",
+      "classification": {
+        "op": "Interpretar descongestão precoce e alterações renais transitórias no ADVOR sem extrapolar mortalidade.",
+        "competency": "Leitura crítica aplicada à segurança cardiorrenal",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "MesmoOP da canônica. Consolidar as duplicatas sem inventar estrutura nova para manter contagem."
+      },
+      "publicationAuthorization": "BLOQUEADA",
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "a23476e4",
+      "original": {
+        "question": {
+          "t": "SOLOIST-WHF — Sotagliflozina após Piora da IC",
+          "qid": "a23476e4",
+          "q": "No SOLOIST-WHF, pessoas com diabetes tipo 2 e episódio recente de piora da insuficiência cardíaca iniciaram sotagliflozina antes ou logo após a alta. Qual foi o principal resultado?",
+          "refs": [
+            "sotagliflozin_trial"
+          ],
+          "opts": [
+            "Redução do total de mortes cardiovasculares, hospitalizações e visitas urgentes por insuficiência cardíaca, sem demonstrar redução isolada de mortalidade",
+            "Redução isolada de mortalidade cardiovascular, sem efeito sobre eventos de insuficiência cardíaca",
+            "Benefício restrito à queda da glicemia, sem diferença em eventos clínicos",
+            "Aumento de hospitalizações por insuficiência cardíaca por inibição intestinal de SGLT1"
+          ],
+          "ans": 0,
+          "exp": "O SOLOIST-WHF mostrou redução do desfecho primário recorrente composto por mortes cardiovasculares, hospitalizações e visitas urgentes por insuficiência cardíaca, com razão de risco 0,67. O benefício foi impulsionado por menos eventos de piora da insuficiência cardíaca; o estudo, encerrado precocemente, não demonstrou redução significativa de mortalidade isolada. Sotagliflozina inibe SGLT2 renal e SGLT1 predominantemente intestinal, mas o ensino do ensaio deve se apoiar no composto clínico estudado, sem atribuir mortalidade não comprovada.",
+          "diff": "hard",
+          "cat": "drc"
+        },
+        "authorRevision": "sha256:dca793ec3831a1abd1fd0e383bbe0e04ba38def8fa3e27af7efd236f608ed4da"
+      },
+      "patch": {
+        "after": {
+          "t": "SOLOIST-WHF — Sotagliflozina após Piora da IC",
+          "qid": "a23476e4",
+          "q": "No SOLOIST-WHF, pessoas com diabetes tipo 2 iniciaram sotagliflozina ou placebo antes ou logo após alta por piora de insuficiência cardíaca. O composto recorrente de morte cardiovascular, internação e visita urgente por insuficiência cardíaca teve razão de riscos instantâneos (hazard ratio, HR) 0,67, com intervalo de confiança de 95% (IC 95%) de 0,52–0,85; morte cardiovascular isolada, HR 0,84 (IC 95% 0,58–1,22). Qual conclusão é sustentada?",
+          "refs": [
+            "sotagliflozin_trial"
+          ],
+          "opts": [
+            "O composto recorrente favoreceu sotagliflozina, sem demonstração conclusiva de menor mortalidade isolada.",
+            "A redução do composto prova que a mortalidade cardiovascular caiu na mesma proporção.",
+            "O intervalo da mortalidade comprova que o efeito verdadeiro sobre morte cardiovascular é nulo.",
+            "A contagem de eventos demonstra quantas pessoas tiveram exatamente uma hospitalização."
+          ],
+          "ans": 0,
+          "exp": "O primário contava eventos primeiros e subsequentes; um participante podia contribuir mais de uma vez. O composto foi menor com sotagliflozina, mas o intervalo da mortalidade cardiovascular isolada inclui 1 e não demonstra benefício conclusivo nem efeito verdadeiro necessariamente nulo. O ensaio terminou precocemente por perda de financiamento. Não se deve converter menos eventos recorrentes em uma contagem de pacientes ou em prova isolada de menor mortalidade.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "afterAuthorRevision": "sha256:9e165b340d46dc22b07bf5b3f88172c1bd091850f0c0bfcc1db2d5df47f252ba",
+        "refCardsAfter": {
+          "sotagliflozin_trial": {
+            "label": "Bhatt et al. — SOLOIST-WHF (2021)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/33200892/",
+            "journal": "N Engl J Med. 2021;384:117–128",
+            "ano": 2021,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "icon": "🔬",
+            "impacto": "Sotagliflozina reduziu o total recorrente de eventos de insuficiência cardíaca e morte cardiovascular.",
+            "resumo": "Ensaio multicêntrico duplo-cego com 1.222 participantes com diabetes tipo 2, hospitalizados recentemente por piora de insuficiência cardíaca. Sotagliflozina oral, inicialmente 200 mg uma vez ao dia com aumento para 400 mg conforme tolerância, ou placebo foi iniciada antes ou logo após a alta. A mediana de seguimento foi nove meses. Houve 245 versus 355 eventos do composto primário recorrente de morte cardiovascular, hospitalização e visita urgente por insuficiência cardíaca: razão de riscos instantâneos (hazard ratio, HR) 0,67; intervalo de confiança de 95% (IC 95%) 0,52–0,85; P<0,001. Morte cardiovascular isolada teve HR 0,84 (IC 95% 0,58–1,22), e mortalidade total, HR 0,82 (IC 95% 0,59–1,14). O ensaio terminou antes do previsto por perda de financiamento.",
+            "conclusao": "O composto favoreceu sotagliflozina. Os intervalos das mortalidades isoladas incluem ausência de benefício; isso não prova efeito nulo verdadeiro. O resultado não permite atribuir o benefício especificamente à inibição intestinal do cotransportador de sódio e glicose 1 (SGLT1).",
+            "curiosidade": "O primário incluía eventos primeiros e subsequentes; contagem total de eventos não é contagem de pessoas com pelo menos um evento."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "sotagliflozin_trial",
+            "revision": "sha256:c50a4851d75fb443920701985c8fe22381a74e692a33d96f6c54bb7fb51bde4a"
+          }
+        ]
+      },
+      "bundleRevision": "sha256:f199a9c7f28424dffc69326119383bcca6e28de2b097631563ec68d0bef6c7c6",
+      "classification": {
+        "op": "Interpretar o resultado composto recorrente do SOLOIST-WHF sem atribuir mortalidade isolada não demonstrada.",
+        "competency": "Leitura crítica aplicada à segurança cardiorrenal",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "MesmoOP da canônica. Consolidar as duplicatas sem inventar estrutura nova para manter contagem."
+      },
+      "publicationAuthorization": "BLOQUEADA",
+      "independentReviewRequired": true
+    }
+  ],
+  "referenceCandidates": [
+    {
+      "id": "advor_trial",
+      "before": {
+        "label": "ADVOR Trial (Acetazolamida + Furosemida na IC)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2203094",
+        "journal": "N Engl J Med 2022;387(13):1185-1195",
+        "ano": 2022,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Acetazolamida + diurético de alça ↑ descongestão precoce · piora renal transitória mais frequente",
+        "icon": "💊",
+        "resumo": "ECR multicêntrico duplo-cego (ADVOR, n=519) em insuficiência cardíaca aguda com sobrecarga de volume. Acetazolamida IV 500 mg/dia ou placebo foi adicionada a diurético de alça padronizado. Descongestão bem-sucedida até o terceiro dia, sem escalada terapêutica, ocorreu em 42,2% versus 30,5% (RR 1,46; IC95% 1,17–1,82). Análise renal pré-especificada confirmou maior resposta descongestiva em diferentes faixas de TFGe, mas encontrou mais piora da função renal durante o tratamento; a creatinina não diferiu aos três meses e essa piora não se associou a piores desfechos.",
+        "conclusao": "ADVOR apoia acetazolamida como adjuvante para descongestão precoce, sem autorizar a afirmação de ausência absoluta de alteração renal; função renal e eletrólitos precisam ser acompanhados.",
+        "curiosidade": "O bloqueio proximal de sódio e bicarbonato aumenta a entrega ao segmento onde atua o diurético de alça, uma forma de bloqueio sequencial do néfron."
+      },
+      "beforeRevision": "sha256:4484a1693645e4f5150e1b7f525b49e30278f1ce41a70fd54d08571fa146a402",
+      "after": {
+        "label": "Mullens et al. — ADVOR, análise principal (2022)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36027559/",
+        "journal": "N Engl J Med. 2022;387:1185–1195",
+        "ano": 2022,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "icon": "🔬",
+        "impacto": "Acetazolamida aumentou a descongestão precoce quando adicionada ao diurético de alça.",
+        "resumo": "Ensaio multicêntrico duplo-cego com 519 pacientes randomizados por insuficiência cardíaca aguda e sobrecarga de volume. Acetazolamida 500 mg intravenosa uma vez ao dia ou placebo foi adicionada a diurético de alça intravenoso padronizado. O primário foi ausência de sinais de sobrecarga em até três dias, sem indicação de intensificar a terapia: 42,2% versus 30,5%; razão de riscos 1,46; intervalo de confiança de 95% (IC 95%) 1,17–1,82; P<0,001. Morte ou reinternação por insuficiência cardíaca em três meses teve razão de riscos instantâneos (hazard ratio, HR) 1,07 (IC 95% 0,78–1,48). Diurese e natriurese foram maiores.",
+        "conclusao": "O resultado sustenta melhor descongestão precoce. O intervalo do composto de morte/reinternação não demonstra benefício conclusivo nem equivalência. A análise renal pré-especificada de 2023 é uma publicação distinta.",
+        "curiosidade": "O desfecho primário combinava ausência de sinais de sobrecarga e ausência de necessidade de escalada terapêutica."
+      },
+      "afterRevision": "sha256:b126c831d101512992d5f5b8b8d496d1ba97227381a2e36e27a9883ab70b668a",
+      "fieldCount": 12,
+      "publicationAuthorization": "BLOQUEADA até revisão independente dos12campos"
+    },
+    {
+      "id": "advor_renal_analysis_2023",
+      "before": null,
+      "beforeRevision": null,
+      "after": {
+        "label": "Meekers et al. — ADVOR, análise renal pré-especificada (2023)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37623428/",
+        "journal": "Eur Heart J. 2023;44(37):3672–3682",
+        "ano": 2023,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "icon": "🔬",
+        "impacto": "Maior descongestão coexistiu com mais elevações transitórias de creatinina durante o tratamento.",
+        "resumo": "Análise pré-especificada dos mesmos 519 participantes do ADVOR, randomizados para acetazolamida 500 mg intravenosa uma vez ao dia ou placebo, ambos adicionados a diurético de alça intravenoso. A mediana da filtração glomerular estimada na admissão foi 40 mL/min/1,73 m². Acetazolamida aumentou a descongestão nas faixas de função renal estudadas. Elevação de creatinina ≥0,3 mg/dL durante o tratamento ocorreu em 40,5% versus 18,9%; P<0,001. A creatinina não diferiu aos três meses (P=0,565), e essa piora não se associou a maior incidência de hospitalização por insuficiência cardíaca ou mortalidade.",
+        "conclusao": "Distinguir resposta descongestiva, alteração transitória de creatinina e desfechos clínicos. Esses dados não comprovam lesão tubular persistente nem dispensam monitorização renal e eletrolítica.",
+        "curiosidade": "É uma análise do mesmo ensaio, com pergunta e definição renal específicas; não deve ser contada como uma segunda randomização independente."
+      },
+      "afterRevision": "sha256:6647fcbd1d92ab00c6778e889742ba774f7da3d9ddbd8d6b989914517b65e584",
+      "fieldCount": 12,
+      "publicationAuthorization": "BLOQUEADA até revisão independente dos12campos"
+    },
+    {
+      "id": "sotagliflozin_trial",
+      "before": {
+        "label": "SOLOIST-WHF Trial (Sotagliflozina na IC)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2030422",
+        "journal": "N Engl J Med 2021;384(2):117-128",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sotagliflozina ↓33% o composto recorrente de eventos de IC e morte CV no SOLOIST-WHF",
+        "icon": "💊",
+        "resumo": "ECR multicêntrico duplo-cego (SOLOIST-WHF, n=1.222) em diabetes tipo 2 após episódio recente de piora da insuficiência cardíaca. Sotagliflozina ou placebo foi iniciada antes da alta ou poucos dias depois. O total de mortes cardiovasculares, hospitalizações e visitas urgentes por insuficiência cardíaca foi menor com sotagliflozina (HR 0,67; IC95% 0,52–0,85). O estudo terminou precocemente por perda de financiamento, e mortalidade cardiovascular ou por todas as causas isoladamente não apresentou redução significativa.",
+        "conclusao": "SOLOIST-WHF apoia início de sotagliflozina próximo à alta para reduzir eventos de piora da insuficiência cardíaca; não deve ser descrito como prova isolada de redução de mortalidade ou de nefroproteção.",
+        "curiosidade": "Sotagliflozina combina inibição de SGLT2 renal com SGLT1, predominante no intestino; o endpoint clínico, porém, não permite atribuir o benefício especificamente ao componente intestinal."
+      },
+      "beforeRevision": "sha256:eabc1f88f72250bdea68365bbaeb16163c6a6d9e761ca901384a93179c8b776f",
+      "after": {
+        "label": "Bhatt et al. — SOLOIST-WHF (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33200892/",
+        "journal": "N Engl J Med. 2021;384:117–128",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "icon": "🔬",
+        "impacto": "Sotagliflozina reduziu o total recorrente de eventos de insuficiência cardíaca e morte cardiovascular.",
+        "resumo": "Ensaio multicêntrico duplo-cego com 1.222 participantes com diabetes tipo 2, hospitalizados recentemente por piora de insuficiência cardíaca. Sotagliflozina oral, inicialmente 200 mg uma vez ao dia com aumento para 400 mg conforme tolerância, ou placebo foi iniciada antes ou logo após a alta. A mediana de seguimento foi nove meses. Houve 245 versus 355 eventos do composto primário recorrente de morte cardiovascular, hospitalização e visita urgente por insuficiência cardíaca: razão de riscos instantâneos (hazard ratio, HR) 0,67; intervalo de confiança de 95% (IC 95%) 0,52–0,85; P<0,001. Morte cardiovascular isolada teve HR 0,84 (IC 95% 0,58–1,22), e mortalidade total, HR 0,82 (IC 95% 0,59–1,14). O ensaio terminou antes do previsto por perda de financiamento.",
+        "conclusao": "O composto favoreceu sotagliflozina. Os intervalos das mortalidades isoladas incluem ausência de benefício; isso não prova efeito nulo verdadeiro. O resultado não permite atribuir o benefício especificamente à inibição intestinal do cotransportador de sódio e glicose 1 (SGLT1).",
+        "curiosidade": "O primário incluía eventos primeiros e subsequentes; contagem total de eventos não é contagem de pessoas com pelo menos um evento."
+      },
+      "afterRevision": "sha256:c50a4851d75fb443920701985c8fe22381a74e692a33d96f6c54bb7fb51bde4a",
+      "fieldCount": 12,
+      "publicationAuthorization": "BLOQUEADA até revisão independente dos12campos"
+    },
+    {
+      "id": "bproad",
+      "before": {
+        "label": "BPROAD Trial",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+        "journal": "N Engl J Med 2025;392(12):1155-1167",
+        "ano": 2025,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Meta sistólica intensiva reduziu eventos cardiovasculares; os poucos eventos renais agudos não provam ausência de risco.",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado com 12.821 adultos de pelo menos 50 anos, diabetes tipo 2, pressão elevada e risco cardiovascular aumentado, em 145 centros chineses. Comparou pressão sistólica alvo abaixo de 120 ou 140 mmHg, com adjudicação de desfechos cega. Em mediana de 4,2 anos, o composto cardiovascular primário ocorreu em 393 versus 492 participantes (razão de riscos (HR) 0,79; IC 95% 0,69–0,90; P<0,001). Eventos adversos graves ocorreram em 36,5% versus 36,3%; insuficiência renal aguda em 4 versus 5 (HR 0,79; IC 95% 0,21–2,95). Hipotensão sintomática foi numericamente mais frequente, 8 versus 1; potássio acima de 5,5 mmol/L ocorreu em 177 versus 125.",
+        "conclusao": "O alvo intensivo reduziu o composto cardiovascular nessa população. A ausência de diferença detectada nos poucos eventos de insuficiência renal aguda não demonstra equivalência ou ausência de dano; requer vigilância de pressão, potássio e função renal.",
+        "curiosidade": "O artigo saiu online em 16/11/2024 e no volume de 2025. A tabela 3 separa eventos graves e condições que levaram à emergência dos alertas laboratoriais de segurança."
+      },
+      "beforeRevision": "sha256:0e12c0decee9ca796af9925fa6758193f24d6ccdce59bcbd69e7a65f207b78b4",
+      "after": {
+        "label": "BPROAD Trial",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+        "journal": "N Engl J Med 2025;392(12):1155-1167",
+        "ano": 2025,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Meta sistólica intensiva reduziu eventos cardiovasculares; os poucos eventos renais agudos não provam ausência de risco.",
+        "icon": "🔬",
+        "resumo": "Ensaio randomizado com 12.821 adultos de pelo menos 50 anos, diabetes tipo 2, pressão elevada e risco cardiovascular aumentado, em 145 centros chineses. Comparou pressão sistólica alvo abaixo de 120 ou 140 mmHg, com adjudicação cega dos desfechos. O primário reuniu acidente vascular cerebral ou infarto não fatais, tratamento ou internação por insuficiência cardíaca e morte cardiovascular. Em mediana de 4,2 anos, ocorreu em 393 versus 492 participantes: razão de riscos instantâneos (hazard ratio, HR) 0,79; intervalo de confiança de 95% (IC 95%) 0,69–0,90; P<0,001. Eventos graves ocorreram em 36,5% versus 36,3%; insuficiência renal aguda, em 4 versus 5 (HR 0,79; IC 95% 0,21–2,95). Hipotensão sintomática foi numericamente mais frequente, 8 versus 1; potássio acima de 5,5 mmol/L ocorreu em 177 versus 125.",
+        "conclusao": "O alvo intensivo reduziu o composto cardiovascular nessa população. A ausência de diferença detectada nos poucos eventos de insuficiência renal aguda não demonstra equivalência ou ausência de dano; requer vigilância de pressão, potássio e função renal.",
+        "curiosidade": "O artigo saiu online em 16/11/2024 e no volume de 2025. A tabela 3 separa eventos graves e condições que levaram à emergência dos alertas laboratoriais de segurança."
+      },
+      "afterRevision": "sha256:238eda53074cab268f38c8e9332ca6319c0865a99ab5a28844b1cc717e899f7c",
+      "fieldCount": 12,
+      "publicationAuthorization": "BLOQUEADA até revisão independente dos12campos"
+    }
+  ],
+  "sources": {
+    "dapa": {
+      "id": "DAPA_CKD_2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32970396/",
+      "access": "PRIMARY_ABSTRACT_READ_FROM_OFFICIAL_NLM_EFETCH_XML_NOT_FULL_BODY",
+      "artifact": "ux-1728-root/rct-author/rct-primary-abstracts.xml",
+      "rawSHA256": "4f6333db44f76342d742639205be1136ffa36f62996ba368ed1fa1744b279aab",
+      "scope": "Abstract completo:4304,TFGe25–75/RAC200–5000,10mg1x/d,primário,197/2152vs312/2152,HR0,61IC0,51–0,72,mediana2,4anos,morte4,7vs6,8%,com/semDM2. Não corpo integral."
+    },
+    "advor": {
+      "id": "ADVOR_MAIN_2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36027559/",
+      "access": "PRIMARY_ABSTRACT_READ_FROM_OFFICIAL_NLM_EFETCH_XML_NOT_FULL_BODY",
+      "artifact": "ux-1728-root/rct-author/rct-primary-abstracts.xml",
+      "rawSHA256": "4f6333db44f76342d742639205be1136ffa36f62996ba368ed1fa1744b279aab",
+      "scope": "Abstract completo:519randomizados,500mgIV1x/d comalçaIVdobrodaoral,primário3dias,108/256vs79/259,RR1,46IC1,17–1,82,composto90diasHR1,07IC0,78–1,48. Segurança da análise original não equivale à definição renal2023."
+    },
+    "advorRenal": {
+      "id": "ADVOR_RENAL_2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37623428/",
+      "access": "PRIMARY_ABSTRACT_READ_FROM_OFFICIAL_NLM_EFETCH_XML_NOT_FULL_BODY",
+      "artifact": "ux-1728-root/rct-author/rct-primary-abstracts.xml",
+      "rawSHA256": "4f6333db44f76342d742639205be1136ffa36f62996ba368ed1fa1744b279aab",
+      "scope": "Abstract completo:análise pré-especificada do mesmoensaio,Cr≥0,3mg/dL40,5vs18,9%;sem diferençaCr3meses(P0,565) ouassociação comhospitalização/mortalidade. Não estima lesão tubular estrutural nem prova inocuidade universal."
+    },
+    "soloist": {
+      "id": "SOLOIST_WHF_2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33200892/",
+      "access": "PRIMARY_ABSTRACT_READ_FROM_OFFICIAL_NLM_EFETCH_XML_NOT_FULL_BODY",
+      "artifact": "ux-1728-root/rct-author/rct-primary-abstracts.xml",
+      "rawSHA256": "4f6333db44f76342d742639205be1136ffa36f62996ba368ed1fa1744b279aab",
+      "scope": "Abstract completo:1222(608/614),mediana9meses,245vs355eventosrecorrentes,HR0,67IC0,52–0,85;CV0,84IC0,58–1,22,total0,82IC0,59–1,14;encerrado porfinanciamento. Não inferir mortalidade nula ou benefício doSGLT1isolado."
+    },
+    "bproad": {
+      "id": "BPROAD_FINAL",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+      "access": "PRIMARY_FULL_PUBLISHED_ARTICLE_READ",
+      "artifact": "ux-1728-editorial-backlog/bproad-primary.pdf",
+      "rawSHA256": "6b5146216744147e435ffdc785af6b84e503fcd19ace3d8af2c4f5cf30b90cdb",
+      "scope": "Texto integral pertinente lido,Métodos/desfecho eTabela3:12821(6414/6407),393vs492,HR0,79IC0,69–0,90;AEgrave36,5vs36,3%;K>5,5=177vs125,hipotensãosintomática8vs1,LRA4vs5ICamplo. Monitorização não vira contra-indicação automática."
+    },
+    "soloistFull": {
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2030183",
+      "artifact": "ux-1728-editorial-backlog/independent-rct/soloist-primary.pdf",
+      "rawSHA256": "fd6040503b7d6a16a2eeececccef70a7fed89c831fd1ac7fc6d88cd4eb4fca02",
+      "access": "PDF primário publicado em repositório institucional; root leuTrialProcedures eEndPoints com extração direta. RotadiretaNEJM403, página primária indexada também recuperou200→400mg.",
+      "scope": "Dose/frequência e definição recorrente; DOIcorreto2030183, não2030422."
+    },
+    "soloistProtocol": {
+      "url": "https://cdn.clinicaltrials.gov/large-docs/34/NCT03521934/Prot_000.pdf",
+      "access": "Protocolo primário público144p efetivamente aberto pelaweb, p19/p61.",
+      "scope": "Viaoral,200mg1x/dnas2primeirassemanas,400mga partirsemana3conformetolerância; semprojetar paraoutrosestudos. Nãoalegaleituradas144pinteiras."
+    }
+  },
+  "neighborChecks": [
+    {
+      "qids": [
+        "5f9a6fe1",
+        "e56795a6"
+      ],
+      "decision": "FUNDIR_PROPOSTO",
+      "fourDimensions": "decisão/estrutura/perfil/língua coincidem"
+    },
+    {
+      "qids": [
+        "b2c513e8",
+        "709ad94a"
+      ],
+      "decision": "FUNDIR_PROPOSTO",
+      "fourDimensions": "decisão/estrutura/perfil/língua coincidem"
+    },
+    {
+      "qids": [
+        "ee219394",
+        "40c5f770",
+        "9fd2cfdb"
+      ],
+      "decision": "APOSENTAR_EE_PROPOSTO",
+      "reason": "Não inventar variaçãoR​​CT para repetir inferência genérica; 9fd conservaOP específico de precisão/subgrupo, não destino automático."
+    }
+  ],
+  "implementation": "AFTERs4+colaterais3+retiradas3 dependem de gate independente. DAPAcardpropostoA1 não será aplicado; nenhumAFTER destaA2 oconsome.",
+  "retirements": [
+    {
+      "qid": "5f9a6fe1",
+      "destination": "e56795a6",
+      "proposedVerdict": "fundir",
+      "reason": "Mesma decisão de reconhecer benefício do composto cardiovascular, mesma estrutura de alvos/população/ensaio, mesmo público e língua. O enquadramento narrativo de um adulto perguntando não muda a decisão.",
+      "before": {
+        "t": "BPROAD — desfecho primário",
+        "qid": "5f9a6fe1",
+        "q": "No BPROAD, qual foi o efeito do alvo intensivo de PAS <120 mmHg sobre o desfecho primário cardiovascular composto?",
+        "refs": [
+          "bproad"
+        ],
+        "opts": [
+          "Reduziu significativamente o composto de AVC não fatal, IAM não fatal, tratamento/internação por IC ou morte cardiovascular",
+          "Reduziu exclusivamente início de diálise crônica, sem efeito cardiovascular",
+          "Aumentou significativamente mortalidade cardiovascular",
+          "Não houve diferença no desfecho primário"
+        ],
+        "ans": 0,
+        "exp": "No BPROAD, o alvo intensivo de PAS <120 mmHg reduziu significativamente o desfecho primário composto — AVC não fatal, infarto agudo do miocárdio (IAM) não fatal, tratamento ou internação por insuficiência cardíaca (IC) ou morte cardiovascular — em comparação ao alvo <140 mmHg (HR 0,79; IC95% 0,69–0,90). O estudo foi cardiovascular, não um ensaio desenhado primariamente para início de diálise, e não mostrou aumento de mortalidade cardiovascular.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "beforeRevision": "sha256:055c2c796e5447616bdb99ad5775170561c1b98bccd678254cdda7589fe0899f",
+      "originalRecordRevision": "sha256:dea67484e8298b56ad081af3b39e7b5bb41d47957df4d492e8e1a1f4a75726e5",
+      "publicationAuthorization": "BLOQUEADA",
+      "noFSRSTransfer": true,
+      "noCreditTransfer": true,
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "b2c513e8",
+      "destination": "709ad94a",
+      "proposedVerdict": "fundir",
+      "reason": "Mesma decisão de preservar alerta de potássio apesar de eventos graves globais semelhantes; os cenários não diferem em informação decisiva, perfil ou língua. Não usar números adicionados agora para fabricar nova variação.",
+      "before": {
+        "t": "BPROAD — Hipercalemia no Alvo Pressórico Intensivo",
+        "qid": "b2c513e8",
+        "q": "No BPROAD, em pacientes com diabetes tipo 2 e hipertensão, o alvo intensivo de PAS <120 mmHg reduziu eventos cardiovasculares. Qual foi o sinal de segurança relacionado ao potássio?",
+        "refs": [
+          "bproad"
+        ],
+        "opts": [
+          "Hipercalemia ocorreu com maior frequência no grupo intensivo, embora eventos adversos graves globais tenham sido semelhantes.",
+          "Hipercalemia foi igual entre os grupos e não apareceu como sinal de segurança.",
+          "Hipercalemia foi menor no grupo intensivo por uso obrigatório de diurético de alça.",
+          "O estudo excluiu completamente a análise de potássio sérico."
+        ],
+        "ans": 0,
+        "exp": "No BPROAD, o alvo intensivo reduziu o desfecho cardiovascular primário, mas hipercalemia e hipotensão sintomática foram mais frequentes no braço intensivo. A mensagem prática não é abandonar alvo intensivo automaticamente, e sim individualizar e monitorar potássio, função renal, sintomas e técnica padronizada de medida da pressão, especialmente em DRC, idosos frágeis e usuários de bloqueio do SRAA.",
+        "diff": "hard",
+        "cat": "hipertensao"
+      },
+      "beforeRevision": "sha256:90fdb473d909418157c2df5ddfbdc9ba2c6cb05b62ec448faf85994d110b7d3d",
+      "originalRecordRevision": "sha256:1578ea5624feae8cef0d8c41cf404363aa5d99069e969cafd6a7c001ca98e306",
+      "publicationAuthorization": "BLOQUEADA",
+      "noFSRSTransfer": true,
+      "noCreditTransfer": true,
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "ee219394",
+      "destination": "40c5f770",
+      "proposedVerdict": "aposentar",
+      "reason": "O original não era exclusivamente memorização, mas o candidatoA1 passou a repetir interpretação genérica de composto já coberta por40c. O benefícioDAPA com/semDM2 e critérios de elegibilidade também estão cobertos no banco. Aposentar por baixo valor incremental; o destino editorial não declara duplicidade literal entre os originais nem transfere aprendizagem.",
+      "before": {
+        "t": "DAPA-CKD — Desfecho Primário Composto",
+        "qid": "ee219394",
+        "q": "No DAPA-CKD, qual resultado resume melhor o efeito da dapagliflozina sobre o desfecho primário composto renal/cardiorrenal?",
+        "refs": [
+          "dapa",
+          "credence",
+          "declare_timi58",
+          "dapa_hf",
+          "deliver_trial"
+        ],
+        "opts": [
+          "Redução relativa de cerca de 39% do composto de queda sustentada de TFGe ≥50%, doença renal terminal ou morte renal/cardiovascular",
+          "Redução modesta de 5%, sem significância estatística",
+          "Benefício restrito a pacientes sem diabetes e ausente em diabetes tipo 2",
+          "Aumento do risco de doença renal terminal, compensado apenas por perda de peso"
+        ],
+        "ans": 0,
+        "exp": "No DAPA-CKD, dapagliflozina reduziu o desfecho primário composto de queda sustentada de TFGe ≥50%, doença renal terminal ou morte renal/cardiovascular, com HR 0,61, isto é, redução relativa aproximada de 39%. O benefício foi consistente em pacientes com e sem diabetes tipo 2. A forma pedagogicamente segura de usar esse número é conectá-lo ao desfecho e à população: DRC albuminúrica, TFGe 25–75 mL/min/1,73m² e RAC 200–5000 mg/g, não uma promessa genérica para qualquer DRC ou para desfechos não estudados.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica"
+      },
+      "beforeRevision": "sha256:308ef4cedd93233f938cc089e6846977eaac798316cc6ec8104ca745312ac2d5",
+      "originalRecordRevision": "sha256:0b5c85ecda93629f471e072c0d06e92bb02dbcc5a9118de52f141d9f6d2fade8",
+      "publicationAuthorization": "BLOQUEADA",
+      "noFSRSTransfer": true,
+      "noCreditTransfer": true,
+      "independentReviewRequired": true
+    }
+  ],
+  "collateralRebindings": [
+    {
+      "qid": "a6886e4e",
+      "question": {
+        "t": "BPROAD — alvo pressórico e população",
+        "qid": "a6886e4e",
+        "q": "Qual interpretação resume melhor o desenho do BPROAD para controle pressórico em diabetes tipo 2?",
+        "refs": [
+          "bproad"
+        ],
+        "opts": [
+          "Comparou alvo de PAS <120 mmHg versus <140 mmHg em adultos com DM2, hipertensão e alto risco cardiovascular",
+          "Comparou alvo de PAS <120 mmHg versus <140 mmHg exclusivamente em DRC G5 em diálise",
+          "Testou empagliflozina versus placebo em DRC proteinúrica com TFGe ≥20 mL/min/1,73m²",
+          "Comparou alvo de PAS <130 mmHg versus <150 mmHg em pacientes sem diabetes"
+        ],
+        "ans": 0,
+        "exp": "O BPROAD randomizou adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular para tratamento intensivo com alvo de pressão arterial sistólica (PAS) <120 mmHg versus tratamento padrão com alvo <140 mmHg. O ensaio não foi um estudo de diálise, não testou iSGLT2 e não avaliou uma população sem diabetes. Esse enquadramento é essencial para não extrapolar o alvo intensivo para pacientes frágeis, diálise crônica ou contextos fora da população estudada.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "authorRevision": "sha256:e59ebe5b9e6c125fd677ddf5cd8d8b034275b2ebda046f539cb5388478f75786",
+      "referenceRevisions": {
+        "bproad": "sha256:238eda53074cab268f38c8e9332ca6319c0865a99ab5a28844b1cc717e899f7c"
+      },
+      "recordRevision": "sha256:ea8b9bc156a67f9d353b55db3c63ab02ca1dd0dc83b56570882b4d7b635afd5c",
+      "scope": "Ler questão inteira e confirmar nova definição do compostoBPROAD permanece pertinente; demais literais e referências não mudam.",
+      "publicationAuthorization": "BLOQUEADA até gate independente"
+    },
+    {
+      "qid": "8d14de2e",
+      "question": {
+        "t": "Segurança Renal no BPROAD",
+        "qid": "8d14de2e",
+        "q": "No BPROAD, pessoas com diabetes tipo 2 e risco cardiovascular aumentado foram randomizadas para pressão sistólica alvo abaixo de 120 ou 140 mmHg. Como interpretar os eventos adversos?",
+        "refs": [
+          "bproad"
+        ],
+        "opts": [
+          "A meta intensiva aumentou significativamente insuficiência renal aguda, acompanhando mais hipercalemia.",
+          "Eventos renais agudos foram raros; houve mais alertas de potássio alto e hipotensão sintomática no intensivo.",
+          "A semelhança dos eventos graves demonstra equivalência renal e dispensa monitorização adicional.",
+          "A ausência de diferença renal elimina preocupação com hipotensão, ainda que a pressão caia rapidamente."
+        ],
+        "ans": 1,
+        "exp": "Na tabela 3 do BPROAD, insuficiência renal aguda ocorreu em quatro versus cinco participantes; o intervalo de confiança foi amplo e não demonstra equivalência ou ausência de dano. Eventos graves globais foram semelhantes. Hipotensão sintomática foi numericamente mais frequente, oito versus um caso, e potássio acima de 5,5 mmol/L ocorreu em 177 versus 125 participantes. Portanto, o benefício cardiovascular do alvo intensivo exige vigilância, e não autoriza afirmar aumento comprovado de lesão renal aguda ou dispensar monitorização pela raridade observada.",
+        "diff": "medium",
+        "cat": "lra"
+      },
+      "authorRevision": "sha256:3376de461f1abcf8a7e9307c12cdc23c0d22cca6a48dfbdb673cee3728b14977",
+      "referenceRevisions": {
+        "bproad": "sha256:238eda53074cab268f38c8e9332ca6319c0865a99ab5a28844b1cc717e899f7c"
+      },
+      "recordRevision": "sha256:7ba876d0622c2fb6056121718a062910e9267e99ca7faa626dc8f40e9fcdd4d8",
+      "scope": "Ler questão inteira e confirmar nova definição do compostoBPROAD permanece pertinente; demais literais e referências não mudam.",
+      "publicationAuthorization": "BLOQUEADA até gate independente"
+    },
+    {
+      "qid": "13109735",
+      "question": {
+        "t": "Pressão Arterial na DRC — Medida Padronizada",
+        "qid": "13109735",
+        "q": "Homem de 55 anos com diabetes tipo 2 e DRC G4 apresenta PAS padronizada de consultório de 148 mmHg, sem ortostatismo. Segundo a KDIGO 2024, qual princípio orienta a meta pressórica?",
+        "refs": [
+          "kdigo_ckd",
+          "kdigo_bp_ckd_2021",
+          "bproad"
+        ],
+        "opts": [
+          "Buscar PAS abaixo de 120 mmHg quando tolerada, com medida padronizada e individualização em DRC avançada e risco de eventos adversos",
+          "Aceitar PAS abaixo de 150 mmHg porque diabetes exclui tratamento intensivo",
+          "Aplicar meta abaixo de 120 mmHg a qualquer medida casual, sem considerar sintomas ou fragilidade",
+          "Adicionar espironolactona obrigatoriamente, independentemente do potássio e da TFGe"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO sugere PAS padronizada abaixo de 120 mmHg em adultos com hipertensão e DRC quando tolerada. A forma de medir é parte da recomendação: valores casuais não devem ser tratados como equivalentes ao protocolo padronizado. Em diabetes e DRC avançada a certeza é menor do que em populações semelhantes ao SPRINT, embora o BPROAD fortaleça o benefício cardiovascular do controle intensivo em diabetes. A escolha de fármacos deve considerar albuminúria, volume, potássio, TFGe, ortostatismo e preferências; não há indicação automática de espironolactona.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "authorRevision": "sha256:1d5a0fb9eb6605560485891a68ff74893210b0fb9151c550abca3bdc8a16fa8b",
+      "referenceRevisions": {
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+        "kdigo_bp_ckd_2021": "sha256:a0d166135c0200eda5a60dab3a65f669b15c91dc1a2027964e2d0524c51016e5",
+        "bproad": "sha256:238eda53074cab268f38c8e9332ca6319c0865a99ab5a28844b1cc717e899f7c"
+      },
+      "recordRevision": "sha256:ac109bc42a73f03bf6cbe8b5a31ba79aad540e8881722069e0fc8e7d424eb87e",
+      "scope": "Ler questão inteira e confirmar nova definição do compostoBPROAD permanece pertinente; demais literais e referências não mudam.",
+      "publicationAuthorization": "BLOQUEADA até gate independente"
+    }
+  ],
+  "identityAdjudication": "A1 não liberada. A2 retiraDAPA deAFTERs e declara baixo valor incremental com destinoeditorial40c; funde2BPROAD emcanônicas próprias. Nenhuma escrita emprodução.",
+  "supersedes": {
+    "file": "author-A2.json",
+    "rawSHA256": "98ad5e867fc7020326d322432886c669cb69a017961aa9583c0a2dc62b00c620",
+    "scope": "Somente comparação/dose/via do card ADVORrenal isolado e binding correspondente. Quatro textos dequestões,retiradas erebindings restantes byte-exatos."
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "13e53210",
+  "family": "A7-FIDELIO-substituicao",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "FIDELIO-DKD — Finerenona na DKD",
+    "qid": "13e53210",
+    "q": "No FIDELIO-DKD, a finerenona reduziu aproximadamente quanto o risco relativo do desfecho renal composto primário em pacientes com diabetes tipo 2 e DRC albuminúrica?",
+    "opts": [
+      "10,5%",
+      "18% (HR 0,82; IC95% 0,73–0,93)",
+      "39,69%",
+      "55,0%"
+    ],
+    "ans": 1,
+    "exp": "No FIDELIO-DKD, a finerenona reduziu em cerca de 18% o risco relativo do desfecho renal primário composto — insuficiência renal, queda sustentada ≥40% da TFGe ou morte renal — em comparação ao placebo, com HR 0,82 (IC95% 0,73–0,93; P=0,001). O benefício ocorreu em pacientes com diabetes tipo 2 e DRC albuminúrica sobre IECA ou BRA em dose tolerada. As demais alternativas subestimam ou exageram o efeito e não correspondem ao resultado do ensaio.",
+    "diff": "medium",
+    "cat": "nefropatia_diabetica",
+    "refs": [
+      "fidelio_dkd"
+    ]
+  },
+  "originalSHA256": "sha256:d9875997a6a59b45052ab254e00649686a8038b4a6065ae979607a962d4ff5ae",
+  "originalRefs": [
+    {
+      "id": "fidelio_dkd",
+      "original": {
+        "label": "FIDELIO-DKD Trial (Finerenona)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+        "journal": "N Engl J Med 2020;383(23):2219-2229",
+        "ano": 2020,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",
+        "icon": "💊",
+        "resumo": "ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+        "conclusao": "FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+        "curiosidade": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
+      },
+      "originalSHA256": "sha256:3934cb5fccff3343e72207aa16b9cc41842e73b6291ce7c87d0f58fbb35ea84c"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Recordar a redução relativa percentual do composto primário do FIDELIO-DKD.",
+    "primaryCompetence": "Interpretação pretendida, mas a tarefa original é memorização numérica.",
+    "bloom": "Lembrar",
+    "miller": "Sabe",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "easy"
+  },
+  "originalReview": {
+    "verdict": "aposentar",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Memorização de percentual sem consequência clínica é trivia.",
+      "MAIOR — A correta é a única com HR e intervalo; distratores têm números arbitrariamente precisos.",
+      "MAIOR — Trocar o OP por interpretação do composto e do HR exige nova identidade, não reusar o mesmo qid."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": true,
+        "rationale": "Pede recordar o percentual do estudo, sem dados para interpretação ou decisão clínica. O intervalo e o HR aparecem somente na correta e entregam pista formal."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "anulado": true
+    },
+    "decision": "Aposentar a identidade de memorização numérica; criar separadamente item de interpretação com novo qid, nascido BLOQUEADO. Não é fusão nem transferência de maestria."
+  },
+  "sources": [
+    {
+      "id": "fidelio",
+      "url": "https://diposit.ub.edu/bitstreams/d83771e6-4737-4c37-8e49-21196b8cf338/download",
+      "doi": "10.1056/NEJMoa2025845",
+      "pmid": "33264825",
+      "access": "Artigo primário integral de 11 páginas, versão publicada depositada pela Universitat de Barcelona; registro PubMed e página de depósito também abertos.",
+      "locators": [
+        "PDF1 / NEJM2219: população, intervenção, desfechos, seguimento e resultados.",
+        "PDF2–3 / NEJM2220–2221: elegibilidade, bloqueio renina-angiotensina, definição de falência renal, queda sustentada e análise de tempo até evento com modelo de Cox.",
+        "PDF4 / NEJM2222: 5.734 randomizados; 60 prospectivamente excluídos por violações críticas de boas práticas; conjunto de análise 5.674.",
+        "PDF4 / NEJM2222 e PDF7 / NEJM2225, Figura2: composto primário e componentes individuais; estimativas e incerteza são distintas.",
+        "PDF9–10 / NEJM2227–2228: segurança, hipercalemia e limites de generalização."
+      ],
+      "limitations": [
+        "Não é análise de intenção de tratar integral; não inferir efeito igual em todos os componentes nem benefício individual fixo. Proporções brutas não equivalem à redução absoluta estimada em horizonte fixo."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "HR0,82 e intervalo0,73–0,93 são os resultados do composto renal primário na fonte.",
+      "source": "fidelio",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": null,
+  "proposedSHA256": null,
+  "classificationAfter": null,
+  "proposedRefs": [],
+  "candidateReview": null,
+  "identityDecision": {
+    "preserveQid": false,
+    "reason": "O OP muda de recordar uma estimativa para interpretar alcance e limites de um composto/HR. Criar novo qid e não transferir FSRS, crédito, acertos ou domínio da antiga identidade.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": "Aposentadoria e eventual substituição dependem de revisão independente. A nova questão está no campo newCreation, sem veredito autoral de aprovação."
+}

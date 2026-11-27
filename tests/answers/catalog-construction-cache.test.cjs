@@ -178,6 +178,9 @@ test('async and sync published catalogs retain every current and historical valu
     assert.deepEqual(actual.inspectLegacy(archived.qid, options), expected.inspectLegacy(archived.qid, options), archived.qid + ':' + profile);
     historicalProfiles++;
   }
-  assert.equal(authors.length, 741); assert.equal(currentProfiles, 2964);
-  assert.equal(history.length, 169); assert.equal(historicalProfiles, 676);
+  assert.equal(authors.length, 723); assert.equal(currentProfiles, 2892);
+  assert.equal(history.length, 505); assert.equal(historicalProfiles, 2020);
+  assert.equal(Object.keys(references).length, 406);
+  assert.deepEqual(history.filter(archived => archived.release === '17.25').map(archived => archived.qid).sort(),
+    ['b35be598', 'e0853fac', 'ebea50d5']);
 });

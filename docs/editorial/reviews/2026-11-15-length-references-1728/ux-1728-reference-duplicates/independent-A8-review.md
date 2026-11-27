@@ -1,0 +1,26 @@
+# Duas fusões — finerenona e DAPA-IgA
+
+PacoteA8.1RAWa5f6248ec3fd2d0de0806bb68dc5b7cb48f7acb3ee3e2755a27d535e30280afa. Duascanônicas/3cardsLIBERADOS,2originaisaposentadosBLOQUEADOS. Semescritadeprodução.
+
+## 3d8fc3fe
+
+aprovada;VERIFICADA/NENHUMA;LIBERADA;19/20.Questãosha256:f042d0cd03edb19cc684f3885f235e2f4ce3e1aa9dea70bdeb6ce75c9e574788;pacotesha256:4e9ec8cd98255aade2e5cf24bf8a380462f0a0a8995c82dc7551e8f4454b7cfc.
+Finerenona é antagonista não esteroidal/seletivo mineralocorticoide; difere de esteroidal,renina eSGLT2. IndicaçãoDRCDM2 persiste, sem alegar exclusiva; K/função precisam seleção/vigilância.
+Advogado doRecurso:A pergunta pedeclasse, não indicaçãouniversal nem dose. O caso declarautilizaçãoDRCDM2semnegarHFouDM1atuais. As quatroclassesdistinguem mecanismos que mudam seleção e segurança; recallbásico útil,não memorizaepônimo/númerodeensaio. Nãohásegundaopçãodefensável.
+Dezeliminatórios eárvore completosnoJSON.
+
+## 9fd2cfdb
+
+aprovada;VERIFICADA/NENHUMA;LIBERADA;19/20.Questãosha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5;pacotesha256:cf7fa2da3707eb123d17b818c897afd363292243995a8cc023fcf29bbc7a2668.
+Subgrupopré-especificado270IgA,26eventos,HR0,29IC0,12–0,73sustenta nefroproteçãocomprecisãolimitada. Primárioincluía≥50%TFGe/falênciarenal/morterenalCV,semmedirproduçãoIgA.
+Advogado doRecurso:Significância doHRnão elimina imprecisão e limites da população; o intervalo amplo é compatível comcorreta. Ser subgrupo não torna evidência inútil. Semresultadoimunecomoendpointnão seprovaaçãoespecífica; não seextrapola aGFRnormal/normoalbuminúria que nãoforamestudadas. Dadosfornecidos,nãomemorizaçãoisolada.
+Dezeliminatórios eárvore completosnoJSON.
+
+- 5906012f→3d8fc3fe:FUNDIR/aposentadoriaatômica;original17.27autorsha256:4c508ac001ca2e1fef0d76c2c330ea24084bcd7f491438005573d6b5797b9dcc;recordsha256:8f2221e2be7962af268c37d4817c34e9ec54dc9046766c41f30488c469d10f1d. Preservarhistórico17.27 e posições/respostas de sessõesantigas. Trocapendente sóapósescolhaexplícita;nãoreavaliarrespondidas. Canônicajáemoutraposição nãopermiteapagarresposta ouaumentartotalplanejado. NãofundirFSRS,nãotransferiracertos/crédito/descobertas/favoritosentrequestões. Destinatáriamantém seuqid/texto/FSRSpróprios;nãoreaplicaroriginalaposentado.
+- a4ffbe05→9fd2cfdb:FUNDIR/aposentadoriaatômica;original17.27autorsha256:b2d317f00dc9a01a41da98c642ff5b7c14e3fcc350598bc8eb16aeeed923418e;recordsha256:4ba284e4ddadb10df2c56bf39632c8e0ac1ef48251f64287cbd9ea8f00dd7c3f. Preservarhistórico17.27 e posições/respostas de sessõesantigas. Trocapendente sóapósescolhaexplícita;nãoreavaliarrespondidas. Canônicajáemoutraposição nãopermiteapagarresposta ouaumentartotalplanejado. NãofundirFSRS,nãotransferiracertos/crédito/descobertas/favoritosentrequestões. Destinatáriamantém seuqid/texto/FSRSpróprios;nãoreaplicaroriginalaposentado.
+
+- finerenone_label_dailymed:aprovada,VERIFICADA/NENHUMA,LIBERADA;sha256:c6d9a4abf3fb81a3b5f5a337ec6f9c902d841a798138f72e1b9b566b5110f12e. Bula09/2026identidade,revisão eclassesconfirmadas. K>5nãoiniciar;TFGe<25inícionãorecomendado; monitorizarK/função. CYP3A4substrato,fortescontraindicados,moderadosfracosmonitorizar/ajustarconforme;evitargrapefruit. Literalc6d9a4…reavaliadointeiro, nãoherdado; não sealegaúnicaindicaçãoDM2.
+- dapa_ckd_igan_2021:aprovada,VERIFICADA/NENHUMA,LIBERADA;sha256:ccd958b627cbcafc234b52517026e87e42874e9b97592818bf7c66248752c347. MetadadosKI2021;100:215–224/DOIcorretos,subgrupopré-especificado254/270biópsias. 43,8TFGe/UACR900,dapa10mgoral1x/dia,6/137e20/133,2,1anos/HR0,29IC0,12–0,73P0,005/UACR−26%. PrimáriomorteCVincluída,secundáriorenalexclui; poucos eventoslimitamestimativa; não mecanismoimunedireto. Novo literalA8.1comvia eintervaloreavaliado; nãoa versão81eb…anterior porherança.
+- kdigo_igan_igav_2025:aprovada,VERIFICADA/NENHUMA,LIBERADA;sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2. Diretrizfinaloutubro2025deIgAN/IgAVatualizacapítulo2021. Manejo orientadoporrisco/apoionefroprotetor e terapias adicionais dirigidas a pacientesselecionados. Nãoestabelecedieta semglútenrotineirauniversal; não nega indicaçãoemdoençacelíaca. Corpo56893…integralmente rechecado e preservado.
+
+Fontesefetivamenteabertas e locatoresnoJSON; DAPA-IgAintegral congeladoemindependent-bibliographic/dapa-igan-2021-primary.pdf,hasha6eecabb5a4b3f00145427bc09c4ad074b7b5d0a47b6ae67fddea198ccf56a0e.

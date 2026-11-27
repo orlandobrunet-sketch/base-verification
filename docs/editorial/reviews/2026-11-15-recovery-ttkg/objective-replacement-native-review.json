@@ -1,0 +1,923 @@
+{
+  "schema": "nq-native-objective-replacement-review-v1",
+  "status": "PASS",
+  "scope": "Technical end-to-end validation of the exact approved 17.26 historical snapshot and distinct replacement identity; no new clinical review.",
+  "oldQid": "6474ec20",
+  "newQid": "b515e1c7",
+  "archivedRelease": "17.26",
+  "counts": {
+    "contracts": 14,
+    "profiles": {
+      "chromium": 14,
+      "mobile": 14
+    },
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "runnerErrors": 0,
+    "actualAuditAttachments": 28
+  },
+  "configuration": {
+    "timeoutMs": 60000,
+    "workers": 1,
+    "retries": 0,
+    "serviceWorkers": "block"
+  },
+  "results": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r4-results.json",
+    "bytes": 55780,
+    "sha256": "07ba439a020b089a319ee1a04273b19c4c14bed64b262256af1c574bb055b1b5"
+  },
+  "log": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r4-run.log",
+    "bytes": 6681,
+    "sha256": "9c4587547b9f4af602e419cbe80c9abed8a70000e46d373941dc136bf37d550b"
+  },
+  "sourceSnapshot": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r4-303-source.ts",
+    "bytes": 24243,
+    "sha256": "7286060b000915d263b257f98637dfab0ead773eb5f7481697b127eb47f55489"
+  },
+  "sourceStartReceipt": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r4-source-receipt.json",
+    "bytes": 2248,
+    "sha256": "31b91cf1fecd30cda8314dd54c31c7bf249c9acebb094154d0403b05595a42da"
+  },
+  "runtimeSourceMatchStartEnd": true,
+  "sources": [
+    {
+      "path": "data/topics.js",
+      "rawSHA256": "32e76a61e669ad9673370810eb223b303efc4c3e8980a11971f82a11f3cd1e7f",
+      "lfSHA256": "32e76a61e669ad9673370810eb223b303efc4c3e8980a11971f82a11f3cd1e7f",
+      "bytes": 975785
+    },
+    {
+      "path": "data/refs.js",
+      "rawSHA256": "9874303865b0a9a803eda9cffb7d7034509b1dcecb43f507ad2de1acb86b274b",
+      "lfSHA256": "9874303865b0a9a803eda9cffb7d7034509b1dcecb43f507ad2de1acb86b274b",
+      "bytes": 511414
+    },
+    {
+      "path": "data/question-revision-manifest.js",
+      "rawSHA256": "7dcafa5835490395968a900f9ffb45705a43cdca34d2ed68ae9888a0eeef88a4",
+      "lfSHA256": "7dcafa5835490395968a900f9ffb45705a43cdca34d2ed68ae9888a0eeef88a4",
+      "bytes": 534699
+    },
+    {
+      "path": "data/question-revision-history.js",
+      "rawSHA256": "16cec6ac0a347ab7ce9f19a53a7336f86a8df8a9d244a4f15eb5a6f03aa7a901",
+      "lfSHA256": "16cec6ac0a347ab7ce9f19a53a7336f86a8df8a9d244a4f15eb5a6f03aa7a901",
+      "bytes": 1785427
+    },
+    {
+      "path": "js/game.js",
+      "rawSHA256": "48a09f2124106037df932c77d660c16d2afe19de61d1252c3ddd697104634cb8",
+      "lfSHA256": "2d112fd0609ac54c2a58a078304666243e9347b9dbca2baf79fffc07d81054f8",
+      "bytes": 481116
+    },
+    {
+      "path": "js/exam.js",
+      "rawSHA256": "edeaee0fdb78b8740a87a39bfba5536eab0ac6b96004315343cb5d51dff80196",
+      "lfSHA256": "a58a8faf4f0b9210f10dc4ac5c6d685cb644f14a5a9fc6e0f4c9e1c4086ef335",
+      "bytes": 48667
+    },
+    {
+      "path": "js/study-mode.js",
+      "rawSHA256": "ce1c166420b36cf6b9c468957d4e04e06ad522579dc3306cdd74f24851df07ed",
+      "lfSHA256": "f1d48dcd0fb62e2945acd1f7a7f23711627af59aa277754a659e354068e79198",
+      "bytes": 137198
+    },
+    {
+      "path": "js/question-revisions.js",
+      "rawSHA256": "4cdf46b51310ea9aad5851f8b7ae8a5c793a9715648b1a73f2325e07883e01a9",
+      "lfSHA256": "855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4",
+      "bytes": 20420
+    },
+    {
+      "path": "js/answer-presentation.js",
+      "rawSHA256": "c833ef04b1ae9c3b1f3b4aeac7f8c2b94344535d622ef258d93dc38fb63d7a0a",
+      "lfSHA256": "3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e",
+      "bytes": 12657
+    },
+    {
+      "path": "js/pilot.js",
+      "rawSHA256": "92256e05edcdc570eb62df71eca6731c0967151474679d538e2086b5291c05aa",
+      "lfSHA256": "1716455b4b61e763dd3b9ca661702ae7bdf7523d19618dc7bcf0f4780ca8b9c8",
+      "bytes": 19139
+    },
+    {
+      "path": "offline.html",
+      "rawSHA256": "2f5f454d226d3cccd02856646092f9a13f5d6d40231398015e13510288b288f8",
+      "lfSHA256": "37ad547cf71f055ab99a16e2316f0f289f58fc5439a46a78b16a4e97c8e1f731",
+      "bytes": 37551
+    },
+    {
+      "path": "tests/specs/303-question-objective-replacement.spec.ts",
+      "rawSHA256": "4b18928750999416e704dfeca14b866f7a333724262d278087f7bc673e0f88e5",
+      "lfSHA256": "4b18928750999416e704dfeca14b866f7a333724262d278087f7bc673e0f88e5",
+      "bytes": 24338
+    },
+    {
+      "path": "tests/helpers/cinema.ts",
+      "rawSHA256": "c2198ece69b39e47172513b156cc6669352801e30ae95823176ca0b24aeb9169",
+      "lfSHA256": "276db1dbe6859a6399a248ef6372bdd78a4618ffe04a458d80af5322dc1c6bb2",
+      "bytes": 6426
+    }
+  ],
+  "finalTestAssertionDelta": {
+    "reason": "A legitimate initial draw can already be NEW. Exact queue equality stays unchanged; the extra assertion now preserves the original NEW count rather than requiring zero.",
+    "onlyExpectedByteReplacement": true,
+    "r4Source": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r4-303-source.ts",
+      "bytes": 24243,
+      "sha256": "7286060b000915d263b257f98637dfab0ead773eb5f7481697b127eb47f55489"
+    },
+    "finalSource": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\final-303-source.ts",
+      "bytes": 24338,
+      "sha256": "4b18928750999416e704dfeca14b866f7a333724262d278087f7bc673e0f88e5"
+    },
+    "oldAssertion": "  expect(queue.idx).toBe(1); expect(queue.ids).not.toContain(NEW);",
+    "newAssertion": "  expect(queue.idx).toBe(1);\n  expect(queue.ids.filter((id: string) => id === NEW)).toHaveLength(seeded.save.queueIds.filter((id: string) => id === NEW).length);"
+  },
+  "finalQueueFocal": {
+    "counts": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "retries": 0,
+      "actualAuditAttachments": 2
+    },
+    "results": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\queue-final-results.json",
+      "bytes": 6480,
+      "sha256": "cbf4f2921cf135066ac0deba12f8df9314be8a5ff036f06d4af9bd533a759d21"
+    },
+    "log": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\queue-final-run.log",
+      "bytes": 1128,
+      "sha256": "f8674524d3198ee177dc8804fdefd5ab8aa67b6b6e04b85736a69fc67aaad5ba"
+    },
+    "audits": [
+      {
+        "project": "chromium",
+        "audit": {
+          "errors": [],
+          "nonGET": [],
+          "sockets": 0,
+          "guest": true,
+          "preparation": {
+            "release": "17.26",
+            "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+            "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+            "bankCount": 741
+          },
+          "status": "passed",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "durationMs": 6938
+      },
+      {
+        "project": "mobile",
+        "audit": {
+          "errors": [],
+          "nonGET": [],
+          "sockets": 0,
+          "guest": true,
+          "preparation": {
+            "release": "17.26",
+            "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+            "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+            "bankCount": 741
+          },
+          "status": "passed",
+          "viewport": {
+            "width": 412,
+            "height": 839
+          }
+        },
+        "durationMs": 7061
+      }
+    ]
+  },
+  "serverClosure": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\server-closed.json",
+    "bytes": 504,
+    "sha256": "807f3973a0848f738ab125acd8dd32cb70f54d0482568a3c3b8cb8acb499dee5"
+  },
+  "earlierRoundsPreserved": [
+    {
+      "trial": "r1",
+      "receipt": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r1-results.json",
+        "bytes": 28065,
+        "sha256": "dce16d1f4569a8c587273ad1f725a2a60b7f5407bf77be41c77e9cd43f2eb77b"
+      },
+      "stats": {
+        "startTime": "2026-11-15T20:34:13.026Z",
+        "duration": 8320.730000000001,
+        "expected": 1,
+        "skipped": 26,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "classification": "Fixture preparation rejected a missing nullable eventId; no product RED.",
+      "runnerErrorCount": 1
+    },
+    {
+      "trial": "r2",
+      "receipt": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r2-results.json",
+        "bytes": 82656,
+        "sha256": "912203c5654dc322a48bac21936f8af174437f88dfbca6087d4d036d127cf787"
+      },
+      "stats": {
+        "startTime": "2026-11-15T20:35:10.006Z",
+        "duration": 52278.646,
+        "expected": 7,
+        "skipped": 20,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "classification": "Fixture expected the original exam cursor rather than the exact pre-replacement record after a native advance; no product RED.",
+      "runnerErrorCount": 1
+    },
+    {
+      "trial": "r3",
+      "receipt": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\r3-results.json",
+        "bytes": 44806,
+        "sha256": "d3524d951efe619bfe28b8fe7b42512e7b14cc1cf9ef933430604c7efa075f52"
+      },
+      "stats": {
+        "startTime": "2026-11-15T20:36:44.984Z",
+        "duration": 79039.12,
+        "expected": 12,
+        "skipped": 15,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "classification": "Fixture expected the current reference registry in Offline, which deliberately loads no such registry. Historical complete cards and the current pinned binding remain required; no product RED.",
+      "runnerErrorCount": 1
+    }
+  ],
+  "audits": [
+    {
+      "project": "chromium",
+      "title": "fresh bank keeps 741 current identities and independently authenticates the retired 17.26 record in all four profiles",
+      "retry": 0,
+      "durationMs": 2724,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "campaign answered retirement preserves grade, complete old references and FSRS while the new question is consultation only",
+      "retry": 0,
+      "durationMs": 7295,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "campaign pending retirement changes identity only after explicit choice and preserves original bytes and benefits",
+      "retry": 0,
+      "durationMs": 9361,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "pilot pending retirement changes identity only after explicit choice and preserves original bytes and benefits",
+      "retry": 0,
+      "durationMs": 9484,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "campaign future retired queue entries do not skip the next live identity or silently enqueue the replacement",
+      "retry": 0,
+      "durationMs": 7323,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "exam answered retirement preserves the old grade, full reference object and FSRS through new-question consultation and reload",
+      "retry": 0,
+      "durationMs": 5751,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "exam pending retirement requires a new-question choice and preserves old raw, progress and separate bindings after reload",
+      "retry": 0,
+      "durationMs": 6386,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "exam a future queued retired identity remains resumable and requires its own explicit replacement choice",
+      "retry": 0,
+      "durationMs": 7327,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "study answered retirement preserves the old grade, full reference object and FSRS through new-question consultation and reload",
+      "retry": 0,
+      "durationMs": 8815,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "study pending retirement requires a new-question choice and preserves old raw, progress and separate bindings after reload",
+      "retry": 0,
+      "durationMs": 10178,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "study a future queued retired identity remains resumable and requires its own explicit replacement choice",
+      "retry": 0,
+      "durationMs": 10734,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "offline answered retirement preserves the old grade, full reference object and FSRS through new-question consultation and reload",
+      "retry": 0,
+      "durationMs": 7735,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "offline pending retirement requires a new-question choice and preserves old raw, progress and separate bindings after reload",
+      "retry": 0,
+      "durationMs": 7548,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "offline a future queued retired identity remains resumable and requires its own explicit replacement choice",
+      "retry": 0,
+      "durationMs": 7266,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "fresh bank keeps 741 current identities and independently authenticates the retired 17.26 record in all four profiles",
+      "retry": 0,
+      "durationMs": 4685,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "campaign answered retirement preserves grade, complete old references and FSRS while the new question is consultation only",
+      "retry": 0,
+      "durationMs": 9032,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "campaign pending retirement changes identity only after explicit choice and preserves original bytes and benefits",
+      "retry": 0,
+      "durationMs": 9931,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "pilot pending retirement changes identity only after explicit choice and preserves original bytes and benefits",
+      "retry": 0,
+      "durationMs": 9376,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "campaign future retired queue entries do not skip the next live identity or silently enqueue the replacement",
+      "retry": 0,
+      "durationMs": 6764,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "exam answered retirement preserves the old grade, full reference object and FSRS through new-question consultation and reload",
+      "retry": 0,
+      "durationMs": 5716,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "exam pending retirement requires a new-question choice and preserves old raw, progress and separate bindings after reload",
+      "retry": 0,
+      "durationMs": 5589,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "exam a future queued retired identity remains resumable and requires its own explicit replacement choice",
+      "retry": 0,
+      "durationMs": 6194,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "study answered retirement preserves the old grade, full reference object and FSRS through new-question consultation and reload",
+      "retry": 0,
+      "durationMs": 5458,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "study pending retirement requires a new-question choice and preserves old raw, progress and separate bindings after reload",
+      "retry": 0,
+      "durationMs": 5523,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "study a future queued retired identity remains resumable and requires its own explicit replacement choice",
+      "retry": 0,
+      "durationMs": 6202,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "offline answered retirement preserves the old grade, full reference object and FSRS through new-question consultation and reload",
+      "retry": 0,
+      "durationMs": 5528,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "offline pending retirement requires a new-question choice and preserves old raw, progress and separate bindings after reload",
+      "retry": 0,
+      "durationMs": 5509,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "offline a future queued retired identity remains resumable and requires its own explicit replacement choice",
+      "retry": 0,
+      "durationMs": 5856,
+      "audit": {
+        "errors": [],
+        "nonGET": [],
+        "sockets": 0,
+        "guest": true,
+        "preparation": {
+          "release": "17.26",
+          "oldDigest": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+          "currentDigest": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+          "bankCount": 741
+        },
+        "status": "passed",
+        "viewport": {
+          "width": 412,
+          "height": 839
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Native scenarios ran after the product fixes. Product RED/GREEN evidence belongs to the separate Node and Study investigations; these 28 cases are not a native before/after claim.",
+    "The complete 28-case R4 source and the final two-case queue source are separately pinned. Only the documented extra queue assertion changed; no 28-case run is claimed for the final assertion bytes. The exact queue-equality assertion was preserved.",
+    "Saved records and FSRS/mastery bytes are synthetic fixtures built from authenticated published author/source/reference objects. Product controllers, question bank and content are not substituted.",
+    "The pilot case is pending-only; it verifies a valid native envelope, a single explicit replacement, unchanged benefits/progress, and isolation from the primary campaign.",
+    "GET access is limited to the selected same origin; other origins, non-GET and WebSockets are blocked. The 28 audits record actual non-GET attempts, socket attempts and page errors, not hypothetical service outcomes.",
+    "Chromium desktop and an emulated Pixel 7 are software profiles, not a physical telephone.",
+    "No production browser, real account, payment, AI request, published progress, commit or deploy was performed by this validation."
+  ]
+}

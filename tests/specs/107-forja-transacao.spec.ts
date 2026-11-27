@@ -646,3 +646,68 @@ test('Pixel 7 compra com dois toques, decide e volta preservando o restante da j
   expect(await page.evaluate(() => (window as any).__forjaPointerTypes)).toEqual(['touch','touch','touch','touch','touch']);
   expect((await save(page)).gold).toBe(resolved.gold);
 });
+
+test('Égide enche só o coração novo uma vez e restaura tudo se o save falhar', async ({ page }) => {
+  await abrir(page, 5000, false);
+  await page.evaluate(() => (0, eval)(`Object.assign(_stateData,{lives:1,maxLives:3});
+    _doSaveGame();rollItem=()=>({slot:'armor',item:{n:'Égide Dialítica',rar:'epic',atk:2,def:7,kno:3,luck:1}})`));
+  const forjar = page.getByRole('button', { name: 'Forjar item aleatório', exact: true });
+  const outra = page.getByRole('button', { name: 'Forjar outro item', exact: true });
+  const equipar = page.locator('#forjaPage [data-action="decidirForja"][data-arg="substituir"]');
+  const antes = await save(page);
+  await falharArmazenamento(page);
+  await forjar.click();
+  expect(await save(page)).toEqual(antes);
+  expect((await estado(page)).lives).toBe(1);
+  expect((await estado(page)).legendaryAbilityUsed['egide-first-life-v1']).toBeUndefined();
+  await restaurarArmazenamento(page);
+  const voltar = page.getByRole('button', { name: 'Voltar e tentar novamente', exact: true });
+  if (await voltar.isVisible()) await voltar.click();
+  await forjar.click();
+  expect(await save(page)).toMatchObject({lives:2,maxLives:3,legendaryAbilityUsed:{'egide-first-life-v1':true}});
+  await outra.click();
+  await page.evaluate(() => (0, eval)("rollItem=()=>({slot:'armor',item:{n:'Controle',rar:'common',atk:1,def:1,kno:1,luck:1}})"));
+  await forjar.click(); await equipar.click();
+  expect((await save(page)).lives).toBe(2);
+  await outra.click();
+  await page.evaluate(() => (0, eval)("rollItem=()=>({slot:'armor',item:{n:'Égide Dialítica',rar:'epic',atk:2,def:7,kno:3,luck:1}})"));
+  await forjar.click(); await equipar.click();
+  expect((await save(page)).lives).toBe(2);
+  expect((await save(page)).legendaryAbilityUsed['egide-first-life-v1']).toBe(true);
+});
+
+for (const ocupado of [false, true]) {
+  test(`recompensa da Égide em espaço ${ocupado ? 'ocupado' : 'vazio'} permanece na jornada se o armazenamento falha`, async ({ page }) => {
+    await abrir(page, 5000, ocupado);
+    await page.getByRole('button', { name: '← Voltar à jornada', exact: true }).click();
+    await page.evaluate(async () => {
+      await (window as any).carregarDadosGrimorio();
+      (0, eval)(`Object.assign(_stateData, { lives: 1, maxLives: 3 });
+        _doSaveGame();
+        Math.random = () => 0.9;
+        rollItem = () => ({ slot: 'armor', item: { n: 'Égide Dialítica', rar: 'epic', atk: 2, def: 7, kno: 3, luck: 1 } });`);
+    });
+    const antes = await rawSave(page);
+    await falharArmazenamento(page);
+    try {
+      await page.evaluate(() => (window as any).triggerChestRewardPopup());
+      await page.locator('#autoChestPopup').getByRole('button', { name: 'Abrir baú', exact: true }).click();
+      if (ocupado) await page.locator('#ecpReplace').click();
+      await expect(page.getByRole('heading', { name: 'Égide Dialítica' })).toBeVisible();
+      const emMemoria = await estado(page);
+      expect(emMemoria.equipment.armor.n).toBe('Égide Dialítica');
+      expect(emMemoria.lives).toBe(2);
+      expect(emMemoria.legendaryAbilityUsed['egide-first-life-v1']).toBe(true);
+      expect(emMemoria.gold).toBe(5000 + (ocupado ? VENDA.common : 0));
+      expect(await rawSave(page)).toBe(antes);
+    } finally {
+      await restaurarArmazenamento(page);
+    }
+    await page.locator('.forge-popup').getByRole('button', { name: 'Continuar', exact: true }).click();
+    expect(await page.evaluate(() => (0, eval)('_doSaveGame()'))).toBe(true);
+    expect(await save(page)).toMatchObject({
+      equipment: { armor: { n: 'Égide Dialítica' } }, lives: 2, maxLives: 3,
+      legendaryAbilityUsed: { 'egide-first-life-v1': true },
+    });
+  });
+}

@@ -1,0 +1,410 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "0408b280",
+  "family": "A1-interpretacao-e-seguranca",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Nefrite Intersticial Aguda por Antibiótico",
+    "qid": "0408b280",
+    "q": "Mulher de 35 anos apresenta LRA oligúrica, creatinina 4,8 mg/dL, febre, rash cutâneo e eosinofilia periférica. Iniciou amoxicilina-clavulanato há 12 dias. Urinálise: leucocitúria e cilindros leucocitários; sem bacteriúria significativa. Qual é o diagnóstico mais provável e a conduta inicial?",
+    "refs": [
+      "drug_induced_ain_perazella_2010",
+      "kdigo_aki"
+    ],
+    "opts": [
+      "Nefrite intersticial aguda por hipersensibilidade a antibiótico; suspender imediatamente o fármaco, dar suporte e considerar biópsia/corticosteroide se não houver recuperação ou se o diagnóstico for incerto",
+      "Pielonefrite aguda; manter e aumentar a dose de amoxicilina-clavulanato",
+      "Glomerulonefrite pós-infecciosa; solicitar complemento e ANCA antes de suspender o antibiótico",
+      "Rabdomiólise; tratar com alcalinização urinária por mioglobinúria presumida"
+    ],
+    "ans": 0,
+    "exp": "O quadro é mais compatível com nefrite intersticial aguda (NIA) medicamentosa por beta-lactâmico: início dias a semanas após exposição ao antibiótico, febre, rash, eosinofilia e sedimento urinário inflamatório. A tríade clássica não está presente em todos os casos, e eosinofilúria isolada tem utilidade limitada; por isso, a correlação temporal e a exclusão de diagnósticos alternativos são importantes, e a biópsia renal é o padrão para confirmação quando o diagnóstico é incerto ou a evolução é grave. A conduta inicial é suspender o agente causal e oferecer suporte. Corticosteroide pode ser considerado precocemente em casos selecionados, especialmente se não houver recuperação após retirada do fármaco ou se a biópsia confirmar NIA ativa. Manter/aumentar o antibiótico, tratar como GN pós-infecciosa sem sustação do gatilho ou presumir rabdomiólise não se ajusta ao caso.",
+    "diff": "medium",
+    "cat": "lra"
+  },
+  "originalSHA256": "sha256:e39371954f5456f656cf151748d94d955b69a98dae8bd970bdea915229e24e9d",
+  "originalRefs": [
+    {
+      "id": "drug_induced_ain_perazella_2010",
+      "original": {
+        "label": "Perazella & Markowitz — NIA medicamentosa (Nat Rev Nephrol 2010)",
+        "url": "https://doi.org/10.1038/nrneph.2010.71",
+        "journal": "Nature Reviews Nephrology",
+        "ano": 2010,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Revisão de referência sobre diagnóstico e manejo da nefrite intersticial aguda induzida por fármacos",
+        "icon": "📖",
+        "resumo": "Revisão clínica sobre nefrite intersticial aguda (NIA), destacando que a forma induzida por fármacos é a etiologia mais comum, estimada em 60–70% dos casos. Múltiplas classes podem causar NIA, incluindo antibióticos, AINEs e inibidores de bomba de prótons. A apresentação clínica e laboratorial é variável; eosinofilúria tem utilidade diagnóstica limitada, e o diagnóstico definitivo é por biópsia renal quando necessário.",
+        "conclusao": "O manejo central da NIA medicamentosa é reconhecer precocemente o quadro e suspender o agente causal; corticosteroides podem beneficiar alguns pacientes, sobretudo quando iniciados cedo ou quando não há recuperação após retirada do fármaco.",
+        "curiosidade": "A tríade febre, rash e eosinofilia é clássica, mas ausente em muitos pacientes — por isso a correlação temporal com o fármaco e a evolução da função renal são cruciais."
+      },
+      "originalSHA256": "sha256:baf335aed540af1b16b4f63e82dcaace3b8691ced709b939873410cdceb6fa8c"
+    },
+    {
+      "id": "kdigo_aki",
+      "original": {
+        "label": "KDIGO AKI 2012",
+        "url": "https://kdigo.org/wp-content/uploads/2017/04/KDIGO-AKI-Guideline_Cass-2014.pdf",
+        "journal": "Kidney International Supplements",
+        "ano": 2012,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+        "icon": "📋",
+        "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, valor ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, TFGe <35 mL/min/1,73 m².",
+        "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+        "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+      },
+      "originalSHA256": "sha256:335b9b971cb4df2d3070905630f5c5b2cf612ad13b517ae1e57cf52ea7a15808"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Reconhecer NIA por antibiótico e escolher retirada imediata do agente com suporte.",
+    "primaryCompetence": "Diagnóstico e conduta inicial segura na LRA medicamentosa.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — A correta contém plano inicial e etapas posteriores condicionais; distratores são mais curtos e um presume mioglobinúria inexistente.",
+      "MENOR — KDIGO-AKI é amplo e não sustenta especificamente a escolha de NIA; o card2010 não teve corpo verificável."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "OP e conceito correto preservados; reescrita de forma e correção das referências/metadados antes de nova aprovação."
+  },
+  "sources": [
+    {
+      "id": "ain",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5718279/",
+      "doi": "10.2215/CJN.07630717",
+      "access": "corpo integral da revisão clínico-terapêutica dos autores, CJASN2017",
+      "date": "2026-11-15",
+      "locators": [
+        "linhas81–96 / exposição, tríade, sedimento, retirada sem aguardar biópsia",
+        "linhas98–128 / limitação dos corticosteroides e papel da biópsia"
+      ],
+      "verified": [
+        "antibióticos podem causar NIA",
+        "tríade e leucocitúria/cilindros apoiam suspeita mas não são confirmação isolada",
+        "retirada precoce imprescindível sem aguardar biópsia",
+        "biópsia em suspeita/LRA inexplicada, sobretudo grave",
+        "corticoide individualizado; literatura retrospectiva e confundimento"
+      ],
+      "limitations": [
+        "Fonte2010 do card original: DOI confirmado por pesquisa, corpo não abriu; trocada por revisão2017 acessível, não retroatribuída a2010. Nenhuma afirmação de eficácia comprovada de corticoide."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Exposição beta-lactâmica, quadro e suspeita de NIA",
+      "source": "ain",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Retirada imediata sem aguardar biópsia",
+      "source": "ain",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Biópsia e corticoide individualizados, sem eficácia garantida",
+      "source": "ain",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Nefrite Intersticial Aguda por Antibiótico",
+    "qid": "0408b280",
+    "q": "Mulher de 35 anos apresenta LRA oligúrica, creatinina 4,8 mg/dL, febre, rash cutâneo e eosinofilia periférica. Iniciou amoxicilina-clavulanato há 12 dias. Urinálise: leucocitúria e cilindros leucocitários; sem bacteriúria significativa. Qual é o diagnóstico mais provável e a conduta inicial?",
+    "refs": [
+      "drug_induced_ain_moledina_perazella_2017"
+    ],
+    "opts": [
+      "Nefrite intersticial por fármaco; suspender amoxicilina-clavulanato.",
+      "Pielonefrite bacteriana; ampliar o esquema antimicrobiano.",
+      "Glomerulonefrite pós-infecciosa; manter o antibiótico e investigar o foco.",
+      "Necrose tubular por sepse; manter o antibiótico e oferecer suporte."
+    ],
+    "ans": 0,
+    "exp": "A hipótese principal é NIA medicamentosa, pela relação temporal com o antibiótico e pelo quadro inflamatório. Suspender amoxicilina-clavulanato e oferecer suporte não deve aguardar biópsia. Febre, rash, eosinofilia e cilindros leucocitários apoiam a suspeita, mas não a confirmam isoladamente. Como a LRA é grave e oligúrica, cabe avaliação nefrológica e biópsia quando indicada. Corticoide exige decisão individualizada, preferencialmente com confirmação histológica; os dados terapêuticos são sobretudo observacionais. As hipóteses infecciosas ou tubulares dos distratores não explicam tão bem o conjunto nem justificam manter o possível gatilho.",
+    "diff": "medium",
+    "cat": "lra"
+  },
+  "proposedSHA256": "sha256:a5b580b2e8ec3ab0fea25581c64fc02afb5924f85de4ce6083bcc0e7c24c27e8",
+  "classificationAfter": {
+    "op": "Reconhecer NIA por antibiótico e escolher retirada imediata do agente com suporte.",
+    "primaryCompetence": "Diagnóstico e conduta inicial segura na LRA medicamentosa.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "drug_induced_ain_moledina_perazella_2017",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Moledina & Perazella — NIA medicamentosa (2017)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5718279/",
+        "journal": "Clinical Journal of the American Society of Nephrology",
+        "ano": 2017,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Retirar o fármaco sem aguardar biópsia; corticoide exige decisão individualizada",
+        "icon": "🔬",
+        "resumo": "Revisão clínica de NIA medicamentosa, necessária para diagnóstico e manejo sem ensaio terapêutico definitivo. Antibióticos são desencadeantes frequentes. Febre, rash, eosinofilia, piúria e cilindros leucocitários podem apoiar suspeita, mas não confirmam isoladamente. A retirada precoce do fármaco não deve aguardar biópsia. Biópsia confirma diagnóstico e avalia fibrose. Evidência de corticoide é principalmente retrospectiva e sujeita a confundimento.",
+        "conclusao": "Suspender o agente suspeito e oferecer suporte; na LRA grave ou dúvida diagnóstica, avaliar biópsia e individualizar corticoide, sem prometer benefício comprovado.",
+        "curiosidade": "A tríade clássica febre-rash-eosinofilia ocorre em menos de 10% dos casos descritos na revisão."
+      },
+      "proposedSHA256": "sha256:36544b7fdfd9fdcd3c31dc53a8985d0d17cd37bb15692fde68404e3e7f030b16"
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na checagem autoral da versão proposta."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "decision": "Versão proposta aprovada na checagem autoral pela árvore§19; ciclo pretendido publicado somente após revisão independente do pacote exato."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; nenhum reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Pacote AUTORAL. LIBERADA, quando presente, é resultado autoral derivado para a proposta exata; não equivale a revisão independente. O parent exigiu revisão independente antes de escrever data/topics.js ou data/refs.js."
+  },
+  "hold": null
+}

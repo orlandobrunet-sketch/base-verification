@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.join(__dirname,'..');
-const read=file=>fs.readFileSync(path.join(root,file),'utf8');
+const read=file=>fs.readFileSync(path.join(root,file),'utf8').replaceAll('\r\n','\n');
 const modules=['owner-authority','normal-authority','cloud-authority','legacy-cloud-decision','authority-cloud-decision','auxiliary-progress'];
 
 test('durability protocol suites are blocking quality gates in CI',()=>{

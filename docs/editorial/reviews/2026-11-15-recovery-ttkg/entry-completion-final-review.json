@@ -1,0 +1,223 @@
+{
+  "schema": "nq-entry-completion-both-profiles-v1",
+  "status": "PASS",
+  "counts": {
+    "contracts": 7,
+    "profiles": {
+      "chromium": 7,
+      "mobile": 7
+    },
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "runnerErrors": 0,
+    "actualSemanticAttachments": 14
+  },
+  "configuration": {
+    "workers": 1,
+    "retries": 0,
+    "timeoutMs": 20000
+  },
+  "source": {
+    "file": "C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\304-game-entry-completion.spec.ts",
+    "bytes": 6957,
+    "sha256": "6330bce649b96efc2b557ab24f181022d00e88539261cdb6f000805be88b4e94"
+  },
+  "helper": {
+    "file": "C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\helpers\\game.ts",
+    "bytes": 8516,
+    "sha256": "20cb81107b3426d3b68e738ed0ede2888bc934c3089433beb6a52ed5793fabe2"
+  },
+  "rawResults": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\entry304-results.json",
+    "bytes": 25086,
+    "sha256": "e5d31a651cf9989d999c5c4c0ad596faad4154c87571e2898da3c0acd3c54f98"
+  },
+  "log": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-replacement-native\\entry304-run.log",
+    "bytes": 3119,
+    "sha256": "265bb51acee291c4f178e7b9547744ae0894181981b3dbe679e3735f40feeb65"
+  },
+  "evidence": [
+    {
+      "project": "chromium",
+      "title": "raw CDP can collect an unreachable awaited Promise without retiring its document",
+      "retry": 0,
+      "durationMs": 297,
+      "actualAttachment": {
+        "result": {
+          "kind": "rejected",
+          "message": "cdpSession.send: Protocol error (Runtime.evaluate): Promise was collected"
+        },
+        "state": {
+          "ready": "complete",
+          "calls": 1,
+          "alive": false
+        },
+        "navigations": 0
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "entry retains its pending action through GC and waits after the game is already visible",
+      "retry": 0,
+      "durationMs": 333,
+      "actualAttachment": {
+        "phase": "after-gc",
+        "beforeSettled": false,
+        "alive": true,
+        "outcomeIfSettled": null
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "entry does not accept visible content before a delayed action actually completes",
+      "retry": 0,
+      "durationMs": 294,
+      "actualAttachment": {
+        "result": {
+          "kind": "fulfilled",
+          "name": "",
+          "message": ""
+        },
+        "calls": 1
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "entry propagates a genuine action rejection with its name and message",
+      "retry": 0,
+      "durationMs": 242,
+      "actualAttachment": {
+        "kind": "rejected",
+        "name": "TypeError",
+        "message": "controlled continuation rejection"
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "entry rejects a replaced document rather than accepting the new document as completion",
+      "retry": 0,
+      "durationMs": 377,
+      "actualAttachment": {
+        "kind": "rejected",
+        "name": "Error",
+        "message": "page.waitForFunction: Error: Fixture document changed before continuation completed.\n    at eval (eval at predicate (eval at evaluate (:302:30)), <anonymous>:7:52)\n    at predicate (eval at evaluate (:302:30), <anonymous>:7:27)\n    at next (eval at evaluate (:302:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:302:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:304:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "entry rejects a changed action source even when the old action resolves into visible content",
+      "retry": 0,
+      "durationMs": 240,
+      "actualAttachment": {
+        "kind": "rejected",
+        "name": "Error",
+        "message": "page.waitForFunction: Error: Fixture continuation source changed before completion.\n    at eval (eval at predicate (eval at evaluate (:302:30)), <anonymous>:8:51)\n    at predicate (eval at evaluate (:302:30), <anonymous>:7:27)\n    at next (eval at evaluate (:302:30), <anonymous>:29:33)"
+      }
+    },
+    {
+      "project": "chromium",
+      "title": "entry preserves the previous handling of a fulfilled false result and invokes the action once",
+      "retry": 0,
+      "durationMs": 277,
+      "actualAttachment": {
+        "calls": 1
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "raw CDP can collect an unreachable awaited Promise without retiring its document",
+      "retry": 0,
+      "durationMs": 342,
+      "actualAttachment": {
+        "result": {
+          "kind": "rejected",
+          "message": "cdpSession.send: Protocol error (Runtime.evaluate): Promise was collected"
+        },
+        "state": {
+          "ready": "complete",
+          "calls": 1,
+          "alive": false
+        },
+        "navigations": 0
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "entry retains its pending action through GC and waits after the game is already visible",
+      "retry": 0,
+      "durationMs": 387,
+      "actualAttachment": {
+        "phase": "after-gc",
+        "beforeSettled": false,
+        "alive": true,
+        "outcomeIfSettled": null
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "entry does not accept visible content before a delayed action actually completes",
+      "retry": 0,
+      "durationMs": 379,
+      "actualAttachment": {
+        "result": {
+          "kind": "fulfilled",
+          "name": "",
+          "message": ""
+        },
+        "calls": 1
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "entry propagates a genuine action rejection with its name and message",
+      "retry": 0,
+      "durationMs": 309,
+      "actualAttachment": {
+        "kind": "rejected",
+        "name": "TypeError",
+        "message": "controlled continuation rejection"
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "entry rejects a replaced document rather than accepting the new document as completion",
+      "retry": 0,
+      "durationMs": 442,
+      "actualAttachment": {
+        "kind": "rejected",
+        "name": "Error",
+        "message": "page.waitForFunction: Error: Fixture document changed before continuation completed.\n    at eval (eval at predicate (eval at evaluate (:302:30)), <anonymous>:7:52)\n    at predicate (eval at evaluate (:302:30), <anonymous>:7:27)\n    at next (eval at evaluate (:302:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:302:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:304:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "entry rejects a changed action source even when the old action resolves into visible content",
+      "retry": 0,
+      "durationMs": 293,
+      "actualAttachment": {
+        "kind": "rejected",
+        "name": "Error",
+        "message": "page.waitForFunction: Error: Fixture continuation source changed before completion.\n    at eval (eval at predicate (eval at evaluate (:302:30)), <anonymous>:8:51)\n    at predicate (eval at evaluate (:302:30), <anonymous>:7:27)\n    at next (eval at evaluate (:302:30), <anonymous>:29:33)"
+      }
+    },
+    {
+      "project": "mobile",
+      "title": "entry preserves the previous handling of a fulfilled false result and invokes the action once",
+      "retry": 0,
+      "durationMs": 325,
+      "actualAttachment": {
+        "calls": 1
+      }
+    }
+  ],
+  "limits": [
+    "Isolated technical version.json documents load no product controller or bank; the synthetic continuation function never replaces a loaded product function.",
+    "The raw-CDP negative control intentionally produces Promise was collected without navigation; real-navigation and genuine-JavaScript-rejection controls intentionally reject. Those are expected evidence, not a claim of zero protocol errors.",
+    "The test blocks off-origin/non-GET requests and WebSockets but does not instrument attempted-network counters; its 14 attachments are semantic evidence, not 14 network audits.",
+    "The earlier 8 native 226/279 checks and 7 desktop contracts remain separate preserved rounds, not additional cases of this 14-case run.",
+    "A matching controlled mechanism does not identify the unique historical CI279 trigger. No retry, deadline increase, actual service, commit or deploy occurred here."
+  ]
+}

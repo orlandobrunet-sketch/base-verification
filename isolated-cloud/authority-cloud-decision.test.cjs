@@ -135,6 +135,10 @@ test('real host multi-epoch divergence opens a fresh choice using local-only arc
    _cloudBindingCurrent:()=>true,_cloudCheckpoint:()=>({version:f.remote.version,authorityBase:cloud.fingerprint(f.remote.progress.ownerAuthority.state)}),
    _mergeCloudProgress:()=>false,_showCloudProgressConflict(){shown++;},_cloudStatus(){}};
   ctx.window=ctx;vm.createContext(ctx);
+  const hardcoreStart=source.indexOf('    const _hardcoreCorrect =');
+  const hardcoreEnd=source.indexOf('    function _persistHardcoreBest(',hardcoreStart);
+  a.ok(hardcoreStart>=0 && hardcoreEnd>hardcoreStart,'the actual Hardcore record helpers must be loaded');
+  vm.runInContext(source.slice(hardcoreStart,hardcoreEnd),ctx);
   vm.runInContext(source.slice(source.indexOf('    function _buildCloudProgress()'),source.indexOf('    async function _commitCloudProgress(')),ctx);
   vm.runInContext(source.slice(source.indexOf('    function _reconcileCloudProgress('),source.indexOf('    function _closeCloudProgressConflict(')),ctx);
   const before=[...f.map];a.equal(ctx._reconcileCloudProgress({owner:'u'},f.remote),false);

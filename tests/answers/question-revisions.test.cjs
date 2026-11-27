@@ -7,6 +7,7 @@ const vm = require('node:vm');
 const crypto = require('node:crypto');
 const answers = require('../../js/answer-presentation.js');
 const revisions = require('../../js/question-revisions.js');
+const sourcePositions = require('../../data/question-source-positions.js');
 const ROOT = path.resolve(__dirname, '../..');
 const clone = value => JSON.parse(JSON.stringify(value));
 const canonical = value => Array.isArray(value) ? '[' + value.map(canonical).join(',') + ']'
@@ -16,6 +17,7 @@ const author = (extra = {}) => ({qid: 'technical-revision-fixture', t: 'Historic
   q: 'Choose the original marked token.', opts: ['marked token', 'round token', 'square token', 'plain token'],
   ans: 0, exp: 'Historical token explanation.', refs: ['technical-card'], ...extra});
 function sources(raw, index = 0) {
+  index = sourcePositions.position(raw.qid, index);
   const main = {id: raw.qid, d: raw.diff === 'hard' ? Math.min(12, 8 + Math.floor(index / 30)) : Math.min(12, 4 + Math.floor(index / 25)),
     _d: raw.diff, q: raw.q, o: [...raw.opts], a: raw.ans, e: raw.exp, r: [...raw.refs], c: raw.cat};
   return {main, exam: clone(main), study: {id: raw.qid, q: raw.q, o: [...raw.opts], a: raw.ans, e: raw.exp, refs: [...raw.refs]},
@@ -27,14 +29,17 @@ function manifestFor(raw, refs) {
     recordRevision: digest({authorRevision, referenceRevisions}),
     sourceRevisions: Object.fromEntries(Object.entries(sources(raw)).map(([profile, source]) => [profile, digest(source)]))}}};
 }
-function fixture({cardOnly = false, history = true} = {}) {
+function fixture({cardOnly = false, history = true, replacement = false} = {}) {
   const before = author(), after = cardOnly ? clone(before) : author({t: 'Current tokens', cat: 'tokens-current', diff: 'hard',
     q: 'Choose the updated marked token.', opts: ['plain token', 'round token', 'square token', 'updated token'], ans: 3, exp: 'Current token explanation.'});
   const oldRefs = {'technical-card': {label: 'Historical token card', summary: 'Historical card body.'}};
   const refs = {'technical-card': {label: 'Current token card', summary: 'Current card body.'}};
   const archive = {qid: before.qid, release: '16.09', author: before, sources: sources(before), references: oldRefs,
     policy: {material: true, pending: 'update-required'}};
+  if (replacement) after.qid = 'technical-new-objective';
   const manifest = manifestFor(after, refs), archived = history ? [archive] : [];
+  if (replacement) manifest.replacements = {[before.qid]: {qid: after.qid,
+    recordRevision: digest({authorRevision: digest(before), referenceRevisions: {'technical-card': digest(oldRefs['technical-card'])}})}};
   const catalog = revisions.createCatalog({manifest, history: archived, authors: [after],
     sources: Object.fromEntries(Object.entries(sources(after)).map(([profile, value]) => [profile, [value]])), references: refs});
   return {before, after, oldRefs, refs, archive, manifest, history: archived, catalog};
@@ -180,7 +185,7 @@ test('pure browser resolver has no storage, DOM, network or resource access', ()
   assert.equal(Object.isFrozen(context.NQQuestionRevisions), true);
   assert(context.NQQuestionRevisions.createVerifier({manifest: f.manifest, history: f.history}).restoreKnown(answers.present(sources(f.after).main), {profile: 'main'}));
 });
-test('published 741 authors and all 2964 actual profiles agree with the runtime catalog', () => {
+test('published 723 authors and all four profiles agree with the runtime catalog', () => {
   const builder = require('../../tools/build-question-revision-manifest.cjs');
   const topics = builder.load('data/topics.js', 'topics'), refs = builder.load('data/refs.js', 'refsDB');
   const manifest = require('../../data/question-revision-manifest.js'), history = require('../../data/question-revision-history.js');
@@ -195,7 +200,7 @@ test('published 741 authors and all 2964 actual profiles agree with the runtime 
     assert.deepEqual(resolved.question, snapshot);
     assert.equal(resolved.binding.recordRevision, manifest.current[source.id].recordRevision);
   }
-  assert.equal(topics.length, 741);
+  assert.equal(topics.length, 723);
 });
 test('Study restores historical authored display and answer without writes, mentor calls or credit', () => {
   const f = fixture(), h = harness('study', f), q = answers.present(sources(f.before).study, {random: () => 0}), answer = answerFor(q);
@@ -397,4 +402,25 @@ for (const isolated of ['flag false', 'flag null', 'catalog only']) test(`Study 
   assert.equal(h.context.resumeSavedStudyMode(), false); assert.equal(h.data.get('nefroquest-study-state'), raw);
   assert.equal(h.writes.length, 0); assert.equal(h.context.answerCalls, 0); assert.equal(h.context.srCalls, 0);
   assert.equal(h.run('studyModeActive'), false);
+});
+
+for (const mode of ['study', 'offline']) for (const answered of [false, true]) test(`${mode} retired identity resumes historical state and requires explicit new-objective choice (${answered ? 'answered' : 'pending'})`, () => {
+  const f = fixture({replacement: true}), h = harness(mode, f), q = answers.present(sources(f.before)[mode]);
+  const key = mode === 'study' ? 'nefroquest-study-state' : 'nefroquest-offline-study-state';
+  const raw = mode === 'study' ? studySave(f, q, answered ? answerFor(q) : null)
+    : offlineSave(f, q, answered ? answerFor(q) : null);
+  h.data.set(key, raw);
+  if (mode === 'study') assert.equal(h.context.resumeSavedStudyMode(), true); else h.context.initOfflineStudy();
+  const selected = () => clone(h.run(mode === 'study' ? '_studyPresentations[0]' : 'currentPresentation'));
+  assert.equal(selected().id, f.before.qid); assert.equal(h.data.get(key), raw);
+  assert.equal(h.context.srCalls, 0); assert.equal(h.context.answerCalls, 0);
+  if (answered) {
+    assert.equal(h.run(mode === 'study' ? 'useCurrentStudyRevision()' : 'useCurrentOfflineRevision()'), false);
+    assert.equal(h.data.get(key), raw); assert.equal(selected().id, f.before.qid);
+  } else {
+    assert.equal(h.run(mode === 'study' ? 'useCurrentStudyRevision()' : 'useCurrentOfflineRevision()'), true);
+    assert.equal(selected().id, f.after.qid); assert.equal(h.context.srCalls, 0); assert.equal(h.context.answerCalls, 0);
+    const updated = JSON.parse(h.data.get(key));
+    assert.equal(updated.revisionOriginRaw, raw);
+  }
 });

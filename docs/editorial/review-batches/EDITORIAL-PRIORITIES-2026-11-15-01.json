@@ -1,0 +1,273 @@
+{
+  "batch": "EDITORIAL-PRIORITIES-2026-11-15-01",
+  "change_type": "medical_editorial",
+  "expected_version": "17.25",
+  "allowed_files": [
+    ".gitattributes",
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/refs.js",
+    "data/topics.js",
+    "docs/CONTINUITY.md",
+    "docs/ROADMAP.md",
+    "docs/design/NQ_RELEASE_1724.md",
+    "docs/design/NQ_RELEASE_1725.md",
+    "docs/editorial/review-batches/EDITORIAL-PRIORITIES-2026-11-15-01.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/README.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/after-bounded8-metrics.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/application-independent-review-1725.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/duplicate-vaptans-review.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/duplicate-vaptans-review.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/independent-gate-bundle-1725.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/inventory.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/operational-independent-review-1725.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/operational-independent-review-1725.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/original-independent-classification.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-gate-bundle-1725.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-integration-1725.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-sodium-A1.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-sodium-A2.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-sodium-A3.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-sodium-A4.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-sodium-author-A2.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/prepare-sustain6-independent-A1.cjs",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/reference-metadata.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-author-A2.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-author-A2.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-author-A3.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-author-A3.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-author-A4.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-author-A4.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-candidates-A1.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-candidates-A2.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-candidates-A3.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sodium-candidates-A4.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-candidates-A1.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-candidates-A1.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.md",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/tests-independent-review-1725.json",
+    "docs/editorial/reviews/2026-11-15-editorial-continuation/tests-independent-review-1725.md",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "tests/answers/answer-length-history.test.cjs",
+    "tests/answers/catalog-construction-cache.test.cjs",
+    "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/255-medical-revision-history.spec.ts",
+    "tests/specs/257-medical-continuation-history.spec.ts",
+    "version.json"
+  ],
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "integration_base": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "questions": {
+    "a4c85d32": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:a1fcefab6c17888a89eb154ae5e492086899c533a0789d8c49f4b0108bdcdd09",
+      "after_sha256": "sha256:67da5ed3ab04ffb150d11fb1342dbfcb6e1ae32852252148629fd6b2563567a5",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/questions/a4c85d32/version",
+        "gate_pointer": "/questions/a4c85d32/gate"
+      },
+      "difficulty_change": {
+        "before": "hard",
+        "after": "medium",
+        "reason": "Formal independent review of intrinsic difficulty; stable OP/qid retained."
+      }
+    },
+    "3fa2737c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:828388e041a0f622bfb600416cfdefa97d4bc3578d287bafb2c836a46348a267",
+      "after_sha256": "sha256:fe73c43b977353db3ce77d4344d05648ddb0e5adee79e2413ff970b5015a6972",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/questions/3fa2737c/version",
+        "gate_pointer": "/questions/3fa2737c/gate"
+      }
+    },
+    "e94a6488": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:8f75ad7c582415349fee768251d9a6ff3ad82f8add818d40ffbac99e2132a2b7",
+      "after_sha256": "sha256:3edd811ad215c82f3fe39594371aade69ff58491d04f9a320f5ea0a5ac661454",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/questions/e94a6488/version",
+        "gate_pointer": "/questions/e94a6488/gate"
+      }
+    },
+    "d9257155": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:bdfe4433132c5e6e1c71fc227bb704bb9003728a473b5261b0b44b94d5a68d98",
+      "after_sha256": "sha256:017e477323fb26f8b9d7a9a70edbbe8f4d4755264c377bee970f3770c24bbc6b",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/questions/d9257155/version",
+        "gate_pointer": "/questions/d9257155/gate"
+      }
+    },
+    "21a99f07": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:c8d0f453da32421f6c00a91aabeaf80884a373c73738ec6fb6d9b7172d8b4701",
+      "after_sha256": "sha256:4beb2312dce7da0ea025993f4830468e3b4c772af1212b2f0b93cde9ef84ff09",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/questions/21a99f07/version",
+        "gate_pointer": "/questions/21a99f07/gate"
+      }
+    },
+    "e2aae4c7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:32667b08037e187a0ea8dd813f6b809b79f06687b2f1007e36d2384366c9d75e",
+      "after_sha256": "sha256:5d605d1847a903463cccfe53c9bde380c364030f15922dea78c17be4ab48596e",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/questions/e2aae4c7/version",
+        "gate_pointer": "/questions/e2aae4c7/gate"
+      }
+    },
+    "1a93346d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:9841a4a4f744d745a6ec6510d0eab0a36e2baf4ec9be99f40fc23f28115c4e66",
+      "after_sha256": "sha256:05c629efbe7265f8dfbcc901f3373460bc60f8630fce2965c63b68c5bc779a7e",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+        "report_sha256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "version_pointer": "/questions/1a93346d/version",
+        "gate_pointer": "/questions/1a93346d/gate"
+      }
+    },
+    "516ec2a6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:026eb3288243013ffca554b36bec12b2e7790eafda8a2908c8f7d99b738f727a",
+      "after_sha256": "sha256:5eea57f2bfdd4ea6f33b0726ce7ded4e689084b8b6889054891cee8a566b3fed",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+        "report_sha256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "version_pointer": "/questions/516ec2a6/version",
+        "gate_pointer": "/questions/516ec2a6/gate"
+      }
+    }
+  },
+  "references": {
+    "sustain6": {
+      "action": "update",
+      "before_sha256": "sha256:878a0f320c7e6fcdb1144b0ad063337321c380f25fd181a8c7ca12faef2bf925",
+      "after_sha256": "sha256:6f6ed262373752793f550277a5a8b6883d91c00e2b1ca14ad82dda5036743117",
+      "before_consumers": [
+        "1a93346d",
+        "516ec2a6"
+      ],
+      "after_consumers": [
+        "1a93346d",
+        "516ec2a6"
+      ],
+      "independent_review": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/sustain6-independent-A1.json",
+        "report_sha256": "da498ece30ea229f63d54c8d7b9fb685441c78d17ff15b90bbd40a3e3966e825",
+        "version_pointer": "/reference/version",
+        "gate_pointer": "/reference/gate"
+      },
+      "scope": "Full 12-field card independently reviewed; no other card approved or changed."
+    },
+    "hyponatremia_verbalis2013": {
+      "action": "add",
+      "before_sha256": null,
+      "after_sha256": "sha256:c6802c01e8b397910f501691680d8f0f5189319ed2dbf961cec86b350f4d1e3c",
+      "before_consumers": [],
+      "after_consumers": [
+        "21a99f07",
+        "d9257155",
+        "e94a6488"
+      ],
+      "independent_review": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "report_path": "docs/editorial/reviews/2026-11-15-editorial-continuation/candidate-independent-review-A4.json",
+        "report_sha256": "31b04dd9d5900decff2d8fcf49a261d43c06687e732ac2d0566a2e7873f6ce8f",
+        "version_pointer": "/references/hyponatremia_verbalis2013/version",
+        "gate_pointer": "/references/hyponatremia_verbalis2013/gate"
+      },
+      "scope": "Full 12-field card independently reviewed; no other card approved or changed."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "/root/study_visibility_1717 (sodium A4), /root (independent SUSTAIN A1), /root/editorial_inventory_1725 (operational and test review)",
+    "availability_basis": "Independent fallback retained from the preceding review workflow; no new external SaaS transmission was made."
+  },
+  "history_policy": {
+    "base_release": "17.24",
+    "records_before": 169,
+    "records_added": 8,
+    "records_after": 177,
+    "previous_bindings_preserved": 676,
+    "new_bindings": 32,
+    "approved_gate_bundle": "docs/editorial/reviews/2026-11-15-editorial-continuation/independent-gate-bundle-1725.json",
+    "gate_bundle_sha256": "439985a5eaf2f64e06814a6abedaf4032624920d598133dfa0e85ea8c9802e59",
+    "operational_receipt": "docs/editorial/reviews/2026-11-15-editorial-continuation/operational-independent-review-1725.json",
+    "operational_receipt_sha256": "24f3fbda58bf71129ae38e5585a0877a092e2e177eb8bd47f67b5c76502977f8",
+    "application_review": "docs/editorial/reviews/2026-11-15-editorial-continuation/application-independent-review-1725.json",
+    "application_review_sha256": "ff279b983dc946b18baf169c1e78c02a6ac74898dd9504f1f5c9ecccca4349c0",
+    "preserve_fsrs": true
+  },
+  "scope_limits": [
+    "741 total questions retained; no merge or retirement in this batch.",
+    "Only sodium A4 and SUSTAIN A1 exact approved medical versions are applied.",
+    "Other question-bank length cues, bibliographic groups and historical technical intermittencies remain open."
+  ]
+}

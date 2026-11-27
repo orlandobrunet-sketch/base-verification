@@ -26,7 +26,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741 && !!(window as any).questionRevisionCatalog);
+  await page.waitForFunction(() => (window as any).questionBank?.length === 723 && !!(window as any).questionRevisionCatalog);
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 });
 test.afterEach(async ({page}, info) => {
@@ -73,9 +73,9 @@ test('a fresh user has no scheduled review and can still enter the twenty-questi
   const before = await progress(page);
   await openHub(page);
   await expect(reviewCard(page)).toContainText('Nenhuma revisão agendada para agora');
-  await expect(reviewCard(page)).not.toContainText('741');
+  await expect(reviewCard(page)).not.toContainText('723');
   await expect(reviewCard(page).getByRole('button', {name: 'Revisar agora', exact: true})).toBeDisabled();
-  expect(await page.evaluate(() => (0, eval)('getSRDueQuestions(topics).length'))).toBe(741);
+  expect(await page.evaluate(() => (0, eval)('getSRDueQuestions(topics).length'))).toBe(723);
   expect(await page.evaluate(() => (0, eval)('getSRScheduledDueQuestions(topics).length'))).toBe(0);
   await page.getByRole('button', {name: 'Iniciar estudo livre', exact: true}).click();
   await expect(page.locator('#studyOptions button')).toHaveCount(4);
@@ -158,17 +158,25 @@ test('the native Dashboard review action agrees with the study queue and returns
   expect(await progress(page)).toEqual(before);
 });
 
-test('an ambiguous saved study remains consult-only while zero scheduled reviews do not invent a new session', async ({page}) => {
-  const original = await page.evaluate(key => {
+for (const release of ['17.11', '17.27']) {
+test('an ambiguous saved study ' + release + ' remains consult-only after a material update while zero scheduled reviews do not invent a new session', async ({page}) => {
+  const original = await page.evaluate(({key, release}) => {
     const w = window as any;
-    const old = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === '17.11');
-    if (!old) throw Error('The actual published card-only archive is required');
+    const old = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === release);
+    const companion = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === (release === '17.11' ? '17.27' : '17.11'));
+    if (!old || !companion) throw Error('Both actual published card-only archives are required');
+    const current = w.questionRevisionCatalog.current(old.qid, 'study');
+    const digest = w.NQQuestionRevisions.digest;
+    if (digest(old.sources.study) !== digest(companion.sources.study) || old.recordRevision === companion.recordRevision ||
+        digest(current.source) === digest(old.sources.study)) throw Error('Expected two distinct past bindings and a separate material current revision');
     const question = w.NQAnswers.present(old.sources.study, {preserveOrder: true});
+    if (w.questionRevisionCatalog.inspect(question, {profile: 'study'}).status !== 'ambiguous')
+      throw Error('The actual past source must remain ambiguous without its binding');
     const raw = JSON.stringify({questions: [old.qid], index: 0, correct: 2, wrong: 1, axisStats: {},
       savedAt: Date.now(), presentationVersion: 1,
       presentations: [{id: old.qid, question, answer: null}]});
     localStorage.setItem(key, raw); return raw;
-  }, STUDY);
+  }, {key: STUDY, release});
   const before = await progress(page);
   await openHub(page);
   await expect(reviewCard(page).getByRole('button', {name: 'Revisar agora', exact: true})).toBeDisabled();
@@ -181,6 +189,7 @@ test('an ambiguous saved study remains consult-only while zero scheduled reviews
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   expect(await page.evaluate(key => localStorage.getItem(key), STUDY)).toBe(original);
 });
+}
 
 for (const mixed of [false, true]) test('Dashboard and Study reject malformed schedules' + (mixed ? ' beside real due cards' : ' without inventing a review'), async ({page}) => {
   const fixture = await page.evaluate(({key, mixed}) => {
@@ -214,4 +223,45 @@ for (const mixed of [false, true]) test('Dashboard and Study reject malformed sc
   }
   expect(await progress(page)).toEqual(before);
   expect(await page.evaluate(key => localStorage.getItem(key), SR)).toBe(fixture.raw);
+});
+
+test('a entrada desktop concentra o aviso, três escolhas e o total de revisão em uma coluna', async ({page}, info) => {
+  test.skip(info.project.name !== 'chromium', 'Validação do layout desktop; o mobile conserva a apresentação anterior.');
+  await page.setViewportSize({width: 1280, height: 760});
+  await seedSchedules(page, 'mixed');
+  await page.evaluate(key => {
+    const w = window as any, qid = w.questionBank[0].id;
+    const current = w.questionRevisionCatalog.current(qid, 'study');
+    const question = w.NQAnswers.present(current.source, {preserveOrder: true});
+    localStorage.setItem(key, JSON.stringify({questions: [qid], index: 0, correct: 2, wrong: 1, axisStats: {},
+      savedAt: Date.now() - 25 * 3600000, presentationVersion: 1,
+      presentations: [{id: qid, question, answer: null, revisionBinding: current.binding}]}));
+  }, STUDY);
+  const before = await progress(page);
+  await openHub(page);
+  const hub = page.locator('.nq-study-hub');
+  const cards = hub.locator('.nq-study-choices > section');
+  const notice = hub.getByRole('status');
+  await expect(notice).toContainText('Sessão salva preservada');
+  await expect(cards).toHaveCount(3);
+  await expect(hub.locator('.nq-study-choice-icon:visible')).toHaveCount(3);
+  await expect(reviewCard(page).locator('.nq-study-due.has-due')).toHaveText('2 questões agendadas para revisar agora');
+  const layout = await hub.evaluate(el => {
+    const rows = [...el.querySelectorAll('.nq-study-choices > section')].map(row => {
+      const box = row.getBoundingClientRect();
+      const button = row.querySelector('button')!.getBoundingClientRect();
+      return {left: box.left, top: box.top, bottom: box.bottom, right: box.right, buttonRight: button.right};
+    });
+    return {rows, statusHeight: el.querySelector('[role="status"]')!.getBoundingClientRect().height, viewportHeight: innerHeight};
+  });
+  expect(layout.statusHeight).toBeLessThan(88);
+  for (const [i, row] of layout.rows.entries()) {
+    expect(row.left).toBeCloseTo(layout.rows[0].left, 0);
+    expect(row.buttonRight).toBeLessThan(row.right);
+    if (i) expect(row.top).toBeGreaterThan(layout.rows[i - 1].bottom);
+  }
+  expect(layout.rows[2].bottom).toBeLessThan(layout.viewportHeight);
+  await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(1280);
+  expect(await progress(page)).toEqual(before);
 });

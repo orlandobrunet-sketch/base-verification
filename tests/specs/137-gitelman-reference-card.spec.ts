@@ -4,6 +4,8 @@ import path from 'node:path';
 
 const approved = JSON.parse(readFileSync(path.resolve(__dirname,
   '../../docs/editorial/reviews/2026-10-21/gitelman-whole-card-candidate-A1.json'), 'utf8')).wholeCard;
+// The 17.28 review updates only the classification and Portuguese badge.
+const currentApproved = { ...approved, tipo: 'Consenso de especialistas', badge: 'CONSENSO' };
 const referenceId = 'gitelman_kdigo_2017';
 test.use({serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }});
 
@@ -25,8 +27,7 @@ test('Gitelman full card opens the reviewed text in the clinical library', async
   });
   await expect(card).toHaveCount(1);
   const loaded = await page.evaluate(id => (0, eval)('refsDB')[id], referenceId);
-  expect(loaded).toEqual(approved);
-  expect(loaded.badge).toBe('CONSENSUS');
+  expect(loaded).toEqual(currentApproved);
   await card.getByRole('button', {name: 'Ler resumo', exact: true}).click();
   const reader = page.locator('.bib-resumo-modal [role="dialog"]');
   await expect(reader).toBeVisible();

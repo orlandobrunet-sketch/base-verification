@@ -1,0 +1,352 @@
+{
+  "schema": "NQ_1728_AUTHOR_VANCO_COLLATERAL_A1",
+  "date": "2026-11-15",
+  "author": "/root",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "sourceCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "items": [
+    {
+      "qid": "b8195f7b",
+      "original": {
+        "t": "Sepse e LRA",
+        "qid": "b8195f7b",
+        "q": "Paciente com sepse e LRA oligúrica precisa de antibioticoterapia imediata. Qual princípio farmacocinético evita subtratamento inicial e toxicidade de manutenção?",
+        "opts": [
+          "Reduzir pela metade toda dose de ataque de antibióticos hidrofílicos enquanto houver oligúria.",
+          "Manter dose de ataque adequada ao volume de distribuição e ajustar manutenção por função renal, níveis séricos e modalidade dialítica.",
+          "Evitar monitorização terapêutica porque a creatinina já define com precisão a depuração na LRA.",
+          "Usar aminoglicosídeo em monoterapia sempre que houver choque séptico, pois o pico sérico compensa a LRA."
+        ],
+        "ans": 1,
+        "exp": "O princípio correto é não reduzir automaticamente a dose de ataque em sepse/LRA: no início da sepse, volume de distribuição e gravidade podem exigir exposição adequada para evitar subtratamento. O ajuste mais importante costuma ser na manutenção, guiado por função renal dinâmica, modalidade dialítica e monitorização terapêutica quando disponível, como para vancomicina e aminoglicosídeos. Aminoglicosídeos devem ser evitados quando houver alternativas menos nefrotóxicas; se forem indispensáveis, exigem estratégia por concentração e níveis séricos, não monoterapia automática. A creatinina é atrasada e imprecisa na LRA aguda.",
+        "diff": "hard",
+        "cat": "infeccao",
+        "refs": [
+          "kdigo_aki",
+          "vancomycin_monitoring_ashp",
+          "gentamicina_anvisa"
+        ]
+      },
+      "originalAuthorRevision": "sha256:3f4f3ea8d00fbcff6a4ff444a25134cb2e81dfb5732f018fe0ce971381a8c63d",
+      "after": {
+        "t": "Sepse e LRA",
+        "qid": "b8195f7b",
+        "q": "Paciente com sepse e lesão renal aguda oligúrica precisa receber vancomicina intravenosa por suspeita de infecção invasiva por Staphylococcus aureus resistente à meticilina (MRSA). Qual princípio orienta a dose de ataque e a manutenção?",
+        "opts": [
+          "Reduzir sistematicamente a dose de ataque pela metade enquanto persistir oligúria.",
+          "Preservar dose de ataque adequada e ajustar manutenção pela depuração e pelos níveis.",
+          "Usar creatinina isolada como medida imediata e precisa da depuração atual.",
+          "Escolher manutenção só pelo peso, ignorando alterações renais e terapia substitutiva."
+        ],
+        "ans": 1,
+        "exp": "A dose de ataque busca exposição inicial adequada e não deve ser automaticamente reduzida só pela oligúria. O consenso de vancomicina contempla dose de ataque em pacientes críticos, inclusive sob terapia renal substitutiva, considerando peso e distribuição. A manutenção precisa acompanhar função renal dinâmica, modalidade e intensidade da terapia substitutiva, quando presente, e monitorização de concentrações/exposição. A creatinina em mudança não estima imediatamente uma depuração estável. Isso não autoriza uma dose universal nem aplica a mesma estratégia indiscriminadamente a todo antibiótico.",
+        "diff": "medium",
+        "cat": "infeccao",
+        "refs": [
+          "vancomycin_monitoring_ashp",
+          "kdigo_aki"
+        ]
+      },
+      "afterAuthorRevision": "sha256:64a710fdfd5c41fa96a8a30fafc80784fdb8c85a122383f8ffbe6e28da7e82a2",
+      "referenceCards": {
+        "vancomycin_monitoring_ashp": {
+          "label": "Rybak et al. — Monitorização da vancomicina: guideline integral (2020)",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "journal": "Am J Health-Syst Pharm. 2020;77(11):835–864. DOI:10.1093/ajhp/zxaa036",
+          "ano": 2020,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Exposição de vancomicina guiada pela área sob a curva, com estratégia específica para hemodiálise.",
+          "icon": "📋",
+          "resumo": "Diretriz de consenso para infecções invasivas graves por Staphylococcus aureus resistente à meticilina (MRSA). Recomenda área sob a curva em 24 horas (AUC24) de 400–600 mg·h/L, assumindo concentração inibitória mínima (MIC) de 1 mg/L por microdiluição, com estimativa farmacocinética ou bayesiana. O vale de 15–20 mg/L não é substituto universal da AUC. Na hemodiálise intermitente, a concentração pré-diálise de 15–20 mg/L é a estratégia prática para estimar a exposição; monitorar pelo menos semanalmente e ajustar as doses pelos níveis.",
+          "conclusao": "Ajustar dose e monitorização à população e à modalidade dialítica. Em hemodiálise, a faixa pré-diálise é uma aproximação prática; a meta de exposição não foi validada por ensaios de desfechos nessa população.",
+          "curiosidade": "O documento integral contém recomendações para hemodiálise e terapias contínuas. Seu resumo executivo em Clinical Infectious Diseases é uma publicação relacionada, com DOI e paginação próprios."
+        },
+        "kdigo_aki": {
+          "label": "KDIGO AKI 2012",
+          "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+          "journal": "Kidney International Supplements",
+          "ano": 2012,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+          "icon": "📋",
+          "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+          "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+          "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+        }
+      },
+      "referenceRevisions": {
+        "vancomycin_monitoring_ashp": "sha256:d908154ec24e2875d125469dcccad5f95b8d93cd779813341b20d01391b485a2",
+        "kdigo_aki": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd"
+      },
+      "classification": {
+        "op": "Distinguir exposição inicial/dose de ataque de ajuste de manutenção na sepse com LRA.",
+        "competence": "Prescrição e monitorização segura na disfunção renal",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OPprimário e conceito central; delimitadores corrigem escopo da fonte, sem trocar a habilidade para salvar quantidade. Requer checagem independente."
+      },
+      "authorFindings": "Texto original era clinicamente plausível, mas correta longa e referência colateral não implicavam aprovação. Caso delimitado a vancomicina/MRSA para suporte específico, mantendo o mesmo raciocínio PK, sem acrescentar dose numérica.",
+      "sources": [
+        {
+          "id": "ASHP2020",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "access": "PDF oficial integral31p aberto pelo autor em15/11/2026; não alegar download local.",
+          "locators": [
+            "pp1–5: escopoMRSAinvasivo, MICmicrodiluição/AUC/risconefrotoxicidade.",
+            "pp9–10: dose de ataque e peso/Vd.",
+            "pp13–14:CRRT,efluente,níveis/monitorização e função residual.",
+            "Tabela2: recomendações1–2/10–11/16."
+          ],
+          "limits": "Fonte de consenso, maioria de dados observacionais/PK. Não aplica alvos a todos os patógenos nem todas as modalidades de diálise."
+        },
+        {
+          "id": "KDIGO2012",
+          "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+          "access": "PDF oficial integral realmente lido neste turno; seçõesLRA/monitorização e doseentregue.",
+          "locators": [
+            "§2.1–2.3:função renal dinâmica, avaliação e trajetória.",
+            "§3.8:antibióticosnefrotóxicos e monitorização, sem alvo único para todososaminoglicosídeos.",
+            "§5.8:doseefluente/entrega e avaliação seriada."
+          ],
+          "limits": "Documento final2012; não é atribuído ao draft2026."
+        }
+      ],
+      "appeal": {
+        "question": "Há uma alternativa correta rival ou dado decisivo não informado?",
+        "response": "f893 temMIC explícita eMRSAinvasivo; b819/c4 pedem princípio de manutenção/carga e não permitem dose numérica fixa. Todos os distratores foram confrontados ao cenário e não só ao comprimento."
+      },
+      "implementationAuthorization": "BLOQUEADA até revisão formal independente exata",
+      "candidateStatus": "AUTHOR_ONLY_NOT_A_CLINICAL_GATE"
+    },
+    {
+      "qid": "f893d58a",
+      "original": {
+        "t": "Ajuste de Dose de Antibióticos na DRC",
+        "qid": "f893d58a",
+        "q": "Paciente de 65 anos com bacteremia por MRSA inicia vancomicina IV em dose ajustada pelo peso. Considerando as diretrizes ASHP/IDSA/SIDP 2020 para monitorização de vancomicina, qual é o parâmetro farmacocinético/farmacodinâmico (PK/PD) alvo mais adequado para otimização simultânea de eficácia e minimização de nefrotoxicidade?",
+        "opts": [
+          "Monitorar o nível sérico vale (trough) alvo entre 15-20 mg/L como proxy de eficácia",
+          "Manter nível de pico (1h após infusão) entre 30-40 mg/L e vale < 5 mg/L para minimizar toxicidade",
+          "Calcular AUC24h/MIC com alvo entre 400-600 mg·h/L, utilizando dois níveis séricos (pico e vale) ou equações bayesianas",
+          "Usar dose fixa de 15mg/kg a cada 12h independente da função renal pois a vancomicina é eliminada pelo fígado"
+        ],
+        "ans": 2,
+        "exp": "As diretrizes ASHP/IDSA/SIDP 2020 recomendam que a vancomicina seja monitorizada pelo índice AUC₂₄h/MIC com alvo entre 400 e 600 mg·h/L (para MIC ≤1 mg/L por microdiluição em caldo), calculado por dois níveis séricos ou por métodos bayesianos. Esse índice substitui o alvo de nível vale (trough) de 15-20 mg/L, que foi associado a maior nefrotoxicidade sem ganho de eficácia. O vale isolado de 15-20 mg/L é a abordagem antiga e não é mais recomendado como método preferencial. Pico de 30-40 mg/L com vale <5 mg/L é o alvo de aminoglicosídeos, não de vancomicina. A vancomicina é eliminada por via renal (não hepática), exigindo ajuste conforme a função renal.",
+        "diff": "hard",
+        "cat": "farmacologia",
+        "refs": [
+          "vancomycin_monitoring_ashp",
+          "brenner_rector"
+        ]
+      },
+      "originalAuthorRevision": "sha256:08d1c06d6c94b51e9aeac121a3204bb9cff825bcfd60f4a2b47b43d5b4358879",
+      "after": {
+        "t": "Vancomicina — Monitorização da Exposição",
+        "qid": "f893d58a",
+        "q": "Paciente com bacteremia por Staphylococcus aureus resistente à meticilina (MRSA) recebe vancomicina intravenosa. A concentração inibitória mínima (MIC), por microdiluição em caldo, é 1 mg/L. Segundo o consenso de 2020, qual alvo de monitorização é mais adequado?",
+        "opts": [
+          "Vale isolado de 15–20 mg/L como substituto da exposição em todo paciente.",
+          "Pico de 30–40 mg/L associado a vale abaixo de 5 mg/L como alvo principal.",
+          "Área sob a curva em 24 horas (AUC24) de 400–600 mg·h/L.",
+          "AUC24 acima de 800 mg·h/L para garantir resposta em toda bacteremia por MRSA."
+        ],
+        "ans": 2,
+        "exp": "O alvo recomendado para infecção invasiva grave por MRSA é AUC24 de 400–600 mg·h/L, assumindo MIC de 1 mg/L por microdiluição. A AUC pode ser estimada por método farmacocinético com amostras adequadas ou por modelagem bayesiana; a escolha e os horários das coletas dependem do método e do paciente. A unidade mg·h/L pertence à área sob a curva, não deve ser atribuída indistintamente ao quociente AUC/MIC. O vale isolado de 15–20 mg/L não é o substituto recomendado nesse cenário. Exposição excessiva aumenta o risco de lesão renal, sem garantir eficácia. A combinação de pico e vale citada no distrator não é um alvo de vancomicina e tampouco define um alvo universal para todos os aminoglicosídeos.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "vancomycin_monitoring_ashp"
+        ]
+      },
+      "afterAuthorRevision": "sha256:a42045193a2c38696e729e73bf6d0d9bc398fb1df69f31e8fed0911594389298",
+      "referenceCards": {
+        "vancomycin_monitoring_ashp": {
+          "label": "Rybak et al. — Monitorização da vancomicina: guideline integral (2020)",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "journal": "Am J Health-Syst Pharm. 2020;77(11):835–864. DOI:10.1093/ajhp/zxaa036",
+          "ano": 2020,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Exposição de vancomicina guiada pela área sob a curva, com estratégia específica para hemodiálise.",
+          "icon": "📋",
+          "resumo": "Diretriz de consenso para infecções invasivas graves por Staphylococcus aureus resistente à meticilina (MRSA). Recomenda área sob a curva em 24 horas (AUC24) de 400–600 mg·h/L, assumindo concentração inibitória mínima (MIC) de 1 mg/L por microdiluição, com estimativa farmacocinética ou bayesiana. O vale de 15–20 mg/L não é substituto universal da AUC. Na hemodiálise intermitente, a concentração pré-diálise de 15–20 mg/L é a estratégia prática para estimar a exposição; monitorar pelo menos semanalmente e ajustar as doses pelos níveis.",
+          "conclusao": "Ajustar dose e monitorização à população e à modalidade dialítica. Em hemodiálise, a faixa pré-diálise é uma aproximação prática; a meta de exposição não foi validada por ensaios de desfechos nessa população.",
+          "curiosidade": "O documento integral contém recomendações para hemodiálise e terapias contínuas. Seu resumo executivo em Clinical Infectious Diseases é uma publicação relacionada, com DOI e paginação próprios."
+        }
+      },
+      "referenceRevisions": {
+        "vancomycin_monitoring_ashp": "sha256:d908154ec24e2875d125469dcccad5f95b8d93cd779813341b20d01391b485a2"
+      },
+      "classification": {
+        "op": "Escolher monitorização de vancomicina por AUC na bacteremia por MRSA, com MIC explicitada.",
+        "competence": "Prescrição e monitorização segura na disfunção renal",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OPprimário e conceito central; delimitadores corrigem escopo da fonte, sem trocar a habilidade para salvar quantidade. Requer checagem independente."
+      },
+      "authorFindings": "Corrige unidade indevidamente atribuída à razão AUC/MIC e a falsa generalização de pico/vale de aminoglicosídeos; remove referência genérica não aberta. Preserva OPprimário e identidade.",
+      "sources": [
+        {
+          "id": "ASHP2020",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "access": "PDF oficial integral31p aberto pelo autor em15/11/2026; não alegar download local.",
+          "locators": [
+            "pp1–5: escopoMRSAinvasivo, MICmicrodiluição/AUC/risconefrotoxicidade.",
+            "pp9–10: dose de ataque e peso/Vd.",
+            "pp13–14:CRRT,efluente,níveis/monitorização e função residual.",
+            "Tabela2: recomendações1–2/10–11/16."
+          ],
+          "limits": "Fonte de consenso, maioria de dados observacionais/PK. Não aplica alvos a todos os patógenos nem todas as modalidades de diálise."
+        },
+        {
+          "id": "KDIGO2012",
+          "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+          "access": "PDF oficial integral realmente lido neste turno; seçõesLRA/monitorização e doseentregue.",
+          "locators": [
+            "§2.1–2.3:função renal dinâmica, avaliação e trajetória.",
+            "§3.8:antibióticosnefrotóxicos e monitorização, sem alvo único para todososaminoglicosídeos.",
+            "§5.8:doseefluente/entrega e avaliação seriada."
+          ],
+          "limits": "Documento final2012; não é atribuído ao draft2026."
+        }
+      ],
+      "appeal": {
+        "question": "Há uma alternativa correta rival ou dado decisivo não informado?",
+        "response": "f893 temMIC explícita eMRSAinvasivo; b819/c4 pedem princípio de manutenção/carga e não permitem dose numérica fixa. Todos os distratores foram confrontados ao cenário e não só ao comprimento."
+      },
+      "implementationAuthorization": "BLOQUEADA até revisão formal independente exata",
+      "candidateStatus": "AUTHOR_ONLY_NOT_A_CLINICAL_GATE"
+    },
+    {
+      "qid": "c4d95244",
+      "original": {
+        "t": "TRSC — Ajuste de Antibióticos",
+        "qid": "c4d95244",
+        "q": "Paciente em UTI com LRA por necrose tubular aguda está em terapia renal substitutiva contínua (CVVHDF). Ao ajustar vancomicina e meropeném, qual princípio farmacocinético é mais correto?",
+        "refs": [
+          "kdigo_aki",
+          "vancomycin_monitoring_ashp",
+          "meropenem_anvisa"
+        ],
+        "opts": [
+          "O clearance na TRSC depende da modalidade e dose da terapia, além de peso molecular, ligação proteica, volume de distribuição e monitorização terapêutica quando disponível",
+          "A TRSC remove apenas moléculas muito pequenas; portanto, vancomicina e meropeném não precisam de ajuste",
+          "Toda droga deve ser usada em dose máxima durante TRSC, porque o clearance sempre aumenta acima do normal",
+          "O ajuste em TRSC é idêntico ao de TFG fixa de 10–15 mL/min, independentemente da dose de efluente"
+        ],
+        "ans": 0,
+        "exp": "A depuração de fármacos na TRSC depende da modalidade, da dose de efluente, do mecanismo de difusão/convecção e das características do fármaco: fração livre, volume de distribuição, peso molecular e adsorção ao filtro. Meropeném, por baixa ligação proteica, pode ser depurado de forma relevante; vancomicina exige especial cuidado por variabilidade e benefício de monitorização terapêutica. O erro comum é usar uma tabela fixa de DRC terminal ou prescrever dose máxima indiscriminada. Em paciente crítico, subdose e toxicidade são perigosas; por isso o ajuste deve ser individualizado e reavaliado com níveis quando disponíveis.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "originalAuthorRevision": "sha256:9e1e4ba62bf03912a7eb74a2dba1dea6264041374e73dbf442af752345a54772",
+      "after": {
+        "t": "TRSC — Ajuste de Antibióticos",
+        "qid": "c4d95244",
+        "q": "Paciente crítico com lesão renal aguda recebe vancomicina durante terapia renal substitutiva contínua por hemodiafiltração venovenosa. Qual princípio orienta o ajuste de manutenção?",
+        "refs": [
+          "vancomycin_monitoring_ashp",
+          "kdigo_aki"
+        ],
+        "opts": [
+          "Individualizar pela dose de efluente, função residual e níveis séricos.",
+          "Usar dose fixa de doença renal terminal, pois a depuração contínua é desprezível.",
+          "Prescrever dose máxima, pois a terapia contínua depura mais que rins normais em todo caso.",
+          "Usar somente a ultrafiltração líquida para estimar a depuração do medicamento."
+        ],
+        "ans": 0,
+        "exp": "A terapia contínua pode remover vancomicina de modo relevante. A manutenção depende da intensidade de efluente, da função renal residual, das condições do circuito e da exposição medida; interrupções também precisam ser consideradas. A função renal residual não desaparece automaticamente ao iniciar a terapia, e ultrafiltração líquida não equivale à dose de efluente que determina a depuração. O consenso orienta monitorização precoce e ajuste seriado; não sustenta dose máxima universal nem uma tabela fixa de doença renal terminal para todos. A avaliação da dose de ataque é uma decisão complementar, que não se resolve reduzindo a manutenção de forma indiscriminada.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "afterAuthorRevision": "sha256:d65105c00e00f85572be12c2de0df99a3af75488a9281a4eed2a1c7387d51f3f",
+      "referenceCards": {
+        "vancomycin_monitoring_ashp": {
+          "label": "Rybak et al. — Monitorização da vancomicina: guideline integral (2020)",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "journal": "Am J Health-Syst Pharm. 2020;77(11):835–864. DOI:10.1093/ajhp/zxaa036",
+          "ano": 2020,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Exposição de vancomicina guiada pela área sob a curva, com estratégia específica para hemodiálise.",
+          "icon": "📋",
+          "resumo": "Diretriz de consenso para infecções invasivas graves por Staphylococcus aureus resistente à meticilina (MRSA). Recomenda área sob a curva em 24 horas (AUC24) de 400–600 mg·h/L, assumindo concentração inibitória mínima (MIC) de 1 mg/L por microdiluição, com estimativa farmacocinética ou bayesiana. O vale de 15–20 mg/L não é substituto universal da AUC. Na hemodiálise intermitente, a concentração pré-diálise de 15–20 mg/L é a estratégia prática para estimar a exposição; monitorar pelo menos semanalmente e ajustar as doses pelos níveis.",
+          "conclusao": "Ajustar dose e monitorização à população e à modalidade dialítica. Em hemodiálise, a faixa pré-diálise é uma aproximação prática; a meta de exposição não foi validada por ensaios de desfechos nessa população.",
+          "curiosidade": "O documento integral contém recomendações para hemodiálise e terapias contínuas. Seu resumo executivo em Clinical Infectious Diseases é uma publicação relacionada, com DOI e paginação próprios."
+        },
+        "kdigo_aki": {
+          "label": "KDIGO AKI 2012",
+          "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+          "journal": "Kidney International Supplements",
+          "ano": 2012,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+          "icon": "📋",
+          "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+          "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+          "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+        }
+      },
+      "referenceRevisions": {
+        "vancomycin_monitoring_ashp": "sha256:d908154ec24e2875d125469dcccad5f95b8d93cd779813341b20d01391b485a2",
+        "kdigo_aki": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd"
+      },
+      "classification": {
+        "op": "Individualizar manutenção de antimicrobiano na terapia contínua em vez de usar dose fixa de DRC terminal.",
+        "competence": "Prescrição e monitorização segura na disfunção renal",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "medium",
+        "difficultyAfter": "medium",
+        "identityDecision": "Mesmo OPprimário e conceito central; delimitadores corrigem escopo da fonte, sem trocar a habilidade para salvar quantidade. Requer checagem independente."
+      },
+      "authorFindings": "Correta original tinha muitas cláusulas. Mantém ajuste PK/TRSC, delimitando o exemplo a vancomicina para evitar suportar alegações de meropeném por guideline de outro fármaco. Não acrescenta doses.",
+      "sources": [
+        {
+          "id": "ASHP2020",
+          "url": "https://www.ashp.org/-/media/assets/policy-guidelines/docs/therapeutic-guidelines/therapeutic-guidelines-monitoring-vancomycin-ASHP-IDSA-PIDS.ashx",
+          "access": "PDF oficial integral31p aberto pelo autor em15/11/2026; não alegar download local.",
+          "locators": [
+            "pp1–5: escopoMRSAinvasivo, MICmicrodiluição/AUC/risconefrotoxicidade.",
+            "pp9–10: dose de ataque e peso/Vd.",
+            "pp13–14:CRRT,efluente,níveis/monitorização e função residual.",
+            "Tabela2: recomendações1–2/10–11/16."
+          ],
+          "limits": "Fonte de consenso, maioria de dados observacionais/PK. Não aplica alvos a todos os patógenos nem todas as modalidades de diálise."
+        },
+        {
+          "id": "KDIGO2012",
+          "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+          "access": "PDF oficial integral realmente lido neste turno; seçõesLRA/monitorização e doseentregue.",
+          "locators": [
+            "§2.1–2.3:função renal dinâmica, avaliação e trajetória.",
+            "§3.8:antibióticosnefrotóxicos e monitorização, sem alvo único para todososaminoglicosídeos.",
+            "§5.8:doseefluente/entrega e avaliação seriada."
+          ],
+          "limits": "Documento final2012; não é atribuído ao draft2026."
+        }
+      ],
+      "appeal": {
+        "question": "Há uma alternativa correta rival ou dado decisivo não informado?",
+        "response": "f893 temMIC explícita eMRSAinvasivo; b819/c4 pedem princípio de manutenção/carga e não permitem dose numérica fixa. Todos os distratores foram confrontados ao cenário e não só ao comprimento."
+      },
+      "implementationAuthorization": "BLOQUEADA até revisão formal independente exata",
+      "candidateStatus": "AUTHOR_ONLY_NOT_A_CLINICAL_GATE"
+    }
+  ],
+  "referencePatches": [],
+  "scope": "Três consumidores do card de vancomicina, sem herança de gate. Os12campos dos dois cards devem ser conferidos independentemente ou ter gate exato explicitamente reutilizado.",
+  "productionWrites": 0
+}

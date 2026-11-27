@@ -31,10 +31,11 @@ const ledger = (page: Page) => page.evaluate(() => Object.fromEntries(
 
 test('cabeçalho e busca aproximam os artigos sem transformar acesso em descoberta', async ({ page, isMobile }, testInfo) => {
   const before = await ledger(page);
-  const total = await page.evaluate(() => Object.keys((0, eval)('refsDB')).length + (0, eval)('nefroArticles').length);
-  await expect(page.locator('[data-library-entry]')).toHaveCount(total);
-  await expect(page.locator('.nqd-library-summary')).toHaveText(`Referências descobertas até o momento: 4/${total}`);
-  await expect(page.locator('#nqDashLibraryTab-all [data-library-count]')).toHaveText(String(total));
+  const totalWorks = 558;
+  await expect(page.locator('[data-library-work]:visible')).toHaveCount(totalWorks);
+  await expect(page.locator('[data-library-entry]:visible')).toHaveCount(595);
+  await expect(page.locator('.nqd-library-summary')).toHaveText(`Obras com conteúdo descoberto: 4/${totalWorks}`);
+  await expect(page.locator('#nqDashLibraryTab-all [data-library-count]')).toHaveText(String(totalWorks));
   await expect(page.locator('#nqDashLibraryTab-favorites [data-library-count]')).toHaveText('2');
   await expect(page.locator('#nqDashLibrarySearch')).toBeVisible();
   await expect(page.locator('#nqDashLibrarySearch')).toHaveAccessibleName('Buscar no Grimório');
@@ -51,7 +52,7 @@ test('cabeçalho e busca aproximam os artigos sem transformar acesso em descober
   const firstArticle = await page.locator('[data-library-entry]:visible').first().boundingBox();
   expect(header).not.toBeNull();
   expect(firstArticle).not.toBeNull();
-  await testInfo.attach('header-geometry', { body: JSON.stringify({ header, firstArticle, total }), contentType: 'application/json' });
+  await testInfo.attach('header-geometry', { body: JSON.stringify({ header, firstArticle, totalWorks }), contentType: 'application/json' });
   await expect.soft(page.locator('[data-library-explore]')).toBeHidden();
   if (!isMobile) {
     expect.soft(header!.height).toBeGreaterThanOrEqual(140);

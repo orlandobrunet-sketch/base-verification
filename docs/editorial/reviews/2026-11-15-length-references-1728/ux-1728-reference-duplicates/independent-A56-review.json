@@ -1,0 +1,1528 @@
+{
+  "schema": "NQ_INDEPENDENT_A56_REVIEW_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/length_inventory_1728",
+  "productionWrites": false,
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "authorPackages": [
+    {
+      "file": "author-batch-A5-neighbors.json",
+      "rawSHA256": "a09dbe31ef82da1a62e55bfb8cc3f84cd56cdfacc4bd6eb6cce91f220a2f8736"
+    },
+    {
+      "file": "author-batch-A6-AL.json",
+      "rawSHA256": "be87d28b7cb87f71d893c13e4b735e8cd0c096a092ccd54044d4862bd9ab37a7"
+    },
+    {
+      "file": "author-batch-A1.1.json",
+      "rawSHA256": "abd02ea99094639b1f859c2f4fc41655725e6b5023ed07426ee3591f3fd3ea03",
+      "scope": "Literal Alport copiado no A5 e autenticado pelo hash da proposta."
+    }
+  ],
+  "sources": {
+    "alport": {
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1207/",
+      "access": "Corpo integral NCBI Bookshelf efetivamente aberto e lido; revisão de 14/08/2025.",
+      "locators": [
+        "Summary linhas 69–86: rim/audição/olhos, genes e mulheres/AD",
+        "Tabela 1 linhas 162–166: COL4A5 80–85%",
+        "Kidney biopsy linhas 202–218: imunomarcação e ultraestrutura"
+      ],
+      "limits": "GeneReviews é revisão clínica, não ensaio de acurácia. Pedigree sugere padrão, não comprova gene específico."
+    },
+    "acr": {
+      "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+      "access": "PDF oficial integral de 126 páginas efetivamente aberto. Manual 2026, capítulo FSN atualizado em 2025.",
+      "locators": [
+        "PDF84, linhas3543–3554: grupo II/menor dose diagnóstica",
+        "PDF84–85, linhas3568–3579: exame antes de sessão habitual; não iniciar/alterar diálise pelo contraste",
+        "PDF86 tabela1: gadobutrol grupo II",
+        "PDF82/89: gadopiclenol II* provisório e manejo local"
+      ],
+      "limits": "Decisão restrita a exame clinicamente necessário e agente conhecido. Não extrapolar a grupo I, agente provisório sem ressalva ou outra indicação de diálise."
+    },
+    "andromeda": {
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10131167/1/nejmoa2028631.pdf",
+      "doi": "10.1056/NEJMoa2028631",
+      "access": "Artigo primário integral de 13 páginas efetivamente aberto, cópia institucional UCL.",
+      "locators": [
+        "PDF1/NEJM46: randomização, 388, primário hematológico, 53,3/18,1%, RR2,9 IC2,1–4,1 P<0,001 e mediana11,4meses",
+        "PDF2/NEJM47: elegibilidade e exclusão na triagem TFGe<20/cardiopatia avançada",
+        "PDF6/NEJM51: transição de alguns pacientes IIIA→IIIB entre triagem e basal",
+        "PDF8: limites da análise 2021 e sobrevida global não demonstrada"
+      ],
+      "limits": "Resultados 2021 não são a análise prolongada de 2025. Exclusão na triagem não significa nenhum IIIB no dia1; card mantém o qualificador correto."
+    },
+    "fda": {
+      "url": "https://www.fda.gov/drugs/cancer-approvals/fda-grants-traditional-approval-daratumumab-and-hyaluronidase-fihj-newly-diagnosed-light-chain",
+      "access": "Página oficial integral efetivamente aberta; aprovação tradicional de 19/11/2025.",
+      "locators": [
+        "linhas61–68: D-VCd/ANDROMEDA, população e restrição NYHAIIIB/IV ou MayoIIIB fora de estudos"
+      ],
+      "limits": "Usada para atualização do cenário de tratamento; números da análise 2025 não foram inseridos no card do ensaio 2021. Não implica aprovação/financiamento no Brasil."
+    },
+    "typing": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9529046/",
+      "doi": "10.1590/1414-431X2022e12284",
+      "access": "Corpo integral oficial NLM efetivamente obtido por EFetch e lido em independent-A2/primary-pmc-full.xml; afirmações do literal A6 rechecadas.",
+      "locators": [
+        "Diagnóstico/typing: Congo confirma amiloide, não o precursor",
+        "Espectrometria de massa, microdissecção e IF/IHQ",
+        "Gamopatia concomitante não basta para atribuição AL"
+      ],
+      "limits": "Revisão clinicopatológica para tipagem; não fonte do efeito randomizado de daratumumabe."
+    }
+  },
+  "items": [
+    {
+      "qid": "82728652",
+      "original": {
+        "question": {
+          "t": "Síndrome de Alport — Diagnóstico Básico",
+          "qid": "82728652",
+          "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+          "refs": [
+            "alport_genereviews_2025"
+          ],
+          "opts": [
+            "Nefropatia por IgA",
+            "Doença de Fabry",
+            "Síndrome de Alport ligada ao X por variante em COL4A5",
+            "Doença de lesões mínimas"
+          ],
+          "ans": 2,
+          "exp": "A combinação de hematúria persistente, perda auditiva neurossensorial, padrão familiar pelo lado materno e lamelação da membrana basal glomerular à microscopia eletrônica é altamente sugestiva de síndrome de Alport ligada ao X por variante em COL4A5. Nefropatia por IgA não explica tipicamente surdez familiar nem lamelação da membrana basal; Fabry pode causar nefropatia, mas a microscopia eletrônica mostra inclusões lamelares lisossomais/corpos de zebra; doença de lesões mínimas cursa com síndrome nefrótica e apagamento podocitário, não com esse fenótipo hereditário.",
+          "diff": "easy",
+          "cat": "genetica"
+        },
+        "authorRevision": "sha256:c167c842aaaa93c3412f5f933eb6479e00dde4c0dfdc3dbdff4578de948d6ee4",
+        "referenceRevisions": {
+          "alport_genereviews_2025": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+        },
+        "recordRevision": "sha256:daa2f409c1d9dfdee11a88f960c4ace78545d50688a821f857a0bb85f760c245"
+      },
+      "proposed": {
+        "t": "Síndrome de Alport — Diagnóstico Básico",
+        "qid": "82728652",
+        "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+        "refs": [
+          "alport_genereviews_2025"
+        ],
+        "opts": [
+          "Nefropatia por IgA",
+          "Doença de Fabry",
+          "Síndrome de Alport",
+          "Doença de lesões mínimas"
+        ],
+        "ans": 2,
+        "exp": "O diagnóstico mais provável é síndrome de Alport. Hematúria persistente, perda auditiva neurossensorial e lamelação da membrana basal glomerular formam um conjunto típico. O pedigree sugere herança ligada ao X, mas não identifica sozinho a variante; a investigação molecular inclui COL4A3, COL4A4 e COL4A5. IgA não explica esse conjunto hereditário-auditivo; Fabry produz inclusões lisossomais, distintas da lamelação da membrana basal; lesões mínimas costuma apresentar síndrome nefrótica com apagamento podocitário.",
+        "diff": "easy",
+        "cat": "genetica"
+      },
+      "proposedSHA256": "sha256:85614de3f4705862aecc64ba61ed5290cb8ec1b36077ec7b458ee5301a69b9ea",
+      "referenceRevisions": {
+        "alport_genereviews_2025": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+      },
+      "bundleRevision": "sha256:15664899f5dc059c81cddc88003460996ba35aba70ae51c4beaa71305e0624de",
+      "classification": {
+        "op": "Reconhecer síndrome de Alport a partir de fenótipo renal-auditivo e ultraestrutura da MBG.",
+        "primaryCompetence": "Reconhecimento diagnóstico de nefropatia hereditária.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "A alternativa e a explicação inferiam COL4A5/ligação ao X como diagnóstico molecular específico a partir de pedigree sugestivo. A nova versão preserva diagnóstico sindrômico sem afirmar variante comprovada.",
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 1
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 13,
+          "rationale": "A alternativa e a explicação inferiam COL4A5/ligação ao X como diagnóstico molecular específico a partir de pedigree sugestivo. A nova versão preserva diagnóstico sindrômico sem afirmar variante comprovada."
+        }
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "sourceIDs": [
+          "alport"
+        ],
+        "claim": "Hematúria, surdez neurossensorial e lamelação da MBG favorecem Alport. COL4A3/4/5 e formas X/AD/AR existem; pedigree não é prova molecular.",
+        "advogadoDoRecurso": "IgA não explica a combinação auditiva-hereditária e lamelação; Fabry produz inclusões lisossomais, não o padrão da MBG; lesões mínimas não fornece essa tríade. Pode-se reconhecer Alport sem determinar o gene, exatamente o comando. Não há segunda opção defensável.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "IgA não explica a combinação auditiva-hereditária e lamelação; Fabry produz inclusões lisossomais, não o padrão da MBG; lesões mínimas não fornece essa tríade. Pode-se reconhecer Alport sem determinar o gene, exatamente o comando. Não há segunda opção defensável."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Hematúria, surdez neurossensorial e lamelação da MBG favorecem Alport. COL4A3/4/5 e formas X/AD/AR existem; pedigree não é prova molecular."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo OP e decisão central preservados; sem trocar o alvo clínico por uma pista de escrita."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Nenhuma conduta insegura é tratada como aceitável; elegibilidade e limites estão explícitos."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores correspondem a erros de diagnóstico ou conduta do mesmo cenário; fragilidade residual é refletida no score."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Reconhecimento/conduta muda interpretação ou cuidado; não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela resposta e corresponde exatamente à alternativa indicada."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "IgA não explica a combinação auditiva-hereditária e lamelação; Fabry produz inclusões lisossomais, não o padrão da MBG; lesões mínimas não fornece essa tríade. Pode-se reconhecer Alport sem determinar o gene, exatamente o comando. Não há segunda opção defensável."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Recomendação e condições relevantes identificadas; não depende de protocolo local oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Hematúria, surdez neurossensorial e lamelação da MBG favorecem Alport. COL4A3/4/5 e formas X/AD/AR existem; pedigree não é prova molecular."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Reconhecimento diagnóstico direto, quatro diagnósticos paralelos, sem premiar extensão. Distratores úteis mas a tríade torna o desafio fácil."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA é combinação válida, sem teto restritivo.",
+          "step1": "Duplicidade nas quatro dimensões adjudicada pelo root e resolvida somente com aposentadoria atômica do par. Nenhum eliminatório clínico residual.",
+          "step2": "Nenhum recurso plausível de anulação residual.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração autorizada dos bytes exatos."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "atomicRetirement": "82d7373c",
+        "distinctNeighbor": null,
+        "constraints": [
+          "A autorização é do literal e cards vinculados; não aprova outros consumidores por ID compartilhado.",
+          "Integração exclusiva do root. Não reavaliar respostas antigas nem transferir FSRS, crédito ou desbloqueios."
+        ]
+      }
+    },
+    {
+      "qid": "03b3db65",
+      "original": {
+        "question": {
+          "t": "Gadolínio e Fibrose Sistêmica Nefrogênica",
+          "qid": "03b3db65",
+          "q": "Paciente com doença renal crônica estágio 5 em hemodiálise necessita de ressonância magnética com contraste de gadolínio. Qual afirmação está correta quanto ao risco renal e à conduta?",
+          "opts": [
+            "O principal risco é a fibrose sistêmica nefrogênica; deve-se preferir um agente do Grupo II, cujo risco é muito baixo, sem necessidade de iniciar ou intensificar a diálise apenas por causa do exame.",
+            "O principal risco renal dos agentes de gadolínio nas doses usuais é uma lesão renal aguda tubular dose-dependente semelhante à causada pelo contraste iodado.",
+            "Os agentes lineares do Grupo I são preferidos por apresentarem menor risco de fibrose sistêmica nefrogênica na doença renal avançada.",
+            "Deve-se agendar uma sessão adicional de hemodiálise imediatamente após o exame para remover o gadolínio e prevenir a fibrose sistêmica nefrogênica."
+          ],
+          "ans": 0,
+          "exp": "O principal risco do gadolínio na doença renal avançada é a fibrose sistêmica nefrogênica (FSN); nas doses usuais, o gadolínio não causa lesão tubular dose-dependente como o contraste iodado (por isso B é incorreta). O ACR Manual on Contrast Media (2026) classifica os agentes por risco de FSN: o Grupo I (lineares — gadodiamida, gadopentetato, gadoversetamida) concentra o maior número de casos e é contraindicado na doença renal avançada, sendo incorreto preferi-lo (C). O Grupo II (macrocíclicos — gadobutrol, gadoterato, gadoteridol —, o gadobenato e, desde 2024, o gadoxetato e o gadopiclenol) é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em pacientes em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio (por isso D é incorreta).",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "gadolinio_acr_manual_2026"
+          ]
+        },
+        "authorRevision": "sha256:cf841def437960a129362ebf54d5ca82ea440ba6d11f73fe83fe1da8e9b2adf2",
+        "referenceRevisions": {
+          "gadolinio_acr_manual_2026": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c"
+        },
+        "recordRevision": "sha256:42a588c625071fc5d78ddf14190a1d26d127b470f8f53ef15d3b99f8e26580de"
+      },
+      "proposed": {
+        "t": "Gadolínio em hemodiálise — Programação do exame",
+        "qid": "03b3db65",
+        "q": "Paciente com doença renal crônica em hemodiálise de manutenção precisa de ressonância contrastada eletiva, clinicamente necessária. A radiologia selecionou gadobutrol, agente do grupo II, em dose diagnóstica. Sem outra indicação para alterar a diálise, qual planejamento é adequado?",
+        "opts": [
+          "Manter o esquema habitual; se viável, fazer o exame pouco antes da sessão regular.",
+          "Acrescentar uma sessão imediata após o exame, além das sessões habituais.",
+          "Passar a sessões diárias na semana do exame, para aumentar a remoção do contraste.",
+          "Dobrar a duração das sessões na semana do exame, para aumentar a remoção do contraste."
+        ],
+        "ans": 0,
+        "exp": "O American College of Radiology (ACR) recomenda, quando possível, realizar a ressonância eletiva com gadolínio pouco antes de uma sessão já programada de hemodiálise. O gadobutrol pertence ao grupo II, cujo risco de fibrose sistêmica nefrogênica (FSN) é muito baixo nas doses apropriadas. A hemodiálise remove contraste, mas não se deve acrescentar sessões, aumentar sua frequência ou modificar o esquema apenas por causa do exame. A decisão de alterar a diálise por outra indicação clínica é independente. A recomendação não deve ser extrapolada sem ressalva ao gadopiclenol, classificado como II* provisório, com manejo conforme a prática local.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gadolinio_acr_manual_2026"
+        ]
+      },
+      "proposedSHA256": "sha256:cbcbae3b69db12b40e7f59ab00746f7e888198df3e3bbe1c1162e3ddbf72c017",
+      "referenceRevisions": {
+        "gadolinio_acr_manual_2026": "sha256:88daa011b4ff1ee92a6ca6dfe562457da3f59972aa455d1d86937687cb6495b5"
+      },
+      "bundleRevision": "sha256:d9eca16e38a0fd343446e922e0540a7aa4fdaf602da3d9d4cfbf7e0a2028f77a",
+      "classification": {
+        "op": "Escolher a conduta dialítica após ressonância necessária com agente de gadolínio do grupo II em paciente já em hemodiálise.",
+        "primaryCompetence": "Planejamento seguro do exame contrastado na terapia dialítica de manutenção.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "Correta muito extensa; a explicação classificava gadopiclenol junto aos demais II sem a condição provisória II*. O cenário misturava escolha do agente com programação de HD.",
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 1
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 13,
+          "rationale": "Correta muito extensa; a explicação classificava gadopiclenol junto aos demais II sem a condição provisória II*. O cenário misturava escolha do agente com programação de HD."
+        }
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "sourceIDs": [
+          "acr"
+        ],
+        "claim": "Gadobutrol é grupo II; em HD de manutenção, se possível realizar exame eletivo pouco antes da sessão habitual. Não criar, aumentar ou alterar sessões exclusivamente por esse contraste.",
+        "advogadoDoRecurso": "A radiologia já escolheu o agente e o exame é necessário. Não se está escolhendo dose nem discutindo diálise para LRA/volume/K. Se a proximidade não for viável, a opção permite manter o esquema; não obriga sessão extra. A ressalva II* evita universalização ao gadopiclenol.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "A radiologia já escolheu o agente e o exame é necessário. Não se está escolhendo dose nem discutindo diálise para LRA/volume/K. Se a proximidade não for viável, a opção permite manter o esquema; não obriga sessão extra. A ressalva II* evita universalização ao gadopiclenol."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Gadobutrol é grupo II; em HD de manutenção, se possível realizar exame eletivo pouco antes da sessão habitual. Não criar, aumentar ou alterar sessões exclusivamente por esse contraste."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo OP e decisão central preservados; sem trocar o alvo clínico por uma pista de escrita."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Nenhuma conduta insegura é tratada como aceitável; elegibilidade e limites estão explícitos."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores correspondem a erros de diagnóstico ou conduta do mesmo cenário; fragilidade residual é refletida no score."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Reconhecimento/conduta muda interpretação ou cuidado; não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela resposta e corresponde exatamente à alternativa indicada."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "A radiologia já escolheu o agente e o exame é necessário. Não se está escolhendo dose nem discutindo diálise para LRA/volume/K. Se a proximidade não for viável, a opção permite manter o esquema; não obriga sessão extra. A ressalva II* evita universalização ao gadopiclenol."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Recomendação e condições relevantes identificadas; não depende de protocolo local oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Gadobutrol é grupo II; em HD de manutenção, se possível realizar exame eletivo pouco antes da sessão habitual. Não criar, aumentar ou alterar sessões exclusivamente por esse contraste."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Planejamento de quatro agendas dialíticas comparáveis. As três formas de intensificação são erros reconhecíveis, mas semelhantes, reduzindo diversidade dos distratores."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA é combinação válida, sem teto restritivo.",
+          "step1": "Sem eliminatório; vizinho de escolha de agente é distinto.",
+          "step2": "Nenhum recurso plausível de anulação residual.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração autorizada dos bytes exatos."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "distinctNeighbor": "190676b8 avalia escolha de gadobutrol/grupo II e risco em DRC G4 sem HD; não programação de terapia de manutenção. Decisão e cenário essenciais diferem.",
+        "constraints": [
+          "A autorização é do literal e cards vinculados; não aprova outros consumidores por ID compartilhado.",
+          "Integração exclusiva do root. Não reavaliar respostas antigas nem transferir FSRS, crédito ou desbloqueios."
+        ]
+      }
+    },
+    {
+      "qid": "47ac614f",
+      "original": {
+        "question": {
+          "qid": "47ac614f",
+          "q": "Paciente com amiloidose de cadeias leves (AL) sistêmica recém-diagnosticada, com acometimento renal e cardíaco não avançado (elegível a terapia sistêmica padrão). Qual é o esquema de primeira linha preferencial atual?",
+          "opts": [
+            "Daratumumabe associado a bortezomibe, ciclofosfamida e dexametasona (dara-VCd).",
+            "Melfalano em altas doses seguido de transplante autólogo de células-tronco em todos os pacientes, independentemente do risco cardíaco.",
+            "Colchicina isolada, como na febre familiar do Mediterrâneo e na amiloidose AA.",
+            "Ciclofosfamida venosa isolada em pulsos mensais."
+          ],
+          "ans": 0,
+          "exp": "Na amiloidose de cadeias leves (AL) recém-diagnosticada elegível a tratamento sistêmico padrão, o esquema de primeira linha é o dara-VCd — daratumumabe associado a bortezomibe, ciclofosfamida e dexametasona. No ensaio ANDROMEDA, acrescentar daratumumabe ao VCd elevou a resposta hematológica completa de 18,1% para 53,3%. O transplante autólogo de células-tronco é restrito a uma minoria elegível e é contraindicado na cardiopatia avançada ou em pacientes frágeis — não é conduta universal. A colchicina não trata a amiloidose AL (tem papel na febre familiar do Mediterrâneo e na amiloidose AA). A ciclofosfamida isolada é insuficiente para controlar a doença de base. Observação: o comprometimento cardíaco avançado (estágio Mayo IIIb) foi excluído do ANDROMEDA e exige esquemas com ajuste de dose e manejo especializado.",
+          "refs": [
+            "andromeda_kastritis_2021"
+          ],
+          "cat": "farmacologia",
+          "diff": "hard",
+          "t": "Amiloidose AL — Tratamento Farmacológico"
+        },
+        "authorRevision": "sha256:582208eda5808350e23375cef050ef9b2b477475e55c67e8f6ad7d2fd4d7fcdc",
+        "referenceRevisions": {
+          "andromeda_kastritis_2021": "sha256:e039b9d551faf00f6e4380d8c859a8caf4594e9579a740f677d691bc503c3785"
+        },
+        "recordRevision": "sha256:4bff2f9eaa249a6ffd77c32498dee2019192b7d1b317a6cd15f13580a6da92ad"
+      },
+      "proposed": {
+        "qid": "47ac614f",
+        "q": "Paciente com síndrome nefrótica tem amiloidose renal confirmada por Congo vermelho. A tipagem por microdissecção a laser e espectrometria de massa identifica cadeias leves kappa, com clone plasmocitário correspondente na avaliação hematológica: amiloidose de cadeias leves (AL). Não recebeu tratamento, tem taxa de filtração glomerular estimada de 45 mL/min/1,73 m², sem cardiopatia avançada, e é elegível ao esquema combinado. Qual estratégia inicial tem melhor sustentação para tratar a produção da proteína amiloidogênica?",
+        "opts": [
+          "Daratumumabe, bortezomibe, ciclofosfamida e dexametasona.",
+          "Plasmaférese seriada, mantendo observação do clone plasmocitário.",
+          "Prednisona e micofenolato, guiados pela resposta da proteinúria.",
+          "Suporte renal isolado, adiando terapia clonal até iniciar diálise."
+        ],
+        "ans": 0,
+        "exp": "Na AL confirmada, o tratamento precisa reduzir a produção de cadeias leves pelo clone plasmocitário. No ANDROMEDA, acrescentar daratumumabe ao esquema com bortezomibe, ciclofosfamida e dexametasona aumentou a resposta hematológica completa em pacientes recém-diagnosticados elegíveis. A tipagem explícita evita presumir AL apenas por gamopatia associada a Congo positivo. Remover proteínas circulantes por plasmaférese não substitui suprimir o clone; prednisona e micofenolato não são o esquema antiplasmocitário fundamentado para esse cenário. O suporte renal acompanha a terapia e não justifica adiá-la até a diálise. A escolha e as doses exigem avaliação hematológica, especialmente da cardiopatia; o caso foi delimitado à população elegível.",
+        "refs": [
+          "andromeda_kastritis_2021",
+          "renal_amyloidosis_diagnosis_2022"
+        ],
+        "cat": "farmacologia",
+        "diff": "medium",
+        "t": "Amiloidose AL — Tratamento inicial"
+      },
+      "proposedSHA256": "sha256:4e59c33627f5528a3161cdfbf7b21996bd096bf5112f5db7dce4480004da4227",
+      "referenceRevisions": {
+        "andromeda_kastritis_2021": "sha256:6aa843c6ce6bc02fd8c490403272aafccb6079489e832d7c910bd295a9cdcb70",
+        "renal_amyloidosis_diagnosis_2022": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd"
+      },
+      "bundleRevision": "sha256:617b89f883dac8be54bf3a96cfe9c669e096963319f390ec88fceb47e48a38a6",
+      "classification": {
+        "op": "Escolher tratamento inicial dirigido ao clone plasmocitário na AL sistêmica confirmada, recém-diagnosticada e elegível.",
+        "primaryCompetence": "Conduta.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "findings": "O original continha alternativa muito longa e distratores com absolutos. Limites cardíacos do card estavam imprecisos; o novo caso confirma explicitamente o precursor para consolidar o par inseguro.",
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 1
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 13,
+          "rationale": "O original continha alternativa muito longa e distratores com absolutos. Limites cardíacos do card estavam imprecisos; o novo caso confirma explicitamente o precursor para consolidar o par inseguro."
+        }
+      },
+      "review": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "sourceIDs": [
+          "andromeda",
+          "fda",
+          "typing"
+        ],
+        "claim": "AL tipada e clone correspondente justificam terapia dirigida ao clone. Em recém-diagnosticados elegíveis, ANDROMEDA sustentou D-VCd; apoio renal/plasmaférese não suprimem o clone. Análise2021: resposta hematológica e limites específicos, sem inferir sobrevida global de seu seguimento inicial.",
+        "advogadoDoRecurso": "Congo com gamopatia sozinho seria insuficiente; a nova questão inclui tipagem por LMD-MS kappa e clone correspondente. TFGe45 e ausência de cardiopatia avançada delimitam elegibilidade. Nenhuma alternativa concorrente trata a produção clonal; não se exige dar o esquema a toda AL nem prescrição de doses individuais.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Congo com gamopatia sozinho seria insuficiente; a nova questão inclui tipagem por LMD-MS kappa e clone correspondente. TFGe45 e ausência de cardiopatia avançada delimitam elegibilidade. Nenhuma alternativa concorrente trata a produção clonal; não se exige dar o esquema a toda AL nem prescrição de doses individuais."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "AL tipada e clone correspondente justificam terapia dirigida ao clone. Em recém-diagnosticados elegíveis, ANDROMEDA sustentou D-VCd; apoio renal/plasmaférese não suprimem o clone. Análise2021: resposta hematológica e limites específicos, sem inferir sobrevida global de seu seguimento inicial."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo OP e decisão central preservados; sem trocar o alvo clínico por uma pista de escrita."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Nenhuma conduta insegura é tratada como aceitável; elegibilidade e limites estão explícitos."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores correspondem a erros de diagnóstico ou conduta do mesmo cenário; fragilidade residual é refletida no score."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Reconhecimento/conduta muda interpretação ou cuidado; não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela resposta e corresponde exatamente à alternativa indicada."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Congo com gamopatia sozinho seria insuficiente; a nova questão inclui tipagem por LMD-MS kappa e clone correspondente. TFGe45 e ausência de cardiopatia avançada delimitam elegibilidade. Nenhuma alternativa concorrente trata a produção clonal; não se exige dar o esquema a toda AL nem prescrição de doses individuais."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Recomendação e condições relevantes identificadas; não depende de protocolo local oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "AL tipada e clone correspondente justificam terapia dirigida ao clone. Em recém-diagnosticados elegíveis, ANDROMEDA sustentou D-VCd; apoio renal/plasmaférese não suprimem o clone. Análise2021: resposta hematológica e limites específicos, sem inferir sobrevida global de seu seguimento inicial."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 18,
+          "rationale": "Tratamento inicial sustentado e seguro no cenário delimitado. Diagnóstico/elegibilidade são fornecidos e distratores não clonais são menos competitivos; dificuldade média, sem inflar pelo comprimento."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA é combinação válida, sem teto restritivo.",
+          "step1": "Duplicidade nas quatro dimensões adjudicada pelo root e resolvida somente com aposentadoria atômica do par. Nenhum eliminatório clínico residual.",
+          "step2": "Nenhum recurso plausível de anulação residual.",
+          "step3": "18/20 → aprovada.",
+          "lifecycle": "publicado após integração autorizada dos bytes exatos."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "atomicRetirement": "c4e8b495",
+        "distinctNeighbor": null,
+        "constraints": [
+          "A autorização é do literal e cards vinculados; não aprova outros consumidores por ID compartilhado.",
+          "Integração exclusiva do root. Não reavaliar respostas antigas nem transferir FSRS, crédito ou desbloqueios."
+        ]
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "alport_genereviews_2025",
+      "proposed": {
+        "label": "GeneReviews — Alport Syndrome",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+        "journal": "NCBI Bookshelf / GeneReviews",
+        "ano": 2025,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+        "icon": "🔬",
+        "resumo": "GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+        "conclusao": "Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+        "curiosidade": "A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
+      },
+      "revision": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "alport"
+      ],
+      "claims": [
+        "Metadados/ano correspondem à revisão GeneReviews2025.",
+        "COL4A3/4/5, manifestações rim/audição/olhos e dados COL4A5 80–85% estão na tabela; não equivale a prevalência de todas micro-hematúrias.",
+        "Lamelação/cesta de vime, normalidade possível da imunomarcação e apresentações feminina/AD tardias conferidas."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Cards não recebem score de questão; avaliação integral dos campos médicos/bibliográficos."
+    },
+    {
+      "id": "gadolinio_acr_manual_2026",
+      "proposed": {
+        "label": "Manual de contraste — Fibrose sistêmica nefrogênica (2025)",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Grupo II preferido na doença renal crônica avançada; não acrescentar diálise pelo exame",
+        "icon": "📋",
+        "resumo": "Manual do American College of Radiology (ACR), consultado em 2026, capítulo sobre fibrose sistêmica nefrogênica (FSN) atualizado em 2025. O grupo II é preferido em pacientes sob risco de FSN, na menor dose que preserve qualidade diagnóstica; inclui gadobutrol. O grupo I é contraindicado na doença renal crônica avançada. Não iniciar nem alterar diálise apenas pelo contraste. Gadopiclenol permanece no grupo II* provisório, com decisão local sobre manejo como grupo II ou III.",
+        "conclusao": "Se a ressonância contrastada é necessária em doença renal crônica avançada, selecionar agente apropriado do grupo II e dose diagnóstica, ponderando riscos de não realizar o exame.",
+        "curiosidade": "A classificação depende do agente específico. A atualização distingue gadopiclenol provisório dos agentes do grupo II com maior experiência clínica."
+      },
+      "revision": "sha256:88daa011b4ff1ee92a6ca6dfe562457da3f59972aa455d1d86937687cb6495b5",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "acr"
+      ],
+      "claims": [
+        "Manual consultado2026 e atualização do capítulo2025 distinguidos.",
+        "Grupo II preferido, menor dose diagnóstica, grupo I contraindicado em doença avançada; gadobutrol corretamente II.",
+        "Não iniciar/alterar HD exclusivamente pelo contraste; II* gadopiclenol condicionado ao contexto local."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Cards não recebem score de questão; avaliação integral dos campos médicos/bibliográficos."
+    },
+    {
+      "id": "andromeda_kastritis_2021",
+      "proposed": {
+        "label": "ANDROMEDA — Daratumumabe na amiloidose de cadeias leves (AL)",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/10131167/1/nejmoa2028631.pdf",
+        "journal": "N Engl J Med 2021;385(1):46–58",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Adicionar daratumumabe aumentou a resposta hematológica completa na AL elegível",
+        "icon": "🔬",
+        "resumo": "ANDROMEDA 2021: ensaio fase 3, aberto e randomizado, com 388 pacientes com amiloidose de cadeias leves (AL) recém-diagnosticada. Comparou bortezomibe, ciclofosfamida e dexametasona com ou sem daratumumabe subcutâneo. Desfecho primário: resposta hematológica completa, 53,3% versus 18,1% (risco relativo 2,9; intervalo de confiança de 95%: 2,1–4,1; P<0,001), em mediana de 11,4 meses. A triagem excluiu taxa de filtração glomerular estimada <20 mL/min/1,73 m² e doença cardiovascular avançada, incluindo classe funcional IIIB/IV da New York Heart Association. Limites: estudo aberto e aplicabilidade restrita à população elegível; a análise não demonstrou benefício de sobrevida global.",
+        "conclusao": "O esquema combinado oferece tratamento inicial dirigido ao clone em pacientes elegíveis com AL confirmada. Não extrapolar automaticamente a doença cardíaca avançada ou a pacientes fora dos critérios estudados.",
+        "curiosidade": "O daratumumabe é anticorpo dirigido a CD38, expresso nos plasmócitos. A resposta hematológica indica redução da produção de cadeias leves e não equivale, por si só, à remoção imediata de todos os depósitos de amiloide."
+      },
+      "revision": "sha256:6aa843c6ce6bc02fd8c490403272aafccb6079489e832d7c910bd295a9cdcb70",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "andromeda",
+        "fda"
+      ],
+      "claims": [
+        "RCT fase3 aberto, 388, VCd±daratumumabe SC, primário resposta hematológica completa.",
+        "53,3/18,1%; RR2,9 IC95%2,1–4,1 P<0,001, mediana11,4meses coincidem com o primário2021.",
+        "Exclusões na triagem TFGe<20 e doença cardiovascular avançada/NYHAIIIB/IV; não afirmar zeroIIIB na avaliação basal.",
+        "Análise2021 não demonstrou ganho de sobrevida global; a evidência prolongada2025 é distinta. CD38 plasmocitário e resposta não equivale à remoção instantânea dos depósitos."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Cards não recebem score de questão; avaliação integral dos campos médicos/bibliográficos."
+    },
+    {
+      "id": "renal_amyloidosis_diagnosis_2022",
+      "proposed": {
+        "label": "Feitosa et al. — Diagnóstico completo da amiloidose renal (2022)",
+        "url": "https://www.scielo.br/j/bjmbr/a/n5NpNHMsvkwjnBV4rmzgQ3L/",
+        "journal": "Brazilian Journal of Medical and Biological Research 2022;55:e12284",
+        "ano": 2022,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmar amiloide e identificar a proteína precursora são etapas distintas",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica de Feitosa, Neves, Jorge, Noronha e Onuchic sobre diagnóstico de amiloidose renal. Vermelho Congo com birrefringência verde-maçã confirma depósito amiloide, mas não define o precursor. Métodos de imunofluorescência e imuno-histoquímica podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência nos casos inconclusivos ou discordantes. A tipagem é necessária porque as diferentes proteínas precursoras exigem abordagens distintas.",
+        "conclusao": "Não atribuir amiloidose a cadeia leve apenas por uma gamopatia concomitante. Definir o precursor antes de escolher tratamento dirigido.",
+        "curiosidade": "Anticorpos comerciais podem não reconhecer regiões alteradas das cadeias leves presentes nos depósitos; isso ajuda a explicar resultados indeterminados."
+      },
+      "revision": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd",
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "typing"
+      ],
+      "claims": [
+        "Feitosa/Neves/Jorge/Noronha/Onuchic, BJMFR2022;55:e12284 conferidos.",
+        "Congo confirma depósito sem precursor; tipagem IF/IHQ ou LMD-MS necessária conforme certeza e contexto.",
+        "MGUS não prova AL; alterações de cadeias leves podem limitar anticorpos comerciais. Rechecagem completa do literal reutilizado, sem aprovação automática por hash anterior."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Cards não recebem score de questão; avaliação integral dos campos médicos/bibliográficos."
+    }
+  ],
+  "fusions": [
+    {
+      "pairVerdict": "fundir",
+      "rootAdjudication": "Root leu os dois originais e confirmou expressamente esta fusão em 15/11/2026, antes da emissão deste gate.",
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": true,
+          "comparison": "Diagnóstico sindrômico Alport. A herança no comando não é discriminada pelas opções: só uma alternativa nomeia Alport."
+        },
+        {
+          "dimension": "Estrutura dos dados essenciais",
+          "same": true,
+          "comparison": "Fenótipo renal-auditivo hereditário e lamelação da MBG; idade/sexo/pedigree variam sem alterar o raciocínio medido."
+        },
+        {
+          "dimension": "Perfil do aprendiz",
+          "same": true,
+          "comparison": "Mesmo estudante avançado/residente inicial, reconhecimento do fenótipo clássico."
+        },
+        {
+          "dimension": "Idioma",
+          "same": true,
+          "comparison": "pt-BR em ambos."
+        }
+      ],
+      "reason": "A extensão sobre herança não mede outra competência independente; a canônica evita afirmar variante molecular com base apenas no pedigree.",
+      "comparison": {
+        "retired": {
+          "qid": "82d7373c",
+          "question": {
+            "t": "Síndrome de Alport — Diagnóstico e Herança",
+            "qid": "82d7373c",
+            "q": "Mulher de 30 anos tem hematúria microscópica, proteinúria, hipoacusia neurossensorial bilateral e história familiar de doença renal desde a adolescência. A microscopia eletrônica mostra membrana basal glomerular com afinamento, espessamento e lamelação em aspecto de cesto trançado. Qual diagnóstico e padrão de herança mais comum são mais prováveis?",
+            "refs": [
+              "alport_genereviews_2025"
+            ],
+            "opts": [
+              "Doença de lesões mínimas; resposta esperada a corticosteroide",
+              "Amiloidose familiar; depósito Congo-vermelho positivo",
+              "Glomerulonefrite pós-infecciosa; sequela auditiva por aminoglicosídeo",
+              "Síndrome de Alport por variantes em COL4A3/COL4A4/COL4A5; forma mais comum ligada ao X"
+            ],
+            "ans": 3,
+            "exp": "O conjunto de hematúria/proteinúria, perda auditiva neurossensorial, história familiar e membrana basal glomerular com lamelação em cesto trançado é típico de síndrome de Alport. A doença decorre de variantes em COL4A3, COL4A4 ou COL4A5, e a forma mais comum é ligada ao X por COL4A5. Formas autossômicas recessivas e dominantes também existem, portanto a herança deve ser interpretada no contexto familiar e molecular. Doença de lesões mínimas não explica hipoacusia nem lamelação da membrana basal; amiloidose exigiria depósitos Congo-vermelho positivos; glomerulonefrite pós-infecciosa não produz esse padrão hereditário.",
+            "diff": "medium",
+            "cat": "genetica"
+          },
+          "authorRevision": "sha256:f7d763644fc86dedae2a2c72acfbcad2f215c5216c2d2579bcb0a73505aa0ad0",
+          "referenceRevisions": {
+            "alport_genereviews_2025": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+          },
+          "recordRevision": "sha256:f25ac91384048f1dc0067869329a38db8e703a3ea8e6ecaad9b42afbe1e2151c"
+        },
+        "canonicalOriginal": {
+          "question": {
+            "t": "Síndrome de Alport — Diagnóstico Básico",
+            "qid": "82728652",
+            "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+            "refs": [
+              "alport_genereviews_2025"
+            ],
+            "opts": [
+              "Nefropatia por IgA",
+              "Doença de Fabry",
+              "Síndrome de Alport ligada ao X por variante em COL4A5",
+              "Doença de lesões mínimas"
+            ],
+            "ans": 2,
+            "exp": "A combinação de hematúria persistente, perda auditiva neurossensorial, padrão familiar pelo lado materno e lamelação da membrana basal glomerular à microscopia eletrônica é altamente sugestiva de síndrome de Alport ligada ao X por variante em COL4A5. Nefropatia por IgA não explica tipicamente surdez familiar nem lamelação da membrana basal; Fabry pode causar nefropatia, mas a microscopia eletrônica mostra inclusões lamelares lisossomais/corpos de zebra; doença de lesões mínimas cursa com síndrome nefrótica e apagamento podocitário, não com esse fenótipo hereditário.",
+            "diff": "easy",
+            "cat": "genetica"
+          },
+          "authorRevision": "sha256:c167c842aaaa93c3412f5f933eb6479e00dde4c0dfdc3dbdff4578de948d6ee4",
+          "referenceRevisions": {
+            "alport_genereviews_2025": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+          },
+          "recordRevision": "sha256:daa2f409c1d9dfdee11a88f960c4ace78545d50688a821f857a0bb85f760c245"
+        },
+        "canonicalProposed": {
+          "qid": "82728652",
+          "question": {
+            "t": "Síndrome de Alport — Diagnóstico Básico",
+            "qid": "82728652",
+            "q": "Menino de 10 anos tem hematúria microscópica persistente, perda auditiva neurossensorial e avô materno com doença renal crônica terminal. A biópsia mostra membrana basal glomerular laminada à microscopia eletrônica. Qual é o diagnóstico mais provável?",
+            "refs": [
+              "alport_genereviews_2025"
+            ],
+            "opts": [
+              "Nefropatia por IgA",
+              "Doença de Fabry",
+              "Síndrome de Alport",
+              "Doença de lesões mínimas"
+            ],
+            "ans": 2,
+            "exp": "O diagnóstico mais provável é síndrome de Alport. Hematúria persistente, perda auditiva neurossensorial e lamelação da membrana basal glomerular formam um conjunto típico. O pedigree sugere herança ligada ao X, mas não identifica sozinho a variante; a investigação molecular inclui COL4A3, COL4A4 e COL4A5. IgA não explica esse conjunto hereditário-auditivo; Fabry produz inclusões lisossomais, distintas da lamelação da membrana basal; lesões mínimas costuma apresentar síndrome nefrótica com apagamento podocitário.",
+            "diff": "easy",
+            "cat": "genetica"
+          },
+          "authorRevision": "sha256:85614de3f4705862aecc64ba61ed5290cb8ec1b36077ec7b458ee5301a69b9ea",
+          "referenceRevisions": {
+            "alport_genereviews_2025": "sha256:2a66ae267245e2167e7b6115803b5a2c3d173701b80088e5c4c7170e19db312b"
+          },
+          "recordRevision": "sha256:15664899f5dc059c81cddc88003460996ba35aba70ae51c4beaa71305e0624de"
+        }
+      },
+      "retiredDecision": {
+        "qid": "82d7373c",
+        "verdict": "aposentar",
+        "lifecycle": "aposentado",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Aposentar não é aprovação; original não pode ser reaplicado pelo gate da canônica.",
+        "score": {
+          "anulado": true,
+          "reason": "Duplicidade nas quatro dimensões; no c4e8 há também falta decisiva de tipagem."
+        },
+        "clinicalEliminatory": null
+      },
+      "canonicalDecision": {
+        "qid": "82728652",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "sourceIDs": [
+          "alport"
+        ],
+        "claim": "Hematúria, surdez neurossensorial e lamelação da MBG favorecem Alport. COL4A3/4/5 e formas X/AD/AR existem; pedigree não é prova molecular.",
+        "advogadoDoRecurso": "IgA não explica a combinação auditiva-hereditária e lamelação; Fabry produz inclusões lisossomais, não o padrão da MBG; lesões mínimas não fornece essa tríade. Pode-se reconhecer Alport sem determinar o gene, exatamente o comando. Não há segunda opção defensável.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "IgA não explica a combinação auditiva-hereditária e lamelação; Fabry produz inclusões lisossomais, não o padrão da MBG; lesões mínimas não fornece essa tríade. Pode-se reconhecer Alport sem determinar o gene, exatamente o comando. Não há segunda opção defensável."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Hematúria, surdez neurossensorial e lamelação da MBG favorecem Alport. COL4A3/4/5 e formas X/AD/AR existem; pedigree não é prova molecular."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo OP e decisão central preservados; sem trocar o alvo clínico por uma pista de escrita."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Nenhuma conduta insegura é tratada como aceitável; elegibilidade e limites estão explícitos."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores correspondem a erros de diagnóstico ou conduta do mesmo cenário; fragilidade residual é refletida no score."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Reconhecimento/conduta muda interpretação ou cuidado; não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela resposta e corresponde exatamente à alternativa indicada."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "IgA não explica a combinação auditiva-hereditária e lamelação; Fabry produz inclusões lisossomais, não o padrão da MBG; lesões mínimas não fornece essa tríade. Pode-se reconhecer Alport sem determinar o gene, exatamente o comando. Não há segunda opção defensável."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Recomendação e condições relevantes identificadas; não depende de protocolo local oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Hematúria, surdez neurossensorial e lamelação da MBG favorecem Alport. COL4A3/4/5 e formas X/AD/AR existem; pedigree não é prova molecular."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "rationale": "Reconhecimento diagnóstico direto, quatro diagnósticos paralelos, sem premiar extensão. Distratores úteis mas a tríade torna o desafio fácil."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA é combinação válida, sem teto restritivo.",
+          "step1": "Duplicidade nas quatro dimensões adjudicada pelo root e resolvida somente com aposentadoria atômica do par. Nenhum eliminatório clínico residual.",
+          "step2": "Nenhum recurso plausível de anulação residual.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração autorizada dos bytes exatos."
+        },
+        "preserveQid": true,
+        "resetFSRS": false
+      },
+      "implementation": {
+        "atomic": true,
+        "retireQid": "82d7373c",
+        "canonicalQid": "82728652",
+        "constraints": [
+          "Retirar o qid aposentado de futuros sorteios e preservar seu histórico autenticado 17.27.",
+          "Manter posições e respostas de provas/estudos já salvos. Troca de posição pendente somente após escolha explícita.",
+          "Se a canônica já está em outra posição antiga, não apagar respostas nem aumentar o total planejado. Avaliação permanece por posição.",
+          "Não fundir FSRS, estatísticas, eventos, acertos ou desbloqueios; nenhuma fabricação de crédito na troca.",
+          "Original aposentado permanece BLOQUEADO para reaplicação."
+        ]
+      }
+    },
+    {
+      "pairVerdict": "fundir",
+      "rootAdjudication": "Root leu os dois originais e confirmou expressamente esta fusão em 15/11/2026, antes da emissão deste gate.",
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": true,
+          "comparison": "Selecionar tratamento inicial dara-VCd que suprima clone em AL recém-diagnosticada elegível."
+        },
+        {
+          "dimension": "Estrutura dos dados essenciais",
+          "same": true,
+          "comparison": "Amiloidose renal/sistêmica elegível ao esquema moderno; a tipagem ausente no retirado é defeito, não novo OP válido."
+        },
+        {
+          "dimension": "Perfil do aprendiz",
+          "same": true,
+          "comparison": "Mesmo estudante avançado/residente, conduta inicial em AL."
+        },
+        {
+          "dimension": "Idioma",
+          "same": true,
+          "comparison": "pt-BR em ambos."
+        }
+      ],
+      "reason": "Mesmo conceito e ação terapêutica. A canônica explicita precursor/clone e elegibilidade para corrigir a lacuna de segurança.",
+      "comparison": {
+        "retired": {
+          "qid": "c4e8b495",
+          "question": {
+            "qid": "c4e8b495",
+            "q": "Paciente de 62 anos tem síndrome nefrótica, pico monoclonal IgG kappa e biópsia renal com Congo red positivo, compatível com amiloidose AL renal. Se for elegível ao esquema padrão moderno, qual tratamento inicial melhor ataca a fisiopatologia da doença?",
+            "opts": [
+              "Daratumumabe associado a ciclofosfamida, bortezomibe e dexametasona, para suprimir rapidamente o clone produtor de cadeia leve",
+              "Diálise imediata e adiamento do tratamento hematológico até resolução completa da proteinúria",
+              "Corticosteroide isolado para reduzir inflamação renal, evitando terapia antiplasmocitária",
+              "Transplante renal imediato como primeira linha, antes de resposta hematológica"
+            ],
+            "ans": 0,
+            "exp": "A amiloidose AL renal é uma doença de depósito de cadeia leve produzida por clone plasmocitário; portanto, o tratamento inicial precisa reduzir rapidamente a produção da proteína amiloidogênica. Em paciente elegível, o esquema com daratumumabe, ciclofosfamida, bortezomibe e dexametasona aumentou respostas hematológicas e é referência moderna. Diálise pode ser necessária por indicações renais, mas não trata o clone. Corticoide isolado é insuficiente. Transplante renal é considerado apenas em contexto selecionado, após controle hematológico sustentado, para reduzir risco de recorrência.",
+            "cat": "oncologia_renal",
+            "diff": "hard",
+            "refs": [
+              "andromeda_kastritis_2021",
+              "brenner_rector"
+            ],
+            "t": "Amiloidose AL — Envolvimento Renal"
+          },
+          "authorRevision": "sha256:30e6f4b01cbeb0da933dc0d98f0c50899ba41579f5ee9da58d4de790f7d71028",
+          "referenceRevisions": {
+            "andromeda_kastritis_2021": "sha256:e039b9d551faf00f6e4380d8c859a8caf4594e9579a740f677d691bc503c3785",
+            "brenner_rector": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+          },
+          "recordRevision": "sha256:473f6766f1ce809f41839ee9008e619709c703b64bef4abcfbb5de437050c6c3"
+        },
+        "canonicalOriginal": {
+          "question": {
+            "qid": "47ac614f",
+            "q": "Paciente com amiloidose de cadeias leves (AL) sistêmica recém-diagnosticada, com acometimento renal e cardíaco não avançado (elegível a terapia sistêmica padrão). Qual é o esquema de primeira linha preferencial atual?",
+            "opts": [
+              "Daratumumabe associado a bortezomibe, ciclofosfamida e dexametasona (dara-VCd).",
+              "Melfalano em altas doses seguido de transplante autólogo de células-tronco em todos os pacientes, independentemente do risco cardíaco.",
+              "Colchicina isolada, como na febre familiar do Mediterrâneo e na amiloidose AA.",
+              "Ciclofosfamida venosa isolada em pulsos mensais."
+            ],
+            "ans": 0,
+            "exp": "Na amiloidose de cadeias leves (AL) recém-diagnosticada elegível a tratamento sistêmico padrão, o esquema de primeira linha é o dara-VCd — daratumumabe associado a bortezomibe, ciclofosfamida e dexametasona. No ensaio ANDROMEDA, acrescentar daratumumabe ao VCd elevou a resposta hematológica completa de 18,1% para 53,3%. O transplante autólogo de células-tronco é restrito a uma minoria elegível e é contraindicado na cardiopatia avançada ou em pacientes frágeis — não é conduta universal. A colchicina não trata a amiloidose AL (tem papel na febre familiar do Mediterrâneo e na amiloidose AA). A ciclofosfamida isolada é insuficiente para controlar a doença de base. Observação: o comprometimento cardíaco avançado (estágio Mayo IIIb) foi excluído do ANDROMEDA e exige esquemas com ajuste de dose e manejo especializado.",
+            "refs": [
+              "andromeda_kastritis_2021"
+            ],
+            "cat": "farmacologia",
+            "diff": "hard",
+            "t": "Amiloidose AL — Tratamento Farmacológico"
+          },
+          "authorRevision": "sha256:582208eda5808350e23375cef050ef9b2b477475e55c67e8f6ad7d2fd4d7fcdc",
+          "referenceRevisions": {
+            "andromeda_kastritis_2021": "sha256:e039b9d551faf00f6e4380d8c859a8caf4594e9579a740f677d691bc503c3785"
+          },
+          "recordRevision": "sha256:4bff2f9eaa249a6ffd77c32498dee2019192b7d1b317a6cd15f13580a6da92ad"
+        },
+        "canonicalProposed": {
+          "qid": "47ac614f",
+          "question": {
+            "qid": "47ac614f",
+            "q": "Paciente com síndrome nefrótica tem amiloidose renal confirmada por Congo vermelho. A tipagem por microdissecção a laser e espectrometria de massa identifica cadeias leves kappa, com clone plasmocitário correspondente na avaliação hematológica: amiloidose de cadeias leves (AL). Não recebeu tratamento, tem taxa de filtração glomerular estimada de 45 mL/min/1,73 m², sem cardiopatia avançada, e é elegível ao esquema combinado. Qual estratégia inicial tem melhor sustentação para tratar a produção da proteína amiloidogênica?",
+            "opts": [
+              "Daratumumabe, bortezomibe, ciclofosfamida e dexametasona.",
+              "Plasmaférese seriada, mantendo observação do clone plasmocitário.",
+              "Prednisona e micofenolato, guiados pela resposta da proteinúria.",
+              "Suporte renal isolado, adiando terapia clonal até iniciar diálise."
+            ],
+            "ans": 0,
+            "exp": "Na AL confirmada, o tratamento precisa reduzir a produção de cadeias leves pelo clone plasmocitário. No ANDROMEDA, acrescentar daratumumabe ao esquema com bortezomibe, ciclofosfamida e dexametasona aumentou a resposta hematológica completa em pacientes recém-diagnosticados elegíveis. A tipagem explícita evita presumir AL apenas por gamopatia associada a Congo positivo. Remover proteínas circulantes por plasmaférese não substitui suprimir o clone; prednisona e micofenolato não são o esquema antiplasmocitário fundamentado para esse cenário. O suporte renal acompanha a terapia e não justifica adiá-la até a diálise. A escolha e as doses exigem avaliação hematológica, especialmente da cardiopatia; o caso foi delimitado à população elegível.",
+            "refs": [
+              "andromeda_kastritis_2021",
+              "renal_amyloidosis_diagnosis_2022"
+            ],
+            "cat": "farmacologia",
+            "diff": "medium",
+            "t": "Amiloidose AL — Tratamento inicial"
+          },
+          "authorRevision": "sha256:4e59c33627f5528a3161cdfbf7b21996bd096bf5112f5db7dce4480004da4227",
+          "referenceRevisions": {
+            "andromeda_kastritis_2021": "sha256:6aa843c6ce6bc02fd8c490403272aafccb6079489e832d7c910bd295a9cdcb70",
+            "renal_amyloidosis_diagnosis_2022": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd"
+          },
+          "recordRevision": "sha256:617b89f883dac8be54bf3a96cfe9c669e096963319f390ec88fceb47e48a38a6"
+        }
+      },
+      "retiredDecision": {
+        "qid": "c4e8b495",
+        "verdict": "aposentar",
+        "lifecycle": "aposentado",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Aposentar não é aprovação; original não pode ser reaplicado pelo gate da canônica.",
+        "score": {
+          "anulado": true,
+          "reason": "Duplicidade nas quatro dimensões; no c4e8 há também falta decisiva de tipagem."
+        },
+        "clinicalEliminatory": {
+          "number": 8,
+          "criterion": "informação decisiva ausente",
+          "triggered": true,
+          "rationale": "Congo positivo com gamopatia concomitante não demonstra proteína AL; faltava a tipagem para indicar tratamento específico."
+        }
+      },
+      "canonicalDecision": {
+        "qid": "47ac614f",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "sourceIDs": [
+          "andromeda",
+          "fda",
+          "typing"
+        ],
+        "claim": "AL tipada e clone correspondente justificam terapia dirigida ao clone. Em recém-diagnosticados elegíveis, ANDROMEDA sustentou D-VCd; apoio renal/plasmaférese não suprimem o clone. Análise2021: resposta hematológica e limites específicos, sem inferir sobrevida global de seu seguimento inicial.",
+        "advogadoDoRecurso": "Congo com gamopatia sozinho seria insuficiente; a nova questão inclui tipagem por LMD-MS kappa e clone correspondente. TFGe45 e ausência de cardiopatia avançada delimitam elegibilidade. Nenhuma alternativa concorrente trata a produção clonal; não se exige dar o esquema a toda AL nem prescrição de doses individuais.",
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Congo com gamopatia sozinho seria insuficiente; a nova questão inclui tipagem por LMD-MS kappa e clone correspondente. TFGe45 e ausência de cardiopatia avançada delimitam elegibilidade. Nenhuma alternativa concorrente trata a produção clonal; não se exige dar o esquema a toda AL nem prescrição de doses individuais."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "AL tipada e clone correspondente justificam terapia dirigida ao clone. Em recém-diagnosticados elegíveis, ANDROMEDA sustentou D-VCd; apoio renal/plasmaférese não suprimem o clone. Análise2021: resposta hematológica e limites específicos, sem inferir sobrevida global de seu seguimento inicial."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Mesmo OP e decisão central preservados; sem trocar o alvo clínico por uma pista de escrita."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Nenhuma conduta insegura é tratada como aceitável; elegibilidade e limites estão explícitos."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Distratores correspondem a erros de diagnóstico ou conduta do mesmo cenário; fragilidade residual é refletida no score."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Reconhecimento/conduta muda interpretação ou cuidado; não trivia."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Explicação inicia pela resposta e corresponde exatamente à alternativa indicada."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Congo com gamopatia sozinho seria insuficiente; a nova questão inclui tipagem por LMD-MS kappa e clone correspondente. TFGe45 e ausência de cardiopatia avançada delimitam elegibilidade. Nenhuma alternativa concorrente trata a produção clonal; não se exige dar o esquema a toda AL nem prescrição de doses individuais."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Recomendação e condições relevantes identificadas; não depende de protocolo local oculto."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "AL tipada e clone correspondente justificam terapia dirigida ao clone. Em recém-diagnosticados elegíveis, ANDROMEDA sustentou D-VCd; apoio renal/plasmaférese não suprimem o clone. Análise2021: resposta hematológica e limites específicos, sem inferir sobrevida global de seu seguimento inicial."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 18,
+          "rationale": "Tratamento inicial sustentado e seguro no cenário delimitado. Diagnóstico/elegibilidade são fornecidos e distratores não clonais são menos competitivos; dificuldade média, sem inflar pelo comprimento."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA é combinação válida, sem teto restritivo.",
+          "step1": "Duplicidade nas quatro dimensões adjudicada pelo root e resolvida somente com aposentadoria atômica do par. Nenhum eliminatório clínico residual.",
+          "step2": "Nenhum recurso plausível de anulação residual.",
+          "step3": "18/20 → aprovada.",
+          "lifecycle": "publicado após integração autorizada dos bytes exatos."
+        },
+        "preserveQid": true,
+        "resetFSRS": false
+      },
+      "implementation": {
+        "atomic": true,
+        "retireQid": "c4e8b495",
+        "canonicalQid": "47ac614f",
+        "constraints": [
+          "Retirar o qid aposentado de futuros sorteios e preservar seu histórico autenticado 17.27.",
+          "Manter posições e respostas de provas/estudos já salvos. Troca de posição pendente somente após escolha explícita.",
+          "Se a canônica já está em outra posição antiga, não apagar respostas nem aumentar o total planejado. Avaliação permanece por posição.",
+          "Não fundir FSRS, estatísticas, eventos, acertos ou desbloqueios; nenhuma fabricação de crédito na troca.",
+          "Original aposentado permanece BLOQUEADO para reaplicação."
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "questionsExamined": 5,
+    "canonicalCandidatesReleased": 3,
+    "atomicRetirements": 2,
+    "wholeCardsReleased": 4,
+    "productionWrites": false
+  },
+  "publicationBoundary": "82728652 e47ac614f são LIBERADAS somente com aposentadorias atômicas adjudicadas;03b3db65 é independente de190676b8. Nenhum gate de outro literal é herdado."
+}

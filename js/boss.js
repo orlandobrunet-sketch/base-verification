@@ -751,9 +751,31 @@
       button.textContent = 'Carregando questões…';
       button.setAttribute('aria-busy', 'true');
       _lastSelectedCharacter = charId;
-      _characterIntroFromWelcome = _charSelectFromWelcome === true;
-      closeCharSelectModal(false);
+      let focusRetry = false;
       try {
+        if (_needsJourneyPremiumCheck()) {
+          const selectionEpoch = _characterPreviewEpoch;
+          const difficulty = window._pendingDiff;
+          const binding = _captureJourneyBinding();
+          button.textContent = 'Verificando acesso…';
+          const access = await _awaitPremiumAccess();
+          if (access === 'stale' || selectionEpoch !== _characterPreviewEpoch ||
+              !modal.classList.contains('show') || modal.dataset.previewCharacter !== charId ||
+              difficulty !== window._pendingDiff || !_matchesJourneyBinding(binding)) return false;
+          if (access === 'pending') {
+            _toast('Não foi possível verificar seu acesso. Tente novamente.', 'info', 4000);
+            focusRetry = document.activeElement === document.body;
+            return false;
+          }
+          if (access === 'free') {
+            closeCharSelectModal();
+            showPricingModal();
+            return false;
+          }
+          button.textContent = 'Carregando questões…';
+        }
+        _characterIntroFromWelcome = _charSelectFromWelcome === true;
+        closeCharSelectModal(false);
         // Keep the native writer and its cinema wrapper authoritative.
         return await window.startGameWithCharacter();
       } catch (error) {
@@ -767,6 +789,7 @@
         button.disabled = false;
         button.textContent = 'Iniciar Jornada';
         button.removeAttribute('aria-busy');
+        if (focusRetry) button.focus({ preventScroll: true });
       }
     };
     const characterRoster = document.querySelector('#charSelectModal .nqc-grid');
@@ -900,9 +923,17 @@
       const entitlementQuestionsAnswered = typeof getEntitlementQuestionsAnswered === 'function'
         ? getEntitlementQuestionsAnswered() : normalQuestionsAnswered;
       if (!_guestMode && !isPremium() && entitlementQuestionsAnswered >= FREE_QUESTIONS_LIMIT) {
-        abortPilotStart();
-        showPricingModal();
-        return;
+        const access = startingOwner ? await _awaitPremiumAccess() : 'free';
+        if (!startupCurrent() || access === 'stale') return false;
+        if (access === 'free') {
+          abortPilotStart();
+          showPricingModal();
+          return false;
+        }
+        if (access === 'pending') {
+          _toast('Não foi possível verificar seu acesso. Tente novamente.', 'info', 4000);
+          return false;
+        }
       }
       if (!questionBank || _bossCatalogPending()) {
         _toast('Carregando questões…', 'info', 30000);

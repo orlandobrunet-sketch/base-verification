@@ -1,0 +1,998 @@
+{
+  "schema": "NQ_NEXT_HYPERKALEMIA_AUTHOR_A1",
+  "date": "2026-11-15",
+  "author": "/root/reference_metadata_1725",
+  "stage": "AUTHOR_DRAFT_ONLY",
+  "publicationAuthorization": "BLOQUEADA",
+  "workspacePolicy": "Artifacts only under ART/ux-next-hyperkalemia-author; no17.25 data/gate/source changes; blind classification not read.",
+  "sourceSnapshot": {
+    "head": "845baee59bfa6fd285bd2f5814312b14322d97f8",
+    "topicsSHA256": "c6a6495dfd123dc5a2085f8f5ddea001863b6b12e5ff7dc2051fcf5fed6757e8",
+    "refsSHA256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95",
+    "allFourIdenticalTo1724": true
+  },
+  "normativeInputs": [
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+      "sha256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/output-contract.md",
+      "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/verification-protocol.md",
+      "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+    },
+    {
+      "path": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "path": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "path": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "normativeReading": "Skill v2, auxiliaries, Knowledge Model, Handbook and AnnexC read. Truncated Handbook rubric was completed by targeted reread.",
+  "sources": [
+    {
+      "id": "UK2026-HOME",
+      "type": "Official publication metadata",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+      "access": "Opened by author; actual official HTML read.",
+      "read": "Heading, update July2026, review October2026, scope and chapter links."
+    },
+    {
+      "id": "UK2026-PURPOSE",
+      "type": "Official guideline update",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/1-purpose-of-guidelines-update/",
+      "access": "Opened by author; actual update rationale read.",
+      "read": "Key changes and basis for July2026 update.",
+      "constraint": "No calcium evidence grade or numerical binder eligibility threshold is tested in the candidates."
+    },
+    {
+      "id": "UK2026-ACUTE",
+      "type": "Official guideline treatment chapter",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/11-1-ii-hyperkalaemia-in-hospital/11-1-4-ii-hyperkalaemia-in-hospital-16-1-16-6/",
+      "access": "Opened by author; actual sections16.2 and16.6 read.",
+      "read": "Calcium action versus potassium lowering; SZC mechanism, onset, adjunctive acute use and limitations of acute evidence.",
+      "constraint": "Relative onset descriptions do not establish head-to-head superiority in clinical outcomes over traditional resins."
+    },
+    {
+      "id": "UK2026-ECG",
+      "type": "Official guideline ECG chapter",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/11-1-ii-hyperkalaemia-in-hospital/11-1-2-ii-hyperkalaemia-in-hospital-14-1-14-2/",
+      "access": "Opened by author; actual recommendations14.1–14.2 and full rationale read.",
+      "read": "Classical T-wave pattern, concurrent/nonsequential changes, ECG cannot rule out, VF/asystole as possible first severe presentation."
+    },
+    {
+      "id": "UK2026-SZC",
+      "type": "Official guideline SZC chapter",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-10-i-hyperkalaemia-in-the-community-guidelines-10-1-10-3/",
+      "access": "Opened by author; actual recommendations and rationale read.",
+      "read": "Selected patients, RAASi optimisation, intestinal action, sodium/edema risk and relatively rapid onset."
+    },
+    {
+      "id": "UK2026-PATIROMER",
+      "type": "Official guideline patiromer chapter",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-9-i-hyperkalaemia-in-the-community-guideline-9-1/",
+      "access": "Opened by author; actual recommendations and rationale read.",
+      "read": "Selected patients, persistent hyperkalemia, facilitation of RAASi and continued monitoring.",
+      "constraint": "Detailed HTML and overview differ on a numerical threshold; no cutoff or dose is imported into the candidate."
+    },
+    {
+      "id": "UK2026-RAAS",
+      "type": "Official guideline RAASi chapter",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-2-i-hyperkalaemia-in-the-community-guidelines-2-1-2-7/",
+      "access": "Opened by author; actual chapter read.",
+      "read": "Monitoring, correctable factors, selected binder use, conditional continuation/withholding.",
+      "constraint": "No automatic continuation in AKI, acute illness or uncontrolled hyperkalemia is taught."
+    },
+    {
+      "id": "UK2023-PDF",
+      "type": "Published official October2023 guideline",
+      "url": "https://www.ukkidney.org/sites/renal.org/files/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20191223_0.pdf",
+      "access": "Opened by author as actual full PDF; relevant sections9,10,14,16 and rationale read.",
+      "read": "Historical published2023 source, including earliest classical peaked T-wave description.",
+      "constraint": "Not represented as the2026 edition. The former landing URL now resolves to the updated portal."
+    },
+    {
+      "id": "KAMEL2021",
+      "type": "Peer-reviewed physiological review by original TTKG investigators",
+      "title": "Use of Urine Electrolytes and Urine Osmolality in the Clinical Diagnosis of Fluid, Electrolytes, and Acid-Base Disorders",
+      "authors": "Kamel S Kamel; Mitchell L Halperin",
+      "journal": "Kidney Int Rep.2021;6(5):1211–1224",
+      "doi": "10.1016/j.ekir.2021.02.003",
+      "pmid": "34013099",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116912/",
+      "access": "Opened by author; actual urinary potassium and TTKG sections read.",
+      "read": "Urea recycling breaks the negligible osmole reabsorption assumption; the error cannot reliably be corrected. Authors do not use TTKG for dyskalemias.",
+      "constraint": "A review, not a new trial or formal universal ban. Supports withholding the item, not silently substituting a new OP."
+    }
+  ],
+  "sourceVersionLimits": {
+    "official2026StatusConfirmedByAuthor": true,
+    "primary2023PDFOpenedByAuthor": true,
+    "official2026PDFAuthorAccess": "Failed; not counted as own reading.",
+    "official2026PDFURL": "https://www.ukkidney.org/wp-content/uploads/drupal-archive/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+    "helperAccess": "Access-only helper opened2026PDF and reported calcium grade2C versus1C inHTML. No clinical verdict inherited; grade omitted from candidates.",
+    "portalCaveat": "Official update July2026 confirmed independently from the October2026 review date. Some HTML thresholds conflict internally; no numerical eligibility or grade is tested."
+  },
+  "references": {
+    "ukka_hyperkalemia_2026": {
+      "referenceId": "ukka_hyperkalemia_2026",
+      "action": "reuse-existing-unchanged",
+      "version": {
+        "sha256": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888",
+        "orderedSHA256": "81ab183a4ee54178215fcd6a69f080f46dab449c9f656754c87cc4756fe76897",
+        "fullLiteral": {
+          "label": "UK Kidney Association — Treatment of Acute Hyperkalaemia in Adults (updated July 2026)",
+          "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+          "journal": "UK Kidney Association Clinical Practice Guideline. Updated July 2026",
+          "ano": 2026,
+          "tipo": "Diretriz Clínica",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Urgência, ECG e monitorização conforme gravidade da hipercalemia",
+          "icon": "📋",
+          "resumo": "Diretriz oficial de hipercalemia atualizada em julho de 2026. Recomenda ECG urgente no hospital com K⁺ ≥ 6,0 mmol/L e monitorização contínua com K⁺ ≥ 6,5, alterações eletrocardiográficas ou outros sinais de risco. ECG normal não exclui perigo.",
+          "conclusao": "Tratar conforme gravidade, evolução e contexto; rever fármacos e plano de prevenção de recorrência, sem substituir manejo da emergência por medidas crônicas.",
+          "curiosidade": "Os critérios de ECG/monitorização estão nas recomendações14.1 e14.2; decisões sobre RAASi exigem avaliar a situação clínica."
+        }
+      },
+      "wholeCardFieldCoverage": [
+        {
+          "field": "label",
+          "value": "UK Kidney Association — Treatment of Acute Hyperkalaemia in Adults (updated July 2026)",
+          "sourceIds": [
+            "UK2026-HOME"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "url",
+          "value": "https://guidelines.ukkidney.org/hyperkalaemia/",
+          "sourceIds": [
+            "UK2026-HOME"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "journal",
+          "value": "UK Kidney Association Clinical Practice Guideline. Updated July 2026",
+          "sourceIds": [
+            "UK2026-HOME"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "ano",
+          "value": 2026,
+          "sourceIds": [
+            "UK2026-HOME"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "tipo",
+          "value": "Diretriz Clínica",
+          "sourceIds": [
+            "UK2026-HOME"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "badge",
+          "value": "GUIDELINE",
+          "sourceIds": [],
+          "assessment": "Taxonomia/metadado visual existente; nenhuma alteração proposta."
+        },
+        {
+          "field": "badgeColor",
+          "value": "#6366f1",
+          "sourceIds": [],
+          "assessment": "Taxonomia/metadado visual existente; nenhuma alteração proposta."
+        },
+        {
+          "field": "impacto",
+          "value": "Urgência, ECG e monitorização conforme gravidade da hipercalemia",
+          "sourceIds": [
+            "UK2026-ECG"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "icon",
+          "value": "📋",
+          "sourceIds": [],
+          "assessment": "Taxonomia/metadado visual existente; nenhuma alteração proposta."
+        },
+        {
+          "field": "resumo",
+          "value": "Diretriz oficial de hipercalemia atualizada em julho de 2026. Recomenda ECG urgente no hospital com K⁺ ≥ 6,0 mmol/L e monitorização contínua com K⁺ ≥ 6,5, alterações eletrocardiográficas ou outros sinais de risco. ECG normal não exclui perigo.",
+          "sourceIds": [
+            "UK2026-ECG"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "conclusao",
+          "value": "Tratar conforme gravidade, evolução e contexto; rever fármacos e plano de prevenção de recorrência, sem substituir manejo da emergência por medidas crônicas.",
+          "sourceIds": [
+            "UK2026-RAAS",
+            "UK2026-ACUTE"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        },
+        {
+          "field": "curiosidade",
+          "value": "Os critérios de ECG/monitorização estão nas recomendações14.1 e14.2; decisões sobre RAASi exigem avaliar a situação clínica.",
+          "sourceIds": [
+            "UK2026-ECG",
+            "UK2026-RAAS"
+          ],
+          "assessment": "Conferido no conteúdo oficial aberto; nenhuma nova redação proposta."
+        }
+      ],
+      "currentMainConsumers": [],
+      "currentChamberConsumers": [
+        "borius"
+      ],
+      "proposedMainConsumers": [
+        "b35be598",
+        "e0853fac",
+        "ebea50d5"
+      ],
+      "authorPublication": "BLOQUEADA",
+      "scope": "Existing full literal reviewed for possible reuse. No shared card update and no inherited publication approval."
+    }
+  },
+  "questions": {
+    "ebea50d5": {
+      "before": {
+        "sha256": "sha256:576207cdcbdab967bd607427b540ce4a180344deeba03420734c3b741861fff9",
+        "orderedSHA256": "1e5f9eab73c2929f3f5e321ff4c8db28a8004e9f951327d710b2f330a2e34351",
+        "fullLiteral": {
+          "t": "Hipercalemia: Ciclosilicato de Zircônio Sódico",
+          "qid": "ebea50d5",
+          "q": "Qual característica diferencia o ciclosilicato de zircônio sódico das resinas tradicionais no manejo da hipercalemia?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Reduz fósforo sérico de modo clinicamente relevante como efeito principal",
+            "Tem início de ação mais rápido que resinas tradicionais, mas não substitui cálcio/insulina na emergência com ECG tóxico",
+            "É isento de carga de sódio e nunca causa edema ou sobrecarga volêmica",
+            "Pode ser administrado por via intravenosa em hipercalemia com QRS alargado"
+          ],
+          "ans": 1,
+          "exp": "O ciclosilicato de zircônio sódico tem ação intestinal seletiva para potássio e início de redução do K mais rápido do que resinas tradicionais, mas continua sendo terapia de remoção/controle, não substituto das medidas imediatas de proteção cardíaca e redistribuição na hipercalemia com ECG tóxico. Por conter sódio, exige atenção a edema/sobrecarga em pacientes suscetíveis. Não é quelante de fósforo nem formulação intravenosa.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        }
+      },
+      "identicalTo1724": true,
+      "candidate": {
+        "sha256": "sha256:9425c92a731bf9422cee2ad886e98bea61038530f67da935842ea9b6437c50c0",
+        "orderedSHA256": "07170e6c6848551bc8d4359086124d5644cd9b96b19c0ee4022786ded614898c",
+        "fullLiteral": {
+          "t": "Hipercalemia: Ciclosilicato de Zircônio Sódico",
+          "qid": "ebea50d5",
+          "q": "Uma pessoa com hipercalemia e alargamento do QRS receberá tratamento emergencial. Qual característica do ciclosilicato de zircônio sódico explica seu papel como adjuvante, em comparação com resinas tradicionais?",
+          "refs": [
+            "ukka_hyperkalemia_2026"
+          ],
+          "opts": [
+            "Fica restrito à manutenção, por ter ação tardia semelhante à das resinas tradicionais de troca iônica",
+            "Liga potássio no intestino com início relativamente rápido, sem substituir proteção cardíaca e redistribuição",
+            "Desloca potássio para as células e permite adiar a administração de insulina com glicose na fase aguda",
+            "Estabiliza diretamente o miocárdio e pode ocupar o lugar do cálcio diante de alargamento do QRS"
+          ],
+          "ans": 1,
+          "exp": "O ciclosilicato liga potássio no intestino e pode integrar a remoção de potássio no manejo agudo. Seu início de ação relativamente rápido não o transforma em substituto da estabilização cardíaca e da redistribuição intracelular. Diante de toxicidade no eletrocardiograma, o quelante não deve atrasar essas medidas. Sua ação não é a da insulina nem a do cálcio intravenoso. A UK Kidney Association admite seu uso como parte do tratamento agudo, embora a evidência nesse cenário seja mais limitada que em pacientes ambulatoriais estáveis.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "disposition": "AUTHOR_REWRITE_DRAFT",
+      "verdict": "revisão maior",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "publicationAuthorization": "BLOQUEADA",
+      "op": "Situar o ciclosilicato como remoção intestinal com início relativamente rápido, distinguindo seu papel adjuvante da estabilização e redistribuição imediatas.",
+      "classification": {
+        "competence": "Conduta farmacológica e segurança",
+        "bloom": "Aplicar/Analisar",
+        "miller": "Sabe como",
+        "beforeDiff": "hard",
+        "proposedDiff": "medium",
+        "difficultyReason": "Propõe hard→medium: integração de papéis e temporalidade sem decisão avançada de dose ou população especial."
+      },
+      "problems": [
+        {
+          "severity": "MAIOR",
+          "finding": "A correta se destaca por tamanho e ressalva; os distratores de fósforo, ausência total de risco e via IV são frágeis."
+        },
+        {
+          "severity": "MAIOR",
+          "finding": "Início de ação não deve ser confundido com substituição das medidas imediatas ou superioridade clínica direta sobre outras resinas."
+        }
+      ],
+      "advogadoDoRecurso": {
+        "attempt": "Tentei equiparar início rápido a estabilização imediata e proibir qualquer participação do quelante no agudo. A fonte distingue mecanismos e admite associação. A pergunta trata do papel do fármaco, não de uma monoterapia emergencial.",
+        "outcome": "O autor não identificou segunda melhor resposta; o revisor independente ainda deve tentar anular o objeto exato."
+      },
+      "originalEliminatories": [
+        {
+          "number": 5,
+          "triggered": true,
+          "name": "Distrator absurdo ou fora da discriminação clínica útil"
+        }
+      ],
+      "originalNQEditorialScore": {
+        "status": "anulado por eliminatório",
+        "total": null
+      },
+      "candidateNQEditorialScore": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade de construto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 2
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "score": 1
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "provisional": true,
+        "doesNotRelease": true
+      },
+      "authorDraftGate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "derivation": "Handbook§18.4Regra7(c): reparo autoral ainda não aprovado. A revisão independente da versão exata permanece exigida."
+      },
+      "claims": [
+        {
+          "claim": "Ligação intestinal de potássio e início relativamente rápido.",
+          "sources": [
+            "UK2026-ACUTE",
+            "UK2026-SZC"
+          ]
+        },
+        {
+          "claim": "Papel adjuvante no tratamento agudo, sem substituir medidas imediatas de proteção e redistribuição.",
+          "sources": [
+            "UK2026-ACUTE"
+          ]
+        },
+        {
+          "claim": "Evidência aguda mais limitada que a ambulatorial estável.",
+          "sources": [
+            "UK2026-ACUTE"
+          ]
+        }
+      ],
+      "answerLengths": [
+        {
+          "characters": 101,
+          "words": 16
+        },
+        {
+          "characters": 109,
+          "words": 14
+        },
+        {
+          "characters": 102,
+          "words": 17
+        },
+        {
+          "characters": 95,
+          "words": 16
+        }
+      ],
+      "clinicalSufficiency": "Dados decisivos explícitos. Não se afirma elegibilidade automática para um quelante nem sequência obrigatória no ECG.",
+      "decisionTree": "§19passo0 e revisão de validade/construto. Versão autoral não aprobatória permanece em revisão; fonte ou interpretação decisiva pendente impede liberação.",
+      "patchEditorial": "SUBSTITUIR A QUESTÃO POR (rascunho BLOQUEADO; objeto integral em candidate.fullLiteral).",
+      "preserveIdentity": {
+        "qid": true,
+        "answerIndex": true,
+        "order": true,
+        "category": true,
+        "title": true,
+        "op": true,
+        "fsrs": "PRESERVAR após eventual aprovação; não aplicado."
+      },
+      "implementationObservation": "Nenhuma edição no repositório ou na release17.25. Qualquer mudança material exige nova revisão independente.",
+      "verificationPending": [
+        "Revisão independente da versão completa, reclassificação de dificuldade proposta e referência existente reutilizada."
+      ]
+    },
+    "e0853fac": {
+      "before": {
+        "sha256": "sha256:bd961461115e71931f9f38d9d3148dcfa6cf71ea4de635c3cdb2a211af33a9d7",
+        "orderedSHA256": "f22d59458105c6fb52d9b4034719e98fe313c6d2b089abdb91afa366543c1448",
+        "fullLiteral": {
+          "t": "Hipercalemia e Quelantes Modernos de Potássio",
+          "qid": "e0853fac",
+          "q": "Em paciente com DRC e hipercalemia recorrente que limita IECA/BRA ou antagonista do receptor mineralocorticoide, qual é a principal utilidade de patiromer ou ciclosilicato de zircônio sódico?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Ajudar a controlar hipercalemia crônica/recorrente e permitir manutenção de terapias cardioprotetoras ou nefroprotetoras quando possível",
+            "Substituir o cálcio intravenoso na hipercalemia grave com alteração eletrocardiográfica",
+            "Reduzir fósforo sérico como principal indicação em DRC avançada",
+            "Eliminar a necessidade de monitorar potássio após reintrodução de bloqueio do SRAA"
+          ],
+          "ans": 0,
+          "exp": "Quelantes modernos de potássio podem ser usados para controlar hipercalemia recorrente e facilitar a manutenção de bloqueadores do SRAA quando o benefício cardiorrenal é relevante. Eles não são a primeira medida na hipercalemia com ECG tóxico, não têm como objetivo principal reduzir fósforo e não dispensam monitorização do K. A utilidade pedagógica aqui é evitar o erro de suspender automaticamente nefroproteção por hipercalemia manejável, sem confundir isso com tratamento emergencial.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "identicalTo1724": true,
+      "candidate": {
+        "sha256": "sha256:e22eb8d91d46334a655e84d67bd29bbfcef30b3ac099f0eb9d5e675efd679289",
+        "orderedSHA256": "34d748f4ffa4693f0f63dddcd510de2acfb4cdb20967a6199a30524043253ece",
+        "fullLiteral": {
+          "t": "Hipercalemia e Quelantes Modernos de Potássio",
+          "qid": "e0853fac",
+          "q": "Pessoa com doença renal crônica não dialítica, clinicamente estável, tem hipercalemia recorrente que dificulta manter bloqueio do sistema renina-angiotensina-aldosterona. Ao considerar patiromer ou ciclosilicato de zircônio sódico, qual benefício se pretende obter?",
+          "refs": [
+            "ukka_hyperkalemia_2026"
+          ],
+          "opts": [
+            "Controlar a hipercalemia e facilitar a manutenção do bloqueio indicado, com monitorização da segurança",
+            "Proteger o coração na fase aguda, permitindo adiar cálcio intravenoso diante de alterações eletrocardiográficas",
+            "Tratar a acidose como mecanismo principal para reduzir potássio, antes de rever causas medicamentosas",
+            "Fornecer a nefroproteção atribuída ao bloqueio, permitindo trocar essa terapia pelo quelante de potássio"
+          ],
+          "ans": 0,
+          "exp": "O objetivo é controlar a hipercalemia recorrente e facilitar a manutenção do bloqueio indicado, se a segurança permitir. O quelante não reproduz os benefícios cardiorrenais desse bloqueio. É necessário rever causas corrigíveis, outros medicamentos e monitorizar potássio e função renal. Esses fármacos não substituem a estabilização cardíaca na emergência, e corrigir acidose não é seu mecanismo principal. A UK Kidney Association admite seu uso em pacientes selecionados, conforme critérios clínicos e de elegibilidade.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "disposition": "AUTHOR_REWRITE_DRAFT",
+      "verdict": "revisão maior",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "publicationAuthorization": "BLOQUEADA",
+      "op": "Reconhecer a utilidade de quelantes modernos para controlar hipercalemia recorrente e viabilizar bloqueio indicado, sem trocar nefroproteção por controle de potássio ou dispensar monitorização.",
+      "classification": {
+        "competence": "Conduta farmacológica e segurança",
+        "bloom": "Aplicar/Analisar",
+        "miller": "Sabe como",
+        "beforeDiff": "medium",
+        "proposedDiff": "medium",
+        "difficultyReason": "Medium preservado: integrar estabilidade, recorrência e manutenção de tratamento indicado."
+      },
+      "problems": [
+        {
+          "severity": "MAIOR",
+          "finding": "A correta é longa e reúne ressalvas seletivas; o distrator de fósforo não mede a utilidade pretendida."
+        },
+        {
+          "severity": "MAIOR",
+          "finding": "É necessário separar paciente estável selecionado de emergência ou continuação automática do bloqueio em doença aguda."
+        }
+      ],
+      "advogadoDoRecurso": {
+        "attempt": "Tentei transformar o controle do potássio em substituto da nefroproteção ou em ordem para manter bloqueio sob qualquer risco. O caso estável e a condição de segurança evitam essa leitura; monitorização não é dispensada.",
+        "outcome": "O autor não identificou segunda melhor resposta; o revisor independente ainda deve tentar anular o objeto exato."
+      },
+      "originalEliminatories": [
+        {
+          "number": 5,
+          "triggered": true,
+          "name": "Distrator absurdo ou fora da discriminação clínica útil"
+        }
+      ],
+      "originalNQEditorialScore": {
+        "status": "anulado por eliminatório",
+        "total": null
+      },
+      "candidateNQEditorialScore": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade de construto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 2
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "score": 1
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "provisional": true,
+        "doesNotRelease": true
+      },
+      "authorDraftGate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "derivation": "Handbook§18.4Regra7(c): reparo autoral ainda não aprovado. A revisão independente da versão exata permanece exigida."
+      },
+      "claims": [
+        {
+          "claim": "Controle do potássio pode facilitar bloqueio indicado em pacientes selecionados.",
+          "sources": [
+            "UK2026-PATIROMER",
+            "UK2026-SZC",
+            "UK2026-RAAS"
+          ]
+        },
+        {
+          "claim": "Monitorizar segurança e rever causas/fármacos permanece necessário.",
+          "sources": [
+            "UK2026-PATIROMER",
+            "UK2026-RAAS"
+          ]
+        },
+        {
+          "claim": "A ação intestinal não substitui estabilização cardíaca nem tem correção da acidose como finalidade principal.",
+          "sources": [
+            "UK2026-ACUTE",
+            "UK2026-PATIROMER",
+            "UK2026-SZC"
+          ]
+        }
+      ],
+      "answerLengths": [
+        {
+          "characters": 102,
+          "words": 14
+        },
+        {
+          "characters": 111,
+          "words": 14
+        },
+        {
+          "characters": 101,
+          "words": 14
+        },
+        {
+          "characters": 104,
+          "words": 14
+        }
+      ],
+      "clinicalSufficiency": "Dados decisivos explícitos. Não se afirma elegibilidade automática para um quelante nem sequência obrigatória no ECG.",
+      "decisionTree": "§19passo0 e revisão de validade/construto. Versão autoral não aprobatória permanece em revisão; fonte ou interpretação decisiva pendente impede liberação.",
+      "patchEditorial": "SUBSTITUIR A QUESTÃO POR (rascunho BLOQUEADO; objeto integral em candidate.fullLiteral).",
+      "preserveIdentity": {
+        "qid": true,
+        "answerIndex": true,
+        "order": true,
+        "category": true,
+        "title": true,
+        "op": true,
+        "fsrs": "PRESERVAR após eventual aprovação; não aplicado."
+      },
+      "implementationObservation": "Nenhuma edição no repositório ou na release17.25. Qualquer mudança material exige nova revisão independente.",
+      "verificationPending": [
+        "Revisão independente da versão completa, reclassificação de dificuldade proposta e referência existente reutilizada."
+      ]
+    },
+    "b35be598": {
+      "before": {
+        "sha256": "sha256:5d77f3f66105e2c689153a86b26dc0def8977283c54bc22c7e9294bf96d589dd",
+        "orderedSHA256": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b",
+        "fullLiteral": {
+          "qid": "b35be598",
+          "q": "Na suspeita de hipercalemia grave, qual alteração eletrocardiográfica costuma aparecer mais precocemente?",
+          "opts": [
+            "Desaparecimento da onda P.",
+            "Fibrilação ventricular.",
+            "Ondas T elevadas, simétricas e apiculadas.",
+            "Alargamento extremo do QRS."
+          ],
+          "ans": 2,
+          "exp": "A alteração eletrocardiográfica inicial mais clássica da hipercalemia é o surgimento de ondas T altas, simétricas e apiculadas. Com a progressão da toxicidade, podem ocorrer prolongamento do PR, achatamento/desaparecimento da onda P, alargamento do QRS e padrões pré-parada. Onda P ausente, QRS muito largo e fibrilação ventricular indicam toxicidade mais avançada, não o sinal inicial.",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "ECG na Hipercalemia — Primeira Alteração"
+        }
+      },
+      "identicalTo1724": true,
+      "candidate": {
+        "sha256": "sha256:ffd2c33159b97399236bf9350d418004e421cda19aa25438b622d148b6a2ce07",
+        "orderedSHA256": "ba6dbe1731abf5a93252d17ff5ce6280e4534d216b335aee09482ad27aebe77d",
+        "fullLiteral": {
+          "qid": "b35be598",
+          "q": "Na hipercalemia, qual alteração do eletrocardiograma é considerada um sinal inicial clássico, embora não esteja presente em todos os casos?",
+          "opts": [
+            "Desaparecimento das ondas P no traçado.",
+            "Ritmo de fibrilação ventricular.",
+            "Ondas T altas, simétricas e apiculadas.",
+            "Alargamento acentuado dos complexos QRS."
+          ],
+          "ans": 2,
+          "exp": "Ondas T altas, simétricas e apiculadas são o sinal inicial clássico. Essa descrição não estabelece uma sequência obrigatória: alterações podem surgir juntas, o traçado pode ser pouco expressivo e a primeira apresentação grave pode ser fibrilação ventricular ou assistolia. O desaparecimento da onda P e o alargamento do QRS também fazem parte da toxicidade cardíaca, sem posição temporal garantida em cada paciente. Reconhecer o padrão deve motivar avaliação pronta; sua ausência não exclui hipercalemia grave nem permite aguardar o aparecimento de outras alterações.",
+          "refs": [
+            "ukka_hyperkalemia_2026"
+          ],
+          "cat": "eletrólitos",
+          "diff": "easy",
+          "t": "ECG na Hipercalemia — Primeira Alteração"
+        }
+      },
+      "disposition": "AUTHOR_REWRITE_DRAFT",
+      "verdict": "revisão maior",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "publicationAuthorization": "BLOQUEADA",
+      "op": "Reconhecer ondas T apiculadas como sinal inicial clássico, sem usar uma sequência eletrocardiográfica como regra para prever apresentação ou gravidade.",
+      "classification": {
+        "competence": "Reconhecimento eletrocardiográfico",
+        "bloom": "Lembrar/Compreender",
+        "miller": "Sabe",
+        "beforeDiff": "medium",
+        "proposedDiff": "easy",
+        "difficultyReason": "Propõe medium→easy: reconhecimento direto de padrão clássico. Não criar dificuldade por sequência falsa ou dados omitidos."
+      },
+      "problems": [
+        {
+          "severity": "MAIOR",
+          "finding": "A explicação antiga pode induzir evolução obrigatoriamente sequencial e excluir VF como apresentação inicial."
+        },
+        {
+          "severity": "MENOR",
+          "finding": "A dificuldade atual não corresponde ao reconhecimento direto do padrão."
+        }
+      ],
+      "advogadoDoRecurso": {
+        "attempt": "Tentei defender VF como apresentação inicial real: isso é possível e está explícito. O comando limita a resposta ao sinal clássico, sem prever a cronologia de cada paciente. Ausência de T apiculada não é tranquilizadora.",
+        "outcome": "O autor não identificou segunda melhor resposta; o revisor independente ainda deve tentar anular o objeto exato."
+      },
+      "originalEliminatories": [],
+      "originalNQEditorialScore": {
+        "dimensions": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          2
+        ],
+        "total": 11,
+        "band": "Recuperável"
+      },
+      "candidateNQEditorialScore": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "score": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "score": 2
+          },
+          {
+            "name": "Validade de construto",
+            "score": 2
+          },
+          {
+            "name": "Enunciado",
+            "score": 2
+          },
+          {
+            "name": "Alternativas",
+            "score": 2
+          },
+          {
+            "name": "Distratores",
+            "score": 2
+          },
+          {
+            "name": "Explicação",
+            "score": 2
+          },
+          {
+            "name": "Referências",
+            "score": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "score": 1
+          },
+          {
+            "name": "Valor pedagógico",
+            "score": 2
+          }
+        ],
+        "total": 19,
+        "provisional": true,
+        "doesNotRelease": true
+      },
+      "authorDraftGate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "derivation": "Handbook§18.4Regra7(c): reparo autoral ainda não aprovado. A revisão independente da versão exata permanece exigida."
+      },
+      "claims": [
+        {
+          "claim": "T alta, simétrica e apiculada é o sinal inicial clássico.",
+          "sources": [
+            "UK2026-ECG",
+            "UK2023-PDF"
+          ]
+        },
+        {
+          "claim": "ECG pode não seguir sequência, não exclui gravidade e VF/assistolia podem ser primeira apresentação.",
+          "sources": [
+            "UK2026-ECG"
+          ]
+        }
+      ],
+      "answerLengths": [
+        {
+          "characters": 39,
+          "words": 6
+        },
+        {
+          "characters": 32,
+          "words": 4
+        },
+        {
+          "characters": 39,
+          "words": 6
+        },
+        {
+          "characters": 40,
+          "words": 5
+        }
+      ],
+      "clinicalSufficiency": "Dados decisivos explícitos. Não se afirma elegibilidade automática para um quelante nem sequência obrigatória no ECG.",
+      "decisionTree": "§19passo0 e revisão de validade/construto. Versão autoral não aprobatória permanece em revisão; fonte ou interpretação decisiva pendente impede liberação.",
+      "patchEditorial": "SUBSTITUIR A QUESTÃO POR (rascunho BLOQUEADO; objeto integral em candidate.fullLiteral).",
+      "preserveIdentity": {
+        "qid": true,
+        "answerIndex": true,
+        "order": true,
+        "category": true,
+        "title": true,
+        "op": true,
+        "fsrs": "PRESERVAR após eventual aprovação; não aplicado."
+      },
+      "implementationObservation": "Nenhuma edição no repositório ou na release17.25. Qualquer mudança material exige nova revisão independente.",
+      "verificationPending": [
+        "Revisão independente da versão completa, reclassificação de dificuldade proposta e referência existente reutilizada."
+      ]
+    },
+    "6474ec20": {
+      "before": {
+        "sha256": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+        "orderedSHA256": "0ba72f8511c1be465b17829c8dfcd5e50fcf4fd303ace24ebec533af8e559916",
+        "fullLiteral": {
+          "qid": "6474ec20",
+          "q": "Na hipercalemia, como interpretar um TTKG baixo, quando as condições de validade do cálculo estão atendidas?",
+          "opts": [
+            "Sugere resposta distal inadequada à secreção de K, como deficiência ou resistência à aldosterona",
+            "Confirma origem extrarrenal e dispensa avaliação medicamentosa",
+            "Demonstra secreção distal excessiva de potássio",
+            "Diagnostica hipercalemia por redistribuição celular isolada"
+          ],
+          "ans": 0,
+          "exp": "Um TTKG baixo em vigência de hipercalemia sugere resposta distal inadequada para secretar potássio, compatível com menor efeito mineralocorticoide ou resistência tubular à aldosterona. A interpretação exige cautela: o índice depende de condições como osmolalidade urinária e entrega distal adequadas, e não deve substituir avaliação de medicamentos, função renal, acidose, renina/aldosterona e contexto clínico. A versão anterior cobrava teste de fludrocortisona e dose, transformando uma ferramenta limitada em trivia pouco útil.",
+          "refs": [
+            "brenner_rector"
+          ],
+          "cat": "eletrólitos",
+          "diff": "hard",
+          "t": "TTKG na Hipercalemia — Interpretação Cautelosa"
+        }
+      },
+      "identicalTo1724": true,
+      "candidate": null,
+      "disposition": "HELD_NO_REWRITE",
+      "verdict": "revisão maior",
+      "legacy": "REESCREVER",
+      "confidence": "moderada",
+      "publicationAuthorization": "BLOQUEADA",
+      "op": "Interpretar TTKG baixo como resposta distal inadequada sob supostas condições válidas; a própria premissa de validade clínica exige resolução.",
+      "classification": {
+        "competence": "Interpretação de ferramenta fisiológica",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "beforeDiff": "hard",
+        "proposedDiff": null,
+        "difficultyReason": "Hard publicado apenas registrado; não há candidata para recalibrar."
+      },
+      "problems": [
+        {
+          "severity": "MAIOR",
+          "finding": "A premissa de TTKG clinicamente válido não enfrenta a reciclagem de ureia; o livro não foi efetivamente lido."
+        },
+        {
+          "severity": "MAIOR",
+          "finding": "Trocar a pergunta por limitações do índice ou outro método mudaria o raciocínio central. Isso exige novo OP/criação, sem reutilizar qid/FSRS automaticamente."
+        }
+      ],
+      "advogadoDoRecurso": {
+        "attempt": "Tentei aceitar as condições válidas implícitas; a fonte aberta identifica uma limitação estrutural. Não há leitura real do capítulo do livro para resolver o suporte. Segurar, sem substituir silenciosamente o objetivo.",
+        "outcome": "Pendência decisiva; sem candidata."
+      },
+      "originalEliminatories": [],
+      "originalNQEditorialScore": {
+        "status": "não finalizado; pendência decisiva",
+        "total": null
+      },
+      "candidateNQEditorialScore": null,
+      "authorDraftGate": {
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "derivation": "Handbook§18.4: pendência decisiva e veredito não aprobatório."
+      },
+      "claims": [
+        {
+          "claim": "Reciclagem de ureia cria limitação estrutural não resolvida pelos critérios usuais de validade.",
+          "sources": [
+            "KAMEL2021"
+          ]
+        },
+        {
+          "claim": "Capítulo do Brenner & Rector não foi aberto nesta frente.",
+          "sources": [],
+          "status": "VERIFICAÇÃO NECESSÁRIA"
+        }
+      ],
+      "answerLengths": null,
+      "clinicalSufficiency": "Sem caso clínico; a validade do índice é assumida, não demonstrada.",
+      "decisionTree": "§19passo0 e revisão de validade/construto. Versão autoral não aprobatória permanece em revisão; fonte ou interpretação decisiva pendente impede liberação.",
+      "patchEditorial": "SEGURAR SEM REESCRITA. Resolver destino editorial; novo OP exige criação e nova identidade.",
+      "preserveIdentity": {
+        "qid": "não alterado",
+        "fsrs": "Nenhum reset ou transferência; não reutilizar automaticamente para novo OP."
+      },
+      "implementationObservation": "Nenhuma edição no repositório ou na release17.25. Qualquer mudança material exige nova revisão independente.",
+      "verificationPending": [
+        "Leitura real do livro, se ainda pretendido como suporte.",
+        "Decisão editorial de destino; eventual novo OP exige criação/novo qid."
+      ]
+    }
+  },
+  "duplicationScreen": {
+    "scope": "Topics-only screen for SZC,patiromer,TTKG,T-wave commands; no blind classification read.",
+    "fourDimensions": "Acute pharmacological role, chronic facilitation of indicated blockade and classical ECG recognition are different decisions.",
+    "comparators": [
+      {
+        "qid": "805733f8",
+        "difference": "Emergency sequence versus specific pharmacological role of SZC."
+      },
+      {
+        "qid": "1b286739",
+        "difference": "Patiromer medication interaction versus chronic therapeutic utility."
+      },
+      {
+        "qid": "db25ef93",
+        "difference": "Cellular mechanism versus classical ECG morphology."
+      },
+      {
+        "qid": "6ded255a",
+        "difference": "Hemodialysis trial outcome versus acute/chronic nondialysis pharmacological role."
+      }
+    ],
+    "hold": "No new OP or replacement for TTKG forced. Broader formal full-bank duplication review not claimed."
+  },
+  "summary": {
+    "requested": 4,
+    "candidates": 3,
+    "held": [
+      "6474ec20"
+    ],
+    "publication": "BLOQUEADA",
+    "newCards": 0,
+    "sharedCardsChanged": 0,
+    "existingReferenceReused": "ukka_hyperkalemia_2026",
+    "difficultyProposals": [
+      {
+        "qid": "ebea50d5",
+        "before": "hard",
+        "after": "medium"
+      },
+      {
+        "qid": "b35be598",
+        "before": "medium",
+        "after": "easy"
+      }
+    ]
+  },
+  "mechanicalChecks": {
+    "fourUniqueOptionsEach": true,
+    "qidAnsOrderCatTitlesPreserved": true,
+    "cardLiteralUnchanged": true,
+    "fourOriginalsIdenticalTo1724": true,
+    "tests": "JSON/hash/invariants only; no browser/fulltests/Git mutation/Supabase."
+  }
+}

@@ -20,6 +20,7 @@ async function fixture({canonicalRaw}={}){
  _stopLocalJourney(){counts.stopped++;ctx.state.gameStarted=false;ctx._progressEpoch++;},_reloadJourneyCollections(){counts.reloaded++;},refreshWelcomeSave(){counts.refreshed++;}};
  ctx.window=ctx;vm.createContext(ctx);
  for(const [start,end] of [
+ ['    const _hardcoreCorrect =', '    function _persistHardcoreBest('],
  ['    function _cloudJourneyFingerprint(', '    async function _readCloudProgress('],
  ['    function _reconcileCloudProgress(', '    function _closeCloudProgressConflict('],
  ['    function _buildCloudProgress()', '    async function _commitCloudProgress('],
@@ -43,6 +44,39 @@ test('real game push reaches CAS write after reconciling unchanged remote ancest
  assert.equal(await f.ctx._pushCloudProgress({...f.binding(),authEpoch:1,client}),true);
  assert.equal(writes.length,1);assert.equal(writes[0].game_progress_version,3);assert.equal(writes[0].game_progress.ownerAuthority.state.save.score,99);
  }finally{await f.n.release();}});
+
+test('real game rereads the cloud checkpoint after PT409 before retrying local progress', async () => {
+ const f = await fixture();
+ try {
+  const ancestor = f.build();
+  f.remember({version: 2, progress: ancestor});
+  f.n.save({...f.n.loadSave(), score: 99});
+  const writes = [];
+  const guards = [];
+  let reads = 0;
+  const client = {from() { return {
+   update(value) { writes.push(value); return this; },
+   eq(field, value) { if (field === 'game_progress_version') guards.push(value); return this; },
+   select() { return this; },
+   async maybeSingle() {
+    return writes.length === 1
+     ? {data: null, error: {code: 'PT409'}}
+     : {data: {game_progress_version: 4}, error: null};
+   },
+  }; }};
+  const binding = () => ({...f.binding(), authEpoch: 1, client});
+  Object.assign(f.ctx, {_authSessionEpoch: 1, _characterCloudConflict: false, _canSyncLocalProgress: () => true,
+   _scheduleCloudSync() {}, _cloudBinding: binding,
+   async _loadProgressFromCloud() { return f.reconcile({version: 1 + ++reads, progress: ancestor}); },
+  });
+  assert.equal(await f.ctx._pushCloudProgress(binding()), true);
+  assert.equal(reads, 2);
+  assert.deepEqual(guards, [2, 3]);
+  assert.deepEqual(writes.map(value => value.game_progress_version), [3, 4]);
+  assert.deepEqual(writes.map(value => value.game_progress.ownerAuthority.state.save.score), [99, 99]);
+  assert.equal(f.ctx._cloudCheckpoint('u').version, 4);
+ } finally { await f.n.release(); }
+});
 
 test('raw-null migration cannot use unowned source collections to overwrite legacy cloud',async()=>{const f=await fixture({canonicalRaw:'null'});try{const before=[...f.map];assert.equal(f.reconcile({version:4,progress:{save:null,unlockedArticles:[3]}}),false,'Unowned source articles are not proof of an identical cloud ancestor');assert.deepEqual([...f.map],before);}finally{await f.n.release();}});
 test('real game cloud guard remains fail-closed when deployment gate is off',async()=>{const f=await fixture();try{const remote=f.build(),before=[...f.map];f.ctx.NQ_OWNER_CLOUD_GUARD_VERIFIED=false;assert.throws(()=>f.build(),e=>e.code==='CLOUD_GUARD_REQUIRED');assert.equal(f.reconcile({version:1,progress:remote}),false);assert.deepEqual([...f.map],before);}finally{await f.n.release();}});
