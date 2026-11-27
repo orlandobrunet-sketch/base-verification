@@ -278,6 +278,127 @@ test('real game normal authority resumes a prepared article before the lazy cata
     assert.equal(store.chestReceipts()[0].phase,'consumed');
   } finally { await store.release(); }
 });
+
+for (const difficulty of ['normal', 'hardcore']) {
+  test(`a migrated ${difficulty} journey closes and resumes by bonus without losing its pending chest`, async () => {
+    const {create} = require('../../js/normal-authority.js');
+    const {createAuthority} = require('../../js/owner-authority.js');
+    const owner = 'technical-end-owner';
+    const legacy = {schemaVersion: 7, saveOwner: owner, character: 'nephros', difficulty,
+      gameStarted: true, gameOver: false, level: 4, lives: 1, maxLives: 1, gold: 2000,
+      score: 620, correctTotal: 6, bonusUses: 0, equipment: {relic: {n: 'Vazio'}}};
+    const raw = JSON.stringify(legacy);
+    const sources = [['nefroquest-save-v7', raw], ['nefroquest-save', raw],
+      ['unlockedArticles', '[0]'], ['nefroquest_total_accumulated_knowledge', '3']];
+    const values = new Map(sources);
+    const storage = {getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, String(value)),
+      removeItem: key => values.delete(key)};
+    const locks = {request: async (_name, _options, run) => run({})};
+    const make = () => create({createAuthority, storage, locks, owner, currentOwner: () => owner,
+      validateSave: save => save.character === 'nephros', newJourneyId: () => 'technical-end-journey'});
+    const store = make();
+    try {
+      await store.bootstrap();
+      assert.ok(store.beginTransaction());
+      const receipt = store.stageChest();
+      assert.ok(store.commit({...store.loadSave(), lives: 0, correctTotal: 7}));
+
+      const f = fixture();
+      f.switch({pilot: false, owner});
+      const state = Object.assign(f.ctx.state, store.loadSave(), {queue: [{id: 'technical-bonus'}]});
+      let gamesPlayed = 0;
+      let finishScreens = 0;
+      let nextQuestion = 0;
+      Object.assign(f.ctx, {authUser: {id: owner}, localStorage: storage, NQNormalProgress: store,
+        crypto: require('node:crypto').webcrypto, characters: {nephros: {}},
+        CANONICAL_SAVE_KEY: 'nefroquest-save-v7', SAVE_KEY: 'nefroquest-save', SAVE_SCHEMA_VERSION: 7, STATS_KEY: 'stats',
+        unlockedArticles: [0], _stateData: state, _saveCleanupBlocked: false, _normalJourneyStaging: false,
+        _saveTimer: null, _autoSaveTimer: null, _cloudSyncTimer: null, _cloudLoadSyncTimer: null,
+        _jornadaJaContabilizada: false, _recentIds: [], _legacySaveBaseline: raw,
+        _invalidateStatsCache() {}, _scheduleCloudSync() {}, _warnStorageFull() {},
+        _questionSaveExtras: () => ({}), _pilotOrigin: () => ({domain: 'normal'}),
+        _authDisplayName: () => 'Technical player', boardPush() {},
+        isProgressSandbox: () => false, isBossBattle: () => false,
+        nqProgressStorage: () => store.storage, getNormalGameStats: () => JSON.parse(storage.getItem('stats') || '{}'),
+        updateGameStats() { gamesPlayed++; }, finishGameUI() { finishScreens++; state.gameOver = true; },
+        log() {}, renderHUD() {}, updateBadges() {},
+        renderQuestion() { nextQuestion++; assert.equal(f.ctx._doSaveGame(), true); },
+      });
+      f.eval(section('    function _writeSaveTombstone(', '    function _prepareProgressOwner('));
+      f.eval(section('    const _hardcoreCorrect =', '    function getEntitlementQuestionsAnswered('));
+      f.eval(section('    function saveGame()', '    function _migrateSave('));
+      f.eval(section('    function deleteSave()', '    function clearLocalProgress('));
+      f.eval(section('    function restoreGame(', '    // Auto-save via Proxy debounce'));
+      f.eval(section('    function bonusCost()', '    // === POPUP DE CONFIRMAÇÃO MOBILE'));
+
+      assert.doesNotThrow(() => f.ctx.finishGame());
+      assert.equal(store.writable, true);
+      assert.deepEqual(sources.map(([key]) => storage.getItem(key)), sources.map(([, value]) => value));
+      assert.equal(store.loadSave().gameOver, true);
+      assert.equal(store.loadSave().correctTotal, 7);
+      assert.equal(f.ctx.restoreGame(store.loadSave()), false, 'the closed attempt is unavailable to ordinary resume');
+      assert.equal(gamesPlayed, 1);
+      assert.equal(finishScreens, 1);
+      assert.deepEqual(store.chestReceipts(), [receipt]);
+      if (difficulty === 'hardcore') assert.equal(f.ctx.getHardcoreBestCorrect(), 7);
+
+      f.ctx.buyBonusQuestion();
+      assert.equal(nextQuestion, 1);
+      assert.equal(store.loadSave().journeyId, 'technical-end-journey');
+      assert.equal(store.loadSave().lives, 1);
+      assert.equal(store.loadSave().gold, 500);
+      assert.equal(store.loadSave().bonusUses, 1);
+      assert.equal(store.loadSave().gameOver, false);
+      assert.deepEqual(store.chestReceipts(), [receipt]);
+      assert.equal(gamesPlayed, 1);
+      assert.deepEqual(sources.map(([key]) => storage.getItem(key)), sources.map(([, value]) => value));
+      f.advance(1);
+      assert.ok(f.popup(), 'the same pending chest returns to the campaign after the bonus is purchased');
+
+      await store.release();
+      const reopened = make();
+      try {
+        await reopened.bootstrap();
+        assert.equal(reopened.loadSave().bonusUses, 1);
+        assert.deepEqual(reopened.chestReceipts(), [receipt]);
+      } finally { await reopened.release(); }
+    } finally { await store.release(); }
+  });
+}
+
+test('victory keeps exploration available and holds explicit closure until a pending reward is claimed', () => {
+  const f = fixture();
+  f.switch({pilot: false});
+  Object.assign(f.ctx.state, {gameCompleted: true, correctTotal: 100});
+  const reward = {id: 'victory-chest', phase: 'prepared'};
+  let closes = 0, saves = 0, refreshes = 0;
+  const warnings = [];
+  Object.assign(f.ctx, {NQNormalProgress: {writable: true, chestReceipts: () => [reward]},
+    _toast: message => warnings.push(message), _flushChestRewards() { refreshes++; },
+    finishGame() { closes++; }, saveGame() { saves++; }, log() {}, renderHUD() {}});
+  f.eval(section('    function finishGameCompletely()', '    // ============ SISTEMA DE VIDA EXTRA'));
+
+  f.victory();
+  f.ctx.finishGameCompletely();
+  assert.equal(closes, 0);
+  assert.equal(saves, 0);
+  assert.equal(refreshes, 1);
+  assert.match(warnings[0], /baú pendente/);
+  assert.equal(reward.phase, 'prepared');
+
+  f.victory();
+  f.ctx.continueAfterCompletion();
+  assert.equal(closes, 0);
+  assert.equal(saves, 1);
+  assert.equal(f.ctx.state.completedGame, true);
+  assert.equal(f.ctx.state.gameOver, false);
+
+  reward.phase = 'consumed';
+  f.victory();
+  f.ctx.finishGameCompletely();
+  assert.equal(closes, 1);
+});
+
 test('paused durable receipt never falls back to legacy award callback',()=>{
   const f=fixture();f.eval("_queueChestReward(_captureChestRewardBinding(),0,{id:'durable-receipt'})");
   f.advance(1);assert.ok(f.popup());f.ctx.NQPilot.writable=false;f.click();f.advance(1200);

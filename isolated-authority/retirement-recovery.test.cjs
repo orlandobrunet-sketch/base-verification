@@ -12,7 +12,8 @@ test('unrecorded source divergence during pending retirement is preserved and re
 function legacyLogout(version) {
  const f=fixture();
  f.map.clear();
- f.map.set('nefroquest-save-v7',JSON.stringify({schemaVersion:version,saveOwner:'u',saveRevision:'legacy',save:null,resetReason:'logout'}));
+ f.map.set('nefroquest-save-v7',JSON.stringify({schemaVersion:version,saveOwner:'u',
+  saveRevision:'00000000-0000-4000-8000-000000000972',save:null,resetReason:'logout'}));
  return f;
 }
 

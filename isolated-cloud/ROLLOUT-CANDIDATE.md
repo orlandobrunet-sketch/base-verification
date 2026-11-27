@@ -1,15 +1,17 @@
 # Durable chests on the 17.34 base
 
 ## Current status
-PR 972 integrates the candidate with release 17.34 and prepares cache revision 17.36. `NQ_DURABLE_PROGRESS` and `NQ_OWNER_CLOUD_GUARD_VERIFIED` remain off in the candidate. The owner guard and its HTTP 409 conflict handling are installed in the separate NefroQuest Chest Staging project. Production still has the existing version guard. The owner guard and HTTP conflict update must be deployed there before the two client flags are enabled.
+PR 972 integrates the candidate with release 17.34 and prepares cache revision 17.37. `NQ_DURABLE_PROGRESS` and `NQ_OWNER_CLOUD_GUARD_VERIFIED` remain off in the candidate. The owner guard and its HTTP 409 conflict handling are installed in the separate NefroQuest Chest Staging project. Production still has the existing version guard. The owner guard and HTTP conflict update must be deployed there before the two client flags are enabled.
 
 The integrated migrations passed on three real PostgreSQL 17.12 clusters. Each concurrent claim left one committed reward. The staging change replaces the database retry signal with HTTP 409 while preserving the guard checks. The browser recognizes both conflict codes during the rollout. Cold-start tests verify that pending receipts and old progress can be read while the library is still loading. Delivering a scroll still requires its catalog entry.
+
+The 17.36 candidate passed the chest and account-switch flow in desktop Chromium, Android emulation and iPhone emulation with real staging sessions. The 17.37 candidate additionally preserves the protected save at defeat and victory closure. The bonus question reopens the same journey and presents its pending chest. Tests cover the takeover of an empty legacy logout marker and preservation of earlier data when a handoff cannot be verified.
 
 ## Remaining activation gates (do not skip)
 1. Test full browser candidate, not only focused local mocks.
 2. Multi-epoch linear offline transitions now have client/SQL-verified transition journals. Unproven snapshots remain rejected. True divergence has explicit local-offline/remote-archive choices. Remote adoption now uses a recoverable exact auxiliary projection and releases its sync hold only on complete readback. Archived branches can be restored explicitly with snapshot/auxiliary/journal recovery. Restored divergence remains local until a new cloud choice; local-over-remote replacement remains deliberately unsupported. Real-browser and hosted-auth verification are still required.
 3. Validate owner RLS, session refresh, account changes and CAS with synthetic accounts in NefroQuest Chest Staging. Keep credentials out of the repository and the test evidence. Use only staging for these account tests.
-4. Confirm the tested revision includes the current main. Verify the frontend and both database migrations against the candidate before deployment.
+4. Confirm the tested revision includes the current main. Verify the frontend and both database migrations against the candidate before deployment. Verify an already-open 17.34 tab and an installed web app across the rollout. The old tab can retain its original script after the service worker updates.
 5. Only after gates: deploy SQL first, verify it under synthetic authenticated owner/other-owner sessions, then enable matched client flags as one coordinated release. Run chest/reload/account checks again on that exact build.
 
 ## Offline regression coverage

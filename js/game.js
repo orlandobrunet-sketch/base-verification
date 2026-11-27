@@ -187,6 +187,13 @@
     
     function finishGameCompletely() {
       document.getElementById('victoryModal')?.remove();
+      if (!isCharacterPilot() && window.NQNormalProgress?.writable &&
+          window.NQNormalProgress.chestReceipts().some(receipt => receipt.phase !== 'consumed')) {
+        _toast('Abra o baú pendente antes de encerrar a jornada.', 'info');
+        _flushChestRewards();
+        _retryChestLibrary();
+        return;
+      }
       state.completedGame = true;
       saveGame();
       document.querySelector('.modal.show')?.remove();
@@ -756,7 +763,12 @@
     }
     function _hardcoreSavedCorrect() {
       try {
-        const owner = _currentSaveOwner(), canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
+        const owner = _currentSaveOwner();
+        if (window.NQNormalProgress) {
+          const save = window.NQNormalProgress.loadSave();
+          return save?.saveOwner === owner ? _hardcoreAttemptCorrect(save) : null;
+        }
+        const canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
         const save = JSON.parse(canonical ?? (owner === null ? localStorage.getItem(SAVE_KEY) : null) ?? 'null');
         if (!save || (canonical !== null ? save.saveOwner !== owner : (save.saveOwner ?? null) !== owner)) return null;
         return _hardcoreAttemptCorrect(save);
@@ -1493,7 +1505,7 @@
     function _doSaveGame() {
       if (isProgressSandbox()) return false;
       if (_saveCleanupBlocked) return false;
-      if (!state.gameStarted || (state.gameOver && !isCharacterPilot() && !state.classBenefits)) return false;
+      if (!state.gameStarted || (state.gameOver && !isCharacterPilot() && !state.classBenefits && !window.NQNormalProgress)) return false;
       if (isCharacterPilot()) return _savePilotGame();
       if (window.NQNormalProgress && !window.NQNormalProgress.writable) return false;
       if (state.classBenefits && !_normalBenefitsValid()) return false;
@@ -1788,6 +1800,14 @@
         _autoSaveTimer = _saveTimer = null;
         return true; // A pilot never writes a competitive tombstone or mirror.
       }
+      const durable = !!window.NQNormalProgress;
+      if (durable) {
+        const wasOver = state.gameOver;
+        _stateData.gameOver = true;
+        const saved = _doSaveGame();
+        _stateData.gameOver = wasOver;
+        if (!saved) { _warnStorageFull(); return false; }
+      }
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer); clearTimeout(_cloudSyncTimer); clearTimeout(_cloudLoadSyncTimer);
       _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
       ++_progressEpoch;
@@ -1795,14 +1815,16 @@
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
       const previousHardcore = _hardcoreSavedCorrect();
-      try { _writeSaveTombstone('journey'); } catch (e) {
-        _warnStorageFull(); return false;
+      if (!durable) {
+        try { _writeSaveTombstone('journey'); } catch (e) {
+          _warnStorageFull(); return false;
+        }
+        localStorage.removeItem(SAVE_KEY);
+        _legacySaveBaseline = null;
       }
       _persistHardcoreBest(previousHardcore);
       _stateData.forjaPending = null;
       _stateData.gameStarted = false;
-      localStorage.removeItem(SAVE_KEY);
-      _legacySaveBaseline = null;
       nqProgressStorage().removeItem('nefroquest-announced-badges');
       // Conta a jornada que começa, para o histórico de selos poder dizer em
       // qual delas cada um foi conquistado. Não some com deleteSave.
@@ -2846,6 +2868,7 @@
     function restoreGame(selectedSave) {
       const save = selectedSave || loadGame();
       if (!save || !save.character) return false;
+      if (window.NQNormalProgress && !isCharacterPilot() && (save.gameOver || save.lives === 0)) return false;
       const presentation = _readQuestionSaveExtras(save);
       if (!presentation) {
         _toast('As alternativas salvas não podem ser retomadas com segurança. O save foi preservado.', 'warning', 6000);
@@ -2923,6 +2946,7 @@
       state.completedGame = (window.NQPilot?.active || save.classBenefits) ? !!save.completedGame : !!save.completedGame && !!save.gameCompleted && save.correctTotal >= 100;
       state.gameOver = false;
       state.gameStarted = true;
+      if (window.NQNormalProgress && !isCharacterPilot() && state.bonusUses > 0) _jornadaJaContabilizada = true;
       state.answered = false;
       state.current = null;
       state.journeyDomain = window.NQPilot?.active ? 'pilot' : 'normal';
@@ -3164,7 +3188,7 @@
       const savedInfoEl = document.getElementById('welcomeSavedInfo');
       const continueBtn = document.getElementById('welcomeContinueBtn');
       const resumeShell = document.querySelector('.nql-atrium__resume-shell');
-      if (save && save.character && save.lives > 0) {
+      if (save && save.character && save.lives > 0 && !save.gameOver) {
         if (continueBtn) continueBtn.style.removeProperty('display');
         const charData = characters[save.character];
         if (resumeShell) resumeShell.dataset.character = charData ? save.character : 'nephros';
@@ -6525,8 +6549,7 @@
       if (_jornadaJaContabilizada) {
         // A pergunta bônus reabre a jornada já contada. Perder de novo não
         // conta outra partida, mas precisa chegar à tela final.
-        if (state.bonusUses > 0 && state.lives <= 0 && !state.gameOver) {
-          deleteSave();
+        if (state.bonusUses > 0 && state.lives <= 0 && !state.gameOver && deleteSave() !== false) {
           if (pendingScore) Object.assign(pendingScore, {score: state.score, level: state.level});
           finishGameUI();
         }
@@ -6561,9 +6584,11 @@
         return;
       }
 
-      // Atualizar estatísticas e limpar save
+      // Store the closed journey before publishing its result.
+      const durable = !!window.NQNormalProgress;
+      if (durable && deleteSave() === false) { _jornadaJaContabilizada = false; return; }
       updateGameStats();
-      deleteSave();
+      if (!durable) deleteSave();
       pendingScore = {score: state.score, level: state.level, origin};
 
       // Se usuário autenticado, pular modal de nome
@@ -6618,6 +6643,7 @@
       renderHUD();
       updateBadges();
       renderQuestion();
+      if (window.NQNormalProgress) _flushChestRewards();
     }
 
 
