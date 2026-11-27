@@ -270,13 +270,17 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       window.addEventListener('online', updateConnection);
       window.addEventListener('offline', updateConnection);
       updateConnection();
+      // Entrada direta (por exemplo, um favorito) também prepara o modo.
+      if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(() => {});
+      }
     })();
   </script>
 
   <!-- Banco de dados de questões (topics) em cache -->
   <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>
   <script src="/js/answer-presentation.js?v=16.09"></script>
-<script src="/data/question-revision-manifest.js?release=17.34"></script>
+<script src="/data/question-revision-manifest.js?release=17.35"></script>
 <script src="/data/question-revision-history.js?release=17.32"></script>
   <script src="/js/question-revisions.js?v=17.27"></script>
   <script src="/data/topics.js?release=17.32"></script>

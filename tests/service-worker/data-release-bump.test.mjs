@@ -16,13 +16,15 @@ test('a data-only release updates every real consumer and its loader without reb
     write('version.json', '{"version":"1.0"}\n');
     write('index.html', '<script>const release="nefroquest@1.0";</script>');
     write('jogar/index.html', '<script src="js/game.js?v=1.0"></script><script src="js/utils.js?v=1.0"></script><script src="data/question-revision-manifest.js?release=1.0"></script>');
-    write('offline.html', '<script src="/data/topics.js?release=1.0"></script>');
+    write('offline.html', ['data/topics.js', 'data/refs.js', 'data/articles.js', 'data/question-revision-manifest.js', 'data/question-revision-history.js']
+      .map(path => '<script src="/' + path + '?release=1.0"></script>').join(''));
     write('js/game.js', 'const questionURL="data/topics.js?release=1.0";');
     write('js/utils.js', 'const refsURL="data/refs.js?release=1.0", articleURL="data/articles.js?release=1.0";');
     write('data/topics.js', 'const topics=["old technical token"];');
     write('data/refs.js', 'const refs={};'); write('data/articles.js', 'const articles=[];');
+    write('data/question-revision-history.js', 'const history=[];');
     write('data/question-revision-manifest.js', 'const manifest={"release":"1.0"};');
-    write('sw.js', "// v1.0\nconst CACHE='nefroquest-v1.0';\nconst STATIC_ASSETS = [\n'/js/game.js','/js/utils.js','/data/topics.js','/data/refs.js','/data/articles.js','/data/question-revision-manifest.js'\n];\n// bump-release:asset-versions:início\nconst ASSET_VERSIONS = {};\n// bump-release:asset-versions:fim\n");
+    write('sw.js', "// NefroQuest Service Worker — v1.0\nconst CACHE = 'nefroquest-v1.0';\nconst STATIC_ASSETS = [\n'/js/game.js','/js/utils.js','/data/topics.js','/data/refs.js','/data/articles.js','/data/question-revision-manifest.js'\n];\n// bump-release:asset-versions:início\nconst ASSET_VERSIONS = {};\n// bump-release:asset-versions:fim\n// bump-release:offline-integrity:início\nconst OFFLINE_FILES = [];\n// bump-release:offline-integrity:fim\n");
     run('git', ['init', '--quiet']);run('git', ['config', 'user.email', 'technical-fixture@example.invalid']);run('git', ['config', 'user.name', 'Technical fixture']);run('git', ['add', '.']);run('git', ['commit', '--quiet', '-m', 'Fixture baseline']);
     write('data/topics.js', 'const topics=["new technical token"];');
     write('data/question-revision-manifest.js', 'const manifest={"release":"1.1"};');
@@ -40,6 +42,10 @@ test('a data-only release updates every real consumer and its loader without reb
     run(process.execPath, ['scripts/bump-release.mjs', '--sync', '--base', 'HEAD']);
     assert.equal(read('sw.js'), workerBeforeSync, 'sync must preserve the generated data release map');
     run(process.execPath, ['scripts/bump-release.mjs', '--check', '--base', 'HEAD']);
+    write('data/question-revision-history.js', 'const history=["wrong but valid JavaScript"];');
+    assert.throws(() => run(process.execPath, ['scripts/bump-release.mjs', '--check', '--base', 'HEAD']),
+      'check must reject a stale integrity digest');
+    write('data/question-revision-history.js', 'const history=[];');
     // A matching SW map must not hide an accidentally stale data URL.
     write('js/game.js', read('js/game.js').replace('?release=1.1', '?release=1.0'));
     write('offline.html', read('offline.html').replace('?release=1.1', '?release=1.0'));
