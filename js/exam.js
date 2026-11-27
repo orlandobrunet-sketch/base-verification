@@ -725,15 +725,17 @@
       const completedAt = _examState.completedAt ?? Date.now();
       _examState.completedAt = completedAt;
       const elapsed = Math.max(0, Math.min(durationSec, Math.floor((completedAt - startTime) / 1000)));
-      const totalAnswered = answers.filter(a => a?.answered).length;
-      const totalCorrect  = answers.filter(a => a?.correct).length;
-      const pct = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) : 0;
-      const semResposta = questions.length - totalAnswered;
+      const totalQuestions = questions.length;
+      const recordedAnswers = questions.map((_, index) => answers[index]).filter(answer => answer?.answered);
+      const totalAnswered = recordedAnswers.length;
+      const totalCorrect = recordedAnswers.filter(answer => answer.correct).length;
+      const scorePct = totalQuestions ? Math.round(totalCorrect / totalQuestions * 100) : 0;
+      const accuracyPct = totalAnswered ? Math.round(totalCorrect / totalAnswered * 100) : null;
+      const semResposta = totalQuestions - totalAnswered;
       const elMin = Math.floor(elapsed / 60), elSec = elapsed % 60;
 
       const byCat = {};
-      answers.forEach(a => {
-        if (!a?.answered) return;
+      recordedAnswers.forEach(a => {
         if (!byCat[a.cat]) byCat[a.cat] = {correct:0,total:0};
         byCat[a.cat].total++;
         if (a.correct) byCat[a.cat].correct++;
@@ -766,7 +768,8 @@
           <p class="nq-exam-explicacao">${escapeHtml(q.e || '')}</p>
         </article>`;
       const mensagem = totalAnswered === 0 ? 'Nenhuma questão foi respondida.'
-        : pct>=70?'Excelente! Aprovado com distinção.':pct>=60?'Aprovado! Continue estudando para aperfeiçoar.':pct>=40?'Abaixo da média. Revise as categorias com menor acerto.':'Resultado insuficiente. Use o Modo de Estudo para reforçar.';
+        : semResposta > 0 ? 'A pontuação considera todas as questões, inclusive as em branco.'
+        : 'Confira a correção para orientar sua revisão.';
 
       pagina.innerHTML = `
         <div class="nq-study-content" id="examResultado">
@@ -774,11 +777,12 @@
           ${historicalViews.map(view => _examRevisionHtml(view, true, true)).join('')}
           ${tempoEsgotado ? `<p class="nq-exam-aviso">O tempo de ${durationSec / 60} minutos terminou. ${semResposta} ${semResposta === 1 ? 'questão ficou' : 'questões ficaram'} sem resposta.</p>` : ''}
           <dl class="nq-study-result-metrics">
-            <div><dt>Acerto nas respondidas</dt><dd>${pct}%</dd></div>
-            <div><dt>Corretas</dt><dd>${totalCorrect} de ${totalAnswered}</dd></div>
-            <div><dt>Respondidas</dt><dd>${totalAnswered} de ${questions.length}</dd></div>
+            <div><dt>Pontuação da prova</dt><dd>${totalCorrect} de ${totalQuestions} (${scorePct}%)</dd></div>
+            <div><dt>Acerto nas respondidas</dt><dd>${accuracyPct === null ? 'Não se aplica' : accuracyPct + '%'}</dd></div>
+            <div><dt>Respondidas</dt><dd>${totalAnswered} de ${totalQuestions}</dd></div>
             <div><dt>Tempo</dt><dd>${elMin}m${elSec}s</dd></div>
           </dl>
+          ${!tempoEsgotado && semResposta > 0 ? `<p class="nq-exam-nota">Em branco: ${semResposta}.</p>` : ''}
           <p class="nq-exam-mensagem">${mensagem}</p>
           ${catRows ? `<section aria-labelledby="examCatTitulo"><h2 id="examCatTitulo">Desempenho por categoria</h2><ul class="nq-exam-categorias">${catRows}</ul></section>` : ''}
           ${!totalAnswered ? '' : erros.length ? `
@@ -788,7 +792,7 @@
             </details>` : '<p class="nq-exam-mensagem">Nenhum erro entre as respondidas.</p>'}
           ${demais.length ? `<details class="nq-exam-revisao-demais"><summary>Conferir demais questões (${demais.length})</summary>${demais.map(reviewQuestion).join('')}</details>` : ''}
           <div class="nq-exam-acoes">
-            <button type="button" class="btn sec" data-action="_shareExamResult" data-args='[${pct},${totalCorrect},${totalAnswered}]'>Compartilhar</button>
+            <button type="button" class="btn sec" data-action="_shareExamResult" data-args='[${scorePct},${totalCorrect},${totalQuestions},${elapsed},${semResposta}]'>Compartilhar</button>
             <button type="button" class="btn gold" data-action="_finishExam">Voltar ao menu</button>
           </div>
         </div>`;

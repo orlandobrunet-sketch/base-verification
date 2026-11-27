@@ -658,6 +658,36 @@
       log('💀 O Arqui-Nefromante aguarda no Trono da Uremia. A batalha final começa!');
     }
 
+    function _chapterOneArt() {
+      // Decorative inline scene so the milestone also works without a network request.
+      return `<svg class="nqchapter-art" viewBox="0 0 640 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="nqchapter-hall" x2="0" y2="1"><stop stop-color="#142936"/><stop offset="1" stop-color="#08141f"/></linearGradient>
+          <radialGradient id="nqchapter-light"><stop stop-color="#d6d6a0" stop-opacity=".48"/><stop offset="1" stop-color="#76b5c9" stop-opacity="0"/></radialGradient>
+          <linearGradient id="nqchapter-paper" x2="1" y2="1"><stop stop-color="#b47b40"/><stop offset=".37" stop-color="#fae0a6"/><stop offset=".66" stop-color="#e8c688"/><stop offset="1" stop-color="#ba8650"/></linearGradient>
+        </defs>
+        <path fill="url(#nqchapter-hall)" d="M0 0h640v150H0z"/>
+        <path fill="#2d4655" opacity=".72" d="M0 24h89l164 47v26L0 135zm640 0h-89L387 71v26l253 38z"/>
+        <path fill="#0b1925" d="M0 132l263-37h114l263 37v18H0z"/>
+        <path fill="none" stroke="#537e91" stroke-opacity=".46" d="M0 137l268-41m-116 54 132-53m-8 53 27-53m61 53-27-53m151 53L356 97m284 40L373 96M96 137h448M178 123h284M230 111h180"/>
+        <path fill="#35576a" stroke="#142d3b" stroke-width="2" d="M30 34l42 8v82l-42 7zm538 8 42-8v97l-42-7zM126 48l29 8v55l-29 4zm359 8 29-8v67l-29-4z"/>
+        <path fill="#152a37" stroke="#638799" stroke-opacity=".7" d="M33 48l35 7v42l-35 4zm539 7 35-7v53l-35-4zM129 60l22 6v27l-22 2zm360 6 22-6v35l-22-2z"/>
+        <path fill="none" stroke="#9bc2cd" stroke-opacity=".68" stroke-width="2" d="M50 64v20m-9-10h18m531-10v20m-9-10h18"/>
+        <path fill="#79b3c0" opacity=".56" d="M210 19h84l15 4h-86zm136 0h84l-13 4h-86zm-65 20h78l-10 3h-58z"/>
+        <ellipse cx="320" cy="81" rx="180" ry="81" fill="url(#nqchapter-light)"/>
+        <g class="nqchapter-scroll-paper">
+          <path fill="#1a2530" opacity=".56" d="M221 122l196-5 19 12-230 5z"/>
+          <path fill="url(#nqchapter-paper)" stroke="#e8c085" stroke-width="1.4" d="M224 53q22-10 52-7l99-3 42 7-5 54-51 7-90-4-49 7z"/>
+          <path fill="none" stroke="#70543a" stroke-opacity=".82" stroke-width="2" d="M261 61q27-4 65-3m-67 12q37-4 89-3m-89 13q38-3 71-2m-70 12q29-2 55-1"/>
+          <path fill="#973e41" stroke="#d37262" d="M379 96l-5 19 9-6 6 8 3-19z"/><circle cx="386" cy="95" r="12" fill="#9d4145" stroke="#e17967" stroke-width="1.3"/>
+          <path fill="none" stroke="#ffb191" stroke-width="1.15" d="M387 88c-3 4-5 6-5 9a4 4 0 0 0 8 0c0-3-1-5-3-9z"/>
+          <path fill="#bd945c" stroke="#ffe2a3" stroke-width="1.25" d="M226 48q-13-8-22 3l-2 60q7 12 19 2l5-10zm189-3q14-7 21 4l-4 53q-7 10-20 4l1-13z"/>
+          <path fill="none" stroke="#71543b" d="M204 54q6 5 13 0M202 108q6 4 13-1M421 50q4 5 11 3M418 98q4 5 11 1"/>
+        </g>
+        <path fill="none" stroke="#c0e8ee" stroke-opacity=".6" stroke-width="1" d="M242 35v8m-4-4h8m193 27v9m-4-5h8M193 84v7m-4-4h8m233 30v8m-4-4h8"/>
+      </svg>`;
+    }
+
     function showNarrativePopup(stage){
       const binding = _minigameCaptureBinding();
       const popup = document.createElement('div');
@@ -703,17 +733,27 @@
       const proximoCapitulo = (typeof narrativeStages !== 'undefined' ? narrativeStages : []).find(s => s.at > state.correctTotal);
       if (!isFinale && !isBoss && !isStun && !isStunRecovery) {
         popup.classList.add('nqnarr-overlay');
+        const firstChapter = stage.at === 5;
+        const remaining = proximoCapitulo ? proximoCapitulo.at - state.correctTotal : null;
+        const story = firstChapter
+          ? stage.text.replace('Sua jornada começa agora.', 'A próxima pista está nas Criptas da Creatinina.')
+          : stage.text;
         popup.innerHTML=`
           <section class="nqnarr-card" data-nq-chapter="${stage.at}" aria-describedby="nqNarrativeStory">
             <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Narrativa e progresso">
-              <p class="nqnarr-chapter">${stage.ch}</p>
-              <div class="nqnarr-heading"><svg class="nqnarr-book" viewBox="0 0 80 88" aria-hidden="true"><path class="pages" d="M40 17C29 10 14 13 8 17v51c10-5 22-4 32 2 10-6 22-7 32-2V17c-6-4-21-7-32 0Z"/><path d="M5 22H3v52c13-5 24-4 37 2 13-6 24-7 37-2V22h-2"/><path class="spine" d="M40 19v48"/><path class="water" d="M14 29c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m14-18c5-3 12-4 19 0m-19 9c5-3 12-4 19 0m-19 9c5-3 12-4 19 0"/><path d="M30 81h20" opacity=".5"/></svg><h2>${stage.title}</h2></div>
-              <div class="nqnarr-story" id="nqNarrativeStory">${stage.text}</div>
-              <div class="nqnarr-progress">
+              <p class="nqnarr-chapter">${stage.ch}${firstChapter ? ' desbloqueado' : ''}</p>
+              ${firstChapter ? `<div class="nqchapter-heading"><h2>${stage.title}</h2></div>
+                ${_chapterOneArt()}` : `<div class="nqnarr-heading"><svg class="nqnarr-book" viewBox="0 0 80 88" aria-hidden="true"><path class="pages" d="M40 17C29 10 14 13 8 17v51c10-5 22-4 32 2 10-6 22-7 32-2V17c-6-4-21-7-32 0Z"/><path d="M5 22H3v52c13-5 24-4 37 2 13-6 24-7 37-2V22h-2"/><path class="spine" d="M40 19v48"/><path class="water" d="M14 29c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m14-18c5-3 12-4 19 0m-19 9c5-3 12-4 19 0m-19 9c5-3 12-4 19 0"/><path d="M30 81h20" opacity=".5"/></svg><h2>${stage.title}</h2></div>`}
+              ${firstChapter ? `<ol class="nqchapter-path" role="list" aria-label="Marcos da jornada">
+                <li class="nqchapter-current" aria-current="step"><span aria-hidden="true">✓</span><div><strong>${stage.ch}</strong><small>${state.correctTotal} acertos</small></div></li>
+                ${proximoCapitulo ? `<li><span aria-hidden="true">◆</span><div><strong>${proximoCapitulo.ch}</strong><small>${remaining === 1 ? 'Falta 1 acerto' : `Faltam ${remaining} acertos`}</small></div></li>` : ''}
+              </ol>` : ''}
+              <div class="nqnarr-story" id="nqNarrativeStory">${story}</div>
+              ${firstChapter ? '' : `<div class="nqnarr-progress">
                 <div class="nqnarr-metric"><strong>${state.correctTotal}</strong><span>Acertos</span></div>
                 <div class="nqnarr-metric"><strong>${state.level}</strong><span>Nível</span></div>
-                ${proximoCapitulo ? `<div class="nqnarr-metric"><strong>${proximoCapitulo.at - state.correctTotal}</strong><span>Acertos até o próximo capítulo</span></div>` : ''}
-              </div>
+                ${proximoCapitulo ? `<div class="nqnarr-metric"><strong>${remaining}</strong><span>Acertos até o próximo capítulo</span></div>` : ''}
+              </div>`}
             </div>
             <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".narrative-popup">Continuar a Jornada</button></footer>
             <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar capítulo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
@@ -1487,7 +1527,7 @@
         ui.bonusBtn.classList.remove('hidden');
       } else {
         ui.feedback.className='feedback';
-        ui.feedback.textContent=`As ${state.maxLives||3} vidas acabaram. Junte mais ouro em outra corrida para comprar Perguntas Bônus.`;
+        ui.feedback.textContent='Você ficou sem vidas. Junte mais ouro em outra corrida para comprar Perguntas Bônus.';
         ui.bonusBtn.classList.add('hidden');
       }
       // Botão de revisão de erros da sessão
@@ -1531,6 +1571,8 @@
       const cost = bonusCost();
       const podeBonus = state.gold >= cost && state.bonusUses < 1;
       const erros = _sessionWrongAnswers.length;
+      const totalVidas = effectiveMaxLives();
+      const retrato = document.getElementById('heroImg')?.getAttribute('src');
       const modal = document.createElement('div');
       modal.id = 'defeatScreen';
       modal.className = 'nqnarr-overlay nqdefeat-overlay';
@@ -1539,14 +1581,21 @@
         <section class="nqnarr-card nqdefeat-card">
           <button class="nqnarr-close" data-remove-id="defeatScreen" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
           <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Resumo da jornada">
-            <p class="nqnarr-chapter">Fim da jornada</p>
             <div class="nqdefeat-heading">
-              <img src="${escapeHtml(document.getElementById('heroImg')?.getAttribute('src') || '')}" alt="" width="84" height="84">
+              <div class="nqdefeat-scene" aria-hidden="true">
+                ${retrato ? `<img src="${escapeHtml(retrato)}" alt="" width="176" height="176">` : ''}
+              </div>
               <div>
-                <h2>As vidas acabaram</h2>
-                <p>Você chegou a ${state.correctTotal} de 100 acertos.${proximoSelo ? ` Faltaram ${proximoSelo.required - state.correctTotal} para o selo ${escapeHtml(proximoSelo.name)}.` : ''}</p>
+                <p class="nqnarr-chapter">Fim da jornada</p>
+                <h2 id="nqDefeatTitle">Derrota</h2>
+                <p class="nqdefeat-lives">
+                  <span class="nqdefeat-hearts" aria-hidden="true">${'<span>♡</span>'.repeat(totalVidas)}</span>
+                  <span>0 de ${totalVidas} ${totalVidas === 1 ? 'vida' : 'vidas'}</span>
+                </p>
+                <p>As vidas acabaram.</p>
               </div>
             </div>
+            <p class="nqdefeat-progress">Você chegou a ${state.correctTotal} de 100 acertos.${proximoSelo ? ` Faltaram ${proximoSelo.required - state.correctTotal} para o selo ${escapeHtml(proximoSelo.name)}.` : ''}</p>
             <dl class="nqdefeat-stats">
               <div><dt>Acertos</dt><dd>${state.correctTotal}</dd></div>
               <div><dt>Nível</dt><dd>${state.level}</dd></div>

@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { medirContraste } from '../helpers/contraste';
+import { confirmFreePlan } from '../helpers/game';
 
 /**
  * Diagnóstico da sessão no resultado de Estudo e Revisão.
@@ -34,7 +35,7 @@ async function chegarAoResultado(page: Page, opcoes: { logado?: boolean; respost
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(async ({ logado, usados }) => {
     if (logado) {
-      (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
+      (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',email:'diagnostico@example.invalid',user_metadata:{},app_metadata:{}}`);
       (window as any).getAuthToken = async () => 'token-ficticio';
     }
     if (usados !== undefined) {
@@ -45,6 +46,7 @@ async function chegarAoResultado(page: Page, opcoes: { logado?: boolean; respost
     await (window as any).startFreeStudyMode();
     (0, eval)('studyModeQuestions = studyModeQuestions.slice(0, 1); showStudyModePage();');
   }, { logado: opcoes.logado ?? true, usados: opcoes.usados });
+  if (opcoes.usados !== undefined) await confirmFreePlan(page);
   await page.locator('#studyOptions button').first().click();
   await page.getByRole('button', { name: 'Ver Resultados' }).click();
   await expect(page.getByRole('heading', { name: 'Estudo concluído' })).toBeVisible();
@@ -103,7 +105,7 @@ test('sessão expirada pede novo login em vez de parecer falha genérica', async
   expect(await cotaUsada(page)).toBe(0);
 });
 
-test('sem cota local, a IA não é chamada', async ({ page }) => {
+test('gratuito confirmado sem cota local, a IA não é chamada', async ({ page }) => {
   const { pedidos, card } = await chegarAoResultado(page, { usados: 3 });
   await expect(card).toHaveAttribute('data-estado', 'sem-cota');
   await expect(card).toContainText('Limite diário de 3 diagnósticos atingido');

@@ -128,14 +128,15 @@ test.describe('Utils — Pure Functions Unit Tests', () => {
     });
     expect(r1).toBe(false);
 
-    // 2. Returns true when premium flag & valid signature are present
-    const r2 = await page.evaluate(() => {
-      (window as any).authUser = { id: 'test-user', email: 'test@example.com' };
-      localStorage.setItem('nefroquest-premium', '1');
-      const sig = (window as any)._generatePremiumSignature('test-user');
-      localStorage.setItem('nefroquest-premium-sig', sig);
-      (window as any)._invalidatePremiumCache?.();
-      return (window as any).isPremium();
+    // 2. Acesso vigente somente pela resposta do perfil desta conta.
+    const r2 = await page.evaluate(async () => {
+      const g = (0, eval);
+      g("authUser = { id: 'test-user', email: 'test@example.com' };");
+      g(`_supaClient = { from: () => ({select: () => ({eq: () => ({
+        single: async () => ({ data:{ is_premium:true, premium_expires_at:null }, error:null })
+      })})}) };`);
+      await g('_loadPremiumFromDB()');
+      return g('isPremium()');
     });
     expect(r2).toBe(true);
 

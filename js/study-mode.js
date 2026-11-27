@@ -861,7 +861,7 @@
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
 
       const modal = document.createElement('div');
-      modal.className = 'study-mode-popup';
+      modal.className = 'study-mode-popup nq-study-hub';
 
       // Calcular SR due com todos os temas
       const totalDue = getSRScheduledDueQuestions(topics).length;
@@ -869,6 +869,10 @@
 
       const saved = _loadStudyState();
       const canResume = saved && !saved.revisionHold && saved.index < saved.questions.length;
+      const choiceIcon = (shape) => `<svg class="nq-study-choice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${shape}</svg>`;
+      const themeIcon = choiceIcon('<path d="M3.5 7.5h6l2-2h3l2 2h4v11h-17zM8 12h8m-8 3h5"/>');
+      const freeIcon = choiceIcon('<path d="M12 6.5C9.2 4.6 6.5 4.1 3.5 5v13c3-.9 5.7-.4 8.5 1.5 2.8-1.9 5.5-2.4 8.5-1.5V5c-3-.9-5.7-.4-8.5 1.5zm0 0v13"/>');
+      const reviewIcon = choiceIcon('<path d="M20 8.5a8.5 8.5 0 1 0 .4 6M20 4v5h-5m-3-1v4l2.5 2"/>');
       modal.innerHTML = `
         <div class="nq-study-content">
           <header class="nq-study-heading">
@@ -876,11 +880,11 @@
             <div><h1>Estudo e Revisão</h1><p>Pratique por tema ou retome o que precisa rever. Sua jornada permanece salva.</p></div>
           </header>
           ${canResume ? '<section class="nq-study-resume"><div><h2>Sessão em andamento</h2><p>Continue de onde parou.</p></div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button></section>' : ''}
-          ${saved?.revisionHold ? `<section class="nq-study-resume" role="status"><div><h2>Sessão salva preservada</h2><p>${saved.revisionHold === 'expired' ? 'O prazo desta sessão terminou.' : 'Esta sessão foi marcada como concluída.'} Suas respostas e dados salvos permanecem intactos.</p></div></section>` : ''}
+          ${saved?.revisionHold ? `<section class="nq-study-resume nq-study-resume-note" role="status"><div><h2>Sessão salva preservada</h2><p>${saved.revisionHold === 'expired' ? 'O prazo desta sessão terminou.' : 'Esta sessão foi marcada como concluída.'} Suas respostas e dados salvos permanecem intactos.</p></div></section>` : ''}
           <div class="nq-study-choices">
-            <section><div><h2>Por tema</h2><p>Escolha os eixos e pratique até 20 questões dos assuntos selecionados.</p></div><button class="btn gold" data-action="showAxesSelector">Selecionar Temas</button></section>
-            <section><div><h2>Estudo livre</h2><p>Uma sessão com 20 questões de todos os temas, sem configuração.</p></div><button class="btn sec" data-action="startFreeStudyMode">Iniciar estudo livre</button></section>
-            <section><div><h2>Revisão espaçada</h2><p>${totalDue > 0 ? 'Retome questões já respondidas cuja data de revisão chegou.' : 'Suas revisões aparecem aqui quando chega a data. Você pode continuar no Estudo livre.'}</p><strong>${srLabel}</strong></div><button class="btn sec" data-action="startSRStudyAllMode" ${totalDue === 0 ? 'disabled' : ''}>Revisar agora</button></section>
+            <section>${themeIcon}<div><h2>Por tema</h2><p>Escolha os eixos e pratique até 20 questões dos assuntos selecionados.</p></div><button class="btn gold" data-action="showAxesSelector">Selecionar Temas</button></section>
+            <section>${freeIcon}<div><h2>Estudo livre</h2><p>Uma sessão com 20 questões de todos os temas, sem configuração.</p></div><button class="btn sec" data-action="startFreeStudyMode">Iniciar estudo livre</button></section>
+            <section>${reviewIcon}<div><h2>Revisão espaçada</h2><p>${totalDue > 0 ? 'Retome questões já respondidas cuja data de revisão chegou.' : 'Suas revisões aparecem aqui quando chega a data. Você pode continuar no Estudo livre.'}</p><strong class="nq-study-due${totalDue > 0 ? ' has-due' : ''}">${srLabel}</strong></div><button class="btn sec" data-action="startSRStudyAllMode" ${totalDue === 0 ? 'disabled' : ''}>Revisar agora</button></section>
           </div>
         </div>
       `;
@@ -1433,13 +1437,22 @@
       } catch {}
       const memory = _aiQuotaMemory.get(key);
       if (memory && memory.date !== today) _aiQuotaMemory.delete(key);
-      if (memory?.date === today && memory.count > (quota.count || 0)) return { ...memory };
+      if (memory?.date === today && memory.count > (quota.count || 0)) return { date: memory.date, count: memory.count };
       return quota;
     }
 
-    function _rememberAIQuota(key, quota) {
-      _aiQuotaMemory.set(key, { ...quota });
+    function _rememberAIQuota(key, quota, refused = false) {
+      _aiQuotaMemory.set(key, { ...quota, refused });
       try { localStorage.setItem(key, JSON.stringify(quota)); } catch {}
+    }
+
+    function _aiQuotaReached(base, quota, limit) {
+      if (quota.count < limit) return false;
+      const key = _aiQuotaStorageKey(base);
+      const memory = _aiQuotaMemory.get(key);
+      // O contador salvo não estabelece que o plano ainda é gratuito.
+      // Nessa situação, a Edge decide e a primeira recusa vale para o dono/dia.
+      return !key || _premiumAccessKnown() || (memory?.date === quota.date && memory.refused);
     }
 
     function _getMentorQuota() {
@@ -1468,7 +1481,7 @@
 
     function _canAskMentor() {
       if (isPremium()) return true;
-      return _getMentorQuota().count < MENTOR_DAILY_LIMIT;
+      return !_aiQuotaReached(MENTOR_QUOTA_KEY, _getMentorQuota(), MENTOR_DAILY_LIMIT);
     }
 
     function _incrementMentorQuota() {
@@ -1496,22 +1509,24 @@
       if (!key) return;
       const q = _getMentorQuota();
       q.count = MENTOR_DAILY_LIMIT;
-      _rememberAIQuota(key, q);
+      _rememberAIQuota(key, q, true);
       const barra = document.getElementById('mentorQuotaBar');
       if (barra) barra.textContent = _mentorRemainingText();
     }
 
     function _mentorRemainingText() {
       if (isPremium()) return '';
-      const { count } = _getMentorQuota();
-      const rem = Math.max(0, MENTOR_DAILY_LIMIT - count);
+      const quota = _getMentorQuota();
+      const rem = Math.max(0, MENTOR_DAILY_LIMIT - quota.count);
+      if (rem === 0 && !_aiQuotaReached(MENTOR_QUOTA_KEY, quota, MENTOR_DAILY_LIMIT)) return '';
       return `${rem}/${MENTOR_DAILY_LIMIT} perguntas restantes hoje`;
     }
 
     function _diagRemainingText() {
       if (isPremium()) return '';
-      const { count } = _getDiagQuota();
-      const rem = Math.max(0, DIAG_DAILY_LIMIT - count);
+      const quota = _getDiagQuota();
+      const rem = Math.max(0, DIAG_DAILY_LIMIT - quota.count);
+      if (rem === 0 && !_aiQuotaReached(DIAG_QUOTA_KEY, quota, DIAG_DAILY_LIMIT)) return '';
       return `${rem}/${DIAG_DAILY_LIMIT} diagnósticos restantes hoje`;
     }
 
@@ -1550,7 +1565,7 @@
 
     function _canRunDiagnosis() {
       if (isPremium()) return true;
-      return _getDiagQuota().count < DIAG_DAILY_LIMIT;
+      return !_aiQuotaReached(DIAG_QUOTA_KEY, _getDiagQuota(), DIAG_DAILY_LIMIT);
     }
 
     function _incrementDiagQuota() {
@@ -1570,7 +1585,7 @@
       if (!key) return;
       const q = _getDiagQuota();
       q.count = DIAG_DAILY_LIMIT;
-      _rememberAIQuota(key, q);
+      _rememberAIQuota(key, q, true);
     }
     
     function startStudyMode(replaceSaved = false) {

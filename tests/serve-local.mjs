@@ -19,53 +19,9 @@
  *   BASE_URL=http://127.0.0.1:5500 npx playwright test
  */
 
-import { createServer } from 'node:http';
-import { createReadStream, statSync } from 'node:fs';
-import { resolve, extname, dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import helpers from './helpers/local-static-server.cjs';
 
-const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const porta = Number(process.argv[2] || 5500);
-
-const TIPOS = {
-  '.html': 'text/html; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.mjs': 'text/javascript; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
-  '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
-  '.mp3': 'audio/mpeg', '.wav': 'audio/wav', '.webm': 'video/webm',
-};
-
-createServer((req, res) => {
-  const semQuery = decodeURIComponent((req.url || '/').split('?')[0]);
-  let caminho = resolve(join(raiz, semQuery));
-
-  // Nunca servir fora da raiz do projeto
-  if (!caminho.startsWith(raiz)) {
-    res.writeHead(403).end('forbidden');
-    return;
-  }
-
-  try {
-    if (statSync(caminho).isDirectory()) caminho = join(caminho, 'index.html');
-  } catch {
-    res.writeHead(404).end('not found');
-    return;
-  }
-
-  try {
-    const tamanho = statSync(caminho).size;
-    res.writeHead(200, {
-      'Content-Type': TIPOS[extname(caminho).toLowerCase()] || 'application/octet-stream',
-      'Content-Length': tamanho,
-      'Cache-Control': 'no-store',
-    });
-    createReadStream(caminho).pipe(res);
-  } catch {
-    res.writeHead(404).end('not found');
-  }
-}).listen(porta, '127.0.0.1', () => {
-  console.log(`servindo ${raiz} em http://127.0.0.1:${porta}`);
+helpers.createLocalServer().listen(porta, '127.0.0.1', () => {
+  console.log(`servindo ${helpers.raiz} em http://127.0.0.1:${porta}`);
 });

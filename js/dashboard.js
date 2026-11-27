@@ -1235,6 +1235,7 @@
       source: `assets/achievements/${ACHIEVEMENT_ART[achievement.id]}.webp`,
       status: unlocked ? 'Conquistada · fica com você' : progress && progress.status ? progress.status : progress && progress.value > 0 ? 'Em progresso' : 'A conquistar',
       acquired: unlocked,
+      hardcoreRecord: achievement.id === 'hardcore_champion' ? { correct: window.getHardcoreBestCorrect?.() ?? null } : null,
       progress: unlocked ? { completed: true, value: 100, target: 100 } : progress,
     });
   }

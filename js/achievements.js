@@ -284,14 +284,21 @@ function _nqAchievementProgressStorage() {
       dialog.remove();
     }
 
-    function showAchievementArtwork({ name, description, source, status, acquired = false, progress = null }) {
+    function showAchievementArtwork({ name, description, source, status, acquired = false, progress = null, hardcoreRecord = null }) {
       if (!source || !name) return;
       closeAchievementArtwork();
       const dialog = document.createElement('dialog');
       dialog.className = `nq-ach-detail ${acquired ? 'is-unlocked' : 'is-locked'}`;
       dialog.dataset.acquired = String(acquired);
       dialog.setAttribute('aria-labelledby', 'nqAchievementArtworkTitle');
-      dialog.setAttribute('aria-describedby', 'nqAchievementArtworkRequirement');
+      dialog.setAttribute('aria-describedby', 'nqAchievementArtworkRequirement' +
+        (hardcoreRecord ? ' nqAchievementHardcoreRecord' : ''));
+      const best = hardcoreRecord?.correct;
+      const noRecord = acquired ? 'Vitória registrada. Histórico de acertos indisponível neste perfil.'
+        : 'Nenhuma tentativa com acertos registrados neste perfil';
+      const bestLabel = Number.isSafeInteger(best) && best >= 0
+        ? best.toLocaleString('pt-BR') + (best === 1 ? ' acerto' : ' acertos')
+        : noRecord;
       // Selos em reconquista mantêm seus valores; conclusão exige o marcador explícito.
       const completed = acquired && progress?.completed === true;
       const value = completed ? 100 : progress ? Math.max(0, Math.min(Number(progress.value) || 0, Number(progress.target) || 0)) : 0;
@@ -303,6 +310,7 @@ function _nqAchievementProgressStorage() {
             <p class="nq-ach-detail-state">${escapeHtml(status || 'A conquistar')}</p>
             <h2 id="nqAchievementArtworkTitle">${escapeHtml(name)}</h2>
             <p id="nqAchievementArtworkRequirement">${escapeHtml(description || '')}</p>
+            ${hardcoreRecord ? `<div class="nq-ach-hardcore-record" id="nqAchievementHardcoreRecord"><span>Melhor tentativa registrada no Hardcore</span><strong>${bestLabel}</strong></div>` : ''}
             ${target ? `<div class="nq-ach-detail-progress"${completed ? ' data-complete="true"' : ''}><span>${completed ? 'Requisito cumprido · 100%' : `${value.toLocaleString('pt-BR')} de ${target.toLocaleString('pt-BR')}`}</span><div role="progressbar" aria-label="${escapeHtml((completed ? 'Conclusão de ' : 'Progresso de ') + name)}" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${value}"><span style="width:${value / target * 100}%"></span></div></div>` : ''}
           </div>
         </div>

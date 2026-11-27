@@ -81,7 +81,7 @@ test('vidas e Sequência usam valores reais, quatro campos no rodapé e refluem 
   await expect(page.locator('.hud .tile')).toHaveCount(4);
   await expect(page.locator('.hud .tile').nth(2)).toContainText('Sequência');
   await expect(page.locator('#streak')).toHaveText('12');
-  await expect(page.locator('#guardianStreakMultiplier')).toHaveText('×2');
+  await expect(page.locator('#guardianStreakMultiplier')).toHaveCount(0);
   await expect(page.locator('#record')).toHaveCount(0);
   await expect(page.locator('#guardianVitality')).toHaveAccessibleName('Vidas: 1 de 5');
   await expect(page.locator('#lives .nql-life')).toHaveCount(5);

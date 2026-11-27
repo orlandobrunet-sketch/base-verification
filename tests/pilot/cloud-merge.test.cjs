@@ -8,7 +8,10 @@ const source = readFileSync(resolve(__dirname, '../../js/game.js'), 'utf8');
 const begin = source.indexOf('    function _maxNumero(');
 const end = source.indexOf('    window._mergeCloudProgress = _mergeCloudProgress;', begin);
 assert.ok(begin >= 0 && end > begin, 'the real cloud merge source must be loaded');
-const mergeSource = source.slice(begin, end);
+const hardcoreStart = source.indexOf('    const _hardcoreCorrect =');
+const hardcoreEnd = source.indexOf('    function getEntitlementQuestionsAnswered(', hardcoreStart);
+assert.ok(hardcoreStart >= 0 && hardcoreEnd > hardcoreStart, 'the real Hardcore record helpers must be loaded');
+const mergeSource = source.slice(hardcoreStart, hardcoreEnd) + source.slice(begin, end);
 const canonicalKey = 'nefroquest-save-v7';
 const mirrorKey = 'nefroquest-save';
 const localSave = {
@@ -36,7 +39,7 @@ function fixture({ failKey = null, save = localSave } = {}) {
     CANONICAL_SAVE_KEY: canonicalKey, SAVE_KEY: mirrorKey,
     STATS_KEY: 'nefroquest-stats', MASTERED_KEY: 'nefroquest-mastered',
     DETAILED_STATS_SCHEMA_VERSION: 1,
-    state: { gameStarted: true },
+    state: { gameStarted: true }, characters: { nephros: {} },
     _saveCleanupBlocked: false, _characterCloudConflict: false, _cloudSyncTimer: null,
     _saveBaseline: JSON.stringify(save), _saveOwner: 'owner-A',
     stops: 0, scheduled: 0, messages: [],
@@ -51,7 +54,7 @@ function fixture({ failKey = null, save = localSave } = {}) {
     _normalBenefitsValid: () => true,
     _isDetailedStatsRecord: value => !!value && typeof value === 'object' && !Array.isArray(value),
     _invalidateStatsCache() {},
-    getGameStats: () => ({}),
+    getGameStats: () => JSON.parse(values.get('nefroquest-stats') || '{}'),
     // Migration/presentation modules have their own suites. This fixture
     // exercises whether the real merge accepts, persists or rejects a snapshot.
     _migrateSave: value => value,

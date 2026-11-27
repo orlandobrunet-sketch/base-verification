@@ -26,6 +26,8 @@ const canonical = [
     ? [between('_answerChoice', '_normalCharacterSaveValid')] : []),
   ...(source.includes('const _pendingChestRewards = [];')
     ? [source.slice(source.indexOf('    const _pendingChestRewards = [];'), source.indexOf('    function triggerChestRewardPopup('))] : []),
+  ...(source.includes('const _hardcoreCorrect =')
+    ? [between('getNormalGameStats', 'getEntitlementQuestionsAnswered')] : []),
   between('_currentSaveOwner', '_prepareProgressOwner'),
   between('_stopLocalJourney', '_mirrorLegacySave'),
   between('_mirrorLegacySave', '_showGuestSaveRecovery'),
@@ -110,6 +112,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
     _continueGameCleanup: null,
     _autoSaveTimer: 'auto', _saveTimer: 'save', _cloudSyncTimer: 'cloud', _cloudLoadSyncTimer: 'cloud-load', _questionRenderUnlockTimer: null,
     SAVE_KEY: LEGACY, CANONICAL_SAVE_KEY: CANONICAL, SAVE_SCHEMA_VERSION: 7,
+    STATS_KEY: 'nefroquest-stats', characters: { nephros: {} },
     crypto: { randomUUID: () => `test-revision-${++revision}` },
     clearTimeout: timer => cancelledTimers.push(timer),
     queueMicrotask: callback => microtasks.push(callback), __microtasks: microtasks,

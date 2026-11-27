@@ -625,7 +625,7 @@ test('cloud progress constructor reads only normal collections and stats while a
     MASTERED_KEY: 'nefroquest-mastered', CANONICAL_SAVE_KEY: 'nefroquest-save-v7', SAVE_KEY: 'nefroquest-save',
     _currentSaveOwner: () => null, _isSaveTombstone: save => save === null,
     getGameStats: () => { throw new Error('active-domain stats entered a cloud payload'); }});
-  vm.runInContext(sourceSection('    function getNormalGameStats()', '    window.getNormalGameStats'), f.ctx);
+  vm.runInContext(sourceSection('    function getNormalGameStats()', '    function getEntitlementQuestionsAnswered('), f.ctx);
   vm.runInContext(sourceSection('    function _buildCloudProgress()', '    async function _syncProgressToCloud()'), f.ctx);
   await start(f);
   for (const key of Object.keys(normal).filter(key => key !== 'nefroquest-save-v7')) {
