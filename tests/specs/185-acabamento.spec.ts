@@ -7,7 +7,7 @@ async function abrirJogo(page: Page, largura: number, altura: number, estado: Re
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.setViewportSize({ width: largura, height: altura });
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page, estado);
+  await injectGameState(page, estado, { asGuest: true });
   await expect(page.locator('#question')).not.toBeEmpty({ timeout: 20_000 });
 }
 
