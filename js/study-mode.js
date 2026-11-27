@@ -690,13 +690,20 @@
       playSound('click');
     }
 
-    function confirmResetProgress() {
+    async function confirmResetProgress() {
       if (window.NQPilot?.active) {
         if (!confirm('Apagar somente o progresso deste piloto? O progresso da jornada normal será preservado.')) return;
         if (typeof window.clearLocalProgress === 'function') window.clearLocalProgress('reset');
         return;
       }
       if (!confirm('⚠️ Apagar todo o histórico de estatísticas, questões dominadas e save atual?\n\nEsta ação não pode ser desfeita.')) return;
+      if (window.NQ_DURABLE_PROGRESS === true) {
+        if (!window.NQNormalProgress && !await _ensureNormalAuthority()) return;
+        if (window.clearLocalProgress('reset') === false) return;
+        document.querySelectorAll('.stats-popup').forEach(el => el.remove());
+        _toast('Progresso resetado. Começando do zero!', 'success');
+        return;
+      }
       localStorage.removeItem(STATS_STORAGE_KEY);
       localStorage.removeItem(MASTERED_KEY);
       localStorage.removeItem(SAVE_KEY);

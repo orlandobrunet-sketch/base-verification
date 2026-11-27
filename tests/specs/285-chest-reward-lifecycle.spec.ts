@@ -112,3 +112,29 @@ test('an earned chest survives Rapid and valid same-pilot resume, then claims on
  expect((await snapshot(page)).randomSource).toBe(evidence.initial.randomSource);
  await info.attach('chest-native-retention-claim',{contentType:'application/json',body:JSON.stringify({bindingBefore,bindingAfter,output})});
 });
+
+test('earned chest survives fresh document reload and consumes exactly once',async({page},info)=>{
+ await earnFirstChest(page);
+ const prior=await page.evaluate(()=>JSON.parse(localStorage.getItem('nefroquest-pilot-v1')!));
+ expect(prior.chestReceipts.filter((r:any)=>r.phase!=='consumed')).toHaveLength(1);
+ const id=prior.chestReceipts[0].id;
+ await page.clock.resume();
+ await page.reload({waitUntil:'load'});
+ const guest=page.locator('[data-portal-route="guest"]');if(await guest.isVisible())await guest.click();
+ await expect(page.locator('#resumePilotBtn')).toBeVisible();
+ await page.locator('#resumePilotBtn').click();
+ await expect(page.locator('#mainApp')).toBeVisible();
+ await page.clock.runFor(1500);
+ await expect(page.locator('#autoChestPopup')).toHaveCount(1);
+ await page.locator('#autoChestPopup .nqch-trigger').click();await page.clock.runFor(10);
+ if(await page.locator('#ecpKeep').isVisible())await page.locator('#ecpKeep').click();
+ await expect.poll(()=>page.evaluate(id=>JSON.parse(localStorage.getItem('nefroquest-pilot-v1')!).chestReceipts.find((r:any)=>r.id===id).phase,id)).toBe('consumed');
+ const consumed=await page.evaluate(()=>JSON.parse(localStorage.getItem('nefroquest-pilot-v1')!));
+ await page.reload({waitUntil:'load'});
+ if(await guest.isVisible())await guest.click();
+ await page.locator('#resumePilotBtn').click();await expect(page.locator('#mainApp')).toBeVisible();await page.clock.runFor(1500);
+ await expect(page.locator('#autoChestPopup')).toHaveCount(0);
+ const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('nefroquest-pilot-v1')!));
+ expect(after.save.score).toBe(consumed.save.score);expect(after.save.gold).toBe(consumed.save.gold);expect(after.progress).toEqual(consumed.progress);
+ await info.attach('fresh-document-durability',{contentType:'application/json',body:JSON.stringify({id,before:prior.save.score,after:after.save.score,receipt:after.chestReceipts[0]})});
+});

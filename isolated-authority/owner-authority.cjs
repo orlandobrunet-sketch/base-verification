@@ -1,0 +1,415 @@
+'use strict';
+// Real storage/lease coordinator, deliberately NOT imported by the game yet.
+// Host supplies existing save validation; no SQL, UI, account or network actions.
+const clone=x=>JSON.parse(JSON.stringify(x));
+const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+function createAuthority({storage,locks,currentOwner,validateSave,owner,identityGeneration=()=>0,sourceEvents=null,validateReceipt=null}) {
+ if((owner!==null&&typeof owner!=='string')||typeof currentOwner!=='function'||typeof validateSave!=='function')throw Error('Invalid host contract');
+ if(!locks?.request)throw Error('Exclusive lock required');
+ const key='nefroquest-owner-authority-v1:'+encodeURIComponent(JSON.stringify(owner));
+ let request=null,held=false,paused=false,baseline=null,watchedSource=null;
+ if(typeof identityGeneration!=='function')throw Error('Invalid identity generation provider');
+ if(validateReceipt!==null&&typeof validateReceipt!=='function')throw Error('Invalid receipt validator');
+ const error=(code,message)=>Object.assign(Error(message),{code});
+ function sameOwner(){
+  const same=currentOwner()===owner && (!request || identityGeneration()===request.identity);
+  if(!same)paused=true;
+  return same;
+ }
+ function sourcePairs(source){
+  const keys=source.keys||{},expected=source.guard||source;
+  return [[keys.canonicalKey||'nefroquest-save-v7',expected.saveRaw],
+   [keys.legacyKey||'nefroquest-save',expected.legacyRaw],
+   [keys.articlesKey||'unlockedArticles',expected.articlesRaw],
+   [keys.knowledgeKey||'nefroquest_total_accumulated_knowledge',expected.knowledgeRaw]]
+   .filter(([,raw])=>raw!==undefined);
+ }
+ function checkSources(source){
+  try {for(const [key,raw] of sourcePairs(source))if(storage.getItem(key)!==raw){paused=true;throw error('LEGACY_CONFLICT','Legacy progress changed outside authority');}}
+  catch(e){paused=true;throw e;}
+ }
+ function sourceChanged(event){
+  if(!held||!watchedSource||(event.storageArea&&event.storageArea!==storage))return;
+  const pair=sourcePairs(watchedSource).find(([key])=>key===event.key);
+  if(pair && event.newValue!==pair[1])paused=true;
+  else if(event.key===null){try{checkSources(watchedSource);}catch(_){}}
+ }
+ function watchSource(source){watchedSource=clone(source);}
+
+ function journeyIdentity(save){return JSON.stringify(save===null?null:[save.journeyId??null,save.classBenefits?.journeyId??null,save.character??null,save.difficulty??null]);}
+ function valid(e){
+  if(!object(e)||e.protocol!==1||e.owner!==owner||!Number.isSafeInteger(e.revision)||e.revision<0||!Number.isSafeInteger(e.resetEpoch)||e.resetEpoch<0||!object(e.collections)||!Array.isArray(e.receipts)||!object(e.source))throw error('INVALID','Invalid authority');
+  if(e.save!==null&&(!object(e.save)||e.save.saveOwner!==owner||!validateSave(clone(e.save),owner)))throw error('INVALID','Invalid save');
+  if(!Array.isArray(e.collections.articles)||e.collections.articles.some(n=>!Number.isSafeInteger(n)||n<0)||new Set(e.collections.articles).size!==e.collections.articles.length||!Number.isSafeInteger(e.collections.knowledge)||e.collections.knowledge<0)throw error('INVALID','Invalid collections');
+  const ids=new Set();for(const r of e.receipts){if(!object(r)||typeof r.id!=='string'||!r.id||ids.has(r.id)||typeof r.journeyId!=='string'||!r.journeyId||!['earned','prepared','consumed'].includes(r.phase)||(r.phase!=='earned'&&!object(r.reward)))throw error('INVALID','Invalid receipt');if(validateReceipt&&!validateReceipt(clone(r)))throw error('INVALID','Invalid receipt reward');ids.add(r.id);}
+  return e;
+ }
+ function read(){if(!held||paused||!sameOwner())throw error('UNAVAILABLE','Authority not writable');const raw=storage.getItem(key);if(raw===null)return null;const value=valid(JSON.parse(raw));checkSources(value.source);watchSource(value.source);return {raw,value};}
+ function persist(candidate,expectedRaw){
+  if(!held||paused||!sameOwner())throw error('UNAVAILABLE','Authority changed');
+  valid(candidate);checkSources(candidate.source);if(storage.getItem(key)!==expectedRaw){paused=true;throw error('CONFLICT','Authority changed');}
+  const raw=JSON.stringify(candidate);try{storage.setItem(key,raw);}catch(_){/* reconcile actual outcome */}
+  let actual;try{actual=storage.getItem(key);}catch(_){paused=true;throw error('UNKNOWN','Reload authority to resolve uncertain write');}
+  if(actual===raw){baseline=raw;watchSource(candidate.source);checkSources(candidate.source);return clone(candidate);}
+  if(actual===expectedRaw)throw error('REFUSED','Write not persisted');
+  paused=true;throw error('CONFLICT','Unrecognized committed value');
+ }
+ async function acquire(){
+  if(request||held)return false;
+  paused=false;
+  const token={identity:identityGeneration(),cancelled:false,release:null,settle:null,task:null};
+  request=token;
+  const result=new Promise(resolve=>token.settle=resolve);
+  token.task=Promise.resolve().then(()=>{
+   if(token.cancelled||request!==token)return;
+   return locks.request('nefroquest-legacy-source-session-v1',{mode:'exclusive',ifAvailable:true},async lock=>{
+    if(token.cancelled||request!==token||!lock||!sameOwner()){if(request===token)request=null;token.settle(false);return;}
+    held=true;sourceEvents?.addEventListener?.('storage',sourceChanged);
+    await new Promise(resolve=>{token.release=resolve;token.settle(true);});
+   });
+  }).catch(()=>{if(request===token){held=false;request=null;watchedSource=null;sourceEvents?.removeEventListener?.('storage',sourceChanged);}token.settle(false);}).finally(()=>{
+   token.settle(false);
+   if(request===token){held=false;request=null;watchedSource=null;sourceEvents?.removeEventListener?.('storage',sourceChanged);}
+  });
+  return result;
+ }
+ async function release(){
+  const token=request;if(!token){baseline=null;return;}
+  token.cancelled=true;token.settle(false);held=false;request=null;baseline=null;watchedSource=null;
+  sourceEvents?.removeEventListener?.('storage',sourceChanged);
+  // A pending browser callback may never run promptly. Cancel logically now;
+  // its token forbids later activation. Only await a lease already granted.
+  if(token.release){token.release();await token.task;}
+ }
+ function load(){const r=read();if(!r)return null;baseline=r.raw;return clone(r.value);}
+ function migrate({journeyId,canonicalKey='nefroquest-save-v7',articlesKey='unlockedArticles',knowledgeKey='nefroquest_total_accumulated_knowledge'}){
+  const existing=read();if(existing){baseline=existing.raw;return clone(existing.value);}
+  const saveRaw=storage.getItem(canonicalKey),legacyRaw=storage.getItem('nefroquest-save'),articlesRaw=storage.getItem(articlesKey),knowledgeRaw=storage.getItem(knowledgeKey);
+  const keys={canonicalKey,legacyKey:'nefroquest-save',articlesKey,knowledgeKey};
+  if(saveRaw===null)throw error('MIGRATION_REQUIRED','Missing verified canonical save; do not infer ownership');
+  const save=JSON.parse(saveRaw);
+  // A canonical tombstone wins over any stale legacy mirror. Raw JSON null
+  // proves no collection ownership: initialize empty, preserving bytes only.
+  if(save===null || (object(save)&&Object.prototype.hasOwnProperty.call(save,'save')&&save.save===null)){
+   if(save!==null && (save.saveOwner!==owner || ![7,9].includes(save.schemaVersion)))throw error('MIGRATION_REQUIRED','Tombstone belongs to another owner');
+   const candidate={protocol:1,owner,revision:0,resetEpoch:0,save:null,collections:{articles:[],knowledge:0},receipts:[],
+    tombstone:{reason:save?.resetReason==='reset'?'reset':'empty',epoch:0},source:{saveRaw,legacyRaw,articlesRaw,knowledgeRaw,keys}};
+   valid(candidate);
+   if(storage.getItem(canonicalKey)!==saveRaw||storage.getItem('nefroquest-save')!==legacyRaw||storage.getItem(articlesKey)!==articlesRaw||storage.getItem(knowledgeKey)!==knowledgeRaw)throw error('CONFLICT','Legacy source changed');
+   return persist(candidate,null);
+  }
+  if(!object(save)||save.saveOwner!==owner||![7,9].includes(save.schemaVersion)||!validateSave(clone(save),owner))throw error('MIGRATION_REQUIRED','Legacy save needs host recovery');
+  if(knowledgeRaw!==null&&!/^(0|[1-9][0-9]*)$/.test(knowledgeRaw))throw error('MIGRATION_REQUIRED','Invalid legacy knowledge');
+  const articles=articlesRaw===null?[]:JSON.parse(articlesRaw),knowledge=knowledgeRaw===null?0:Number(knowledgeRaw);
+  if(journeyId!==undefined){if(typeof journeyId!=='string'||!journeyId||
+    (save.journeyId&&save.journeyId!==journeyId)||(save.classBenefits?.journeyId&&save.classBenefits.journeyId!==journeyId))throw error('MIGRATION_REQUIRED','Conflicting journey identity');save.journeyId=journeyId;}
+  const candidate={protocol:1,owner,revision:0,resetEpoch:0,save,collections:{articles,knowledge},receipts:[],source:{saveRaw,legacyRaw,articlesRaw,knowledgeRaw,keys}};
+  valid(candidate);
+  // Preserve all original bytes inside the SAME atomic activation record. Old keys untouched.
+  if(storage.getItem(canonicalKey)!==saveRaw||storage.getItem(articlesKey)!==articlesRaw||storage.getItem(knowledgeKey)!==knowledgeRaw)throw error('CONFLICT','Legacy source changed');
+  return persist(candidate,null);
+ }
+ function checkedCurrent(){const current=read();if(!current||current.raw!==baseline){paused=true;throw error('CONFLICT','Load current authority before commit');}if(current.value.source.auxiliaryProjection)throw error('AUXILIARY_PENDING','Finish auxiliary projection before changing progress');return current;}
+ function initialize(save,collections={articles:[],knowledge:0}){
+  if(read())throw error('ALREADY_INITIALIZED','Authority already exists');
+  const keys={canonicalKey:'nefroquest-save-v7',legacyKey:'nefroquest-save',articlesKey:'unlockedArticles',knowledgeKey:'nefroquest_total_accumulated_knowledge'};
+  const saveRaw=storage.getItem('nefroquest-save-v7'),legacyRaw=storage.getItem('nefroquest-save');
+  const articlesRaw=storage.getItem('unlockedArticles'),knowledgeRaw=storage.getItem('nefroquest_total_accumulated_knowledge');
+  if(saveRaw!==null||legacyRaw!==null)throw error('MIGRATION_REQUIRED','Existing save requires explicit migration');
+  const candidate={protocol:1,owner,revision:0,resetEpoch:0,save:clone(save),collections:clone(collections),receipts:[],source:{saveRaw,legacyRaw,articlesRaw,knowledgeRaw,keys}};
+  if(save!==null&&!object(save))throw error('INVALID','Invalid initial save');
+  if(save===null)candidate.tombstone={reason:'empty',epoch:0};
+  valid(candidate);
+  if(storage.getItem('nefroquest-save-v7')!==saveRaw||storage.getItem('nefroquest-save')!==legacyRaw||storage.getItem('unlockedArticles')!==articlesRaw||storage.getItem('nefroquest_total_accumulated_knowledge')!==knowledgeRaw)throw error('CONFLICT','Legacy source changed');
+  return persist(candidate,null);
+ }
+ function commit(mutate){
+  const current=checkedCurrent();
+  const draft=clone(current.value),result=mutate(draft);
+  if(result&&typeof result.then==='function')throw error('INVALID','Reducer must be synchronous and side-effect free');
+  if(journeyIdentity(draft.save)!==journeyIdentity(current.value.save)||JSON.stringify(draft.tombstone)!==JSON.stringify(current.value.tombstone)||
+   (current.value.save===null&&draft.save!==null)||draft.protocol!==current.value.protocol||draft.owner!==current.value.owner||draft.resetEpoch!==current.value.resetEpoch||JSON.stringify(draft.source)!==JSON.stringify(current.value.source))throw error('INVALID','Protected authority fields changed');
+  valid(draft);
+  const rank={earned:0,prepared:1,consumed:2};
+  for(const old of current.value.receipts){
+   const next=draft.receipts.find(r=>r.id===old.id);
+   if(!next||next.journeyId!==old.journeyId||rank[next.phase]<rank[old.phase]||
+    (old.reward&&JSON.stringify(old.reward)!==JSON.stringify(next.reward))||
+    (old.phase==='consumed'&&JSON.stringify(old)!==JSON.stringify(next)))throw error('INVALID','Receipt history cannot be discarded or rewritten');
+  }
+  draft.revision=current.value.revision+1;
+  return persist(draft,current.raw);
+ }
+ // Cloud tokens cover semantic authority, never legacy backups or local revision.
+ function snapshot(e){return {protocol:e.protocol,owner:e.owner,resetEpoch:e.resetEpoch,
+  save:clone(e.save),collections:clone(e.collections),receipts:clone(e.receipts),tombstone:e.tombstone?clone(e.tombstone):null};}
+ function stable(v){if(Array.isArray(v))return '['+v.map(stable).join(',')+']';if(object(v))return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}';return JSON.stringify(v);}
+ function fingerprint(){return stable(snapshot(checkedCurrent().value));}
+ function replace(draft,current){draft.revision=current.value.revision+1;valid(draft);return persist(draft,current.raw);}
+ function nextEpoch(e){if(!Number.isSafeInteger(e.resetEpoch+1))throw error('INVALID','Epoch overflow');return e.resetEpoch+1;}
+ // Explicit logout-only bridge. It performs its own fixed cleanup; callers
+ // cannot acknowledge arbitrary changed source values. Original backup stays.
+ function retirementValues(source){const value=source.guard||source;return {saveRaw:value.saveRaw??null,legacyRaw:value.legacyRaw??null,articlesRaw:value.articlesRaw??null,knowledgeRaw:value.knowledgeRaw??null};}
+ function finishRetirement(record,expectedRaw){
+  const intent=record.source.retirementIntent,keys=record.source.keys||{};
+  const target={saveRaw:JSON.stringify({schemaVersion:7,saveOwner:owner,save:null,resetReason:'logout'}),legacyRaw:null,articlesRaw:null,knowledgeRaw:null};
+  if(!object(intent)||intent.owner!==owner||stable(intent.to)!==stable(target)||stable(intent.from)!==stable(retirementValues(record.source)))throw error('INVALID','Invalid retirement intent');
+  const fields=['saveRaw','legacyRaw','articlesRaw','knowledgeRaw'];
+  if(fields.some(f=>intent.from[f]!==null&&typeof intent.from[f]!=='string'))throw error('INVALID','Invalid retirement source');
+  const names=[keys.canonicalKey||'nefroquest-save-v7',keys.legacyKey||'nefroquest-save',keys.articlesKey||'unlockedArticles',keys.knowledgeKey||'nefroquest_total_accumulated_knowledge'];
+  const readValues=()=>Object.fromEntries(fields.map((f,i)=>[f,storage.getItem(names[i])]));
+  const states=[clone(intent.from)];for(let i=0;i<4;i++){const next=clone(states[i]);next[fields[i]]=target[fields[i]];states.push(next);}
+  try {
+   const actual=readValues();let completed=-1;
+   for(let i=0;i<states.length;i++)if(stable(actual)===stable(states[i]))completed=i;
+   if(completed<0)throw error('LEGACY_CONFLICT','Retirement sources changed outside recorded cleanup');
+   for(let i=completed;i<4;i++){
+    if(stable(readValues())!==stable(states[i]))throw error('LEGACY_CONFLICT','Retirement source changed');
+    try{if(i===0)storage.setItem(names[i],target.saveRaw);else storage.removeItem(names[i]);}catch(_){/* determine actual outcome below */}
+    const after=readValues();
+    if(stable(after)!==stable(states[i+1]))throw error(stable(after)===stable(states[i])?'REFUSED':'LEGACY_CONFLICT','Retirement step not confirmed');
+   }
+   const done=clone(record);done.source.guard=target;done.source.retirement={owner,status:'retired'};delete done.source.retirementIntent;
+   done.revision=record.revision+1;return persist(done,expectedRaw);
+  } catch(e){paused=true;throw e;}
+ }
+ function retireLegacySources(){
+  if(!held||paused||!sameOwner())throw error('UNAVAILABLE','Authority unavailable');
+  const pendingRaw=storage.getItem(key),pending=pendingRaw===null?null:valid(JSON.parse(pendingRaw));
+  if(pending?.source.retirementIntent)return finishRetirement(pending,pendingRaw);
+  const current=checkedCurrent(),draft=clone(current.value);
+  const target={saveRaw:JSON.stringify({schemaVersion:7,saveOwner:owner,save:null,resetReason:'logout'}),legacyRaw:null,articlesRaw:null,knowledgeRaw:null};
+  draft.source.retirementIntent={owner,from:retirementValues(draft.source),to:target};
+  draft.revision++;
+  // No source bytes change until this intent is confirmed durable.
+  const staged=persist(draft,current.raw);
+  return finishRetirement(staged,baseline);
+ }
+ // Explicit handoff after a verified logout. The global session lease is
+ // required because legacy source keys are shared by all accounts in this origin.
+ function resumeLegacySources(){
+  if(!held||paused||!sameOwner())throw error('UNAVAILABLE','Authority unavailable');
+  const raw=storage.getItem(key),existing=raw===null?null:valid(JSON.parse(raw));
+  const defaults={canonicalKey:'nefroquest-save-v7',legacyKey:'nefroquest-save',articlesKey:'unlockedArticles',knowledgeKey:'nefroquest_total_accumulated_knowledge'};
+  const readSources=()=>({saveRaw:storage.getItem(defaults.canonicalKey),legacyRaw:storage.getItem(defaults.legacyKey),articlesRaw:storage.getItem(defaults.articlesKey),knowledgeRaw:storage.getItem(defaults.knowledgeKey)});
+  const target={saveRaw:JSON.stringify({schemaVersion:7,saveOwner:owner,save:null,resetReason:'empty'}),legacyRaw:null,articlesRaw:null,knowledgeRaw:null};
+  function finish(record,expectedRaw){
+   const transition=record.source.custodyTransition;
+   let priorMarker;try{priorMarker=JSON.parse(transition.from?.saveRaw);}catch(_){priorMarker=null;}
+   if(stable(transition.to)!==stable(target)||transition.from?.legacyRaw!==null||transition.from?.articlesRaw!==null||transition.from?.knowledgeRaw!==null||priorMarker?.save!==null||priorMarker.resetReason!=='logout'||priorMarker.saveOwner!==transition.fromOwner)throw error('LEGACY_CONFLICT','Invalid pending source handoff');
+   const actual=readSources();
+   if(stable(actual)!==stable(transition.from)&&stable(actual)!==stable(transition.to)){paused=true;throw error('LEGACY_CONFLICT','Source handoff diverged');}
+   if(stable(actual)!==stable(transition.to)){
+    try{storage.setItem(defaults.canonicalKey,transition.to.saveRaw);}catch(_){/* readback settles result */}
+    if(stable(readSources())!==stable(transition.to)){paused=true;throw error('LEGACY_CONFLICT','Source handoff not confirmed');}
+   }
+   const done=clone(record);done.source.guard=clone(transition.to);done.source.retirement=null;
+   done.source.lastCustodyOwner=transition.fromOwner;delete done.source.custodyTransition;
+   done.revision=record.revision+1;return persist(done,expectedRaw);
+  }
+  if(existing?.source.retirementIntent){finishRetirement(existing,raw);return resumeLegacySources();}
+  if(existing?.source.keys&&stable(existing.source.keys)!==stable(defaults))throw error('LEGACY_CONFLICT','Custom source handoff requires explicit adapter');
+  if(existing?.source.custodyTransition)return finish(existing,raw);
+  const actual=readSources();
+  const matches=existing&&sourcePairs(existing.source).every(([k,v])=>storage.getItem(k)===v);
+  if(matches&&!existing.source.retirement){baseline=raw;watchSource(existing.source);return clone(existing);}
+  // A live authority may never silently adopt updates from an old client.
+  if(existing&&!existing.source.retirement){paused=true;throw error('LEGACY_CONFLICT','Active source history diverged');}
+  let marker;try{marker=JSON.parse(actual.saveRaw);}catch(_){marker=null;}
+  if(!marker||marker.save!==null||marker.resetReason!=='logout'){
+   if(existing){paused=true;throw error('LEGACY_CONFLICT','No verified logout handoff');}
+   return null;
+  }
+  const fromOwner=marker.saveOwner;
+  if(fromOwner!==null&&typeof fromOwner!=='string')throw error('LEGACY_CONFLICT','Invalid handoff owner');
+  const fromRaw=fromOwner===owner?raw:storage.getItem('nefroquest-owner-authority-v1:'+encodeURIComponent(JSON.stringify(fromOwner)));
+  let from;try{from=JSON.parse(fromRaw);}catch(_){from=null;}
+  const retired=from?.protocol===1&&from.owner===fromOwner&&from.source?.retirement?.status==='retired'&&
+   from.source.retirement.owner===fromOwner&&!from.source.custodyTransition&&from.source.guard?.saveRaw===actual.saveRaw&&
+   from.source.guard.legacyRaw===null&&from.source.guard.articlesRaw===null&&from.source.guard.knowledgeRaw===null;
+  // Older clients have no retirement record. Only their empty logout marker
+  // may start a first authority for another owner without importing any data.
+  const legacyLogout=!existing&&fromRaw===null&&fromOwner!==owner&&[7,9].includes(marker.schemaVersion)&&
+   typeof marker.saveRevision==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(marker.saveRevision);
+  if(!(retired||legacyLogout)||actual.legacyRaw!==null||actual.articlesRaw!==null||actual.knowledgeRaw!==null){
+   if(!existing)return null;paused=true;throw error('LEGACY_CONFLICT','Logout source custody is not proven');
+  }
+  if(existing&&existing.source.retirement.owner!==owner){paused=true;throw error('LEGACY_CONFLICT','Local authority was not retired');}
+  const draft=existing?clone(existing):{protocol:1,owner,revision:0,resetEpoch:0,save:null,collections:{articles:[],knowledge:0},receipts:[],tombstone:{reason:'empty',epoch:0},source:{...actual,keys:defaults}};
+  draft.source.guard=clone(actual);draft.source.custodyTransition={fromOwner,from:clone(actual),to:target};
+  if(existing)draft.revision++;
+  const staged=persist(draft,raw);
+  return finish(staged,baseline);
+ }
+ function journalTransition(draft,current){
+  const journal=clone(current.value.source.transitionJournal||[]);
+  if(journal.length>=64)throw error('OFFLINE_JOURNAL_FULL','Synchronize before starting another journey');
+  journal.push({before:snapshot(current.value),after:snapshot(draft)});
+  draft.source.transitionJournal=journal;
+ }
+ function acknowledgeCloud(state){
+  const current=checkedCurrent();
+  if(stable(state)!==stable(snapshot(current.value)))return false;
+  if(!current.value.source.transitionJournal?.length)return true;
+  const draft=clone(current.value);draft.source.transitionJournal=[];replace(draft,current);return true;
+ }
+ const auxiliaryKeys=['nefroquest-stats','nefroquest-achievements','nefroquest-mastered','nq-unlocked-refs','nefroquest-arqui-defeated','nefroquest-hardcore-completed','nefroquest-detailed-stats','nq-acidbase-progress','nefroquest-sr-data','nefroquest-gold-milestone-shown'];
+ function projectionValues(target){
+  if(!object(target)||Object.keys(target).length!==auxiliaryKeys.length||auxiliaryKeys.some(k=>!Object.prototype.hasOwnProperty.call(target,k)||(target[k]!==null&&typeof target[k]!=='string'))||JSON.stringify(target).length>2000000)throw error('INVALID_PROJECTION','Invalid auxiliary storage projection');
+  return clone(target);
+ }
+ function captureAuxiliary(){return Object.fromEntries(auxiliaryKeys.map(k=>[k,storage.getItem(k)]));}
+ function auxiliaryFingerprint(){checkedCurrent();return stable(captureAuxiliary());}
+ function attachProjection(draft,target,finalHold=null){
+  draft.source.auxiliaryProjection={target:projectionValues(target),before:projectionValues(captureAuxiliary()),finalHold:clone(finalHold)};
+  draft.source.cloudSyncHold={reason:'auxiliary-projection-pending'};
+ }
+ function resumeAuxiliaryProjection(){
+  const current=read();if(!current)return null;
+  baseline=current.raw;
+  const intent=current.value.source.auxiliaryProjection;if(!intent)return clone(current.value);
+  const target=projectionValues(intent.target),before=projectionValues(intent.before);
+  // Every byte must still be either the captured old value or our target.
+  // Never overwrite unrelated changes from another writer during recovery.
+  for(const key of auxiliaryKeys){const actual=storage.getItem(key);if(actual!==before[key]&&actual!==target[key])throw error('AUXILIARY_CONFLICT','Auxiliary progress changed during projection');}
+  for(const key of auxiliaryKeys){
+   const bound=read();if(!bound||bound.raw!==current.raw)throw error('CONFLICT','Authority changed during auxiliary projection');
+   const actual=storage.getItem(key);
+   if(actual!==before[key]&&actual!==target[key])throw error('AUXILIARY_CONFLICT','Auxiliary progress changed before write');
+   if(actual===target[key])continue;
+   try{if(target[key]===null)storage.removeItem(key);else storage.setItem(key,target[key]);}catch(_){/* confirm actual write below */}
+   if(storage.getItem(key)!==target[key])throw error('AUXILIARY_PENDING','Auxiliary projection not persisted');
+  }
+  for(const key of auxiliaryKeys)if(storage.getItem(key)!==target[key])throw error('AUXILIARY_CONFLICT','Auxiliary progress changed before confirmation');
+  const fresh=read();if(fresh.raw!==current.raw)throw error('CONFLICT','Authority changed during auxiliary projection');
+  const draft=clone(fresh.value);delete draft.source.auxiliaryProjection;
+  if(intent.finalHold)draft.source.cloudSyncHold=clone(intent.finalHold);else delete draft.source.cloudSyncHold;
+  return replace(draft,fresh);
+ }
+ function restoreArchivedBranch(index,{expectedFingerprint,expectedAuxiliaryFingerprint,projection,currentProgress}={}){
+  const current=checkedCurrent();
+  if(fingerprint()!==expectedFingerprint||(expectedAuxiliaryFingerprint!==undefined&&auxiliaryFingerprint()!==expectedAuxiliaryFingerprint))throw error('CONFLICT','Archive decision changed');
+  const archives=clone(current.value.source.authoritySelections||[]),selected=archives[index];
+  if(!Number.isSafeInteger(index)||index<0||!selected?.local||!object(currentProgress))throw error('INVALID_ARCHIVE','Archived branch is unavailable');
+  const draft={...clone(current.value),...clone(selected.local),source:clone(current.value.source),revision:current.value.revision};valid(draft);
+  const target=selected.localAuxiliaryRaw||projection;
+  projectionValues(target);
+  archives[index]={local:snapshot(current.value),localTransitionJournal:clone(current.value.source.transitionJournal||[]),localAuxiliaryRaw:captureAuxiliary(),remote:snapshot(draft),progress:{localProgress:clone(currentProgress),remoteProgress:clone(selected.progress?.localProgress||{})}};
+  draft.source.authoritySelections=archives;draft.source.transitionJournal=clone(selected.localTransitionJournal||[]);
+  attachProjection(draft,target,{reason:'restored-archive'});
+  replace(draft,current);return resumeAuxiliaryProjection();
+ }
+ function selectRemoteBranch(remote,{expectedFingerprint,expectedRemoteFingerprint,expectedAuxiliaryFingerprint,archive:progressArchive,projection}={}){
+  const current=checkedCurrent();
+  if(fingerprint()!==expectedFingerprint||stable(remote)!==expectedRemoteFingerprint||(expectedAuxiliaryFingerprint!==undefined&&auxiliaryFingerprint()!==expectedAuxiliaryFingerprint))throw error('CONFLICT','Branch decision changed');
+  if(remote?.owner!==owner||remote?.protocol!==1)throw error('CLOUD_OWNER','Wrong branch owner');
+  const draft={...clone(current.value),...clone(remote),source:clone(current.value.source),revision:current.value.revision};
+  valid(draft);
+  const archive=clone(draft.source.authoritySelections||[]);
+  if(archive.length>=16)throw error('ARCHIVE_FULL','Export existing branch archives before another selection');
+  archive.push({local:snapshot(current.value),localTransitionJournal:clone(current.value.source.transitionJournal||[]),localAuxiliaryRaw:captureAuxiliary(),remote:snapshot(draft),...(progressArchive===undefined?{}:{progress:clone(progressArchive)})});
+  draft.source.authoritySelections=archive;draft.source.transitionJournal=[];
+  draft.source.cloudSyncHold={reason:'authority-branch-selection'};
+  if(projection!==undefined)attachProjection(draft,projection);
+  replace(draft,current);return projection===undefined?load():resumeAuxiliaryProjection();
+ }
+ function resetProgress(){
+  const current=checkedCurrent(),draft=clone(current.value);draft.resetEpoch=nextEpoch(draft);
+  draft.save=null;draft.collections={articles:[],knowledge:0};draft.receipts=[];
+  draft.tombstone={reason:'reset',epoch:draft.resetEpoch};journalTransition(draft,current);return replace(draft,current);
+ }
+ function startJourney(save,{discardPending=false}={}){
+  const current=checkedCurrent(),draft=clone(current.value);
+  if(!discardPending&&draft.receipts.some(r=>r.phase!=='consumed'))throw error('PENDING_RECEIPTS','Resolve rewards before replacing the journey');
+  if(!object(save))throw error('INVALID','A new journey requires a save');
+  draft.resetEpoch=nextEpoch(draft);draft.save=clone(save);draft.receipts=[];
+  draft.tombstone={reason:'journey',epoch:draft.resetEpoch};journalTransition(draft,current);return replace(draft,current);
+ }
+ // Only for explicit first migration choice, after matching remote CAS confirmation.
+ // Never call this to resolve an already-authoritative cloud branch.
+ function archiveLegacySelection({expectedFingerprint,legacyProgress,legacyVersion,intent}){
+  const current=checkedCurrent();
+  if(fingerprint()!==expectedFingerprint)throw error('CONFLICT','Local choice became stale');
+  if(!object(legacyProgress)||Object.prototype.hasOwnProperty.call(legacyProgress,'ownerAuthority')||!Number.isSafeInteger(legacyVersion)||legacyVersion<0)throw error('INVALID','Only legacy cloud can be archived');
+  const draft=clone(current.value);
+  if(intent!==undefined&&(!object(intent)||intent.expectedVersion!==legacyVersion+1))throw error('INVALID','Invalid legacy decision intent');
+  draft.source.legacySelection={previous:snapshot(current.value),remote:clone(legacyProgress),version:legacyVersion,...(intent===undefined?{}:{intent:clone(intent)})};
+  return replace(draft,current);
+ }
+ function installLegacySelection(selected,{expectedFingerprint,legacyProgress,legacyVersion}){
+  const current=checkedCurrent();
+  if(fingerprint()!==expectedFingerprint)throw error('CONFLICT','Local choice became stale');
+  if(!object(legacyProgress)||Object.prototype.hasOwnProperty.call(legacyProgress,'ownerAuthority')||!Number.isSafeInteger(legacyVersion)||legacyVersion<0)throw error('INVALID','Only a verified legacy cloud selection is accepted');
+  const draft={...clone(current.value),...clone(selected),source:clone(current.value.source)};
+  if(draft.owner!==owner||draft.protocol!==current.value.protocol||draft.resetEpoch!==current.value.resetEpoch+1||draft.receipts.length||draft.tombstone?.reason!=='legacy-selection'||draft.tombstone.epoch!==draft.resetEpoch)throw error('INVALID','Invalid legacy selection transition');
+  const intent=current.value.source.legacySelection?.intent;
+  draft.source.legacySelection={previous:snapshot(current.value),remote:clone(legacyProgress),version:legacyVersion,...(intent===undefined?{}:{intent:clone(intent)})};
+  return replace(draft,current);
+ }
+ function exportCloud({base=null}={}){
+  if(base!==null&&typeof base!=='string')throw error('INVALID','Invalid cloud ancestor');
+  const current=checkedCurrent(),state=snapshot(current.value),payload={format:'nq-owner-authority-v1',base,state};
+  if(base!==null&&base!==stable(state)){
+   let prior;try{prior=JSON.parse(base);}catch(_){throw error('INVALID','Invalid cloud ancestor');}
+   const journal=current.value.source.transitionJournal||[];
+   if(state.resetEpoch>prior.resetEpoch&&journal.length){
+    const path=[];
+    for(const entry of journal){
+     if(entry.before.resetEpoch<prior.resetEpoch)continue;
+     path.push(clone(entry.before),clone(entry.after));
+    }
+    if(path.length&&stable(path[path.length-1])===stable(state))path.pop();
+    path.push(state);
+    if(path.length>129)throw error('OFFLINE_JOURNAL_FULL','Cloud proof exceeds protocol limit');
+    let previous=prior;
+    for(const next of path){validateStep(previous,next);previous=next;}
+    payload.transitionPath=path;
+   }
+  }
+  return payload;
+ }
+ function validateStep(local,remote){
+  if(remote?.owner!==owner)throw error('CLOUD_OWNER','Cloud belongs to another owner');
+  const draft={...clone(local),...clone(remote),source:{},revision:0};valid(draft);
+  if(remote.protocol!==local.protocol||remote.resetEpoch<local.resetEpoch)throw error('CLOUD_STALE','Cloud would downgrade authority');
+  if(remote.resetEpoch===local.resetEpoch){
+   if(journeyIdentity(remote.save)!==journeyIdentity(local.save)||stable(remote.tombstone)!==stable(local.tombstone??null)||
+      (local.save===null&&remote.save!==null))throw error('CLOUD_CONFLICT','Cloud changed journey without epoch');
+   if(remote.collections.knowledge<local.collections.knowledge||local.collections.articles.some(id=>!remote.collections.articles.includes(id)))throw error('CLOUD_CONFLICT','Cloud discarded collections');
+   const rank={earned:0,prepared:1,consumed:2};
+   for(const old of local.receipts){const next=remote.receipts.find(r=>r.id===old.id);
+    if(!next||next.journeyId!==old.journeyId||rank[next.phase]<rank[old.phase]||
+       (old.reward&&stable(old.reward)!==stable(next.reward))||
+       (old.phase==='consumed'&&stable(old)!==stable(next)))throw error('CLOUD_CONFLICT','Cloud rewrote receipt history');}
+  }else{
+   // Multi-epoch divergence requires explicit user conflict handling, never a timestamp winner.
+   if(remote.resetEpoch!==local.resetEpoch+1||!object(remote.tombstone)||remote.tombstone.epoch!==remote.resetEpoch||remote.receipts.length)throw error('CLOUD_CONFLICT','Unverified epoch transition');
+   if(remote.tombstone.reason==='reset'){
+    if(remote.save!==null||remote.collections.articles.length||remote.collections.knowledge!==0)throw error('CLOUD_CONFLICT','Invalid reset tombstone');
+   }else if(remote.tombstone.reason==='journey'){
+    if(remote.save===null||stable(remote.collections)!==stable(local.collections))throw error('CLOUD_CONFLICT','Journey transition changed collections');
+   }else throw error('CLOUD_CONFLICT','Unknown epoch transition');
+  }
+  return true;
+ }
+ function importCloud(payload){
+  const current=checkedCurrent(),local=current.value;
+  if(!object(payload)||payload.format!=='nq-owner-authority-v1'||!object(payload.state))throw error('CLOUD_FORMAT','Unsupported cloud format');
+  const remote=payload.state;
+  if(remote.owner!==owner)throw error('CLOUD_OWNER','Cloud belongs to another owner');
+  // Identical retries are harmless, including after the successful write was uncertain.
+  if(stable(remote)===stable(snapshot(local)))return clone(local);
+  if(payload.base!==stable(snapshot(local)))throw error('CLOUD_CONFLICT','Cloud is not a direct descendant of this local authority');
+  const draft={...clone(local),...clone(remote),source:clone(local.source),revision:local.revision};
+  valid(draft);
+  if(payload.transitionPath!==undefined){
+   const path=payload.transitionPath;
+   if(!Array.isArray(path)||!path.length||path.length>129||stable(path[path.length-1])!==stable(remote))throw error('CLOUD_CONFLICT','Invalid transition proof');
+   let previous=snapshot(local);
+   for(const next of path){validateStep(previous,next);previous=next;}
+  }else validateStep(local,remote);
+  return replace(draft,current);
+ }
+ return Object.freeze({key,acquire,release,load,migrate,initialize,commit,resetProgress,retireLegacySources,resumeLegacySources,startJourney,archiveLegacySelection,installLegacySelection,fingerprint,exportCloud,importCloud,acknowledgeCloud,selectRemoteBranch,resumeAuxiliaryProjection,restoreArchivedBranch,auxiliaryFingerprint,get writable(){if(!held||paused||!sameOwner()||watchedSource?.auxiliaryProjection)return false;try{if(watchedSource)checkSources(watchedSource);return true;}catch(_){return false;}}});
+}
+module.exports={createAuthority};

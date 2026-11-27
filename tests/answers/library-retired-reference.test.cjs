@@ -126,9 +126,10 @@ test('missing mandatory catalog fails closed for native cached dashboard, reader
 test('missing mandatory catalog cannot spend or claim a chest through any native path',()=>{
   const game=fs.readFileSync(path.join(ROOT,'js/game.js'),'utf8'),messages=[],state={gameOver:false,gold:1000,score:1000,correctTotal:20,chestsOpened:2},popup={dataset:{}},entry={popup,binding:{}},pending=[entry];
   popup.remove=()=>{};
-  const context=vm.createContext({window:{},state,log:message=>messages.push(message),_toast:message=>messages.push(message),_watchChestRewards(){},clearTimeout(){},_pendingChestRewards:pending,_chestRewardCurrent:()=>true});
+  const context=vm.createContext({window:{},state,_progressSandboxMode:null,isCharacterPilot:()=>false,log:message=>messages.push(message),_toast:message=>messages.push(message),_watchChestRewards(){},clearTimeout(){},_pendingChestRewards:pending,_chestRewardCurrent:()=>true});
   const extract=name=>{const start=game.indexOf('function '+name+'('),end=game.indexOf('\n    }',start+1)+6;assert(start>=0&&end>start,name);return game.slice(start,end);};
-  for(const name of ['_openChestDirect','openChest','claimChestReward','_animateAndClaimChest','_chestLibraryReady','_retryChestLibrary']) vm.runInContext(extract(name),context);
+  vm.runInContext(slice(game,'function _atomicPurchasedChest(','function showForgePopup('),context);
+  for(const name of ['openChest','claimChestReward','_animateAndClaimChest','_chestLibraryReady','_retryChestLibrary','_durableChestStore']) vm.runInContext(extract(name),context);
   vm.runInContext(extract('_withdrawChestReward'),context);
   const before=JSON.stringify(state);context._openChestDirect();context.openChest();context.claimChestReward();context._animateAndClaimChest({closest:()=>popup});
   assert.equal(JSON.stringify(state),before);assert.equal(pending[0],entry);assert.equal(entry.popup,null);assert.equal(popup.dataset.claiming,undefined);assert.equal(messages.length,4);assert(messages.every(message=>/indisponível/.test(message)));
