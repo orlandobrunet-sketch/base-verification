@@ -224,9 +224,13 @@ function createAuthority({storage,locks,currentOwner,validateSave,owner,identity
   if(fromOwner!==null&&typeof fromOwner!=='string')throw error('LEGACY_CONFLICT','Invalid handoff owner');
   const fromRaw=fromOwner===owner?raw:storage.getItem('nefroquest-owner-authority-v1:'+encodeURIComponent(JSON.stringify(fromOwner)));
   let from;try{from=JSON.parse(fromRaw);}catch(_){from=null;}
-  if(!from||from.protocol!==1||from.owner!==fromOwner||from.source?.retirement?.status!=='retired'||from.source.retirement.owner!==fromOwner||from.source.custodyTransition||
-     from.source.guard?.saveRaw!==actual.saveRaw||from.source.guard.legacyRaw!==null||from.source.guard.articlesRaw!==null||from.source.guard.knowledgeRaw!==null||
-     actual.legacyRaw!==null||actual.articlesRaw!==null||actual.knowledgeRaw!==null){
+  const retired=from?.protocol===1&&from.owner===fromOwner&&from.source?.retirement?.status==='retired'&&
+   from.source.retirement.owner===fromOwner&&!from.source.custodyTransition&&from.source.guard?.saveRaw===actual.saveRaw&&
+   from.source.guard.legacyRaw===null&&from.source.guard.articlesRaw===null&&from.source.guard.knowledgeRaw===null;
+  // Older clients have no retirement record. Only their empty logout marker
+  // may start a first authority for another owner without importing any data.
+  const legacyLogout=!existing&&fromRaw===null&&fromOwner!==owner&&[7,9].includes(marker.schemaVersion);
+  if(!(retired||legacyLogout)||actual.legacyRaw!==null||actual.articlesRaw!==null||actual.knowledgeRaw!==null){
    if(!existing)return null;paused=true;throw error('LEGACY_CONFLICT','Logout source custody is not proven');
   }
   if(existing&&existing.source.retirement.owner!==owner){paused=true;throw error('LEGACY_CONFLICT','Local authority was not retired');}

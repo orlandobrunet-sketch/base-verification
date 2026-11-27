@@ -248,22 +248,35 @@ test('a disappearing catalog leaves the durable receipt unchanged until the play
   } finally { pilot.release(); }
 });
 
-test('real game normal scheduler and article reducer use unified authority after reload',async()=>{
+test('real game normal authority resumes a prepared article before the lazy catalog is loaded',async()=>{
   const {create}=require('../../js/normal-authority.js'),{createAuthority}=require('../../isolated-authority/owner-authority.cjs');
   const values=new Map(),storage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,String(v)),removeItem:k=>values.delete(k)};
   const locks={request:async(n,o,fn)=>fn({})};
   const save={schemaVersion:7,saveOwner:null,journeyId:'normal-j',character:'nephros',gameStarted:true,gameOver:false,score:0,gold:0,chestsOpened:0,equipment:{relic:{n:'Vazio'}},obtainedItems:[]};
   const make=()=>create({createAuthority,storage,locks,owner:null,currentOwner:()=>null,validateSave:s=>s.character==='nephros',newJourneyId:()=> 'normal-j'});
-  let store=make();await store.bootstrap({newSave:save});store.beginTransaction();const receipt=store.stageChest();store.updateChest(receipt.id,r=>{r.phase='prepared';r.reward={kind:'article',articleIndex:0};});store.commit(save);await store.release();store=make();await store.bootstrap();
-  const f=fixture();Object.assign(f.ctx,{isCharacterPilot:()=>false,NQNormalProgress:store,
-    nqProgressStorage:()=>store.storage,_toast(){},renderHUD(){},updateBadges(){},showChestModal(){},
-    unlockedArticles:[],nefroArticles:[{titulo:'Technical article'}]});
-  Object.assign(f.ctx.state,store.loadSave());f.ctx._stateData=f.ctx.state;
-  f.ctx._doSaveGame=()=>{store.commit(f.ctx.state);return true;};
-  f.flush();f.advance(1);assert.equal(f.eval('_pendingChestRewards.length'),1);
-  assert.equal(f.eval('_claimDurableChest(_pendingChestRewards[0])'),true);
-  assert.equal(store.loadSave().score,40);assert.equal(store.storage.getItem('nefroquest_total_accumulated_knowledge'),'1');
-  assert.equal(store.chestReceipts()[0].phase,'consumed');await store.release();
+  const before=make();await before.bootstrap({newSave:save});before.beginTransaction();
+  const receipt=before.stageChest();before.updateChest(receipt.id,r=>{r.phase='prepared';r.reward={kind:'article',articleIndex:0};});
+  before.commit(save);await before.release();
+  const f=fixture();Object.assign(f.ctx,{isCharacterPilot:()=>false,NQ_DURABLE_PROGRESS:true,
+    NQNormalAuthority:{create:options=>create({...options,createAuthority})},localStorage:storage,navigator:{locks},_authSessionEpoch:1,
+    _reloadJourneyCollections(){},renderHUD(){},updateBadges(){},showChestModal(){},unlockedArticles:[]});
+  delete f.ctx.nefroArticles;
+  f.eval(section('    let _normalAuthorityOpening =', '    function loadGame()'));
+  assert.equal(await f.ctx._ensureNormalAuthority(),true,'a saved receipt must not require an already loaded catalog');
+  const store=f.ctx.NQNormalProgress;
+  try {
+    Object.assign(f.ctx.state,store.loadSave());f.ctx._stateData=f.ctx.state;
+    f.ctx.nqProgressStorage=()=>store.storage;
+    f.ctx._doSaveGame=()=>{store.commit(f.ctx.state);return true;};
+    f.flush();f.advance(1);assert.equal(f.eval('_pendingChestRewards.length'),1);
+    assert.equal(f.popup(),undefined);
+    assert.equal(store.chestReceipts()[0].phase,'prepared');
+    f.ctx.nefroArticles=[{titulo:'Technical article'}];
+    f.flush();f.click();f.advance(1150);
+    assert.equal(store.loadSave().score,40);
+    assert.equal(store.storage.getItem('nefroquest_total_accumulated_knowledge'),'1');
+    assert.equal(store.chestReceipts()[0].phase,'consumed');
+  } finally { await store.release(); }
 });
 test('paused durable receipt never falls back to legacy award callback',()=>{
   const f=fixture();f.eval("_queueChestReward(_captureChestRewardBinding(),0,{id:'durable-receipt'})");

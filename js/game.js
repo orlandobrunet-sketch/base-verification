@@ -1707,12 +1707,17 @@
       if (window.NQ_DURABLE_PROGRESS !== true) return true;
       if (window.NQNormalProgress?.writable) return true;
       if (window.NQNormalProgress) await window.NQNormalProgress.release();
-      const instance=window.NQNormalAuthority.create({storage:localStorage,locks:navigator.locks,
-        owner:_currentSaveOwner(),currentOwner:_currentSaveOwner,identityGeneration:()=>_authSessionEpoch,sourceEvents:window,newJourneyId:()=>crypto.randomUUID(),
-        validateReceipt:r=>r.phase==='earned'||_validDurableChestReward(r.reward),
-        validateSave:(save,owner)=>save.saveOwner===owner && !!save.character &&
-          (save.classBenefits ? _normalCharacterSaveValid(save,owner) : save.schemaVersion===7)});
-      try {await instance.bootstrap();window.NQNormalProgress=instance;_reloadJourneyCollections();return true;}
+      try {
+        const instance = window.NQNormalAuthority.create({storage:localStorage,locks:navigator.locks,
+          owner:_currentSaveOwner(),currentOwner:_currentSaveOwner,identityGeneration:()=>_authSessionEpoch,sourceEvents:window,newJourneyId:()=>crypto.randomUUID(),
+          validateReceipt:r=>r.phase==='earned'||_validDurableChestReward(r.reward),
+          validateSave:(save,owner)=>save.saveOwner===owner && !!save.character &&
+            (save.classBenefits ? _normalCharacterSaveValid(save,owner) : save.schemaVersion===7)});
+        await instance.bootstrap();
+        window.NQNormalProgress = instance;
+        _reloadJourneyCollections();
+        return true;
+      }
       catch(error){_toast('Não foi possível proteger o progresso. Nenhum dado foi alterado.', 'warning',6000);return false;}
     }
     function loadGame() {
@@ -2050,7 +2055,8 @@
                   save.journeyId=save.classBenefits?.journeyId || save.journeyId || crypto.randomUUID();
                 }
                 const articles=progress.unlockedArticles || [];
-                if (!Array.isArray(articles) || articles.some(x=>!Number.isSafeInteger(x)||x<0||x>=nefroArticles.length) || new Set(articles).size!==articles.length) throw Error('INVALID_ARTICLES');
+                if (!Array.isArray(articles) || articles.some(x => !Number.isSafeInteger(x) || x < 0) ||
+                    new Set(articles).size !== articles.length) throw Error('INVALID_ARTICLES');
                 return {save,collections:{articles,knowledge:authority.load().collections.knowledge},
                   knowledgePolicy:'O histórico de conhecimento deste aparelho será preservado: a nuvem antiga não armazenava esse total.'};
               }});
@@ -7686,7 +7692,8 @@
 
     function _validDurableChestReward(reward) {
       if (!reward || typeof reward!=='object') return false;
-      if (reward.kind==='article') return Number.isSafeInteger(reward.articleIndex) && reward.articleIndex>=0 && reward.articleIndex<nefroArticles.length;
+      // Auth can restore stored receipts before the library script has loaded.
+      if (reward.kind === 'article') return Number.isSafeInteger(reward.articleIndex) && reward.articleIndex >= 0;
       return reward.kind==='equipment' && ['helmet','glove','armor','weapon','relic','boot'].includes(reward.slot) &&
         reward.item && typeof reward.item.n==='string' && !!reward.item.n &&
         ['common','uncommon','rare','epic','legendary','mythic'].includes(reward.item.rar) &&
@@ -7744,6 +7751,11 @@
       const reward=receipt.reward;
       if (!_validDurableChestReward(reward)) return false;
       if(reward.kind==='article') {
+        const article = _chestLibraryReady() ? nefroArticles[reward.articleIndex] : null;
+        if (!article) {
+          _toast('O artigo deste baú está indisponível. A recompensa continua guardada.', 'warning');
+          return false;
+        }
         let knoGain,chestPoints;
         if(!_mutateDurableChest(id,r=>{
           // An article unlocked elsewhere remains unlocked. Deliver this chest's
@@ -7758,7 +7770,7 @@
           nqProgressStorage().setItem('nefroquest_total_accumulated_knowledge',String(prior+knoGain));
           state.score+=chestPoints;r.phase='consumed';r.choice='accept';
         }))return false;
-        finish();showChestModal(nefroArticles[reward.articleIndex],knoGain,chestPoints);
+        finish();showChestModal(article,knoGain,chestPoints);
         if(typeof checkAchievements==='function')checkAchievements();return true;
       }
       const binding=_captureJourneyBinding(), currentItem=state.equipment[reward.slot];

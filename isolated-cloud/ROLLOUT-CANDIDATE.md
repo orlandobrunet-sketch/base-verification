@@ -1,9 +1,9 @@
 # Durable chests on the 17.34 base
 
 ## Current status
-PR 972 integrates the candidate with release 17.34 and prepares cache revision 17.35. `NQ_DURABLE_PROGRESS` and `NQ_OWNER_CLOUD_GUARD_VERIFIED` remain off in the candidate. The owner guard and its HTTP 409 conflict handling are installed in the separate NefroQuest Chest Staging project. Production still has the existing version guard. The owner guard and HTTP conflict update must be deployed there before the two client flags are enabled.
+PR 972 integrates the candidate with release 17.34 and prepares cache revision 17.36. `NQ_DURABLE_PROGRESS` and `NQ_OWNER_CLOUD_GUARD_VERIFIED` remain off in the candidate. The owner guard and its HTTP 409 conflict handling are installed in the separate NefroQuest Chest Staging project. Production still has the existing version guard. The owner guard and HTTP conflict update must be deployed there before the two client flags are enabled.
 
-The transition-path guard passed on three real PostgreSQL 17.12 clusters before this integration. See REAL-POSTGRES-STATUS.md for historical evidence. The staging change replaces the database retry signal with HTTP 409 while preserving the guard checks. The browser recognizes both conflict codes during the rollout.
+The integrated migrations passed on three real PostgreSQL 17.12 clusters. Each concurrent claim left one committed reward. The staging change replaces the database retry signal with HTTP 409 while preserving the guard checks. The browser recognizes both conflict codes during the rollout. Cold-start tests verify that pending receipts and old progress can be read while the library is still loading. Delivering a scroll still requires its catalog entry.
 
 ## Remaining activation gates (do not skip)
 1. Test full browser candidate, not only focused local mocks.

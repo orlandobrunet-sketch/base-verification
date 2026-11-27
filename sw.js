@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.35
-const CACHE = 'nefroquest-v17.35';
+// NefroQuest Service Worker — v17.36
+const CACHE = 'nefroquest-v17.36';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -200,12 +200,12 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/js/owner-authority.js': '17.35',
-  '/js/normal-authority.js': '17.35',
-  '/js/cloud-authority.js': '17.35',
-  '/js/legacy-cloud-decision.js': '17.35',
-  '/js/auxiliary-progress.js': '17.35',
-  '/js/authority-cloud-decision.js': '17.35',
+  '/js/owner-authority.js': '17.36',
+  '/js/normal-authority.js': '17.36',
+  '/js/cloud-authority.js': '17.36',
+  '/js/legacy-cloud-decision.js': '17.36',
+  '/js/auxiliary-progress.js': '17.36',
+  '/js/authority-cloud-decision.js': '17.36',
   '/js/progression.js': '16.84',
   '/js/chamber-expansion.js': '17.06',
   '/styles/lumen/chamber-expansion.css': '17.09',
@@ -241,7 +241,7 @@ const ASSET_VERSIONS = {
   '/data/refs.js': '17.28',
   '/data/articles.js': '17.28',
   '/data/topics.js': '17.32',
-  '/data/question-revision-manifest.js': '17.35',
+  '/data/question-revision-manifest.js': '17.36',
   '/data/question-source-positions.js': '17.28',
   '/data/question-revision-history.js': '17.32',
   '/js/question-revisions.js': '17.27',
@@ -267,20 +267,20 @@ const ASSET_VERSIONS = {
   '/styles/lumen/oracle.css': '16.25',
   '/js/library-catalog.js': '17.32',
   '/js/utils.js': '17.31',
-  '/js/pilot.js': '17.35',
+  '/js/pilot.js': '17.36',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
-  '/js/study-mode.js': '17.35',
-  '/js/game.js': '17.35',
+  '/js/study-mode.js': '17.36',
+  '/js/game.js': '17.36',
   '/js/notifications.js': '11.90',
-  '/js/auth.js': '17.35',
+  '/js/auth.js': '17.36',
   '/js/portal.js': '17.15',
   '/js/atrium.js': '17.08',
   '/js/paywall.js': '17.34',
   '/js/account.js': '17.34',
-  '/js/boss.js': '17.35',
+  '/js/boss.js': '17.36',
   '/js/exam.js': '17.34',
   '/js/admin.js': '17.30',
   '/js/minigame.js': '17.34',

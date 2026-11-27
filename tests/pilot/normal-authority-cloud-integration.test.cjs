@@ -34,6 +34,22 @@ test('real game reconciliation imports direct descendant and retires live memory
 test('real game divergence refuses before legacy stats or collections side effects',async()=>{const f=await fixture();try{const ancestor=f.build();f.remember({version:1,progress:ancestor});f.n.save({...f.n.loadSave(),score:60});const remote=copy(ancestor);remote.ownerAuthority.base=cloud.fingerprint(ancestor.ownerAuthority.state);remote.ownerAuthority.state.save.score=80;remote.stats={gamesPlayed:999};remote.achievements=['injected'];const before=[...f.map];assert.equal(f.reconcile({version:2,progress:remote}),false);assert.deepEqual([...f.map],before);assert.equal(f.counts.stopped,0);}finally{await f.n.release();}});
 test('real game identical legacy ancestor permits first authority migration push',async()=>{const f=await fixture();try{assert.equal(f.reconcile({version:4,progress:{save:copy(f.initial),unlockedArticles:[3]}}),true);assert.equal(f.build().ownerAuthority.state.save.journeyId,'j');assert.equal(f.n.loadSave().score,10);}finally{await f.n.release();}});
 test('real game divergent legacy first migration is refused without effects',async()=>{const f=await fixture();try{const before=[...f.map];assert.equal(f.reconcile({version:4,progress:{save:{...f.initial,score:11},unlockedArticles:[3],stats:{gamesPlayed:999}}}),false);assert.deepEqual([...f.map],before);}finally{await f.n.release();}});
+test('real game offers a legacy cloud journey on a cold page before the library has loaded', async () => {
+ const f = await fixture();
+ try {
+  let shown = 0;
+  Object.assign(f.ctx, {NQLegacyCloudDecision: require('../../js/legacy-cloud-decision.js'),
+   _cloudConflict: null, _showCloudProgressConflict() { shown++; }});
+  const save = {...f.initial, journeyId: 'existing-cloud-journey', score: 29};
+  const before = [...f.map];
+  assert.equal(f.reconcile({version: 4, progress: {save, unlockedArticles: [3, 12]}}), false);
+  assert.equal(shown, 1, 'valid saved discovery indices do not depend on a loaded library');
+  const token = f.ctx._cloudConflict.legacyToken;
+  assert.equal(token.remote.save.journeyId, save.journeyId);
+  assert.deepEqual(token.remote.collections, {articles: [3, 12], knowledge: 5});
+  assert.deepEqual([...f.map], before, 'showing the choice must not migrate local or remote progress');
+ } finally { await f.n.release(); }
+});
 test('real game cloud fingerprint ignores transport base and save timestamps',async()=>{const f=await fixture();try{const first=f.build(),second=copy(first);second.ownerAuthority.base='new-ancestor';second.ownerAuthority.state.save.timestamp=555;second.ownerAuthority.state.save.saveRevision='new';assert.equal(f.ctx._cloudFingerprint(first),f.ctx._cloudFingerprint(second));}finally{await f.n.release();}});
 
 test('real game push reaches CAS write after reconciling unchanged remote ancestor',async()=>{const f=await fixture();try{
