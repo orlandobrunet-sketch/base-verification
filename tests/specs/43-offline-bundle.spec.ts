@@ -57,7 +57,7 @@ async function withSite(initial: Bundle, run: (site: {
   requests: string[],
   publish: (next: Bundle, fail: string, stale?: Buffer) => void,
   fix: () => void,
-}) => Promise<void>) {
+}) => Promise<void>, cleanUrls = false) {
   let current = initial;
   let fault = '';
   let staleBytes: Buffer | undefined;
@@ -68,8 +68,10 @@ async function withSite(initial: Bundle, run: (site: {
     if (url === '/sw.js') return response.writeHead(200, { 'Content-Type': 'text/javascript', 'Cache-Control': 'no-store' }).end(current.sw);
     if (url === fault && !staleBytes) return response.writeHead(503, { 'Cache-Control': 'no-store' }).end();
     if (url === '/fixture-quota') return response.writeHead(200).end();
-    const bytes = url === fault ? staleBytes : current.files.get(url);
-    if (bytes) return response.writeHead(200, { 'Content-Type': url === '/offline.html' ? 'text/html; charset=utf-8' : 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' }).end(bytes);
+    if (cleanUrls && url === '/offline.html') return response.writeHead(301, { Location: '/offline', 'Cache-Control': 'no-store' }).end();
+    const file = cleanUrls && url === '/offline' ? '/offline.html' : url;
+    const bytes = url === fault ? staleBytes : current.files.get(file);
+    if (bytes) return response.writeHead(200, { 'Content-Type': file === '/offline.html' ? 'text/html; charset=utf-8' : 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' }).end(bytes);
     return response.writeHead(404).end();
   });
   server.listen(0, '127.0.0.1');
@@ -113,6 +115,41 @@ test('a new visitor opening Offline Study directly can reload without network af
     await expect(choices(page)).toHaveCount(4);
     expect(await page.locator(`script[src^="${bundlePrefix}${initial.id}/"]`).count()).toBe(5);
   });
+});
+
+test('clean URL serves the sealed session rather than stale HTML in the generic cache', async ({ page, context }) => {
+  const initial = bundle();
+  await withSite(initial, async site => {
+    await page.goto(site.url);
+    await expect(page).toHaveURL(/\/offline$/);
+    await controller(page);
+    expect(await ready(page, initial.id)).toBe(true);
+    expect(site.requests).toContain('/offline.html');
+    expect(site.requests.filter(url => url === '/offline').length).toBeGreaterThanOrEqual(2);
+
+    // Cache legado válido como HTTP, mas fora do conjunto verificado.
+    await page.evaluate(async () => {
+      const cache = await caches.open('nefroquest-v17.35');
+      await cache.put('/offline', new Response('<h1>HTML antigo</h1>', {
+        headers: { 'Content-Type': 'text/html' },
+      }));
+    });
+    await page.reload();
+    await expect(choices(page)).toHaveCount(4);
+    const correct = await page.evaluate(() => (window as any).eval('currentPresentation.a'));
+    await choices(page).nth(correct).click();
+    await expect(page.getByText('✅ Resposta Correta!')).toBeVisible();
+    const answer = await save(page);
+    await context.setOffline(true);
+    for (const url of ['/offline', '/offline.html']) {
+      const res = await page.goto(new URL(url, site.url).href);
+      expect(res?.fromServiceWorker()).toBe(true);
+      expect(await page.locator(`script[src^="${bundlePrefix}${initial.id}/"]`).count()).toBe(5);
+      await expect(page.getByText('✅ Resposta Correta!')).toBeVisible();
+      expect(await save(page)).toBe(answer);
+      expect((await stats(page)).totalQuestions).toBe(1);
+    }
+  }, true);
 });
 
 for (const scenario of ['bank', 'history', 'quota', 'manifest'] as const) {

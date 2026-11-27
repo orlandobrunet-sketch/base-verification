@@ -310,6 +310,7 @@ const offlineId = files => files[0][1];
 const offlineKey = (id, item) => OFFLINE_PREFIX + id + '/' + item;
 const offlineCacheName = id => OFFLINE_CACHE_PREFIX + id;
 const currentOfflineId = offlineId(OFFLINE_FILES);
+const OFFLINE_CLEAN_PATH = '/offline';
 const offlinePaths = new Set(OFFLINE_FILES.map(([url]) => url.split('?')[0]));
 
 async function verifiedOfflineResponse(response, hash) {
@@ -389,7 +390,12 @@ function prepareCurrentOfflineBundle(previous) {
   offlinePreparation = saveOfflineBundle(OFFLINE_FILES, async (path, hash) => {
     const match = previous?.files.findIndex(([, digest]) => digest === hash) ?? -1;
     if (match >= 0) return previous.entries[match].clone();
-    return fetch(path, { cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(10000) });
+    const options = { cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(10000) };
+    if (path !== '/offline.html') return fetch(path, options);
+    // Alguns hosts servem o mesmo documento por /offline. Tente apenas as
+    // duas rotas conhecidas, sem seguir redirecionamentos ou pular o digest.
+    const direct = await fetch(path, options).catch(() => null);
+    return direct?.status === 200 ? direct : fetch(OFFLINE_CLEAN_PATH, options);
   }).finally(() => { offlinePreparation = null; });
   return offlinePreparation;
 }
@@ -536,7 +542,7 @@ self.addEventListener('fetch', e => {
     e.respondWith(serveOfflineScript(url.pathname));
     return;
   }
-  if (url.pathname === '/offline.html') {
+  if (url.pathname === '/offline.html' || url.pathname === OFFLINE_CLEAN_PATH) {
     e.respondWith(serveOfflineStudy(e));
     return;
   }
