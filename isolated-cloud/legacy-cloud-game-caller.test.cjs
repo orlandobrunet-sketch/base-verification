@@ -1,0 +1,22 @@
+'use strict';const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const {createAuthority}=require('../isolated-authority/owner-authority.cjs'),decisions=require('../js/legacy-cloud-decision.js');
+const source=fs.readFileSync(require.resolve('../js/game.js'),'utf8');
+async function fixture(mode='ok'){
+ const map=new Map(),authority=createAuthority({storage:{getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)},locks:{request:async(k,o,fn)=>fn({})},owner:'u',currentOwner:()=> 'u',validateSave:s=>s.saveOwner==='u'&&s.journeyId});
+ await authority.acquire();authority.initialize({saveOwner:'u',journeyId:'local',character:'nephros',score:10},{articles:[1],knowledge:7});
+ let remote={version:3,progress:{save:{saveOwner:'u',journeyId:'remote',character:'nephros',score:20},unlockedArticles:[2],stats:{gamesPlayed:2}}};
+ const buttons=[{disabled:false},{disabled:false}],status={textContent:''},dialog={isConnected:true,querySelectorAll:()=>buttons,querySelector:()=>status};
+ const binding={owner:'u',progressEpoch:0};let payload,writeCount=0;
+ binding.client={from:()=>({update:p=>{payload=p;return {eq(){return this},select(){return this},async maybeSingle(){writeCount++;remote={version:payload.game_progress_version,progress:JSON.parse(JSON.stringify(payload.game_progress))};return mode==='lost'?{data:null,error:{message:'response lost'}}:{data:{game_progress_version:remote.version},error:null};}}}})};
+ const token=decisions.prepare(authority,remote,{normalizeLegacy:p=>({save:p.save,collections:{articles:p.unlockedArticles,knowledge:7},knowledgePolicy:'Preservar conhecimento local verificado.'})});
+ const conflict={binding,remote:JSON.parse(JSON.stringify(remote)),legacyToken:token};
+ const ctx={console,window:{NQNormalProgress:{authority},NQLegacyCloudDecision:decisions,NQ_OWNER_CLOUD_GUARD_VERIFIED:true},_legacyCloudResolutionPending:false,_cloudConflict:conflict,_progressEpoch:0,
+ _cloudBindingCurrent:()=>true,_canSyncLocalProgress:()=>true,_readCloudProgress:async()=>JSON.parse(JSON.stringify(remote)),
+ _stopLocalJourney(){ctx._progressEpoch++;ctx._cloudConflict=null;dialog.isConnected=false;},_cloudStatus(){},_rememberCloudProgress(){},_reloadJourneyCollections(){},refreshWelcomeSave(){},_closeCloudProgressConflict(){dialog.isConnected=false},_showCloudProgressConflict(){dialog.isConnected=true},_refreshWelcomeStats(){},_scheduleCloudSync(){},document:{getElementById(){return null}}};
+ vm.createContext(ctx);vm.runInContext(source.slice(source.indexOf('    async function _resolveCloudProgressConflict('),source.indexOf('    window._resetCloudSync = function')),ctx);
+ return {authority,ctx,conflict,dialog,status,remote:()=>remote,writes:()=>writeCount};
+}
+for(const local of [true,false])test('real game resolver CAS '+(local?'local':'remote')+' finalizes correct whole authority',async()=>{const f=await fixture();try{await f.ctx._resolveCloudProgressConflict(f.conflict,local,f.dialog);a.equal(f.writes(),1);a.equal(f.authority.load().save.journeyId,local?'local':'remote');a.deepEqual(f.authority.load().collections.articles,local?[1]:[2]);a.equal(f.ctx._cloudConflict,null);a.equal(f.ctx._legacyCloudResolutionPending,false);}finally{await f.authority.release();}});
+test('real game resolver retry recovers a committed response-loss without second write',async()=>{const f=await fixture('lost');try{await f.ctx._resolveCloudProgressConflict(f.conflict,false,f.dialog);a.equal(f.remote().progress.ownerAuthority.state.save.journeyId,'remote');a.equal(f.authority.load().save.journeyId,'local');await f.ctx._resolveCloudProgressConflict(f.conflict,false,f.dialog);a.equal(f.writes(),1);a.equal(f.authority.load().save.journeyId,'remote');a.equal(f.ctx._cloudConflict,null);}finally{await f.authority.release();}});
+test('real resolver never writes after remote version changes while choice is open',async()=>{const f=await fixture();try{f.remote().version++;await f.ctx._resolveCloudProgressConflict(f.conflict,false,f.dialog);a.equal(f.writes(),0);a.equal(f.authority.load().save.journeyId,'local');}finally{await f.authority.release();}});
+test('real resolver never writes after local state changes while choice is open',async()=>{const f=await fixture();try{f.authority.commit(d=>d.save.score++);await f.ctx._resolveCloudProgressConflict(f.conflict,true,f.dialog);a.equal(f.writes(),0);a.equal(f.authority.load().save.score,11);}finally{await f.authority.release();}});

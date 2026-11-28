@@ -64,6 +64,22 @@ jobs:
       - name: Optional character pilot storage and ranking isolation
         run: node --test tests/pilot/*.test.cjs
 
+      - name: Setup Node for durability contracts
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: tests/payments/package-lock.json
+
+      - name: Install embedded PostgreSQL contract dependency
+        working-directory: tests/payments
+        run: npm ci --ignore-scripts
+
+      # Protocolos de baú/conta devem bloquear a CI, não apenas testes avulsos.
+      # PostgreSQL multiconexão tem gate próprio, explicitamente documentado.
+      - name: Durable chest authority, recovery and cloud contracts
+        run: node --test isolated-authority/*.test.cjs isolated-recovery/*.test.cjs isolated-cloud/*.test.cjs
+
       - name: Answer presentation identity and distribution
         run: node --test tests/answers/*.test.cjs
 

@@ -131,13 +131,23 @@
         !validLedger(record.classBenefits, record.journeyId, record.save.character) ||
         JSON.stringify(record.save.classBenefits) !== JSON.stringify(record.classBenefits) ||
         !object(record.progress)) return false;
+    if (record.chestReceipts !== undefined) {
+      if (!Array.isArray(record.chestReceipts)) return false;
+      const ids=new Set();
+      for (const r of record.chestReceipts) {
+        if (!object(r) || typeof r.id!=='string' || !r.id || ids.has(r.id) || r.journeyId!==record.journeyId ||
+          !['earned','prepared','consumed'].includes(r.phase) || (r.phase!=='earned' && !object(r.reward))) return false;
+        ids.add(r.id);
+      }
+    }
     return Object.entries(record.progress).every(([key, value]) => PROGRESS_KEYS.has(key) && typeof value === 'string');
   }
   function parse(raw) {
     try { const result = JSON.parse(raw); return validRecord(result) ? result : null; }
     catch (_) { return null; }
   }
-  function closed(save) {
+  function closed(save, receipts=envelope?.chestReceipts) {
+    if (save.gameCompleted && save.correctTotal>=100 && save.lives>0 && receipts?.some(r=>r.phase!=='consumed')) return false;
     return !!(save.gameOver || save.gameCompleted || save.completedGame ||
       (save.gameStarted && save.lives === 0));
   }
@@ -156,8 +166,9 @@
       return {exists: true, valid, character: valid ? record.save.character : null,
         difficulty: valid ? record.save.difficulty : null,
         started: valid ? record.save.gameStarted === true : false,
-        resumable: valid && record.save.gameStarted === true && !closed(record.save),
-        closed: valid ? closed(record.save) : false,
+        pendingChests: valid ? (record.chestReceipts || []).filter(r=>r.phase!=='consumed').length : 0,
+        resumable: valid && record.save.gameStarted === true && !closed(record.save,record.chestReceipts),
+        closed: valid ? closed(record.save,record.chestReceipts) : false,
         error: valid ? null : 'O registro do piloto é inválido ou pertence a outro usuário.'};
     } catch (_) { return {exists: true, valid: false, error: 'Não foi possível ler o piloto salvo.'}; }
   }
@@ -204,12 +215,13 @@
     envelope = record; baseline = raw;
     return true;
   }
-  function start(character, difficulty, requestedOwner) {
+  function start(character, difficulty, requestedOwner, {discardPending=false}={}) {
     if (!guard() || status !== 'reserved' || !CLASSES.includes(character) ||
         difficulty !== reservedDifficulty || ownerId(requestedOwner) !== owner) return false;
     const journeyId = window.crypto?.randomUUID?.() || `pilot-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const ledger = ledgerFor(journeyId, character);
     const previous = parse(baseline);
+    if (!discardPending && previous?.owner === owner && previous.chestReceipts?.some(r=>r.phase!=='consumed')) return false;
     const progress = previous?.owner === owner ? copy(previous.progress) : {};
     delete progress['nefroquest-announced-badges'];
     const journeyCount = Number(progress['nefroquest-journey-count'] || 0);
@@ -276,13 +288,15 @@
   }
   function beginTransaction() {
     if (!guard() || !envelope || transaction) return false;
-    transaction = {progress: copy(envelope.progress), callbacks: []};
+    transaction = {progress: copy(envelope.progress), chestReceipts: copy(envelope.chestReceipts || []), callbacks: []};
     return true;
   }
   function commit(save, ledger) {
     if (!transaction || !guard() || !object(save) || !validTransition(ledger, save, true)) return false;
     const record = payload(save, ledger, transaction.progress);
-    if (!record || !write(record)) return false;
+    if (!record) return false;
+    record.chestReceipts = copy(transaction.chestReceipts);
+    if (!write(record)) return false;
     const callbacks = transaction.callbacks;
     transaction = null;
     for (const pending of callbacks) {
@@ -318,6 +332,7 @@
     return Object.freeze({
       getItem(key) {
         current(); key = String(key);
+        if (captured.domain !== 'pilot' && window.NQNormalProgress) return window.NQNormalProgress.storage.getItem(key);
         if (captured.domain === 'normal') return storage.getItem(key);
         if (SAVE_KEYS.has(key)) return JSON.stringify(envelope.save);
         if (!PROGRESS_KEYS.has(key)) return storage.getItem(key);
@@ -325,6 +340,7 @@
       },
       setItem(key, value) {
         current(); key = String(key); value = String(value);
+        if (captured.domain !== 'pilot' && window.NQNormalProgress) return window.NQNormalProgress.storage.setItem(key,value);
         if (captured.domain === 'normal' || (!PROGRESS_KEYS.has(key) && !SAVE_KEYS.has(key))) {
           storage.setItem(key, value); return;
         }
@@ -336,6 +352,7 @@
       },
       removeItem(key) {
         current(); key = String(key);
+        if (captured.domain !== 'pilot' && window.NQNormalProgress) return window.NQNormalProgress.storage.removeItem(key);
         if (captured.domain === 'normal' || (!PROGRESS_KEYS.has(key) && !SAVE_KEYS.has(key))) {
           storage.removeItem(key); return;
         }
@@ -349,6 +366,27 @@
   }
   const api = {
     KEY, RULESET, reserve, start, resume, release, reset, peek, peekProgress, load, save,
+    chestReceipts() { return guard() ? copy(transaction?.chestReceipts || envelope?.chestReceipts || []) : []; },
+    stageChest() {
+      if (!transaction || !guard()) return null;
+      const id = envelope.journeyId + ':chest:' + (transaction.chestReceipts.length + 1);
+      const receipt = {id, journeyId:envelope.journeyId, phase:'earned'};
+      transaction.chestReceipts.push(receipt);
+      return copy(receipt);
+    },
+    updateChest(id, mutate) {
+      if (!transaction || !guard()) return false;
+      const receipt = transaction.chestReceipts.find(r => r.id === id);
+      if (!receipt || receipt.phase === 'consumed') return false;
+      const before = copy(receipt);
+      mutate(receipt);
+      if (receipt.id !== before.id || receipt.journeyId !== before.journeyId ||
+          !['earned','prepared','consumed'].includes(receipt.phase) ||
+          (before.reward && JSON.stringify(before.reward) !== JSON.stringify(receipt.reward))) {
+        Object.assign(receipt,before); return false;
+      }
+      return true;
+    },
     beginTransaction, commit, rollback, abort: rollback, captureBinding, matchesBinding,
     onContextChange(callback) { listeners.add(callback); return () => listeners.delete(callback); },
     afterCommit(callback) {

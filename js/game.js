@@ -187,6 +187,13 @@
     
     function finishGameCompletely() {
       document.getElementById('victoryModal')?.remove();
+      if (!isCharacterPilot() && window.NQNormalProgress?.writable &&
+          window.NQNormalProgress.chestReceipts().some(receipt => receipt.phase !== 'consumed')) {
+        _toast('Abra o baú pendente antes de encerrar a jornada.', 'info');
+        _flushChestRewards();
+        _retryChestLibrary();
+        return;
+      }
       state.completedGame = true;
       saveGame();
       document.querySelector('.modal.show')?.remove();
@@ -461,7 +468,12 @@
       return record === null || (record && Object.prototype.hasOwnProperty.call(record, 'save') && record.save === null);
     }
     function _canSyncLocalProgress(owner) {
-      if (window._authLogoutPending) return false;
+      if (window._authLogoutPending || window.NQ_LEGACY_SAVE_PROMOTION === true) return false;
+      if (window.NQNormalProgress) {
+        if (!window.NQNormalProgress.writable) return false;
+        const e=window.NQNormalProgress.envelope();
+        return e.owner===owner && (!e.save || (!!_readQuestionSaveExtras(e.save) && (!e.save.classBenefits || _normalCharacterSaveValid(e.save,owner))));
+      }
       const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
       if (raw === null) return true; // stats/study may exist without a journey
       const record = _canonicalSaveRecord();
@@ -478,6 +490,11 @@
       return raw;
     }
     function _prepareProgressOwner(owner) {
+      if (window.NQNormalProgress) {
+        if (!window.NQNormalProgress.writable) return false;
+        const current=window.NQNormalProgress.envelope().owner;
+        if (current!==owner) return clearLocalProgress('logout',current);
+      }
       if (window.NQPilot?.active && window.NQPilot.owner !== owner) {
         _stopLocalJourney();
         window.NQPilot.release();
@@ -491,6 +508,20 @@
       return !_saveCleanupBlocked;
     }
     window._prepareProgressOwner = _prepareProgressOwner;
+    window._prepareProgressOwnerAsync = async function(owner) {
+      const retryingLegacy = _legacyTabIssue?.owner === owner && _legacyTabIssue?.generation === _authSessionEpoch;
+      if (window.NQ_DURABLE_PROGRESS === true && owner && owner === _currentSaveOwner() &&
+          (retryingLegacy || (window.NQNormalProgress && !window.NQNormalProgress.writable))) {
+        // A progress pause does not invalidate a token refresh for the same account.
+        return true;
+      }
+      if (window.NQ_DURABLE_PROGRESS===true && !window._authLogoutPending && !window.NQNormalProgress &&
+          window.NQNormalAuthority?.peek?.({storage:localStorage,owner:_currentSaveOwner()}).exists) {
+        if (!await _ensureNormalAuthority()) return false;
+      }
+      return _prepareProgressOwner(owner);
+    };
+
 
     function _signedOutSaveNeedsLogin(owner) {
       const record = _canonicalSaveRecord();
@@ -668,6 +699,15 @@
             window._retireAuthFromSharedLogout?.(shared.saveOwner, event.newValue)) return;
       }
       if (window.NQPilot?.active) return; // The pilot guards its own revision and lease.
+      if (window.NQNormalProgress && [null, CANONICAL_SAVE_KEY, SAVE_KEY, 'unlockedArticles',
+          'nefroquest_total_accumulated_knowledge'].includes(event.key)) {
+        if (!window.NQNormalProgress.writable) {
+          _legacyTabIssue = {owner: _currentSaveOwner(), generation: _authSessionEpoch};
+          if (state.gameStarted) _stopLocalJourney();
+          refreshWelcomeSave();
+        }
+        return;
+      }
       if ((event.key === CANONICAL_SAVE_KEY || event.key === null) &&
           state.gameStarted && localStorage.getItem(CANONICAL_SAVE_KEY) !== _saveBaseline) {
         _stopLocalJourney();
@@ -738,7 +778,12 @@
     }
     function _hardcoreSavedCorrect() {
       try {
-        const owner = _currentSaveOwner(), canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
+        const owner = _currentSaveOwner();
+        if (window.NQNormalProgress) {
+          const save = window.NQNormalProgress.loadSave();
+          return save?.saveOwner === owner ? _hardcoreAttemptCorrect(save) : null;
+        }
+        const canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
         const save = JSON.parse(canonical ?? (owner === null ? localStorage.getItem(SAVE_KEY) : null) ?? 'null');
         if (!save || (canonical !== null ? save.saveOwner !== owner : (save.saveOwner ?? null) !== owner)) return null;
         return _hardcoreAttemptCorrect(save);
@@ -987,6 +1032,7 @@
     let _saveTimer = null;
     let _pilotAnswerTransaction = null;
     let _normalJourneyStaging = false;
+    let _normalJourneyDiscardPending = false;
     let _characterCloudConflict = false;
     function _normalBenefitsValid(save = _stateData, owner = _currentSaveOwner()) {
       return save.journeyDomain !== 'pilot' && ['easy','normal','hard'].includes(save.difficulty) &&
@@ -1138,6 +1184,9 @@
       if (_normalJourneyStaging || isCharacterPilot() || isProgressSandbox() ||
           !characters[character] || !['easy','normal','hard','hardcore'].includes(difficulty) ||
           typeof initialize !== 'function') return false;
+      const pending=window.NQNormalProgress?.writable ? window.NQNormalProgress.chestReceipts().filter(r=>r.phase!=='consumed').length : 0;
+      if (pending && !confirm(`Há ${pending} baú(s) ainda não aberto(s). Iniciar outra jornada descarta esses baús. Continuar?`)) return false;
+      _normalJourneyDiscardPending = pending > 0;
       const owner = _currentSaveOwner();
       const rawBefore = localStorage.getItem(CANONICAL_SAVE_KEY);
       const legacyBefore = localStorage.getItem(SAVE_KEY);
@@ -1172,6 +1221,7 @@
           obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5,
           classBenefits:['easy','normal','hard'].includes(difficulty)
             ? window.NQCharacterBenefits.create({character, difficulty, owner, journeyId:crypto.randomUUID()}) : null});
+        _stateData.journeyId = _stateData.classBenefits?.journeyId || crypto.randomUUID();
         if (initialize() === false || owner !== _currentSaveOwner() || epoch !== _progressEpoch ||
             localStorage.getItem(CANONICAL_SAVE_KEY) !== rawBefore ||
             localStorage.getItem(SAVE_KEY) !== legacyBefore || !_doSaveGame()) throw new Error('Journey not committed');
@@ -1210,6 +1260,7 @@
         return false;
       } finally {
         _normalJourneyStaging = false;
+        _normalJourneyDiscardPending = false;
         clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
         _autoSaveTimer = _saveTimer = null;
         if (committed) _scheduleCloudSync();
@@ -1242,9 +1293,10 @@
     }
     function _beginPilotAnswer(choice) {
       if (isProgressSandbox()) return null;
-      const normal = !isCharacterPilot() && !!state.classBenefits;
+      const normal = !isCharacterPilot() && (!!state.classBenefits || !!window.NQNormalProgress?.writable);
       if (!isCharacterPilot() && !normal) return null;
-      if (normal ? !_normalBenefitsValid() : (!window.NQPilot?.active || !window.NQPilot.beginTransaction())) {
+      if (normal ? ((state.classBenefits && !_normalBenefitsValid()) ||
+          (window.NQNormalProgress?.writable && !window.NQNormalProgress.beginTransaction())) : (!window.NQPilot?.active || !window.NQPilot.beginTransaction())) {
         _stopLocalJourney();
         _reloadJourneyCollections();
         refreshWelcomeSave();
@@ -1331,6 +1383,13 @@
       return true;
     }
     function _commitNormalCharacterAnswer(transaction, correct) {
+      if (!state.classBenefits && window.NQNormalProgress?.writable) {
+        const ok=_doSaveGame();
+        if (!ok) {window.NQNormalProgress.rollback();Object.assign(_stateData,transaction.snapshot);}
+        _pilotAnswerTransaction=null;
+        if (ok) { _incrementQuestionsAnswered(); _checkPromoBanner(); for (const callback of transaction.callbacks) callback(); }
+        return !!ok;
+      }
       const previous = transaction.snapshot.classBenefits;
       const ledger = state.classBenefits;
       const valid = transaction.epoch === _progressEpoch && transaction.owner === _currentSaveOwner() &&
@@ -1347,6 +1406,7 @@
         blocked:!!transaction.blocked, windowAnswers:ledger?.windowAnswers || 0,
         domain:'normal', journeyId:ledger?.journeyId, questionId:String(state.current.id)};
       if (!valid || !_doSaveGame()) {
+        window.NQNormalProgress?.rollback();
         Object.assign(_stateData, transaction.snapshot);
         _masteredSet = transaction.mastered; unlockedArticles = transaction.articles;
         _guestQuestionCount = transaction.guestQuestions;
@@ -1388,6 +1448,7 @@
           : transaction.gold ? ` +${transaction.gold} ouro do personagem.`
           : transaction.shield ? ' Proteção de Aquaria usada: nenhuma vida perdida.' : '';
         const ledger = state.classBenefits;
+        if (!ledger) return credit;
         return credit + (ledger.windowAnswers >= 20 ? ' Bônus inicial encerrado (20/20).'
           : ` Bônus inicial: ${ledger.windowAnswers}/20 respostas.`);
       }
@@ -1423,8 +1484,9 @@
       const resumeEpoch = _progressEpoch;
       const owner = _currentSaveOwner();
       const resumed = await window.NQPilot?.resume(owner);
-      if (!resumed || resumed.gameStarted !== true || resumed.gameOver || resumed.gameCompleted ||
-          resumed.completedGame || resumed.lives === 0 ||
+      const pendingVictoryChest=resumed?.gameCompleted && resumed?.correctTotal>=100 && resumed?.lives>0 && window.NQPilot?.chestReceipts().some(r=>r.phase!=='consumed');
+      if (!resumed || resumed.gameStarted !== true || resumed.gameOver || (!pendingVictoryChest && (resumed.gameCompleted ||
+          resumed.completedGame)) || resumed.lives === 0 ||
           resumeEpoch !== _progressEpoch || owner !== _currentSaveOwner()) {
         if (resumed) window.NQPilot.release();
         _toast('O piloto está indisponível ou aberto em outra aba.', 'info', 5000);
@@ -1458,21 +1520,26 @@
     function _doSaveGame() {
       if (isProgressSandbox()) return false;
       if (_saveCleanupBlocked) return false;
-      if (!state.gameStarted || (state.gameOver && !isCharacterPilot() && !state.classBenefits)) return false;
+      if (!state.gameStarted || (state.gameOver && !isCharacterPilot() && !state.classBenefits && !window.NQNormalProgress)) return false;
       if (isCharacterPilot()) return _savePilotGame();
+      if (window.NQNormalProgress && !window.NQNormalProgress.writable) return false;
       if (state.classBenefits && !_normalBenefitsValid()) return false;
       const owner = _currentSaveOwner();
       const currentRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
-      if ((_saveOwner !== undefined && _saveOwner !== owner) ||
+      const promotingLegacy = window.NQ_LEGACY_SAVE_PROMOTION === true && currentRaw === null &&
+        _legacySaveBaseline !== undefined;
+      const legacyChanged = () => localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline;
+      if (!window.NQNormalProgress && ((_saveOwner !== undefined && _saveOwner !== owner) ||
           (_saveBaseline !== undefined && currentRaw !== _saveBaseline) ||
+          (promotingLegacy && legacyChanged()) ||
           (owner === null && currentRaw && currentRaw !== 'null' &&
-           _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline)) {
+           _legacySaveBaseline !== undefined && legacyChanged()))) {
         // Also check synchronously: a queued storage event may arrive after a
         // click or an autosave. A stale tab must never resurrect a reset save.
         if (!_normalJourneyStaging) queueMicrotask(() => { _stopLocalJourney(); refreshWelcomeSave(); });
         return false;
       }
-      if (currentRaw && !_isSaveTombstone(_canonicalSaveRecord())) {
+      if (!window.NQNormalProgress && currentRaw && !_isSaveTombstone(_canonicalSaveRecord())) {
         try {
           if (JSON.parse(currentRaw).saveOwner !== owner) return false;
         } catch (e) { return false; }
@@ -1526,6 +1593,16 @@
           currentQuestionId:state.current?.id == null ? null : String(state.current.id), answered:!!state.answered});
         if (!_normalCharacterSaveValid(saveData, owner)) return false;
       }
+      if (window.NQNormalProgress?.writable) {
+        try {
+          const store=window.NQNormalProgress, prior=store.loadSave();
+          saveData.journeyId=state.classBenefits?.journeyId || state.journeyId || prior?.journeyId || crypto.randomUUID();
+          if (_normalJourneyStaging) store.startJourney(saveData,{discardPending:_normalJourneyDiscardPending});
+          else if (store.inTransaction) store.commit(saveData);
+          else store.save(saveData);
+          _scheduleCloudSync();return true;
+        } catch(error) {return false;}
+      }
       const raw = JSON.stringify(saveData);
       if (state.classBenefits && currentRaw) {
         const durable = JSON.parse(currentRaw);
@@ -1540,10 +1617,13 @@
       }
       let candidateWritten = false;
       try {
-        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw) return false;
+        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw ||
+            (promotingLegacy && legacyChanged())) return false;
         localStorage.setItem(CANONICAL_SAVE_KEY, raw);
         candidateWritten = true;
-        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) throw new Error('Save readback mismatch');
+        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw || (promotingLegacy && legacyChanged())) {
+          throw new Error('Save readback mismatch');
+        }
       } catch(e) {
         if (candidateWritten) {
           // Compensate only our own candidate; never replace another writer.
@@ -1640,9 +1720,104 @@
       return save;
     }
 
+    let _normalAuthorityOpening = null;
+    let _legacyTabIssue = null;
+    async function _ensureNormalAuthority() {
+      if (window.NQ_DURABLE_PROGRESS!==true) return true;
+      if (window.NQNormalProgress?.writable) return true;
+      const owner=_currentSaveOwner(),generation=_authSessionEpoch;
+      if (_normalAuthorityOpening) {
+        const opening=_normalAuthorityOpening;
+        if (opening.owner===owner && opening.generation===generation) return opening.promise;
+        await opening.promise;
+        if (_currentSaveOwner()!==owner || _authSessionEpoch!==generation) return false;
+        return _ensureNormalAuthority();
+      }
+      const opening={owner,generation,promise:_openNormalAuthority()};
+      _normalAuthorityOpening=opening;
+      try {return await opening.promise;}
+      finally {if (_normalAuthorityOpening===opening) _normalAuthorityOpening=null;}
+    }
+    async function _openNormalAuthority() {
+      if (window.NQ_DURABLE_PROGRESS !== true) return true;
+      if (window.NQNormalProgress?.writable) return true;
+      const owner = _currentSaveOwner();
+      const generation = _authSessionEpoch;
+      const current = () => owner === _currentSaveOwner() && generation === _authSessionEpoch;
+      const previous = window.NQNormalProgress;
+      if (previous) {
+        window.NQNormalProgress = null;
+        await previous.release();
+      }
+      if (!current()) return false;
+      try {
+        const instance = window.NQNormalAuthority.create({storage:localStorage,locks:navigator.locks,
+          owner,currentOwner:_currentSaveOwner,identityGeneration:()=>_authSessionEpoch,sourceEvents:window,newJourneyId:()=>crypto.randomUUID(),
+          validateReceipt:r=>r.phase==='earned'||_validDurableChestReward(r.reward),
+          validateSave:(save,owner)=>save.saveOwner===owner && !!save.character &&
+            (save.classBenefits ? _normalCharacterSaveValid(save,owner) : save.schemaVersion===7)});
+        await instance.bootstrap({archiveStaleLegacy: true});
+        if (!current()) { await instance.release(); return false; }
+        window.NQNormalProgress = instance;
+        _legacyTabIssue = null;
+        _reloadJourneyCollections();
+        _renderLegacyTabRecovery();
+        return true;
+      }
+      catch(error) {
+        if (current()) {
+          if (error?.code === 'LEGACY_CONFLICT' || _legacyTabIssue?.owner === owner) {
+            _legacyTabIssue = {owner, generation};
+            _renderLegacyTabRecovery();
+          }
+          _toast('Não foi possível recuperar a jornada. As cópias do progresso foram preservadas.', 'warning', 6000);
+        }
+        return false;
+      }
+    }
+    function _renderLegacyTabRecovery() {
+      const panel = document.getElementById('legacyTabRecovery');
+      if (!panel) return;
+      const retry = document.getElementById('legacyTabRecoveryRetry');
+      const archives = document.getElementById('legacyTabRecoveryArchives');
+      const owner = _currentSaveOwner();
+      const generation = _authSessionEpoch;
+      const paused = _legacyTabIssue?.owner === owner && _legacyTabIssue.generation === generation;
+      const normal = window.NQNormalProgress;
+      let source;
+      try { if (!paused && !isCharacterPilot() && normal?.writable) source = normal.envelope().source; }
+      catch (_) { /* A storage event will refresh the panel after a concurrent write. */ }
+      const hasOldCopy = !!source?.legacySourceArchives?.length;
+      const hasArchive = hasOldCopy || (!!owner && !!source?.authoritySelections?.length);
+      const message = document.getElementById('legacyTabRecoveryMessage');
+      panel.hidden = !paused && !hasArchive;
+      retry.hidden = !paused;
+      archives.hidden = !hasArchive;
+      message.hidden = !paused && !hasOldCopy;
+      message.textContent = paused
+        ? 'A Jornada foi pausada após uma gravação em outra aba. Feche a aba antiga e recupere a Jornada.'
+        : hasOldCopy ? 'Sua Jornada protegida está disponível. A cópia da aba antiga foi guardada neste aparelho.' : '';
+      retry.onclick = async () => {
+        if (retry.disabled || owner !== _currentSaveOwner() || generation !== _authSessionEpoch) return;
+        retry.disabled = true;
+        try {
+          if (!await _ensureNormalAuthority() || owner !== _currentSaveOwner() || generation !== _authSessionEpoch) return;
+          refreshWelcomeSave();
+          const resume = document.getElementById('welcomeContinueBtn');
+          if (resume && resume.style.display !== 'none') resume.focus();
+          else archives.focus();
+        } finally { retry.disabled = false; }
+      };
+      archives.onclick = _showArchivedAuthorityBranches;
+    }
     function loadGame() {
       if (_saveCleanupBlocked) return null;
+      if (!window.NQPilot?.active && window.NQNormalProgress) return window.NQNormalProgress.writable ? window.NQNormalProgress.loadSave() : null;
       if (window.NQPilot?.active) return window.NQPilot.load();
+      if (window.NQ_DURABLE_PROGRESS===true && window.NQNormalAuthority?.peek) {
+        const preview=window.NQNormalAuthority.peek({storage:localStorage,owner:_currentSaveOwner()});
+        if (preview.exists) return preview.save ? _migrateSave(preview.save) : null;
+      }
       const canonicalRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
       // A null payload is a tombstone, not a missing key. Read it before any
       // migration; late v6 writes must never resurrect logout/reset progress.
@@ -1669,7 +1844,7 @@
         }
         if (!state.gameStarted) {
           _saveBaseline = canonicalRaw; _saveOwner = _currentSaveOwner();
-          _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
+          _legacySaveBaseline = canonicalRaw === null ? raw : localStorage.getItem(SAVE_KEY);
         }
         return _migrateSave(save);
       } catch(e) {
@@ -1682,6 +1857,10 @@
     }
 
     function _previewNormalSave() {
+      if (window.NQ_DURABLE_PROGRESS===true && window.NQNormalAuthority?.peek) {
+        const preview=window.NQNormalAuthority.peek({storage:localStorage,owner:_currentSaveOwner()});
+        if (preview.exists) return preview.save ? _migrateSave(preview.save) : null;
+      }
       try {
         const canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
         const save = JSON.parse(canonical ?? localStorage.getItem(SAVE_KEY) ?? 'null');
@@ -1699,6 +1878,14 @@
         _autoSaveTimer = _saveTimer = null;
         return true; // A pilot never writes a competitive tombstone or mirror.
       }
+      const durable = !!window.NQNormalProgress;
+      if (durable) {
+        const wasOver = state.gameOver;
+        _stateData.gameOver = true;
+        const saved = _doSaveGame();
+        _stateData.gameOver = wasOver;
+        if (!saved) { _warnStorageFull(); return false; }
+      }
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer); clearTimeout(_cloudSyncTimer); clearTimeout(_cloudLoadSyncTimer);
       _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
       ++_progressEpoch;
@@ -1706,14 +1893,16 @@
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
       const previousHardcore = _hardcoreSavedCorrect();
-      try { _writeSaveTombstone('journey'); } catch (e) {
-        _warnStorageFull(); return false;
+      if (!durable) {
+        try { _writeSaveTombstone('journey'); } catch (e) {
+          _warnStorageFull(); return false;
+        }
+        localStorage.removeItem(SAVE_KEY);
+        _legacySaveBaseline = null;
       }
       _persistHardcoreBest(previousHardcore);
       _stateData.forjaPending = null;
       _stateData.gameStarted = false;
-      localStorage.removeItem(SAVE_KEY);
-      _legacySaveBaseline = null;
       nqProgressStorage().removeItem('nefroquest-announced-badges');
       // Conta a jornada que começa, para o histórico de selos poder dizer em
       // qual delas cada um foi conquistado. Não some com deleteSave.
@@ -1726,6 +1915,20 @@
     }
 
     function clearLocalProgress(reason = 'reset', owner = _currentSaveOwner()) {
+      if (!isCharacterPilot() && !window.NQNormalProgress && reason==='logout' && window.NQ_DURABLE_PROGRESS===true &&
+          window.NQNormalAuthority?.peek?.({storage:localStorage,owner}).exists &&
+          !window.NQNormalAuthority.retiredSourcesMatch({storage:localStorage,owner})) {
+        _toast('O progresso protegido mudou. Retome a jornada antes de trocar de conta; nenhum dado foi apagado.', 'warning',6000);
+        return false;
+      }
+      const authorityOwnedSources=!isCharacterPilot() && (!!window.NQNormalProgress ||
+        (reason==='logout' && window.NQ_DURABLE_PROGRESS===true && window.NQNormalAuthority?.retiredSourcesMatch?.({storage:localStorage,owner})));
+      if (!isCharacterPilot() && window.NQNormalProgress) {
+        try {
+          if (reason === 'reset') window.NQNormalProgress.reset();
+          else { const old=window.NQNormalProgress;old.retireLegacySources();window.NQNormalProgress=null;old.release(); }
+        } catch(error) {_toast('Não foi possível confirmar a limpeza do progresso.', 'warning');return false;}
+      }
       if (isCharacterPilot() && reason === 'reset') {
         const reset = window.NQPilot?.reset();
         if (reset === false) return false;
@@ -1740,8 +1943,8 @@
         const element = document.getElementById(id);
         if (element) element.style.display = 'none';
       }
-      let markerWritten = false;
-      try { _writeSaveTombstone(reason, owner); markerWritten = true; } catch (e) {
+      let markerWritten = authorityOwnedSources;
+      try { if (!authorityOwnedSources) {_writeSaveTombstone(reason, owner); markerWritten = true;} } catch (e) {
         // Free account history first, then retry the small marker. If writes
         // remain unavailable, logout must stop before changing identity.
       }
@@ -1782,7 +1985,7 @@
         'nefroquest-exam-state',
         'nq_last_study'
       ];
-      keys.forEach(k => localStorage.removeItem(k));
+      keys.forEach(k => {if (!authorityOwnedSources || ![SAVE_KEY,'unlockedArticles','nefroquest_total_accumulated_knowledge'].includes(k)) localStorage.removeItem(k);});
       unlockedArticles = [];
       _masteredSet = new Set();
       _recentIds = [];
@@ -1831,6 +2034,9 @@
     let _cloudWriteFlight = null;
     let _cloudConflict = null;
     let _cloudConflictFocus = null;
+    let _archiveDialogFocus = null;
+    let _legacyCloudResolutionPending = false;
+    const _authorityCloudDeferred = new Map();
 
     function _cloudBinding() {
       return { owner: authUser?.id, authEpoch: _authSessionEpoch, progressEpoch: _progressEpoch, client: _supaClient };
@@ -1844,6 +2050,7 @@
       if (!status) return;
       status.hidden = !authUser;
       status.textContent = authUser ? text : '';
+      _renderLegacyTabRecovery();
     }
     function _cloudJourneyFingerprint(save) {
       if (!save?.character) return null;
@@ -1856,17 +2063,31 @@
     function _cloudFingerprint(progress) {
       const snapshot = { ...progress, save: _cloudJourneyFingerprint(progress.save) };
       delete snapshot.updatedAt;
+      if (progress.ownerAuthority?.state) snapshot.ownerAuthority={...progress.ownerAuthority.state,
+        save:_cloudJourneyFingerprint(progress.ownerAuthority.state.save)};
       return window.NQQuestionRevisions.digest(snapshot);
+    }
+    function _cloudCheckpointKey(owner) {
+      // Older tabs still write their own last-seen cloud revision.
+      const prefix = window.NQNormalProgress ? 'nefroquest-authority-cloud-v1:' : 'nefroquest-cloud:';
+      return prefix + owner;
     }
     function _cloudCheckpoint(owner) {
       try {
-        const checkpoint = JSON.parse(localStorage.getItem('nefroquest-cloud:' + owner) || 'null');
+        const checkpoint = JSON.parse(localStorage.getItem(_cloudCheckpointKey(owner)) || 'null');
         return Number.isSafeInteger(checkpoint?.version) && checkpoint.version >= 0 ? checkpoint : null;
       } catch { return null; }
     }
-    function _rememberCloudProgress(owner, remote) {
-      localStorage.setItem('nefroquest-cloud:' + owner, JSON.stringify({ version: remote.version,
+    function _rememberCloudProgress(owner, remote, {confirmedRead=false}={}) {
+      localStorage.setItem(_cloudCheckpointKey(owner), JSON.stringify({ version: remote.version,
+        authorityBase: remote.progress.ownerAuthority ? window.NQCloudAuthority.fingerprint(remote.progress.ownerAuthority.state) : null,
         journey: _cloudJourneyFingerprint(remote.progress.save), payload: _cloudFingerprint(remote.progress) }));
+      if (confirmedRead && remote.progress.ownerAuthority) {
+        // Cleanup is optional after checkpoint persistence; failure retains the
+        // proof journal and must not pretend the confirmed checkpoint failed.
+        try { window.NQNormalProgress?.authority.acknowledgeCloud?.(remote.progress.ownerAuthority.state); }
+        catch(error) { console.warn('[NQ] Confirmed cloud checkpoint; transition journal retained', error); }
+      }
     }
     async function _readCloudProgress(binding) {
       const { data, error } = await binding.client.from('profiles')
@@ -1890,6 +2111,61 @@
         clearTimeout(_saveTimer); clearTimeout(_autoSaveTimer);
         _saveTimer = _autoSaveTimer = null;
         if (!_doSaveGame()) return false;
+      }
+      if (window.NQNormalProgress) {
+        const checkpoint=_cloudCheckpoint(binding.owner);
+        const authority=window.NQNormalProgress.authority;
+        if (authority.load().source.cloudSyncHold?.reason==='authority-branch-selection') {
+          _cloudStatus('Jornada selecionada salva neste aparelho · sincronização pausada para conferir as estatísticas');
+          return false;
+        }
+        if (remote.progress.ownerAuthority && authority.load().source.legacySelection?.intent && window.NQLegacyCloudDecision) {
+          const intent=authority.load().source.legacySelection.intent;
+          if (remote.version===intent.expectedVersion && authority.fingerprint()===intent.localFingerprint &&
+              authority.fingerprint()!==window.NQCloudAuthority.fingerprint(intent.payload.state)) {
+            window.NQLegacyCloudDecision.recover(authority,remote);
+            _stopLocalJourney();binding.progressEpoch=_progressEpoch;
+            _reloadJourneyCollections();refreshWelcomeSave();
+            _rememberCloudProgress(binding.owner,remote,{confirmedRead:true});return true;
+          }
+        }
+        if (checkpoint && remote.version<checkpoint.version) throw Error('Leitura de progresso desatualizada');
+        if (authority.load().source.cloudSyncHold?.reason==='restored-archive' || !_mergeCloudProgress(remote.progress)) {
+          if (remote.progress.ownerAuthority && window.NQ_OWNER_CLOUD_GUARD_VERIFIED===true && window.NQAuthorityCloudDecision) {
+            try {
+              const token=window.NQAuthorityCloudDecision.prepare(authority,remote,{localProgress:_buildCloudProgress({forLocalArchive:true})});
+              _cloudConflict={binding,remote,authorityToken:token};
+              const remoteKey=window.NQCloudAuthority.fingerprint(remote);
+              if (_authorityCloudDeferred.get(binding.owner)!==remoteKey) _showCloudProgressConflict();
+              else _offerDeferredAuthorityChoice();
+            } catch(error){_cloudStatus('Conflito requer revisão · os dois progressos foram preservados');}
+          }
+          if (!remote.progress.ownerAuthority && window.NQ_OWNER_CLOUD_GUARD_VERIFIED===true && window.NQLegacyCloudDecision) {
+            try {
+              const authority=window.NQNormalProgress.authority;
+              const token=window.NQLegacyCloudDecision.prepare(authority,remote,{normalizeLegacy:(progress,owner)=>{
+                let save=progress.save ? JSON.parse(JSON.stringify(progress.save)) : null;
+                if (save) {
+                  if (save.saveOwner!==undefined && save.saveOwner!==owner) throw Error('INVALID_OWNER');
+                  save.saveOwner=owner;save=_migrateSave(save);
+                  if (!save || !_readQuestionSaveExtras(save) || (save.classBenefits && !_normalCharacterSaveValid(save,owner))) throw Error('INVALID_REMOTE_SAVE');
+                  save.journeyId=save.classBenefits?.journeyId || save.journeyId || crypto.randomUUID();
+                }
+                const articles=progress.unlockedArticles || [];
+                if (!Array.isArray(articles) || articles.some(x => !Number.isSafeInteger(x) || x < 0) ||
+                    new Set(articles).size !== articles.length) throw Error('INVALID_ARTICLES');
+                return {save,collections:{articles,knowledge:authority.load().collections.knowledge},
+                  knowledgePolicy:'O histórico de conhecimento deste aparelho será preservado: a nuvem antiga não armazenava esse total.'};
+              }});
+              _cloudConflict={binding,remote,legacyToken:token};_showCloudProgressConflict();
+            } catch(error){_cloudStatus('Migração requer revisão dos dados · originais preservados');}
+          }
+          return false;
+        }
+        binding.progressEpoch=_progressEpoch;
+        if (!_cloudBindingCurrent(binding)) return false;
+        _rememberCloudProgress(binding.owner,remote,{confirmedRead:true});
+        return true;
       }
       const local = _buildCloudProgress();
       const localJourney = _cloudJourneyFingerprint(local.save);
@@ -1918,7 +2194,7 @@
       // Importing a complete remote journey retires the old live game binding.
       binding.progressEpoch = _progressEpoch;
       if (!_cloudBindingCurrent(binding)) return false;
-      _rememberCloudProgress(binding.owner, remote);
+      _rememberCloudProgress(binding.owner, remote,{confirmedRead:true});
       if (!preferLocal) {
         _cloudConflict = null;
         _closeCloudProgressConflict(false);
@@ -1930,6 +2206,117 @@
       _cloudConflictFocus?.(restoreFocus);
       _cloudConflictFocus = null;
       document.getElementById('cloudProgressConflict')?.remove();
+    }
+    function _closeArchivedAuthorityBranches(restoreFocus=true) {
+      const release=_archiveDialogFocus;_archiveDialogFocus=null;
+      release?.(restoreFocus);
+      document.getElementById('authorityArchiveDialog')?.remove();
+    }
+    function _showArchivedAuthorityBranches() {
+      const normal=window.NQNormalProgress,binding=_cloudBinding();
+      const owner = _currentSaveOwner();
+      const usable = () => normal === window.NQNormalProgress && normal?.writable && !isCharacterPilot() &&
+        !window._authLogoutPending && owner === _currentSaveOwner() &&
+        binding.authEpoch === _authSessionEpoch && binding.progressEpoch === _progressEpoch;
+      if (!usable()) return;
+      _closeArchivedAuthorityBranches(false);
+      const dialog=document.createElement('div');dialog.id='authorityArchiveDialog';dialog.className='nq-overlay';dialog.dataset.nqUi='lumen';
+      dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');dialog.setAttribute('aria-labelledby','authorityArchiveTitle');
+      dialog.innerHTML='<div class="modal-content cloud-conflict-card"><h2 id="authorityArchiveTitle">Jornadas arquivadas</h2><p>Os arquivos ficam neste aparelho.</p><div data-archive-list></div><div data-archive-preview></div><div data-archive-older-tab></div><p role="status"></p><button type="button" class="btn sec" data-archive-close>Fechar</button></div>';
+      const close=()=>{if(document.getElementById('authorityArchiveDialog')===dialog)_closeArchivedAuthorityBranches();};
+      dialog.querySelector('[data-archive-close]').onclick=close;
+      const current=()=>usable() && dialog.isConnected;
+      const status=dialog.querySelector('[role="status"]'),list=dialog.querySelector('[data-archive-list]');
+      const summary=branch=>branch.save ? `${branch.save.character || 'Personagem'} · ${branch.save.correctTotal || 0} acertos · ${branch.receipts.filter(r=>r.phase!=='consumed').length} baús pendentes` : 'Sem jornada em andamento';
+      const entries=_cloudBindingCurrent(binding) && window.NQAuthorityCloudDecision ? (normal.authority.load().source.authoritySelections || []) : [];
+      const olderTabs = normal.legacySourceArchives?.() || [];
+      if (!entries.length && !olderTabs.length) list.textContent = 'Nenhuma jornada arquivada neste aparelho.';
+      entries.forEach((entry,index)=>{
+        const button=document.createElement('button');button.type='button';button.className='btn sec';
+        button.textContent=`Arquivo ${index+1}: ${summary(entry.local)}`;
+        button.onclick=()=>{
+          if(!current() || !_cloudBindingCurrent(binding)){close();return;}
+          try {
+            const token=window.NQAuthorityCloudDecision.prepareRestore(normal.authority,index,{currentProgress:_buildCloudProgress({forLocalArchive:true})});
+            const preview=dialog.querySelector('[data-archive-preview]');preview.replaceChildren();
+            const description=document.createElement('p');description.textContent=summary(token.local)+'. '+token.warning;preview.appendChild(description);
+            const confirm=document.createElement('button');confirm.type='button';confirm.className='btn';confirm.textContent='Confirmar restauração deste arquivo';preview.appendChild(confirm);
+            confirm.onclick=()=>{
+              if(confirm.disabled)return;
+              if(!current() || !_cloudBindingCurrent(binding)){close();return;}
+              confirm.disabled=true;
+              try {
+                window.NQAuthorityCloudDecision.restore(normal.authority,token,{project:window.NQAuxiliaryProgress?.project});
+                close();_stopLocalJourney();_invalidateStatsCache();_reloadJourneyCollections();refreshWelcomeSave();
+                _cloudStatus('Arquivo restaurado neste aparelho · escolha como continuar antes de sincronizar');
+                // Fetch only. The restored-archive hold forces an explicit choice;
+                // no restored branch is ever uploaded over a divergent cloud.
+                const restoredBinding=_cloudBinding();
+                Promise.resolve(_loadProgressFromCloud()).catch(()=>{if(_cloudBindingCurrent(restoredBinding))_cloudStatus('Arquivo restaurado · nuvem indisponível, sincronização pausada');});
+              } catch(error) {
+                if(!normal.writable){close();_stopLocalJourney();_cloudStatus('Restauração preservada · recarregue para concluir a recuperação com segurança');return;}
+                status.textContent=error?.code==='STALE_AUTHORITY_DECISION' ? 'O progresso mudou. Abra o resumo novamente antes de confirmar.' : 'Não foi possível restaurar. Os progressos foram preservados.';
+                confirm.disabled=false;
+              }
+            };
+          } catch(error){status.textContent='Este arquivo não pôde ser preparado. Nenhum progresso foi alterado.';}
+        };
+        list.appendChild(button);
+      });
+      if (olderTabs.length) {
+        const section = dialog.querySelector('[data-archive-older-tab]');
+        const heading = document.createElement('h3');
+        heading.textContent = 'Cópias de abas antigas';
+        section.appendChild(heading);
+        olderTabs.forEach((copy, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'btn sec';
+          button.textContent = `Baixar cópia da aba antiga ${index + 1}`;
+          button.onclick = () => {
+            if (!current()) { close(); return; }
+            const blob = new Blob([JSON.stringify(copy, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `nefroquest-copia-aba-antiga-${index + 1}.json`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+          };
+          section.appendChild(button);
+        });
+      }
+      document.body.appendChild(dialog);_archiveDialogFocus=manageDialogFocus(dialog,close);
+    }
+    function _offerDeferredAuthorityChoice(message='Salvo neste aparelho · sincronização pausada por sua escolha') {
+      _cloudStatus(message);
+      const status=document.getElementById('cloudSyncStatus');
+      if (!status || !_cloudConflict?.authorityToken) return;
+      const button=document.createElement('button');button.type='button';button.className='btn sec';
+      button.textContent='Rever escolha';button.onclick=async()=>{
+        if(button.disabled)return;button.disabled=true;
+        try{await _reopenAuthorityCloudChoice(_cloudConflict);}
+        finally{button.disabled=false;}
+      };status.appendChild(button);
+    }
+    async function _reopenAuthorityCloudChoice(conflict) {
+      if (!conflict?.authorityToken || _cloudConflict!==conflict || !_cloudBindingCurrent(conflict.binding)) return false;
+      const normal=window.NQNormalProgress;
+      try {
+        const remote=await _readCloudProgress(conflict.binding);
+        if (_cloudConflict!==conflict || !_cloudBindingCurrent(conflict.binding) || window.NQNormalProgress!==normal) return false;
+        if (window.NQ_OWNER_CLOUD_GUARD_VERIFIED!==true) throw Error('CLOUD_GUARD_REQUIRED');
+        const token=window.NQAuthorityCloudDecision.prepare(normal.authority,remote,{localProgress:_buildCloudProgress({forLocalArchive:true})});
+        _cloudConflict={binding:conflict.binding,remote,authorityToken:token};
+        _showCloudProgressConflict();
+        _cloudStatus('Progressos atualizados · confira e confirme sua escolha novamente');
+        return true;
+      } catch(error) {
+        if (_cloudConflict===conflict && _cloudBindingCurrent(conflict.binding)) _offerDeferredAuthorityChoice('Não foi possível atualizar a escolha · progressos preservados · tente Rever escolha');
+        return false;
+      }
     }
     function _showCloudProgressConflict() {
       const conflict = _cloudConflict;
@@ -1955,8 +2342,13 @@
       const summary = save => save?.character
         ? `${characters[save.character]?.name || 'Jornada salva'} · nível ${save.level} · ${save.correctTotal || 0} acertos · ${save.xp || 0} XP`
         : 'Sem jornada em andamento';
-      dialog.querySelector('[data-cloud-summary="local"]').textContent = 'Neste aparelho. ' + summary(_buildCloudProgress().save);
-      dialog.querySelector('[data-cloud-summary="remote"]').textContent = 'Na nuvem. ' + summary(conflict.remote.progress.save);
+      dialog.querySelector('[data-cloud-summary="local"]').textContent = 'Neste aparelho. ' + summary(conflict.authorityToken ? conflict.authorityToken.local.save : conflict.legacyToken?.local.save || _buildCloudProgress().save);
+      dialog.querySelector('[data-cloud-summary="remote"]').textContent = 'Na nuvem. ' + summary(conflict.authorityToken ? conflict.authorityToken.remote.save : conflict.remote.progress.save);
+      if (conflict.authorityToken) {
+        dialog.querySelector('p').textContent=conflict.authorityToken.warning;
+        dialog.querySelector('[data-cloud-choice="local"]').textContent='Continuar neste aparelho sem sincronizar';
+      }
+      if (conflict.legacyToken) dialog.querySelector('p').textContent=conflict.legacyToken.warning+' '+conflict.legacyToken.remote.knowledgePolicy;
       for (const button of dialog.querySelectorAll('[data-cloud-choice]')) {
         button.onclick = () => _resolveCloudProgressConflict(conflict, button.dataset.cloudChoice === 'local', dialog);
       }
@@ -1964,6 +2356,7 @@
       _cloudConflictFocus = manageDialogFocus(dialog, _closeCloudProgressConflict);
     }
     async function _resolveCloudProgressConflict(conflict, preferLocal, dialog) {
+      if (_legacyCloudResolutionPending) return;
       if (_cloudConflict !== conflict || !_cloudBindingCurrent(conflict.binding)) {
         if (dialog.isConnected) _closeCloudProgressConflict(false);
         return;
@@ -1973,12 +2366,57 @@
       buttons.forEach(button => { button.disabled = true; });
       const status = dialog.querySelector('[role="status"]');
       try {
-        if (preferLocal && !_canSyncLocalProgress(conflict.binding.owner)) {
+        if (preferLocal && !conflict.authorityToken && !_canSyncLocalProgress(conflict.binding.owner)) {
           status.textContent = 'A jornada deste aparelho precisa ser conferida antes de sincronizar.';
           return;
         }
         const remote = await _readCloudProgress(conflict.binding);
         if (!_cloudBindingCurrent(conflict.binding)) return;
+        if (conflict.authorityToken) {
+          if (window.NQ_OWNER_CLOUD_GUARD_VERIFIED!==true) throw Error('CLOUD_GUARD_REQUIRED');
+          const authority=window.NQNormalProgress.authority;
+          // Synchronous atomic archive+adoption after the awaited refetch; no
+          // rewards are replayed and no cloud update or collection union occurs.
+          window.NQAuthorityCloudDecision.choose(authority,conflict.authorityToken,preferLocal?'local':'remote',remote,{project:window.NQAuxiliaryProgress?.project});
+          if (preferLocal) {
+            _authorityCloudDeferred.set(conflict.binding.owner,window.NQCloudAuthority.fingerprint(remote));
+            _closeCloudProgressConflict();_offerDeferredAuthorityChoice();return;
+          }
+          _authorityCloudDeferred.delete(conflict.binding.owner);
+          _stopLocalJourney();conflict.binding.progressEpoch=_progressEpoch;
+          _rememberCloudProgress(conflict.binding.owner,remote,{confirmedRead:true});_reloadJourneyCollections();refreshWelcomeSave();
+          _cloudConflict=null;_closeCloudProgressConflict(false);
+          _invalidateStatsCache();
+          _cloudStatus('Jornada da nuvem selecionada · estatísticas conferidas · ramo anterior disponível em Jornadas arquivadas');return;
+        }
+        if (conflict.legacyToken) {
+          if (window.NQ_OWNER_CLOUD_GUARD_VERIFIED!==true) throw Error('CLOUD_GUARD_REQUIRED');
+          const authority=window.NQNormalProgress.authority;
+          if (remote.progress.ownerAuthority && authority.load().source.legacySelection?.intent) {
+            window.NQLegacyCloudDecision.recover(authority,remote);
+            _stopLocalJourney();conflict.binding.progressEpoch=_progressEpoch;
+            _rememberCloudProgress(conflict.binding.owner,remote,{confirmedRead:true});_reloadJourneyCollections();refreshWelcomeSave();
+            _cloudConflict=null;_closeCloudProgressConflict(false);_cloudStatus('Migração recuperada e confirmada');return;
+          }
+          const plan=window.NQLegacyCloudDecision.choose(authority,conflict.legacyToken,preferLocal?'local':'remote',remote);
+          _legacyCloudResolutionPending=true;
+          _stopLocalJourney();conflict.binding.progressEpoch=_progressEpoch;_cloudConflict=conflict;
+          _cloudStatus('Confirmando migração escolhida…');
+          const progress={...remote.progress,ownerAuthority:plan.ownerAuthority};
+          delete progress.save;delete progress.unlockedArticles;delete progress.knowledge;
+          const {data,error}=await conflict.binding.client.from('profiles')
+            .update({game_progress:progress,game_progress_version:plan.expectedVersion+1})
+            .eq('id',conflict.binding.owner).eq('game_progress_version',plan.expectedVersion)
+            .select('game_progress_version').maybeSingle();
+          if (!_cloudBindingCurrent(conflict.binding)) return;
+          if (error || data?.game_progress_version!==plan.expectedVersion+1) throw Error('A nuvem mudou. Nenhum dado local foi substituído.');
+          const confirmed=await _readCloudProgress(conflict.binding);
+          if (!_cloudBindingCurrent(conflict.binding)) return;
+          window.NQLegacyCloudDecision.finalize(authority,plan,confirmed);
+          _rememberCloudProgress(conflict.binding.owner,confirmed,{confirmedRead:true});_reloadJourneyCollections();refreshWelcomeSave();
+          _cloudConflict=null;_closeCloudProgressConflict(false);_cloudStatus('Migração confirmada · retome a jornada escolhida');return;
+        }
+
         if (remote.version !== conflict.remote.version || localStorage.getItem(CANONICAL_SAVE_KEY) !== conflict.localRaw) {
           _closeCloudProgressConflict(false);
           _reconcileCloudProgress(conflict.binding, remote);
@@ -1999,7 +2437,7 @@
           }
           if (result !== 'saved') return;
         } else {
-          _rememberCloudProgress(conflict.binding.owner, remote);
+          _rememberCloudProgress(conflict.binding.owner, remote,{confirmedRead:true});
           _cloudStatus('Salvo na nuvem');
           _scheduleCloudSync();
         }
@@ -2010,16 +2448,30 @@
           const resume = document.getElementById('welcomeContinueBtn');
           (resume?.getClientRects().length ? resume : document.getElementById('atriumMain'))?.focus();
         }
-      } catch {
+      } catch(error) {
+        if (conflict.authorityToken && window.NQNormalProgress && !window.NQNormalProgress.writable) {
+          _stopLocalJourney();_closeCloudProgressConflict(false);
+          _cloudStatus('Troca preservada · recarregue a página para concluir a recuperação com segurança');return;
+        }
+        if (conflict.authorityToken && error?.code==='STALE_AUTHORITY_DECISION') {
+          await _reopenAuthorityCloudChoice(conflict);
+          return;
+        }
         if (_cloudBindingCurrent(conflict.binding)) {
           status.textContent = 'Não foi possível confirmar a sincronização. Tente novamente.';
           _cloudStatus('Salvo neste aparelho · sincronização pendente');
         }
       } finally {
+        _legacyCloudResolutionPending=false;
+        if (conflict.legacyToken && _cloudConflict===conflict && !dialog.isConnected && _cloudBindingCurrent(conflict.binding)) _showCloudProgressConflict();
         if (dialog.isConnected) buttons.forEach(button => { button.disabled = false; });
       }
     }
     window._resetCloudSync = function () {
+      _closeArchivedAuthorityBranches(false);
+      // Deferment belongs to this live account/journey binding, not a future
+      // session. Reset/logout must allow a fresh choice rather than hide its UI.
+      _authorityCloudDeferred.clear();
       _cloudConflict = null;
       _closeCloudProgressConflict(false);
       _cloudStatus('Sincronização pendente');
@@ -2027,6 +2479,11 @@
 
     function _scheduleCloudSync() {
       if (isCharacterPilot()) return;
+      if (_authorityCloudDeferred.has(_currentSaveOwner())) { _offerDeferredAuthorityChoice(); return; }
+      if (window.NQNormalProgress?.writable && window.NQNormalProgress.authority.load().source.cloudSyncHold?.reason==='authority-branch-selection') {
+        _cloudStatus('Jornada selecionada salva neste aparelho · sincronização pausada para conferir as estatísticas');
+        return;
+      }
       if (_normalJourneyStaging || _pilotAnswerTransaction?.normal || _characterCloudConflict?.owner === _currentSaveOwner()) return;
       if (isProgressSandbox()) return;
       if (_saveCleanupBlocked) return;
@@ -2038,6 +2495,9 @@
     }
 
     function _buildCloudProgress() {
+      if (window.NQNormalProgress?.authority.load().source.cloudSyncHold && !arguments[0]?.forLocalArchive) {
+        throw Object.assign(Error('Auxiliary progress needs review after branch selection'),{code:'AUTHORITY_SYNC_HOLD'});
+      }
       let achievements = [], mastered = [], unlockedArticles = [], detailedStats = {}, save = null;
       let unlockedRefs = [], acidBaseProgress = {}, srData = {};
       try { achievements    = JSON.parse(localStorage.getItem('nefroquest-achievements') || '[]'); } catch(e) {}
@@ -2057,7 +2517,7 @@
       const stats = getNormalGameStats();
       // Uma conta não importa/exporta o recorde que ficou no perfil visitante.
       if (_hardcoreRecordFor(stats, _currentSaveOwner()) === null) delete stats.bestHardcoreCorrect;
-      return {
+      const progress = {
         stats,
         achievements,
         mastered,
@@ -2071,6 +2531,10 @@
         srData,
         updatedAt:        new Date().toISOString()
       };
+      if (window.NQNormalProgress) return window.NQCloudAuthority.build(window.NQNormalProgress,progress,{
+        serverGuardVerified:window.NQ_OWNER_CLOUD_GUARD_VERIFIED === true,
+        base:arguments[0]?.forLocalArchive ? null : _cloudCheckpoint(_currentSaveOwner())?.authorityBase || null});
+      return progress;
     }
 
     async function _commitCloudProgress(binding, version, progress) {
@@ -2083,7 +2547,7 @@
         .eq('id', binding.owner).eq('game_progress_version', version)
         .select('game_progress_version').maybeSingle();
       if (!_cloudBindingCurrent(binding)) return 'obsolete';
-      if (error?.code === '40001' || (!error && !data)) return 'conflict';
+      if (error?.code === 'PT409' || error?.code === '40001' || (!error && !data)) return 'conflict';
       if (error || data.game_progress_version !== version + 1) throw new Error('Gravação do progresso não confirmada');
       _rememberCloudProgress(binding.owner, { version: data.game_progress_version, progress });
       _cloudStatus('Salvo na nuvem');
@@ -2229,6 +2693,33 @@
     function _mergeCloudProgress(cloud, { keepSave = false, replaceSave = false } = {}) {
       if (isCharacterPilot()) return false;
       if (!cloud || typeof cloud !== 'object' || _saveCleanupBlocked) return false;
+      if (window.NQNormalProgress && !window.NQNormalProgress.writable) return false;
+      if (window.NQNormalProgress?.writable) {
+        try {
+          const before=window.NQNormalProgress.authority.fingerprint();
+          const remote=cloud.ownerAuthority;
+          const known=_cloudCheckpoint(_currentSaveOwner())?.authorityBase;
+          if (!remote) {
+            if (window.NQ_OWNER_CLOUD_GUARD_VERIFIED !== true) throw Error('CLOUD_GUARD_REQUIRED');
+            const source=window.NQNormalProgress.envelope().source;
+            const initial=source.saveRaw ? JSON.parse(source.saveRaw) : null;
+            const initialArticles=initial?.character && initial.saveOwner===_currentSaveOwner() && source.articlesRaw ? JSON.parse(source.articlesRaw) : [];
+            const remoteArticles=cloud.unlockedArticles || [];
+            if (_cloudJourneyFingerprint(cloud.save)!==_cloudJourneyFingerprint(initial?.save===null?null:initial) ||
+                JSON.stringify([...remoteArticles].sort((a,b)=>a-b))!==JSON.stringify([...initialArticles].sort((a,b)=>a-b))) throw Error('CLOUD_MIGRATION_CONFLICT');
+            // Only a verified identical legacy ancestor can be upgraded. No union
+            // or timestamp selection is allowed for this first authority push.
+            cloud={...cloud};delete cloud.save;delete cloud.unlockedArticles;delete cloud.knowledge;
+          } else if (remote && known && window.NQCloudAuthority.fingerprint(remote.state)===known) {
+            // Remote ancestor is unchanged: preserve newer local work for CAS push.
+            cloud={...cloud};delete cloud.ownerAuthority;delete cloud.save;delete cloud.unlockedArticles;delete cloud.knowledge;
+          } else cloud=window.NQCloudAuthority.merge(window.NQNormalProgress,cloud,{serverGuardVerified:window.NQ_OWNER_CLOUD_GUARD_VERIFIED === true}).remaining;
+          if (window.NQNormalProgress.authority.fingerprint() !== before) {
+            _stopLocalJourney();_reloadJourneyCollections();refreshWelcomeSave();
+          }
+        }
+        catch(error){_cloudStatus('Conflito no progresso · dados locais preservados');return false;}
+      }
       const canonicalRecord = _canonicalSaveRecord();
       if (canonicalRecord?.character && canonicalRecord.saveOwner !== _currentSaveOwner()) return false;
       let persisted = true;
@@ -2412,6 +2903,15 @@
     async function _loadProgressFromCloud({ forSync = false } = {}) {
       if (window._authLogoutPending || isCharacterPilot() || !authUser || !_supaClient || _saveCleanupBlocked ||
           _normalJourneyStaging || _pilotAnswerTransaction?.normal) return false;
+      if (window.NQ_LEGACY_SAVE_PROMOTION === true) {
+        _cloudStatus('Progresso neste aparelho · recarregue após retomar para sincronizar');
+        return false;
+      }
+      if (window.NQ_DURABLE_PROGRESS===true) {
+        const owner=authUser.id,epoch=_authSessionEpoch;
+        if (!await _ensureNormalAuthority() || authUser?.id!==owner || _authSessionEpoch!==epoch) return false;
+        if (window.NQ_OWNER_CLOUD_GUARD_VERIFIED!==true) {_cloudStatus('Salvo neste aparelho · migração da nuvem ainda não ativada');return false;}
+      }
       const binding = _cloudBinding();
       const before = _canonicalSaveRecord();
       if (before?.character && before.saveOwner !== binding.owner) {
@@ -2426,7 +2926,7 @@
         const remote = await _readCloudProgress(binding);
         if (!_cloudBindingCurrent(binding) || !_reconcileCloudProgress(binding, remote)) return false;
         const after = _canonicalSaveRecord();
-        if (after?.save === null && after.resetReason === 'logout' && !remote.progress.save?.character) {
+        if (!window.NQNormalProgress && after?.save === null && after.resetReason === 'logout' && !remote.progress.save?.character) {
           _writeSaveTombstone('empty', binding.owner);
         }
         if (!forSync) {
@@ -2477,6 +2977,7 @@
     function restoreGame(selectedSave) {
       const save = selectedSave || loadGame();
       if (!save || !save.character) return false;
+      if (window.NQNormalProgress && !isCharacterPilot() && (save.gameOver || save.lives === 0)) return false;
       const presentation = _readQuestionSaveExtras(save);
       if (!presentation) {
         _toast('As alternativas salvas não podem ser retomadas com segurança. O save foi preservado.', 'warning', 6000);
@@ -2502,7 +3003,8 @@
         }
       }
       if ((window.NQPilot?.active || save.journeyDomain === 'pilot') &&
-          (save.gameStarted !== true || save.gameOver || save.gameCompleted || save.completedGame || save.lives === 0)) return false;
+          (save.gameStarted !== true || save.gameOver ||
+          ((save.gameCompleted || save.completedGame) && !(save.correctTotal>=100 && window.NQPilot.chestReceipts().some(r=>r.phase!=='consumed'))) || save.lives === 0)) return false;
       if (!window.NQPilot?.active && save.classBenefits &&
           (!_normalCharacterSaveValid(save) || save.gameOver || (save.completedGame && !(save.gameCompleted === true && save.correctTotal >= 100)) || save.lives === 0)) {
         _toast('O registro desta jornada não pode ser retomado com segurança. O save foi preservado.', 'warning', 6000);
@@ -2545,6 +3047,7 @@
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
       state.legendaryAbilityUsed = save.legendaryAbilityUsed || {};
       state.extraLifeGiven = restoredProgress.extraLifeGiven;
+      state.journeyId = save.journeyId || save.classBenefits?.journeyId || null;
       state.chestCorrectCount = save.chestCorrectCount || 0;
       state.chestTarget = save.chestTarget || (Math.floor(Math.random() * 3) + 5);
       state.gameCompleted = (window.NQPilot?.active || save.classBenefits) ? !!save.gameCompleted
@@ -2552,6 +3055,7 @@
       state.completedGame = (window.NQPilot?.active || save.classBenefits) ? !!save.completedGame : !!save.completedGame && !!save.gameCompleted && save.correctTotal >= 100;
       state.gameOver = false;
       state.gameStarted = true;
+      if (window.NQNormalProgress && !isCharacterPilot() && state.bonusUses > 0) _jornadaJaContabilizada = true;
       state.answered = false;
       state.current = null;
       state.journeyDomain = window.NQPilot?.active ? 'pilot' : 'normal';
@@ -2793,7 +3297,7 @@
       const savedInfoEl = document.getElementById('welcomeSavedInfo');
       const continueBtn = document.getElementById('welcomeContinueBtn');
       const resumeShell = document.querySelector('.nql-atrium__resume-shell');
-      if (save && save.character && save.lives > 0) {
+      if (save && save.character && save.lives > 0 && !save.gameOver) {
         if (continueBtn) continueBtn.style.removeProperty('display');
         const charData = characters[save.character];
         if (resumeShell) resumeShell.dataset.character = charData ? save.character : 'nephros';
@@ -2867,6 +3371,7 @@
         }
       }
       _syncWelcomeFirstAccess();
+      _renderLegacyTabRecovery();
     }
 
     
@@ -2952,6 +3457,7 @@
         // Revalida premium do servidor a cada sessão — impede bypass via localStorage
         _loadPremiumFromDB().catch(() => {});
 
+        if (window.NQ_DURABLE_PROGRESS === true && pilotResume !== true && !await _ensureNormalAuthority()) return;
         const save = loadGame();
         if (!save) {
           if (document.getElementById('nqSaveRecovery')) return;
@@ -2998,6 +3504,9 @@
         } else {
           document.getElementById('mainApp').focus({ preventScroll: true });
         }
+        _flushChestRewards(); // Fresh documents must attach the durable reward scheduler.
+        if (state.gameCompleted && state.correctTotal>=100 &&
+            _durableChestStore()?.chestReceipts?.().some(receipt=>receipt.phase!=='consumed')) _requestVictoryResults();
       } catch (error) {
         console.error('continueGame: falha inesperada', error);
         announceError('Não foi possível retomar a jornada. Tente novamente.');
@@ -5366,8 +5875,9 @@
           state.chestTarget = Math.floor(Math.random() * 3) + 5;
           const chestBinding = _captureChestRewardBinding();
           const chestReadyAt = performance.now() + 1200;
+          const durableReceipt = _durableChestStore()?.writable ? _durableChestStore().stageChest?.() : null;
           _afterCharacterCommit(() => {
-            if (_chestRewardCurrent(chestBinding)) _queueChestReward(chestBinding, chestReadyAt);
+            if (_chestRewardCurrent(chestBinding)) _queueChestReward(chestBinding, chestReadyAt, durableReceipt || Object.freeze({}));
           });
         }
         const sm = getStreakMultiplier(state.streak);
@@ -6149,8 +6659,7 @@
       if (_jornadaJaContabilizada) {
         // A pergunta bônus reabre a jornada já contada. Perder de novo não
         // conta outra partida, mas precisa chegar à tela final.
-        if (state.bonusUses > 0 && state.lives <= 0 && !state.gameOver) {
-          deleteSave();
+        if (state.bonusUses > 0 && state.lives <= 0 && !state.gameOver && deleteSave() !== false) {
           if (pendingScore) Object.assign(pendingScore, {score: state.score, level: state.level});
           finishGameUI();
         }
@@ -6185,9 +6694,11 @@
         return;
       }
 
-      // Atualizar estatísticas e limpar save
+      // Store the closed journey before publishing its result.
+      const durable = !!window.NQNormalProgress;
+      if (durable && deleteSave() === false) { _jornadaJaContabilizada = false; return; }
       updateGameStats();
-      deleteSave();
+      if (!durable) deleteSave();
       pendingScore = {score: state.score, level: state.level, origin};
 
       // Se usuário autenticado, pular modal de nome
@@ -6242,6 +6753,7 @@
       renderHUD();
       updateBadges();
       renderQuestion();
+      if (window.NQNormalProgress) _flushChestRewards();
     }
 
 
@@ -6847,7 +7359,26 @@
     function _forgeItemDirect() { showForjaModal(); forjarNaPagina('comum'); }
     function _forgeLegendaryDirect() { showForjaModal(); forjarNaPagina('lendario'); }
 
-    function _openChestDirect(){
+    function _atomicPurchasedChest(action) {
+      const store=_durableChestStore();
+      if (!store) return action();
+      if (!store.writable) return false;
+      if (!store.beginTransaction()) return false;
+      const before={gold:state.gold,score:state.score,chestsOpened:state.chestsOpened,
+        equipment:JSON.parse(JSON.stringify(state.equipment))};
+      const articles=unlockedArticles.slice(),cost=chestCost;
+      try {
+        const result=action();
+        if (!(isCharacterPilot() ? store.commit(_pilotSavePayload(),state.classBenefits) : _doSaveGame())) throw Error('Commit failed');
+        return result;
+      } catch(error) {
+        store.rollback();Object.assign(_stateData,before);unlockedArticles=articles;chestCost=cost;
+        document.querySelectorAll('#chestModal,.chest-modal').forEach(el=>el.remove());
+        renderHUD();_toast('A abertura não foi confirmada. Retome o progresso salvo.', 'warning',6000);return false;
+      }
+    }
+    function _openChestDirect(){return _atomicPurchasedChest(_openChestDirectCore);}
+    function _openChestDirectCore(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
       if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
@@ -7007,7 +7538,8 @@
     let chestCost = 100;
     const CHEST_MIN_CORRECT = 3;
     
-    function openChest() {
+    function openChest() {return _atomicPurchasedChest(openChestCore);}
+    function openChestCore() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
       if (!_chestLibraryReady()) { log('📚 Biblioteca indisponível neste momento. Tente abrir o baú novamente.'); _retryChestLibrary(); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
@@ -7140,6 +7672,14 @@
       }
     }
     function _flushChestRewards() {
+      if (_durableChestStore()?.writable && state.gameStarted && !state.gameOver) {
+        const binding = _captureChestRewardBinding();
+        for (const receipt of _durableChestStore().chestReceipts?.() || []) {
+          if (receipt.phase !== 'consumed' && !_pendingChestRewards.some(e => e.receipt.id === receipt.id)) {
+            _queueChestReward(binding, performance.now(), receipt);
+          }
+        }
+      }
       if (_pendingVictoryResults && !hasPendingVictoryResults()) _pendingVictoryResults = null;
       for (let index = _pendingChestRewards.length - 1; index >= 0; index--) {
         const entry = _pendingChestRewards[index];
@@ -7169,7 +7709,7 @@
       _watchChestRewards();
     }
     function _queueChestReward(binding, readyAt, receipt = Object.freeze({})) {
-      if (_claimedChestReceipts.has(receipt) || _pendingChestRewards.some(entry => entry.receipt === receipt)) return;
+      if (_claimedChestReceipts.has(receipt) || _pendingChestRewards.some(entry => (entry.receipt === receipt || (receipt.id && entry.receipt.id === receipt.id)))) return;
       const entry = { binding, readyAt, receipt, ready: false, popup: null, timer: null, claimTimer: null };
       _pendingChestRewards.push(entry);
       if (!_chestLibraryReady()) _retryChestLibrary();
@@ -7271,6 +7811,11 @@
           _watchChestRewards();
           return;
         }
+        if (entry.receipt.id) {
+          if (!_durableChestStore()?.writable) {_withdrawChestReward(entry);return;}
+          if (!_claimDurableChest(entry)) {_withdrawChestReward(entry);_watchChestRewards();}
+          return;
+        }
         _pendingChestRewards.splice(_pendingChestRewards.indexOf(entry), 1);
         _claimedChestReceipts.add(entry.receipt);
         entry.popup = null;
@@ -7280,6 +7825,110 @@
       }, reducedMotion ? 0 : 1150);
     }
     window._animateAndClaimChest = _animateAndClaimChest;
+
+    function _validDurableChestReward(reward) {
+      if (!reward || typeof reward!=='object') return false;
+      // Auth can restore stored receipts before the library script has loaded.
+      if (reward.kind === 'article') return Number.isSafeInteger(reward.articleIndex) && reward.articleIndex >= 0;
+      return reward.kind==='equipment' && ['helmet','glove','armor','weapon','relic','boot'].includes(reward.slot) &&
+        reward.item && typeof reward.item.n==='string' && !!reward.item.n &&
+        ['common','uncommon','rare','epic','legendary','mythic'].includes(reward.item.rar) &&
+        ['atk','def','kno','luck'].every(key=>Number.isFinite(reward.item[key]) && reward.item[key]>=0);
+    }
+    function _durableChestStore() {
+      if (_progressSandboxMode !== null) return null;
+      return isCharacterPilot() ? window.NQPilot : window.NQNormalProgress;
+    }
+    function _mutateDurableChest(id, mutate) {
+      const store = _durableChestStore();
+      if (!store?.writable || !store.beginTransaction()) return false;
+      const snapshot = {score:state.score, gold:state.gold, chestsOpened:state.chestsOpened,
+        lives:state.lives, legendaryAbilityUsed:state.legendaryAbilityUsed,
+        equipment:JSON.parse(JSON.stringify(state.equipment)), obtainedItems:[...(state.obtainedItems || [])]};
+      const articles = unlockedArticles.slice();
+      try {
+        if (!store.updateChest(id, mutate)) throw Error('Recibo indisponível');
+        const saved = isCharacterPilot() ? store.commit(_pilotSavePayload(), state.classBenefits) : _doSaveGame();
+        if (!saved) throw Error('Gravação não confirmada');
+        return true;
+      } catch (error) {
+        store.rollback(); Object.assign(_stateData,snapshot); unlockedArticles=articles;
+        _toast('O baú continua pendente. Retome a jornada salva para tentar novamente.', 'warning',6000);
+        return false;
+      }
+    }
+    function _claimDurableChest(entry) {
+      const store=_durableChestStore(), id=entry.receipt.id;
+      let receipt=store?.chestReceipts().find(r=>r.id===id);
+      if (!receipt) return false;
+      if (receipt.phase==='earned') {
+        if (!_mutateDurableChest(id, r=>{
+          const available = window.NQLibraryCatalog
+            ? window.NQLibraryCatalog.availableArticleIndices(nefroArticles, unlockedArticles)
+            : nefroArticles.map((_, index) => index).filter(index => !unlockedArticles.includes(index));
+          if (Math.random()<0.5 && available.length) {
+            r.reward={kind:'article',articleIndex:available[Math.floor(Math.random()*available.length)]};
+          } else {
+            const rolled=rollItem(state.level,total().luck,false);
+            if (!rolled) throw Error('Equipamento indisponível');
+            r.reward={kind:'equipment',slot:rolled.slot,item:JSON.parse(JSON.stringify(rolled.item))};
+            _markObtained(rolled.item.n);
+          }
+          r.phase='prepared';
+        })) return false;
+        receipt=store.chestReceipts().find(r=>r.id===id);
+      }
+      const finish=()=>{
+        const index=_pendingChestRewards.indexOf(entry);if(index>=0)_pendingChestRewards.splice(index,1);
+        _claimedChestReceipts.add(entry.receipt);_withdrawChestReward(entry);
+        renderHUD();updateBadges();_watchChestRewards();
+      };
+      if(receipt.phase==='consumed'){finish();return true;}
+      const reward=receipt.reward;
+      if (!_validDurableChestReward(reward)) return false;
+      if(reward.kind==='article') {
+        const article = _chestLibraryReady() ? nefroArticles[reward.articleIndex] : null;
+        if (!article) {
+          _toast('O artigo deste baú está indisponível. A recompensa continua guardada.', 'warning');
+          return false;
+        }
+        let knoGain,chestPoints;
+        if(!_mutateDurableChest(id,r=>{
+          // An article unlocked elsewhere remains unlocked. Deliver this chest's
+          // knowledge/score once, without rerolling or duplicating the collection.
+          if(!unlockedArticles.includes(reward.articleIndex))unlockedArticles.push(reward.articleIndex);
+          nqProgressStorage().setItem('unlockedArticles',JSON.stringify(unlockedArticles));
+          state.chestsOpened++;knoGain=state.chestsOpened;chestPoints=30+knoGain*10;
+          const relic=state.equipment?.relic;
+          if(relic && relic.n!=='Vazio')state.equipment.relic={...relic,kno:(relic.kno||0)+knoGain};
+          const prior=Number(nqProgressStorage().getItem('nefroquest_total_accumulated_knowledge')||0);
+          if(!Number.isSafeInteger(prior)||prior<0||!Number.isSafeInteger(prior+knoGain))throw Error('Conhecimento inválido');
+          nqProgressStorage().setItem('nefroquest_total_accumulated_knowledge',String(prior+knoGain));
+          state.score+=chestPoints;r.phase='consumed';r.choice='accept';
+        }))return false;
+        finish();showChestModal(article,knoGain,chestPoints);
+        if(typeof checkAchievements==='function')checkAchievements();return true;
+      }
+      const binding=_captureJourneyBinding(), currentItem=state.equipment[reward.slot];
+      const resolve=choice=>{
+        if(!_matchesJourneyBinding(binding))return;
+        const current=store.chestReceipts().find(r=>r.id===id);
+        if(current?.phase==='consumed'){finish();return;}
+        if(!_mutateDurableChest(id,r=>{
+          if(choice==='equip') {
+            if(JSON.stringify(state.equipment[reward.slot])!==JSON.stringify(currentItem))throw Error('Equipamento mudou');
+            if(currentItem && currentItem.n!=='Vazio')state.gold+=_itemSellVal(currentItem);
+            _equipJourneyItem(reward.slot, reward.item);
+          } else state.gold+=_itemSellVal(reward.item);
+          state.score+=20+state.chestsOpened*5;r.phase='consumed';r.choice=choice;
+        }))return;
+        finish();showForgePopup(reward.item,reward.slot,[], '🛡️ Equipamento Encontrado!');
+      };
+      _withdrawChestReward(entry);
+      if(!currentItem || currentItem.n==='Vazio')resolve('equip');
+      else showEquipComparePopup(reward.slot,currentItem,reward.item,()=>resolve('equip'),()=>resolve('sell'));
+      return true;
+    }
 
     function claimChestReward() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
@@ -8726,6 +9375,7 @@
       try {
         if (!['easy','normal','hard','hardcore'].includes(diff)) return;
         if (isCharacterPilot() && !leavePilotGame()) return;
+        if (!await _ensureNormalAuthority()) return;
       } finally { _confirmDiffPending = false; }
       if (typeof window._closeDifficultySelector === 'function') window._closeDifficultySelector(false);
       else document.getElementById('diffSelectorOverlay')?.remove();

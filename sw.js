@@ -1,8 +1,15 @@
-// NefroQuest Service Worker — v17.35
-const CACHE = 'nefroquest-v17.35';
+// NefroQuest Service Worker — v17.40
+const CACHE = 'nefroquest-v17.40';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
+  '/js/owner-authority.js',
+  '/js/normal-authority.js',
+  '/js/cloud-authority.js',
+  '/js/legacy-cloud-decision.js',
+  '/js/auxiliary-progress.js',
+  '/js/authority-cloud-decision.js',
+
   '/assets/vendor/supabase-js-2.106.2/supabase.js',
   '/js/progression.js',
   '/assets/scenes/ritual-initiation.webp',
@@ -193,6 +200,12 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
+  '/js/owner-authority.js': '17.39',
+  '/js/normal-authority.js': '17.39',
+  '/js/cloud-authority.js': '17.37',
+  '/js/legacy-cloud-decision.js': '17.37',
+  '/js/auxiliary-progress.js': '17.37',
+  '/js/authority-cloud-decision.js': '17.37',
   '/js/progression.js': '16.84',
   '/js/chamber-expansion.js': '17.06',
   '/styles/lumen/chamber-expansion.css': '17.09',
@@ -228,7 +241,7 @@ const ASSET_VERSIONS = {
   '/data/refs.js': '17.28',
   '/data/articles.js': '17.28',
   '/data/topics.js': '17.32',
-  '/data/question-revision-manifest.js': '17.35',
+  '/data/question-revision-manifest.js': '17.40',
   '/data/question-source-positions.js': '17.28',
   '/data/question-revision-history.js': '17.32',
   '/js/question-revisions.js': '17.27',
@@ -237,7 +250,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '17.15',
-  '/styles/lumen/atrium.css': '17.15',
+  '/styles/lumen/atrium.css': '17.39',
   '/styles/lumen/game.css': '17.34',
   '/styles/lumen/difficulty.css': '17.06',
   '/styles/lumen/dashboard.css': '17.17',
@@ -254,20 +267,20 @@ const ASSET_VERSIONS = {
   '/styles/lumen/oracle.css': '16.25',
   '/js/library-catalog.js': '17.32',
   '/js/utils.js': '17.31',
-  '/js/pilot.js': '17.17',
+  '/js/pilot.js': '17.37',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
-  '/js/study-mode.js': '17.34',
-  '/js/game.js': '17.34',
+  '/js/study-mode.js': '17.37',
+  '/js/game.js': '17.39',
   '/js/notifications.js': '11.90',
-  '/js/auth.js': '17.17',
+  '/js/auth.js': '17.37',
   '/js/portal.js': '17.15',
   '/js/atrium.js': '17.08',
   '/js/paywall.js': '17.34',
   '/js/account.js': '17.34',
-  '/js/boss.js': '17.34',
+  '/js/boss.js': '17.37',
   '/js/exam.js': '17.34',
   '/js/admin.js': '17.30',
   '/js/minigame.js': '17.34',
@@ -283,9 +296,9 @@ const ASSET_VERSIONS = {
 
 // bump-release:offline-integrity:início
 const OFFLINE_FILES = [
-  ["/offline.html","009460e2ee29db01922860548958c17c07abb7074b1dca9cec2c0a7c141566fb"],
+  ["/offline.html","caddca9dff9296000a06c52cc85567a74103640c6dc8e625dae00cd5cd9ddec8"],
   ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
-  ["/data/question-revision-manifest.js?release=17.35","a47858a619ef048b00e958b64164303a8ae98bcc31648e5fe4777d22fd87ac66"],
+  ["/data/question-revision-manifest.js?release=17.40","d50a845bb559c8ce31784e831cad0e51950883977cc761f475ca8df3a87e3b97"],
   ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
   ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
   ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
@@ -294,14 +307,31 @@ const OFFLINE_FILES = [
 
 // Única ponte para versões que ainda não gravavam um pacote verificado. A
 // cópia canônica antiga pode já estar misturada: não confie no nome do cache.
-const OFFLINE_LEGACY_CACHE = 'nefroquest-v17.34';
-const OFFLINE_LEGACY_FILES = [
-  ["/offline.html","a9158e983783203d22c98ed58b08c7e55bb36b7d49e9559c29567253c5ee29a6"],
-  ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
-  ["/data/question-revision-manifest.js?release=17.34","dd8e82fccffdba3a50f9fe853732c84fa84717313d2282a923f8bfe77bde5b08"],
-  ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
-  ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
-  ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+const OFFLINE_LEGACY_BUNDLES = [
+  ['nefroquest-v17.39', [
+    ["/offline.html","3ee7cca153bfb5191434f02e37456be490684369db96d6eef125837b7554522f"],
+    ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+    ["/data/question-revision-manifest.js?release=17.39","39ecc61e38c03f7fbb8fce53517ed66389558eab059edd1eb5718fb3c087bbf6"],
+    ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+    ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+    ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+  ]],
+  ['nefroquest-v17.37', [
+    ["/offline.html","c815cc8c44f0fa9982756ba1404944bc1a287336d3de117e8e57dba1cd46fab0"],
+    ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+    ["/data/question-revision-manifest.js?release=17.37","8c9849f5ed1ce68d5bbde1621673b5ce7edc41704950ac9a92de24d63f2205ab"],
+    ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+    ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+    ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+  ]],
+  ['nefroquest-v17.34', [
+    ["/offline.html","a9158e983783203d22c98ed58b08c7e55bb36b7d49e9559c29567253c5ee29a6"],
+    ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+    ["/data/question-revision-manifest.js?release=17.34","dd8e82fccffdba3a50f9fe853732c84fa84717313d2282a923f8bfe77bde5b08"],
+    ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+    ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+    ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+  ]],
 ];
 
 const OFFLINE_PREFIX = '/__nq_offline_bundle__/';
@@ -375,10 +405,15 @@ async function saveOfflineBundle(files, obtain) {
 async function migrateOfflineBundle() {
   const previous = await previousOfflineBundle();
   if (previous) return previous;
-  if (!await caches.has(OFFLINE_LEGACY_CACHE)) return null;
-  // Leia só a geração candidata à migração, nunca faça uma busca global.
-  const cache = await caches.open(OFFLINE_LEGACY_CACHE);
-  return saveOfflineBundle(OFFLINE_LEGACY_FILES, path => cache.match(path.split('?')[0]));
+  // Nunca misture gerações. Aceite apenas um conjunto completo e verificado,
+  // começando pela versão pública mais recente que o browser tiver.
+  for (const [cacheName, files] of OFFLINE_LEGACY_BUNDLES) {
+    if (!await caches.has(cacheName)) continue;
+    const cache = await caches.open(cacheName);
+    const bundle = await saveOfflineBundle(files, path => cache.match(path.split('?')[0]));
+    if (bundle) return bundle;
+  }
+  return null;
 }
 
 let offlinePreparation;

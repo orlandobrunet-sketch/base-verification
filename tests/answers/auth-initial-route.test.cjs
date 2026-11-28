@@ -15,7 +15,7 @@ function environment({guest=false,epoch=1,initial=1}={}) {
     _markExplicitLoginIntent:()=>calls.push(['intent']),_loadPremiumFromDB:()=>calls.push(['premium']),_loadProgressFromCloud:()=>calls.push(['cloud']),
     _invalidatePremiumCache:()=>calls.push(['invalidate']),updateWelcomeUserBadge:()=>calls.push(['badge']),_showSignedOutPortal:()=>calls.push(['portal']),
     _finishAuthStartup:()=>calls.push(['finish']),_consumeLoginIntent:()=>calls.push(['consume']),authUser:null,_guestMode:guest,
-    _authSessionEpoch:epoch,initialSessionEpoch:initial,PREMIUM_KEY:'premium',WHITELIST_KEY:'whitelist'});
+    _authSessionEpoch:epoch,initialSessionEpoch:initial,_authSessionEventGeneration:0,initialEventGeneration:0,PREMIUM_KEY:'premium',WHITELIST_KEY:'whitelist'});
   vm.runInContext('globalThis.deliver='+callback,ctx);
   return {calls,deliver:user=>ctx.deliver({data:{session:user?{user}:null}}),setGuest:value=>ctx._guestMode=value};
 }

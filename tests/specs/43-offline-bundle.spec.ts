@@ -42,14 +42,22 @@ function bundle(change?: 'bank' | 'history' | 'manifest' | 'quota'): Bundle {
   return { files, sw, id: rows[0][1] };
 }
 
-function migrationFromPublicWorker(): Bundle {
-  const ref = 'e786d185e7296a101f08599092548a65251fbd66';
+function migrationFromPublicWorker(): Bundle & { cacheName: string } {
+  const revisions = {
+    '17.39': '7f3034155205ee2eaf03c0e1f1d68418c3185472',
+    '17.34': 'e786d185e7296a101f08599092548a65251fbd66',
+    '17.37': 'b55e0e8eb2dcc89474172254e8fea6152b041f24',
+  } as const;
+  const requested = process.env.NQ_EXACT_LEGACY;
+  const release = requested === '1' ? '17.37' : requested;
+  if (!release || !Object.hasOwn(revisions, release)) throw new Error('Versão antiga sem fixture: ' + release);
+  const ref = revisions[release as keyof typeof revisions];
   const fromGit = (file: string) => execFileSync('git', ['show', ref + ':' + file.replace(/^\//, '')], { cwd: root, maxBuffer: 12 * 1024 * 1024 });
   const html = fromGit('/offline.html');
   const urls = ['/offline.html', ...Array.from(html.toString().matchAll(/<script\b[^>]*src="([^"]+)"/g), m => m[1])];
   const files = new Map(urls.map(url => [url, fromGit(pathOf(url))]));
   const sw = fromGit('/sw.js').toString().replace(/const STATIC_ASSETS = \[[\s\S]*?\n\];/, 'const STATIC_ASSETS = ' + JSON.stringify(urls.map(pathOf)) + ';');
-  return { files, sw, id: digest(html) };
+  return { files, sw, id: digest(html), cacheName: 'nefroquest-v' + release };
 }
 
 async function withSite(initial: Bundle, run: (site: {
@@ -65,6 +73,7 @@ async function withSite(initial: Bundle, run: (site: {
   const server = createServer((request, response) => {
     const url = request.url!;
     requests.push(url);
+    if (url === '/version.json') return response.writeHead(200, { 'Content-Type': 'application/json' }).end(read('version.json'));
     if (url === '/sw.js') return response.writeHead(200, { 'Content-Type': 'text/javascript', 'Cache-Control': 'no-store' }).end(current.sw);
     if (url === fault && !staleBytes) return response.writeHead(503, { 'Cache-Control': 'no-store' }).end();
     if (url === '/fixture-quota') return response.writeHead(200).end();
@@ -129,7 +138,8 @@ test('clean URL serves the sealed session rather than stale HTML in the generic 
 
     // Cache legado válido como HTTP, mas fora do conjunto verificado.
     await page.evaluate(async () => {
-      const cache = await caches.open('nefroquest-v17.35');
+      const version = await (await fetch('/version.json')).json();
+      const cache = await caches.open('nefroquest-v' + version.version);
       await cache.put('/offline', new Response('<h1>HTML antigo</h1>', {
         headers: { 'Content-Type': 'text/html' },
       }));
@@ -248,19 +258,19 @@ test('a cold browser can answer online despite a rejected readiness write, then 
 });
 
 test('an old sparse cache does not certify or activate a partial replacement', async ({ page }) => {
-  const legacy = Boolean(process.env.NQ_EXACT_LEGACY);
-  const initial = legacy ? migrationFromPublicWorker() : bundle();
+  const legacyBundle = process.env.NQ_EXACT_LEGACY ? migrationFromPublicWorker() : null;
+  const initial = legacyBundle ?? bundle();
   const next = bundle('bank');
   await withSite(initial, async site => {
     await page.goto(site.url);
-    if (legacy) await page.evaluate(() => navigator.serviceWorker.register('/sw.js'));
+    if (legacyBundle) await page.evaluate(() => navigator.serviceWorker.register('/sw.js'));
     await controller(page);
     await expect(choices(page)).toHaveCount(4);
     const originalWorker = await page.evaluateHandle(() => navigator.serviceWorker.controller);
-    await page.evaluate(async ({ id, legacy, prefix, stage }) => {
-      const cache = await caches.open(legacy ? 'nefroquest-v17.34' : stage + id);
-      await cache.delete(legacy ? '/data/topics.js' : prefix + id + '/5');
-    }, { id: initial.id, legacy, prefix: bundlePrefix, stage: stagePrefix });
+    await page.evaluate(async ({ id, legacyCache, prefix, stage }) => {
+      const cache = await caches.open(legacyCache ?? stage + id);
+      await cache.delete(legacyCache ? '/data/topics.js' : prefix + id + '/5');
+    }, { id: initial.id, legacyCache: legacyBundle?.cacheName, prefix: bundlePrefix, stage: stagePrefix });
     const originalSave = await save(page);
     const failed = '/data/topics.js?release=98.93';
     site.publish(next, failed);
