@@ -762,6 +762,31 @@
     originalTitle: 'Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy',
     publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1811744',
   };
+  const FLOW_TITLES = {
+    displayTitle: 'FLOW — Semaglutida na doença renal crônica em pessoas com diabetes tipo 2',
+    originalTitle: 'Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2403347',
+  };
+  const CANVAS_TITLES = {
+    displayTitle: 'CANVAS — Canagliflozina e eventos cardiovasculares e renais no diabetes tipo 2',
+    originalTitle: 'Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1611925',
+  };
+  const BPROAD_TITLES = {
+    displayTitle: 'BPROAD — Controle intensivo da pressão arterial no diabetes tipo 2',
+    originalTitle: 'Intensive Blood-Pressure Control in Patients with Type 2 Diabetes',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2412006',
+  };
+  const RAVE_TITLES = {
+    displayTitle: 'RAVE — Rituximabe versus ciclofosfamida na vasculite associada a ANCA',
+    originalTitle: 'Rituximab versus Cyclophosphamide for ANCA-Associated Vasculitis',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa0909905',
+  };
+  const RITUXVAS_TITLES = {
+    displayTitle: 'RITUXVAS — Rituximabe versus ciclofosfamida na vasculite renal associada a ANCA',
+    originalTitle: 'Rituximab versus Cyclophosphamide in ANCA-Associated Renal Vasculitis',
+    publicationUrl: 'https://www.nejm.org/doi/full/10.1056/NEJMoa0909169',
+  };
   // Display metadata is pinned to the selected content record, not to its
   // publication group or any other variant. The authored identity stays intact.
   const BIBLIOGRAPHIC_TITLES = new Map([
@@ -815,6 +840,46 @@
     ['__art_21', {
       kind: 'scroll', title: 'CREDENCE Trial', year: 2019, url: '',
       source: 'N Engl J Med 2019;380(24):2295-2306. DOI: 10.1056/NEJMoa1811744', ...CREDENCE_TITLES,
+    }],
+    ['flow_study', {
+      kind: 'source', title: 'FLOW Trial — Semaglutida (NEJM 2024)', year: 2024, url: FLOW_TITLES.publicationUrl,
+      source: 'N Engl J Med 2024;391(2):109-121', ...FLOW_TITLES,
+    }],
+    ['__art_30', {
+      kind: 'scroll', title: 'FLOW Trial', year: 2024, url: '',
+      source: 'N Engl J Med 2024;391(2):109-121. DOI: 10.1056/NEJMoa2403347', ...FLOW_TITLES,
+    }],
+    ['canvas_program', {
+      kind: 'source', title: 'Neal B et al. — CANVAS Program (NEJM 2017)', year: 2017, url: CANVAS_TITLES.publicationUrl,
+      source: 'N Engl J Med 2017;377(7):644-657', ...CANVAS_TITLES,
+    }],
+    ['__art_12', {
+      kind: 'scroll', title: 'CANVAS - Canagliflozina', year: 2017, url: '',
+      source: 'N Engl J Med 2017;377(7):644-657. DOI: 10.1056/NEJMoa1611925', ...CANVAS_TITLES,
+    }],
+    ['bproad', {
+      kind: 'source', title: 'BPROAD Trial', year: 2025, url: BPROAD_TITLES.publicationUrl,
+      source: 'N Engl J Med 2025;392(12):1155-1167', ...BPROAD_TITLES,
+    }],
+    ['__art_31', {
+      kind: 'scroll', title: 'BPROAD Trial', year: 2024, url: '',
+      source: 'N Engl J Med. 2025;392:1155–1167. Publicação online: 16 nov 2024. DOI: 10.1056/NEJMoa2412006', ...BPROAD_TITLES,
+    }],
+    ['rave_study', {
+      kind: 'source', title: 'Stone JH et al. — RAVE Trial (NEJM 2010)', year: 2010, url: RAVE_TITLES.publicationUrl,
+      source: 'N Engl J Med 2010;363(3):221-232', ...RAVE_TITLES,
+    }],
+    ['__art_25', {
+      kind: 'scroll', title: 'RAVE Trial', year: 2010, url: '',
+      source: 'N Engl J Med 2010;363(3):221-232. DOI: 10.1056/NEJMoa0909905', ...RAVE_TITLES,
+    }],
+    ['rituxvas_study', {
+      kind: 'source', title: 'Jones et al. — RITUXVAS (NEJM 2010)', year: 2010, url: 'https://doi.org/10.1056/NEJMoa0909169',
+      source: 'N Engl J Med. 2010;363(3):211-220', ...RITUXVAS_TITLES,
+    }],
+    ['__art_39', {
+      kind: 'scroll', title: 'RITUXVAS Trial', year: 2010, url: '',
+      source: 'N Engl J Med 2010;363(3):211-220. DOI: 10.1056/NEJMoa0909169', ...RITUXVAS_TITLES,
     }],
   ]);
   function titlePresentation(item) {

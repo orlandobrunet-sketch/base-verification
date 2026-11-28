@@ -17,16 +17,22 @@
     :root{color-scheme:dark;--bg:#070a13;--paper:#efe6d2;--dim:#aab7c9;--gold:#f1cf7a;--light:#91dfe3;--line:#91dfe333}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:radial-gradient(ellipse at 75% 45%,#14232c 0,transparent 58%),var(--bg);color:var(--paper);font:400 1rem/1.6 "Source Sans 3","Segoe UI",sans-serif;overflow-wrap:anywhere}
     a{color:inherit}a:focus-visible{outline:2px solid var(--light);outline-offset:5px}
-    header,footer{width:min(100% - 3rem,68rem);margin-inline:auto}header{padding-block:1.5rem;border-bottom:1px solid var(--line)}
+    header{width:min(100% - 3rem,68rem);margin-inline:auto;padding-block:1.5rem;border-bottom:1px solid var(--line)}
     .brand{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;max-width:100%;text-decoration:none;font:700 clamp(1.15rem,5vw,1.6rem)/1.2 Alegreya,Georgia,serif}.brand img{width:32px;height:32px;flex-shrink:0}
     main{width:min(100% - 3rem,58rem);margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(12rem,.7fr);align-items:center;gap:2rem;padding-block:3rem}
     .code{margin:0 0 .75rem;color:var(--gold);font-weight:600}.code span{display:inline-block;width:1.6rem;border-top:1px solid currentColor;vertical-align:middle;margin-right:.6rem}
     h1{font:600 clamp(2rem,4.5vw,3.5rem)/1.1 Alegreya,Georgia,serif;margin:0;max-width:14ch;text-wrap:balance}p{color:var(--dim);margin:1.2rem 0 1.75rem;max-width:44ch}
     nav{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem}.action{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-height:48px;padding:.75rem 1.2rem;border:1px solid var(--gold);border-radius:7px;background:var(--gold);color:#111a2e;font-weight:700;text-decoration:none}.action svg{width:18px;height:18px;flex-shrink:0}.action:hover{background:#f7dda3}.home{min-height:48px;display:inline-flex;align-items:center;padding:.75rem;color:var(--paper);text-underline-offset:5px}.home:hover{color:var(--light)}
     .map{width:100%;max-width:21rem;justify-self:center;overflow:visible}.map .grid{fill:none;stroke:#91dfe324;stroke-width:1}.map .route{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:260;stroke-dashoffset:0;animation:find-route .8s ease-out both}.map .waypoint{fill:var(--bg);stroke:var(--gold);stroke-width:2}.map .destination{fill:var(--gold)}
-    footer{padding-block:1.2rem;color:var(--dim);font-size:.9rem;border-top:1px solid var(--line)}footer p{margin:0}
     @keyframes find-route{from{stroke-dashoffset:260}to{stroke-dashoffset:0}}
-    @media(max-width:640px){main{grid-template-columns:1fr;gap:1.4rem;padding-block:2rem}.map{grid-row:1;width:min(9rem,100%)}h1{max-width:18ch}header,footer,main{width:calc(100% - 2.5rem)}nav{align-items:stretch}.action,.home{max-width:100%}}
+    @media(max-width:640px){
+      header,main{width:calc(100% - min(2.5rem,12vw))}
+      header{padding-block:.75rem}
+      main{grid-template-columns:minmax(0,1fr);gap:1.4rem;padding-block:1.5rem}
+      h1{font-size:clamp(1.5rem,6vw,2rem);max-width:18ch}
+      nav{align-items:stretch}.action,.home{max-width:100%}
+      .map{width:min(9rem,45vw,100%)}
+    }
     @media(prefers-reduced-motion:reduce){.map .route{animation:none}}
   </style>
 </head>
@@ -34,9 +40,9 @@
   <header><a class="brand" href="/"><img src="/landing/assets/favicon.svg" width="32" height="32" alt="">NefroQuest</a></header>
   <main>
     <div>
-      <p class="code"><span aria-hidden="true"></span>Página não encontrada · 404</p>
-      <h1>Essa rota saiu do mapa.</h1>
-      <p>Não encontramos a página que você procurou. Continue pelo Átrio ou volte à página inicial.</p>
+      <p class="code"><span aria-hidden="true"></span>Erro 404</p>
+      <h1>Página não encontrada</h1>
+      <p>Esse endereço pode ter mudado ou deixado de existir.</p>
       <nav aria-label="Caminhos para continuar">
         <a class="action" href="/jogar/">Voltar ao Átrio<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
         <a class="home" href="/">Página inicial</a>
@@ -49,6 +55,5 @@
       <path d="m223 60 4 10 10 7-10 4-4 10-4-10-10-4 10-7z" fill="none" stroke="#f1cf7a"/>
     </svg>
   </main>
-  <footer><p>Há outros caminhos para continuar sua jornada.</p></footer>
 </body>
 </html>

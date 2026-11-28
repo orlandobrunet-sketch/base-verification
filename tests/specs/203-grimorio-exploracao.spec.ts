@@ -67,7 +67,7 @@ test('raridade substitui tema e é restaurada após leitura e reabertura', async
   await expect(epic).toHaveAttribute('aria-pressed', 'true');
   await page.keyboard.press('Escape');
   await page.locator('[data-atrium-route="library"]').click();
-  await page.locator('[data-library-filter-toggle]').click();
+  await expect(page.locator('[data-library-filter-toggle]')).toHaveAttribute('aria-expanded', 'true');
   await expect(epic).toHaveAttribute('aria-pressed', 'true');
   await expect(cards).toHaveCount(1);
   await page.locator('#nqDashLibrarySort').selectOption('oldest');
@@ -108,7 +108,7 @@ test('controles refluem com texto ampliado, têm contraste e funcionam sem a ilu
   await page.route('**/assets/achievements/grimorio.webp', route => route.abort());
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
-  await page.locator('[data-library-filter-toggle]').click();
+  await expect(page.locator('[data-library-filter-toggle]')).toHaveAttribute('aria-expanded', 'true');
   await expect(art).toBeHidden();
   await page.locator('#nqDashLibraryFilter').selectOption('theme:DRC');
   await expect(page.locator('[data-library-filter-summary]')).toHaveText('Tema: DRC');

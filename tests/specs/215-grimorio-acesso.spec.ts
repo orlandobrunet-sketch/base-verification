@@ -18,7 +18,8 @@ test.beforeEach(async ({ context, baseURL, page }) => {
 const openLibrary = async (page: Page) => {
   await page.evaluate(() => (window as any).openDashboard({ tab: 'library' }));
   await expect(page.locator('#nqdPane-library')).toBeVisible();
-  await page.locator('[data-library-filter-toggle][aria-expanded="false"]').click();
+  const filters = page.locator('[data-library-filter-toggle]');
+  if (await filters.getAttribute('aria-expanded') === 'false') await filters.click();
 };
 const visibleEntries = (page: Page) => page.locator('[data-library-entry]:visible');
 const CATALOG_CONTENTS = 595;

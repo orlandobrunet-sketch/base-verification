@@ -41,6 +41,44 @@ test('leitura segue o favorito pelo teclado e mantém texto e foco ao fechar', a
   await expect(card).toBeHidden();
   await expect(page.getByRole('tab', { name: 'Favoritos' })).toBeFocused();
 });
+
+test('volta à mesma posição com busca, ordenação e filtros após ler e reabrir o Grimório', async ({ page }) => {
+  await openLibrary(page);
+  const search = page.locator('#nqDashLibrarySearch');
+  const sort = page.locator('#nqDashLibrarySort');
+  const rare = page.locator('[data-library-rarity-filter="raro"]');
+  const main = page.locator('#nqDashboard .nqd-main');
+  await search.fill('20');
+  await sort.selectOption('oldest');
+  await rare.click();
+  const read = page.locator('[data-library-item]:visible')
+    .getByRole('button', { name: 'Ler resumo', exact: true }).nth(7);
+  await read.scrollIntoViewIfNeeded();
+  const before = {
+    key: await read.getAttribute('data-library-read-key'),
+    y: await read.evaluate(element => element.getBoundingClientRect().top),
+    scroll: await main.evaluate(element => element.scrollTop),
+  };
+  expect(before.scroll).toBeGreaterThan(300);
+  await read.click();
+  await expect(page.locator('.bib-resumo-modal [role="dialog"]')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(read).toBeFocused();
+  expect(await read.evaluate(element => element.getBoundingClientRect().top)).toBeCloseTo(before.y, 0);
+
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#nqDashboard')).toHaveCount(0);
+  await page.locator('[data-atrium-route="library"]').click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await expect(search).toHaveValue('20');
+  await expect(sort).toHaveValue('oldest');
+  await expect(page.locator('[data-library-filter-toggle]')).toHaveAttribute('aria-expanded', 'true');
+  await expect(rare).toHaveAttribute('aria-pressed', 'true');
+  await expect(read).toHaveAttribute('data-library-read-key', before.key!);
+  await expect.poll(() => main.evaluate(element => element.scrollTop)).toBeCloseTo(before.scroll, 0);
+  expect(await read.evaluate(element => element.getBoundingClientRect().top)).toBeCloseTo(before.y, 0);
+});
+
 test('raridades mantêm comandos acessíveis em 320px e texto a 200%', async ({ page }) => {
   await openLibrary(page);
   await page.setViewportSize({ width: 320, height: 700 });

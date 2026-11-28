@@ -1937,7 +1937,7 @@
       filter: _libraryFilterValue(root),
       sort: root.querySelector('#nqDashLibrarySort')?.value || 'recent',
       discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'all',
-      expanded: [...root.querySelectorAll('[data-library-item].is-expanded [data-library-key]')].map(el => el.dataset.libraryKey),
+      filtersExpanded: root.dataset.libraryFiltersExpanded === 'true',
       scroll: _activeTab === 'library' ? root.querySelector('.nqd-main').scrollTop : (_libraryReadingContext?.scroll || 0),
     };
   }
@@ -1945,6 +1945,7 @@
   function _restoreLibraryReading(root) {
     const saved = _libraryReadingContext;
     if (!saved || saved.owner !== root.dataset.libraryReader) return;
+    root.dataset.libraryFiltersExpanded = String(saved.filtersExpanded);
     const collection = [...root.querySelectorAll('[data-library-collection]')].find(el => el.dataset.libraryCollection === saved.collection);
     _setLibraryCollection(root, collection);
     for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryDiscovery', saved.discovery]]) {
@@ -1954,10 +1955,6 @@
     }
     _selectLibraryFilter(root, saved.filter);
     _applyLibraryView(root);
-    const expanded = new Set(saved.expanded);
-    root.querySelectorAll('[data-library-key]').forEach(button => {
-      if (expanded.has(button.dataset.libraryKey)) _dashToggleArticle(button.closest('[data-library-item]').querySelector('[data-action="_dashToggleArticle"]'));
-    });
   }
 
   function _wireDashboard(root) {
