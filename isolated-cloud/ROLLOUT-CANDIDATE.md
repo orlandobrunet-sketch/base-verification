@@ -1,13 +1,15 @@
 # Durable chests on the 17.34 base
 
 ## Current status
-PR 972 integrated the candidate with release 17.34 and shipped cache revision 17.37 with both flags off. The owner guard and its HTTP 409 conflict handling are installed in the separate NefroQuest Chest Staging project. Before publishing 17.38, deploy the same two migrations to production and verify the resulting guard with test accounts. The 17.38 game enables `NQ_DURABLE_PROGRESS` and `NQ_OWNER_CLOUD_GUARD_VERIFIED` together on the official HTTPS origin.
+PR 972 integrated the candidate with release 17.34 and shipped cache revision 17.37 with both flags off. The owner guard and its HTTP 409 conflict handling were validated in NefroQuest Chest Staging. The same two migrations are installed in production and verified with two disposable accounts. The 17.39 game enables `NQ_DURABLE_PROGRESS` and `NQ_OWNER_CLOUD_GUARD_VERIFIED` together on the official HTTPS origin.
 
 The integrated migrations passed on three real PostgreSQL 17.12 clusters. Each concurrent claim left one committed reward. The staging change replaces the database retry signal with HTTP 409 while preserving the guard checks. The browser recognizes both conflict codes during the rollout. Cold-start tests verify that pending receipts and old progress can be read while the library is still loading. Delivering a scroll still requires its catalog entry.
 
 The 17.36 candidate passed the chest and account-switch flow in desktop Chromium, Android emulation and iPhone emulation with real staging sessions. The 17.37 candidate additionally preserves the protected save at defeat and victory closure. The bonus question reopens the same journey and presents its pending chest. Tests cover the takeover of an empty legacy logout marker and preservation of earlier data when a handoff cannot be verified.
 
 Revision 17.38 adds recovery when a 17.34 tab writes a valid save for the same account after the protected journey opens. On reopen, the app appends the four exact legacy storage values to the account's local archive and records the new guard in the same commit. The protected journey, collections and reward receipts remain intact. Its last confirmed cloud revision has its own key. Players can download the old copy under Jornadas arquivadas. The archive stays on the original device.
+
+Revision 17.39 preserves the resume flow for devices that only hold the old save key, a format used before 15.92. That page can resume and write the first canonical save locally. Cloud synchronization waits for a reload, when the compatible save can open under the protected flow. Devices with an existing protected record stay on the protected path.
 
 ## Remaining activation gates (do not skip)
 1. Test full browser candidate, not only focused local mocks.

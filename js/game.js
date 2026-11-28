@@ -468,7 +468,7 @@
       return record === null || (record && Object.prototype.hasOwnProperty.call(record, 'save') && record.save === null);
     }
     function _canSyncLocalProgress(owner) {
-      if (window._authLogoutPending) return false;
+      if (window._authLogoutPending || window.NQ_LEGACY_SAVE_PROMOTION === true) return false;
       if (window.NQNormalProgress) {
         if (!window.NQNormalProgress.writable) return false;
         const e=window.NQNormalProgress.envelope();
@@ -1526,10 +1526,14 @@
       if (state.classBenefits && !_normalBenefitsValid()) return false;
       const owner = _currentSaveOwner();
       const currentRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
+      const promotingLegacy = window.NQ_LEGACY_SAVE_PROMOTION === true && currentRaw === null &&
+        _legacySaveBaseline !== undefined;
+      const legacyChanged = () => localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline;
       if (!window.NQNormalProgress && ((_saveOwner !== undefined && _saveOwner !== owner) ||
           (_saveBaseline !== undefined && currentRaw !== _saveBaseline) ||
+          (promotingLegacy && legacyChanged()) ||
           (owner === null && currentRaw && currentRaw !== 'null' &&
-           _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline))) {
+           _legacySaveBaseline !== undefined && legacyChanged()))) {
         // Also check synchronously: a queued storage event may arrive after a
         // click or an autosave. A stale tab must never resurrect a reset save.
         if (!_normalJourneyStaging) queueMicrotask(() => { _stopLocalJourney(); refreshWelcomeSave(); });
@@ -1613,10 +1617,13 @@
       }
       let candidateWritten = false;
       try {
-        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw) return false;
+        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw ||
+            (promotingLegacy && legacyChanged())) return false;
         localStorage.setItem(CANONICAL_SAVE_KEY, raw);
         candidateWritten = true;
-        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) throw new Error('Save readback mismatch');
+        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw || (promotingLegacy && legacyChanged())) {
+          throw new Error('Save readback mismatch');
+        }
       } catch(e) {
         if (candidateWritten) {
           // Compensate only our own candidate; never replace another writer.
@@ -1837,7 +1844,7 @@
         }
         if (!state.gameStarted) {
           _saveBaseline = canonicalRaw; _saveOwner = _currentSaveOwner();
-          _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
+          _legacySaveBaseline = canonicalRaw === null ? raw : localStorage.getItem(SAVE_KEY);
         }
         return _migrateSave(save);
       } catch(e) {
@@ -2896,6 +2903,10 @@
     async function _loadProgressFromCloud({ forSync = false } = {}) {
       if (window._authLogoutPending || isCharacterPilot() || !authUser || !_supaClient || _saveCleanupBlocked ||
           _normalJourneyStaging || _pilotAnswerTransaction?.normal) return false;
+      if (window.NQ_LEGACY_SAVE_PROMOTION === true) {
+        _cloudStatus('Progresso neste aparelho · recarregue após retomar para sincronizar');
+        return false;
+      }
       if (window.NQ_DURABLE_PROGRESS===true) {
         const owner=authUser.id,epoch=_authSessionEpoch;
         if (!await _ensureNormalAuthority() || authUser?.id!==owner || _authSessionEpoch!==epoch) return false;

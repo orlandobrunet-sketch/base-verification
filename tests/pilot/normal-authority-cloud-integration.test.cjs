@@ -29,6 +29,18 @@ async function fixture({canonicalRaw}={}){
  const binding=()=>({owner:'u',progressEpoch:ctx._progressEpoch});
  return {map,storage,n,ctx,counts,initial,binding,build:()=>ctx._buildCloudProgress(),remember:remote=>ctx._rememberCloudProgress('u',remote),reconcile:remote=>ctx._reconcileCloudProgress(binding(),remote)};
 }
+test('pre-canonical recovery keeps progress local until the protected page reloads',async()=>{
+ const context={NQ_LEGACY_SAVE_PROMOTION:true,authUser:{id:'u'},_supaClient:{},
+  isCharacterPilot:()=>false,_saveCleanupBlocked:false,_normalJourneyStaging:null,_pilotAnswerTransaction:null,
+  _cloudStatus:()=>{}};
+ context.window=context;
+ vm.createContext(context);
+ vm.runInContext(section('    function _canSyncLocalProgress(', '    function _writeSaveTombstone('),context);
+ vm.runInContext(section('    async function _loadProgressFromCloud(', '    // Atualiza o bloco de estatísticas'),context);
+ assert.equal(context._canSyncLocalProgress('u'),false);
+ assert.equal(await context._loadProgressFromCloud(),false);
+ assert.equal(await context._loadProgressFromCloud({forSync:true}),false);
+});
 test('real game reconciliation preserves newer local work when remote ancestor is unchanged, builds push',async()=>{const f=await fixture();try{const remote={version:1,progress:f.build()};f.remember(remote);const before=f.n.loadSave();f.n.save({...before,score:50});assert.equal(f.reconcile(remote),true);assert.equal(f.n.loadSave().score,50);assert.equal(f.counts.stopped,0);const push=f.build();assert.equal(push.ownerAuthority.state.save.score,50);assert.equal(push.ownerAuthority.base,cloud.fingerprint(remote.progress.ownerAuthority.state));assert.equal('save' in push,false);assert.equal('unlockedArticles' in push,false);}finally{await f.n.release();}});
 test('a 17.34 tab can refresh its checkpoint while the protected journey keeps its verified ancestor',async()=>{
  const f=await fixture();
