@@ -3,6 +3,7 @@
 // Host supplies existing save validation; no SQL, UI, account or network actions.
 const clone=x=>JSON.parse(JSON.stringify(x));
 const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const legacySaveRevision=value=>typeof value==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 function createAuthority({storage,locks,currentOwner,validateSave,owner,identityGeneration=()=>0,sourceEvents=null,validateReceipt=null}) {
  if((owner!==null&&typeof owner!=='string')||typeof currentOwner!=='function'||typeof validateSave!=='function')throw Error('Invalid host contract');
  if(!locks?.request)throw Error('Exclusive lock required');
@@ -185,9 +186,35 @@ function createAuthority({storage,locks,currentOwner,validateSave,owner,identity
   const staged=persist(draft,current.raw);
   return finishRetirement(staged,baseline);
  }
- // Explicit handoff after a verified logout. The global session lease is
- // required because legacy source keys are shared by all accounts in this origin.
- function resumeLegacySources(){
+ function verifiedStaleSources(actual){
+  const ownedJourney=raw=>{
+   const save=JSON.parse(raw);
+   return object(save)&&save.saveOwner===owner&&save.save!==null&&save.gameStarted===true&&
+    typeof save.character==='string'&&!!save.character&&legacySaveRevision(save.saveRevision)&&
+    (save.schemaVersion===7 ? !save.classBenefits&&(save.journeyDomain==null||save.journeyDomain==='normal') :
+     save.schemaVersion===9&&save.journeyDomain==='normal'&&object(save.classBenefits))&&validateSave(clone(save),owner);
+  };
+  try {
+   if(!ownedJourney(actual.saveRaw)||(owner===null&&actual.legacyRaw!==actual.saveRaw)||
+      (actual.legacyRaw!==null&&!ownedJourney(actual.legacyRaw)))return false;
+   const articles=actual.articlesRaw===null?[]:JSON.parse(actual.articlesRaw);
+   return Array.isArray(articles)&&articles.every(id=>Number.isSafeInteger(id)&&id>=0)&&new Set(articles).size===articles.length&&
+    (actual.knowledgeRaw===null||(/^(0|[1-9][0-9]*)$/.test(actual.knowledgeRaw)&&Number.isSafeInteger(Number(actual.knowledgeRaw))));
+  } catch(_) {return false;}
+ }
+ function archiveLegacySources(existing,raw,actual){
+  const previous=existing.source.legacySourceArchives??[];
+  if(!Array.isArray(previous))throw error('INVALID','Invalid legacy source archive');
+  const captured=previous.some(entry=>object(entry)&&Object.keys(actual).every(field=>entry[field]===actual[field]));
+  const draft=clone(existing);
+  draft.source.guard=actual;
+  if(!captured)draft.source.legacySourceArchives=[...previous,{index:previous.length,archivedAt:Date.now(),...actual}];
+  draft.revision++;
+  // Commit the exact backup and its guard together. Legacy keys stay intact.
+  return persist(draft,raw);
+ }
+ // Shared legacy source keys can only be opened while holding the global lease.
+ function resumeLegacySources({archiveStaleLegacy=false}={}){
   if(!held||paused||!sameOwner())throw error('UNAVAILABLE','Authority unavailable');
   const raw=storage.getItem(key),existing=raw===null?null:valid(JSON.parse(raw));
   const defaults={canonicalKey:'nefroquest-save-v7',legacyKey:'nefroquest-save',articlesKey:'unlockedArticles',knowledgeKey:'nefroquest_total_accumulated_knowledge'};
@@ -213,8 +240,13 @@ function createAuthority({storage,locks,currentOwner,validateSave,owner,identity
   const actual=readSources();
   const matches=existing&&sourcePairs(existing.source).every(([k,v])=>storage.getItem(k)===v);
   if(matches&&!existing.source.retirement){baseline=raw;watchSource(existing.source);return clone(existing);}
-  // A live authority may never silently adopt updates from an old client.
-  if(existing&&!existing.source.retirement){paused=true;throw error('LEGACY_CONFLICT','Active source history diverged');}
+  if(existing&&!existing.source.retirement){
+   if(archiveStaleLegacy===true&&!existing.source.auxiliaryProjection&&
+      actual.saveRaw!==(existing.source.guard||existing.source).saveRaw&&verifiedStaleSources(actual)){
+    return archiveLegacySources(existing,raw,actual);
+   }
+   paused=true;throw error('LEGACY_CONFLICT','Active source history diverged');
+  }
   let marker;try{marker=JSON.parse(actual.saveRaw);}catch(_){marker=null;}
   if(!marker||marker.save!==null||marker.resetReason!=='logout'){
    if(existing){paused=true;throw error('LEGACY_CONFLICT','No verified logout handoff');}
@@ -229,8 +261,7 @@ function createAuthority({storage,locks,currentOwner,validateSave,owner,identity
    from.source.guard.legacyRaw===null&&from.source.guard.articlesRaw===null&&from.source.guard.knowledgeRaw===null;
   // Older clients have no retirement record. Only their empty logout marker
   // may start a first authority for another owner without importing any data.
-  const legacyLogout=!existing&&fromRaw===null&&fromOwner!==owner&&[7,9].includes(marker.schemaVersion)&&
-   typeof marker.saveRevision==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(marker.saveRevision);
+  const legacyLogout=!existing&&fromRaw===null&&fromOwner!==owner&&[7,9].includes(marker.schemaVersion)&&legacySaveRevision(marker.saveRevision);
   if(!(retired||legacyLogout)||actual.legacyRaw!==null||actual.articlesRaw!==null||actual.knowledgeRaw!==null){
    if(!existing)return null;paused=true;throw error('LEGACY_CONFLICT','Logout source custody is not proven');
   }

@@ -28,3 +28,64 @@ test('concurrent cloud and Continue share one authority bootstrap for same ident
  vm.runInContext(section(game,'    let _normalAuthorityOpening = null;','    async function _openNormalAuthority()'),ctx);
  const cloud=ctx._ensureNormalAuthority(),continuation=ctx._ensureNormalAuthority();a.equal(opens,1);resolve(true);a.deepEqual(await Promise.all([cloud,continuation]),[true,true]);
 });
+test('a same-account refresh keeps the session while an old tab pauses protected progress',async()=>{
+ const f=await fixture();const current=await f.boot();
+ try{
+  f.map.set('unlockedArticles','[3,99]');
+  a.equal(current.writable,false);
+  f.ctx._legacyTabIssue={owner:'a',generation:1};
+  vm.runInContext(section(game,'    window._prepareProgressOwnerAsync =','    function _signedOutSaveNeedsLogin('),f.ctx);
+  const before=[...f.map];
+  a.equal(await f.ctx._prepareProgressOwnerAsync('a'),true);
+  a.equal(await f.ctx._prepareProgressOwnerAsync('b'),false);
+  a.equal(f.ctx.authUser.id,'a');
+  a.deepEqual([...f.map],before);
+ }finally{await current.release();}
+});
+
+for (const owner of [null, 'signed-owner']) {
+ for (const timing of ['before promotion', 'during canonical write']) {
+  test(`mirror-only ${owner ? 'signed' : 'guest'} save keeps the newer source ${timing}`, () => {
+   const mirror = 'nefroquest-save', canonical = 'nefroquest-save-v7';
+   const oldSave = {schemaVersion: 7, saveOwner: owner, character: 'nephros', score: 20, lives: 3};
+   const loadedRaw = JSON.stringify(oldSave), newerRaw = JSON.stringify({...oldSave, score: 33});
+   const data = new Map([[mirror, loadedRaw]]);
+   const writes = [];
+   const storage = {
+    getItem: key => data.get(key) ?? null,
+    setItem(key, value) {
+     writes.push(key);
+     data.set(key, String(value));
+     if (key === canonical && timing === 'during canonical write') data.set(mirror, newerRaw);
+    },
+    removeItem: key => data.delete(key),
+   };
+   const ctx = {NQ_LEGACY_SAVE_PROMOTION: true, localStorage: storage, crypto: require('node:crypto').webcrypto,
+    CANONICAL_SAVE_KEY: canonical, SAVE_KEY: mirror, SAVE_SCHEMA_VERSION: 7, state: {gameStarted: false},
+    _saveCleanupBlocked: false, _normalJourneyStaging: false, _recentIds: [],
+    _saveBaseline: undefined, _saveOwner: undefined, _legacySaveBaseline: undefined,
+    isProgressSandbox: () => false, isCharacterPilot: () => false, _currentSaveOwner: () => owner,
+    _questionSaveExtras: () => ({}), _guestSavePair: () => '', _hardcoreAttemptCorrect: () => null,
+    _persistHardcoreBest() {}, _scheduleCloudSync() {}, _track() {}, _toast() {}, queueMicrotask() {},
+   };
+   ctx.window = ctx;
+   vm.createContext(ctx);
+   for (const [start, end] of [
+    ['    function _mirrorLegacySave(', '    function _showGuestSaveRecovery('],
+    ['    function _doSaveGame()', '    let _normalAuthorityOpening'],
+    ['    function loadGame()', '    function _previewNormalSave('],
+   ]) vm.runInContext(section(game, start, end), ctx);
+
+   const loaded = ctx.loadGame();
+   a.equal(loaded.score, 20);
+   a.equal(ctx._legacySaveBaseline, loadedRaw);
+   Object.assign(ctx.state, loaded, {gameStarted: true, gameOver: false, equipment: {}, queue: []});
+   if (timing === 'before promotion') data.set(mirror, newerRaw);
+
+   a.equal(ctx._doSaveGame(), false);
+   a.equal(storage.getItem(canonical), null);
+   a.equal(storage.getItem(mirror), newerRaw);
+   a.deepEqual(writes, timing === 'before promotion' ? [] : [canonical]);
+  });
+ }
+}

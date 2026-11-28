@@ -468,7 +468,7 @@
       return record === null || (record && Object.prototype.hasOwnProperty.call(record, 'save') && record.save === null);
     }
     function _canSyncLocalProgress(owner) {
-      if (window._authLogoutPending) return false;
+      if (window._authLogoutPending || window.NQ_LEGACY_SAVE_PROMOTION === true) return false;
       if (window.NQNormalProgress) {
         if (!window.NQNormalProgress.writable) return false;
         const e=window.NQNormalProgress.envelope();
@@ -509,6 +509,12 @@
     }
     window._prepareProgressOwner = _prepareProgressOwner;
     window._prepareProgressOwnerAsync = async function(owner) {
+      const retryingLegacy = _legacyTabIssue?.owner === owner && _legacyTabIssue?.generation === _authSessionEpoch;
+      if (window.NQ_DURABLE_PROGRESS === true && owner && owner === _currentSaveOwner() &&
+          (retryingLegacy || (window.NQNormalProgress && !window.NQNormalProgress.writable))) {
+        // A progress pause does not invalidate a token refresh for the same account.
+        return true;
+      }
       if (window.NQ_DURABLE_PROGRESS===true && !window._authLogoutPending && !window.NQNormalProgress &&
           window.NQNormalAuthority?.peek?.({storage:localStorage,owner:_currentSaveOwner()}).exists) {
         if (!await _ensureNormalAuthority()) return false;
@@ -693,6 +699,15 @@
             window._retireAuthFromSharedLogout?.(shared.saveOwner, event.newValue)) return;
       }
       if (window.NQPilot?.active) return; // The pilot guards its own revision and lease.
+      if (window.NQNormalProgress && [null, CANONICAL_SAVE_KEY, SAVE_KEY, 'unlockedArticles',
+          'nefroquest_total_accumulated_knowledge'].includes(event.key)) {
+        if (!window.NQNormalProgress.writable) {
+          _legacyTabIssue = {owner: _currentSaveOwner(), generation: _authSessionEpoch};
+          if (state.gameStarted) _stopLocalJourney();
+          refreshWelcomeSave();
+        }
+        return;
+      }
       if ((event.key === CANONICAL_SAVE_KEY || event.key === null) &&
           state.gameStarted && localStorage.getItem(CANONICAL_SAVE_KEY) !== _saveBaseline) {
         _stopLocalJourney();
@@ -1511,10 +1526,14 @@
       if (state.classBenefits && !_normalBenefitsValid()) return false;
       const owner = _currentSaveOwner();
       const currentRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
+      const promotingLegacy = window.NQ_LEGACY_SAVE_PROMOTION === true && currentRaw === null &&
+        _legacySaveBaseline !== undefined;
+      const legacyChanged = () => localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline;
       if (!window.NQNormalProgress && ((_saveOwner !== undefined && _saveOwner !== owner) ||
           (_saveBaseline !== undefined && currentRaw !== _saveBaseline) ||
+          (promotingLegacy && legacyChanged()) ||
           (owner === null && currentRaw && currentRaw !== 'null' &&
-           _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline))) {
+           _legacySaveBaseline !== undefined && legacyChanged()))) {
         // Also check synchronously: a queued storage event may arrive after a
         // click or an autosave. A stale tab must never resurrect a reset save.
         if (!_normalJourneyStaging) queueMicrotask(() => { _stopLocalJourney(); refreshWelcomeSave(); });
@@ -1598,10 +1617,13 @@
       }
       let candidateWritten = false;
       try {
-        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw) return false;
+        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw ||
+            (promotingLegacy && legacyChanged())) return false;
         localStorage.setItem(CANONICAL_SAVE_KEY, raw);
         candidateWritten = true;
-        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) throw new Error('Save readback mismatch');
+        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw || (promotingLegacy && legacyChanged())) {
+          throw new Error('Save readback mismatch');
+        }
       } catch(e) {
         if (candidateWritten) {
           // Compensate only our own candidate; never replace another writer.
@@ -1699,6 +1721,7 @@
     }
 
     let _normalAuthorityOpening = null;
+    let _legacyTabIssue = null;
     async function _ensureNormalAuthority() {
       if (window.NQ_DURABLE_PROGRESS!==true) return true;
       if (window.NQNormalProgress?.writable) return true;
@@ -1718,19 +1741,74 @@
     async function _openNormalAuthority() {
       if (window.NQ_DURABLE_PROGRESS !== true) return true;
       if (window.NQNormalProgress?.writable) return true;
-      if (window.NQNormalProgress) await window.NQNormalProgress.release();
+      const owner = _currentSaveOwner();
+      const generation = _authSessionEpoch;
+      const current = () => owner === _currentSaveOwner() && generation === _authSessionEpoch;
+      const previous = window.NQNormalProgress;
+      if (previous) {
+        window.NQNormalProgress = null;
+        await previous.release();
+      }
+      if (!current()) return false;
       try {
         const instance = window.NQNormalAuthority.create({storage:localStorage,locks:navigator.locks,
-          owner:_currentSaveOwner(),currentOwner:_currentSaveOwner,identityGeneration:()=>_authSessionEpoch,sourceEvents:window,newJourneyId:()=>crypto.randomUUID(),
+          owner,currentOwner:_currentSaveOwner,identityGeneration:()=>_authSessionEpoch,sourceEvents:window,newJourneyId:()=>crypto.randomUUID(),
           validateReceipt:r=>r.phase==='earned'||_validDurableChestReward(r.reward),
           validateSave:(save,owner)=>save.saveOwner===owner && !!save.character &&
             (save.classBenefits ? _normalCharacterSaveValid(save,owner) : save.schemaVersion===7)});
-        await instance.bootstrap();
+        await instance.bootstrap({archiveStaleLegacy: true});
+        if (!current()) { await instance.release(); return false; }
         window.NQNormalProgress = instance;
+        _legacyTabIssue = null;
         _reloadJourneyCollections();
+        _renderLegacyTabRecovery();
         return true;
       }
-      catch(error){_toast('Não foi possível proteger o progresso. Nenhum dado foi alterado.', 'warning',6000);return false;}
+      catch(error) {
+        if (current()) {
+          if (error?.code === 'LEGACY_CONFLICT' || _legacyTabIssue?.owner === owner) {
+            _legacyTabIssue = {owner, generation};
+            _renderLegacyTabRecovery();
+          }
+          _toast('Não foi possível recuperar a jornada. As cópias do progresso foram preservadas.', 'warning', 6000);
+        }
+        return false;
+      }
+    }
+    function _renderLegacyTabRecovery() {
+      const panel = document.getElementById('legacyTabRecovery');
+      if (!panel) return;
+      const retry = document.getElementById('legacyTabRecoveryRetry');
+      const archives = document.getElementById('legacyTabRecoveryArchives');
+      const owner = _currentSaveOwner();
+      const generation = _authSessionEpoch;
+      const paused = _legacyTabIssue?.owner === owner && _legacyTabIssue.generation === generation;
+      const normal = window.NQNormalProgress;
+      let source;
+      try { if (!paused && !isCharacterPilot() && normal?.writable) source = normal.envelope().source; }
+      catch (_) { /* A storage event will refresh the panel after a concurrent write. */ }
+      const hasOldCopy = !!source?.legacySourceArchives?.length;
+      const hasArchive = hasOldCopy || (!!owner && !!source?.authoritySelections?.length);
+      const message = document.getElementById('legacyTabRecoveryMessage');
+      panel.hidden = !paused && !hasArchive;
+      retry.hidden = !paused;
+      archives.hidden = !hasArchive;
+      message.hidden = !paused && !hasOldCopy;
+      message.textContent = paused
+        ? 'A Jornada foi pausada após uma gravação em outra aba. Feche a aba antiga e recupere a Jornada.'
+        : hasOldCopy ? 'Sua Jornada protegida está disponível. A cópia da aba antiga foi guardada neste aparelho.' : '';
+      retry.onclick = async () => {
+        if (retry.disabled || owner !== _currentSaveOwner() || generation !== _authSessionEpoch) return;
+        retry.disabled = true;
+        try {
+          if (!await _ensureNormalAuthority() || owner !== _currentSaveOwner() || generation !== _authSessionEpoch) return;
+          refreshWelcomeSave();
+          const resume = document.getElementById('welcomeContinueBtn');
+          if (resume && resume.style.display !== 'none') resume.focus();
+          else archives.focus();
+        } finally { retry.disabled = false; }
+      };
+      archives.onclick = _showArchivedAuthorityBranches;
     }
     function loadGame() {
       if (_saveCleanupBlocked) return null;
@@ -1766,7 +1844,7 @@
         }
         if (!state.gameStarted) {
           _saveBaseline = canonicalRaw; _saveOwner = _currentSaveOwner();
-          _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
+          _legacySaveBaseline = canonicalRaw === null ? raw : localStorage.getItem(SAVE_KEY);
         }
         return _migrateSave(save);
       } catch(e) {
@@ -1972,15 +2050,7 @@
       if (!status) return;
       status.hidden = !authUser;
       status.textContent = authUser ? text : '';
-      try {
-        if(authUser && window.NQNormalProgress?.writable) {
-          const archives=window.NQNormalProgress.authority.load().source.authoritySelections;
-          if(archives?.length) {
-            const button=document.createElement('button');button.type='button';button.className='btn sec';
-            button.textContent='Jornadas arquivadas';button.onclick=_showArchivedAuthorityBranches;status.appendChild(button);
-          }
-        }
-      } catch(error) { /* Keep the status readable if storage is temporarily unavailable. */ }
+      _renderLegacyTabRecovery();
     }
     function _cloudJourneyFingerprint(save) {
       if (!save?.character) return null;
@@ -1997,14 +2067,19 @@
         save:_cloudJourneyFingerprint(progress.ownerAuthority.state.save)};
       return window.NQQuestionRevisions.digest(snapshot);
     }
+    function _cloudCheckpointKey(owner) {
+      // Older tabs still write their own last-seen cloud revision.
+      const prefix = window.NQNormalProgress ? 'nefroquest-authority-cloud-v1:' : 'nefroquest-cloud:';
+      return prefix + owner;
+    }
     function _cloudCheckpoint(owner) {
       try {
-        const checkpoint = JSON.parse(localStorage.getItem('nefroquest-cloud:' + owner) || 'null');
+        const checkpoint = JSON.parse(localStorage.getItem(_cloudCheckpointKey(owner)) || 'null');
         return Number.isSafeInteger(checkpoint?.version) && checkpoint.version >= 0 ? checkpoint : null;
       } catch { return null; }
     }
     function _rememberCloudProgress(owner, remote, {confirmedRead=false}={}) {
-      localStorage.setItem('nefroquest-cloud:' + owner, JSON.stringify({ version: remote.version,
+      localStorage.setItem(_cloudCheckpointKey(owner), JSON.stringify({ version: remote.version,
         authorityBase: remote.progress.ownerAuthority ? window.NQCloudAuthority.fingerprint(remote.progress.ownerAuthority.state) : null,
         journey: _cloudJourneyFingerprint(remote.progress.save), payload: _cloudFingerprint(remote.progress) }));
       if (confirmedRead && remote.progress.ownerAuthority) {
@@ -2139,23 +2214,28 @@
     }
     function _showArchivedAuthorityBranches() {
       const normal=window.NQNormalProgress,binding=_cloudBinding();
-      if (!normal?.writable || !_cloudBindingCurrent(binding) || !window.NQAuthorityCloudDecision) return;
+      const owner = _currentSaveOwner();
+      const usable = () => normal === window.NQNormalProgress && normal?.writable && !isCharacterPilot() &&
+        !window._authLogoutPending && owner === _currentSaveOwner() &&
+        binding.authEpoch === _authSessionEpoch && binding.progressEpoch === _progressEpoch;
+      if (!usable()) return;
       _closeArchivedAuthorityBranches(false);
       const dialog=document.createElement('div');dialog.id='authorityArchiveDialog';dialog.className='nq-overlay';dialog.dataset.nqUi='lumen';
       dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');dialog.setAttribute('aria-labelledby','authorityArchiveTitle');
-      dialog.innerHTML='<div class="modal-content cloud-conflict-card"><h2 id="authorityArchiveTitle">Jornadas arquivadas</h2><p>Os arquivos ficam neste aparelho. Abrir um resumo não altera seu progresso.</p><div data-archive-list></div><div data-archive-preview></div><p role="status"></p><button type="button" class="btn sec" data-archive-close>Fechar</button></div>';
+      dialog.innerHTML='<div class="modal-content cloud-conflict-card"><h2 id="authorityArchiveTitle">Jornadas arquivadas</h2><p>Os arquivos ficam neste aparelho.</p><div data-archive-list></div><div data-archive-preview></div><div data-archive-older-tab></div><p role="status"></p><button type="button" class="btn sec" data-archive-close>Fechar</button></div>';
       const close=()=>{if(document.getElementById('authorityArchiveDialog')===dialog)_closeArchivedAuthorityBranches();};
       dialog.querySelector('[data-archive-close]').onclick=close;
-      const current=()=>normal===window.NQNormalProgress && normal.writable && _cloudBindingCurrent(binding) && dialog.isConnected;
+      const current=()=>usable() && dialog.isConnected;
       const status=dialog.querySelector('[role="status"]'),list=dialog.querySelector('[data-archive-list]');
       const summary=branch=>branch.save ? `${branch.save.character || 'Personagem'} · ${branch.save.correctTotal || 0} acertos · ${branch.receipts.filter(r=>r.phase!=='consumed').length} baús pendentes` : 'Sem jornada em andamento';
-      const entries=normal.authority.load().source.authoritySelections || [];
-      if(!entries.length)list.textContent='Nenhuma jornada arquivada neste aparelho.';
+      const entries=_cloudBindingCurrent(binding) && window.NQAuthorityCloudDecision ? (normal.authority.load().source.authoritySelections || []) : [];
+      const olderTabs = normal.legacySourceArchives?.() || [];
+      if (!entries.length && !olderTabs.length) list.textContent = 'Nenhuma jornada arquivada neste aparelho.';
       entries.forEach((entry,index)=>{
         const button=document.createElement('button');button.type='button';button.className='btn sec';
         button.textContent=`Arquivo ${index+1}: ${summary(entry.local)}`;
         button.onclick=()=>{
-          if(!current()){close();return;}
+          if(!current() || !_cloudBindingCurrent(binding)){close();return;}
           try {
             const token=window.NQAuthorityCloudDecision.prepareRestore(normal.authority,index,{currentProgress:_buildCloudProgress({forLocalArchive:true})});
             const preview=dialog.querySelector('[data-archive-preview]');preview.replaceChildren();
@@ -2163,7 +2243,7 @@
             const confirm=document.createElement('button');confirm.type='button';confirm.className='btn';confirm.textContent='Confirmar restauração deste arquivo';preview.appendChild(confirm);
             confirm.onclick=()=>{
               if(confirm.disabled)return;
-              if(!current()){close();return;}
+              if(!current() || !_cloudBindingCurrent(binding)){close();return;}
               confirm.disabled=true;
               try {
                 window.NQAuthorityCloudDecision.restore(normal.authority,token,{project:window.NQAuxiliaryProgress?.project});
@@ -2183,6 +2263,31 @@
         };
         list.appendChild(button);
       });
+      if (olderTabs.length) {
+        const section = dialog.querySelector('[data-archive-older-tab]');
+        const heading = document.createElement('h3');
+        heading.textContent = 'Cópias de abas antigas';
+        section.appendChild(heading);
+        olderTabs.forEach((copy, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'btn sec';
+          button.textContent = `Baixar cópia da aba antiga ${index + 1}`;
+          button.onclick = () => {
+            if (!current()) { close(); return; }
+            const blob = new Blob([JSON.stringify(copy, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `nefroquest-copia-aba-antiga-${index + 1}.json`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+          };
+          section.appendChild(button);
+        });
+      }
       document.body.appendChild(dialog);_archiveDialogFocus=manageDialogFocus(dialog,close);
     }
     function _offerDeferredAuthorityChoice(message='Salvo neste aparelho · sincronização pausada por sua escolha') {
@@ -2798,6 +2903,10 @@
     async function _loadProgressFromCloud({ forSync = false } = {}) {
       if (window._authLogoutPending || isCharacterPilot() || !authUser || !_supaClient || _saveCleanupBlocked ||
           _normalJourneyStaging || _pilotAnswerTransaction?.normal) return false;
+      if (window.NQ_LEGACY_SAVE_PROMOTION === true) {
+        _cloudStatus('Progresso neste aparelho · recarregue após retomar para sincronizar');
+        return false;
+      }
       if (window.NQ_DURABLE_PROGRESS===true) {
         const owner=authUser.id,epoch=_authSessionEpoch;
         if (!await _ensureNormalAuthority() || authUser?.id!==owner || _authSessionEpoch!==epoch) return false;
@@ -3262,6 +3371,7 @@
         }
       }
       _syncWelcomeFirstAccess();
+      _renderLegacyTabRecovery();
     }
 
     
