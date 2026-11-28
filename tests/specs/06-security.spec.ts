@@ -25,12 +25,10 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
   test('service worker está registrado', async ({ page }) => {
     await page.goto('/jogar/');
     await page.waitForLoadState('domcontentloaded');
-    const swRegistered = await page.evaluate(async () => {
-      if (!('serviceWorker' in navigator)) return false;
-      const reg = await navigator.serviceWorker.getRegistration('/');
-      return !!reg;
-    });
-    expect(swRegistered).toBe(true);
+    await expect.poll(() => page.evaluate(async () => {
+      const reg = await navigator.serviceWorker?.getRegistration('/');
+      return reg?.active?.state;
+    }), { timeout: 12_000 }).toBe('activated');
   });
 
   test('sw.js é acessível', async ({ page }) => {

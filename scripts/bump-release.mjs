@@ -22,6 +22,7 @@
  * O que NÃO faz: tocar no buster de arquivo intocado.
  */
 
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -65,10 +66,11 @@ if (manifestoDerivou) alterados.push('data/question-revision-manifest.js');
 const BUSTER = /((?:js|data)\/[a-z0-9-]+\.js|styles\/lumen\/[a-z0-9-]+\.css|style\.css)\?(?:v|release)=([0-9.]+)/g;
 const DATA_BUSTER = /(data\/[a-z0-9-]+\.js)\?release=([0-9.]+)/g;
 const DATA_CONSUMERS = ['js/game.js', 'js/utils.js', 'offline.html'];
+const consumerBuster = file => new RegExp((file === 'offline.html' ? BUSTER : DATA_BUSTER).source, 'g');
 function bustersDoApp(htmlTexto, leitor = ler) {
   const entries = [...htmlTexto.matchAll(new RegExp(BUSTER.source, 'g'))];
   for (const file of DATA_CONSUMERS) {
-    entries.push(...leitor(file).matchAll(new RegExp(DATA_BUSTER.source, 'g')));
+    entries.push(...leitor(file).matchAll(consumerBuster(file)));
   }
   const versions = new Map();
   for (const match of entries) {
@@ -85,7 +87,7 @@ const comBuster = bustersDoApp(html);
 // Updating a lazy data URL changes its loader's bytes too. Advance that
 // JavaScript buster even when only its underlying data changed initially.
 for (const file of DATA_CONSUMERS) {
-  if ([...ler(file).matchAll(new RegExp(DATA_BUSTER.source, 'g'))]
+  if ([...ler(file).matchAll(consumerBuster(file))]
     .some(match => alterados.includes(match[1]) && match[2] !== novaVersao)) alterados.push(file);
 }
 
@@ -159,9 +161,37 @@ function estaticosDoSw(swTexto) {
   return [...lista.conteudo.matchAll(/'(\/[^']+)'/g)].map(m => m[1].replace(/^\//, ''));
 }
 
+const OFFLINE_INI = '// bump-release:offline-integrity:início';
+const OFFLINE_FIM = '// bump-release:offline-integrity:fim';
+function offlineIntegrity() {
+  const html = ler('offline.html');
+  const scripts = [...html.matchAll(/<script\b[^>]*\bsrc=[^>]*>/gi)];
+  const urls = scripts.map(([tag]) => {
+    const url = tag.match(/\bsrc="(\/(?:js|data)\/[a-z0-9-]+\.js\?(?:v|release)=\d+\.\d+)"/)?.[1];
+    if (!url) throw new Error(`Script de Estudo Offline sem URL estável: ${tag}`);
+    return url;
+  });
+  if (urls.length !== 5 || new Set(urls.map(url => url.split('?')[0])).size !== 5)
+    throw new Error('Estudo Offline requer cinco scripts locais versionados e distintos.');
+  const rows = ['/offline.html', ...urls].map(url => {
+    const bytes = readFileSync(resolve(raiz, '.' + url.split('?')[0]));
+    return '  ' + JSON.stringify([url, createHash('sha256').update(bytes).digest('hex')]) + ',';
+  });
+  return 'const OFFLINE_FILES = [\n' + rows.join('\n') + '\n];';
+}
+
+function escreverOfflineIntegrity() {
+  const sw = ler('sw.js');
+  const marker = blocoEntre(sw, OFFLINE_INI, OFFLINE_FIM);
+  if (!marker) throw new Error('Marcadores de integridade do Estudo Offline ausentes.');
+  escrever('sw.js', sw.slice(0, marker.i) + '\n' + offlineIntegrity() + '\n' + sw.slice(marker.f));
+}
+
 const swAtual = ler('sw.js');
 const mapaAtual = blocoEntre(swAtual, MARCA_INI, MARCA_FIM);
 const mapaEsperado = mapaDesejado(html, swAtual);
+const offlineDerivou = blocoEntre(swAtual, OFFLINE_INI, OFFLINE_FIM)?.conteudo !== offlineIntegrity();
+if (offlineDerivou) console.log('\n⚠  Digest do pacote de Estudo Offline desatualizado.');
 const mapaDerivou = !mapaAtual || mapaAtual.conteudo !== mapaEsperado;
 
 if (mapaDerivou) {
@@ -220,7 +250,7 @@ if (manifestoDerivou) {
 }
 
 if (apenasChecar) {
-  process.exit(suspeitos.length || bustersAtrasados.length || mapaDerivou || manifestoDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
+  process.exit(suspeitos.length || bustersAtrasados.length || mapaDerivou || manifestoDerivou || offlineDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
 }
 
 // `--sync` regera só o mapa, sem tocar em versão: serve para quem mexeu no
@@ -229,7 +259,8 @@ if (args.includes('--sync')) {
   const b = blocoEntre(swAtual, MARCA_INI, MARCA_FIM);
   if (!b) { console.error('marcadores de ASSET_VERSIONS não encontrados em sw.js'); process.exit(1); }
   escrever('sw.js', swAtual.slice(0, b.i) + `\n${mapaEsperado}\n` + swAtual.slice(b.f));
-  console.log('\nASSET_VERSIONS regerado.');
+  escreverOfflineIntegrity();
+  console.log('\nASSET_VERSIONS e integridade do Estudo Offline regerados.');
   process.exit(0);
 }
 
@@ -249,7 +280,8 @@ escrever('version.json', `${JSON.stringify({ ...metadadosVersao, version: novaVe
 
 // 2) sw.js — comentário do topo e nome do cache
 let sw = ler('sw.js');
-sw = sw.replace(/v\d+\.\d+/g, `v${novaVersao}`);
+sw = sw.replace(/(\/\/ NefroQuest Service Worker — v)\d+\.\d+/, `$1${novaVersao}`)
+       .replace(/(const CACHE = 'nefroquest-v)\d+\.\d+/, `$1${novaVersao}`);
 escrever('sw.js', sw);
 
 // 3) release do Sentry e rótulos visíveis
@@ -270,8 +302,10 @@ escrever('jogar/index.html', jogar);
 
 for (const file of DATA_CONSUMERS) {
   const before = ler(file);
-  const after = before.replace(new RegExp(DATA_BUSTER.source, 'g'), (match, asset) =>
-    alterados.includes(asset) ? `${asset}?release=${novaVersao}` : match);
+  const after = before.replace(consumerBuster(file), (match, asset) => {
+    const parameter = asset.startsWith('data/') ? 'release' : 'v';
+    return alterados.includes(asset) ? `${asset}?${parameter}=${novaVersao}` : match;
+  });
   if (after !== before) escrever(file, after);
 }
 
@@ -285,5 +319,7 @@ for (const file of DATA_CONSUMERS) {
   const mapa = mapaDesejado(ler('jogar/index.html'), swFinal);
   escrever('sw.js', swFinal.slice(0, b.i) + `\n${mapa}\n` + swFinal.slice(b.f));
 }
+
+escreverOfflineIntegrity();
 
 console.log(`\nrelease ${novaVersao} aplicada.`);

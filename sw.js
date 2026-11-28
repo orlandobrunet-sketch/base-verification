@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.39
-const CACHE = 'nefroquest-v17.39';
+// NefroQuest Service Worker — v17.40
+const CACHE = 'nefroquest-v17.40';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -241,7 +241,7 @@ const ASSET_VERSIONS = {
   '/data/refs.js': '17.28',
   '/data/articles.js': '17.28',
   '/data/topics.js': '17.32',
-  '/data/question-revision-manifest.js': '17.39',
+  '/data/question-revision-manifest.js': '17.40',
   '/data/question-source-positions.js': '17.28',
   '/data/question-revision-history.js': '17.32',
   '/js/question-revisions.js': '17.27',
@@ -294,6 +294,201 @@ const ASSET_VERSIONS = {
 };
 // bump-release:asset-versions:fim
 
+// bump-release:offline-integrity:início
+const OFFLINE_FILES = [
+  ["/offline.html","caddca9dff9296000a06c52cc85567a74103640c6dc8e625dae00cd5cd9ddec8"],
+  ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+  ["/data/question-revision-manifest.js?release=17.40","d50a845bb559c8ce31784e831cad0e51950883977cc761f475ca8df3a87e3b97"],
+  ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+  ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+  ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+];
+// bump-release:offline-integrity:fim
+
+// Única ponte para versões que ainda não gravavam um pacote verificado. A
+// cópia canônica antiga pode já estar misturada: não confie no nome do cache.
+const OFFLINE_LEGACY_BUNDLES = [
+  ['nefroquest-v17.39', [
+    ["/offline.html","3ee7cca153bfb5191434f02e37456be490684369db96d6eef125837b7554522f"],
+    ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+    ["/data/question-revision-manifest.js?release=17.39","39ecc61e38c03f7fbb8fce53517ed66389558eab059edd1eb5718fb3c087bbf6"],
+    ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+    ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+    ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+  ]],
+  ['nefroquest-v17.37', [
+    ["/offline.html","c815cc8c44f0fa9982756ba1404944bc1a287336d3de117e8e57dba1cd46fab0"],
+    ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+    ["/data/question-revision-manifest.js?release=17.37","8c9849f5ed1ce68d5bbde1621673b5ce7edc41704950ac9a92de24d63f2205ab"],
+    ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+    ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+    ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+  ]],
+  ['nefroquest-v17.34', [
+    ["/offline.html","a9158e983783203d22c98ed58b08c7e55bb36b7d49e9559c29567253c5ee29a6"],
+    ["/js/answer-presentation.js?v=16.09","3f6b509ad3f1a8a71f259837a358eb0e6f6ac34f0478bee36a6fa4f44a506a1e"],
+    ["/data/question-revision-manifest.js?release=17.34","dd8e82fccffdba3a50f9fe853732c84fa84717313d2282a923f8bfe77bde5b08"],
+    ["/data/question-revision-history.js?release=17.32","8d7040070f9b302ab1d4c8addf67e61b7b7577fdd2312c7cc4302174bd6e954d"],
+    ["/js/question-revisions.js?v=17.27","855d5deb204150997ca2efbb46e2629535c4ed3c80d7371e85623cb7712ae6b4"],
+    ["/data/topics.js?release=17.32","0f12b34e445d904c72e616a548f8c204d512041ed4550307ed2961a7216f05f8"],
+  ]],
+];
+
+const OFFLINE_PREFIX = '/__nq_offline_bundle__/';
+const OFFLINE_CACHE_PREFIX = 'nefroquest-offline-bundle-';
+const offlineId = files => files[0][1];
+const offlineKey = (id, item) => OFFLINE_PREFIX + id + '/' + item;
+const offlineCacheName = id => OFFLINE_CACHE_PREFIX + id;
+const currentOfflineId = offlineId(OFFLINE_FILES);
+const OFFLINE_CLEAN_PATH = '/offline';
+const offlinePaths = new Set(OFFLINE_FILES.map(([url]) => url.split('?')[0]));
+
+async function verifiedOfflineResponse(response, hash) {
+  if (!response?.ok || response.status !== 200 || response.redirected) return false;
+  const digest = await crypto.subtle.digest('SHA-256', await response.clone().arrayBuffer());
+  return Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, '0')).join('') === hash;
+}
+
+async function readOfflineBundle(id, knownCache) {
+  try {
+    if (!knownCache && !await caches.has(offlineCacheName(id))) return null;
+    const cache = knownCache || await caches.open(offlineCacheName(id));
+    const marker = await cache.match(offlineKey(id, 'ready'));
+    if (!marker) return null;
+    const files = await marker.json();
+    if (!Array.isArray(files) || files.length !== OFFLINE_FILES.length || offlineId(files) !== id
+      || !files.every((pair, i) => Array.isArray(pair) && typeof pair[0] === 'string'
+        && pair[0].split('?')[0] === OFFLINE_FILES[i][0].split('?')[0] && /^[0-9a-f]{64}$/.test(pair[1]))) return null;
+    const entries = await Promise.all(files.map((_, index) => cache.match(offlineKey(id, index))));
+    return entries.every(Boolean) ? { id, files, cache, entries } : null;
+  } catch (_) { return null; }
+}
+
+async function previousOfflineIds() {
+  // CacheStorage.keys mantém a ordem de criação. Não abra caches alheios.
+  return (await caches.keys()).reverse().filter(name => name.startsWith(OFFLINE_CACHE_PREFIX))
+    .map(name => name.slice(OFFLINE_CACHE_PREFIX.length))
+    .filter(id => id !== currentOfflineId && /^[0-9a-f]{64}$/.test(id));
+}
+
+async function previousOfflineBundle() {
+  for (const id of await previousOfflineIds()) {
+    const bundle = await readOfflineBundle(id);
+    if (bundle) return bundle;
+  }
+  return null;
+}
+
+async function saveOfflineBundle(files, obtain) {
+  const id = offlineId(files);
+  try {
+    const cache = await caches.open(offlineCacheName(id));
+    const ready = await readOfflineBundle(id, cache);
+    if (ready) return ready;
+    // Enquanto incompleto, cada entrada fica sob um endereço privado. O
+    // worker anterior usa caches.match global para os endereços canônicos.
+    await cache.delete(offlineKey(id, 'ready'));
+    for (let index = 0; index < files.length; index++) {
+      const [path, hash] = files[index];
+      const key = offlineKey(id, index);
+      const staged = await cache.match(key);
+      if (await verifiedOfflineResponse(staged, hash)) continue;
+      const response = await obtain(path, hash);
+      if (!await verifiedOfflineResponse(response, hash)) return null;
+      await cache.put(key, response);
+    }
+    await cache.put(offlineKey(id, 'ready'), new Response(JSON.stringify(files)));
+    return await readOfflineBundle(id, cache);
+  } catch (_) { return null; } // quota, rede ou digest: não promove o pacote
+}
+
+async function migrateOfflineBundle() {
+  const previous = await previousOfflineBundle();
+  if (previous) return previous;
+  // Nunca misture gerações. Aceite apenas um conjunto completo e verificado,
+  // começando pela versão pública mais recente que o browser tiver.
+  for (const [cacheName, files] of OFFLINE_LEGACY_BUNDLES) {
+    if (!await caches.has(cacheName)) continue;
+    const cache = await caches.open(cacheName);
+    const bundle = await saveOfflineBundle(files, path => cache.match(path.split('?')[0]));
+    if (bundle) return bundle;
+  }
+  return null;
+}
+
+let offlinePreparation;
+let lastOfflinePreparation = 0;
+function prepareCurrentOfflineBundle(previous) {
+  if (offlinePreparation) return offlinePreparation;
+  if (Date.now() - lastOfflinePreparation < 5000) return Promise.resolve(null);
+  lastOfflinePreparation = Date.now();
+  offlinePreparation = saveOfflineBundle(OFFLINE_FILES, async (path, hash) => {
+    const match = previous?.files.findIndex(([, digest]) => digest === hash) ?? -1;
+    if (match >= 0) return previous.entries[match].clone();
+    const options = { cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(10000) };
+    if (path !== '/offline.html') return fetch(path, options);
+    // Alguns hosts servem o mesmo documento por /offline. Tente apenas as
+    // duas rotas conhecidas, sem seguir redirecionamentos ou pular o digest.
+    const direct = await fetch(path, options).catch(() => null);
+    return direct?.status === 200 ? direct : fetch(OFFLINE_CLEAN_PATH, options);
+  }).finally(() => { offlinePreparation = null; });
+  return offlinePreparation;
+}
+
+async function offlineStudyResponse(bundle) {
+  if (!bundle) {
+    return new Response('<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Estudo Offline</title><main><h1>Estudo Offline</h1><p>Reconecte-se para concluir o download das questões. Sua sessão salva não foi alterada.</p><a href="/offline.html">Tentar novamente</a></main></html>', {
+      status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
+    });
+  }
+  let html = await bundle.entries[0].text();
+  bundle.files.slice(1).forEach(([path], i) => {
+    html = html.replace('src="' + path + '"', 'src="' + offlineKey(bundle.id, i + 1) + '"');
+  });
+  // Os scripts pedem a identidade do próprio documento, inclusive quando
+  // outra versão fica pronta entre a navegação e o último script.
+  const headers = new Headers(bundle.entries[0].headers);
+  for (const key of ['Content-Length', 'Content-Encoding', 'ETag']) headers.delete(key);
+  headers.set('Content-Type', 'text/html; charset=utf-8');
+  headers.set('Cache-Control', 'no-store');
+  return new Response(html, { headers });
+}
+
+async function serveOfflineStudy(event) {
+  const current = await readOfflineBundle(currentOfflineId);
+  if (current) return offlineStudyResponse(current);
+  const previous = await previousOfflineBundle();
+  const pending = prepareCurrentOfflineBundle(previous);
+  if (previous) {
+    // Continue estudando na versão íntegra enquanto a versão nova baixa.
+    event.waitUntil(pending);
+    return offlineStudyResponse(previous);
+  }
+  return offlineStudyResponse(await pending);
+}
+
+async function serveOfflineScript(path) {
+  const m = path.match(/^\/__nq_offline_bundle__\/([0-9a-f]{64})\/([1-9][0-9]*)$/);
+  if (m && Number(m[2]) < OFFLINE_FILES.length && await caches.has(offlineCacheName(m[1]))) {
+    const cache = await caches.open(offlineCacheName(m[1]));
+    if (await cache.match(offlineKey(m[1], 'ready'))) {
+      const response = await cache.match(path);
+      if (response) return response;
+    }
+  }
+  return new Response('', { status: 404 });
+}
+
+// Uma resposta boa da rede continua utilizável se o cache estiver cheio ou
+// indisponível. Isso não afeta o selo do Estudo Offline.
+async function rememberApplicationAsset(key, response) {
+  try {
+    const cache = await caches.open(CACHE);
+    await cache.put(key, response.clone());
+    return cache;
+  } catch (_) { return null; }
+}
+
 function canonicalAssetKey(request, url) {
   if (!url.searchParams.has('v') && !(url.pathname.startsWith('/data/') && url.searchParams.has('release'))) return request;
   return new Request(url.pathname, { method: 'GET', credentials: 'same-origin' });
@@ -315,52 +510,60 @@ async function canonicalizeVersionedAssetEntries(cache) {
   }));
 }
 
+let installOfflineReady;
 self.addEventListener('install', e => {
-  // CRÍTICO: skipWaiting() chamado IMEDIATAMENTE — não bloqueia no precache
-  self.skipWaiting();
-
-  // Precache em background; falhas individuais são ignoradas.
-  //
-  // Asset COM buster: pede a mesma URL versionada que a página pediu segundos
-  // antes, sem `no-store`. O cache HTTP atende e o download não se repete. O
-  // frescor não depende disso — a URL muda a cada release do arquivo.
-  //
-  // Asset SEM buster (áudio, imagens, data/*.js): mantém `no-store`. Sem URL
-  // versionada, deixar o cache HTTP responder poderia gravar uma cópia velha no
-  // cache do SW, e ela ficaria lá pelo ciclo inteiro da release — inclusive de
-  // data/topics.js, que é conteúdo médico. Aqui frescor vale mais que banda.
-  e.waitUntil(
-    caches.open(CACHE).then(cache =>
-      Promise.allSettled(
-        STATIC_ASSETS.map(caminho => {
-          const versao = ASSET_VERSIONS[caminho];
-          const parametro = caminho.startsWith('/data/') ? 'release' : 'v';
-          const busca = versao
-            ? fetch(`${caminho}?${parametro}=${versao}`)
-            : fetch(caminho, { cache: 'no-store' });
-          return busca
-            .then(res => { if (res.ok) return cache.put(caminho, res.clone()); })
-            .catch(() => {});
-        })
-      )
-    )
-  );
+  installOfflineReady = (async () => {
+    let previous;
+    try { previous = await migrateOfflineBundle(); } catch (_) { /* cache indisponível */ }
+    const current = await prepareCurrentOfflineBundle(previous);
+    if (!current && !previous) throw new Error('Nenhum pacote de Estudo Offline íntegro.');
+    return current;
+  })();
+  e.waitUntil(installOfflineReady.then(async () => {
+    const cache = await caches.open(CACHE).catch(() => null);
+    if (cache) await Promise.allSettled(STATIC_ASSETS.filter(path => !offlinePaths.has(path)).map(async path => {
+      const version = ASSET_VERSIONS[path];
+      const parameter = path.startsWith('/data/') ? 'release' : 'v';
+      const response = version
+        ? await fetch(`${path}?${parameter}=${version}`)
+        : await fetch(path, { cache: 'no-store' });
+      if (response.ok) await cache.put(path, response);
+    }));
+    await self.skipWaiting();
+  }));
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => k !== CACHE).map(k => caches.delete(k))
-      ))
-      .then(() => caches.open(CACHE))
-      .then(cache => canonicalizeVersionedAssetEntries(cache))
-      .then(() => self.clients.claim())
-  );
+  e.waitUntil((async () => {
+    const cache = await caches.open(CACHE).catch(() => null);
+    const current = await readOfflineBundle(currentOfflineId);
+    if (current && cache) {
+      await Promise.allSettled(current.files.slice(1).map(([path], i) =>
+        cache.put(path.split('?')[0], current.entries[i + 1])));
+    }
+    if (cache) await canonicalizeVersionedAssetEntries(cache).catch(() => {});
+    // Só aposente gerações antigas após confirmar a atual. Retenha até duas
+    // anteriores para navegações que já receberam um documento anterior.
+    if (current) {
+      let retained = 0;
+      for (const id of await previousOfflineIds()) {
+        if (retained < 2 && await readOfflineBundle(id)) retained++;
+        else await caches.delete(offlineCacheName(id)).catch(() => {});
+      }
+    }
+    // O legado só é removido depois de selar o conjunto atual ou o anterior.
+    // Nunca apague caches de outras aplicações da origem.
+    await Promise.allSettled((await caches.keys()).filter(name =>
+      name !== CACHE && /^nefroquest-v\d+\.\d+$/.test(name)).map(name => caches.delete(name)));
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('message', e => {
-  if (e.data?.type === 'SKIP_WAITING') self.skipWaiting();
+  if (e.data?.type === 'SKIP_WAITING' && installOfflineReady) {
+    // A mensagem não contorna a verificação de prontidão da instalação.
+    e.waitUntil(installOfflineReady.then(() => self.skipWaiting()).catch(() => {}));
+  }
 });
 
 self.addEventListener('fetch', e => {
@@ -370,6 +573,14 @@ self.addEventListener('fetch', e => {
   if (url.origin !== location.origin) return;
   if (url.pathname === '/clear-cache.html') return;
   if (url.pathname === '/version.json') return;
+  if (url.pathname.startsWith(OFFLINE_PREFIX)) {
+    e.respondWith(serveOfflineScript(url.pathname));
+    return;
+  }
+  if (url.pathname === '/offline.html' || url.pathname === OFFLINE_CLEAN_PATH) {
+    e.respondWith(serveOfflineStudy(e));
+    return;
+  }
   // Filmes usam respostas HTTP Range (206), que Cache.put nao aceita.
   // Deixe o navegador transmitir e buscar trechos sem interceptar a midia.
   if (url.pathname.startsWith('/assets/cinema/') && url.pathname.endsWith('.mp4')) return;
@@ -387,12 +598,11 @@ self.addEventListener('fetch', e => {
       fetch(e.request, { cache: 'no-store' })
         .then(async res => {
           if (res.ok) {
-            const cache = await caches.open(CACHE);
-            await cache.put(canonicalKey, res.clone());
+            await rememberApplicationAsset(canonicalKey, res);
           }
           return res;
         })
-        .catch(() => caches.match(canonicalKey).then(cached => cached || caches.match('/offline.html')))
+        .catch(() => caches.match(canonicalKey).then(cached => cached || serveOfflineStudy(e)))
     );
     return;
   }
@@ -429,8 +639,7 @@ self.addEventListener('fetch', e => {
           if (res.ok) {
             // Grava sob a chave canônica para que o próximo acesso — já com o
             // SW novo ativo — encontre o conteúdo certo.
-            const cache = await caches.open(CACHE);
-            await cache.put(assetCacheKey, res.clone());
+            await rememberApplicationAsset(assetCacheKey, res);
           }
           return res;
         })
@@ -450,17 +659,15 @@ self.addEventListener('fetch', e => {
       if (assetCacheKey !== e.request) {
         const legacy = await caches.match(e.request);
         if (legacy) {
-          const cache = await caches.open(CACHE);
-          await cache.put(assetCacheKey, legacy.clone());
-          await cache.delete(e.request);
+          const cache = await rememberApplicationAsset(assetCacheKey, legacy);
+          if (cache) await cache.delete(e.request).catch(() => {});
           return legacy;
         }
       }
 
       return fetch(e.request).then(async res => {
         if (res.ok) {
-          const cache = await caches.open(CACHE);
-          await cache.put(assetCacheKey, res.clone());
+          await rememberApplicationAsset(assetCacheKey, res);
         }
         return res;
       }).catch(() => caches.match(assetCacheKey));

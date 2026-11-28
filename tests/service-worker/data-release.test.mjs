@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {createHash} from 'node:crypto';
+import {createHash, webcrypto} from 'node:crypto';
 import vm from 'node:vm';
 
 const root = new URL('../../', import.meta.url);
@@ -20,9 +20,12 @@ function worker(source, {offline = false} = {}) {
     put: async (request, response) => {responses.set(key(request), response.clone());},
     delete: async request => responses.delete(key(request)), keys: async () => [...responses.keys()].map(x => new BrowserRequest(x))};
   vm.runInNewContext(source, {self: {addEventListener: (name, fn) => handlers.set(name, fn), skipWaiting() {}, clients: {claim: async () => {}}},
-    location: {origin}, URL, Request: BrowserRequest, console,
-    caches: {match: cache.match, open: async () => cache, keys: async () => [], delete: async () => {}},
-    fetch: async request => {network.push(key(request)); if (offline) throw Error('Offline'); return new Response('current ' + key(request));}});
+    location: {origin}, URL, Request: BrowserRequest, console, Response, Headers, Uint8Array, AbortSignal, crypto: webcrypto,
+    caches: {match: cache.match, open: async () => cache, has: async () => false, keys: async () => [], delete: async () => {}},
+    fetch: async request => {network.push(key(request)); if (offline) throw Error('Offline'); const path = new URL(key(request)).pathname;
+      if (source.includes('const OFFLINE_FILES') && /^(\/offline\.html|\/js\/(?:answer-presentation|question-revisions)\.js|\/data\/(?:topics|question-revision-(?:manifest|history))\.js)$/.test(path)
+        && !key(request).endsWith('release=999.0')) return new Response(read(path.slice(1)));
+      return new Response('current ' + key(request));}});
   return {network, seed: (pathname, value) => responses.set(key(pathname), new Response(value)),
     async request(url) {let result; handlers.get('fetch')({request: new BrowserRequest(url), respondWith: promise => {result = promise;}}); return (await result)?.text();},
     async install() {let result; handlers.get('install')({waitUntil: promise => {result = promise;}}); await result;},
