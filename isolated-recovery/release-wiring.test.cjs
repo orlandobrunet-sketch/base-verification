@@ -3,6 +3,7 @@ const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
+const vm=require('node:vm');
 const root=path.join(__dirname,'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8').replaceAll('\r\n','\n');
 const modules=['owner-authority','normal-authority','cloud-authority','legacy-cloud-decision','authority-cloud-decision','auxiliary-progress'];
@@ -32,9 +33,23 @@ test('release, Sentry and durability assets have coherent cache versions',()=>{
  }
 });
 
-test('release does not silently activate unverified durable/cloud gates',()=>{
- for(const file of ['index.html','jogar/index.html']){
-  assert.doesNotMatch(read(file),/NQ_(?:DURABLE_PROGRESS|OWNER_CLOUD_GUARD_VERIFIED)\s*=\s*true/);
+test('the published game enables both chest gates together on the canonical HTTPS origin',()=>{
+ const pattern=/<script id="nq-chest-recovery-rollout">([\s\S]*?)<\/script>/;
+ const app=read('jogar/index.html');
+ const script=app.match(pattern)?.[1];
+ assert.ok(script);
+ assert.ok(app.indexOf(script)<app.indexOf('src="js/auth.js'));
+ const flags=/NQ_(?:DURABLE_PROGRESS|OWNER_CLOUD_GUARD_VERIFIED)\s*=\s*true/;
+ assert.doesNotMatch(app.replace(pattern,''),flags);
+ assert.doesNotMatch(read('index.html'),flags);
+ for(const [origin,expected] of [
+  ['https://nefroquest.com',true],['http://nefroquest.com',undefined],
+  ['https://preview.example.test',undefined],['http://localhost:5500',undefined],
+ ]){
+  const window={location:{origin}};
+  vm.runInNewContext(script,{window});
+  assert.equal(window.NQ_DURABLE_PROGRESS,expected,origin);
+  assert.equal(window.NQ_OWNER_CLOUD_GUARD_VERIFIED,expected,origin);
  }
 });
 

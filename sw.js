@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.37
-const CACHE = 'nefroquest-v17.37';
+// NefroQuest Service Worker — v17.38
+const CACHE = 'nefroquest-v17.38';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -200,8 +200,8 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/js/owner-authority.js': '17.37',
-  '/js/normal-authority.js': '17.37',
+  '/js/owner-authority.js': '17.38',
+  '/js/normal-authority.js': '17.38',
   '/js/cloud-authority.js': '17.37',
   '/js/legacy-cloud-decision.js': '17.37',
   '/js/auxiliary-progress.js': '17.37',
@@ -241,7 +241,7 @@ const ASSET_VERSIONS = {
   '/data/refs.js': '17.28',
   '/data/articles.js': '17.28',
   '/data/topics.js': '17.32',
-  '/data/question-revision-manifest.js': '17.37',
+  '/data/question-revision-manifest.js': '17.38',
   '/data/question-source-positions.js': '17.28',
   '/data/question-revision-history.js': '17.32',
   '/js/question-revisions.js': '17.27',
@@ -250,7 +250,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '17.15',
-  '/styles/lumen/atrium.css': '17.15',
+  '/styles/lumen/atrium.css': '17.38',
   '/styles/lumen/game.css': '17.34',
   '/styles/lumen/difficulty.css': '17.06',
   '/styles/lumen/dashboard.css': '17.17',
@@ -273,7 +273,7 @@ const ASSET_VERSIONS = {
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
   '/js/study-mode.js': '17.37',
-  '/js/game.js': '17.37',
+  '/js/game.js': '17.38',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '17.37',
   '/js/portal.js': '17.15',

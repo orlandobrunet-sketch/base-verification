@@ -58,13 +58,13 @@ test('version-only CAS confirmation retains journal; exact reread permits cleanu
   const before=f.authority.load(),payload=f.authority.exportCloud({base:null}),storage=new Map();
   const ctx={console,localStorage:{setItem:(k,v)=>storage.set(k,v)},NQNormalProgress:{authority:f.authority,get writable(){return f.authority.writable}},NQCloudAuthority:{fingerprint:()=> 'fingerprint'},_cloudJourneyFingerprint:()=>null,_cloudFingerprint:()=> 'payload'};
   ctx.window=ctx;vm.createContext(ctx);
-  vm.runInContext(source.slice(source.indexOf('    function _rememberCloudProgress('),source.indexOf('    async function _readCloudProgress(')),ctx);
+  vm.runInContext(source.slice(source.indexOf('    function _cloudCheckpointKey('),source.indexOf('    async function _readCloudProgress(')),ctx);
   const remote={version:10,progress:{ownerAuthority:payload}};
   ctx._rememberCloudProgress('u',remote);a.deepEqual(f.authority.load(),before);
   ctx._rememberCloudProgress('u',remote,{confirmedRead:true});
   a.deepEqual(f.authority.exportCloud().state,payload.state);
   a.notDeepEqual(f.authority.load().source,before.source,'confirmed reread prunes the journal');
-  a.ok(storage.has('nefroquest-cloud:u'));
+  a.ok(storage.has('nefroquest-authority-cloud-v1:u'));
  }finally{await f.authority.release();}
 });
 
@@ -208,7 +208,8 @@ test('archive dialog lists and previews without mutation; only explicit confirma
   }
   let stopped=0,reads=0,focusReleased=0;
   const ctx={console,_archiveDialogFocus:null,NQNormalProgress:{authority:f.authority,get writable(){return f.authority.writable;}},NQAuthorityCloudDecision:decisions,NQAuxiliaryProgress:auxiliary,
-   _cloudBinding:()=>({owner:'u'}),_cloudBindingCurrent:()=>true,document:{getElementById:id=>nodes.get(id),createElement:()=>new Element(),body:new Element()},manageDialogFocus:()=>()=>{focusReleased++;},
+   _authSessionEpoch:1,_progressEpoch:1,_currentSaveOwner:()=> 'u',isCharacterPilot:()=>false,
+   _cloudBinding:()=>({owner:'u',authEpoch:1,progressEpoch:1}),_cloudBindingCurrent:()=>true,document:{getElementById:id=>nodes.get(id),createElement:()=>new Element(),body:new Element()},manageDialogFocus:()=>()=>{focusReleased++;},
    _buildCloudProgress:()=>f.remote.progress,_stopLocalJourney(){stopped++;},_invalidateStatsCache(){},_reloadJourneyCollections(){},refreshWelcomeSave(){},_cloudStatus(){},
    _loadProgressFromCloud(){reads++;a.equal(f.authority.load().source.cloudSyncHold.reason,'restored-archive');return Promise.resolve(false);}};
   ctx.window=ctx;vm.createContext(ctx);
@@ -224,6 +225,39 @@ test('archive dialog lists and previews without mutation; only explicit confirma
   ctx._resetCloudSync();a.equal(nodes.has('authorityArchiveDialog'),false);a.equal(focusReleased,2,'account reset releases focus trap immediately');
   ctx._resetCloudSync();a.equal(focusReleased,2,'repeated reset does not release twice');
  }finally{await f.authority.release();}
+});
+
+test('old-tab copy downloads exact archived strings only while its dialog owner remains current', () => {
+ const fs=require('node:fs'),vm=require('node:vm'),source=fs.readFileSync(require.resolve('../js/game.js'),'utf8');
+ const nodes=new Map(),payloads=[],downloads=[];
+ class Element {
+  constructor(){this.children=[];this.selectors=new Map();this.dataset={};this.isConnected=false;}
+  setAttribute(){} querySelector(selector){if(!this.selectors.has(selector))this.selectors.set(selector,new Element());return this.selectors.get(selector);}
+  appendChild(child){this.children.push(child);child.isConnected=true;if(child.id)nodes.set(child.id,child);return child;}
+  remove(){this.isConnected=false;nodes.delete(this.id);}
+  click(){downloads.push(this.download);}
+ }
+ let owner='u';
+ const archive={index:0,archivedAt:1760000000000,saveRaw:'{ "saveOwner": "u" }',legacyRaw:null,articlesRaw:'[ 1, 2 ]',knowledgeRaw:'5'};
+ const ctx={console,_archiveDialogFocus:null,_authSessionEpoch:1,_progressEpoch:1,
+  _currentSaveOwner:()=>owner,isCharacterPilot:()=>false,_cloudBinding:()=>({owner,authEpoch:ctx._authSessionEpoch,progressEpoch:ctx._progressEpoch}),
+  _cloudBindingCurrent:()=>true,NQNormalProgress:{writable:true,legacySourceArchives:()=>[archive]},
+  document:{getElementById:id=>nodes.get(id),createElement:()=>new Element(),body:new Element()},manageDialogFocus:()=>()=>{},
+  Blob:class {constructor(parts){this.parts=parts;}},URL:{createObjectURL(blob){payloads.push(...blob.parts);return 'blob:technical';},revokeObjectURL(){}},
+  setTimeout:fn=>fn()};
+ ctx.window=ctx;vm.createContext(ctx);
+ vm.runInContext(source.slice(source.indexOf('    function _closeArchivedAuthorityBranches('),source.indexOf('    function _offerDeferredAuthorityChoice(')),ctx);
+ ctx._showArchivedAuthorityBranches();
+ const dialog=nodes.get('authorityArchiveDialog');
+ const download=dialog.querySelector('[data-archive-older-tab]').children[1];
+ download.onclick();
+ a.deepEqual(payloads.map(JSON.parse),[archive]);
+ a.deepEqual(downloads,['nefroquest-copia-aba-antiga-1.json']);
+
+ owner='other-account';ctx._authSessionEpoch++;
+ download.onclick();
+ a.equal(payloads.length,1,'an old control cannot create a download for a different owner');
+ a.equal(nodes.has('authorityArchiveDialog'),false);
 });
 
 test('auxiliary-only study/minigame changes invalidate remote selection without authority mutation',async()=>{

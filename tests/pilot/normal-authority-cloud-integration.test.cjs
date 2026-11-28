@@ -30,6 +30,22 @@ async function fixture({canonicalRaw}={}){
  return {map,storage,n,ctx,counts,initial,binding,build:()=>ctx._buildCloudProgress(),remember:remote=>ctx._rememberCloudProgress('u',remote),reconcile:remote=>ctx._reconcileCloudProgress(binding(),remote)};
 }
 test('real game reconciliation preserves newer local work when remote ancestor is unchanged, builds push',async()=>{const f=await fixture();try{const remote={version:1,progress:f.build()};f.remember(remote);const before=f.n.loadSave();f.n.save({...before,score:50});assert.equal(f.reconcile(remote),true);assert.equal(f.n.loadSave().score,50);assert.equal(f.counts.stopped,0);const push=f.build();assert.equal(push.ownerAuthority.state.save.score,50);assert.equal(push.ownerAuthority.base,cloud.fingerprint(remote.progress.ownerAuthority.state));assert.equal('save' in push,false);assert.equal('unlockedArticles' in push,false);}finally{await f.n.release();}});
+test('a 17.34 tab can refresh its checkpoint while the protected journey keeps its verified ancestor',async()=>{
+ const f=await fixture();
+ try{
+  const remote={version:3,progress:f.build()};
+  f.remember(remote);
+  const ancestor=cloud.fingerprint(remote.progress.ownerAuthority.state);
+  f.n.save({...f.n.loadSave(),score:50});
+  const legacy=JSON.stringify({version:3,journey:null,payload:'legacy-reader'});
+  f.map.set('nefroquest-cloud:u',legacy);
+  assert.equal(f.ctx._cloudCheckpoint('u').authorityBase,ancestor);
+  assert.equal(f.reconcile(remote),true);
+  assert.equal(f.build().ownerAuthority.base,ancestor);
+  assert.equal(f.n.loadSave().score,50);
+  assert.equal(f.map.get('nefroquest-cloud:u'),legacy);
+ }finally{await f.n.release();}
+});
 test('real game reconciliation imports direct descendant and retires live memory',async()=>{const f=await fixture();try{const ancestor=f.build(),remote=copy(ancestor);remote.ownerAuthority.base=cloud.fingerprint(ancestor.ownerAuthority.state);remote.ownerAuthority.state.save.score=70;remote.ownerAuthority.state.collections.articles.push(4);assert.equal(f.reconcile({version:2,progress:remote}),true);assert.equal(f.n.loadSave().score,70);assert.deepEqual(f.n.envelope().collections.articles,[3,4]);assert.equal(f.counts.stopped,1);assert.equal(f.counts.reloaded,1);assert.equal(f.ctx.state.gameStarted,false);}finally{await f.n.release();}});
 test('real game divergence refuses before legacy stats or collections side effects',async()=>{const f=await fixture();try{const ancestor=f.build();f.remember({version:1,progress:ancestor});f.n.save({...f.n.loadSave(),score:60});const remote=copy(ancestor);remote.ownerAuthority.base=cloud.fingerprint(ancestor.ownerAuthority.state);remote.ownerAuthority.state.save.score=80;remote.stats={gamesPlayed:999};remote.achievements=['injected'];const before=[...f.map];assert.equal(f.reconcile({version:2,progress:remote}),false);assert.deepEqual([...f.map],before);assert.equal(f.counts.stopped,0);}finally{await f.n.release();}});
 test('real game identical legacy ancestor permits first authority migration push',async()=>{const f=await fixture();try{assert.equal(f.reconcile({version:4,progress:{save:copy(f.initial),unlockedArticles:[3]}}),true);assert.equal(f.build().ownerAuthority.state.save.journeyId,'j');assert.equal(f.n.loadSave().score,10);}finally{await f.n.release();}});

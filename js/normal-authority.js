@@ -56,11 +56,11 @@
     });
     return Object.freeze({
       authority, storage:progressStorage,
-      async bootstrap({migration={},newSave=null,collections={articles:[],knowledge:0}}={}) {
+      async bootstrap({migration={},newSave=null,collections={articles:[],knowledge:0},archiveStaleLegacy=false}={}) {
         if(ready) return read();
         if(!await authority.acquire()) fail('LEASE_UNAVAILABLE');
         try {
-          let e=authority.resumeLegacySources();
+          let e=authority.resumeLegacySources({archiveStaleLegacy});
           if(!e)e=authority.load();
           if(!e) {
             const raw=backing.getItem(migration.canonicalKey || 'nefroquest-save-v7');
@@ -76,6 +76,7 @@
         } catch(error) {await authority.release();throw error;}
       },
       envelope:read,
+      legacySourceArchives(){return copy(read().source.legacySourceArchives??[]);},
       loadSave(){const e=read();return e?.save?copy(e.save):null;},
       beginTransaction(){guard();if(transaction)return false;transaction=authority.load();return !!transaction;},
       commit(save,mutateEnvelope) {

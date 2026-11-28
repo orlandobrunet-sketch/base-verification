@@ -28,3 +28,17 @@ test('concurrent cloud and Continue share one authority bootstrap for same ident
  vm.runInContext(section(game,'    let _normalAuthorityOpening = null;','    async function _openNormalAuthority()'),ctx);
  const cloud=ctx._ensureNormalAuthority(),continuation=ctx._ensureNormalAuthority();a.equal(opens,1);resolve(true);a.deepEqual(await Promise.all([cloud,continuation]),[true,true]);
 });
+test('a same-account refresh keeps the session while an old tab pauses protected progress',async()=>{
+ const f=await fixture();const current=await f.boot();
+ try{
+  f.map.set('unlockedArticles','[3,99]');
+  a.equal(current.writable,false);
+  f.ctx._legacyTabIssue={owner:'a',generation:1};
+  vm.runInContext(section(game,'    window._prepareProgressOwnerAsync =','    function _signedOutSaveNeedsLogin('),f.ctx);
+  const before=[...f.map];
+  a.equal(await f.ctx._prepareProgressOwnerAsync('a'),true);
+  a.equal(await f.ctx._prepareProgressOwnerAsync('b'),false);
+  a.equal(f.ctx.authUser.id,'a');
+  a.deepEqual([...f.map],before);
+ }finally{await current.release();}
+});
