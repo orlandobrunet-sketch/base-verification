@@ -107,9 +107,10 @@ test('filtros expandem inline com teclado e refluem em 320 px com texto a 200%',
   await expect(page.locator('[data-library-rarity-filter="raro"]')).toHaveAttribute('aria-pressed', 'true');
   expect(await ledger(page)).toEqual(before);
   await page.keyboard.press('Escape');
+  await expect(page.locator('#nqDashboard')).toHaveCount(0);
   await page.evaluate(() => (window as any).openDashboard({ tab: 'library' }));
-  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  await expect(filters).toBeHidden();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(filters).toBeVisible();
   await expect(page.locator('[data-library-rarity-filter="raro"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(toggle).toHaveAttribute('data-filter-active', 'true');
   await expect(toggle).toHaveAccessibleDescription(/Raridade: Raro/);

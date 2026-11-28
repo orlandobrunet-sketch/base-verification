@@ -32,8 +32,13 @@ test('verified titles add presentation metadata without replacing catalogue iden
     [['dapa', '__art_14'], 'work:dapa_ckd', 'DAPA-CKD — Dapagliflozina em pacientes com doença renal crônica', 'Dapagliflozin in Patients with Chronic Kidney Disease', 'https://www.nejm.org/doi/full/10.1056/NEJMoa2024816'],
     [['empa_kidney', '__art_16'], 'work:empa_kidney', 'EMPA-KIDNEY — Empagliflozina em pacientes com doença renal crônica', 'Empagliflozin in Patients with Chronic Kidney Disease', 'https://www.nejm.org/doi/full/10.1056/NEJMoa2204233'],
     [['credence', '__art_21'], 'work:credence', 'CREDENCE — Canagliflozina e desfechos renais em pacientes com diabetes tipo 2 e nefropatia', 'Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy', 'https://www.nejm.org/doi/full/10.1056/NEJMoa1811744'],
+    [['flow_study', '__art_30'], 'work:flow', 'FLOW — Semaglutida na doença renal crônica em pessoas com diabetes tipo 2', 'Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes', 'https://www.nejm.org/doi/full/10.1056/NEJMoa2403347'],
+    [['canvas_program', '__art_12'], 'work:canvas_program', 'CANVAS — Canagliflozina e eventos cardiovasculares e renais no diabetes tipo 2', 'Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes', 'https://www.nejm.org/doi/full/10.1056/NEJMoa1611925'],
+    [['bproad', '__art_31'], 'work:bproad', 'BPROAD — Controle intensivo da pressão arterial no diabetes tipo 2', 'Intensive Blood-Pressure Control in Patients with Type 2 Diabetes', 'https://www.nejm.org/doi/full/10.1056/NEJMoa2412006'],
+    [['rave_study', '__art_25'], 'work:rave', 'RAVE — Rituximabe versus ciclofosfamida na vasculite associada a ANCA', 'Rituximab versus Cyclophosphamide for ANCA-Associated Vasculitis', 'https://www.nejm.org/doi/full/10.1056/NEJMoa0909905'],
+    [['rituxvas_study', '__art_39'], 'work:rituxvas', 'RITUXVAS — Rituximabe versus ciclofosfamida na vasculite renal associada a ANCA', 'Rituximab versus Cyclophosphamide in ANCA-Associated Renal Vasculitis', 'https://www.nejm.org/doi/full/10.1056/NEJMoa0909169'],
   ];
-  assert.equal(collapsed.filter(item => item.displayTitle).length, 9);
+  assert.equal(collapsed.filter(item => item.displayTitle).length, 19);
   for (const [keys, work, display, original, publication] of titles) {
     for (const key of keys) {
       const item = collapsed.find(entry => entry.key === key);

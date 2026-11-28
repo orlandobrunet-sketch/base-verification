@@ -1,12 +1,16 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 26/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 27/11/2026 — [histórico de continuidade](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 26/11/2026
+## Estado operacional - 27/11/2026
+
+**17.39 publicada em 27/11/2026.** A recuperação dos baús retoma a Jornada protegida quando uma aba da 17.34 gravou em paralelo. A cópia antiga pode ser baixada no aparelho, em Jornadas arquivadas. A conversão dos salvamentos anteriores à 15.92 ocorre localmente, com sincronização após recarregar. [PR 984](https://github.com/orlandobrunet-sketch/base-verification/pull/984).
+
+**Lote 17.40.** O Grimório recupera o painel de filtros e a posição na lista ao voltar do Átrio. A página 404 mostra os links de retorno antes da ilustração em telas estreitas. FLOW, CANVAS, BPROAD, RAVE e RITUXVAS ganham títulos em português com os originais nas fichas. Duas questões de hemodiálise têm alternativas equilibradas e histórico de respostas preservado. As demais superfícies seguem no inventário. [Parecer independente](editorial/reviews/2026-11-27-hemodialise-alternativas/parecer-independente-A1.json).
 
 **Lote 17.34.** O PR 980 foi integrado à base 17.32. A Jornada mostra a posição da pergunta no desktop, atualiza os marcos e a derrota e registra a melhor tentativa Hardcore por perfil. A Égide preenche a vida extra uma vez por jornada. O Estudo destaca as revisões agendadas, e o Simulado separa a pontuação total do acerto nas respondidas e mantém o tempo do resultado. O acesso Premium é verificado pela sessão autenticada, com nova tentativa para falhas de consulta. A regressão offline aguarda o controlador ativo e testa a navegação no cache da release. [PR 980](https://github.com/orlandobrunet-sketch/base-verification/pull/980).
 

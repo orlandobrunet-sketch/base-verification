@@ -84,8 +84,13 @@ const renalTrialTitles = {
 };
 
 test('verified bibliography preserves discovery and searches, sorts, copies and opens the intended titles', async ({ page }) => {
-  const titles = [...Object.values(renalTrialTitles), ...titlePilot];
-  await seed(page, ['hypernatremia_yun_2023', 'empa_kidney'], [27, 10, 21, 22], titles.map(item => item.key));
+  const flow = {
+    key: '__art_30', work: 'work:flow', title: 'FLOW — Semaglutida na doença renal crônica em pessoas com diabetes tipo 2',
+    original: 'Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes',
+    legacy: 'FLOW Trial', url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2403347',
+  };
+  const titles = [...Object.values(renalTrialTitles), ...titlePilot, flow].sort((a, b) => a.title.localeCompare(b.title, 'pt-BR'));
+  await seed(page, ['hypernatremia_yun_2023', 'empa_kidney'], [27, 10, 21, 22, 30], titles.map(item => item.key));
   await page.evaluate(() => {
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
       writeText: async (text: string) => { (window as any).__catalogueCopiedTitle = text; },

@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "title": "Propostas autorais A1 — alternativas de hemodiálise",
+  "reviewedOn": "2026-11-27",
+  "baseRelease": "17.39",
+  "baseCommit": "1b59dc648b7cc224507a678bfad096ce4d6a7f8a",
+  "status": "PROPOSTA_AUTORAL_PARA_PARECER_INDEPENDENTE",
+  "hashMethod": "SHA-256 sobre JSON.stringify do objeto serializado em UTF-8. Versões calculadas pelo construtor canônico do repositório.",
+  "questions": [
+    {
+      "qid": "646b9077",
+      "candidate": {
+        "t": "Bioimpedância — Ângulo de Fase na Hemodiálise",
+        "qid": "646b9077",
+        "q": "Paciente em hemodiálise de manutenção apresenta ângulo de fase baixo na bioimpedância, força de preensão reduzida e escore elevado de desnutrição-inflamação. À luz da coorte de Beberashvili e colaboradores, como interpretar o ângulo de fase nesse caso?",
+        "refs": [
+          "phase_angle_hd_2014"
+        ],
+        "opts": [
+          "Complementa a avaliação nutricional e funcional junto aos demais achados do caso.",
+          "Confirma desnutrição proteico-energética sem necessidade de outros dados clínicos.",
+          "Estima o risco de morte independentemente do escore de desnutrição-inflamação.",
+          "Substitui o teste de preensão por oferecer uma medida direta de função muscular."
+        ],
+        "ans": 0,
+        "exp": "O ângulo de fase complementa a avaliação nutricional e funcional. Na coorte de pessoas em hemodiálise de manutenção, valores mais altos se associaram a maior força de preensão e menor risco de hospitalização. A associação com mortalidade perdeu significância após o ajuste pelo escore de desnutrição-inflamação. A coorte estudou associações. Interpretar o ângulo de fase com a avaliação clínica e a medida de força evita tratar o resultado isolado como confirmação de desnutrição ou medida direta da função muscular.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "sources": [
+        {
+          "reference": "Beberashvili et al. Eur J Clin Nutr. 2014;68(6):683–689.",
+          "doi": "10.1038/ejcn.2014.67",
+          "pmid": "24736681",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A24736681&resultType=core&format=json",
+          "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/24736681/",
+          "locator": "Resumo primário depositado, Métodos e Resultados",
+          "claims": "Coorte prospectiva de adultos em hemodiálise de manutenção. Preensão mais forte nos tercis mais altos e menor risco de primeira hospitalização com ângulo de fase basal mais alto. A associação com mortalidade deixou de ser significativa após incluir o escore de desnutrição-inflamação no modelo. Os dados sustentam uma interpretação complementar no contexto do caso. A fonte primária decisiva está acessível em resumo estruturado, e a proposta não usa detalhes exclusivos do texto integral."
+        },
+        {
+          "reference": "Ikizler et al. KDOQI Clinical Practice Guideline for Nutrition in CKD: 2020 Update. Am J Kidney Dis. 2020;76(3 Suppl 1):S1–S107.",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0272638620307265",
+          "locator": "Recomendações 1.1.1, 1.3.1 e 1.5.2",
+          "claims": "Verificação contextual. As recomendações tratam bioimpedância, força de preensão e escore de desnutrição-inflamação como métodos específicos. A pergunta não exige critérios diagnósticos ou estágio de tratamento. O card da coorte sustenta o gabarito no recorte proposto."
+        }
+      ],
+      "original": {
+        "t": "Bioimpedância — Ângulo de Fase na Hemodiálise",
+        "qid": "646b9077",
+        "q": "Paciente em hemodiálise apresenta ângulo de fase baixo na bioimpedância, menor força de preensão e escore elevado de desnutrição-inflamação. Qual é a interpretação mais adequada?",
+        "refs": [
+          "phase_angle_hd_2014"
+        ],
+        "opts": [
+          "O ângulo de fase é um marcador complementar de integridade celular e estado nutricional, associado a desfechos, mas não prova causalidade nem substitui avaliação clínica",
+          "O valor baixo diagnostica sozinho desnutrição proteico-energética e define obrigatoriamente suplementação enteral",
+          "O ângulo de fase mede diretamente a taxa de filtração glomerular residual e deve orientar a dose de diálise",
+          "O resultado demonstra excesso isolado de água intracelular e independe de inflamação ou massa muscular"
+        ],
+        "ans": 0,
+        "exp": "Em coorte prospectiva de pacientes em hemodiálise, ângulo de fase mais alto associou-se a maior força muscular, melhor qualidade de vida e menor risco de hospitalização e eventos. Entretanto, trata-se de marcador observacional influenciado por composição corporal, desnutrição e inflamação; a associação com mortalidade perdeu significância após ajuste pelo escore de desnutrição-inflamação. Assim, um valor baixo deve integrar avaliação nutricional, funcional e volêmica, não funcionar como diagnóstico isolado, medida de função renal ou indicação automática de terapia.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "beforeHash": "c8b0b7b839604fe8266557a05e2a8bda934238b819b5382e57dec7c1776757f4",
+      "afterHash": "70aa85e47bcdff43472e7b21ccc8c63d5e40ad7e593acf9f2b99c17110316561",
+      "cardHashes": {
+        "phase_angle_hd_2014": "0dce01f3ba220432b9cffaf13df8207c69408e03a37bb7ff100e391df734c823"
+      },
+      "version": {
+        "before": {
+          "authorRevision": "sha256:ed92760d51bbd59a7e96e10b595961a6f001ed2914abfc193e3d15a2b39ee298",
+          "recordRevision": "sha256:74c69a82958b7e4f791475fe047d985611b278dd972ac48ce707d8b6300358ae",
+          "sourceRevisions": {
+            "main": "sha256:f8b06c6488d1458ee4fd91da50c70f300b02586792cb9887137c7847cdcba94d",
+            "exam": "sha256:f8b06c6488d1458ee4fd91da50c70f300b02586792cb9887137c7847cdcba94d",
+            "study": "sha256:cef9034b22c7f478ed97da3a843602286277cc79e4f73dfbe2adcfd56af59a1d",
+            "offline": "sha256:bda80d3d16800ba0692d6ecbb442cb1bcbb4a95ca89fcf820a476fe6639bbbef"
+          },
+          "referenceRevisions": {
+            "phase_angle_hd_2014": "sha256:6b22cacb27f2c0e8dff45de4d839b646f9a6db8ef84556e5a128d2841fb053dc"
+          }
+        },
+        "after": {
+          "authorRevision": "sha256:131807fd165c18e2e710a77c5b4bc7c4d22ab74e427219e707e47a6f644de07e",
+          "recordRevision": "sha256:5be6fc054314f7494e8639e6d090d4002ac5539df20176b9ef6e6f25e606f456",
+          "sourceRevisions": {
+            "main": "sha256:1f5014c48f619e64bd200928062205f66889b096c2f0a2762f615fa8bce30b0e",
+            "exam": "sha256:1f5014c48f619e64bd200928062205f66889b096c2f0a2762f615fa8bce30b0e",
+            "study": "sha256:fb80c9e77aff37e810331e0a4cdf361bc6a6accfe115dddf921ae18993c8f3a9",
+            "offline": "sha256:7eaba1dc977d8156c908b9b419d7547ac4d971d30c821b569561a98e10ee9043"
+          },
+          "referenceRevisions": {
+            "phase_angle_hd_2014": "sha256:6b22cacb27f2c0e8dff45de4d839b646f9a6db8ef84556e5a128d2841fb053dc"
+          }
+        }
+      },
+      "candidateScope": {
+        "changedFields": [
+          "q",
+          "opts",
+          "exp"
+        ],
+        "originalAlternativeLengths": [
+          169,
+          113,
+          107,
+          102
+        ],
+        "candidateAlternativeLengths": [
+          81,
+          82,
+          78,
+          80
+        ]
+      }
+    },
+    {
+      "qid": "6ded255a",
+      "candidate": {
+        "t": "DIALIZE-Outcomes — Potássio versus Eventos Arrítmicos",
+        "qid": "6ded255a",
+        "q": "No DIALIZE-Outcomes, adultos em hemodiálise de manutenção com hipercalemia pré-diálise foram randomizados para ciclosilicato de zircônio sódico ou placebo. Que combinação descreve o efeito do ciclosilicato sobre a manutenção de normocalemia aos 12 meses e sobre o desfecho cardiovascular composto primário?",
+        "refs": [
+          "dialize_outcomes_2025"
+        ],
+        "opts": [
+          "Normocalemia mais frequente, sem redução demonstrada do composto cardiovascular.",
+          "Normocalemia mais frequente, com redução demonstrada do composto cardiovascular.",
+          "Normocalemia mais frequente, com equivalência demonstrada no composto cardiovascular.",
+          "Frequência semelhante de normocalemia, sem redução demonstrada do composto cardiovascular."
+        ],
+        "ans": 0,
+        "exp": "A normocalemia aos 12 meses foi mais frequente com ciclosilicato. O composto primário reuniu morte súbita cardíaca, acidente vascular cerebral e internação, intervenção ou atendimento de urgência por arritmia. Esse desfecho ocorreu em 8,8% com ciclosilicato e em 8,9% com placebo. A razão de riscos instantâneos foi de 0,98, com intervalo de confiança de 95% de 0,76 a 1,26. O estudo terminou precocemente após menos eventos do que o previsto e alta interrupção do medicamento do estudo. O intervalo inclui 1 e admite efeitos em ambas as direções. Para interpretar o ensaio, avalie o benefício bioquímico e o desfecho clínico separadamente. A análise de superioridade também é insuficiente para estabelecer equivalência.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "sources": [
+        {
+          "reference": "Fishbane et al. Kidney Int. 2025;108(4):686–694.",
+          "doi": "10.1016/j.kint.2025.06.016",
+          "pmid": "40618849",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A40618849&resultType=core&format=json",
+          "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/40618849/",
+          "locator": "Resumo primário depositado, Métodos, Resultados e Conclusões",
+          "claims": "Adultos em hemodiálise três vezes por semana e hipercalemia pré-diálise, randomizados para ciclosilicato ou placebo. O desfecho composto primário foi de 8,8% e 8,9%, respectivamente, com HR 0,98 e IC95% 0,76–1,26. Normocalemia aos 12 meses foi mais frequente com ciclosilicato. O estudo terminou cedo com baixa incidência de eventos e alta descontinuação da medicação. A fonte primária decisiva está acessível em resumo estruturado, e a proposta não usa dados que dependam de acesso integral."
+        },
+        {
+          "reference": "ClinicalTrials.gov. DIALIZE-Outcomes NCT04847232, resultados depositados pelos investigadores.",
+          "url": "https://clinicaltrials.gov/study/NCT04847232?tab=results",
+          "machineReadableUrl": "https://clinicaltrials.gov/api/v2/studies/NCT04847232",
+          "locator": "Results, Outcome measures: Incidence of the Composite of Cardiac Event Outcomes e Normokalemia at 12 Months Post-randomization",
+          "claims": "Confirma componentes e análise de Cox do primário. A análise de normocalemia aos 12 meses usa definição própria e coleta após o maior intervalo interdialítico. O item cobra a direção do efeito e não exige o valor de corte nem os denominadores da análise secundária."
+        }
+      ],
+      "original": {
+        "t": "DIALIZE-Outcomes — Potássio versus Eventos Arrítmicos",
+        "qid": "6ded255a",
+        "q": "No DIALIZE-Outcomes, adultos em hemodiálise com hipercalemia pré-diálise receberam ciclosilicato de zircônio sódico ou placebo. Qual interpretação traduz corretamente o ensaio?",
+        "refs": [
+          "dialize_outcomes_2025"
+        ],
+        "opts": [
+          "O fármaco melhorou a manutenção de normocalemia, mas não reduziu o composto cardiovascular relacionado a arritmia; encerramento precoce limita conclusões clínicas",
+          "O fármaco reduziu morte súbita pela metade e esse benefício ocorreu independentemente do controle do potássio",
+          "O estudo demonstrou superioridade do fármaco apenas por permitir dialisato com potássio zero",
+          "A ausência de diferença cardiovascular prova que controlar hipercalemia pré-diálise não tem utilidade clínica"
+        ],
+        "ans": 0,
+        "exp": "O DIALIZE-Outcomes randomizou 2.690 pacientes e foi encerrado precocemente por baixa taxa de eventos e alta descontinuação. O composto de morte súbita, AVC ou atendimento relacionado a arritmia foi semelhante com ciclosilicato e placebo, enquanto a manutenção de normocalemia em 12 meses foi maior com o fármaco. Portanto, o ensaio confirma eficácia bioquímica, mas não demonstrou benefício cardiovascular; também não autoriza concluir que tratar hipercalemia seja inútil nem que se deva criar grande gradiente sérico-dialisato.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "beforeHash": "c3f6fdd3bcc31120911faef850429a8a853d969a40eed18868d6d50fce362958",
+      "afterHash": "ee7809440bae9ee47ba29f2da89605cc2f06c466bacbe49460d2a3e3387fc200",
+      "cardHashes": {
+        "dialize_outcomes_2025": "7aad958a9b084b6ac48020f7f95d27afafae20a9acc7b57ddab94a01075d5595"
+      },
+      "version": {
+        "before": {
+          "authorRevision": "sha256:cc0f5056e887307f706be89db957da15a3b43ad5d4e1f2e13ba03a73acc66a09",
+          "recordRevision": "sha256:c9a847904b57db0179e733c7ab61c1d16fffa1b6b201c28cb06f075098c1ab6d",
+          "sourceRevisions": {
+            "main": "sha256:15ed4c9be833f46baa3b7af15b96e27bbb96cef910368ca68b6861bd26b1b040",
+            "exam": "sha256:15ed4c9be833f46baa3b7af15b96e27bbb96cef910368ca68b6861bd26b1b040",
+            "study": "sha256:9b4bae7efea463e79a63341e3baf8c93a244cc54c5729cb8c2284db0c5000208",
+            "offline": "sha256:3fc4bac0e80a2f05372afe485eb6f3882438faa21d737f7c48f402360a51a7d5"
+          },
+          "referenceRevisions": {
+            "dialize_outcomes_2025": "sha256:217d2807e9e1980111323e075c1556acef2d29a5d3e9671b86829d804f47816a"
+          }
+        },
+        "after": {
+          "authorRevision": "sha256:7bee02fb33a4932be79d7591b03bc98f53712af6097221c0cfe3231593617bec",
+          "recordRevision": "sha256:30d4be682e6b37510aacf0245b19a3b3ad55da1c6b45ab9d735479b910dff6e9",
+          "sourceRevisions": {
+            "main": "sha256:eb23c148dd66e5ab8cfa78b22f1ae0ac2dbf4eb8c744559c05268276415bcf07",
+            "exam": "sha256:eb23c148dd66e5ab8cfa78b22f1ae0ac2dbf4eb8c744559c05268276415bcf07",
+            "study": "sha256:72f95544120e001e28eb55c74ca97d2c1d23f3a94ac62a18a3e5af61d030995f",
+            "offline": "sha256:076a2027e038530d4a9063135f3c35542429bf19fdcaece5d0fa0d232a218328"
+          },
+          "referenceRevisions": {
+            "dialize_outcomes_2025": "sha256:217d2807e9e1980111323e075c1556acef2d29a5d3e9671b86829d804f47816a"
+          }
+        }
+      },
+      "candidateScope": {
+        "changedFields": [
+          "q",
+          "opts",
+          "exp"
+        ],
+        "originalAlternativeLengths": [
+          162,
+          109,
+          92,
+          109
+        ],
+        "candidateAlternativeLengths": [
+          80,
+          80,
+          85,
+          90
+        ]
+      }
+    }
+  ]
+}
